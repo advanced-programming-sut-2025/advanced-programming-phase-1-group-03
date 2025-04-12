@@ -14,6 +14,9 @@ public class App {
         return instance;
     }
 
+    private App() {}
+
+
     public Menu getMenu() {
         return menu;
     }

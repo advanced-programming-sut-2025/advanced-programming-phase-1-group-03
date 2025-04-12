@@ -1,5 +1,8 @@
 package phi.ap.model;
 
+import phi.ap.model.enums.Weather;
+import phi.ap.model.items.Item;
+
 import java.util.ArrayList;
 
 public class Game {
@@ -14,4 +17,8 @@ public class Game {
         }
         return instance;
     }
+
+    private ArrayList<Item> items;
+    private Weather currentWeather;
+        private Weather tomorrowWeather;
 }

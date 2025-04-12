@@ -5,8 +5,11 @@ import phi.ap.model.items.Item;
 import java.util.ArrayList;
 
 public enum AbilityType {
+    Farming,
+    Extraction,
+    Foraging,
+    Fishing
     ;
-    ArrayList<Item>xpIncreasingItems;
 
 
 }
