@@ -1,12 +1,12 @@
 package phi.ap.model.enums.Menus;
 
 import phi.ap.view.AppMenu;
-import phi.ap.view.LoginMenu;
-import phi.ap.view.MainMenus.AvatarMenu;
-import phi.ap.view.MainMenus.GameMenu;
-import phi.ap.view.MainMenus.MainMenu;
-import phi.ap.view.MainMenus.ProfileMenu;
-import phi.ap.view.RegisterMenu;
+import phi.ap.view.menus.LoginMenu;
+import phi.ap.view.menus.MainMenus.AvatarMenu;
+import phi.ap.view.menus.MainMenus.GameMenu;
+import phi.ap.view.menus.MainMenus.MainMenu;
+import phi.ap.view.menus.MainMenus.ProfileMenu;
+import phi.ap.view.menus.RegisterMenu;
 
 import java.util.Scanner;
 
@@ -25,8 +25,11 @@ public enum Menu {
         this.menu = menu;
     }
 
-    public void checkCommand(Scanner scanner) {
-        menu.check(scanner);
+    public void start(){
+        menu.start();
+    }
+    public void checkCommand(String input) {
+        menu.check(input);
     }
 
 }

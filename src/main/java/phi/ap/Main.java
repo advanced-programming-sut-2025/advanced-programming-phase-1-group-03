@@ -1,12 +1,11 @@
 package phi.ap;
 
 import phi.ap.model.Game;
+import phi.ap.view.AppView;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
-
+        System.out.println("Start...");
+        AppView.runProgram();
     }
 }
-
-// TODO foraging

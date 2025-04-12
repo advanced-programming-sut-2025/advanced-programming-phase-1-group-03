@@ -9,6 +9,4 @@ public class Ability {
     AbilityType abilityType;
     int level;
     int xp;
-
-
 }

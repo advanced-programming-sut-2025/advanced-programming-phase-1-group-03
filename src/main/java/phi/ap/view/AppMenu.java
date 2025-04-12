@@ -2,6 +2,9 @@ package phi.ap.view;
 
 import java.util.Scanner;
 
-public interface AppMenu {
-    public void check(Scanner scanner);
+public abstract class AppMenu {
+    public void check(String input){
+
+    }
+    public abstract void start();
 }
