@@ -10,7 +10,7 @@ public class User {
     private Gender gender;
     private int gamePlayed;
     private int maxGold;
-    // TODO   stay-logged-in
+    private SecurityQuestion securityQuestion;
 
 
     public String getUsername() {
@@ -65,8 +65,15 @@ public class User {
         this.maxGold = maxGold;
     }
 
-    public void increaseGamePlayed(int amount) {
-
+    public void increaseGamePlayed() {
+        gamePlayed++;
     }
 
+    public SecurityQuestion getSecurityQuestion() {
+        return securityQuestion;
+    }
+
+    public void setSecurityQuestion(SecurityQuestion securityQuestion) {
+        this.securityQuestion = securityQuestion;
+    }
 }
