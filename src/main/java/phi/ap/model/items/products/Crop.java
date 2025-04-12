@@ -1,5 +1,5 @@
 package phi.ap.model.items.products;
 
-public class Crop {
+public class Crop extends Product {
 
 }

@@ -1,4 +1,6 @@
 package phi.ap.model.items.relations;
 
-public class Relation {
+import phi.ap.model.items.Item;
+
+public abstract class Relation extends Item {
 }

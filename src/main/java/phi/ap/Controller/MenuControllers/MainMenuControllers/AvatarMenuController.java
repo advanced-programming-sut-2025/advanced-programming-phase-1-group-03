@@ -1,4 +1,4 @@
 package phi.ap.Controller.MenuControllers.MainMenuControllers;
 
-public class AvatarMenuController {
+public abstract class AvatarMenuController {
 }

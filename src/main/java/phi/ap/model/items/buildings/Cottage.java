@@ -1,4 +1,4 @@
 package phi.ap.model.items.buildings;
 
-public class Cottage {
+public class Cottage extends Building {
 }

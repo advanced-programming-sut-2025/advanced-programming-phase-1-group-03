@@ -1,4 +1,4 @@
 package phi.ap.model.items.buildings;
 
-public class Store {
+public class Store extends Building {
 }

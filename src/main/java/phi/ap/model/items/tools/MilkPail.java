@@ -1,4 +1,4 @@
 package phi.ap.model.items.tools;
 
-public class MilkPail implements Tool {
+public class MilkPail extends Tool {
 }

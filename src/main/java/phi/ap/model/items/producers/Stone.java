@@ -1,4 +1,4 @@
 package phi.ap.model.items.producers;
 
-public class Stone {
+public class Stone extends Producer {
 }

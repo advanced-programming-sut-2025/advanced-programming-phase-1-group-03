@@ -1,4 +1,4 @@
 package phi.ap.model.items.machines;
 
-public class Refrigerator {
+public class Refrigerator extends Machine {
 }

@@ -1,4 +1,4 @@
 package phi.ap.model.items.buildings;
 
-public class Cage {
+public class Cage extends Building {
 }

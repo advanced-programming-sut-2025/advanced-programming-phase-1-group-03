@@ -1,4 +1,6 @@
 package phi.ap.model.items.machines.craftingMachines;
 
-public class CraftingMachine {
+import phi.ap.model.items.machines.Machine;
+
+public class CraftingMachine extends Machine {
 }

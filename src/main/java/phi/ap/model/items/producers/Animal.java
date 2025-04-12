@@ -1,4 +1,4 @@
 package phi.ap.model.items.producers;
 
-public class Animal {
+public class Animal extends Producer {
 }

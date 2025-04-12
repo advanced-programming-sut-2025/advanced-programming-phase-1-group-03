@@ -1,4 +1,4 @@
 package phi.ap.model.items.products;
 
-public class AnimalProduct {
+public class AnimalProduct extends Product {
 }

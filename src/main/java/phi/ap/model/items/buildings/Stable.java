@@ -1,4 +1,4 @@
 package phi.ap.model.items.buildings;
 
-public class Stable {
+public class Stable extends Building {
 }

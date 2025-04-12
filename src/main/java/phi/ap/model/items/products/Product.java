@@ -1,4 +1,6 @@
 package phi.ap.model.items.products;
 
-public class Product {
+import phi.ap.model.items.Item;
+
+public abstract class Product extends Item {
 }
