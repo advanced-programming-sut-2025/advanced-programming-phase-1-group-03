@@ -1,12 +1,11 @@
-package phi.ap.model;
+package phi.ap.model.items.buildings;
 
+import phi.ap.model.Ground;
 import phi.ap.model.items.Item;
-import phi.ap.model.items.buildings.*;
-import phi.ap.model.items.producers.Tree;
 
 import java.util.ArrayList;
 
-public class Farm extends Ground{
+public class Farm extends Ground {
     private final int number;
     private final ArrayList<Cottage> cottages;
     private final ArrayList<Lake> lakes;
