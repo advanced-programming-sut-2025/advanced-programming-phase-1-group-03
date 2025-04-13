@@ -25,6 +25,7 @@ public enum FruitFeatures {
 
     private int baseSellPrice;
     private Eatable eatable;
+
     FruitFeatures(int baseSellPrice, Eatable eatable, ArrayList<Seasons> seasons) {
         this.baseSellPrice = baseSellPrice;
         this.eatable = eatable;

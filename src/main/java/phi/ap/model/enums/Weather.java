@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum Weather {
-    Sunny(new ArrayList<>(List.of(Seasons.Fall, Seasons.Winter, Seasons.Spring, Seasons.Summer))),
-    Rain(new ArrayList<>(List.of(Seasons.Fall, Seasons.Spring, Seasons.Summer))),
-    Storm(new ArrayList<>(List.of(Seasons.Fall, Seasons.Spring, Seasons.Summer))),
-    Snow(new ArrayList<>(List.of(Seasons.Winter)))
+    Sunny(new ArrayList<>(Seasons.buildList(Seasons.Fall, Seasons.Winter, Seasons.Spring, Seasons.Summer))),
+    Rain(new ArrayList<>(Seasons.buildList(Seasons.Fall, Seasons.Spring, Seasons.Summer))),
+    Storm(new ArrayList<>(Seasons.buildList(Seasons.Fall, Seasons.Spring, Seasons.Summer))),
+    Snow(new ArrayList<>(Seasons.buildList(Seasons.Winter)))
     ;
 
 
@@ -22,4 +22,15 @@ public enum Weather {
     public ArrayList<Seasons> getSeasonList() {
         return seasonList;
     }
+
+    public static void doThunderStorm(int x, int y){
+
+    }
+    public static void randomThunderStorm(){
+
+    }
+    public static Weather weatherForecast(){
+        return null;
+    }
+
 }
