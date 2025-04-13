@@ -7,5 +7,5 @@ import java.util.ArrayList;
 
 public abstract class Producer extends Item {
     private ArrayList<Product> produced;
-    private
+    public abstract void produce();
 }

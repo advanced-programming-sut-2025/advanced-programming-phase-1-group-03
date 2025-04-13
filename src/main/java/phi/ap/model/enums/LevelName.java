@@ -11,7 +11,8 @@ public enum LevelName {
     initial("Initial"),
     big("big"),
     deluxe("Deluxe"),
-    normal("Normal")
+    normal("Normal"),
+    silver("Silver"),
     ;
     private String name;
 

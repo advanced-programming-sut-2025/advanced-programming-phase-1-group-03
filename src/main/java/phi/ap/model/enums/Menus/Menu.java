@@ -6,6 +6,7 @@ import phi.ap.view.menus.MainMenus.AvatarMenu;
 import phi.ap.view.menus.MainMenus.GameMenu;
 import phi.ap.view.menus.MainMenus.MainMenu;
 import phi.ap.view.menus.MainMenus.ProfileMenu;
+import phi.ap.view.menus.MainMenus.sub_menus.TradeMenu;
 import phi.ap.view.menus.RegisterMenu;
 
 import java.util.Scanner;
@@ -16,7 +17,8 @@ public enum Menu {
     MainMenu(new MainMenu()),
     ProfileMenu(new ProfileMenu()),
     AvatarMenu(new AvatarMenu()),
-    GameMenu(new GameMenu())
+    GameMenu(new GameMenu()),
+    TradeMenu(new TradeMenu())
     ;
 
     private AppMenu menu;
