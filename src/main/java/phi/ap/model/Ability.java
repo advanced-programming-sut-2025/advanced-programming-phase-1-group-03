@@ -10,3 +10,4 @@ public class Ability {
     int level;
     int xp;
 }
+
