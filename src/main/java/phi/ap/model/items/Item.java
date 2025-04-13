@@ -5,6 +5,7 @@ import phi.ap.model.Coordinate;
 public abstract class Item {
     private Coordinate coordinate = null;
     private String name = null;
+    private int maxStackSize;
     public abstract void doTask();
 
     public Coordinate getCoordinate() {
@@ -21,5 +22,13 @@ public abstract class Item {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getMaxStackSize() {
+        return maxStackSize;
+    }
+
+    public void setMaxStackSize(int maxStackSize) {
+        this.maxStackSize = maxStackSize;
     }
 }

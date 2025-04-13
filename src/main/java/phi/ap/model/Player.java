@@ -7,4 +7,5 @@ public class Player {
     private int Energy;
     private Coordinate Coordinate;
     private Tool tool;
+    private InventoryManager inventoryManager;
 }
