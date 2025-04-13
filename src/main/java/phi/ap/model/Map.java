@@ -1,5 +1,8 @@
 package phi.ap.model;
 
+import phi.ap.model.items.buildings.Farm;
+import phi.ap.model.items.buildings.NPCVillage;
+
 import java.util.ArrayList;
 
 public class Map {
