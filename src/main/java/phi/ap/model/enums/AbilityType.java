@@ -10,6 +10,4 @@ public enum AbilityType {
     Foraging,
     Fishing
     ;
-
-
 }
