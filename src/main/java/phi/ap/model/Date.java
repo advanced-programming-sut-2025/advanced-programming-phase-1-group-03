@@ -5,12 +5,14 @@ import phi.ap.model.enums.Time.WeekDays;
 public class Date {
     private int hour;
     public int getDay(){
-
+        return -1;
     }
     public int getSeason(){
-
+        return -1;
     }
-    public WeekDays getWeekDay(){}
+    public WeekDays getWeekDay(){
+        return null;
+    }
 
     public int getHour() {
         return hour;

@@ -20,4 +20,9 @@ public class Recipe extends Product {
     public ItemStack getResult() {
         return result;
     }
+
+    @Override
+    public void doTask() {
+
+    }
 }

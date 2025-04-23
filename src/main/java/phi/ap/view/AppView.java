@@ -7,7 +7,9 @@ import java.util.Scanner;
 public class AppView {
     public static Scanner scanner = new Scanner(System.in);
     public static void runProgram() {
-        String input = scanner.nextLine();
-        App.getInstance().getMenu().checkCommand(input);
+        while(true) {
+            String input = scanner.nextLine();
+            App.getInstance().getMenu().checkCommand(input);
+        }
     }
 }

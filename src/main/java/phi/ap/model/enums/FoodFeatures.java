@@ -4,8 +4,12 @@ import phi.ap.model.Eatable;
 import phi.ap.model.items.products.Recipe;
 
 public enum FoodFeatures {
-    FriedEgg(new Recipe(), new Eatable(90), 140)
-    ;
+    FriedEgg(null, new Eatable(90), 140) {
+        @Override
+        void applyBuff() {
+
+        }
+    };
     private Recipe ingredients;
     private Eatable eatable;
     private int sellPrice;

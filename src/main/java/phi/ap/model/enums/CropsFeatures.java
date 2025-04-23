@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public enum CropsFeatures {
-    BlueJazz("Blue Jazz",SeedFeatures.Jazz, (ArrayList<Integer>) Arrays.asList(1, 2, 2, 2), 7,true,, 50, true, 45, Seasons.Spring, false);
+    BlueJazz(null, null, null, 25, false, 5, 1, null, 20, null, false);
     private String name;
     private SeedFeatures source;
     private ArrayList<Integer> stage;

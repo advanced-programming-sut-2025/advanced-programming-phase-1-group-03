@@ -9,4 +9,9 @@ import java.util.ArrayList;
 public class Store extends Building {
     StoreFeatures storeFeatures;
     private ArrayList<ItemStack> availableProducts;
+
+    @Override
+    public void doTask() {
+
+    }
 }

@@ -14,4 +14,9 @@ public class Refrigerator extends Machine {
     private ItemStack pickItem(ItemStack stack) {
         return null;
     }
+
+    @Override
+    public void doTask() {
+
+    }
 }
