@@ -32,4 +32,12 @@ public enum Menu {
         menu.check(input);
     }
 
+    public static Menu fromString(String input) {
+        for(Menu menu : Menu.values()) {
+            if(menu.toString().equals(input)) {
+                return menu;
+            }
+        }
+        return null;
+    }
 }

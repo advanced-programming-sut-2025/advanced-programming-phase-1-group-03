@@ -4,8 +4,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum LoginMenuCommands implements Command {
-    Register("");
-
+    Register("register -u (?<username>.*) -p (?<password>\\S*) (?<passwordConfirm>\\S*) -n (?<nickname>.*) -e" +
+            "(?<email>.*) -g (?<gender>.*)"),
+    PickQuestion("pick question -q (?<questionNumber>.*) -a (?<answer>.*) -c (?<answerConfirm>.*)");
     private String command;
 
     LoginMenuCommands(String command) {

@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public enum CommonCommands implements Command{
     ShowCurrentMenu("\\s*show current menu\\s*"),
     MenuExit("\\s*menu\\s+exit\\s*"),
-    MenuEnter("\\s*menu\\s+enter\\s*"),
+    MenuEnter("\\s*menu\\s+enter (?<menu>.*)"),
     ;
 
     private String command;
