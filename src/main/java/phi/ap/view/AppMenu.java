@@ -11,6 +11,8 @@ public abstract class AppMenu {
         Matcher matcher = null;
         if((matcher = CommonCommands.ShowCurrentMenu.getMatcher(input)) != null){
             System.out.println(App.getInstance().getMenu().toString());
+        }else{
+            System.out.println("invalid command");
         }
     }
     public abstract void start();

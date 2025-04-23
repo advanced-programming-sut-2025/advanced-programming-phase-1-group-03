@@ -16,7 +16,6 @@ public class App {
 
     private App() {}
 
-
     public Menu getMenu() {
         return menu;
     }
