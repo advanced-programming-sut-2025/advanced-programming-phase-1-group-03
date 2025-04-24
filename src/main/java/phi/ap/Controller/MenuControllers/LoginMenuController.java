@@ -6,12 +6,22 @@ import phi.ap.model.SecurityQuestion;
 import phi.ap.model.User;
 import phi.ap.model.enums.Gender;
 import phi.ap.utils.Crypto;
+import phi.ap.utils.FileManager;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 public class LoginMenuController {
-    public Result<String> login(String username, String password, String stayLogged) {
-        return null;
+    public Result<String> login(String username, String password, boolean stayLogged) {
+        User user = App.getInstance().getUserService().getUserByUsername(username);
+        if(user == null)
+            return new Result<>(false, "Username is not valid");
+        if(!user.getPassword().equals(Crypto.hash(password)))
+            return new Result<>(true, "Password is incorrect");
+        App.getInstance().setLoggedInUser(user);
+        new FileManager().writeAppData();
+        return new Result<>(true, "Login successful");
     }
     public Result<String> forgetPassword(String username) {
         return null;
@@ -44,6 +54,7 @@ public class LoginMenuController {
         user.setGender(convertedGender);
         user.setNickname(nickname);
         App.getInstance().getUserService().add(user);
+        new FileManager().writeAppData();
         return new Result<>(true, "Registration was successful...");
     }
 
@@ -57,5 +68,25 @@ public class LoginMenuController {
             throw new RuntimeException();
         user.setSecurityQuestion(new SecurityQuestion(questionText, answer));
         return new Result<>(true, "ok....");
+    }
+
+    public String generateRandomPassword() {
+        String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String specials = "?><,\"';:/|][}{+=)(*&^%$#!";
+        StringBuilder builder = new StringBuilder();
+
+        //adding two special characters
+        builder.append(specials.charAt(new Random().nextInt(specials.length())));
+        builder.append(new Random().nextInt( 10));
+        while(!User.passwordValidity(builder.toString()).success) {
+            builder.append(alphabet.charAt(new Random().nextInt(alphabet.length())));
+        }
+        Character[] chars = new Character[builder.toString().length()];
+        for(int i = 0; i < builder.toString().length(); i++)
+            chars[i] = builder.toString().charAt(i);
+        Collections.shuffle(Arrays.asList(chars));
+        StringBuilder shuffled = new StringBuilder();
+        for (Character aChar : chars) shuffled.append(aChar);
+        return shuffled.toString();
     }
 }

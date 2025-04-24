@@ -26,6 +26,18 @@ public class LoginMenu extends AppMenu {
             String nickname = matcher.group("nickname").trim();
             String email = matcher.group("email").trim();
             String gender = matcher.group("gender").trim();
+
+            //generate random password
+            if(password.equals("random")){
+                while(true) {
+                    password = controller.generateRandomPassword();
+                    passwordConfirm = password;
+                    System.out.println("is " + password + " a good password?(yes/no)");
+                    String answer = AppView.scanner.nextLine();
+                    if(answer.equals("yes"))
+                        break;
+                }
+            }
             Result<String> result = controller.register(username, password, passwordConfirm, nickname, email, gender);
             System.out.println(result);
             if(!result.success)
@@ -53,6 +65,12 @@ public class LoginMenu extends AppMenu {
         }else if((matcher = CommonCommands.MenuEnter.getMatcher(input)) != null){
             String menu = matcher.group("menu").trim();
             App.getInstance().changeMenu(Menu.fromString(menu));
+        }else if((matcher = LoginMenuCommands.Login.getMatcher(input)) != null){
+            String username = matcher.group("username").trim();
+            String password = matcher.group("password").trim();
+            boolean stay = matcher.group("stay") != null;
+            Result<String> result = controller.login(username, password, stay);
+            System.out.println(result);
         }else{
             super.check(input);
         }

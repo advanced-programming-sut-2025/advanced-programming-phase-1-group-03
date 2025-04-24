@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class App {
     private static App instance = null;
-    private User stayLoggedInUser = null;
+    private User loggedInUser;
 
     private ArrayList<User> users;
     private Menu menu = Menu.LoginMenu;
@@ -33,6 +33,21 @@ public class App {
     }
     public void load(){
         LoadService loadService = new LoadService();
-        this.users = loadService.users();
+        loadService.loadAppData();
+    }
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+    public User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public void setLoggedInUser(User loggedInUser) {
+        this.loggedInUser = loggedInUser;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
     }
 }
