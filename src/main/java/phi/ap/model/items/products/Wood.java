@@ -6,5 +6,4 @@ public class Wood extends Item {
     public void doTask() {
 
     }
-
 }
