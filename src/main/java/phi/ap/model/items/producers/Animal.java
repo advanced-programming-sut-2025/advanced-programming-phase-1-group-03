@@ -10,6 +10,9 @@ public class Animal extends Producer {
         return null;
     }
 
+    Animal(AnimalTypes animalType) {
+        this.type = animalType;
+    }
     @Override
     public void produce() {
 
