@@ -7,6 +7,10 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Store extends Building {
+    public Store(int height, int width) {
+        super(height, width);
+    }
+
     StoreFeatures storeFeatures;
     private ArrayList<ItemStack> availableProducts;
 

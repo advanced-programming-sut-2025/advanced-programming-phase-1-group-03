@@ -11,7 +11,7 @@ public class User {
     private int gamePlayed;
     private int maxGold;
     private SecurityQuestion securityQuestion;
-
+    private int gameJoinedId;
 
     public String getUsername() {
         return username;

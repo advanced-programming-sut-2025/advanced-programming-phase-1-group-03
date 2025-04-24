@@ -10,4 +10,5 @@ public abstract class Tool extends Item {
     private Ability contactedAbility;
     private LevelProcess levelProcess;
     public abstract void useTool(Coordinate direction);
+
 }

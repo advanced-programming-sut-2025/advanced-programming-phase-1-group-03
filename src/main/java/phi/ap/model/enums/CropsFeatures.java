@@ -20,7 +20,9 @@ public enum CropsFeatures {
     private Seasons season;
     private boolean canBecomeGiant;
 
-    CropsFeatures(String name, SeedFeatures source, ArrayList<Integer> stage, int harvestTime, boolean onTime, int regrowthTime, int baseSellPrice, Eatable eatable, int energy, Seasons season, boolean canBecomeGiant) {
+    CropsFeatures(String name, SeedFeatures source, ArrayList<Integer> stage, int harvestTime, boolean onTime,
+                  int regrowthTime, int baseSellPrice, Eatable eatable, int energy, Seasons season,
+                  boolean canBecomeGiant) {
         this.name = name;
         this.source = source;
         this.harvestTime = harvestTime;
