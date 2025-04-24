@@ -32,7 +32,7 @@ public class LoginMenu extends AppMenu {
                 while(true) {
                     password = controller.generateRandomPassword();
                     passwordConfirm = password;
-                    System.out.println("is " + password + " a good password?(yes/no)");
+                    System.out.println("is \"" + password + "\" a good password?(yes/no)");
                     String answer = AppView.scanner.nextLine();
                     if(answer.equals("yes"))
                         break;
@@ -42,7 +42,7 @@ public class LoginMenu extends AppMenu {
             System.out.println(result);
             if(!result.success)
                 return;
-            String[] questions = {"What is your dad's name?", "What is your dad's name?",
+            String[] questions = {"What is your dad's name?", "What is name of your first school?",
                     "What is month of your birthday?"};
             while(true){
                 System.out.println("Pick one question from list below: \n" +
@@ -71,6 +71,28 @@ public class LoginMenu extends AppMenu {
             boolean stay = matcher.group("stay") != null;
             Result<String> result = controller.login(username, password, stay);
             System.out.println(result);
+            if(result.success)
+                App.getInstance().changeMenu(Menu.MainMenu);
+        }else if((matcher = LoginMenuCommands.ForgetPassword.getMatcher(input)) != null){
+            String username = matcher.group("username").trim();
+            Result<String> result = controller.forgetPassword(username);
+            System.out.println(result);
+            if(!result.success)
+                return;
+            while(true){
+                String inp = AppView.scanner.nextLine();
+                Result<String> newResult = controller.checkSecurityQuestion(username, inp);
+                System.out.println(newResult);
+                if(newResult.success)
+                    break;
+            }
+            while(true){
+                String newPass = AppView.scanner.nextLine();
+                Result<String> newResult = controller.changePassword(username, newPass, newPass.equals("random"));
+                System.out.println(newResult);
+                if(newResult.success)
+                    break;
+            }
         }else{
             super.check(input);
         }

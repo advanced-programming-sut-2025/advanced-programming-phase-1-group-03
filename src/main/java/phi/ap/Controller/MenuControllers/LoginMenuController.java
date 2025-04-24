@@ -19,12 +19,19 @@ public class LoginMenuController {
             return new Result<>(false, "Username is not valid");
         if(!user.getPassword().equals(Crypto.hash(password)))
             return new Result<>(true, "Password is incorrect");
-        App.getInstance().setLoggedInUser(user);
+
+        if(stayLogged) {
+            App.getInstance().setLoggedInUser(user);
+        }else
+            App.getInstance().setLoggedInUser(null);
         new FileManager().writeAppData();
         return new Result<>(true, "Login successful");
     }
     public Result<String> forgetPassword(String username) {
-        return null;
+        User user = App.getInstance().getUserService().getUserByUsername(username);
+        if(user == null)
+            return new Result<>(false, "user not found");
+        return new Result<>(true, user.getSecurityQuestion().getQuestion());
     }
     public Result<String> answerSecurityQuestion(String answer) {
         return null;
@@ -88,5 +95,35 @@ public class LoginMenuController {
         StringBuilder shuffled = new StringBuilder();
         for (Character aChar : chars) shuffled.append(aChar);
         return shuffled.toString();
+    }
+
+    public Result<String> checkSecurityQuestion(String username, String answerOfSecurityQuestion) {
+        User user = getUser(username);
+        if(!user.getSecurityQuestion().getAnswer().equals(answerOfSecurityQuestion))
+            return new Result<>(false, "Oh, It's not correct...");
+        return new Result<>(true, "enter your new password(or type random):");
+    }
+
+    public Result<String> changePassword(String username, String newPass, boolean isRandom) {
+        User user = getUser(username);
+        if(isRandom)
+            newPass = generateRandomPassword();
+        if(!User.passwordValidity(newPass).success)
+            return new Result<>(false, User.passwordValidity(newPass).data);
+        user.setPassword(Crypto.hash(newPass));
+        return new Result<>(true, "Password changed to " + newPass + "\nnow try to login...");
+    }
+
+    private User getUser(String username){
+        User user = App.getInstance().getUserService().getUserByUsername(username);
+        if(user == null)
+            throw new RuntimeException();
+        return user;
+    }
+
+    public Result<String> logout() {
+        App.getInstance().setLoggedInUser(null);
+        new FileManager().writeAppData();
+        return new Result<>(true, "Logout successful...");
     }
 }
