@@ -17,11 +17,20 @@ public class Game {
         return instance;
     }
 
+    private Game() {
+    }
+    private Map map;
     private ArrayList<Item> items;
     private Weather currentWeather;
     private Weather tomorrowWeather;
     private final ArrayList<Player> players = new ArrayList<>();
     private final ArrayList<Friendship> friendships = new ArrayList<>();
 
+    public Map getMap() {
+        return map;
+    }
 
+    public void setMap(Map map) {
+        this.map = map;
+    }
 }

@@ -2,6 +2,8 @@ package phi.ap.model;
 
 import phi.ap.model.enums.Gender;
 
+import java.util.regex.Pattern;
+
 public class User {
     private String username;
     private String password;
@@ -11,7 +13,7 @@ public class User {
     private int gamePlayed;
     private int maxGold;
     private SecurityQuestion securityQuestion;
-
+    private int gameJoinedId;
 
     public String getUsername() {
         return username;
@@ -41,8 +43,11 @@ public class User {
         return maxGold;
     }
 
-    public void setUsername(String username) {
+    public boolean setUsername(String username) {
+        if(!User.usernameValidity(username))
+            return false;
         this.username = username;
+        return true;
     }
 
     public void setPassword(String password) {
@@ -53,8 +58,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public void setEmail(String email) {
+    public boolean setEmail(String email) {
+        if(!User.emailValidity(email))
+            return false;
         this.email = email;
+        return true;
     }
 
     public void setGender(Gender gender) {
@@ -75,5 +83,25 @@ public class User {
 
     public void setSecurityQuestion(SecurityQuestion securityQuestion) {
         this.securityQuestion = securityQuestion;
+    }
+    public static boolean usernameValidity(String username){
+        String regex = "[A-Za-z0-9\\-]*";
+        return Pattern.compile(regex).matcher(username).matches();
+    }
+    public static boolean emailValidity(String email){
+        String regex = "^(?![?><,\"';:\\\\\\/|\\]\\[}{+=)(*&^%$#!])(?!.*\\.\\.)(?=[a-zA-Z0-9])[a-zA-Z0-9.\\-_]" +
+                "*[a-zA-Z0-9]@(?=[a-zA-Z0-9])[a-zA-Z0-9\\-]*[a-zA-Z0-9]\\.[a-zA-Z]{2,}$";
+        return Pattern.compile(regex).matcher(email).matches();
+    }
+    public static Result<String> passwordValidity(String password){
+        if(password.length() < 8)
+            return new Result<>(false, "password must be at least 8 characters");
+        if(!password.matches(".*\\d.*"))
+            return new Result<>(false, "password must contain at least one digit");
+        if(!password.matches(".*[A-Z].*"))
+            return new Result<>(false, "password must contain at least one uppercase letter");
+        if(!password.matches(".*[a-zA-Z0-9?><,\"';:\\\\\\/|\\]\\[}\\{+=\\)\\(*&^%$#!].*"))
+            return new Result<>(false, "password must contain at least one special character");
+        return new Result<>(true, "");
     }
 }

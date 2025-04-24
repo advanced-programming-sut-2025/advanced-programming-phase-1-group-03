@@ -1,20 +1,20 @@
 package phi.ap.model.items;
 
 import phi.ap.model.Coordinate;
+import phi.ap.model.Ground;
 
-public abstract class Item {
-    private Coordinate coordinate = null;
+public abstract class Item extends Ground {
     private String name = null;
     private int maxStackSize;
+
+    public Item(int height, int width) {
+        super(height, width);
+    }
+    public Item() {
+        super(1, 1);
+    }
+
     public abstract void doTask();
-
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
-
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
-    }
 
     public String getName() {
         return name;

@@ -1,13 +1,28 @@
 package phi.ap.Controller.MenuControllers.MainMenuControllers;
 
 import phi.ap.model.Coordinate;
+import phi.ap.model.Game;
+import phi.ap.model.Map;
 import phi.ap.model.Result;
+import phi.ap.model.enums.FarmTypes;
+import phi.ap.model.enums.TileType;
+import phi.ap.model.items.Item;
+import phi.ap.model.items.buildings.Farm;
 
 import java.util.ArrayList;
 
 public class GameMenuController {
     public Result<String> newGame(ArrayList<String> usernames) {
-        return null;
+        // TODO : right it again
+        Game game = Game.getInstance();
+        game.setMap(new Map());
+        Farm farm1 = new Farm(FarmTypes.STANDARD);
+//        Farm farm2 = new Farm(FarmTypes.RIVERLAND);
+        farm1.setCoordinate(new Coordinate(0,0));
+//        farm2.setCoordinate(new Coordinate(70, 70));
+        game.getMap().addItem((Item)farm1);
+//        game.getMap().addItem((Item)farm2);
+        return new Result<>(true, "map created");
     }
 
     public Result<String> chooseMap(String mapNumber) {
@@ -75,10 +90,25 @@ public class GameMenuController {
         return null;
     }
 
-    public Result<String> showMap(String xStartPoint, String yStartPoint, String length) {
+    public Result<String> showMap() {
+        Game game = Game.getInstance();
+        Map map = game.getMap();
+        TileType[][] tiles = new TileType[map.getHeight()][map.getWidth()];
+        map.show(0, 0, tiles);
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < map.getHeight(); i++) {
+            StringBuilder temp = new StringBuilder();
+            for (int j = 0; j < map.getWidth(); j++) {
+                temp.append(tiles[i][j].getSymbol());
+            }
+            temp.append("\n");
+            res.append(temp);
+        }
+        return new Result<>(true, res.toString());
+    }
+    public Result<String> printMap(String startX, String startY, String size) {
         return null;
     }
-
     public Result<String> helpReadingMap() {
         return null;
     }
