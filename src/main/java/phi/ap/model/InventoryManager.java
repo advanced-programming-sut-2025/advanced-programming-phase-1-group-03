@@ -18,11 +18,10 @@ public class InventoryManager {
             amount -= toAdd;
             stack.advanceAmount(toAdd);
             added += toAdd;
-            if (amount == 0) {
-                return added;
-            }
         }
-
+        if (amount == 0) {
+            return added;
+        }
         while (!storage.isFull()) {
             int toAdd = Math.min(item.getMaxStackSize(), amount);
             storage.addStack(new ItemStack(item, toAdd));
@@ -35,12 +34,29 @@ public class InventoryManager {
         return added;
     }
     public int removeItem(Item item, int amount) {
-        //TODO : like add, + gain from trashCan
-        return 0;
+
+        int removed = 0;
+        for (ItemStack stack : storage.getStacks()) {
+            if (!stack.canStackWith(item)) {
+                continue;
+            }
+            int toRemove = Math.min(stack.getAmount(), amount);
+            amount -= toRemove;
+            stack.advanceAmount(-toRemove);
+            removed += toRemove;
+        }
+        //TODO : gain from trashCan
+        return removed;
     }
     public ItemStack getItem(Item item) {
         //get new ItemStack with sum of amounts in ItemStack
-        return null;
+        ItemStack stack = new ItemStack(item, 0);
+        for (ItemStack stack1 : storage.getStacks()) {
+            if (stack1.canStackWith(item)) {
+                stack.advanceAmount(stack1.getAmount());
+            }
+        }
+        return stack;
     }
 }
 
