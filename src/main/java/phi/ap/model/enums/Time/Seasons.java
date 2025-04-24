@@ -8,6 +8,7 @@ public enum Seasons {
     Summer("Summer"),
     Fall("Fall"),
     Winter("Winter"),
+    Special("Special")
     ;
 
     public String name;

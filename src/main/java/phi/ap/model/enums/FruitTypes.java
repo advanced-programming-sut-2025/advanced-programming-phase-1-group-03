@@ -4,10 +4,8 @@ import phi.ap.model.Eatable;
 import phi.ap.model.enums.Time.Seasons;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public enum FruitFeatures {
+public enum FruitTypes {
     Apricot(59, new Eatable(38), Seasons.buildList(Seasons.Spring)),
     Cherry(80, new Eatable(38), Seasons.buildList(Seasons.Spring)),
     Banana(150, new Eatable(75), Seasons.buildList(Seasons.Summer)),
@@ -26,7 +24,7 @@ public enum FruitFeatures {
     private int baseSellPrice;
     private Eatable eatable;
 
-    FruitFeatures(int baseSellPrice, Eatable eatable, ArrayList<Seasons> seasons) {
+    FruitTypes(int baseSellPrice, Eatable eatable, ArrayList<Seasons> seasons) {
         this.baseSellPrice = baseSellPrice;
         this.eatable = eatable;
     }

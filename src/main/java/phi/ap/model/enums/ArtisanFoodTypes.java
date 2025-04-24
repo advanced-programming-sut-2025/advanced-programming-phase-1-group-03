@@ -2,7 +2,7 @@ package phi.ap.model.enums;
 
 import phi.ap.model.items.products.Recipe;
 
-public enum ArtisanFoodFeatures {
+public enum ArtisanFoodTypes {
     ;
     // HourBase
     private int energy;

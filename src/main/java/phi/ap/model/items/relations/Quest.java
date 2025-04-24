@@ -1,18 +1,18 @@
 package phi.ap.model.items.relations;
 
 import phi.ap.model.ItemStack;
-import phi.ap.model.enums.NPCFeatures;
+import phi.ap.model.enums.NPCTypes;
 
 import java.util.ArrayList;
 
 public class Quest {
-    private final NPCFeatures npc;
+    private final NPCTypes npc;
     private final ArrayList<ItemStack> requiredItems;
     private final ArrayList<ItemStack> rewardItems;
     private boolean isFinished = false;
     private boolean isActive = false;
 
-    public Quest(NPCFeatures npc, ArrayList<ItemStack> requiredItems, ArrayList<ItemStack> rewardItems) {
+    public Quest(NPCTypes npc, ArrayList<ItemStack> requiredItems, ArrayList<ItemStack> rewardItems) {
         this.npc = npc;
         this.requiredItems = requiredItems;
         this.rewardItems = rewardItems;
@@ -22,7 +22,7 @@ public class Quest {
         return isActive;
     }
 
-    public NPCFeatures getNpc() {
+    public NPCTypes getNpc() {
         return npc;
     }
 

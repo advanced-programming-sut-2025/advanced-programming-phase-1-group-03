@@ -10,4 +10,11 @@ public enum AbilityType {
     Foraging,
     Fishing
     ;
+    private int level = 0;
+    public void setLevel(int value) {
+        this.level = value;
+    }
+    public int getLevel() {
+        return level;
+    }
 }

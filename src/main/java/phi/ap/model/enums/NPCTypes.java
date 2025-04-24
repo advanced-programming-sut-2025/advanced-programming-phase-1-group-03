@@ -5,15 +5,15 @@ import phi.ap.model.items.relations.Dialogue;
 
 import java.util.ArrayList;
 
-public enum NPCFeatures {
+public enum NPCTypes {
     ;
     private String name;
     private ArrayList<Item> favoriteItems;
     private String about;
-    private StoreFeatures home;
+    private StoreTypes home;
     private ArrayList<Dialogue> dialogues;
 
-    NPCFeatures(String name, ArrayList<Item> favoriteItems, String about, StoreFeatures home, ArrayList<Dialogue> dialogues) {
+    NPCTypes(String name, ArrayList<Item> favoriteItems, String about, StoreTypes home, ArrayList<Dialogue> dialogues) {
         this.name = name;
         this.favoriteItems = favoriteItems;
         this.about = about;
@@ -33,7 +33,7 @@ public enum NPCFeatures {
         return about;
     }
 
-    public StoreFeatures getHome() {
+    public StoreTypes getHome() {
         return home;
     }
 

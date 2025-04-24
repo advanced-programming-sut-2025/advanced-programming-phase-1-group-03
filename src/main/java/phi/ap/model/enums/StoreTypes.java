@@ -4,9 +4,9 @@ import phi.ap.model.items.Item;
 
 import java.util.ArrayList;
 
-public enum StoreFeatures {
+public enum StoreTypes {
     ;
-    private NPCFeatures storeManager;
+    private NPCTypes storeManager;
     private int openingTime;
     private int closingTime;
     private ArrayList<Item> products;

@@ -1,4 +1,4 @@
 package phi.ap.model.enums;
 
-public enum AnimalFeatures {
+public enum AnimalTypes {
 }
