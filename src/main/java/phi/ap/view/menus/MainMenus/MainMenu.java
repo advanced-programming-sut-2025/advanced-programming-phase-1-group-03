@@ -20,6 +20,15 @@ public class MainMenu extends AppMenu {
             System.out.println(result);
             if(result.success)
                 App.getInstance().changeMenu(Menu.LoginMenu);
+        } else if ((matcher = CommonCommands.MenuExit.getMatcher(input)) != null){
+            App.getInstance().changeMenu(Menu.ExitMenu);
+        } else if((matcher = CommonCommands.MenuEnter.getMatcher(input)) != null){
+            String menu = matcher.group("menu").trim();
+            if (Menu.fromString(menu) != null) {
+                App.getInstance().changeMenu(Menu.fromString(menu));
+            } else {
+                System.out.println("invalid menu");
+            }
         } else{
             super.check(input);
         }

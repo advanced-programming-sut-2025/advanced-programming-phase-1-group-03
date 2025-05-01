@@ -1,10 +1,8 @@
 package phi.ap.Controller.MenuControllers.MainMenuControllers;
 
-import phi.ap.model.Coordinate;
-import phi.ap.model.Game;
-import phi.ap.model.Map;
-import phi.ap.model.Result;
+import phi.ap.model.*;
 import phi.ap.model.enums.FarmTypes;
+import phi.ap.model.enums.Menus.Menu;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.buildings.Farm;
@@ -13,16 +11,49 @@ import java.util.ArrayList;
 
 public class GameMenuController {
     public Result<String> newGame(ArrayList<String> usernames) {
-        // TODO : right it again
-        Game game = Game.getInstance();
-        game.setMap(new Map());
-        Farm farm1 = new Farm(FarmTypes.STANDARD);
-//        Farm farm2 = new Farm(FarmTypes.RIVERLAND);
-        farm1.setCoordinate(new Coordinate(0,0));
-//        farm2.setCoordinate(new Coordinate(70, 70));
-        game.getMap().addItem((Item)farm1);
-//        game.getMap().addItem((Item)farm2);
-        return new Result<>(true, "map created");
+        if (App.getInstance().getLoggedInUser().getGameJoinedId() != null) {
+            return new Result<>(false, "You are member of another game");
+        }
+        if (usernames.isEmpty()) {
+            return new Result<>(false, "You must enter at least one username");
+        }
+        if (usernames.size() > 3) {
+            return new Result<>(false, "You must enter at most three usernames");
+        }
+        ArrayList<User> users = new ArrayList<>();
+        users.add(App.getInstance().getLoggedInUser());
+        for (String username : usernames) {
+            User user = App.getInstance().getUserService().getUserByUsername(username);
+            if (user == null) {
+                return new Result<>(false, "User " +
+                        username +
+                        " not found");
+            }
+            users.add(user);
+        }
+        for (User user : users) {
+            int c = 0;
+            for (User user1 : users) {
+                if (user1.getUsername().equals(user.getUsername())) {
+                    ++c;
+                }
+            }
+            if (c >= 2) {
+                return new Result<>(false, "You can't add a user more than once");
+            }
+        }
+        for (User user : users) {
+            if (user.getGameJoinedId() != null) {
+                return new Result<>(false, "user " +
+                        user.getUsername() +
+                        " is already member of another game");
+            }
+        }
+        Game.setInstance(new Game(Game.getNewGameID(), users));
+        for (User user : users) {
+            user.setGameJoinedId(Game.getInstance().getGameID());
+        }
+        return new Result<>(true, "");
     }
 
     public Result<String> chooseMap(String mapNumber) {

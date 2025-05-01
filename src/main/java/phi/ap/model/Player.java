@@ -1,5 +1,6 @@
 package phi.ap.model;
 
+import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.items.producers.Animal;
 import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.relations.Friendship;
@@ -23,23 +24,10 @@ public class Player extends Human {
     private ArrayList<MarriageRequest> marriageRequests;
     private ArrayList<TradeRequest> tradeRequests;
     private ArrayList<Quest> activatedQuests;
+    private FarmTypes farmType = null;
 
-    public Player(User user, int energy, Coordinate coordinate, Tool tool, InventoryManager inventoryManager,
-                  ArrayList<Recipe> craftingRecipes, ArrayList<Recipe> cookingRecipes, ArrayList<Animal> animals,
-                  ArrayList<Gift> giftsReceived, ArrayList<MarriageRequest> marriageRequests, ArrayList<TradeRequest>
-                          tradeRequests, ArrayList<Quest> activatedQuests) {
+    public Player(User user) {
         this.user = user;
-        Energy = energy;
-        Coordinate = coordinate;
-        this.tool = tool;
-        this.inventoryManager = inventoryManager;
-        this.craftingRecipes = craftingRecipes;
-        this.cookingRecipes = cookingRecipes;
-        this.animals = animals;
-        this.giftsReceived = giftsReceived;
-        this.marriageRequests = marriageRequests;
-        this.tradeRequests = tradeRequests;
-        this.activatedQuests = activatedQuests;
     }
 
     public User getUser() {
@@ -140,5 +128,13 @@ public class Player extends Human {
 
     public void feint() {
 
+    }
+
+    public FarmTypes getFarmType() {
+        return farmType;
+    }
+
+    public void setFarmType(FarmTypes farmType) {
+        this.farmType = farmType;
     }
 }

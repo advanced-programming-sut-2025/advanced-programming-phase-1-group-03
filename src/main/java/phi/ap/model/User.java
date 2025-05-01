@@ -13,7 +13,7 @@ public class User {
     private int gamePlayed;
     private int maxGold;
     private SecurityQuestion securityQuestion;
-    private int gameJoinedId;
+    private Integer gameJoinedId = null;
 
     public String getUsername() {
         return username;
@@ -103,5 +103,13 @@ public class User {
         if(!password.matches(".*[a-zA-Z0-9?><,\"';:\\\\\\/|\\]\\[}\\{+=\\)\\(*&^%$#!].*"))
             return new Result<>(false, "password must contain at least one special character");
         return new Result<>(true, "");
+    }
+
+    public Integer getGameJoinedId() {
+        return gameJoinedId;
+    }
+
+    public void setGameJoinedId(Integer gameJoinedId) {
+        this.gameJoinedId = gameJoinedId;
     }
 }

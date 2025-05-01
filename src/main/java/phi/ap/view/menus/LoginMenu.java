@@ -64,7 +64,11 @@ public class LoginMenu extends AppMenu {
             }
         }else if((matcher = CommonCommands.MenuEnter.getMatcher(input)) != null){
             String menu = matcher.group("menu").trim();
-            App.getInstance().changeMenu(Menu.fromString(menu));
+            if (Menu.fromString(menu) != null) {
+                App.getInstance().changeMenu(Menu.fromString(menu));
+            } else {
+                System.out.println("invalid menu");
+            }
         }else if((matcher = LoginMenuCommands.Login.getMatcher(input)) != null){
             String username = matcher.group("username").trim();
             String password = matcher.group("password").trim();
