@@ -13,8 +13,10 @@ public class Farm extends Building {
     private Greenhouse greenhouse;
     private ArrayList<Lake>lakes;
     private ArrayList<Quarry>quarries;
+    private FarmTypes farmType;
     public Farm(FarmTypes farmType) {
         super(30, 30);
+        this.farmType = farmType;
         cottage = new Cottage(farmType.getCottage().getHeight(), farmType.getCottage().getWidth(),
                 farmType.getCottage().getCoordinate());
         greenhouse = new Greenhouse(farmType.getGreenhouse().getHeight(), farmType.getGreenhouse().getWidth(),

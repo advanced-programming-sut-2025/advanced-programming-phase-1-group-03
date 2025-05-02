@@ -123,6 +123,9 @@ public class GameMenuController {
 
     public Result<String> showMap() {
         Game game = Game.getInstance();
+        if (game == null) {
+            return new Result<>(false, "there is no running game");
+        }
         Map map = game.getMap();
         TileType[][] tiles = new TileType[map.getHeight()][map.getWidth()];
         map.show(0, 0, tiles);

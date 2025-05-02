@@ -1,7 +1,9 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.Menus.Menu;
+import phi.ap.service.GameService;
 import phi.ap.service.LoadService;
+import phi.ap.service.PlayerService;
 import phi.ap.service.UserService;
 
 import java.util.ArrayList;
@@ -30,6 +32,13 @@ public class App {
     }
     public UserService getUserService(){
         return new UserService(this.users);
+    }
+    public GameService getGameService(){
+        if (Game.getInstance() == null) return null;
+        return new GameService(Game.getInstance());
+    }
+    public PlayerService getPlayerService(){
+        return new PlayerService(Game.getInstance());
     }
     public void load(){
         LoadService loadService = new LoadService();

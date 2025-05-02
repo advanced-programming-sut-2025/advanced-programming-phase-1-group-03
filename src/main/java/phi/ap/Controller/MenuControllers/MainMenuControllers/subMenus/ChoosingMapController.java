@@ -21,6 +21,7 @@ public class ChoosingMapController {
         Game.getInstance().goNextPlayer();
         if (Game.getInstance().getCurrentPlayer().getUser().getUsername().
                 equals(Game.getInstance().getPlayers().get(0).getUser().getUsername())) {
+            App.getInstance().getGameService().initializeGame();
             return new Result<>(true, "All players have chosen their map.");
         }
         return new Result<>(false, "map chosen successfully. Next player to choose :" +

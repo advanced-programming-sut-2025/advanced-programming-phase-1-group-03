@@ -1,6 +1,7 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.FarmTypes;
+import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.producers.Animal;
 import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.relations.Friendship;
@@ -25,6 +26,7 @@ public class Player extends Human {
     private ArrayList<TradeRequest> tradeRequests;
     private ArrayList<Quest> activatedQuests;
     private FarmTypes farmType = null;
+    private Farm farm = null;
 
     public Player(User user) {
         this.user = user;
@@ -136,5 +138,13 @@ public class Player extends Human {
 
     public void setFarmType(FarmTypes farmType) {
         this.farmType = farmType;
+    }
+
+    public Farm getFarm() {
+        return farm;
+    }
+
+    public void setFarm(Farm farm) {
+        this.farm = farm;
     }
 }

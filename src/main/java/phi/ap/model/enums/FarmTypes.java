@@ -11,45 +11,44 @@ import java.util.List;
 public enum FarmTypes {
     STANDARD(
             new BuildingStructure(new Coordinate(1, 1), 4, 4),
-            new BuildingStructure(new Coordinate(17, 7), 6, 5),
+            new BuildingStructure(new Coordinate(1, 12), 5, 6),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(8, 3), 7, 7)
+                    new BuildingStructure(new Coordinate(22, 10), 7, 12)
             )),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(25, 20), 4, 5)
+                    new BuildingStructure(new Coordinate(1, 22), 6, 7)
             ))
     ),
     RIVERLAND(
-            new BuildingStructure(new Coordinate(3, 3), 4, 4),
-            new BuildingStructure(new Coordinate(4, 24), 6, 5),
+            new BuildingStructure(new Coordinate(1, 1), 4, 4),
+            new BuildingStructure(new Coordinate(3, 15), 5, 6),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(15, 5), 10, 10)
+                    new BuildingStructure(new Coordinate(24, 7), 5, 17),
+                    new BuildingStructure(new Coordinate(1, 25), 7, 4)
             )),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(20, 22), 4, 6),
-                    new BuildingStructure(new Coordinate(18, 18), 3, 4)
+                    new BuildingStructure(new Coordinate(10, 3), 4, 5)
             ))
     ),
     FOREST(
-            new BuildingStructure(new Coordinate(25, 2), 4, 4),
-            new BuildingStructure(new Coordinate(2, 25), 6, 5),
+            new BuildingStructure(new Coordinate(13, 13), 4, 4),
+            new BuildingStructure(new Coordinate(1, 1), 5, 6),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(20, 8), 5, 7),
-                    new BuildingStructure(new Coordinate(23, 12), 3, 3)
+                    new BuildingStructure(new Coordinate(24, 7), 4, 14)
             )),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(22, 18), 6, 6)
+                    new BuildingStructure(new Coordinate(2, 21), 5, 8)
             ))
     ),
     HILLTOP(
-            new BuildingStructure(new Coordinate(2, 4), 4, 4),
-            new BuildingStructure(new Coordinate(5, 24), 6, 5),
+            new BuildingStructure(new Coordinate(25, 25), 4, 4),
+            new BuildingStructure(new Coordinate(1, 23), 5, 6),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(18, 10), 7, 5)
+                    new BuildingStructure(new Coordinate(25, 3), 3, 12)
             )),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(26, 6), 5, 6),
-                    new BuildingStructure(new Coordinate(28, 10), 2, 4)
+                    new BuildingStructure(new Coordinate(2, 2), 4, 7),
+                    new BuildingStructure(new Coordinate(13, 24), 4, 5)
             ))
     );
     ;

@@ -29,7 +29,7 @@ public class Game {
         this.currentPlayer = players.getFirst();
     }
 
-    private Integer gameID;
+    private final Integer gameID;
     private Map map;
     private ArrayList<Item> items;
     private Weather currentWeather;
@@ -76,9 +76,6 @@ public class Game {
                 break;
             }
         }
-    }
-    public void initializeGame() {
-        //TODO
     }
 
     public Integer getGameID() {

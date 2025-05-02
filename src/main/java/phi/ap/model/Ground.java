@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Ground {
     private Coordinate coordinate = null; //base on father ground
+    private Ground father = null;
     private final int height;
     private final int width;
     private final TileType[][] tiles;
@@ -51,6 +52,7 @@ public class Ground {
             }
         }
         holdingItems.add(item);
+        item.setFather(this);
     }
     public void removeItem(Item item) { //base on ground;
         int y = item.getCoordinate().getY();
@@ -61,6 +63,7 @@ public class Ground {
             }
         }
         holdingItems.remove(item);
+        item.setFather(null);
     }
     public Coordinate getCoordinate() {
         return coordinate;
@@ -91,5 +94,13 @@ public class Ground {
 
     public ArrayList<Item> getHoldingItems() {
         return holdingItems;
+    }
+
+    public void setFather(Ground father) {
+        this.father = father;
+    }
+
+    public Ground getFather() {
+        return father;
     }
 }
