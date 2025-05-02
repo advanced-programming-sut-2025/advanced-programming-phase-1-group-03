@@ -1,6 +1,7 @@
 package phi.ap.model.items.buildings;
 
 import phi.ap.model.Coordinate;
+import phi.ap.model.Tile;
 import phi.ap.model.enums.TileType;
 
 public class Cottage extends Building {
@@ -9,7 +10,7 @@ public class Cottage extends Building {
         setCoordinate(coordinate);
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
-                setTile(i, j, TileType.Cottage);
+                setTile(i, j, new Tile(TileType.Cottage));
             }
         }
     }

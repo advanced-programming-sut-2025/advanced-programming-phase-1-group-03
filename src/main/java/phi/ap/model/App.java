@@ -7,11 +7,12 @@ import phi.ap.service.PlayerService;
 import phi.ap.service.UserService;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class App {
     private static App instance = null;
     private User loggedInUser;
-
+    private Random rand = new Random();
     private ArrayList<User> users;
     private Menu menu = Menu.LoginMenu;
 
@@ -58,5 +59,14 @@ public class App {
 
     public void setUsers(ArrayList<User> users) {
         this.users = users;
+    }
+
+    public int getRandomNumber(int l, int r) {
+        if (l == r) return l;
+        return rand.nextInt(r - l + 1) + l;
+    }
+
+    public boolean eventRandom(int probabilityPercent) { //probability from 1 to 100
+        return getRandomNumber(1, 100) <= probabilityPercent;
     }
 }

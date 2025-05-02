@@ -10,7 +10,8 @@ public class Animal extends Producer {
         return null;
     }
 
-    Animal(AnimalTypes animalType) {
+    Animal(AnimalTypes animalType, int height, int width) {
+        super(height, width);
         this.type = animalType;
     }
     @Override

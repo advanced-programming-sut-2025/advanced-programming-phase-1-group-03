@@ -1,19 +1,22 @@
 package phi.ap.model.enums;
 
-public enum TileType {
-    Farm(Colors.bg(3) + "."),
-    Lake(Colors.bg(19) + "~"),
-    Cottage(Colors.bg(22) + "^"),
-    Greenhouse(Colors.bg(72) + "G"),
-    Quarry(Colors.bg(240) + "Q"),
-    Ground(".");
-    private final String symbol;
+import phi.ap.model.Tile;
 
-    TileType(String symbol) {
-        this.symbol = symbol;
+public enum TileType {
+    Farm(".", "" ,Colors.bg(77)),
+    Lake("~", "", Colors.bg(19)),
+    Cottage("^", "", Colors.bg(22)),
+    Greenhouse("G", "", Colors.bg(71)),
+    Quarry("Q", "", Colors.bg(240)),
+    Ground(".", "", Colors.BLACK_BACKGROUND.toString())
+    ;
+    private final Tile tile;
+
+    TileType(String symbol, String fgColor, String bgColor) {
+        tile = new Tile(symbol, fgColor, bgColor);
     }
 
-    public String getSymbol() {
-        return Colors.BLACK_BACKGROUND + symbol + Colors.RESET;
+    public Tile getTile() {
+        return tile;
     }
 }

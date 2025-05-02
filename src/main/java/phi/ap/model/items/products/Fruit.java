@@ -7,6 +7,10 @@ public class Fruit extends Product {
     private Producer source;
     private FruitTypes feature;
 
+    public Fruit(int height, int width) {
+        super(height, width);
+    }
+
     @Override
     public void doTask() {
 

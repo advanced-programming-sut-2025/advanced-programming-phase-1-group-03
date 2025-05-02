@@ -127,13 +127,13 @@ public class GameMenuController {
             return new Result<>(false, "there is no running game");
         }
         Map map = game.getMap();
-        TileType[][] tiles = new TileType[map.getHeight()][map.getWidth()];
+        Tile[][] tiles = new Tile[map.getHeight()][map.getWidth()];
         map.show(0, 0, tiles);
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < map.getHeight(); i++) {
             StringBuilder temp = new StringBuilder();
             for (int j = 0; j < map.getWidth(); j++) {
-                temp.append(tiles[i][j].getSymbol());
+                temp.append(tiles[i][j].toString(true));
             }
             temp.append("\n");
             res.append(temp);

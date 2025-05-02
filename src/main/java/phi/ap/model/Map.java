@@ -13,7 +13,7 @@ public class Map extends Item{
         this.setCoordinate(new Coordinate(0, 0));
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
-                setTile(i, j, TileType.Ground);
+                setTile(i, j, new Tile(TileType.Ground));
             }
         }
     }

@@ -2,6 +2,7 @@ package phi.ap.model.items.buildings;
 
 import phi.ap.model.Coordinate;
 import phi.ap.model.Ground;
+import phi.ap.model.Tile;
 import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
@@ -31,11 +32,7 @@ public class Farm extends Building {
             Quarry quarry = new Quarry(quarryInfos.getHeight(), quarryInfos.getWidth(), quarryInfos.getCoordinate());
             quarries.add(quarry);
         }
-        for (int i = 0; i < getHeight(); i++) {
-            for (int j = 0; j < getWidth(); j++) {
-                setTile(i, j, TileType.Farm);
-            }
-        }
+        fillTile(TileType.Farm.getTile());
         addItem(cottage);
         addItem(greenhouse);
         for (Lake lake : lakes) {

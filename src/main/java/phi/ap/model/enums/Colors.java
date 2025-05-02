@@ -43,6 +43,7 @@ public enum Colors {
 
     // Reset
     RESET("\u001B[0m");
+    //In game Colors
 
     public static String fg(int code) {
         return "\u001B[38;5;" + code + "m";
@@ -52,15 +53,14 @@ public enum Colors {
         return "\u001B[48;5;" + code + "m";
     }
 
-    private final String code;
+    private final String color;
 
-    Colors(String code) {
-        this.code = code;
+    Colors(String color) {
+        this.color = color;
     }
 
-    @Override
     public String toString() {
-        return code;
+        return color;
     }
 }
 

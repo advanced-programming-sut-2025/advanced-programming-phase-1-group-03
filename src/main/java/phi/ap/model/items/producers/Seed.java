@@ -5,9 +5,13 @@ import phi.ap.model.enums.SeedTypes;
 public class Seed extends Producer {
 
     private SeedTypes seedType;
-    public Seed(SeedTypes seedType) {
+
+    public Seed(int height, int width, SeedTypes seedType) {
+        super(height, width);
         this.seedType = seedType;
+        fillTile(seedType.getTile());
     }
+
     @Override
     public void produce() {
 

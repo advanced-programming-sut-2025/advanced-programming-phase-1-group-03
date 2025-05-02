@@ -19,7 +19,8 @@ public enum FruitTypes {
     PineTar(100, null, Seasons.getAll()),
     Sap(2, new Eatable(-2), Seasons.getAll()),
     CommonMushroom(40, new Eatable(38), Seasons.getAll()),
-    MysticSyrup(1000, new Eatable(500), Seasons.getAll());
+    MysticSyrup(1000, new Eatable(500), Seasons.getAll()),
+    RegularSampleFruit(10, new Eatable(10), Seasons.getAll());//TODO : remove it
 
     private int baseSellPrice;
     private Eatable eatable;

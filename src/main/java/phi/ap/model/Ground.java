@@ -10,14 +10,14 @@ public class Ground {
     private Ground father = null;
     private final int height;
     private final int width;
-    private final TileType[][] tiles;
+    private final Tile[][] tiles;
     private final Item[][] items;
     private final ArrayList<Item> holdingItems;
 
     public Ground(int height, int width) {
         this.height = height;
         this.width = width;
-        this.tiles = new TileType[height][width];
+        this.tiles = new Tile[height][width];
         this.items = new Item[height][width];
         this.holdingItems = new ArrayList<>();
     }
@@ -30,12 +30,19 @@ public class Ground {
         return width;
     }
 
-    public TileType getTile(int y, int x) {
+    public Tile getTile(int y, int x) {
         return tiles[y][x];
     }
 
-    public void setTile(int y, int x, TileType type) {
-        tiles[y][x] = type;
+    public void setTile(int y, int x, Tile tile) {
+        tiles[y][x] = tile;
+    }
+    public void fillTile(Tile tile) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                tiles[i][j] = tile;
+            }
+        }
     }
     public Item getItem(int y, int x) {
         return items[y][x];
@@ -71,10 +78,19 @@ public class Ground {
     public void setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;
     }
-    public void show(int startY, int startX, TileType[][] map) {
+    public void show(int startY, int startX, Tile[][] map) {
         for (int i = 0; i < getHeight(); i++) {
             for (int j = 0; j < getWidth(); j++) {
-                map[i + startY][j + startX] = tiles[i][j];
+                Tile tile;
+                int ii = i + startY;
+                int jj = j + startX;
+                if (map[ii][jj] != null) {
+                    tile = new Tile(tiles[i][j].getSymbol(), map[ii][jj].getFgColor() + tiles[i][j].getFgColor(),
+                            map[ii][jj].getBgColor() + tiles[i][j].getBgColor());
+                } else {
+                    tile = new Tile(tiles[i][j]);
+                }
+                map[i + startY][j + startX] = tile;
             }
         }
         for (Item holdingItem : holdingItems) {
@@ -84,7 +100,7 @@ public class Ground {
         }
     }
 
-    public TileType[][] getTiles() {
+    public Tile[][] getTiles() {
         return tiles;
     }
 
