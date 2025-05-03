@@ -1,12 +1,17 @@
 package phi.ap.model;
 
 public class Coordinate {
-    private int x;
     private int y;
+    private int x;
 
     public Coordinate(int y, int x) {
         this.x = x;
         this.y = y;
+    }
+
+    public Coordinate(Coordinate c) {
+        this.x = c.x;
+        this.y = c.y;
     }
 
     public int getX() {

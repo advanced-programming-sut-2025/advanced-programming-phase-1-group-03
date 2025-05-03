@@ -1,5 +1,6 @@
 package phi.ap.model;
 
+import phi.ap.model.enums.FaceWay;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
 
@@ -172,5 +173,34 @@ public class Ground {
     public Coordinate getCoordinateOfCoordinateInChild(Ground child, Coordinate coordinate) {
         return new Coordinate(child.getCoordinate().getY() + coordinate.getY(),
                 child.getCoordinate().getX() + coordinate.getX());
+    }
+
+    public Coordinate getCoordinateBaseMap() {
+        if (this instanceof Map) return new Coordinate(0, 0);
+        Coordinate fCoord = father.getCoordinateBaseMap();
+        return new Coordinate(fCoord.getY() + coordinate.getY(), fCoord.getX() + coordinate.getX());
+    }
+
+    public Coordinate getTileCoordinateBaseMap(int y, int x) {
+        Coordinate coord = getCoordinateBaseMap();
+        return new Coordinate(coord.getY() + y, coord.getX() + x);
+    }
+
+    public boolean isCoordinateValid(int y, int x) {
+        if (y >= height || y < 0) return false;
+        if (x >= width || x < 0) return false;
+        return true;
+    }
+
+    public int getHeuristicTravelCost(Coordinate source, Coordinate sink) {
+        if (!isCoordinateValid(source.getY(), source.getX()) ||
+                !isCoordinateValid(sink.getY(), sink.getX())) {
+            return Integer.MAX_VALUE;
+        }
+        int res = Math.abs(source.getY() - sink.getY()) + Math.abs(source.getX() - sink.getX());
+        if (source.getY() != sink.getY() && source.getX() != sink.getX()) {
+            res += FaceWay.turningConst;
+        }
+        return res;
     }
 }

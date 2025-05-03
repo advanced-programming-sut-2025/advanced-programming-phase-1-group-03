@@ -8,11 +8,7 @@ public class Quarry extends Building {
     public Quarry(int height, int width, Coordinate coordinate) {
         super(height, width);
         setCoordinate(coordinate);
-        for (int i = 0; i < getHeight(); i++) {
-            for (int j = 0; j < getWidth(); j++) {
-                setTile(i, j, new Tile(TileType.Quarry));
-            }
-        }
+        fillTile(TileType.Quarry.getTile());
     }
 
     @Override

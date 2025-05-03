@@ -4,7 +4,6 @@ import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.producers.Animal;
 import phi.ap.model.items.products.Recipe;
-import phi.ap.model.items.relations.Friendship;
 import phi.ap.model.items.relations.MarriageRequest;
 import phi.ap.model.items.relations.Quest;
 import phi.ap.model.items.relations.TradeRequest;
@@ -27,6 +26,7 @@ public class Player extends Human {
     private ArrayList<Quest> activatedQuests;
     private FarmTypes farmType = null;
     private Farm farm = null;
+    private Location location;
 
     public Player(User user) {
         this.user = user;
