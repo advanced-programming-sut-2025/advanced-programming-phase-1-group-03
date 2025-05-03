@@ -14,9 +14,9 @@ public class Main {
         System.out.println("Start...");
         App.getInstance().load();
         AppView.runProgram();
-//        System.out.println("┌──────────┐");
-//        System.out.println("│  Hello!  │");
-//        System.out.println("└──────────┘");
+        System.out.println("┌──────────┐");
+        System.out.println("│  Hello!  │");
+        System.out.println("└──────────┘");
 
 
     }
