@@ -13,7 +13,7 @@ public enum FarmTypes {
             new BuildingStructure(new Coordinate(1, 1), 4 + 1, 4 + 1),
             new BuildingStructure(new Coordinate(1, 12), 5 + 1, 6 + 1),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(22, 10), 7, 12)
+                    new BuildingStructure(new Coordinate(21, 10), 7, 12)
             )),
             new ArrayList<>(List.of(
                     new BuildingStructure(new Coordinate(1, 22), 6, 7)
@@ -23,7 +23,7 @@ public enum FarmTypes {
             new BuildingStructure(new Coordinate(1, 1), 4 + 1, 4 + 1),
             new BuildingStructure(new Coordinate(3, 15), 5 + 1, 6 + 1),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(24, 7), 5, 17),
+                    new BuildingStructure(new Coordinate(23, 7), 5, 17),
                     new BuildingStructure(new Coordinate(1, 25), 7, 4)
             )),
             new ArrayList<>(List.of(
@@ -34,17 +34,17 @@ public enum FarmTypes {
             new BuildingStructure(new Coordinate(13, 13), 4 + 1, 4 + 1),
             new BuildingStructure(new Coordinate(1, 1), 5 + 1, 6 + 1),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(24, 7), 4, 14)
+                    new BuildingStructure(new Coordinate(23, 7), 4, 14)
             )),
             new ArrayList<>(List.of(
                     new BuildingStructure(new Coordinate(2, 21), 5, 8)
             ))
     ),
     HILLTOP(
-            new BuildingStructure(new Coordinate(25, 24), 4 + 1, 4 + 1),
+            new BuildingStructure(new Coordinate(23, 23), 4 + 1, 4 + 1),
             new BuildingStructure(new Coordinate(1, 22), 5 + 1, 6 + 1),
             new ArrayList<>(List.of(
-                    new BuildingStructure(new Coordinate(25, 3), 3, 12)
+                    new BuildingStructure(new Coordinate(24, 3), 3, 12)
             )),
             new ArrayList<>(List.of(
                     new BuildingStructure(new Coordinate(2, 2), 4, 7),

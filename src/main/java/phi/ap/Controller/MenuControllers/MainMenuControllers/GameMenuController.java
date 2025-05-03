@@ -134,8 +134,10 @@ public class GameMenuController {
             StringBuilder temp = new StringBuilder();
             for (int j = 0; j < map.getWidth(); j++) {
                 temp.append(tiles[i][j].toString(true));
+//                System.out.print(tiles[i][j].toString(true));
             }
             temp.append("\n");
+//            System.out.print("\n");
             res.append(temp);
         }
         return new Result<>(true, res.toString());

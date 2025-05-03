@@ -8,11 +8,8 @@ public class Greenhouse extends Building {
     public Greenhouse(int height, int width, Coordinate coordinate) {
         super(height, width);
         setCoordinate(coordinate);
-        for (int i = 0; i < getHeight(); i++) {
-            for (int j = 0; j < getWidth(); j++) {
-                setTile(i, j, new Tile(TileType.Greenhouse));
-            }
-        }
+        fillTile(TileType.Greenhouse.getTile());
+        setWalls();
     }
 
     @Override

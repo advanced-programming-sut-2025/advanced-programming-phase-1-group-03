@@ -2,6 +2,7 @@ package phi.ap;
 
 import phi.ap.model.App;
 import phi.ap.model.Game;
+import phi.ap.model.enums.Colors;
 import phi.ap.utils.FileManager;
 import phi.ap.view.AppView;
 
@@ -13,5 +14,10 @@ public class Main {
         System.out.println("Start...");
         App.getInstance().load();
         AppView.runProgram();
+//        System.out.println("┌──────────┐");
+//        System.out.println("│  Hello!  │");
+//        System.out.println("└──────────┘");
+
+
     }
 }

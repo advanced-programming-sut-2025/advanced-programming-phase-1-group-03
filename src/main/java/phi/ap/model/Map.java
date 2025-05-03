@@ -11,11 +11,7 @@ public class Map extends Item{
     public Map() {
         super(102, 102);
         this.setCoordinate(new Coordinate(0, 0));
-        for (int i = 0; i < getHeight(); i++) {
-            for (int j = 0; j < getWidth(); j++) {
-                setTile(i, j, new Tile(TileType.Ground));
-            }
-        }
+        fillTile(TileType.Ground.getTile());
     }
 
     @Override
@@ -25,32 +21,52 @@ public class Map extends Item{
 
     public void addFarm(Farm farm, Player player) {
         int y, x;
+        ArrayList<Tile>doors = new ArrayList<>();
         switch (App.getInstance().getPlayerService().getPlayerIndex(player)) {
             case 0:
                 y = 1;
                 x = 1;
+                doors.add(new Tile(TileType.Door.getTile(),
+                        new Coordinate(farm.getHeight() - 1, farm.getWidth() / 2)));
+                doors.add(new Tile(TileType.Door.getTile(),
+                        new Coordinate(farm.getHeight() / 2, farm.getWidth() - 1)));
                 break;
             case 1:
                 y = 1;
                 x = this.getWidth() - 1 - farm.getWidth();
+                doors.add(new Tile(TileType.Door.getTile(),
+                        new Coordinate(farm.getHeight() - 1, farm.getWidth() / 2)));
+                doors.add(new Tile(TileType.Door.getTile(),
+                        new Coordinate(farm.getHeight() / 2, 0)));
                 break;
             case 2:
                 y = this.getHeight() - 1 - farm.getHeight();
                 x = 1;
+                doors.add(new Tile(TileType.Door.getTile(),
+                        new Coordinate(0, farm.getWidth() / 2)));
+                doors.add(new Tile(TileType.Door.getTile(),
+                        new Coordinate(farm.getHeight() / 2, farm.getWidth() - 1)));
                 break;
             case 3:
                 y = this.getHeight() - 1 - farm.getHeight();
                 x = this.getWidth() - 1 - farm.getWidth();
+                doors.add(new Tile(TileType.Door.getTile(),
+                        new Coordinate(0, farm.getWidth() / 2)));
+                doors.add(new Tile(TileType.Door.getTile(),
+                        new Coordinate(farm.getHeight() / 2, 0)));
                 break;
             default:
                 return;
         }
         farm.setCoordinate(new Coordinate(y, x));
+        farm.setDoors(doors);
         player.setFarm(farm);
         addItem(farm);
     }
     public void addNPCVillage() {
-        //TODO
+        NPCVillage village = new NPCVillage();
+        village.setCoordinate(new Coordinate(31, 31));
+        addItem(village);
     }
 
 }

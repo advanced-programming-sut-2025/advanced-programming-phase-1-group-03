@@ -31,4 +31,8 @@ public abstract class Item extends Ground {
     public void setMaxStackSize(int maxStackSize) {
         this.maxStackSize = maxStackSize;
     }
+
+    public boolean canStackWith(Item otherItem) {
+        return this.getClass().equals(otherItem.getClass()) && otherItem.getName().equals(this.getName());
+    }
 }

@@ -1,5 +1,6 @@
 plugins {
     id("java")
+    application
 }
 
 group = "phi.ap"
@@ -15,6 +16,22 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
 }
 
+application {
+    mainClass.set("phi.ap.Main")
+}
+
 tasks.test {
     useJUnitPlatform()
 }
+
+tasks.withType<JavaCompile>().configureEach {
+    options.encoding = "UTF-8"
+}
+
+tasks.withType<JavaExec> {
+    jvmArgs = listOf("-Dfile.encoding=UTF-8")
+}
+
+
+
+

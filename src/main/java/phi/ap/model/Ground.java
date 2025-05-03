@@ -35,13 +35,41 @@ public class Ground {
     }
 
     public void setTile(int y, int x, Tile tile) {
-        tiles[y][x] = tile;
+        if (tiles[y][x] == null) tiles[y][x] = tile;
+        else tiles[y][x] = new Tile(tile.getSymbol(), tiles[y][x].getFgColor() + tile.getFgColor(),
+                tiles[y][x].getBgColor() + tile.getBgColor(), tile.isWalkable());
     }
     public void fillTile(Tile tile) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 tiles[i][j] = tile;
             }
+        }
+    }
+
+    public void fillEdge(Tile tile) {
+        for (int i = 0; i < height; i++) {
+            setTile(i, 0, tile);
+            setTile(i, width - 1, tile);
+        }
+        for (int j = 0; j < width; j++) {
+            setTile(0, j, tile);
+            setTile(height - 1, j, tile);
+        }
+    }
+
+    public void setWalls() {
+        setTile(0, 0, new Tile(TileType.Wall_UL_CORNER));
+        setTile(0, width - 1, new Tile(TileType.Wall_UR_CORNER));
+        setTile(height - 1, 0, new Tile(TileType.Wall_DL_CORNER));
+        setTile(height - 1, width - 1, new Tile(TileType.Wall_DR_CORNER));
+        for (int i = 1; i < height - 1; i++) {
+            setTile(i, 0, new Tile(TileType.Wall_V_LINE));
+            setTile(i, width - 1, new Tile(TileType.Wall_V_LINE));
+        }
+        for (int j = 1; j < width - 1; j++) {
+            setTile(0, j, new Tile(TileType.Wall_H_LINE));
+            setTile(height - 1, j, new Tile(TileType.Wall_H_LINE));
         }
     }
     public Item getItem(int y, int x) {
@@ -118,5 +146,15 @@ public class Ground {
 
     public Ground getFather() {
         return father;
+    }
+
+    public void setWalkable(boolean walkable) { // it set empty tiles in ground walkable;
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (items[i][j] == null) {
+                    tiles[i][j].setWalkable(walkable);
+                }
+            }
+        }
     }
 }

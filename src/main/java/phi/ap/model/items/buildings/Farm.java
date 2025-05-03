@@ -8,6 +8,7 @@ import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Farm extends Building {
     private Cottage cottage;
@@ -20,8 +21,12 @@ public class Farm extends Building {
         this.farmType = farmType;
         cottage = new Cottage(farmType.getCottage().getHeight(), farmType.getCottage().getWidth(),
                 farmType.getCottage().getCoordinate());
+        cottage.setDoors(new ArrayList<>(List.of(new Tile(TileType.Door.getTile(),
+                new Coordinate(cottage.getHeight() - 1, cottage.getWidth() / 2)))));
         greenhouse = new Greenhouse(farmType.getGreenhouse().getHeight(), farmType.getGreenhouse().getWidth(),
                 farmType.getGreenhouse().getCoordinate());
+        greenhouse.setDoors(new ArrayList<>(List.of(new Tile(TileType.Door.getTile(),
+                new Coordinate(greenhouse.getHeight() - 1, greenhouse.getWidth() / 2)))));
         lakes = new ArrayList<>();
         for (BuildingStructure lakeInfos : farmType.getLakes()) {
             Lake lake = new Lake(lakeInfos.getHeight(), lakeInfos.getWidth(), lakeInfos.getCoordinate());
@@ -41,6 +46,7 @@ public class Farm extends Building {
         for (Quarry quarry : quarries) {
             addItem(quarry);
         }
+        setWalls();
     }
 
 

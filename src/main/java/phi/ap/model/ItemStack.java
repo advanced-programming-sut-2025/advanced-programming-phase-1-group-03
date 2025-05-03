@@ -19,7 +19,8 @@ public class ItemStack {
     }
 
     public boolean canStackWith(Item otherItem) {
-        return (item.getClass().equals(otherItem.getClass()) && otherItem.getName().equals(item.getName()));
+        //TODO : canStackWith function for each item if necessary
+        return item.canStackWith(otherItem);
     }
 
     public int getAmount() {

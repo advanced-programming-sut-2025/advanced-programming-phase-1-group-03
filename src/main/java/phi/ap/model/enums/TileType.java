@@ -3,17 +3,30 @@ package phi.ap.model.enums;
 import phi.ap.model.Tile;
 
 public enum TileType {
-    Farm(".", "" ,Colors.bg(77)),
+    Farm(".", "" ,Colors.bg(77), true),
+    NPCVillage(".", "" ,Colors.bg(65), true),
     Lake("~", "", Colors.bg(19)),
-    Cottage("^", "", Colors.bg(22)),
+    Cottage("^", "", Colors.bg(22), true),
     Greenhouse("G", "", Colors.bg(71)),
-    Quarry("Q", "", Colors.bg(240)),
-    Ground(".", "", Colors.BLACK_BACKGROUND.toString())
+    Quarry("Q", "", Colors.bg(240), true),
+    Ground(".", Colors.fg(231), Colors.bg(0)),
+    Wall("#", Colors.fg(0), ""),
+    Wall_UL_CORNER("+", Colors.fg(0), ""),
+    Wall_UR_CORNER("+", Colors.fg(0), ""),
+    Wall_DL_CORNER("+", Colors.fg(0), ""),
+    Wall_DR_CORNER("+", Colors.fg(0), ""),
+    Wall_H_LINE("-", Colors.fg(0), ""),
+    Wall_V_LINE("|", Colors.fg(0), ""),
+    Door(">", Colors.fg(0), "", true),
     ;
     private final Tile tile;
 
     TileType(String symbol, String fgColor, String bgColor) {
-        tile = new Tile(symbol, fgColor, bgColor);
+
+        tile = new Tile(symbol, fgColor, bgColor, false);
+    }
+    TileType(String symbol, String fgColor, String bgColor, boolean walkable) {
+        tile = new Tile(symbol, fgColor, bgColor, walkable);
     }
 
     public Tile getTile() {
