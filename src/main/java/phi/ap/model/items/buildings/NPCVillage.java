@@ -13,11 +13,7 @@ public class NPCVillage extends Building {
         super(40, 40);
         fillTile(TileType.NPCVillage.getTile());
         setWalls();
-        setDoors(new ArrayList<>(List.of(
-                new Tile(TileType.Door.getTile(), new Coordinate(0, getWidth() / 2)),
-                new Tile(TileType.Door.getTile(), new Coordinate(getHeight() / 2, 0)),
-                new Tile(TileType.Door.getTile(), new Coordinate(getHeight() / 2, getWidth() - 1)),
-                new Tile(TileType.Door.getTile(), new Coordinate(getHeight() - 1, getWidth() / 2)))));
+
     }
 
     @Override

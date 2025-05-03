@@ -13,12 +13,14 @@ public class Ground {
     private final Tile[][] tiles;
     private final Item[][] items;
     private final ArrayList<Item> holdingItems;
+    private final Portal[][] portals;
 
     public Ground(int height, int width) {
         this.height = height;
         this.width = width;
         this.tiles = new Tile[height][width];
         this.items = new Item[height][width];
+        this.portals = new Portal[height][width];
         this.holdingItems = new ArrayList<>();
     }
 
@@ -156,5 +158,19 @@ public class Ground {
                 }
             }
         }
+    }
+
+    public Portal[][] getPortals() {
+        return portals;
+    }
+    public Portal getPortal(int y, int x) {
+        return portals[y][x];
+    }
+    public void setPortal(int y, int x, Portal portal) {
+        portals[y][x] = portal;
+    }
+    public Coordinate getCoordinateOfCoordinateInChild(Ground child, Coordinate coordinate) {
+        return new Coordinate(child.getCoordinate().getY() + coordinate.getY(),
+                child.getCoordinate().getX() + coordinate.getX());
     }
 }

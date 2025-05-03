@@ -1,10 +1,7 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.Menus.Menu;
-import phi.ap.service.GameService;
-import phi.ap.service.LoadService;
-import phi.ap.service.PlayerService;
-import phi.ap.service.UserService;
+import phi.ap.service.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -37,6 +34,11 @@ public class App {
     public GameService getGameService(){
         if (Game.getInstance() == null) return null;
         return new GameService(Game.getInstance());
+    }
+    public MapService getMapService(){
+        Map map = null;
+        if (Game.getInstance() != null) map = Game.getInstance().getMap();
+        return new MapService(map);
     }
     public PlayerService getPlayerService(){
         return new PlayerService(Game.getInstance());

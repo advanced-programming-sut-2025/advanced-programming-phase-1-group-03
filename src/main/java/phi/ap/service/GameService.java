@@ -5,6 +5,7 @@ import phi.ap.model.enums.*;
 import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.buildings.Farm;
+import phi.ap.model.items.buildings.NPCVillage;
 import phi.ap.model.items.buildings.Quarry;
 import phi.ap.model.items.producers.Seed;
 import phi.ap.model.items.producers.Tree;
@@ -48,6 +49,46 @@ public class GameService {
             game.getMap().addFarm(new Farm(player.getFarmType()), player);
         }
         game.getMap().addNPCVillage();
+        for (Player player : game.getPlayers()) {
+            Farm farm = player.getFarm();
+            NPCVillage village = game.getMap().getNPCVillage();
+            Coordinate fp1 = null;
+            Coordinate fp2 = null;
+            Coordinate vp1 = null;
+            Coordinate vp2 = null;
+            switch (App.getInstance().getPlayerService().getPlayerIndex(player)) {
+                case 0:
+                    fp1 = new Coordinate(farm.getHeight() - 1, farm.getWidth() / 2);
+                    fp2 = new Coordinate(farm.getHeight() / 2, farm.getWidth() - 1);
+                    vp1 = new Coordinate(village.getHeight() / 2, 0);
+                    vp2 = new Coordinate(0, village.getWidth() / 2);
+                    break;
+                case 1:
+                    fp1 = new Coordinate(farm.getHeight() - 1, farm.getWidth() / 2);
+                    fp2 = new Coordinate(farm.getHeight() / 2, 0);
+                    vp1 = new Coordinate(village.getHeight() / 2, village.getWidth() - 1);
+                    vp2 = new Coordinate(0, village.getWidth() / 2);
+                    break;
+                case 2:
+                    fp1 = new Coordinate(0, farm.getWidth() / 2);
+                    fp2 = new Coordinate(farm.getHeight() / 2, farm.getWidth() - 1);
+                    vp1 = new Coordinate(village.getHeight() / 2, 0);
+                    vp2 = new Coordinate(village.getHeight() - 1, village.getWidth() / 2);
+                    break;
+                case 3:
+                    fp1 = new Coordinate(0, farm.getWidth() / 2);
+                    fp2 = new Coordinate(farm.getHeight() / 2, 0);
+                    vp1 = new Coordinate(village.getHeight() / 2, village.getWidth() - 1);
+                    vp2 = new Coordinate(village.getHeight() - 1, village.getWidth() / 2);
+                    break;
+            }
+            Portal.makePortalTwoWay(farm, fp1, village, vp1);
+            Portal.makePortalTwoWay(farm, fp2, village, vp2);
+            farm.setTile(fp1.getY(), fp1.getX(), new Tile(TileType.Door));
+            farm.setTile(fp2.getY(), fp2.getX(), new Tile(TileType.Door));
+            village.setTile(vp1.getY(), vp1.getX(), new Tile(TileType.Door));
+            village.setTile(vp2.getY(), vp2.getX(), new Tile(TileType.Door));
+        }
         //adding trees with probability 10%, stones 10% foraging 3% minerals 5%
         for (Item ground : game.getMap().getHoldingItems()) {
             if (ground instanceof Farm) {
