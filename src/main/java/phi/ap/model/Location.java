@@ -12,6 +12,12 @@ public class Location extends Coordinate{
         this.faceWay = FaceWay.Down;
     }
 
+    public Location(Coordinate coordinate, Ground ground, FaceWay faceWay) {
+        super(coordinate);
+        this.ground = ground;
+        this.faceWay = faceWay;
+    }
+
     public Location(int y, int x, Ground ground) {
         super(y, x);
         this.ground = ground;
@@ -88,12 +94,15 @@ public class Location extends Coordinate{
         else newFace = FaceWay.Left;
 
         int res = 1;
-        if (newFace != faceWay) res += FaceWay.turningConst;
+        if (newFace != faceWay) res += this.faceWay.getDistance(newFace) * FaceWay.turningConst;
         return res;
     }
 
-    public int findPathSameGround(Coordinate sink) {
-        //TODO
-        return 0;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (!(obj instanceof Location loc)) return false;
+        return (super.equals(loc) && ground.equals(loc.ground) && faceWay.equals(loc.faceWay));
     }
+
 }

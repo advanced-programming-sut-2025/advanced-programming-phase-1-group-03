@@ -11,6 +11,9 @@ import java.util.ArrayList;
 
 public class GameMenuController {
     public Result<String> newGame(ArrayList<String> usernames) {
+        if (App.getInstance().getLoggedInUser() == null) {
+            return new Result<>(false, "You are not logged in");
+        }
         if (App.getInstance().getLoggedInUser().getGameJoinedId() != null) {
             return new Result<>(false, "You are member of another game");
         }

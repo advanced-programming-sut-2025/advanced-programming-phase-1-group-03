@@ -11,12 +11,13 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
+//        System.out.println("┌──────────┐");
+//        System.out.println("│  Hello!  │");
+//        System.out.println("└──────────┘");
         System.out.println("Start...");
         App.getInstance().load();
         AppView.runProgram();
-        System.out.println("┌──────────┐");
-        System.out.println("│  Hello!  │");
-        System.out.println("└──────────┘");
+
 
 
     }

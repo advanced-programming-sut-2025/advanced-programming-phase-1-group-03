@@ -4,27 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="135108ba-f28f-4cf0-a006-a1f58f1c5470" name="Changes" comment="Foraging on Farms generated;&#10;Color based map added:)">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="135108ba-f28f-4cf0-a006-a1f58f1c5470" name="Changes" comment="Player Location added;&#10;walk one block added;&#10;Heuristic travel cost in same ground added;">
+      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Path.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Coordinate.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ground.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/ItemStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/ItemStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FarmTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FarmTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Location.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FaceWay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FaceWay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Building.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Building.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Cage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Cottage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Cottage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Greenhouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Greenhouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/NPCVillage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/NPCVillage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Tool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/service/MapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/service/MapService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +78,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03/&quot;,
-    &quot;accountId&quot;: &quot;e6a28fee-2421-481c-b9eb-6421dd2c10ee&quot;
+    &quot;accountId&quot;: &quot;1350e84c-a2d9-4fb7-9512-6a26fee5827d&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -102,14 +93,16 @@
   "keyToString": {
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Application.Main.executor": "Run",
+    "Application.UTF8Configuration.executor": "Run",
     "Gradle.StardewValley [:phi.ap.Main.main()].executor": "Run",
-    "Gradle.StardewValley [run].executor": "Run",
+    "Gradle.StardewValley [run].executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "extract.method.default.visibility": "private",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/StardewValley",
+    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/StardewValley",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -118,11 +111,11 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "File.Encoding",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.UTF8Configuration">
     <configuration name="UTF8Configuration" type="Application" factoryName="Application" folderName="New Folder">
       <option name="MAIN_CLASS_NAME" value="phi.ap.Main" />
       <module name="StardewValley.main" />
@@ -163,14 +156,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -204,7 +189,10 @@
       <workItem from="1746262937827" duration="782000" />
       <workItem from="1746263738617" duration="700000" />
       <workItem from="1746264721510" duration="34000" />
-      <workItem from="1746264776699" duration="3058000" />
+      <workItem from="1746264776699" duration="16474000" />
+      <workItem from="1746365515423" duration="540000" />
+      <workItem from="1746366072984" duration="205000" />
+      <workItem from="1746366293383" duration="5841000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="Add menu management">
       <option name="closed" value="true" />
@@ -300,7 +288,39 @@
       <option name="project" value="LOCAL" />
       <updated>1746202740842</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="walls and doors added;&#10;NPCVillage added">
+      <option name="closed" value="true" />
+      <created>1746269751818</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1746269751818</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Doors functionality (Portal System) added.">
+      <option name="closed" value="true" />
+      <created>1746276455448</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746276455448</updated>
+    </task>
+    <task id="LOCAL-00016" summary="colors list added">
+      <option name="closed" value="true" />
+      <created>1746277934016</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1746277934016</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Player Location added;&#10;walk one block added;&#10;Heuristic travel cost in same ground added;">
+      <option name="closed" value="true" />
+      <created>1746297890344</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1746297890344</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -331,17 +351,10 @@
     <MESSAGE value="new game choosing map system added." />
     <MESSAGE value="Farms added.&#10;Colors added." />
     <MESSAGE value="Foraging on Farms generated;&#10;Color based map added:)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Foraging on Farms generated;&#10;Color based map added:)" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="walls and doors added;&#10;NPCVillage added" />
+    <MESSAGE value="Doors functionality (Portal System) added." />
+    <MESSAGE value="colors list added" />
+    <MESSAGE value="Player Location added;&#10;walk one block added;&#10;Heuristic travel cost in same ground added;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Player Location added;&#10;walk one block added;&#10;Heuristic travel cost in same ground added;" />
   </component>
 </project>
