@@ -197,10 +197,7 @@ public class Ground {
                 !isCoordinateValid(sink.getY(), sink.getX())) {
             return Integer.MAX_VALUE;
         }
-        int res = Math.abs(source.getY() - sink.getY()) + Math.abs(source.getX() - sink.getX());
-        if (source.getY() != sink.getY() && source.getX() != sink.getX()) {
-            res += FaceWay.turningConst;
-        }
-        return res;
+        return App.getInstance().getMapService().getDistance(source, sink);
     }
+
 }

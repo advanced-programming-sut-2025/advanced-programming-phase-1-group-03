@@ -11,13 +11,13 @@ public enum TileType {
     Quarry("Q", "", Colors.bg(240), true),
     Ground(".", Colors.fg(231), Colors.bg(0)),
     Wall("#", Colors.fg(0), ""),
-    Wall_UL_CORNER("+", Colors.fg(0), ""),
-    Wall_UR_CORNER("+", Colors.fg(0), ""),
-    Wall_DL_CORNER("+", Colors.fg(0), ""),
-    Wall_DR_CORNER("+", Colors.fg(0), ""),
-    Wall_H_LINE("-", Colors.fg(0), ""),
-    Wall_V_LINE("|", Colors.fg(0), ""),
-    Door(">", Colors.fg(0), "", true),
+    Wall_UL_CORNER("┌", Colors.fg(0), ""),
+    Wall_UR_CORNER("┐", Colors.fg(0), ""),
+    Wall_DL_CORNER("└", Colors.fg(0), ""),
+    Wall_DR_CORNER("┘", Colors.fg(0), ""),
+    Wall_H_LINE("─", Colors.fg(0), ""),
+    Wall_V_LINE("│", Colors.fg(0), ""),
+    Door("+", Colors.fg(0), "", true),
     ;
     private final Tile tile;
 
