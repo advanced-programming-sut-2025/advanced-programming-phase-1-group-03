@@ -19,8 +19,7 @@ public class ChoosingMapController {
         }
         Game.getInstance().getCurrentPlayer().setFarmType(FarmTypes.values()[mapN]);
         Game.getInstance().goNextPlayer();
-        if (Game.getInstance().getCurrentPlayer().getUser().getUsername().
-                equals(Game.getInstance().getPlayers().get(0).getUser().getUsername())) {
+        if (Game.getInstance().getCurrentPlayer().equals(Game.getInstance().getPlayers().getFirst())) {
             App.getInstance().getGameService().initializeGame();
             return new Result<>(true, "All players have chosen their map.");
         }

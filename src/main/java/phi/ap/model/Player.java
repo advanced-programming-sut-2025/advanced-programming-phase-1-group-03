@@ -147,4 +147,15 @@ public class Player extends Human {
     public void setFarm(Farm farm) {
         this.farm = farm;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Player player = (Player) obj;
+        return player.getUser().equals(user);
+    }
+
+    @Override
+    public String toString() {
+        return getUser().getUsername();
+    }
 }

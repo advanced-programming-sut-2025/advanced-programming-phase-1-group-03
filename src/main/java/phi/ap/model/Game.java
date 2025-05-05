@@ -33,10 +33,10 @@ public class Game {
     private Map map;
     private ArrayList<Item> items;
     private Weather currentWeather;
-    private Weather tomorrowWeather;
     private final ArrayList<Player> players = new ArrayList<>();
     private final ArrayList<Friendship> friendships = new ArrayList<>();
     private User gameLoader;
+    private Date date = new Date(9); // zaman aghaz bazi 9 sobhe
     private Player currentPlayer;
 
     public Map getMap() {
@@ -67,12 +67,11 @@ public class Game {
     }
     public void goNextPlayer() {
         for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getUser().getUsername().equals(currentPlayer.getUser().getUsername())) {
-                if (i < players.size() - 1) {
+            if (players.get(i).equals(currentPlayer)) {
+                if (i < players.size() - 1)
                     currentPlayer = players.get(i + 1);
-                } else {
-                    currentPlayer = players.get(0);
-                }
+                 else
+                    currentPlayer = players.getFirst();
                 break;
             }
         }
@@ -80,5 +79,13 @@ public class Game {
 
     public Integer getGameID() {
         return gameID;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }

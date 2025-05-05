@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 
 public class GameMenu extends AppMenu {
     GameMenuController controller = new GameMenuController();
+
     @Override
     public void check(String input) {
         Matcher matcher;
@@ -32,13 +33,33 @@ public class GameMenu extends AppMenu {
             } else {
                 super.check(input);
             }
-        } else {
-            if ((matcher = GameMenuCommands.PrintMapComplete.getMatcher(input)) != null) {
-                System.out.println(controller.showMap());
-            } else {
-                super.check(input);
-            }
+            return;
         }
+
+        if ((matcher = GameMenuCommands.PrintMapComplete.getMatcher(input)) != null) {
+            System.out.println(controller.showMap());
+        } else if((matcher = GameMenuCommands.NextTurn.getMatcher(input)) != null){
+            System.out.println(controller.nextTurn());
+        } else if((matcher = GameMenuCommands.Time.getMatcher(input)) != null){
+            System.out.println(controller.showTime());
+        } else if((matcher = GameMenuCommands.Date.getMatcher(input)) != null){
+            System.out.println(controller.showDate());
+        } else if((matcher = GameMenuCommands.Season.getMatcher(input)) != null){
+            System.out.println(controller.showSeason());
+        } else if((matcher = GameMenuCommands.DateTime.getMatcher(input)) != null){
+            System.out.println(controller.showDateTime());
+        } else if((matcher = GameMenuCommands.DayOfWeek.getMatcher(input)) != null){
+            System.out.println(controller.showWeekDay());
+        } else if((matcher = GameMenuCommands.CheatAdvanceTime.getMatcher(input)) != null){
+            String hour = matcher.group("hour");
+            System.out.println(controller.cheatAdvanceTime(hour));
+        } else if((matcher = GameMenuCommands.CheatAdvanceDate.getMatcher(input)) != null){
+            String day = matcher.group("day");
+            System.out.println(controller.cheatAdvanceDate(day));
+        }else {
+            super.check(input);
+        }
+
     }
 
     @Override

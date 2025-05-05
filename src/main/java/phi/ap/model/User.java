@@ -112,4 +112,9 @@ public class User {
     public void setGameJoinedId(Integer gameJoinedId) {
         this.gameJoinedId = gameJoinedId;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return ((User)obj).getUsername().equals(username);
+    }
 }

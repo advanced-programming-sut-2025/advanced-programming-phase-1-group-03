@@ -73,35 +73,84 @@ public class GameMenuController {
 
     //TODO : election
     public Result<String> nextTurn() {
-        return null;
+        Game.getInstance().goNextPlayer();
+
+        String message = "Ok now is the "+Game.getInstance().getCurrentPlayer()+"'s turn";
+
+        // age ye door tamoom shod
+        if(Game.getInstance().getCurrentPlayer().equals(Game.getInstance().getPlayers().getFirst()))
+        {
+            advanceHour();
+            message = "one hour passed...";
+        }
+
+        return new Result<>(true, message);
+    }
+
+    private void advanceHour(){
+        if(Game.getInstance().getDate().advanceHour()) {
+            Game.getInstance().getDate().goToNextDay();
+            doNightTasks();
+        }
+    }
+    private void doNightTasks() {
+        // in khat hazf mishe alan serfan baraie debuge
+        System.out.println("zzz... sleeping");
+
+        //TODO
+        //anjam kar haiee ke bayad too shab anjam beshan
     }
 
     public Result<String> showTime() {
-        return null;
+        return new Result<>(true, "It's " + Game.getInstance().getDate().getHour()+" o'clock");
     }
 
     public Result<String> showDate() {
-        return null;
+        Date curDate = Game.getInstance().getDate();
+        String message = "it's day " + curDate.getDay() + " of " + curDate.getSeason().name;
+        return new Result<>(true, message);
     }
 
     public Result<String> showDateTime() {
-        return null;
+        String message = showTime().data + "\n" + showDate().data;
+        return new Result<>(true, message);
     }
 
     public Result<String> showWeekDay() {
-        return null;
+        return new Result<>(true, "It is " +Game.getInstance().getDate().getWeekDay().toString());
     }
 
     public Result<String> cheatAdvanceTime(String amount) {
-        return null;
+        int hour;
+        try {
+             hour = Integer.parseInt(amount);
+        }catch (Exception e){
+            return new Result<>(false, "dorost bede dige, in chie akhe?");
+        }
+        if(hour < 0)
+            return new Result<>(false, "can time be negative???!");
+
+        for(int i = 0; i < hour; i++)
+            advanceHour();
+        return new Result<>(true, "zaman " + amount + " saat raft jeloo");
     }
 
     public Result<String> cheatAdvanceDate(String amount) {
-        return null;
+        int day;
+        try {
+            day = Integer.parseInt(amount);
+        }catch (Exception e){
+            return new Result<>(false, "dorost bede dige, in chie akhe?");
+        }
+        for(int i = 0; i < day; i++) {
+            Game.getInstance().getDate().goToNextDay();
+            doNightTasks();
+        }
+        return new Result<>(true, "zaman " + day + " rooz raft jeloo");
     }
 
     public Result<String> showSeason() {
-        return null;
+        return new Result<>(true, "It is " + Game.getInstance().getDate().getSeason().name);
     }
 
     public Result<String> showWeather() {

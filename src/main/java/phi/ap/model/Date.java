@@ -1,28 +1,46 @@
 package phi.ap.model;
 
+import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.enums.Time.WeekDays;
 
 public class Date {
+    private final int START_HOUR = 9;
+    private final int SLEEP_HOUR = 23;
+    private final int SEASONS_DAYS = 28;
+
     private int hour;
     public int getDay(){
-        return -1;
+        return (hour/24)%SEASONS_DAYS + 1;
     }
-    public int getSeason(){
-        return -1;
+    private int getRawDay(){
+        return (hour/24) + 1;
+    }
+    public Seasons getSeason(){
+        return Seasons.values()[(getRawDay()-1)/SEASONS_DAYS];
     }
     public WeekDays getWeekDay(){
-        return null;
+        return WeekDays.values()[(getRawDay()-1)%7];
     }
 
     public int getHour() {
-        return hour;
+        return hour%24;
     }
 
-    public Date(Date date) {
-        this.hour = date.getHour();
+    public Date(int hour) {
+        this.hour = hour;
     }
 
     public void setHour(int hour) {
         this.hour = hour;
+    }
+
+    public void goToNextDay() {
+        this.hour += (START_HOUR - getHour() + 24);
+    }
+
+    //return if it's sleeping time or not
+    public boolean advanceHour(){
+        this.hour += 1;
+        return this.getHour() == SLEEP_HOUR;
     }
 }
