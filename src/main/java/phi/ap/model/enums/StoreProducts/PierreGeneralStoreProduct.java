@@ -101,7 +101,13 @@ public enum PierreGeneralStoreProduct {
 
     public static Result<String> purchase(String productName, String amountString) {
         int amount = Integer.parseInt(amountString);
-        PierreGeneralStoreProduct pierreGeneralStoreProduct = PierreGeneralStoreProduct.valueOf(productName);
+        PierreGeneralStoreProduct pierreGeneralStoreProduct;
+        try {
+            pierreGeneralStoreProduct = PierreGeneralStoreProduct.valueOf(productName);
+        }
+        catch (IllegalArgumentException e) {
+            return new Result<>(false, "There is no product with this name.");
+        }
         if(amount > pierreGeneralStoreProduct.availableAmount) {
             return new Result<>(false, "There is not enough amount of this product.");
         }
@@ -118,6 +124,22 @@ public enum PierreGeneralStoreProduct {
         return new Result<>(true, "Item purchased successfully");
     }
 
+    public static Result<String> showAllProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(PierreGeneralStoreProduct pierreGeneralStoreProduct : PierreGeneralStoreProduct.values()) {
+            stringBuilder.append("Name : " + "\"" + pierreGeneralStoreProduct.getName() + "\"" + "     " + "Price: "  + pierreGeneralStoreProduct.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
+
+    public static Result<String> showAvailableProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(PierreGeneralStoreProduct pierreGeneralStoreProduct : PierreGeneralStoreProduct.values()) {
+            if(pierreGeneralStoreProduct.availableAmount > 0 && pierreGeneralStoreProduct.dailyLimit > 0)
+                stringBuilder.append("Name : " + "\"" + pierreGeneralStoreProduct.getName() + "\"" + "     " + "Price: "  + pierreGeneralStoreProduct.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
     public String getName() {
         return this.name;
     }

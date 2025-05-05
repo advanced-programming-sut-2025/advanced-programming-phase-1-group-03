@@ -29,9 +29,16 @@ public enum FishShopProducts {
         this.fishingSkill = fishingSkill;
     }
 
+
     public static Result<String> purchase(String productName, String amountString) {
         int amount = Integer.parseInt(amountString);
-        FishShopProducts fishShopProducts = FishShopProducts.valueOf(productName);
+        FishShopProducts fishShopProducts;
+        try {
+            fishShopProducts  = FishShopProducts.valueOf(productName);
+        }
+        catch (IllegalArgumentException e) {
+            return new Result<>(false, "There is no product with this name.");
+        }
         if(amount > fishShopProducts.availableAmount) {
             return new Result<>(false, "There is not enough amount of this product.");
         }
@@ -48,6 +55,22 @@ public enum FishShopProducts {
         return new Result<>(true, "Item purchased successfully");
     }
 
+    public static Result<String> showAllProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(FishShopProducts fishShopProducts : FishShopProducts.values()) {
+            stringBuilder.append("Name : " + "\"" + fishShopProducts.getName() + "\"" + "     " + "Price: "  + fishShopProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
+
+    public static Result<String> showAvailableProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(FishShopProducts fishShopProducts : FishShopProducts.values()) {
+            if(fishShopProducts.availableAmount > 0 && fishShopProducts.dailyLimit > 0)
+                stringBuilder.append("Name : " + "\"" + fishShopProducts.getName() + "\"" + "     " + "Price: "  + fishShopProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
     public String getName() {
         return name;
     }

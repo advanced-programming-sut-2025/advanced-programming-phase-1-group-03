@@ -48,7 +48,13 @@ public enum CarpenterShopProducts {
     }
     public static Result<String> purchase(String productName, String amountString) {
         int amount = Integer.parseInt(amountString);
-        CarpenterShopProducts carpenterShopProducts = CarpenterShopProducts.valueOf(productName);
+        CarpenterShopProducts carpenterShopProducts;
+        try {
+            carpenterShopProducts = CarpenterShopProducts.valueOf(productName);
+        }
+        catch (IllegalArgumentException e) {
+            return new Result<>(false, "There is no product with this name.");
+        }
         if(amount > carpenterShopProducts.availableAmount) {
             return new Result<>(false, "There is not enough amount of this product.");
         }
@@ -64,7 +70,21 @@ public enum CarpenterShopProducts {
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(carpenterShopProducts.item, amount);
         return new Result<>(true, "Item purchased successfully");
     }
-
+    public static Result<String> showAllProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(CarpenterShopProducts carpenterShopProducts : CarpenterShopProducts.values()) {
+            stringBuilder.append("Name : " + "\"" + carpenterShopProducts.getName() + "\"" + "     " + "Price: "  + carpenterShopProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
+    public static Result<String> showAvailableProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(CarpenterShopProducts carpenterShopProducts : CarpenterShopProducts.values()) {
+            if(carpenterShopProducts.dailyLimit > 0 && carpenterShopProducts.availableAmount > 0)
+                stringBuilder.append("Name : " + "\"" + carpenterShopProducts.getName() + "\"" + "     " + "Price: "  + carpenterShopProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
     public String getName() {
         return name;
     }

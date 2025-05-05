@@ -45,7 +45,13 @@ public enum MarnieRanchProducts {
 
     public static Result<String> purchase(String productName, String amountString) {
         int amount = Integer.parseInt(amountString);
-        MarnieRanchProducts marnieRanchProducts = MarnieRanchProducts.valueOf(productName);
+        MarnieRanchProducts marnieRanchProducts;
+        try {
+            marnieRanchProducts = MarnieRanchProducts.valueOf(productName);
+        }
+        catch (IllegalArgumentException e) {
+            return new Result<>(false, "There is no product with this name.");
+        }
         if(amount > marnieRanchProducts.availableAmount) {
             return new Result<>(false, "There is not enough amount of this product.");
         }
@@ -60,6 +66,23 @@ public enum MarnieRanchProducts {
         Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * marnieRanchProducts.price);
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(marnieRanchProducts.item, amount);
         return new Result<>(true, "Item purchased successfully");
+    }
+
+    public static Result<String> showAllProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(MarnieRanchProducts marnieRanchProducts : MarnieRanchProducts.values()) {
+            stringBuilder.append("Name : " + "\"" + marnieRanchProducts.getName() + "\"" + "     " + "Price: "  + marnieRanchProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
+
+    public static Result<String> showAvailableProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(MarnieRanchProducts marnieRanchProducts : MarnieRanchProducts.values()) {
+            if(marnieRanchProducts.availableAmount > 0 &&marnieRanchProducts.dailyLimit > 0)
+                stringBuilder.append("Name : " + "\"" + marnieRanchProducts.getName() + "\"" + "     " + "Price: "  + marnieRanchProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
     }
 
     public String getName() {

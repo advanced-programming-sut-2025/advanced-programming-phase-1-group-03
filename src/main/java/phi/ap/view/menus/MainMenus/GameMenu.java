@@ -34,11 +34,10 @@ public class GameMenu extends AppMenu {
                 super.check(input);
             }
         }
-
         if ((matcher = GameMenuCommands.PrintMapComplete.getMatcher(input)) != null) {
             System.out.println(controller.showMap());
         } else if((matcher = GameMenuCommands.Walk.getMatcher(input)) != null) {
-            System.out.println(controller.walk(matcher.group("y"), matcher.group("x")));
+            //System.out.println(controller.walk(matcher.group("y"), matcher.group("x")));
         } else if((matcher = GameMenuCommands.NextTurn.getMatcher(input)) != null){
             System.out.println(controller.nextTurn());
         } else if((matcher = GameMenuCommands.Time.getMatcher(input)) != null){
@@ -58,9 +57,13 @@ public class GameMenu extends AppMenu {
             String day = matcher.group("day");
             System.out.println(controller.cheatAdvanceDate(day));
         } else if((matcher = GameMenuCommands.showAllProducts.getMatcher(input)) != null){
-            System.out.println("hooooooooo");
-            System.out.println(controller.showAllProducts(StoreTypes.Blacksmith));
-        } else {
+            System.out.println(controller.showAllProducts());
+        } else if((matcher = GameMenuCommands.showAvailableProducts.getMatcher(input)) != null) {
+            System.out.println(controller.showAvailableProducts());
+        } else if((matcher = GameMenuCommands.purchase.getMatcher(input)) != null) {
+            System.out.println(controller.purchase(matcher.group("productName"), matcher.group("amount")));
+        }
+        else {
             super.check(input);
         }
     }

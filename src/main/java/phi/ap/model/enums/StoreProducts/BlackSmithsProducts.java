@@ -30,7 +30,13 @@ public enum BlackSmithsProducts {
     }
     public static Result<String> purchase(String productName, String amountString) {
         int amount = Integer.parseInt(amountString);
-        BlackSmithsProducts blackSmithsProducts = BlackSmithsProducts.valueOf(productName);
+        BlackSmithsProducts blackSmithsProducts;
+        try {
+            blackSmithsProducts = BlackSmithsProducts.valueOf(productName);
+        }
+        catch (IllegalArgumentException e) {
+            return new Result<>(false, "There is no product with this name.");
+        }
         if(amount > blackSmithsProducts.availableAmount) {
             return new Result<>(false, "There is not enough amount of this product.");
         }
@@ -49,7 +55,16 @@ public enum BlackSmithsProducts {
     public static Result<String> showAllProducts() {
         StringBuilder stringBuilder = new StringBuilder();
         for(BlackSmithsProducts blackSmithsProducts : BlackSmithsProducts.values()) {
-            stringBuilder.append("Name : " + blackSmithsProducts.getName() + " " + "Price: "  + blackSmithsProducts.getPrice() + "\n");
+            stringBuilder.append("Name : " + "\"" + blackSmithsProducts.getName() + "\"" + "     " + "Price: "  + blackSmithsProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
+
+    public static Result<String> showAvailableProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(BlackSmithsProducts blackSmithsProducts : BlackSmithsProducts.values()) {
+            if(blackSmithsProducts.availableAmount > 0 && blackSmithsProducts.dailyLimit > 0)
+                stringBuilder.append("Name : " + "\"" + blackSmithsProducts.getName() + "\"" + "     " + "Price: "  + blackSmithsProducts.getPrice() + "g" + "\n");
         }
         return new Result<>(true, stringBuilder.toString());
     }

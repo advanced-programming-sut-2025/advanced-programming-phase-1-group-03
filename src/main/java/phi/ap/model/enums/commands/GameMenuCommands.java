@@ -18,7 +18,9 @@ public enum GameMenuCommands implements Command{
     DayOfWeek("\\s*day\\s*of\\s*the\\s*week\\s*"),
     CheatAdvanceTime("\\s*cheat\\s*advance\\s*time\\s*(?<hour>\\d+)\\s*h\\s*"),
     CheatAdvanceDate("\\s*cheat\\s*advance\\s*date\\s*(?<day>\\d+)\\s*d\\s*"),
-    showAllProducts("\\s*show\\s+all\\s+products\\s*")
+    showAllProducts("\\s*show\\s+all\\s+products\\s*"),
+    showAvailableProducts("\\s*show\\s+all\\s+available\\s+products\\s*"),
+    purchase("\\s*purchase\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

@@ -82,7 +82,13 @@ public enum JojaMarketProducts {
 
     public static Result<String> purchase(String productName, String amountString) {
         int amount = Integer.parseInt(amountString);
-        JojaMarketProducts jojaMarketProducts = JojaMarketProducts.valueOf(productName);
+        JojaMarketProducts jojaMarketProducts;
+        try {
+            jojaMarketProducts = JojaMarketProducts.valueOf(productName);
+        }
+        catch (IllegalArgumentException e) {
+            return new Result<>(false, "There is no product with this name.");
+        }
         if(amount > jojaMarketProducts.availableAmount) {
             return new Result<>(false, "There is not enough amount of this product.");
         }
@@ -97,6 +103,23 @@ public enum JojaMarketProducts {
         Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * jojaMarketProducts.price);
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(jojaMarketProducts.item, amount);
         return new Result<>(true, "Item purchased successfully");
+    }
+
+    public static Result<String> showAllProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(JojaMarketProducts jojaMarketProducts : JojaMarketProducts.values()) {
+            stringBuilder.append("Name : " + "\"" + jojaMarketProducts.getName() + "\"" + "     " + "Price: "  + jojaMarketProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
+
+    public static Result<String> showAvailableProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(JojaMarketProducts jojaMarketProducts : JojaMarketProducts.values()) {
+            if(jojaMarketProducts.availableAmount > 0 && jojaMarketProducts.dailyLimit > 0)
+                stringBuilder.append("Name : " + "\"" + jojaMarketProducts.getName() + "\"" + "     " + "Price: "  + jojaMarketProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
     }
 
     public String getName() {
