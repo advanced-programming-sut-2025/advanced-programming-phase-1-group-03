@@ -27,7 +27,7 @@ public class LoggedInUser {
         this.nickname = nickname;
     }
     public static LoggedInUser build(){
-        if(App.getInstance().getLoggedInUser() == null)
+        if(App.getInstance().getLoggedInUser() == null || !App.getInstance().isSaveUser())
             return null;
         return new LoggedInUser(App.getInstance().getLoggedInUser().getUsername(),
                 Crypto.hash(App.getInstance().getLoggedInUser().getNickname()));

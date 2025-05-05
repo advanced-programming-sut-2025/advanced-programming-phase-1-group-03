@@ -19,12 +19,12 @@ public class LoginMenuController {
             return new Result<>(false, "Username is not valid");
         if(!user.getPassword().equals(Crypto.hash(password)))
             return new Result<>(false, "Password is incorrect");
-
+        App.getInstance().setLoggedInUser(user);
         if(stayLogged) {
-            App.getInstance().setLoggedInUser(user);
+            App.getInstance().setSaveUser(true);
+            new FileManager().writeAppData();
         }else
-            App.getInstance().setLoggedInUser(null);
-        new FileManager().writeAppData();
+            App.getInstance().setSaveUser(false);
         return new Result<>(true, "Login successful");
     }
     public Result<String> forgetPassword(String username) {
@@ -33,10 +33,6 @@ public class LoginMenuController {
             return new Result<>(false, "user not found");
         return new Result<>(true, user.getSecurityQuestion().getQuestion());
     }
-    public Result<String> answerSecurityQuestion(String answer) {
-        return null;
-    }
-
     public Result<String> register(String username, String password, String passwordConfirm,
                                 String nickname, String email, String gender) {
         //add random number until username become unique

@@ -12,6 +12,7 @@ public class App {
     private Random rand = new Random();
     private ArrayList<User> users;
     private Menu menu = Menu.LoginMenu;
+    private boolean saveUser;
 
     public static App getInstance() {
         if (instance == null)
@@ -70,5 +71,13 @@ public class App {
 
     public boolean eventRandom(int probabilityPercent) { //probability from 1 to 100
         return getRandomNumber(1, 100) <= probabilityPercent;
+    }
+
+    public boolean isSaveUser() {
+        return saveUser;
+    }
+
+    public void setSaveUser(boolean saveUser) {
+        this.saveUser = saveUser;
     }
 }
