@@ -18,7 +18,7 @@ public class LoginMenuController {
         if(user == null)
             return new Result<>(false, "Username is not valid");
         if(!user.getPassword().equals(Crypto.hash(password)))
-            return new Result<>(true, "Password is incorrect");
+            return new Result<>(false, "Password is incorrect");
 
         if(stayLogged) {
             App.getInstance().setLoggedInUser(user);
