@@ -5,6 +5,7 @@ import phi.ap.model.App;
 import phi.ap.model.Game;
 import phi.ap.model.Result;
 import phi.ap.model.enums.Menus.Menu;
+import phi.ap.model.enums.StoreTypes;
 import phi.ap.model.enums.commands.GameMenuCommands;
 import phi.ap.view.AppMenu;
 import phi.ap.view.AppView;
@@ -14,7 +15,6 @@ import java.util.regex.Matcher;
 
 public class GameMenu extends AppMenu {
     GameMenuController controller = new GameMenuController();
-
     @Override
     public void check(String input) {
         Matcher matcher;
@@ -57,10 +57,12 @@ public class GameMenu extends AppMenu {
         } else if((matcher = GameMenuCommands.CheatAdvanceDate.getMatcher(input)) != null){
             String day = matcher.group("day");
             System.out.println(controller.cheatAdvanceDate(day));
-        }else {
+        } else if((matcher = GameMenuCommands.showAllProducts.getMatcher(input)) != null){
+            System.out.println("hooooooooo");
+            System.out.println(controller.showAllProducts(StoreTypes.Blacksmith));
+        } else {
             super.check(input);
         }
-
     }
 
     @Override

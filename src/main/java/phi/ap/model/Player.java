@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class Player extends Human {
     private User user;
+    private int gold;
     private int Energy = Integer.MAX_VALUE;
     private Tool tool;
     private InventoryManager inventoryManager;
@@ -27,6 +28,13 @@ public class Player extends Human {
     private Farm farm = null;
     private Location location;
 
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
     public Location getLocation() {
         return location;
     }
@@ -90,7 +98,6 @@ public class Player extends Human {
     public void setEnergy(int energy) {
         Energy = energy;
     }
-
 
     public void setTool(Tool tool) {
         this.tool = tool;

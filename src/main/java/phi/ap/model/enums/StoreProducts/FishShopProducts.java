@@ -1,11 +1,12 @@
 package phi.ap.model.enums.StoreProducts;
 
+import phi.ap.model.Game;
+import phi.ap.model.Result;
 import phi.ap.model.enums.LevelName;
-import phi.ap.model.enums.StoreTypes;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.tools.FishingPole;
 
-public enum FishShop {
+public enum FishShopProducts {
     FishSmoker("Fish Smoker (Recipe)", "A recipe to make Fish Smoker", 10000, 1, 0, new FishingPole(1, 1, LevelName.initial)),
     TroutSoup("Trout Soup", "Pretty salty.", 250, 1, 0, new FishingPole(1, 1, LevelName.bamboo)),
     BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500, 1, 0, new FishingPole(1, 1, LevelName.bamboo)),
@@ -15,16 +16,36 @@ public enum FishShop {
     private final String name;
     private final String description;
     private final Integer price;
-    private final Integer dailyLimit;
+    private Integer dailyLimit;
+    private Integer availableAmount = 1000;
     private final Integer fishingSkill;
     private final Item item;
-    FishShop(String name, String description, Integer price, Integer dailyLimit, Integer fishingSkill, Item item) {
+    FishShopProducts(String name, String description, Integer price, Integer dailyLimit, Integer fishingSkill, Item item) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.dailyLimit = dailyLimit;
         this.item = item;
         this.fishingSkill = fishingSkill;
+    }
+
+    public static Result<String> purchase(String productName, String amountString) {
+        int amount = Integer.parseInt(amountString);
+        FishShopProducts fishShopProducts = FishShopProducts.valueOf(productName);
+        if(amount > fishShopProducts.availableAmount) {
+            return new Result<>(false, "There is not enough amount of this product.");
+        }
+        else if(amount > fishShopProducts.dailyLimit) {
+            return new Result<>(false, "You can't purchase this amount of product on this day.");
+        }
+        else if(amount * fishShopProducts.price > Game.getInstance().getCurrentPlayer().getGold()) {
+            return new Result<>(false, "You don't have enough money.");
+        }
+        fishShopProducts.availableAmount -= amount;
+        fishShopProducts.dailyLimit -= amount;
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * fishShopProducts.price);
+        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(fishShopProducts.item, amount);
+        return new Result<>(true, "Item purchased successfully");
     }
 
     public String getName() {

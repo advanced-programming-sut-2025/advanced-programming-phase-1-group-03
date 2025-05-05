@@ -1,5 +1,7 @@
 package phi.ap.model.enums.StoreProducts;
 
+import phi.ap.model.Game;
+import phi.ap.model.Result;
 import phi.ap.model.enums.*;
 import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.items.Item;
@@ -81,7 +83,8 @@ public enum PierreGeneralStoreProduct {
     private final String name;
     private final String description;
     private final Integer price;
-    private final Integer dailyLimit;
+    private Integer dailyLimit;
+    private Integer availableAmount = 1000;
     private final Item item;
     private final int priceOutOfSeason;
     private final Seasons season;
@@ -94,6 +97,25 @@ public enum PierreGeneralStoreProduct {
         this.item = item;
         this.season = season;
         this.priceOutOfSeason = priceOutOfSeason;
+    }
+
+    public static Result<String> purchase(String productName, String amountString) {
+        int amount = Integer.parseInt(amountString);
+        PierreGeneralStoreProduct pierreGeneralStoreProduct = PierreGeneralStoreProduct.valueOf(productName);
+        if(amount > pierreGeneralStoreProduct.availableAmount) {
+            return new Result<>(false, "There is not enough amount of this product.");
+        }
+        else if(amount > pierreGeneralStoreProduct.dailyLimit) {
+            return new Result<>(false, "You can't purchase this amount of product on this day.");
+        }
+        else if(amount * pierreGeneralStoreProduct.price > Game.getInstance().getCurrentPlayer().getGold()) {
+            return new Result<>(false, "You don't have enough money.");
+        }
+        pierreGeneralStoreProduct.availableAmount -= amount;
+        pierreGeneralStoreProduct.dailyLimit -= amount;
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * pierreGeneralStoreProduct.price);
+        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(pierreGeneralStoreProduct.item, amount);
+        return new Result<>(true, "Item purchased successfully");
     }
 
     public String getName() {

@@ -1,5 +1,7 @@
 package phi.ap.model.enums.StoreProducts;
 
+import phi.ap.model.Game;
+import phi.ap.model.Result;
 import phi.ap.model.enums.FoodTypes;
 import phi.ap.model.enums.SeedTypes;
 import phi.ap.model.enums.SoilTypes;
@@ -64,7 +66,8 @@ public enum JojaMarketProducts {
     private final String name;
     private final String description;
     private final Integer price;
-    private final Integer dailyLimit;
+    private Integer dailyLimit;
+    private Integer availableAmount = 1000;
     private final Item item;
     private final Seasons season;
 
@@ -75,6 +78,25 @@ public enum JojaMarketProducts {
         this.dailyLimit = dailyLimit;
         this.item = item;
         this.season = season;
+    }
+
+    public static Result<String> purchase(String productName, String amountString) {
+        int amount = Integer.parseInt(amountString);
+        JojaMarketProducts jojaMarketProducts = JojaMarketProducts.valueOf(productName);
+        if(amount > jojaMarketProducts.availableAmount) {
+            return new Result<>(false, "There is not enough amount of this product.");
+        }
+        else if(amount > jojaMarketProducts.dailyLimit) {
+            return new Result<>(false, "You can't purchase this amount of product on this day.");
+        }
+        else if(amount * jojaMarketProducts.price > Game.getInstance().getCurrentPlayer().getGold()) {
+            return new Result<>(false, "You don't have enough money.");
+        }
+        jojaMarketProducts.availableAmount -= amount;
+        jojaMarketProducts.dailyLimit -= amount;
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * jojaMarketProducts.price);
+        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(jojaMarketProducts.item, amount);
+        return new Result<>(true, "Item purchased successfully");
     }
 
     public String getName() {

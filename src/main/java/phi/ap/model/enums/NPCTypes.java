@@ -1,12 +1,19 @@
 package phi.ap.model.enums;
 
 import phi.ap.model.items.Item;
+import phi.ap.model.items.buildings.Store;
 import phi.ap.model.items.relations.Dialogue;
 
 import java.util.ArrayList;
 
 public enum NPCTypes {
-    ;
+    Clint("Clint", null, null, StoreTypes.Blacksmith, null),
+    Morris("Morris", null, null, StoreTypes.JojaMart, null),
+    Pierre("Pierre", null, null, StoreTypes.PierreGeneralStore, null),
+    Robin("Robin", null, null, StoreTypes.CarpenterShop, null),
+    Willy("Willy", null, null, StoreTypes.FishShop, null),
+    Marnie("Marnie", null, null, StoreTypes.MarnieRanch, null),
+    Gus("Gus", null, null, StoreTypes.TheStarDropSaloon, null);
     private String name;
     private ArrayList<Item> favoriteItems;
     private String about;

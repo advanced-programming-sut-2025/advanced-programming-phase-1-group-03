@@ -102,7 +102,7 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.UTF8Configuration">
     <configuration name="UTF8Configuration" type="Application" factoryName="Application" folderName="New Folder">
       <option name="MAIN_CLASS_NAME" value="phi.ap.Main" />
