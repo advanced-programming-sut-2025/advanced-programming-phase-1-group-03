@@ -5,12 +5,15 @@ import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.enums.Menus.Menu;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.buildings.Farm;
+import phi.ap.service.MapService;
 
 import java.util.ArrayList;
 
 public class GameMenuController {
     public Result<String> newGame(ArrayList<String> usernames) {
+//        User temp = App.getInstance().getLoggedInUser();
         if (App.getInstance().getLoggedInUser() == null) {
             return new Result<>(false, "You are not logged in");
         }
@@ -169,8 +172,34 @@ public class GameMenuController {
         return null;
     }
 
-    public Result<String> walk(String xDest, String yDest) {
-        return null;
+    public Result<String> walk(String yDest, String xDest) {
+        int y, x;
+        try {
+            y = Integer.parseInt(yDest);
+            x = Integer.parseInt(xDest);
+        } catch (Exception e) {
+            return new Result<>(false, "Invalid coordinate");
+        }
+        MapService mapService = App.getInstance().getMapService();
+        if (mapService.getMap() == null) return new Result<>(false, "There is no map");
+        Location target = mapService.getLocationOnMap(y, x);
+        Player player = Game.getInstance().getCurrentPlayer();
+        Location source = player.getLocation();
+        if (target == null) return new Result<>(false, "you can't go there cause it doesn't exist!");
+        Path path = mapService.getPath(source, target);
+        if (path == null) return new Result<>(false, "you can't go there");
+        int energyCost = (path.getCost() + 19) / 20;
+        if (player.getEnergy() < energyCost) {
+            return new Result<>(false, "you don't have enough energy");
+        }
+        player.setEnergy(player.getEnergy() - energyCost);
+        //TODO : manage energy and turn;
+        //TODO : faint check(ghash kardan);
+        //TODO : in case of opening menu or market manage it;
+        for (Coordinate step : path.getSteps()) {
+            source.walkOne(step.getY(), step.getX());
+        }
+        return new Result<>(true, "walk successful");
     }
 
     public Result<String> showMap() {
@@ -180,7 +209,16 @@ public class GameMenuController {
         }
         Map map = game.getMap();
         Tile[][] tiles = new Tile[map.getHeight()][map.getWidth()];
+        ArrayList<PlayerIcon> icons= new ArrayList<>();
+        for (Player player : Game.getInstance().getPlayers()) {
+            PlayerIcon icon = new PlayerIcon(player);
+            icon.setCoordinate(player.getLocation().getCoordinate());
+            player.getLocation().getGround().addItem(icon);
+        }
         map.show(0, 0, tiles);
+        for (PlayerIcon icon : icons) {
+            icon.getPlayer().getLocation().getGround().removeItem(icon);
+        }
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < map.getHeight(); i++) {
             StringBuilder temp = new StringBuilder();

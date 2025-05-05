@@ -4,10 +4,15 @@ import phi.ap.model.*;
 import phi.ap.model.enums.FaceWay;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class MapService {
     private Map map;
+
+    public Map getMap() {
+        return map;
+    }
 
     public MapService(Map map) {
         this.map = map;
@@ -36,28 +41,42 @@ public class MapService {
         return getDistance(source, sink);
     }
 
-/*    public Path getPath(Location source, Location sink) {
+    public Path getPath(Location source, Location sink) {
         class Node {
             public Location location;
             public Node parent;
+            public Coordinate step;
             public boolean isSource;
             public int costFromSource;
             public final int heuristicCostToSink;
-            public Node(Location location, Node parent) {
+            public Node(Location location, Node parent, Coordinate step) {
                 this.location = location;
                 this.parent = parent;
                 isSource = (parent == null);
                 heuristicCostToSink = getHeuristicTravelCost(location, sink);
                 if (isSource) costFromSource = 0;
                 else costFromSource = Integer.MAX_VALUE;
+                this.step = step;
             }
 
-            public Node(Location location, Node parent, int costFromSource) {
+            public Node(Location location, Node parent, int costFromSource, Coordinate step) {
                 this.location = location;
                 this.parent = parent;
                 this.costFromSource = costFromSource;
                 isSource = (parent == null);
                 heuristicCostToSink = getHeuristicTravelCost(location, sink);
+                this.step = step;
+            }
+
+            public Path getPath() {
+                if (isSource) {
+                    Path path = new Path();
+                    path.setSource(location);
+                    return path;
+                }
+                Path path = parent.getPath();
+                path.addStep(step);
+                return path;
             }
 
             public Location getLocation() {
@@ -105,15 +124,51 @@ public class MapService {
             !map.isCoordinateValid(sink.getY(), sink.getX())) {
             return null;
         }
-        Path path = new Path(source, sink);
+
         PriorityQueue<Node> sack = new PriorityQueue<>(Comparator.comparing(Node::totalCost)
                 .thenComparing(e -> e.costFromSource));
-        sack.add(new Node(source, null, 0));
+//        HashMap<Coordinate, Integer> g = new HashMap<>();
+        Node src;
+        sack.add(src = new Node(source, null, 0, null));
+//        g.put(source, src.totalCost());
+        Node dst = null;
         while (!sack.isEmpty()) {
             Node n = sack.poll();
-            int[][] dir = {{1, 0}, {-1. }}
+//            if (g.get(n.getLocation()) < n.totalCost()) continue;
+            if (n.getLocation().getCoordinate().equals(sink.getCoordinate())) {
+                dst = n;
+                break;
+            }
+            int[][] dir = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+            Ground ground = n.getLocation().getGround();
+            for (int[] d : dir) {
+                int y = n.getLocation().getY() + d[0];
+                int x = n.getLocation().getX() + d[1];
+                if (!n.getLocation().isWalkable(d[0], d[1])) continue;
+                int price = n.costFromSource + n.getLocation().getCostOfWalkOne(d[0], d[1]);
+                Ground newGround = ground;
+                if (ground.getPortal(y, x) != null) {
+                    Portal p = ground.getPortal(y, x);
+                    newGround = p.getDestination();
+                    y = p.getCoordinateOnDest().getY();
+                    x = p.getCoordinateOnDest().getX();
+
+                }
+                Location uL = new Location(new Coordinate(y, x), newGround,
+                        n.getLocation().getFaceWayOfWalk(d[0], d[1]));
+                Node u = new Node(uL, n, price, new Coordinate(d[0], d[1]));
+                sack.add(u);
+            }
         }
+        if (dst == null) return null;
+        Path path = dst.getPath();
+        path.setCost(dst.totalCost());
+        path.setDone(true);
+        path.setTarget(dst.getLocation());
+        return path;
     }
 
- */
+    public Location getLocationOnMap(int y, int x) {
+        return map.getLocation(new Coordinate(y, x));
+    }
 }

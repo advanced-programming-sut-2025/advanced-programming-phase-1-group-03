@@ -33,11 +33,12 @@ public class GameMenu extends AppMenu {
             } else {
                 super.check(input);
             }
-            return;
         }
 
         if ((matcher = GameMenuCommands.PrintMapComplete.getMatcher(input)) != null) {
             System.out.println(controller.showMap());
+        } else if((matcher = GameMenuCommands.Walk.getMatcher(input)) != null) {
+            System.out.println(controller.walk(matcher.group("y"), matcher.group("x")));
         } else if((matcher = GameMenuCommands.NextTurn.getMatcher(input)) != null){
             System.out.println(controller.nextTurn());
         } else if((matcher = GameMenuCommands.Time.getMatcher(input)) != null){

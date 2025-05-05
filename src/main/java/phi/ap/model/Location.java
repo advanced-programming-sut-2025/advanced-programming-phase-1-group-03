@@ -1,10 +1,11 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.FaceWay;
+import phi.ap.model.items.Item;
 
 public class Location extends Coordinate{
     private Ground ground;
-    FaceWay faceWay;
+    private FaceWay faceWay;
 
     public Location(Coordinate coordinate, Ground ground) {
         super(coordinate);
@@ -58,25 +59,29 @@ public class Location extends Coordinate{
         }
     }
 
-    public boolean walkOne(int yDiff, int xDiff) {
-        if (!isWalkable(yDiff, xDiff)) return false;
+    public FaceWay getFaceWayOfWalk(int yDiff, int xDiff) {
         int y = getY() + yDiff;
         int x = getX() + xDiff;
-        if (ground.getPortal(y, x) != null) {
-            Portal p = ground.getPortal(y, x);
-             setY(p.getCoordinate().getY());
-             setX(p.getCoordinate().getX());
-             setGround(p.getDestination());
-             faceWay = FaceWay.Up;
-             if (this.isWalkable(0, 1)) faceWay = FaceWay.Right;
-             else if (this.isWalkable(0, -1)) faceWay = FaceWay.Left;
-             else if (this.isWalkable(1, 0)) faceWay = FaceWay.Down;
-             return true;
-        }
+        FaceWay faceWay;
         if (getY() < y) faceWay = FaceWay.Down;
         else if (getY() > y) faceWay = FaceWay.Up;
         else if (getX() < x) faceWay = FaceWay.Right;
         else faceWay = FaceWay.Left;
+        return faceWay;
+    }
+
+    public boolean walkOne(int yDiff, int xDiff) {
+        if (!isWalkable(yDiff, xDiff)) return false;
+        int y = getY() + yDiff;
+        int x = getX() + xDiff;
+        faceWay = getFaceWayOfWalk(yDiff, xDiff);
+        if (ground.getPortal(y, x) != null) {
+            Portal p = ground.getPortal(y, x);
+             setY(p.getCoordinateOnDest().getY());
+             setX(p.getCoordinateOnDest().getX());
+             setGround(p.getDestination());
+             return true;
+        }
         setY(y);
         setX(x);
         return true;
@@ -88,14 +93,14 @@ public class Location extends Coordinate{
         int y = getY() + yDiff;
         int x = getX() + xDiff;
 
-        if (getY() < y) newFace = FaceWay.Down;
-        else if (getY() > y) newFace = FaceWay.Up;
-        else if (getX() < x) newFace = FaceWay.Right;
-        else newFace = FaceWay.Left;
-
+        newFace = getFaceWayOfWalk(yDiff, xDiff);
         int res = 1;
         if (newFace != faceWay) res += this.faceWay.getDistance(newFace) * FaceWay.turningConst;
         return res;
+    }
+
+    public FaceWay getFaceWay() {
+        return faceWay;
     }
 
     @Override
@@ -105,4 +110,19 @@ public class Location extends Coordinate{
         return (super.equals(loc) && ground.equals(loc.ground) && faceWay.equals(loc.faceWay));
     }
 
+    public Coordinate getCoordinate() {
+        return new Coordinate(super.getY(), super.getX());
+    }
+
+    public Tile getTileDiff(int yDiff, int xDiff) {
+        return ground.getTile(getY() + yDiff, getX() + xDiff);
+    }
+
+    public Item getItemDiff(int yDiff, int xDiff) {
+        return ground.getItem(getY() + yDiff, getX() + xDiff);
+    }
+
+    public Portal getPortalDiff(int yDiff, int xDiff) {
+        return ground.getPortal(getY() + yDiff, getX() + xDiff);
+    }
 }

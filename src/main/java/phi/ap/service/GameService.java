@@ -4,6 +4,8 @@ import phi.ap.model.*;
 import phi.ap.model.enums.*;
 import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.PlayerIcon;
+import phi.ap.model.items.buildings.Cottage;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.buildings.NPCVillage;
 import phi.ap.model.items.buildings.Quarry;
@@ -47,10 +49,22 @@ public class GameService {
         //adding farms
         for (Player player : game.getPlayers()) {
             game.getMap().addFarm(new Farm(player.getFarmType()), player);
+            Farm farm = player.getFarm();
+            int y = 0, x = 0;
+            for (Item item : farm.getHoldingItems()) {
+                if (item instanceof Cottage) {
+                    y = item.getPortalList().get(0).getCoordinateOnDest().getY();
+                    x = item.getPortalList().get(0).getCoordinateOnDest().getX();
+                    //coordinate of exit of cottage;
+                }
+            }
+            player.setLocation(new Location(new Coordinate(y, x), farm, FaceWay.Down));
         }
         game.getMap().addNPCVillage();
+        //makeDoors between village and farms;
         for (Player player : game.getPlayers()) {
             Farm farm = player.getFarm();
+
             NPCVillage village = game.getMap().getNPCVillage();
             Coordinate fp1 = null;
             Coordinate fp2 = null;

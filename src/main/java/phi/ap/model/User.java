@@ -4,7 +4,7 @@ import phi.ap.model.enums.Gender;
 
 import java.util.regex.Pattern;
 
-public class User {
+public class  User {
     private String username;
     private String password;
     private String nickname;

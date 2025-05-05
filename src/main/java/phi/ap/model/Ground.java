@@ -15,6 +15,7 @@ public class Ground {
     private final Item[][] items;
     private final ArrayList<Item> holdingItems;
     private final Portal[][] portals;
+    private final ArrayList<Portal> portalList = new ArrayList<>();
 
     public Ground(int height, int width) {
         this.height = height;
@@ -34,10 +35,12 @@ public class Ground {
     }
 
     public Tile getTile(int y, int x) {
+        if (!isCoordinateValid(y, x)) return  null;
         return tiles[y][x];
     }
 
     public void setTile(int y, int x, Tile tile) {
+        if (!isCoordinateValid(y, x)) return;
         if (tiles[y][x] == null) tiles[y][x] = tile;
         else tiles[y][x] = new Tile(tile.getSymbol(), tiles[y][x].getFgColor() + tile.getFgColor(),
                 tiles[y][x].getBgColor() + tile.getBgColor(), tile.isWalkable());
@@ -76,9 +79,11 @@ public class Ground {
         }
     }
     public Item getItem(int y, int x) {
+        if (!isCoordinateValid(y, x)) return  null;
         return items[y][x];
     }
     public void setItem(int y, int x, Item item) {
+        if (!isCoordinateValid(y, x)) return;
         items[y][x] = item;
     }
     public void addItem(Item item) { //base on ground
@@ -161,14 +166,15 @@ public class Ground {
         }
     }
 
-    public Portal[][] getPortals() {
-        return portals;
-    }
     public Portal getPortal(int y, int x) {
+        if (!isCoordinateValid(y, x)) return  null;
         return portals[y][x];
     }
     public void setPortal(int y, int x, Portal portal) {
+        if (!isCoordinateValid(y, x)) return;
+        if (portals[y][x] != null) portalList.remove(portals[y][x]);
         portals[y][x] = portal;
+        portalList.add(portal);
     }
     public Coordinate getCoordinateOfCoordinateInChild(Ground child, Coordinate coordinate) {
         return new Coordinate(child.getCoordinate().getY() + coordinate.getY(),
@@ -199,5 +205,15 @@ public class Ground {
         }
         return App.getInstance().getMapService().getDistance(source, sink);
     }
+    public Location getLocation(Coordinate coordinate) {
+        if (!isCoordinateValid(coordinate.getY(), coordinate.getX())) return null;
+        Item item;
+        if ((item = getItem(coordinate.getY(), coordinate.getX())) == null) return new Location(coordinate, this);
+        return item.getLocation(new Coordinate(coordinate.getY() - item.getCoordinate().getY(),
+                coordinate.getX() - item.getCoordinate().getX()));
+    }
 
+    public ArrayList<Portal> getPortalList() {
+        return portalList;
+    }
 }

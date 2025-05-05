@@ -13,8 +13,7 @@ import java.util.ArrayList;
 
 public class Player extends Human {
     private User user;
-    private int Energy;
-    private Coordinate Coordinate;
+    private int Energy = Integer.MAX_VALUE;
     private Tool tool;
     private InventoryManager inventoryManager;
     private ArrayList<Recipe> craftingRecipes;
@@ -28,6 +27,14 @@ public class Player extends Human {
     private Farm farm = null;
     private Location location;
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public Player(User user) {
         this.user = user;
     }
@@ -38,10 +45,6 @@ public class Player extends Human {
 
     public int getEnergy() {
         return Energy;
-    }
-
-    public Coordinate getCoordinate() {
-        return Coordinate;
     }
 
     public Tool getTool() {
@@ -88,9 +91,6 @@ public class Player extends Human {
         Energy = energy;
     }
 
-    public void setCoordinate(Coordinate coordinate) {
-        Coordinate = coordinate;
-    }
 
     public void setTool(Tool tool) {
         this.tool = tool;
