@@ -192,6 +192,12 @@ public class Ground {
         return new Coordinate(coord.getY() + y, coord.getX() + x);
     }
 
+    public Tile getTopTile(int x, int y) {
+        if (items[y][x] == null) return tiles[y][x];
+        return items[y][x].getTopTile(y - items[y][x].getCoordinate().getY(),
+                x - items[y][x].getCoordinate().getX());
+    }
+
     public boolean isCoordinateValid(int y, int x) {
         if (y >= height || y < 0) return false;
         if (x >= width || x < 0) return false;
