@@ -192,7 +192,7 @@ public class Ground {
         return new Coordinate(coord.getY() + y, coord.getX() + x);
     }
 
-    public Tile getTopTile(int x, int y) {
+    public Tile getTopTile(int y, int x) {
         if (items[y][x] == null) return tiles[y][x];
         return items[y][x].getTopTile(y - items[y][x].getCoordinate().getY(),
                 x - items[y][x].getCoordinate().getX());
