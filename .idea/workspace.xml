@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258277cc-ff3e-4799-9f32-a51d613f5e89" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/ToolManager.java" afterDir="false" />
+    <list default="true" id="258277cc-ff3e-4799-9f32-a51d613f5e89" name="Changes" comment="Adding tool manager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/InventoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/InventoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +33,18 @@
   }
 }]]></component>
   <component name="TaskManager">
+    <task id="LOCAL‎−۰۰۰۰۱" summary="Adding tool manager">
+      <option name="closed" value="true" />
+      <created>1746785471303</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۱" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۱" />
+      <updated>1746785471304</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Adding tool manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding tool manager" />
   </component>
 </project>

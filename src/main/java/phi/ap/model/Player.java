@@ -94,6 +94,7 @@ public class Player extends Human {
         Energy = energy;
     }
 
+
     public void setCraftingRecipes(ArrayList<Recipe> craftingRecipes) {
         this.craftingRecipes = craftingRecipes;
     }
