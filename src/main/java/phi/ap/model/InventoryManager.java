@@ -7,7 +7,10 @@ import phi.ap.model.items.tools.TrashCan;
 public class InventoryManager {
     private Backpack storage;
     private TrashCan trashCan;
-
+    public InventoryManager(Backpack storage, TrashCan trashCan) {
+        this.trashCan = trashCan;
+        this.storage = storage;
+    }
     public int addItem(Item item, int amount) {
         int added = 0;
         for (ItemStack stack : storage.getStacks()) {

@@ -15,8 +15,7 @@ public class Player extends Human {
     private User user;
     private int gold;
     private int Energy = Integer.MAX_VALUE;
-    private Tool tool;
-    private InventoryManager inventoryManager;
+    private ToolManager toolManager = new ToolManager();
     private ArrayList<Recipe> craftingRecipes;
     private ArrayList<Recipe> cookingRecipes;
     private ArrayList<Animal> animals;
@@ -55,12 +54,8 @@ public class Player extends Human {
         return Energy;
     }
 
-    public Tool getTool() {
-        return tool;
-    }
-
     public InventoryManager getInventoryManager() {
-        return inventoryManager;
+        return new InventoryManager(getToolManager().getBackpack(), getToolManager().getTrashCan());
     }
 
     public ArrayList<Recipe> getCraftingRecipes() {
@@ -97,14 +92,6 @@ public class Player extends Human {
 
     public void setEnergy(int energy) {
         Energy = energy;
-    }
-
-    public void setTool(Tool tool) {
-        this.tool = tool;
-    }
-
-    public void setInventoryManager(InventoryManager inventoryManager) {
-        this.inventoryManager = inventoryManager;
     }
 
     public void setCraftingRecipes(ArrayList<Recipe> craftingRecipes) {
@@ -157,12 +144,17 @@ public class Player extends Human {
 
     @Override
     public boolean equals(Object obj) {
-        Player player = (Player) obj;
+        if(!(obj instanceof Player player))
+            return false;
         return player.getUser().equals(user);
     }
 
     @Override
     public String toString() {
         return getUser().getUsername();
+    }
+
+    public ToolManager getToolManager() {
+        return toolManager;
     }
 }

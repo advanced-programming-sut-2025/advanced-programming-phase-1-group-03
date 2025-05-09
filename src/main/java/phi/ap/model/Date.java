@@ -4,9 +4,9 @@ import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.enums.Time.WeekDays;
 
 public class Date {
-    private final int START_HOUR = 9;
-    private final int SLEEP_HOUR = 23;
-    private final int SEASONS_DAYS = 28;
+    public static int START_HOUR = 9;
+    public static int SLEEP_HOUR = 23;
+    public static int SEASONS_DAYS = 28;
 
     private int hour;
     public int getDay(){

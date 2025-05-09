@@ -33,7 +33,18 @@ public class GameMenu extends AppMenu {
             } else {
                 super.check(input);
             }
+            return;
         }
+
+        //TODO
+        //This section will be removed
+        if(input.split("\\s")[0].equals("w")){
+            int x = Integer.parseInt(input.split("\\s")[1]);
+            int y = Integer.parseInt(input.split("\\s")[2]);
+            System.out.println(Game.getInstance().getCurrentPlayer().getLocation().getTileDiff(y, x).getTileType());
+        }
+        //end of removal
+
         if ((matcher = GameMenuCommands.PrintMapComplete.getMatcher(input)) != null) {
             System.out.println(controller.showMap());
         } else if((matcher = GameMenuCommands.Walk.getMatcher(input)) != null) {
