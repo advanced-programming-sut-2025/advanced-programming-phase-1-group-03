@@ -22,7 +22,8 @@ public enum GameMenuCommands implements Command{
     showAvailableProducts("\\s*show\\s+all\\s+available\\s+products\\s*"),
     purchase("\\s*purchase\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*"),
     Build("\\s*build\\s+-a\\s+(?<name>.*)\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*"),
-    test("\\s*test\\s*")
+    test("\\s*test\\s*"),
+    BuyAnimal("^\\s*buy\\s+animal\\s+-a\\s+(?<animalName>\\S+)\\s+-n\\s+(?<name>\\S+)\\s*$")
     ;
     private final String command;
     GameMenuCommands(String command) {

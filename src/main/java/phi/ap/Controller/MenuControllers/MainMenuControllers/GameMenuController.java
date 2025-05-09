@@ -310,7 +310,7 @@ public class GameMenuController {
         return CarpenterShopProducts.Build(buildingName, Integer.parseInt(x), Integer.parseInt(y));
     }
     public Result<String> buyAnimal(String animalType, String animalName) {
-        return null;
+        return MarnieRanchProducts.buyAnimal(animalType, animalName);
     }
     public Result<String> petAnimal(String name) {
         return null;

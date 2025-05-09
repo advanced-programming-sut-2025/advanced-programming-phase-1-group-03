@@ -1,6 +1,7 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.FarmTypes;
+import phi.ap.model.items.buildings.AnimalHouse;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.producers.Animal;
 import phi.ap.model.items.products.Recipe;
@@ -13,9 +14,15 @@ import java.util.ArrayList;
 
 public class Player extends Human {
     private User user;
-    private int gold;
+    private int gold = Integer.MAX_VALUE;
     private int Energy = Integer.MAX_VALUE;
     private ToolManager toolManager = new ToolManager();
+
+
+    private ArrayList<Animal> ownedAnimals = new ArrayList<>();
+
+
+    private ArrayList<AnimalHouse> ownedAnimalHouse = new ArrayList<>();
     private ArrayList<Recipe> craftingRecipes;
     private ArrayList<Recipe> cookingRecipes;
     private ArrayList<Animal> animals;
@@ -26,6 +33,14 @@ public class Player extends Human {
     private FarmTypes farmType = null;
     private Farm farm = null;
     private Location location;
+
+    public ArrayList<Animal> getOwnedAnimals() {
+        return ownedAnimals;
+    }
+
+    public ArrayList<AnimalHouse> getOwnedAnimalHouse() {
+        return ownedAnimalHouse;
+    }
 
     public int getGold() {
         return gold;

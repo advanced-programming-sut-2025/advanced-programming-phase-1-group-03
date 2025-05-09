@@ -113,6 +113,7 @@ public enum CarpenterShopProducts {
         Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - carpenterShopProduct.price);
         Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(Wood.item, carpenterShopProduct.neededWood);
         Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(Stone.item, carpenterShopProduct.neededStone);
+        carpenterShopProduct.dailyLimit -= 1;
         AnimalHouse animalHouse = new AnimalHouse(carpenterShopProduct.item.getHeight(), carpenterShopProduct.width, ((AnimalHouse)carpenterShopProduct.item).getBuildingType(), new Coordinate(y, x));
         farm.addItem(animalHouse);
         return new Result<>(true, "Building added successfully.");
