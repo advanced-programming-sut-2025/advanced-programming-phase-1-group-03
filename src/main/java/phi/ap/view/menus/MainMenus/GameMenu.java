@@ -77,6 +77,8 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.test());
         } else if((matcher = GameMenuCommands.Build.getMatcher(input)) != null) {
             System.out.println(controller.buildBuilding(matcher.group("name"), matcher.group("x"), matcher.group("y")));
+        } else if((matcher = GameMenuCommands.BuyAnimal.getMatcher(input)) != null) {
+            System.out.println(controller.buyAnimal(matcher.group("animalName"), matcher.group("name")));
         }
         else {
             super.check(input);
