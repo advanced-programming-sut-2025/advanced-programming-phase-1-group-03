@@ -24,10 +24,10 @@ public enum TileType {
 
     TileType(String symbol, String fgColor, String bgColor) {
 
-        tile = new Tile(symbol, fgColor, bgColor, false);
+        tile = new Tile(symbol, fgColor, bgColor, false, this);
     }
     TileType(String symbol, String fgColor, String bgColor, boolean walkable) {
-        tile = new Tile(symbol, fgColor, bgColor, walkable);
+        tile = new Tile(symbol, fgColor, bgColor, walkable, this);
     }
 
     public Tile getTile() {

@@ -1,6 +1,8 @@
 package phi.ap.model.items.tools;
 
+import phi.ap.model.App;
 import phi.ap.model.Coordinate;
+import phi.ap.model.Game;
 
 public class Hoe extends Tool {
     @Override
@@ -10,6 +12,5 @@ public class Hoe extends Tool {
 
     @Override
     public void doTask() {
-
     }
 }

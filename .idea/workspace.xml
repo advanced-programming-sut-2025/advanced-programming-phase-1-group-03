@@ -4,44 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="135108ba-f28f-4cf0-a006-a1f58f1c5470" name="Changes" comment="bug in regex fixed;">
+    <list default="true" id="258277cc-ff3e-4799-9f32-a51d613f5e89" name="Changes" comment="Adding tool manager">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ground.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExternalProjectsData">
-    <projectState path="$PROJECT_DIR$">
-      <ProjectState />
-    </projectState>
-  </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <task path="$PROJECT_DIR$">
-          <activation />
-        </task>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="StardewValley" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -49,300 +22,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;ParsaSabzei&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03/&quot;,
-    &quot;accountId&quot;: &quot;e6a28fee-2421-481c-b9eb-6421dd2c10ee&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
-}</component>
-  <component name="ProjectId" id="2vJe8ZBgzxbtKCvf0YdFzW5xQar" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UTF8Configuration.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StardewValley [:phi.ap.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/StardewValley&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;File.Encoding&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
-  <component name="RunManager" selected="Application.UTF8Configuration">
-    <configuration name="UTF8Configuration" type="Application" factoryName="Application" folderName="New Folder">
-      <option name="MAIN_CLASS_NAME" value="phi.ap.Main" />
-      <module name="StardewValley.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StardewValley [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--stacktrace" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="run" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Application.UTF8Configuration" />
-      <item itemvalue="Gradle.StardewValley [run]" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Gradle.StardewValley [run]" />
-      </list>
-    </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+}]]></component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="135108ba-f28f-4cf0-a006-a1f58f1c5470" name="Changes" comment="" />
-      <created>1743867445594</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1743867445594</updated>
-      <workItem from="1743867446681" duration="152000" />
-      <workItem from="1744467123124" duration="4141000" />
-      <workItem from="1744547053987" duration="6219000" />
-      <workItem from="1744560296473" duration="4020000" />
-      <workItem from="1744572973856" duration="280000" />
-      <workItem from="1745225008253" duration="4738000" />
-      <workItem from="1745393618726" duration="12163000" />
-      <workItem from="1745462673910" duration="16751000" />
-      <workItem from="1745638807914" duration="969000" />
-      <workItem from="1745649621441" duration="233000" />
-      <workItem from="1745669386718" duration="65000" />
-      <workItem from="1745678095193" duration="196000" />
-      <workItem from="1745680578315" duration="38000" />
-      <workItem from="1746110537275" duration="10984000" />
-      <workItem from="1746172325148" duration="4473000" />
-      <workItem from="1746178055267" duration="481000" />
-      <workItem from="1746178622769" duration="2061000" />
-      <workItem from="1746188548921" duration="14114000" />
-      <workItem from="1746213567768" duration="6000" />
-      <workItem from="1746253799220" duration="4961000" />
-      <workItem from="1746258851518" duration="2702000" />
-      <workItem from="1746261628449" duration="1254000" />
-      <workItem from="1746262937827" duration="782000" />
-      <workItem from="1746263738617" duration="700000" />
-      <workItem from="1746264721510" duration="34000" />
-      <workItem from="1746264776699" duration="3058000" />
-      <workItem from="1746457400459" duration="798000" />
-      <workItem from="1746554111823" duration="3000" />
-      <workItem from="1746554126725" duration="2000" />
-      <workItem from="1746782952419" duration="1701000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۰۱" summary="Add menu management">
+    <task id="LOCAL‎−۰۰۰۰۱" summary="Adding tool manager">
       <option name="closed" value="true" />
-      <created>1744469917725</created>
+      <created>1746785471303</created>
       <option name="number" value="LOCAL‎−۰۰۰۰۱" />
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۱" />
-      <updated>1744469917725</updated>
+      <updated>1746785471304</updated>
     </task>
-    <task id="LOCAL‎−۰۰۰۰۲" summary="Add fruit features and fixing some bugs">
-      <option name="closed" value="true" />
-      <created>1744554828953</created>
-      <option name="number" value="LOCAL‎−۰۰۰۰۲" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۰۲" />
-      <updated>1744554828953</updated>
-    </task>
-    <task id="LOCAL‎−۰۰۰۰۳" summary="Editing student numbers">
-      <option name="closed" value="true" />
-      <created>1744554948005</created>
-      <option name="number" value="LOCAL‎−۰۰۰۰۳" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۰۳" />
-      <updated>1744554948005</updated>
-    </task>
-    <task id="LOCAL‎−۰۰۰۰۴" summary="Adding Foods and Trees">
-      <option name="closed" value="true" />
-      <created>1744564044303</created>
-      <option name="number" value="LOCAL‎−۰۰۰۰۴" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۰۴" />
-      <updated>1744564044303</updated>
-    </task>
-    <task id="LOCAL‎−۰۰۰۰۵" summary="Adding fish and crops features">
-      <option name="closed" value="true" />
-      <created>1744564326705</created>
-      <option name="number" value="LOCAL‎−۰۰۰۰۵" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۰۵" />
-      <updated>1744564326705</updated>
-    </task>
-    <task id="LOCAL‎−۰۰۰۰۶" summary="Fixing errors">
-      <option name="closed" value="true" />
-      <created>1745394059511</created>
-      <option name="number" value="LOCAL‎−۰۰۰۰۶" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۰۶" />
-      <updated>1745394059511</updated>
-    </task>
-    <task id="LOCAL‎−۰۰۰۰۷" summary="add exit menu command">
-      <option name="closed" value="true" />
-      <created>1745396236168</created>
-      <option name="number" value="LOCAL‎−۰۰۰۰۷" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۰۷" />
-      <updated>1745396236168</updated>
-    </task>
-    <task id="LOCAL‎−۰۰۰۰۸" summary="adding register and pick question and encrypt password">
-      <option name="closed" value="true" />
-      <created>1745405764554</created>
-      <option name="number" value="LOCAL‎−۰۰۰۰۸" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۰۸" />
-      <updated>1745405764554</updated>
-    </task>
-    <task id="LOCAL‎−۰۰۰۰۹" summary="add user saving system&#10;stay logged in">
-      <option name="closed" value="true" />
-      <created>1745474178632</created>
-      <option name="number" value="LOCAL‎−۰۰۰۰۹" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۰۹" />
-      <updated>1745474178632</updated>
-    </task>
-    <task id="LOCAL‎−۰۰۰۱۰" summary="Add logout and forget password fixing some bugs">
-      <option name="closed" value="true" />
-      <created>1745480305528</created>
-      <option name="number" value="LOCAL‎−۰۰۰۱۰" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۱۰" />
-      <updated>1745480305528</updated>
-    </task>
-    <task id="LOCAL-00011" summary="new game choosing map system added.">
-      <option name="closed" value="true" />
-      <created>1746121581379</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1746121581379</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Farms added.&#10;Colors added.">
-      <option name="closed" value="true" />
-      <created>1746180681257</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1746180681257</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Foraging on Farms generated;&#10;Color based map added:)">
-      <option name="closed" value="true" />
-      <created>1746202740842</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1746202740842</updated>
-    </task>
-    <task id="LOCAL‎−۰۰۰۱۴" summary="fixing some login bugs again...">
-      <option name="closed" value="true" />
-      <created>1746438110137</created>
-      <option name="number" value="LOCAL‎−۰۰۰۱۴" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۱۴" />
-      <updated>1746438110137</updated>
-    </task>
-    <task id="LOCAL-00015" summary="walk system added(debug needed);&#10;some functions for Location added;">
-      <option name="closed" value="true" />
-      <created>1746454584363</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1746454584363</updated>
-    </task>
-    <task id="LOCAL-00016" summary="bug in regex fixed;">
-      <option name="closed" value="true" />
-      <created>1746454650470</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1746454650470</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add menu management" />
-    <MESSAGE value="Add fruit features and fixing some bugs" />
-    <MESSAGE value="Editing student numbers" />
-    <MESSAGE value="Adding Foods and Trees" />
-    <MESSAGE value="Adding fish and crops features" />
-    <MESSAGE value="Fixing errors" />
-    <MESSAGE value="add exit menu command" />
-    <MESSAGE value="adding register and pick question and encrypt password" />
-    <MESSAGE value="add user saving system&#10;stay logged in" />
-    <MESSAGE value="Add logout and forget password fixing some bugs" />
-    <MESSAGE value="new game choosing map system added." />
-    <MESSAGE value="Farms added.&#10;Colors added." />
-    <MESSAGE value="Foraging on Farms generated;&#10;Color based map added:)" />
-    <MESSAGE value="fixing some login bugs again..." />
-    <MESSAGE value="walk system added(debug needed);&#10;some functions for Location added;" />
-    <MESSAGE value="bug in regex fixed;" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug in regex fixed;" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>173</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Adding tool manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding tool manager" />
   </component>
 </project>

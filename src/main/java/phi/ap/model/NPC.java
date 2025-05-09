@@ -6,4 +6,5 @@ import phi.ap.model.items.buildings.Building;
 public class NPC extends Human {
     private NPCTypes detail;
     private Building home;
+    private String name;
 }

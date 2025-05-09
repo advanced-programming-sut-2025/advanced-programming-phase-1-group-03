@@ -36,7 +36,7 @@ public class Game {
     private final ArrayList<Player> players = new ArrayList<>();
     private final ArrayList<Friendship> friendships = new ArrayList<>();
     private User gameLoader;
-    private Date date = new Date(9); // zaman aghaz bazi 9 sobhe
+    private Date date = new Date(Date.START_HOUR); // zaman aghaz bazi 9 sobhe
     private Player currentPlayer;
 
     public Map getMap() {

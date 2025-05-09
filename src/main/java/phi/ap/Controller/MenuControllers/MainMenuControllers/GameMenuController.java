@@ -3,12 +3,15 @@ package phi.ap.Controller.MenuControllers.MainMenuControllers;
 import phi.ap.model.*;
 import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.enums.Menus.Menu;
+import phi.ap.model.enums.StoreProducts.*;
+import phi.ap.model.enums.StoreTypes;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.service.MapService;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public class GameMenuController {
@@ -172,35 +175,35 @@ public class GameMenuController {
         return null;
     }
 
-    public Result<String> walk(String yDest, String xDest) {
-        int y, x;
-        try {
-            y = Integer.parseInt(yDest);
-            x = Integer.parseInt(xDest);
-        } catch (Exception e) {
-            return new Result<>(false, "Invalid coordinate");
-        }
-        MapService mapService = App.getInstance().getMapService();
-        if (mapService.getMap() == null) return new Result<>(false, "There is no map");
-        Location target = mapService.getLocationOnMap(y, x);
-        Player player = Game.getInstance().getCurrentPlayer();
-        Location source = player.getLocation();
-        if (target == null) return new Result<>(false, "you can't go there cause it doesn't exist!");
-        Path path = mapService.getPath(source, target);
-        if (path == null) return new Result<>(false, "you can't go there");
-        int energyCost = (path.getCost() + 19) / 20;
-        if (player.getEnergy() < energyCost) {
-            return new Result<>(false, "you don't have enough energy");
-        }
-        player.setEnergy(player.getEnergy() - energyCost);
-        //TODO : manage energy and turn;
-        //TODO : faint check(ghash kardan);
-        //TODO : in case of opening menu or market manage it;
-        for (Coordinate step : path.getSteps()) {
-            source.walkOne(step.getY(), step.getX());
-        }
-        return new Result<>(true, "walk successful");
-    }
+//    public Result<String> walk(String yDest, String xDest) {
+//        int y, x;
+//        try {
+//            y = Integer.parseInt(yDest);
+//            x = Integer.parseInt(xDest);
+//        } catch (Exception e) {
+//            return new Result<>(false, "Invalid coordinate");
+//        }
+//        MapService mapService = App.getInstance().getMapService();
+//        if (mapService.getMap() == null) return new Result<>(false, "There is no map");
+//        Location target = mapService.getLocationOnMap(y, x);
+//        Player player = Game.getInstance().getCurrentPlayer();
+//        Location source = player.getLocation();
+//        if (target == null) return new Result<>(false, "you can't go there cause it doesn't exist!");
+//        Path path = mapService.getPath(source, target);
+//        if (path == null) return new Result<>(false, "you can't go there");
+//        int energyCost = (path.getCost() + 19) / 20;
+//        if (player.getEnergy() < energyCost) {
+//            return new Result<>(false, "you don't have enough energy");
+//        }
+//        player.setEnergy(player.getEnergy() - energyCost);
+//        //TODO : manage energy and turn;
+//        //TODO : faint check(ghash kardan);
+//        //TODO : in case of opening menu or market manage it;
+//        for (Coordinate step : path.getSteps()) {
+//            source.walkOne(step.getY(), step.getX());
+//        }
+//        return new Result<>(true, "walk successful");
+//    }
 
     public Result<String> showMap() {
         Game game = Game.getInstance();
@@ -340,13 +343,55 @@ public class GameMenuController {
         return null;
     }
     public Result<String> showAllProducts() {
-        return null;
+        // TODO give a true value to storeType based on the store we are there.
+        StoreTypes storeType = StoreTypes.MarnieRanch;
+        switch (storeType) {
+            case StoreTypes.Blacksmith -> {return BlackSmithsProducts.showAllProducts();}
+            case StoreTypes.MarnieRanch -> {return MarnieRanchProducts.showAllProducts();}
+            case StoreTypes.CarpenterShop -> {return CarpenterShopProducts.showAllProducts();}
+            case StoreTypes.FishShop -> {return FishShopProducts.showAllProducts();}
+            case StoreTypes.PierreGeneralStore -> {return FishShopProducts.showAllProducts();}
+            case StoreTypes.JojaMart -> {return JojaMarketProducts.showAllProducts();}
+            case StoreTypes.TheStarDropSaloon -> {return StarDropSaloonProducts.showAllProducts();}
+            default -> {
+                return null;
+            }
+        }
+    }
+    public Result<String> showAvailableProducts() {
+        // TODO give a true value to storeType based on the store we are there.
+        StoreTypes storeType = StoreTypes.MarnieRanch;
+        switch (storeType) {
+            case StoreTypes.Blacksmith -> {return BlackSmithsProducts.showAvailableProducts();}
+            case StoreTypes.MarnieRanch -> {return MarnieRanchProducts.showAvailableProducts();}
+            case StoreTypes.CarpenterShop -> {return CarpenterShopProducts.showAvailableProducts();}
+            case StoreTypes.FishShop -> {return FishShopProducts.showAvailableProducts();}
+            case StoreTypes.PierreGeneralStore -> {return FishShopProducts.showAvailableProducts();}
+            case StoreTypes.JojaMart -> {return JojaMarketProducts.showAvailableProducts();}
+            case StoreTypes.TheStarDropSaloon -> {return StarDropSaloonProducts.showAvailableProducts();}
+            default -> {
+                return null;
+            }
+        }
     }
     public Result<String> showAllAvailableProducts() {
         return null;
     }
-    public Result<String> purchase(String productName, String amount) {
-        return null;
+    public Result<String> purchase(String productName, String amountString) {
+        // TODO give a true value to storeType based on the store we are there.
+        StoreTypes storeType = StoreTypes.Blacksmith;
+        switch (storeType) {
+            case StoreTypes.Blacksmith -> {return BlackSmithsProducts.purchase(productName, amountString);}
+            case StoreTypes.CarpenterShop -> {return CarpenterShopProducts.purchase(productName, amountString);}
+            case StoreTypes.MarnieRanch -> {return MarnieRanchProducts.purchase(productName, amountString);}
+            case StoreTypes.FishShop -> {return FishShopProducts.purchase(productName, amountString);}
+            case StoreTypes.PierreGeneralStore -> {return FishShopProducts.purchase(productName, amountString);}
+            case StoreTypes.JojaMart -> {return JojaMarketProducts.purchase(productName, amountString);}
+            case StoreTypes.TheStarDropSaloon -> {return StarDropSaloonProducts.purchase(productName, amountString);}
+            default -> {
+                return null;
+            }
+        }
     }
     public Result<String> cheatAddGold(String amount) {
         return null;

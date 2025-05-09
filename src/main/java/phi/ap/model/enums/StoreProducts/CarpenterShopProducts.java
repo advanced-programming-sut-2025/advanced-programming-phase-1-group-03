@@ -1,5 +1,7 @@
 package phi.ap.model.enums.StoreProducts;
 
+import phi.ap.model.Game;
+import phi.ap.model.Result;
 import phi.ap.model.enums.BuildingTypes;
 import phi.ap.model.enums.StoneTypes;
 import phi.ap.model.enums.StoreTypes;
@@ -29,7 +31,8 @@ public enum CarpenterShopProducts {
     private final Integer neededStone;
     private final Integer height;
     private final Integer width;
-    private final Integer dailyLimit;
+    private Integer dailyLimit;
+    private Integer availableAmount = 1000;
     private final Item item;
 
     CarpenterShopProducts(String name, String description, Integer price, Integer neededWood, Integer neededStone, Integer height, Integer width, Integer dailyLimit, Item item) {
@@ -43,7 +46,45 @@ public enum CarpenterShopProducts {
         this.height = height;
         this.width = width;
     }
-
+    public static Result<String> purchase(String productName, String amountString) {
+        int amount = Integer.parseInt(amountString);
+        CarpenterShopProducts carpenterShopProducts;
+        try {
+            carpenterShopProducts = CarpenterShopProducts.valueOf(productName);
+        }
+        catch (IllegalArgumentException e) {
+            return new Result<>(false, "There is no product with this name.");
+        }
+        if(amount > carpenterShopProducts.availableAmount) {
+            return new Result<>(false, "There is not enough amount of this product.");
+        }
+        else if(amount > carpenterShopProducts.dailyLimit) {
+            return new Result<>(false, "You can't purchase this amount of product on this day.");
+        }
+        else if(amount * carpenterShopProducts.price > Game.getInstance().getCurrentPlayer().getGold()) {
+            return new Result<>(false, "You don't have enough money.");
+        }
+        carpenterShopProducts.availableAmount -= amount;
+        carpenterShopProducts.dailyLimit -= amount;
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * carpenterShopProducts.price);
+        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(carpenterShopProducts.item, amount);
+        return new Result<>(true, "Item purchased successfully");
+    }
+    public static Result<String> showAllProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(CarpenterShopProducts carpenterShopProducts : CarpenterShopProducts.values()) {
+            stringBuilder.append("Name : " + "\"" + carpenterShopProducts.getName() + "\"" + "     " + "Price: "  + carpenterShopProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
+    public static Result<String> showAvailableProducts() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(CarpenterShopProducts carpenterShopProducts : CarpenterShopProducts.values()) {
+            if(carpenterShopProducts.dailyLimit > 0 && carpenterShopProducts.availableAmount > 0)
+                stringBuilder.append("Name : " + "\"" + carpenterShopProducts.getName() + "\"" + "     " + "Price: "  + carpenterShopProducts.getPrice() + "g" + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
+    }
     public String getName() {
         return name;
     }
