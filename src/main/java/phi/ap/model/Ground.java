@@ -14,15 +14,17 @@ public class Ground {
     private final Tile[][] tiles;
     private final Item[][] items;
     private final ArrayList<Item> holdingItems;
-    private final Portal[][] portals;
-    private final ArrayList<Portal> portalList = new ArrayList<>();
 
     public Ground(int height, int width) {
         this.height = height;
         this.width = width;
         this.tiles = new Tile[height][width];
         this.items = new Item[height][width];
-        this.portals = new Portal[height][width];
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                tiles[i][j] = new Tile(" ", "", "");
+            }
+        }
         this.holdingItems = new ArrayList<>();
     }
 
@@ -41,26 +43,15 @@ public class Ground {
 
     public void setTile(int y, int x, Tile tile) {
         if (!isCoordinateValid(y, x)) return;
-        if (tiles[y][x] == null) tiles[y][x] = tile;
-        else tiles[y][x] = new Tile(tile.getSymbol(), tiles[y][x].getFgColor() + tile.getFgColor(),
-                tiles[y][x].getBgColor() + tile.getBgColor(), tile.isWalkable());
+        if (tile.getSymbol().equals(" ")) tile.setSymbol(tiles[y][x].getSymbol());
+        tiles[y][x].set(new Tile(tile.getSymbol(), tiles[y][x].getFgColor() + tile.getFgColor(),
+                tiles[y][x].getBgColor() + tile.getBgColor(), tile.isWalkable()));
     }
     public void fillTile(Tile tile) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                tiles[i][j] = new Tile(tile);
+                setTile(i, j, new Tile(tile));
             }
-        }
-    }
-
-    public void fillEdge(Tile tile) {
-        for (int i = 0; i < height; i++) {
-            setTile(i, 0, tile);
-            setTile(i, width - 1, tile);
-        }
-        for (int j = 0; j < width; j++) {
-            setTile(0, j, tile);
-            setTile(height - 1, j, tile);
         }
     }
 
@@ -81,10 +72,6 @@ public class Ground {
     public Item getItem(int y, int x) {
         if (!isCoordinateValid(y, x)) return  null;
         return items[y][x];
-    }
-    public void setItem(int y, int x, Item item) {
-        if (!isCoordinateValid(y, x)) return;
-        items[y][x] = item;
     }
     public void addItem(Item item) { //base on ground
         int y = item.getCoordinate().getY();
@@ -121,7 +108,9 @@ public class Ground {
                 int ii = i + startY;
                 int jj = j + startX;
                 if (map[ii][jj] != null) {
-                    tile = new Tile(tiles[i][j].getSymbol(), map[ii][jj].getFgColor() + tiles[i][j].getFgColor(),
+                    String sym = tiles[i][j].getSymbol();
+                    if (sym.equals(" ")) sym = map[ii][jj].getSymbol();
+                    tile = new Tile(sym, map[ii][jj].getFgColor() + tiles[i][j].getFgColor(),
                             map[ii][jj].getBgColor() + tiles[i][j].getBgColor());
                 } else {
                     tile = new Tile(tiles[i][j]);
@@ -165,17 +154,6 @@ public class Ground {
             }
         }
     }
-
-    public Portal getPortal(int y, int x) {
-        if (!isCoordinateValid(y, x)) return  null;
-        return portals[y][x];
-    }
-    public void setPortal(int y, int x, Portal portal) {
-        if (!isCoordinateValid(y, x)) return;
-        if (portals[y][x] != null) portalList.remove(portals[y][x]);
-        portals[y][x] = portal;
-        portalList.add(portal);
-    }
     public Coordinate getCoordinateOfCoordinateInChild(Ground child, Coordinate coordinate) {
         return new Coordinate(child.getCoordinate().getY() + coordinate.getY(),
                 child.getCoordinate().getX() + coordinate.getX());
@@ -193,9 +171,20 @@ public class Ground {
     }
 
     public Tile getTopTile(int y, int x) {
+        if (!isCoordinateValid(y, x)) return null;
         if (items[y][x] == null) return tiles[y][x];
         return items[y][x].getTopTile(y - items[y][x].getCoordinate().getY(),
                 x - items[y][x].getCoordinate().getX());
+    }
+
+    public Item getTopItem(int y, int x) {
+        if (!isCoordinateValid(y, x)) return null;
+        if (items[y][x] == null) return null;
+        Item res;
+        if ((res = items[y][x].getTopItem(y - coordinate.getY(), x - coordinate.getX())) == null) {
+            return items[y][x];
+        }
+        return res;
     }
 
     public boolean isCoordinateValid(int y, int x) {
@@ -220,6 +209,19 @@ public class Ground {
     }
 
     public ArrayList<Portal> getPortalList() {
-        return portalList;
+        ArrayList<Portal> list = new ArrayList<>();
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                if (items[i][j] instanceof Portal) list.add((Portal)items[i][j]);
+            }
+        }
+        return list;
+    }
+
+    public Portal getPortal(int y, int x) {
+        if (!isCoordinateValid(y, x)) return null;
+        if (items[y][x] == null) return null;
+        if (items[y][x] instanceof Portal) return (Portal) items[y][x];
+        return null;
     }
 }

@@ -4,6 +4,7 @@ import phi.ap.model.Tile;
 
 public enum TileType {
     Farm(".", "" ,Colors.bg(77), true),
+    Dirt(".", "" ,Colors.bg(172), true),
     NPCVillage(".", "" ,Colors.bg(65), true),
     Lake("~", "", Colors.bg(19)),
     Cottage("^", "", Colors.bg(22), true),
@@ -24,10 +25,10 @@ public enum TileType {
 
     TileType(String symbol, String fgColor, String bgColor) {
 
-        tile = new Tile(symbol, fgColor, bgColor, false, this);
+        tile = new Tile(symbol, fgColor, bgColor, false);
     }
     TileType(String symbol, String fgColor, String bgColor, boolean walkable) {
-        tile = new Tile(symbol, fgColor, bgColor, walkable, this);
+        tile = new Tile(symbol, fgColor, bgColor, walkable);
     }
 
     public Tile getTile() {

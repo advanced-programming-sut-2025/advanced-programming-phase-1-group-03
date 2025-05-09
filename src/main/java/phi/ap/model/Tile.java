@@ -7,8 +7,6 @@ public class Tile {
     private String bgColor, fgColor;
     private String symbol;
     private boolean walkable = false;
-    private Coordinate coordinate = null;
-    private TileType tileType;
 
     public Tile(String symbol, String fgColor, String bgColor) {
         this.symbol = symbol;
@@ -24,55 +22,19 @@ public class Tile {
         this.walkable = walkable;
     }
 
-    public Tile(String symbol, String fgColor, String bgColor, TileType tileType) {
-        this.symbol = symbol;
-        this.fgColor = fgColor;
-        this.bgColor = bgColor;
-        this.walkable = false;
-        this.tileType = tileType;
-    }
-
-    public Tile(String symbol,String fgColor, String bgColor, boolean walkable, TileType tileType) {
-        this.bgColor = bgColor;
-        this.fgColor = fgColor;
-        this.symbol = symbol;
-        this.walkable = walkable;
-        this.tileType = tileType;
-    }
-
     public Tile(TileType tileType) {
         this.symbol = tileType.getTile().getSymbol();
         this.fgColor = tileType.getTile().getFgColor();
         this.bgColor = tileType.getTile().getBgColor();
         this.walkable = tileType.getTile().isWalkable();
-        this.coordinate = tileType.getTile().getCoordinate();
-        this.tileType = tileType;
     }
 
-    public Tile(TileType tileType, Coordinate coordinate) {
-        this.symbol = tileType.getTile().getSymbol();
-        this.fgColor = tileType.getTile().getFgColor();
-        this.bgColor = tileType.getTile().getBgColor();
-        this.walkable = tileType.getTile().isWalkable();
-        this.coordinate = coordinate;
-        this.tileType = tileType;
-    }
 
     public Tile(Tile tile) {
         this.symbol = tile.getSymbol();
         this.fgColor = tile.getFgColor();
         this.bgColor = tile.getBgColor();
         this.walkable = tile.isWalkable();
-        this.coordinate = tile.getCoordinate();
-        this.tileType = tile.getTileType();
-    }
-    public Tile(Tile tile, Coordinate coordinate) {
-        this.symbol = tile.getSymbol();
-        this.fgColor = tile.getFgColor();
-        this.bgColor = tile.getBgColor();
-        this.walkable = tile.isWalkable();
-        this.coordinate = coordinate;
-        this.tileType = tile.getTileType();
     }
 
     public String getBgColor() {
@@ -119,23 +81,15 @@ public class Tile {
         }
     }
 
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
-
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
-    }
-
     public Tile getTile() {
         return this;
     }
 
-    public TileType getTileType() {
-        return tileType;
-    }
 
-    public void setTileType(TileType tileType) {
-        this.tileType = tileType;
+    public void set (Tile tile) {
+        this.bgColor = tile.getBgColor();
+        this.fgColor = tile.getFgColor();
+        this.symbol = tile.getSymbol();
+        this.walkable = tile.isWalkable();
     }
 }

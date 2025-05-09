@@ -41,7 +41,7 @@ public class GameMenu extends AppMenu {
         if(input.split("\\s")[0].equals("w")){
             int x = Integer.parseInt(input.split("\\s")[1]);
             int y = Integer.parseInt(input.split("\\s")[2]);
-            System.out.println(Game.getInstance().getCurrentPlayer().getLocation().getTileDiff(y, x).getTileType());
+//            System.out.println(Game.getInstance().getCurrentPlayer().getLocation().getTopTileDiff(y, x).getTileType());
         }
         //end of removal
 

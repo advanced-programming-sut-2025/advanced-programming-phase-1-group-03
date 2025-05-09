@@ -1,5 +1,6 @@
 package phi.ap.model;
 
+import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
 
 public class Portal extends Item {
@@ -28,15 +29,32 @@ public class Portal extends Item {
         this.coordinateOnDest = coordinateOnDest;
     }
 
-    public static void makePortalOneWay(Ground origin, Coordinate originCoord, Ground destination, Coordinate destCoord) {
+    public static void makePortalOneWay(Ground origin, Coordinate originCoord, Ground destination, Coordinate destCoord, Tile shape) {
         Portal portal = new Portal(1, 1, destination, destCoord);
-        origin.setPortal(originCoord.getY(), originCoord.getX(), portal);
+        portal.setCoordinate(originCoord);
+        if (shape != null) {
+            portal.setTile(0, 0, shape);
+        }
+        origin.addItem(portal);
     }
-    public static void makePortalTwoWay(Ground origin, Coordinate originCoord, Ground destination, Coordinate destCoord) {
+    public static void makePortalTwoWay(Ground origin, Coordinate originCoord, Ground destination, Coordinate destCoord, Tile shape) {
         Portal portal1 = new Portal(1, 1, destination, destCoord);
+        portal1.setCoordinate(originCoord);
         Portal portal2 = new Portal(1, 1, origin, originCoord);
-        origin.setPortal(originCoord.getY(), originCoord.getX(), portal1);
-        destination.setPortal(destCoord.getY(), destCoord.getX(), portal2);
+        portal2.setCoordinate(destCoord);
+        if (shape != null) {
+            portal1.setTile(0, 0, shape);
+            portal2.setTile(0, 0, shape);
+        }
+        origin.addItem(portal1);
+        destination.addItem(portal2);
+    }
+
+    public static void makeMiddleDoor(Ground child, Ground father, Tile shape) {
+        int h = child.getHeight() - 1;
+        int w = child.getWidth() / 2;
+        makePortalTwoWay(child, new Coordinate(h, w), father,
+                new Coordinate(child.getCoordinate().getY() + h, child.getCoordinate().getX() + w), shape);
     }
 
     @Override

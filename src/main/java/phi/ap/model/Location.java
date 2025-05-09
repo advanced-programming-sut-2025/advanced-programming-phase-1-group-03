@@ -19,12 +19,6 @@ public class Location extends Coordinate{
         this.faceWay = faceWay;
     }
 
-    public Location(int y, int x, Ground ground) {
-        super(y, x);
-        this.ground = ground;
-        this.faceWay = FaceWay.Down;
-    }
-
     public Location(Location l) {
         super(l.getY(), l.getX());
         this.ground = l.ground;
@@ -122,6 +116,10 @@ public class Location extends Coordinate{
         return ground.getTopTile(getY() + yDiff, getX() + xDiff);
     }
 
+    public Tile getTopItemDiff(int yDiff, int xDiff) {
+        return ground.getTopTile(getY() + yDiff, getX() + xDiff);
+    }
+
     public Item getItemDiff(int yDiff, int xDiff) {
         return ground.getItem(getY() + yDiff, getX() + xDiff);
     }
@@ -129,4 +127,6 @@ public class Location extends Coordinate{
     public Portal getPortalDiff(int yDiff, int xDiff) {
         return ground.getPortal(getY() + yDiff, getX() + xDiff);
     }
+
+
 }

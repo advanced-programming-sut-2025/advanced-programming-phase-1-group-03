@@ -3,6 +3,7 @@ package phi.ap.service;
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
 import phi.ap.model.enums.Time.Seasons;
+import phi.ap.model.items.Dirt;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.buildings.Cottage;
@@ -22,34 +23,14 @@ public class GameService {
         this.game = game;
     }
 
-    public boolean checkNeighboursClassSame(Ground ground, Coordinate coordinate, Class <?> cls) {
-        int x = coordinate.getX();
-        int y = coordinate.getY();
-        Item neighbour = null;
-        if (x > 0) neighbour = ground.getItem(y, x - 1);
-        if (cls.isInstance(neighbour)) return true;
-        neighbour = null;
 
-        if (x < ground.getWidth() - 1) neighbour = ground.getItem(y, x + 1);
-        if (cls.isInstance(neighbour)) return true;
-        neighbour = null;
-
-        if (y > 0) neighbour = ground.getItem(y - 1, x);
-        if (cls.isInstance(neighbour)) return true;
-        neighbour = null;
-
-        if (y < ground.getWidth() - 1) neighbour = ground.getItem(y + 1, x);
-        if (cls.isInstance(neighbour)) return true;
-        neighbour = null;
-
-        return false;
-    }
     public void initializeGame() {
         game.setMap(new Map());
         //adding farms
         for (Player player : game.getPlayers()) {
             game.getMap().addFarm(new Farm(player.getFarmType()), player);
             Farm farm = player.getFarm();
+            //set Player location on door of cottage
             int y = 0, x = 0;
             for (Item item : farm.getHoldingItems()) {
                 if (item instanceof Cottage) {
@@ -96,33 +77,33 @@ public class GameService {
                     vp2 = new Coordinate(village.getHeight() - 1, village.getWidth() / 2);
                     break;
             }
-            Portal.makePortalTwoWay(farm, fp1, village, vp1);
-            Portal.makePortalTwoWay(farm, fp2, village, vp2);
-            farm.setTile(fp1.getY(), fp1.getX(), new Tile(TileType.Door));
-            farm.setTile(fp2.getY(), fp2.getX(), new Tile(TileType.Door));
-            village.setTile(vp1.getY(), vp1.getX(), new Tile(TileType.Door));
-            village.setTile(vp2.getY(), vp2.getX(), new Tile(TileType.Door));
+            Portal.makePortalTwoWay(farm, fp1, village, vp1, TileType.Door.getTile());
+            Portal.makePortalTwoWay(farm, fp2, village, vp2, TileType.Door.getTile());
         }
-        //adding trees with probability 10%, stones 10% foraging 3% minerals 5%
+        //adding trees with probability 10%, stones 5% foraging 3% minerals 5%
         for (Item ground : game.getMap().getHoldingItems()) {
             if (ground instanceof Farm) {
+                //tree
                 for (int i = 1; i < ground.getHeight() - 1; i++) {
                     for (int j = 1; j < ground.getWidth() - 1; j++) {
+
                         //check if place is free, check not two neighbor trees
-                        if (ground.getItem(i, j) != null) continue;
-                        if (checkNeighboursClassSame(ground, new Coordinate(i, j), Tree.class)) continue;
+                        if (!(ground.getItem(i, j) instanceof Dirt)) continue;
+//                        if (checkNeighboursClass(ground, new Coordinate(i, j), Tree.class)) continue;
                         if (App.getInstance().eventRandom(10)) {
                             int ind = App.getInstance().getRandomNumber(0, TreeTypes.values().length - 1);
                             TreeTypes type = TreeTypes.values()[ind];
                             Tree tree = new Tree(type, 1, 1);
-                            tree.setCoordinate(new Coordinate(i, j));
-                            ground.addItem(tree);
+                            tree.setCoordinate(new Coordinate(0, 0));
+                            ground.getItem(i, j).addItem(tree);
                         }
                     }
                 }
+                //f crops
                 for (int i = 1; i < ground.getHeight() - 1; i++) {
                     for (int j = 1; j < ground.getWidth() - 1; j++) {
-                        if (ground.getItem(i, j) != null) continue;
+                        if (!(ground.getItem(i, j) instanceof Dirt)) continue;
+//                        if (checkNeighboursClass(ground, new Coordinate(i, j), Crop.class)) continue;
                         if (App.getInstance().eventRandom(3)) {
                             Item item = switch (App.getInstance().getRandomNumber(0, 1)) {
                                 case 0 -> new Seed(1, 1, SeedTypes.getRandomFromSeason(Seasons.Spring));
@@ -131,21 +112,22 @@ public class GameService {
                                 default -> null;
                             };
                             if (item == null) continue;
-                            item.setCoordinate(new Coordinate(i, j));
-                            ground.addItem(item);
+                            item.setCoordinate(new Coordinate(0, 0));
+                            ground.getItem(i, j).addItem(item);
                         }
                     }
                 }
+                //stones
                 for (int i = 1; i < ground.getHeight() - 1; i++) {
                     for (int j = 1; j < ground.getWidth() - 1; j++) {
-                        if (ground.getItem(i, j) != null) continue;
-                        if (checkNeighboursClassSame(ground, new Coordinate(i, j), Stone.class)) continue;
-                        if (App.getInstance().eventRandom(10)) {
+                        if (!(ground.getItem(i, j) instanceof Dirt)) continue;
+//                        if (checkNeighboursClass(ground, new Coordinate(i, j), Stone.class)) continue;
+                        if (App.getInstance().eventRandom(5)) {
                             int ind = App.getInstance().getRandomNumber(0, StoneTypes.values().length - 1);
                             StoneTypes type = StoneTypes.values()[ind];
                             Stone stone = new Stone(1, 1, StoneTypes.RegularStone);
-                            stone.setCoordinate(new Coordinate(i, j));
-                            ground.addItem(stone);
+                            stone.setCoordinate(new Coordinate(0, 0));
+                            ground.getItem(i, j).addItem(stone);
                         }
                     }
                 }

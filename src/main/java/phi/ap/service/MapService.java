@@ -18,13 +18,6 @@ public class MapService {
         this.map = map;
     }
 
-    public void addDoor(Ground father, Ground child, Tile doorShape) {
-        child.setTile(doorShape.getCoordinate().getY(), doorShape.getCoordinate().getX(),
-                doorShape.getTile());
-        Portal.makePortalTwoWay(father, father.getCoordinateOfCoordinateInChild(child, doorShape.getCoordinate()),
-                child, doorShape.getCoordinate());
-    }
-
     public int getDistance(Coordinate source, Coordinate sink) {
         int res = Math.abs(source.getY() - sink.getY()) + Math.abs(source.getX() - sink.getX());
         if (source.getY() != sink.getY() && source.getX() != sink.getX()) {
