@@ -37,6 +37,6 @@ public abstract class Item extends Ground {
     }
 
     public boolean canStackWith(Item otherItem) {
-        return this.getClass().equals(otherItem.getClass()) && otherItem.getName().equals(this.getName());
+        return otherItem.getName().equals(this.getName());
     }
 }
