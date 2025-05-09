@@ -5,7 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="258277cc-ff3e-4799-9f32-a51d613f5e89" name="Changes" comment="Adding tool manager">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/AnimalHouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/BuildingTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/BuildingTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/CarpenterShopProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/CarpenterShopProducts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Barn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Coop.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Backpack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Backpack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,16 +32,36 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="phi.ap.Main" />
+      <module name="StardewValley.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="phi.ap.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="TaskManager">
     <task id="LOCAL‎−۰۰۰۰۱" summary="Adding tool manager">
       <option name="closed" value="true" />

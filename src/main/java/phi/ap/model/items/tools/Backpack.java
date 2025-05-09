@@ -7,9 +7,8 @@ import java.util.ArrayList;
 
 public class Backpack extends Tool{
 
-    private int size;
-    private ArrayList<ItemStack> stacks;
-
+    private int size = 100;
+    private ArrayList<ItemStack> stacks = new ArrayList<>();
     @Override
     public void useTool(Coordinate direction) {
 
@@ -38,5 +37,6 @@ public class Backpack extends Tool{
     }
 
     public void addStack(ItemStack itemStack) {
+        stacks.add(itemStack);
     }
 }

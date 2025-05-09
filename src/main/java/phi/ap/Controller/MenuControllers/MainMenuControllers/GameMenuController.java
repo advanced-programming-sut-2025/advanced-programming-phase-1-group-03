@@ -15,6 +15,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class GameMenuController {
+    public Result<String> test() {
+        return null;
+    }
     public Result<String> newGame(ArrayList<String> usernames) {
 //        User temp = App.getInstance().getLoggedInUser();
         if (App.getInstance().getLoggedInUser() == null) {
@@ -304,7 +307,7 @@ public class GameMenuController {
         return null;
     }
     public Result<String> buildBuilding(String buildingName, String x, String y) {
-        return null;
+        return CarpenterShopProducts.Build(buildingName, Integer.parseInt(x), Integer.parseInt(y));
     }
     public Result<String> buyAnimal(String animalType, String animalName) {
         return null;
