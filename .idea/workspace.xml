@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="135108ba-f28f-4cf0-a006-a1f58f1c5470" name="Changes" comment="fixing some login bugs again...">
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/PlayerIcon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
+    <list default="true" id="135108ba-f28f-4cf0-a006-a1f58f1c5470" name="Changes" comment="bug in regex fixed;">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ground.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Location.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/service/MapService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/service/MapService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,6 +176,10 @@
       <workItem from="1746263738617" duration="700000" />
       <workItem from="1746264721510" duration="34000" />
       <workItem from="1746264776699" duration="3058000" />
+      <workItem from="1746457400459" duration="798000" />
+      <workItem from="1746554111823" duration="3000" />
+      <workItem from="1746554126725" duration="2000" />
+      <workItem from="1746782952419" duration="1701000" />
     </task>
     <task id="LOCAL‎−۰۰۰۰۱" summary="Add menu management">
       <option name="closed" value="true" />
@@ -287,7 +282,23 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۱۴" />
       <updated>1746438110137</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="walk system added(debug needed);&#10;some functions for Location added;">
+      <option name="closed" value="true" />
+      <created>1746454584363</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746454584363</updated>
+    </task>
+    <task id="LOCAL-00016" summary="bug in regex fixed;">
+      <option name="closed" value="true" />
+      <created>1746454650470</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1746454650470</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,7 +330,9 @@
     <MESSAGE value="Farms added.&#10;Colors added." />
     <MESSAGE value="Foraging on Farms generated;&#10;Color based map added:)" />
     <MESSAGE value="fixing some login bugs again..." />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing some login bugs again..." />
+    <MESSAGE value="walk system added(debug needed);&#10;some functions for Location added;" />
+    <MESSAGE value="bug in regex fixed;" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug in regex fixed;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
