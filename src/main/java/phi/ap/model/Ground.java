@@ -48,7 +48,7 @@ public class Ground {
     public void fillTile(Tile tile) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                tiles[i][j] = tile;
+                tiles[i][j] = new Tile(tile);
             }
         }
     }
