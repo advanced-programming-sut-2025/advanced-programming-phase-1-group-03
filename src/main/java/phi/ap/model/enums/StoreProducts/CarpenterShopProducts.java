@@ -93,26 +93,26 @@ public enum CarpenterShopProducts {
             return new Result<>(false, "There is not a building with this name.");
         }
         Farm farm = Game.getInstance().getCurrentPlayer().getFarm();
-//        for(int i = y; i < y + carpenterShopProduct.height; i++) {
-//            for(int j = x; j < x + carpenterShopProduct.width; j++) {
-//                if(farm.getItem(i, j) != null || !farm.getTile(i, j).getSymbol().equals(".")) {
-//                    return new Result<>(false, "The area selected is not valid");
-//                }
-//            }
-//        }
-//        if(carpenterShopProduct.dailyLimit <= 0)
-//            return new Result<>(false, "daily limit of this product has reached.");
-//        if(Game.getInstance().getCurrentPlayer().getGold() < carpenterShopProduct.price)
-//            return new Result<>(false, "You don't have enough money");
-//        ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(Wood.item);
-//        if(itemStack.getAmount() < carpenterShopProduct.neededWood)
-//            return new Result<>(false, "You don't have enough wood");
-//        itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(Stone.item);
-//        if(itemStack.getAmount() < carpenterShopProduct.neededStone)
-//            return new Result<>(false, "You don't have enough stone");
-//        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - carpenterShopProduct.price);
-//        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(Wood.item, carpenterShopProduct.neededWood);
-//        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(Stone.item, carpenterShopProduct.neededStone);
+        for(int i = y; i < y + carpenterShopProduct.height; i++) {
+            for(int j = x; j < x + carpenterShopProduct.width; j++) {
+                if(farm.getItem(i, j) != null || !farm.getTile(i, j).getSymbol().equals(".")) {
+                    return new Result<>(false, "The area selected is not valid");
+                }
+            }
+        }
+        if(carpenterShopProduct.dailyLimit <= 0)
+            return new Result<>(false, "daily limit of this product has reached.");
+        if(Game.getInstance().getCurrentPlayer().getGold() < carpenterShopProduct.price)
+            return new Result<>(false, "You don't have enough money");
+        ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(Wood.item);
+        if(itemStack.getAmount() < carpenterShopProduct.neededWood)
+            return new Result<>(false, "You don't have enough wood");
+        itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(Stone.item);
+        if(itemStack.getAmount() < carpenterShopProduct.neededStone)
+            return new Result<>(false, "You don't have enough stone");
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - carpenterShopProduct.price);
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(Wood.item, carpenterShopProduct.neededWood);
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(Stone.item, carpenterShopProduct.neededStone);
         AnimalHouse animalHouse = new AnimalHouse(carpenterShopProduct.item.getHeight(), carpenterShopProduct.width, ((AnimalHouse)carpenterShopProduct.item).getBuildingType(), new Coordinate(y, x));
         farm.addItem(animalHouse);
         return new Result<>(true, "Building added successfully.");
