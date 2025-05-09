@@ -118,6 +118,10 @@ public class Location extends Coordinate{
         return ground.getTile(getY() + yDiff, getX() + xDiff);
     }
 
+    public Tile getTopTileDiff(int yDiff, int xDiff) {
+        return ground.getTopTile(getY() + yDiff, getX() + xDiff);
+    }
+
     public Item getItemDiff(int yDiff, int xDiff) {
         return ground.getItem(getY() + yDiff, getX() + xDiff);
     }
