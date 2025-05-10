@@ -16,18 +16,36 @@ import phi.ap.model.items.tools.Shear;
 import java.util.ArrayList;
 
 public enum MarnieRanchProducts {
-    MilkPay("Milk Pail", "Gather milk from your animals.",	1000,	1, new MilkPail(), StoreTypes.MarnieRanch, null),
-    Shear("Shears", "Use this to collect wool from sheep", 	1000,	1, new Shear(), StoreTypes.MarnieRanch, null),
-    Hay("Hay", "Dried grass used as animal food.", 50, Integer.MAX_VALUE, new Food(1, 1, FoodTypes.Hay), StoreTypes.MarnieRanch, null),
+    MilkPay("Milk Pail", "Gather milk from your animals.",	1000,
+            1, new MilkPail(), StoreTypes.MarnieRanch, null),
+    Shear("Shears", "Use this to collect wool from sheep", 	1000,
+            1, new Shear(), StoreTypes.MarnieRanch, null),
+    Hay("Hay", "Dried grass used as animal food.", 50, Integer.MAX_VALUE,
+            new Food(1, 1, FoodTypes.Hay), StoreTypes.MarnieRanch, null),
     // Animals
-    Chicken("Chicken", "Well cared-for chickens lay eggs every day. Lives in the coop.", 800, 2, new Animal(AnimalTypes.Chicken, 1, 1), StoreTypes.MarnieRanch, BuildingTypes.Coop),
-    Cow("Cow", "Can be milked daily. A milk pail is required to harvest the milk. Lives in the barn.", 1500, 2, new Animal(AnimalTypes.Cow, 1, 1),  StoreTypes.MarnieRanch, BuildingTypes.Barn),
-    Goat("Goat", "Happy provide goat milk every other day. A milk pail is required to harvest the milk. Lives in the barn.", 4000,2,new Animal(AnimalTypes.Goat, 1, 1),  StoreTypes.MarnieRanch, BuildingTypes.BigBarn),
-    Duck("Duck", "Happy lay duck eggs every other day. Lives in the coop.", 1200, 2, new Animal(AnimalTypes.Duck, 1, 1),  StoreTypes.MarnieRanch, BuildingTypes.BigCoop),
-    Sheep("Sheep", "Can be shorn for wool. A pair of shears is required to harvest the wool. Lives in the barn.", 8000,2,new Animal(AnimalTypes.Sheep, 1, 1),  StoreTypes.MarnieRanch, BuildingTypes.DeluxeBarn),
-    Rabbit("Rabbit", "These are wooly rabbits! They shed precious wool every few days. Lives in the coop.", 8000, 2,new Animal(AnimalTypes.Rabbit, 1, 1),  StoreTypes.MarnieRanch, BuildingTypes.DeluxeCoop),
-    Dinosaur("Dinosaur", "The Dinosaur is a farm animal that lives in a Big Coop.", 14000, 2,new Animal(AnimalTypes.Dinosaur, 1, 1),  StoreTypes.MarnieRanch, BuildingTypes.BigCoop),
-    Pig("Pig", "These pigs are trained to find truffles! Lives in the barn.", 16000, 2,new Animal(AnimalTypes.Pig, 1, 1),  StoreTypes.MarnieRanch, BuildingTypes.DeluxeBarn);
+    Chicken("Chicken", "Well cared-for chickens lay eggs every day. Lives in the coop.",
+            800, 2, new Animal(AnimalTypes.Chicken, 1, 1),
+            StoreTypes.MarnieRanch, BuildingTypes.Coop),
+    Cow("Cow", "Can be milked daily. A milk pail is required to harvest the milk. Lives in the barn.",
+            1500, 2, new Animal(AnimalTypes.Cow, 1, 1),
+            StoreTypes.MarnieRanch, BuildingTypes.Barn),
+    Goat("Goat", "Happy provide goat milk every other day. A milk pail is required to harvest the milk." +
+            " Lives in the barn.", 4000,2,new Animal(AnimalTypes.Goat, 1, 1),
+            StoreTypes.MarnieRanch, BuildingTypes.BigBarn),
+    Duck("Duck", "Happy lay duck eggs every other day. Lives in the coop.", 1200, 2,
+            new Animal(AnimalTypes.Duck, 1, 1),  StoreTypes.MarnieRanch, BuildingTypes.BigCoop),
+    Sheep("Sheep", "Can be shorn for wool. A pair of shears is required to harvest the wool. " +
+            "Lives in the barn.", 8000,2,new Animal(AnimalTypes.Sheep, 1, 1),
+            StoreTypes.MarnieRanch, BuildingTypes.DeluxeBarn),
+    Rabbit("Rabbit", "These are wooly rabbits! They shed precious wool every few days. Lives " +
+            "in the coop.", 8000, 2,new Animal(AnimalTypes.Rabbit, 1, 1),
+            StoreTypes.MarnieRanch, BuildingTypes.DeluxeCoop),
+    Dinosaur("Dinosaur", "The Dinosaur is a farm animal that lives in a Big Coop.",
+            14000, 2,new Animal(AnimalTypes.Dinosaur, 1, 1),
+            StoreTypes.MarnieRanch, BuildingTypes.BigCoop),
+    Pig("Pig", "These pigs are trained to find truffles! Lives in the barn.",
+            16000, 2,new Animal(AnimalTypes.Pig, 1, 1),
+            StoreTypes.MarnieRanch, BuildingTypes.DeluxeBarn);
 
     private final String name;
     private final String description;
@@ -38,7 +56,8 @@ public enum MarnieRanchProducts {
     private final StoreTypes storeType;
     private final BuildingTypes buildingType;
 
-    MarnieRanchProducts(String name, String description, Integer price, Integer dailyLimit, Item item, StoreTypes storeType, BuildingTypes buildingTypes) {
+    MarnieRanchProducts(String name, String description, Integer price, Integer dailyLimit,
+                        Item item, StoreTypes storeType, BuildingTypes buildingTypes) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -68,7 +87,8 @@ public enum MarnieRanchProducts {
         }
         marnieRanchProducts.availableAmount -= amount;
         marnieRanchProducts.dailyLimit -= amount;
-        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * marnieRanchProducts.price);
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() -
+                amount * marnieRanchProducts.price);
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(marnieRanchProducts.item, amount);
         return new Result<>(true, "Item purchased successfully");
     }
@@ -90,7 +110,8 @@ public enum MarnieRanchProducts {
         else if(amount * marnieRanchProducts.price > Game.getInstance().getCurrentPlayer().getGold()) {
             return new Result<>(false, "You don't have enough money.");
         }
-        Animal animal = new Animal(((Animal)marnieRanchProducts.item).getType(), marnieRanchProducts.item.getHeight(), marnieRanchProducts.item.getWidth());
+        Animal animal = new Animal(((Animal)marnieRanchProducts.item).getType(),
+                marnieRanchProducts.item.getHeight(), marnieRanchProducts.item.getWidth());
         ArrayList<AnimalHouse> animalHouse = Game.getInstance().getCurrentPlayer().getOwnedAnimalHouse();
         boolean ok = false;
         for(AnimalHouse animalHouse1 : animalHouse) {
@@ -98,10 +119,12 @@ public enum MarnieRanchProducts {
                 ok = true;
         }
         if(!ok)
-            return new Result<>(false, "You don't have " + marnieRanchProducts.buildingType + " to keep " + animal.getType() + ".");
+            return new Result<>(false, "You don't have " +
+                    marnieRanchProducts.buildingType + " to keep " + animal.getType() + ".");
         marnieRanchProducts.availableAmount -= amount;
         marnieRanchProducts.dailyLimit -= amount;
-        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * marnieRanchProducts.price);
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() -
+                amount * marnieRanchProducts.price);
         animal.setName(name);
         ArrayList<Animal> animals = Game.getInstance().getCurrentPlayer().getAnimals();
         animals.add(animal);
@@ -111,7 +134,8 @@ public enum MarnieRanchProducts {
     public static Result<String> showAllProducts() {
         StringBuilder stringBuilder = new StringBuilder();
         for(MarnieRanchProducts marnieRanchProducts : MarnieRanchProducts.values()) {
-            stringBuilder.append("Name : " + "\"" + marnieRanchProducts.getName() + "\"" + "     " + "Price: "  + marnieRanchProducts.getPrice() + "g" + "\n");
+            stringBuilder.append("Name : " + "\"" + marnieRanchProducts.getName() + "\"" + "     "
+                    + "Price: "  + marnieRanchProducts.getPrice() + "g" + "\n");
         }
         return new Result<>(true, stringBuilder.toString());
     }
@@ -120,7 +144,8 @@ public enum MarnieRanchProducts {
         StringBuilder stringBuilder = new StringBuilder();
         for(MarnieRanchProducts marnieRanchProducts : MarnieRanchProducts.values()) {
             if(marnieRanchProducts.availableAmount > 0 &&marnieRanchProducts.dailyLimit > 0)
-                stringBuilder.append("Name : " + "\"" + marnieRanchProducts.getName() + "\"" + "     " + "Price: "  + marnieRanchProducts.getPrice() + "g" + "\n");
+                stringBuilder.append("Name : " + "\"" + marnieRanchProducts.getName() + "\"" + "     "
+                        + "Price: "  + marnieRanchProducts.getPrice() + "g" + "\n");
         }
         return new Result<>(true, stringBuilder.toString());
     }
