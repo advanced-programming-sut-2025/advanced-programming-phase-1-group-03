@@ -16,13 +16,14 @@ import phi.ap.model.items.products.Crop;
 import phi.ap.model.items.products.Mineral;
 import phi.ap.model.items.products.Stone;
 
+import java.util.ArrayList;
+
 public class GameService {
     private Game game;
 
     public GameService(Game game) {
         this.game = game;
     }
-
 
     public void initializeGame() {
         game.setMap(new Map());
@@ -36,6 +37,7 @@ public class GameService {
                 if (item instanceof Cottage) {
                     y = item.getPortalList().get(0).getCoordinateOnDest().getY();
                     x = item.getPortalList().get(0).getCoordinateOnDest().getX();
+                    ++y;
                     //coordinate of exit of cottage;
                 }
             }
@@ -89,7 +91,8 @@ public class GameService {
 
                         //check if place is free, check not two neighbor trees
                         if (!(ground.getItem(i, j) instanceof Dirt)) continue;
-//                        if (checkNeighboursClass(ground, new Coordinate(i, j), Tree.class)) continue;
+                        if (ground.getItem(i, j).getItem(0, 0) != null) continue;
+                        if (App.getInstance().getMapService().checkIsPlayerHere(ground, new Coordinate(i, j), null)) continue;
                         if (App.getInstance().eventRandom(10)) {
                             int ind = App.getInstance().getRandomNumber(0, TreeTypes.values().length - 1);
                             TreeTypes type = TreeTypes.values()[ind];
@@ -103,7 +106,8 @@ public class GameService {
                 for (int i = 1; i < ground.getHeight() - 1; i++) {
                     for (int j = 1; j < ground.getWidth() - 1; j++) {
                         if (!(ground.getItem(i, j) instanceof Dirt)) continue;
-//                        if (checkNeighboursClass(ground, new Coordinate(i, j), Crop.class)) continue;
+                        if (ground.getItem(i, j).getItem(0, 0) != null) continue;
+                        if (App.getInstance().getMapService().checkIsPlayerHere(ground, new Coordinate(i, j), null)) continue;
                         if (App.getInstance().eventRandom(3)) {
                             Item item = switch (App.getInstance().getRandomNumber(0, 1)) {
                                 case 0 -> new Seed(1, 1, SeedTypes.getRandomFromSeason(Seasons.Spring));
@@ -121,7 +125,8 @@ public class GameService {
                 for (int i = 1; i < ground.getHeight() - 1; i++) {
                     for (int j = 1; j < ground.getWidth() - 1; j++) {
                         if (!(ground.getItem(i, j) instanceof Dirt)) continue;
-//                        if (checkNeighboursClass(ground, new Coordinate(i, j), Stone.class)) continue;
+                        if (ground.getItem(i, j).getItem(0, 0) != null) continue;
+                        if (App.getInstance().getMapService().checkIsPlayerHere(ground, new Coordinate(i, j), null)) continue;
                         if (App.getInstance().eventRandom(5)) {
                             int ind = App.getInstance().getRandomNumber(0, StoneTypes.values().length - 1);
                             StoneTypes type = StoneTypes.values()[ind];

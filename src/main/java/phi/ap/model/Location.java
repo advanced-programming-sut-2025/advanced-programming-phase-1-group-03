@@ -53,7 +53,7 @@ public class Location extends Coordinate{
     }
 
     public boolean walkOne(int yDiff, int xDiff) {
-        if (Math.abs(yDiff) > 0 && Math.abs(xDiff) > 0) {
+        if (Math.abs(yDiff) != 0 && Math.abs(xDiff) != 0) {
             return false;
         }
         if (yDiff == 0 && xDiff == 0) {
@@ -83,8 +83,8 @@ public class Location extends Coordinate{
         int x = getX() + xDiff;
 
         newFace = getFaceWayOfWalk(yDiff, xDiff);
-        int res = 1;
-        if (newFace != faceWay) res += this.faceWay.getDistance(newFace) * FaceWay.turningConst;
+        int res = EnergyManager.walkCost;
+        if (newFace != faceWay) res += this.faceWay.getDistance(newFace) * EnergyManager.turningCost;
         return res;
     }
 

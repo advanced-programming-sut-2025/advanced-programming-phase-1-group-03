@@ -17,15 +17,22 @@ import phi.ap.service.MapService;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GameMenuController {
-    public Result<String> test() {
+    public Result<String> test(String input) {
+        String[] params = Arrays.stream(input.split("\\s+")).filter(s -> !s.isEmpty()).toArray(String[]::new);
+
+        return null;
+    }
+    public Result<String> test1(String input) {
+        //get info in coordinate;
         Farm farm = Game.getInstance().getCurrentPlayer().getFarm();
-        for(int i = 0; i < farm.getHeight(); i++) {
-            for(int j = 0; j < farm.getWidth(); j++) {
-                System.out.println(farm.getTopItem(i, j) + " " + farm.getTopTile(i, j));
-            }
-        }
+        Map map = Game.getInstance().getMap();
+        String[] params = Arrays.stream(input.split("\\s+")).filter(s -> !s.isEmpty()).toArray(String[]::new);
+        int y = Integer.parseInt(params[0].replaceAll("\\s+", ""));
+        int x = Integer.parseInt(params[1].replaceAll("\\s+", ""));
+        System.out.println(map.getTopItem(y, x) + map.getTopTile(y, x).toString(true));
         return null;
     }
     public Result<String> newGame(ArrayList<String> usernames) {
@@ -208,6 +215,43 @@ public class GameMenuController {
         return null;
     }
 
+    public Result<String> walkOne(String yDiffSt, String xDiffSt) {
+        if (Game.getInstance() == null) return new Result<>(false, "You are not in a game!");
+        int yDiff, xDiff;
+        try {
+            yDiff = Integer.parseInt(yDiffSt);
+            xDiff = Integer.parseInt(xDiffSt);
+        } catch (Exception e){
+            return new Result<>(false, "Invalid distance");
+        }
+        Player player = Game.getInstance().getCurrentPlayer();
+        Location location = player.getLocation();
+        if (!location.isWalkable(yDiff, xDiff)) {
+            return new Result<>(false, "You can't go there");
+        }
+        if (!App.getInstance().getMapService().isNeighbor(yDiff, xDiff)) {
+            return new Result<>(false, "is it one block distance?!");
+        }
+        int cost = location.getCostOfWalkOne(yDiff, xDiff);
+        if (player.getEnergy().getAmount() < cost) {
+            return new Result<>(false, "Aww, you're so tired for that!");
+        }
+        if (location.walkOne(yDiff, xDiff)) {
+            player.getEnergy().advanceBaseInt(-cost);
+            return new Result<>(true, "walk successful, energy consumed = " +
+                    cost +
+                    "\n" +
+                    "current location : " +
+                    location.getGround() +
+                    ", " +
+                    "(y:" + location.getY() + ", x:" + location.getY() + ")");
+        } else {
+            return new Result<>(false, "Walk -one wasn't successful");
+        }
+
+
+    }
+
 //    public Result<String> walk(String yDest, String xDest) {
 //        int y, x;
 //        try {
@@ -245,15 +289,22 @@ public class GameMenuController {
         }
         Map map = game.getMap();
         Tile[][] tiles = new Tile[map.getHeight()][map.getWidth()];
-        ArrayList<PlayerIcon> icons= new ArrayList<>();
-        for (Player player : Game.getInstance().getPlayers()) {
-            PlayerIcon icon = new PlayerIcon(player);
-            icon.setCoordinate(player.getLocation().getCoordinate());
-            player.getLocation().getGround().addItem(icon);
-        }
+
         map.show(0, 0, tiles);
-        for (PlayerIcon icon : icons) {
-            icon.getPlayer().getLocation().getGround().removeItem(icon);
+        //add players on the map;
+        for (Player player : Game.getInstance().getPlayers()) {
+            PlayerIcon icon = new PlayerIcon(player, player.getLocation().getFaceWay());
+            icon.setCoordinate(player.getLocation().getCoordinate());
+            Coordinate coord = player.getLocation().getGround().getTileCoordinateBaseMap(
+                    icon.getCoordinate().getY(), icon.getCoordinate().getX());
+            for (int i = 0; i < icon.getHeight(); i++) {
+                for (int j = 0; j < icon.getWidth(); j++) {
+                    int y = coord.getY() + i;
+                    int x = coord.getX() + j;
+                    tiles[y][x] = new Tile(icon.getTile(i, j).getSymbol(), tiles[y][x].getFgColor() + icon.getTile(i, j).getFgColor(),
+                            tiles[y][x].getBgColor() + icon.getTile(i, j).getBgColor());
+                }
+            }
         }
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < map.getHeight(); i++) {

@@ -3,6 +3,7 @@ package phi.ap.service;
 import phi.ap.model.*;
 import phi.ap.model.enums.FaceWay;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -18,10 +19,25 @@ public class MapService {
         this.map = map;
     }
 
+    public boolean checkIsPlayerHere(Ground ground, Coordinate coordinate, Player player) { // if player = null, it will check for All players
+        ArrayList<Player> players = new ArrayList<>();
+        if (player == null) {
+            for (Player player1 : Game.getInstance().getPlayers()) {
+                players.add(player1);
+            }
+        } else players.add(player);
+        for (Player player1 : players) {
+            if (player1.getLocation().getGround() == ground && player1.getLocation().getCoordinate().equals(coordinate)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getDistance(Coordinate source, Coordinate sink) {
-        int res = Math.abs(source.getY() - sink.getY()) + Math.abs(source.getX() - sink.getX());
+        int res = Math.abs(source.getY() - sink.getY()) + Math.abs(source.getX() - sink.getX()) * EnergyManager.walkCost;
         if (source.getY() != sink.getY() && source.getX() != sink.getX()) {
-            res += FaceWay.turningConst;
+            res += EnergyManager.walkCost;
         }
         return res;
     }
@@ -163,5 +179,9 @@ public class MapService {
 
     public Location getLocationOnMap(int y, int x) {
         return map.getLocation(new Coordinate(y, x));
+    }
+
+    public boolean isNeighbor(int yDiff, int xDiff) {
+        return !((yDiff != 0 && xDiff != 0) || (yDiff == 0 && xDiff == 0));
     }
 }

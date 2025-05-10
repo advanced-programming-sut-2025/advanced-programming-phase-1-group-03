@@ -74,8 +74,6 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.showAvailableProducts());
         } else if((matcher = GameMenuCommands.purchase.getMatcher(input)) != null) {
             System.out.println(controller.purchase(matcher.group("productName"), matcher.group("amount")));
-        } else if((matcher = GameMenuCommands.test.getMatcher(input)) != null) {
-            System.out.println(controller.test());
         } else if((matcher = GameMenuCommands.Build.getMatcher(input)) != null) {
             System.out.println(controller.buildBuilding(matcher.group("name"), matcher.group("x"),
                     matcher.group("y")));
@@ -94,8 +92,13 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.collectProduce(matcher.group("name"), new MilkPail()));
         } else if((matcher = GameMenuCommands.SellAnimal.getMatcher(input)) != null) {
             System.out.println(controller.sellAnimal(matcher.group("name")));
-        }
-        else {
+        } else if((matcher = GameMenuCommands.test.getMatcher(input)) != null) {
+            System.out.println(controller.test(matcher.group(1)));
+        } else if((matcher = GameMenuCommands.test1.getMatcher(input)) != null) {
+            System.out.println(controller.test1(matcher.group(1)));
+        } else if ((matcher = GameMenuCommands.WalkOne.getMatcher(input)) != null) {
+            System.out.println(controller.walkOne(matcher.group("y"), matcher.group("x")));
+        } else {
             super.check(input);
         }
     }

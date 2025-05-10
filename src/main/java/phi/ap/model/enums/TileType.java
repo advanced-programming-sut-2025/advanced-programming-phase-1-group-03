@@ -19,7 +19,7 @@ public enum TileType {
     Wall_H_LINE("─", Colors.fg(0), ""),
     Wall_V_LINE("│", Colors.fg(0), ""),
     Door("+", Colors.fg(0), "", true),
-    Player("⍢", Colors.fg(57), ""),
+    Player("⍢", Colors.fg(57), "")
     ;
     private final Tile tile;
 
@@ -33,5 +33,11 @@ public enum TileType {
 
     public Tile getTile() {
         return tile;
+    }
+
+    public Tile getTileWithFaceWay(FaceWay faceWay) {
+        Tile res = new Tile(tile);
+        res.setSymbol(faceWay.getSymbol());
+        return res;
     }
 }

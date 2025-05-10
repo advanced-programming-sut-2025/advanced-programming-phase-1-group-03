@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class Player extends Human {
     private User user;
     private int gold = Integer.MAX_VALUE;
-    private int Energy = Integer.MAX_VALUE;
+    private final EnergyManager energy = new EnergyManager();
     private ToolManager toolManager = new ToolManager();
 
 
@@ -66,12 +66,12 @@ public class Player extends Human {
         return user;
     }
 
-    public int getEnergy() {
-        return Energy;
-    }
-
     public InventoryManager getInventoryManager() {
         return new InventoryManager(getToolManager().getBackpack(), getToolManager().getTrashCan());
+    }
+
+    public EnergyManager getEnergy() {
+        return energy;
     }
 
     public ArrayList<Recipe> getCraftingRecipes() {
@@ -105,11 +105,6 @@ public class Player extends Human {
     public void setUser(User user) {
         this.user = user;
     }
-
-    public void setEnergy(int energy) {
-        Energy = energy;
-    }
-
 
     public void setCraftingRecipes(ArrayList<Recipe> craftingRecipes) {
         this.craftingRecipes = craftingRecipes;
