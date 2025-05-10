@@ -51,7 +51,9 @@ public class Game {
         return players;
     }
     public void addUser(User user) {
-        players.add(new Player(user));
+        Player player = new Player(user);
+        players.add(player);
+        player.init();
     }
 
     public User getGameLoader() {

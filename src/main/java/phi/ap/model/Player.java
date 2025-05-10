@@ -18,7 +18,6 @@ public class Player extends Human {
     private final EnergyManager energy = new EnergyManager();
     private ToolManager toolManager = new ToolManager();
 
-
     private ArrayList<AnimalHouse> ownedAnimalHouse = new ArrayList<>();
     private ArrayList<Recipe> craftingRecipes;
     private ArrayList<Recipe> cookingRecipes;
@@ -168,5 +167,11 @@ public class Player extends Human {
 
     public ToolManager getToolManager() {
         return toolManager;
+    }
+
+    //This method create default tools
+    public void init() {
+        this.getToolManager().createDefaultTools();
+        this.getToolManager().addDefaultTools(this.getInventoryManager());
     }
 }

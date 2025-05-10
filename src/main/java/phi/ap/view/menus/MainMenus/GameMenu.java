@@ -4,10 +4,11 @@ import phi.ap.Controller.MenuControllers.MainMenuControllers.GameMenuController;
 import phi.ap.model.App;
 import phi.ap.model.Game;
 import phi.ap.model.Result;
+import phi.ap.model.Tile;
 import phi.ap.model.enums.Menus.Menu;
 import phi.ap.model.enums.StoreTypes;
+import phi.ap.model.enums.TileType;
 import phi.ap.model.enums.commands.GameMenuCommands;
-import phi.ap.model.items.tools.MilkPail;
 import phi.ap.view.AppMenu;
 import phi.ap.view.AppView;
 
@@ -36,16 +37,6 @@ public class GameMenu extends AppMenu {
             }
             return;
         }
-
-        //TODO
-        //This section will be removed
-        if(input.split("\\s")[0].equals("w")){
-            int x = Integer.parseInt(input.split("\\s")[1]);
-            int y = Integer.parseInt(input.split("\\s")[2]);
-//            System.out.println(Game.getInstance().getCurrentPlayer().getLocation().getTopTileDiff(y, x).getTileType());
-        }
-        //end of removal
-
         if ((matcher = GameMenuCommands.PrintMapComplete.getMatcher(input)) != null) {
             System.out.println(controller.showMap());
         } else if((matcher = GameMenuCommands.Walk.getMatcher(input)) != null) {
@@ -75,23 +66,17 @@ public class GameMenu extends AppMenu {
         } else if((matcher = GameMenuCommands.purchase.getMatcher(input)) != null) {
             System.out.println(controller.purchase(matcher.group("productName"), matcher.group("amount")));
         } else if((matcher = GameMenuCommands.Build.getMatcher(input)) != null) {
-            System.out.println(controller.buildBuilding(matcher.group("name"), matcher.group("x"),
-                    matcher.group("y")));
+            System.out.println(controller.buildBuilding(matcher.group("name"), matcher.group("x"), matcher.group("y")));
         } else if((matcher = GameMenuCommands.BuyAnimal.getMatcher(input)) != null) {
             System.out.println(controller.buyAnimal(matcher.group("animalName"), matcher.group("name")));
-        } else if((matcher = GameMenuCommands.Pet.getMatcher(input)) != null) {
-            System.out.println(controller.petAnimal(matcher.group("name")));
-        } else if((matcher = GameMenuCommands.Animals.getMatcher(input)) != null) {
-            System.out.println(controller.showAnimalsInfo());
-        } else if((matcher = GameMenuCommands.FeedHay.getMatcher(input)) != null) {
-            System.out.println(controller.feedAnimal(matcher.group("name")));
-        } else if((matcher = GameMenuCommands.Produces.getMatcher(input)) != null) {
-            System.out.println(controller.produces());
-        } else if((matcher = GameMenuCommands.CollectProduce.getMatcher(input)) != null) {
-            // TODO use correct Tool
-            System.out.println(controller.collectProduce(matcher.group("name"), new MilkPail()));
-        } else if((matcher = GameMenuCommands.SellAnimal.getMatcher(input)) != null) {
-            System.out.println(controller.sellAnimal(matcher.group("name")));
+        }else if((matcher = GameMenuCommands.ShowCurrentTool.getMatcher(input)) != null) {
+            System.out.println(controller.showCurrentTool());
+        }else if((matcher = GameMenuCommands.EquipTool.getMatcher(input)) != null) {
+            System.out.println(controller.toolEquip(matcher.group("toolName")));
+        }else if((matcher = GameMenuCommands.ShowAvailableTools.getMatcher(input)) != null) {
+            System.out.println(controller.showAllAvailableProducts());
+        } else if((matcher = GameMenuCommands.UseTool.getMatcher(input)) != null) {
+            System.out.println(controller.useTool(matcher.group("direction")));
         } else if((matcher = GameMenuCommands.test.getMatcher(input)) != null) {
             System.out.println(controller.test(matcher.group(1)));
         } else if((matcher = GameMenuCommands.test1.getMatcher(input)) != null) {

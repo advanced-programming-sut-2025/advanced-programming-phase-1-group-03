@@ -10,4 +10,8 @@ public class Dirt extends Item {
     public void doTask() {
 
     }
+
+    public void plow() {
+
+    }
 }
