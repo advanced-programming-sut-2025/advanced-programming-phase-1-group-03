@@ -2,9 +2,7 @@ package phi.ap.Controller.MenuControllers.MainMenuControllers;
 
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
-import phi.ap.model.enums.Menus.Menu;
 import phi.ap.model.enums.StoreProducts.*;
-import phi.ap.model.items.Item;
 import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.producers.Animal;
@@ -13,10 +11,8 @@ import phi.ap.model.items.products.Food;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
-import phi.ap.service.MapService;
 import phi.ap.utils.Misc;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -255,35 +251,68 @@ public class GameMenuController {
 
     }
 
-//    public Result<String> walk(String yDest, String xDest) {
-//        int y, x;
-//        try {
-//            y = Integer.parseInt(yDest);
-//            x = Integer.parseInt(xDest);
-//        } catch (Exception e) {
-//            return new Result<>(false, "Invalid coordinate");
-//        }
-//        MapService mapService = App.getInstance().getMapService();
-//        if (mapService.getMap() == null) return new Result<>(false, "There is no map");
-//        Location target = mapService.getLocationOnMap(y, x);
-//        Player player = Game.getInstance().getCurrentPlayer();
-//        Location source = player.getLocation();
-//        if (target == null) return new Result<>(false, "you can't go there cause it doesn't exist!");
-//        Path path = mapService.getPath(source, target);
-//        if (path == null) return new Result<>(false, "you can't go there");
-//        int energyCost = (path.getCost() + 19) / 20;
-//        if (player.getEnergy() < energyCost) {
-//            return new Result<>(false, "you don't have enough energy");
-//        }
-//        player.setEnergy(player.getEnergy() - energyCost);
-//        //TODO : manage energy and turn;
-//        //TODO : faint check(ghash kardan);
-//        //TODO : in case of opening menu or market manage it;
-//        for (Coordinate step : path.getSteps()) {
-//            source.walkOne(step.getY(), step.getX());
-//        }
-//        return new Result<>(true, "walk successful");
-//    }
+    public Result<String> walkDiff(String yDiffSt, String xDiffSt) {
+        int yDiff, xDiff;
+        try {
+            yDiff = Integer.parseInt(yDiffSt);
+            xDiff = Integer.parseInt(xDiffSt);
+        } catch (Exception e){
+            return new Result<>(false, "Invalid coordinate");
+        }
+        Coordinate coord = Game.getInstance().getCurrentPlayer().getLocation().getGround().getTileCoordinateBaseMap(
+                Game.getInstance().getCurrentPlayer().getLocation().getY(),
+                Game.getInstance().getCurrentPlayer().getLocation().getX());
+        int y = yDiff + coord.getY();
+        int x = xDiff + coord.getX();
+        return walk(String.valueOf(y), String.valueOf(x));
+    }
+
+    public Result<String> walk(String yDestSt, String xDestSt) {
+
+        int yDest, xDest;
+        try {
+            yDest = Integer.parseInt(yDestSt);
+            xDest = Integer.parseInt(xDestSt);
+        } catch (Exception e){
+            return new Result<>(false, "Invalid coordinate");
+        }
+
+        Player player = Game.getInstance().getCurrentPlayer();
+        Location location = player.getLocation();
+        Location target = App.getInstance().getMapService().getLocationOnMap(yDest, xDest);
+        if (target == null) return new Result<>(false, "That place doesn't exist!");
+        target.setFaceWay(null);
+        Path path = App.getInstance().getMapService().getPath(location, target);
+        if (path == null) return new Result<>(false, "You can't go there");
+        int cost = 0;
+        for (Coordinate step : path.getSteps()) {
+            int costPer = location.getCostOfWalkOne(step.getY(), step.getX());
+            player.getEnergy().advanceBaseInt(-costPer);
+            if (player.getEnergy().getAmount() == 0) {
+                break;
+            }
+            cost += costPer;
+            if (!location.walkOne(step.getY(), step.getX())) return new Result<>(false,
+                    "something happened, you can't go there.");
+        }
+
+        StringBuilder  res = new StringBuilder();
+        res.append("energy consumed = " +
+            cost +
+            "\n" +
+            "current location : " +
+            location.getGround() +
+            ", " +
+            "(y:" + location.getY() + ", x:" + location.getX() + ")");
+
+
+        if (player.getEnergy().getAmount() == 0) {
+            res.append("Zzzz...");
+        }
+        return new Result<>(true, res.toString());
+        //TODO : in case of opening menu or market manage it;
+
+    }
 
     public Result<String> showMap() {
         Game game = Game.getInstance();

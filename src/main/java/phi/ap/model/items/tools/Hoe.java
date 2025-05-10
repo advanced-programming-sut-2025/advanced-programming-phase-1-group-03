@@ -23,7 +23,7 @@ public class Hoe extends Tool {
         if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(energy))
             return new Result<>(false, "You don't have enough energy");
 
-        Game.getInstance().getCurrentPlayer().getEnergy().reduceEnergy(energy);
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseUnit(-energy);
 
         if(!(item instanceof Dirt dirt)) //Item is not dirt
             return new Result<>(false, "This item is not dirt!");

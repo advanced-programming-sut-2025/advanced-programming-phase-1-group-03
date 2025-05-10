@@ -1,12 +1,12 @@
 package phi.ap.service;
 
 import phi.ap.model.*;
+import phi.ap.model.Map;
 import phi.ap.model.enums.FaceWay;
+import phi.ap.model.items.buildings.Building;
+import phi.ap.model.items.buildings.Farm;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class MapService {
     private Map map;
@@ -69,7 +69,8 @@ public class MapService {
             private final int h;
             public Node(Location location) {
                 this.location = location;
-                h = getHeuristicTravelCost(location, sink);
+//                h = getHeuristicTravelCost(location, sink);
+                h = 0;
             }
 
             public Path getPath() {
@@ -119,19 +120,24 @@ public class MapService {
 
             @Override
             public boolean equals(Object obj) {
-                if (obj == null) return false;
-                if (!(obj instanceof Node)) {
-                    return false;
-                }
+                if (!(obj instanceof Node)) {return false;}
                 Node node = (Node) obj;
-                return location.equals(node.location);
+                return (location.getGround().equals(node.getLocation().getGround())
+                    && location.getCoordinate().equals(node.getLocation().getCoordinate())
+                    && location.getFaceWay().equals(node.getLocation().getFaceWay()));
+            }
+
+            @Override
+            public int hashCode() {
+                return Objects.hash(location);
             }
 
             public void setG(int g) {
                 this.g = g;
             }
 
-            public static void addNeighborsToSack(Node v, PriorityQueue<Node> sack, HashMap<Node, Integer> bestG) {
+            public void addNeighborsToSack(PriorityQueue<Node> sack, HashMap<Node, Integer> bestG) {
+                Node v = this;
                 int[][] dir = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
                 for (int[] d : dir) {
                     Location ul = new Location(v.getLocation());
@@ -147,8 +153,8 @@ public class MapService {
                 }
             }
         }
-        if (!map.isCoordinateValid(source.getY(), source.getX()) ||
-            !map.isCoordinateValid(sink.getY(), sink.getX())) {
+        if (!source.getGround().isCoordinateValid(source.getY(), source.getX()) ||
+            !source.getGround().isCoordinateValid(sink.getY(), sink.getX())) {
             return null;
         }
 
@@ -158,17 +164,19 @@ public class MapService {
         Node src = new Node(source);
         src.setG(0);
         bestG.put(src, src.getG());
-        Node.addNeighborsToSack(src, sack, bestG);
+        sack.add(src);
         Node dest = null;
         while (!sack.isEmpty()) {
             Node v = sack.poll();
             for (Location location : sinks) {
                 if (v.location.equals(location)) {
                     dest = v;
+                    v = null;
                     break;
                 }
             }
-            Node.addNeighborsToSack(v, sack, bestG);
+            if (v == null) break;
+            v.addNeighborsToSack(sack, bestG);
         }
         if (dest == null) {
             return null;
@@ -179,18 +187,17 @@ public class MapService {
         return path;
     }
 
-    public Integer walkPlayer(Player player, Location target) {
-        Path path = getPath(player.getLocation(), target);
-        if (path == null) return null;
-        Location tempL = new Location(player.getLocation());
-        for (Coordinate step : path.getSteps()) {
-            tempL.walkOne(step.getY(), step.getX());
-            if ()
-        }
-    }
 
     public Location getLocationOnMap(int y, int x) {
-        return map.getLocation(new Coordinate(y, x));
+
+        Location loc = map.getLocation(new Coordinate(y, x));
+        if (loc == null) return null;
+        while (!(loc.getGround() instanceof Building) && !(loc.getGround() instanceof Map)) {
+            loc.setY(loc.getY() + loc.getGround().getCoordinate().getY());
+            loc.setX(loc.getX() + loc.getGround().getCoordinate().getX());
+            loc.setGround(loc.getGround().getFather());
+        }
+        return loc;
     }
 
     public boolean isNeighbor(int yDiff, int xDiff) {

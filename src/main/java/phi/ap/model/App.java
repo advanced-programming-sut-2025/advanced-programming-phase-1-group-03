@@ -9,7 +9,7 @@ import java.util.Random;
 public class App {
     private static App instance = null;
     private User loggedInUser;
-    private Random rand = new Random(123);
+    private Random rand = new Random();
     private ArrayList<User> users;
     private Menu menu = Menu.LoginMenu;
     private boolean saveUser;

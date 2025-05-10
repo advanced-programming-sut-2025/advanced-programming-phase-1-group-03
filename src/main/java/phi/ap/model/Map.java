@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Map extends Item{
     public Map() {
         super(102, 102);
+        setName("Map");
         this.setCoordinate(new Coordinate(0, 0));
         fillTile(TileType.Ground.getTile());
     }

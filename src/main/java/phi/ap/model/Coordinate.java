@@ -1,5 +1,7 @@
 package phi.ap.model;
 
+import java.util.Objects;
+
 public class Coordinate {
     private int y;
     private int x;
@@ -36,5 +38,10 @@ public class Coordinate {
         if (!(obj instanceof Coordinate)) return false;
         Coordinate c = (Coordinate) obj;
         return x == c.getX() && y == c.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

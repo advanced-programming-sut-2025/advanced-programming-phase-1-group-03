@@ -14,6 +14,7 @@ public class Farm extends Building {
     private ArrayList<Lake>lakes;
     private ArrayList<Quarry>quarries;
     private FarmTypes farmType;
+    private ArrayList<Player> availablePlayers = new ArrayList<>();
     public Farm(FarmTypes farmType) {
         super(30, 30);
         setName("Farm");
@@ -87,6 +88,15 @@ public class Farm extends Building {
         }
     }
 
+    public ArrayList<Player> getAvailablePlayers() {
+        return availablePlayers;
+    }
+
+    public boolean isPlayerAvailable(Player player) {
+//        return availablePlayers.contains(player);
+        return true;
+        //TODO fix it
+    }
 
     @Override
     public void doTask() {

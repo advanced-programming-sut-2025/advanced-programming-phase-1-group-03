@@ -2,11 +2,16 @@ package phi.ap.model;
 
 import phi.ap.model.enums.FaceWay;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.Portal;
+import phi.ap.model.items.buildings.Farm;
+
+import java.util.Objects;
 
 public class Location extends Coordinate{
     private Ground ground;
     private FaceWay faceWay;
+    private Player player; //it's optional
 
     public Location(Coordinate coordinate, Ground ground) {
         super(coordinate);
@@ -24,6 +29,12 @@ public class Location extends Coordinate{
         super(l.getY(), l.getX());
         this.ground = l.ground;
         this.faceWay = l.faceWay;
+        this.player = l.player;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), ground, faceWay);
     }
 
     public Ground getGround() {
@@ -34,11 +45,24 @@ public class Location extends Coordinate{
         this.ground = ground;
     }
 
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
     public boolean isWalkable(int yDiff, int xDiff) {
         int y = getY() + yDiff;
         int x = getX() + xDiff;
         if (!ground.isCoordinateValid(y, x)) return false;
-        if (ground.getPortal(y, x) != null) return true;
+        if (ground.getPortal(y, x) != null) {
+            if (player == null) return true;
+            Portal p = ground.getPortal(y, x);
+            Farm farm = null;
+            if (p.getDestination() instanceof Farm) {
+                farm = (Farm) p.getDestination();
+            }
+            if (farm == null) return true;
+            return farm.isPlayerAvailable(player);
+        }
         return ground.getTopTile(y, x).isWalkable();
     }
 
@@ -97,7 +121,8 @@ public class Location extends Coordinate{
     public boolean equals(Object obj) {
         if (obj == this) return true;
         if (!(obj instanceof Location loc)) return false;
-        return (super.equals(loc) && ground.equals(loc.ground) && faceWay.equals(loc.faceWay));
+        if (!super.equals(loc))return false;
+        return (ground.equals(loc.ground) && faceWay.equals(loc.faceWay));
     }
 
     public Coordinate getCoordinate() {

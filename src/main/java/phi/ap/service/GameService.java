@@ -29,6 +29,7 @@ public class GameService {
         for (Player player : game.getPlayers()) {
             game.getMap().addFarm(new Farm(player.getFarmType()), player);
             Farm farm = player.getFarm();
+            farm.getAvailablePlayers().add(player);
             //set Player location on door of cottage
             int y = 0, x = 0;
             for (Item item : farm.getHoldingItems()) {
@@ -40,6 +41,7 @@ public class GameService {
                 }
             }
             player.setLocation(new Location(new Coordinate(y, x), farm, FaceWay.Down));
+            player.getLocation().setPlayer(player);
         }
         game.getMap().addNPCVillage();
         //makeDoors between village and farms;
