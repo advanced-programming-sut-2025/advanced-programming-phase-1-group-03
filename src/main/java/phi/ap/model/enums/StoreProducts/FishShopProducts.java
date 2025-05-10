@@ -52,7 +52,8 @@ public enum FishShopProducts {
         fishShopProducts.dailyLimit -= amount;
         Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * fishShopProducts.price);
 
-        FishingPole item = new FishingPole(fishShopProducts.level);
+        FishingPole item = new FishingPole();
+        item.getLevelProcess().setCurrentLevel(fishShopProducts.level);
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, amount);
         return new Result<>(true, "Item purchased successfully");
     }

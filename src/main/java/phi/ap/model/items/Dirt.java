@@ -1,7 +1,10 @@
 package phi.ap.model.items;
 
+import phi.ap.model.enums.TileType;
+
 public class Dirt extends Item {
-    //TODO : fields
+    private boolean plowed = false;
+
     public Dirt() {
         super();
     }
@@ -12,6 +15,7 @@ public class Dirt extends Item {
     }
 
     public void plow() {
-
+        plowed = true;
+        setTile(0, 0, TileType.PlowedDirt.getTile());
     }
 }

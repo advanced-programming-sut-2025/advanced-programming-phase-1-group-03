@@ -379,14 +379,12 @@ public class GameMenuController {
         }catch (Exception e) {
             return new Result<>(false,"your direction is not valid!");
         }
-        if(d < 1 || d > 8)
-            return new Result<>(false, "direction must be between 1 and 8");
-        d -= 1; // make direction zero base
+        if(d < 0 || d > 7)
+            return new Result<>(false, "direction must be between 0 and 7");
         Tool currentTool = Game.getInstance().getCurrentPlayer().getToolManager().getCurrentTool();
         if(currentTool == null)
             return new Result<>(false, "you don't have tool, first equip some of them");
-        currentTool.useTool(Misc.getDiffFromDirection(d));
-        return new Result<>(true, "Tool used");
+        return currentTool.useTool(Misc.getDiffFromDirection(d));
     }
     public Result<String> showCraftingRecipes() {
         return null;
@@ -553,7 +551,8 @@ public class GameMenuController {
         String response = "";
         response += Game.getInstance().getCurrentPlayer().getToolManager().getAxe().toString()+"\n";
         response += Game.getInstance().getCurrentPlayer().getToolManager().getBackpack().toString()+"\n";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getFishingPole().toString()+"\n";
+        if(Game.getInstance().getCurrentPlayer().getToolManager().getFishingPole()!=null)
+            response += Game.getInstance().getCurrentPlayer().getToolManager().getFishingPole().toString()+"\n";
         response += Game.getInstance().getCurrentPlayer().getToolManager().getHoe().toString()+"\n";
         response += Game.getInstance().getCurrentPlayer().getToolManager().getMilkPail().toString()+"\n";
         response += Game.getInstance().getCurrentPlayer().getToolManager().getPickaxe().toString()+"\n";

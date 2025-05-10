@@ -6,12 +6,10 @@ import java.util.ArrayList;
 
 public class LevelProcess {
     private ArrayList<LevelName> levelNames;
-    private ArrayList<Integer> energyConsumptionPerLevel;
     private int currentLevel;
 
-    public LevelProcess(ArrayList<LevelName> levelNames, ArrayList<Integer> energyConsumptionPerLevel, int currentLevel) {
+    public LevelProcess(ArrayList<LevelName> levelNames, int currentLevel) {
         this.levelNames = levelNames;
-        this.energyConsumptionPerLevel = energyConsumptionPerLevel;
         this.currentLevel = currentLevel;
     }
 
@@ -19,9 +17,6 @@ public class LevelProcess {
         return levelNames;
     }
 
-    public int getEnergyNeed(){
-        return energyConsumptionPerLevel.get(currentLevel);
-    }
     public int getCurrentLevel() {
         return currentLevel;
     }
@@ -29,7 +24,11 @@ public class LevelProcess {
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
     }
-
+    public void setCurrentLevel(LevelName currentLevel) {
+        for(int i = 0; i < levelNames.size(); i++)
+            if(levelNames.get(i) == currentLevel)
+                this.currentLevel = i;
+    }
     @Override
     public String toString() {
         return levelNames.get(currentLevel).toString();

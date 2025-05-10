@@ -1,5 +1,6 @@
 package phi.ap.model;
 
+import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.items.buildings.AnimalHouse;
 import phi.ap.model.items.buildings.Farm;
@@ -11,6 +12,7 @@ import phi.ap.model.items.relations.TradeRequest;
 import phi.ap.model.items.tools.Tool;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends Human {
     private User user;
@@ -18,7 +20,8 @@ public class Player extends Human {
     private final EnergyManager energy = new EnergyManager();
     private ToolManager toolManager = new ToolManager();
 
-    private ArrayList<AnimalHouse> ownedAnimalHouse = new ArrayList<>();
+    private ArrayList<Ability> abilities = new ArrayList<>();
+    private ArrayList<AnimalHouse> ownedAnimalHouse;
     private ArrayList<Recipe> craftingRecipes;
     private ArrayList<Recipe> cookingRecipes;
     private ArrayList<Animal> animals;
@@ -173,5 +176,18 @@ public class Player extends Human {
     public void init() {
         this.getToolManager().createDefaultTools();
         this.getToolManager().addDefaultTools(this.getInventoryManager());
+        this.ownedAnimalHouse = new ArrayList<>();
+        this.abilities = new ArrayList<>(List.of(new Ability(AbilityType.Farming), new Ability(AbilityType.Extraction),
+                new Ability(AbilityType.Foraging),new Ability(AbilityType.Fishing)));
+    }
+
+    public int getAbilityLevel(AbilityType abilityType) {
+        for(Ability ability : abilities)
+            if(ability.getAbilityType() == abilityType)
+                return ability.getLevel();
+        return -1; // this can not happen
+    }
+    public boolean isAbilityMax(AbilityType abilityType) {
+        return getAbilityLevel(abilityType) == AbilityType.MAX_VALUE;
     }
 }

@@ -3,6 +3,7 @@ package phi.ap.model.items.tools;
 import phi.ap.model.Coordinate;
 import phi.ap.model.ItemStack;
 import phi.ap.model.LevelProcess;
+import phi.ap.model.Result;
 import phi.ap.model.enums.LevelName;
 
 import java.util.ArrayList;
@@ -10,14 +11,14 @@ import java.util.List;
 
 public class Backpack extends Tool{
     public Backpack(){
-        this.levelProcess = new LevelProcess(new ArrayList<>(List.of(LevelName.normal, LevelName.big,
-                LevelName.deluxe)), 0);
+        super(new LevelProcess(new ArrayList<>(List.of(LevelName.normal, LevelName.big,
+                LevelName.deluxe)), 0),new ArrayList<>(List.of(0,0,0,0)), null);
         this.setName("Backpack");
     }
     private int size;
     private ArrayList<ItemStack> stacks = new ArrayList<>();
     @Override
-    public void useTool(Coordinate direction) {}
+    public Result<String> useTool(Coordinate direction) {return null;}
 
     @Override
     public void doTask() {}
@@ -31,7 +32,7 @@ public class Backpack extends Tool{
     }
 
     public int getSize() {
-        return switch (this.levelProcess.getCurrentLevel()) {
+        return switch (getLevelProcess().getCurrentLevel()) {
             case 0 -> 12;
             case 1 -> 24;
             case 2 -> Integer.MAX_VALUE;

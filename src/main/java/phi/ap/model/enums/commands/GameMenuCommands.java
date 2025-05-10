@@ -25,7 +25,7 @@ public enum GameMenuCommands implements Command{
     ShowCurrentTool("\\s*tools\\s+show\\s+current\\s*"),
     ShowAvailableTools("\\s*tools\\s+show\\s+available\\s*"),
     EquipTool("\\s*tools\\s+equip\\s*(?<toolName>.*)\\s*"),
-    UseTool("\\s*tools\\s+use\\s+-d\\s+(?<direction>\\d)\\s+"),
+    UseTool("\\s*tools\\s+use\\s+-d\\s+(?<direction>\\d)\\s*"),
     BuyAnimal("^\\s*buy\\s+animal\\s+-a\\s+(?<animalName>\\S+)\\s+-n\\s+(?<name>\\S+)\\s*$"),
     Pet("\\s*pet\\s+-n\\s+(?<name>.*)\\s*"),
     Animals("\\s*animals\\s*"),

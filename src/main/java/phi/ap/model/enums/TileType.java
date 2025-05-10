@@ -5,6 +5,7 @@ import phi.ap.model.Tile;
 public enum TileType {
     Farm(".", "" ,Colors.bg(77), true),
     Dirt(".", "" ,Colors.bg(172), true),
+    PlowedDirt(".", Colors.fg(3) ,Colors.bg(172), true),
     NPCVillage(".", "" ,Colors.bg(65), true),
     Lake("~", "", Colors.bg(19)),
     Cottage("^", "", Colors.bg(22), true),
