@@ -181,7 +181,7 @@ public class Ground {
         if (!isCoordinateValid(y, x)) return null;
         if (items[y][x] == null) return null;
         Item res;
-        if ((res = items[y][x].getTopItem(y - coordinate.getY(), x - coordinate.getX())) == null) {
+        if ((res = items[y][x].getTopItem(y - items[y][x].getCoordinate().getY(), x - items[y][x].getCoordinate().getX())) == null) {
             return items[y][x];
         }
         return res;

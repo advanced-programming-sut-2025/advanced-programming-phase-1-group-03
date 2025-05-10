@@ -34,23 +34,11 @@ public class Location extends Coordinate{
     }
 
     public boolean isWalkable(int yDiff, int xDiff) {
-        if (Math.abs(yDiff) > 0 && Math.abs(xDiff) > 0) {
-            return false;
-        }
-        if (yDiff == 0 && xDiff == 0) {
-            return false;
-        }
         int y = getY() + yDiff;
         int x = getX() + xDiff;
         if (!ground.isCoordinateValid(y, x)) return false;
         if (ground.getPortal(y, x) != null) return true;
-        if (ground.getItem(y, x) == null) {
-            return ground.getTile(y, x).isWalkable();
-        } else {
-            //TODO : decide if can go on the roof?:), in case there is no door but it's no wall neither.
-            // it can walk on the object. put this?
-            return false;
-        }
+        return ground.getTopTile(y, x).isWalkable();
     }
 
     public FaceWay getFaceWayOfWalk(int yDiff, int xDiff) {
@@ -65,16 +53,23 @@ public class Location extends Coordinate{
     }
 
     public boolean walkOne(int yDiff, int xDiff) {
+        if (Math.abs(yDiff) > 0 && Math.abs(xDiff) > 0) {
+            return false;
+        }
+        if (yDiff == 0 && xDiff == 0) {
+            return false;
+        }
         if (!isWalkable(yDiff, xDiff)) return false;
         int y = getY() + yDiff;
         int x = getX() + xDiff;
         faceWay = getFaceWayOfWalk(yDiff, xDiff);
         if (ground.getPortal(y, x) != null) {
             Portal p = ground.getPortal(y, x);
-             setY(p.getCoordinateOnDest().getY());
-             setX(p.getCoordinateOnDest().getX());
-             setGround(p.getDestination());
-             return true;
+            setY(p.getCoordinateOnDest().getY());
+            setX(p.getCoordinateOnDest().getX());
+            setGround(p.getDestination());
+
+            return true;
         }
         setY(y);
         setX(x);
@@ -116,8 +111,8 @@ public class Location extends Coordinate{
         return ground.getTopTile(getY() + yDiff, getX() + xDiff);
     }
 
-    public Tile getTopItemDiff(int yDiff, int xDiff) {
-        return ground.getTopTile(getY() + yDiff, getX() + xDiff);
+    public Item getTopItemDiff(int yDiff, int xDiff) {
+        return ground.getTopItem(getY() + yDiff, getX() + xDiff);
     }
 
     public Item getItemDiff(int yDiff, int xDiff) {

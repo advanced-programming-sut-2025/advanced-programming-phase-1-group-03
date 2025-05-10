@@ -1,6 +1,7 @@
 package phi.ap.Controller.MenuControllers.MainMenuControllers;
 
 import phi.ap.model.*;
+import phi.ap.model.enums.Colors;
 import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.enums.Menus.Menu;
 import phi.ap.model.enums.StoreProducts.*;
@@ -16,6 +17,16 @@ import java.util.ArrayList;
 
 public class GameMenuController {
     public Result<String> test() {
+//        Farm farm = Game.getInstance().getCurrentPlayer().getFarm();
+        Map map = Game.getInstance().getMap();
+        for(int i = 0; i < map.getHeight(); i++) {
+            for(int j = 0; j < map.getWidth(); j++) {
+//                if (farm.getTopTile(i, j).getSymbol().equals("T")) {
+                    Item item = map.getTopItem(i, j);
+                    System.out.println(item + " " + map.getTopTile(i, j) + Colors.RESET);
+//                }
+            }
+        }
         return null;
     }
     public Result<String> newGame(ArrayList<String> usernames) {
