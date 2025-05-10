@@ -34,4 +34,12 @@ public class EnergyManager {
         this.maxAmount = maxAmount;
     }
 
+    public void reduceEnergy(int amount){
+        this.amount -= amount * unit;
+        //feint
+        //TODO
+    }
+    public boolean hasEnergy(int amount){
+        return this.amount >= amount*unit;
+    }
 }

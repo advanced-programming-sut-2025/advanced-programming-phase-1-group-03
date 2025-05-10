@@ -7,8 +7,8 @@ import phi.ap.model.items.tools.Backpack;
 import phi.ap.model.items.tools.TrashCan;
 
 public class InventoryManager {
-    private Backpack storage;
-    private TrashCan trashCan;
+    private final Backpack storage;
+    private final TrashCan trashCan;
     public InventoryManager(Backpack storage, TrashCan trashCan) {
         this.trashCan = trashCan;
         this.storage = storage;
@@ -62,6 +62,16 @@ public class InventoryManager {
             }
         }
         return stack;
+    }
+
+    //return item must be unique
+    //if there are two items with the given name this function won't work
+    public ItemStack getItemByName(String name) {
+        for (ItemStack stack : storage.getStacks()) {
+            if(stack.getItem().getName().equalsIgnoreCase(name))
+                return stack;
+        }
+        return null;
     }
     public Food getFood(FoodTypes foodType) {
         Food food = null;

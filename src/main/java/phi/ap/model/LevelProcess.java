@@ -24,4 +24,13 @@ public class LevelProcess {
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
     }
+    public void setCurrentLevel(LevelName currentLevel) {
+        for(int i = 0; i < levelNames.size(); i++)
+            if(levelNames.get(i) == currentLevel)
+                this.currentLevel = i;
+    }
+    @Override
+    public String toString() {
+        return levelNames.get(currentLevel).toString();
+    }
 }

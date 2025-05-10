@@ -2,41 +2,50 @@ package phi.ap.model.items.tools;
 
 import phi.ap.model.Coordinate;
 import phi.ap.model.ItemStack;
+import phi.ap.model.LevelProcess;
+import phi.ap.model.Result;
+import phi.ap.model.enums.LevelName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Backpack extends Tool{
-
-    private int size = 100;
+    public Backpack(){
+        super(new LevelProcess(new ArrayList<>(List.of(LevelName.normal, LevelName.big,
+                LevelName.deluxe)), 0),new ArrayList<>(List.of(0,0,0,0)), null);
+        this.setName("Backpack");
+    }
+    private int size;
     private ArrayList<ItemStack> stacks = new ArrayList<>();
     @Override
-    public void useTool(Coordinate direction) {
-
-    }
+    public Result<String> useTool(Coordinate direction) {return null;}
 
     @Override
-    public void doTask() {
-
-    }
+    public void doTask() {}
 
     public ArrayList<ItemStack> getStacks() {
         return stacks;
     }
 
-    public void setBackpackAsInventory() {
-
-    }
-
     public boolean isFull() {
-        return false;
-        //TODO
+        return stacks.size() == getSize();
     }
 
     public int getSize() {
-        return size;
+        return switch (getLevelProcess().getCurrentLevel()) {
+            case 0 -> 12;
+            case 1 -> 24;
+            case 2 -> Integer.MAX_VALUE;
+            default -> -1;
+        };
     }
 
     public void addStack(ItemStack itemStack) {
         stacks.add(itemStack);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " capacity: " + getSize();
     }
 }

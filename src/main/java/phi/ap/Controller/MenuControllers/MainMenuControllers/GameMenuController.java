@@ -14,6 +14,7 @@ import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
 import phi.ap.service.MapService;
+import phi.ap.utils.Misc;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -142,6 +143,8 @@ public class GameMenuController {
         }
     }
     private void doNightTasks() {
+        System.out.println("zzz... sleeping");
+
         //TODO
         doAnimalSystemTasks();
         //anjam kar haiee ke bayad too shab anjam beshan
@@ -345,11 +348,20 @@ public class GameMenuController {
     }
 
     public Result<String> toolEquip(String toolName) {
-        return null;
+        ItemStack stack = Game.getInstance().getCurrentPlayer().getInventoryManager()
+                .getItemByName(toolName);
+        if (stack == null) {
+            return new Result<>(false, "there is no tool with that name");
+        }
+        Tool tool = (Tool)stack.getItem();
+        Game.getInstance().getCurrentPlayer().getToolManager().setCurrentTool(tool);
+        return new Result<>(true, "Tool equipped");
     }
 
     public Result<String> showCurrentTool() {
-        return null;
+        if(Game.getInstance().getCurrentPlayer().getToolManager().getCurrentTool() == null)
+            return new Result<>(false, "You don't have a current tool..");
+        return new Result<>(true, Game.getInstance().getCurrentPlayer().getToolManager().getCurrentTool().getName());
     }
 
     public Result<String> showAvailableTools() {
@@ -361,7 +373,18 @@ public class GameMenuController {
     }
 
     public Result<String> useTool(String direction) {
-        return null;
+        int d;
+        try{
+            d = Integer.parseInt(direction);
+        }catch (Exception e) {
+            return new Result<>(false,"your direction is not valid!");
+        }
+        if(d < 0 || d > 7)
+            return new Result<>(false, "direction must be between 0 and 7");
+        Tool currentTool = Game.getInstance().getCurrentPlayer().getToolManager().getCurrentTool();
+        if(currentTool == null)
+            return new Result<>(false, "you don't have tool, first equip some of them");
+        return currentTool.useTool(Misc.getDiffFromDirection(d));
     }
     public Result<String> showCraftingRecipes() {
         return null;
@@ -525,7 +548,19 @@ public class GameMenuController {
         }
     }
     public Result<String> showAllAvailableProducts() {
-        return null;
+        String response = "";
+        response += Game.getInstance().getCurrentPlayer().getToolManager().getAxe().toString()+"\n";
+        response += Game.getInstance().getCurrentPlayer().getToolManager().getBackpack().toString()+"\n";
+        if(Game.getInstance().getCurrentPlayer().getToolManager().getFishingPole()!=null)
+            response += Game.getInstance().getCurrentPlayer().getToolManager().getFishingPole().toString()+"\n";
+        response += Game.getInstance().getCurrentPlayer().getToolManager().getHoe().toString()+"\n";
+        response += Game.getInstance().getCurrentPlayer().getToolManager().getMilkPail().toString()+"\n";
+        response += Game.getInstance().getCurrentPlayer().getToolManager().getPickaxe().toString()+"\n";
+        response += Game.getInstance().getCurrentPlayer().getToolManager().getScythe().toString()+"\n";
+        response += Game.getInstance().getCurrentPlayer().getToolManager().getShear().toString()+"\n";
+        response += Game.getInstance().getCurrentPlayer().getToolManager().getTrashCan().toString()+"\n";
+        response += Game.getInstance().getCurrentPlayer().getToolManager().getWateringCan().toString()+"\n";
+        return new Result<>(true, response);
     }
     public Result<String> purchase(String productName, String amountString) {
         // TODO give a true value to storeType based on the store we are there.

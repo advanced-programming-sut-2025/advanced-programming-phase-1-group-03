@@ -17,4 +17,5 @@ public enum AbilityType {
     public int getLevel() {
         return level;
     }
+    public static int MAX_VALUE = 4;
 }
