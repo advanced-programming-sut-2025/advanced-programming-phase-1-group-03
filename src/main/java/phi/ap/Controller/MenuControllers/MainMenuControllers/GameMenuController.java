@@ -244,7 +244,7 @@ public class GameMenuController {
                     "current location : " +
                     location.getGround() +
                     ", " +
-                    "(y:" + location.getY() + ", x:" + location.getY() + ")");
+                    "(y:" + location.getY() + ", x:" + location.getX() + ")");
         } else {
             return new Result<>(false, "Walk -one wasn't successful");
         }

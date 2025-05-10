@@ -1,7 +1,8 @@
-package phi.ap.model;
+package phi.ap.model.items;
 
-import phi.ap.model.enums.TileType;
-import phi.ap.model.items.Item;
+import phi.ap.model.Coordinate;
+import phi.ap.model.Ground;
+import phi.ap.model.Tile;
 
 public class Portal extends Item {
     private Ground destination;
@@ -9,6 +10,7 @@ public class Portal extends Item {
 
     public Portal(int height, int width, Ground destination, Coordinate coordinateOnDest) {
         super(height, width);
+        setName("Portal");
         this.destination = destination;
         this.coordinateOnDest = coordinateOnDest;
     }
@@ -53,8 +55,10 @@ public class Portal extends Item {
     public static void makeMiddleDoor(Ground child, Ground father, Tile shape) {
         int h = child.getHeight() - 1;
         int w = child.getWidth() / 2;
+        int hh = child.getCoordinate().getY() + h;
+        int ww = child.getCoordinate().getX() + w;
         makePortalTwoWay(child, new Coordinate(h, w), father,
-                new Coordinate(child.getCoordinate().getY() + h, child.getCoordinate().getX() + w), shape);
+                new Coordinate(hh, ww), shape);
     }
 
     @Override

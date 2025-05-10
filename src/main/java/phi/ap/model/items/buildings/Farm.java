@@ -4,10 +4,9 @@ import phi.ap.model.*;
 import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Dirt;
-import phi.ap.model.items.Item;
+import phi.ap.model.items.Portal;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Farm extends Building {
     private Cottage cottage;
@@ -17,6 +16,7 @@ public class Farm extends Building {
     private FarmTypes farmType;
     public Farm(FarmTypes farmType) {
         super(30, 30);
+        setName("Farm");
         this.farmType = farmType;
         for (int i = 1; i < getHeight() - 1; i++) {
             for (int j = 1; j < getWidth() - 1; j++) {
@@ -26,24 +26,34 @@ public class Farm extends Building {
                 addItem(dirt);
             }
         }
+        fillTile(TileType.Farm.getTile());
+        setWalls();
+
         cottage = new Cottage(farmType.getCottage().getHeight(), farmType.getCottage().getWidth(),
                 farmType.getCottage().getCoordinate());
         //cottage doors:
+        addItem(cottage);
         Portal.makeMiddleDoor(cottage, this, TileType.Door.getTile());
+
+
         greenhouse = new Greenhouse(farmType.getGreenhouse().getHeight(), farmType.getGreenhouse().getWidth(),
                 farmType.getGreenhouse().getCoordinate());
         //greenhouse doors
+        addItem(greenhouse);
         Portal.makeMiddleDoor(greenhouse, this, TileType.Door.getTile());
-        //TODO : doors
+
         lakes = new ArrayList<>();
         for (BuildingStructure lakeInfos : farmType.getLakes()) {
             Lake lake = new Lake(lakeInfos.getHeight(), lakeInfos.getWidth(), lakeInfos.getCoordinate());
             lakes.add(lake);
         }
-        quarries = new ArrayList<>();
+        for (Lake lake : lakes) {
+            addItem(lake);
+        }
+
         for (BuildingStructure quarryInfos : farmType.getQuarries()) {
             Quarry quarry = new Quarry(quarryInfos.getHeight(), quarryInfos.getWidth(), quarryInfos.getCoordinate());
-            quarries.add(quarry);
+            addItem(quarry);
             Coordinate tempCo;
             tempCo = new Coordinate(0, 0);
             Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
@@ -75,16 +85,6 @@ public class Farm extends Building {
             }
 
         }
-        fillTile(TileType.Farm.getTile());
-        addItem(cottage);
-        addItem(greenhouse);
-        for (Lake lake : lakes) {
-            addItem(lake);
-        }
-        for (Quarry quarry : quarries) {
-            addItem(quarry);
-        }
-        setWalls();
     }
 
 

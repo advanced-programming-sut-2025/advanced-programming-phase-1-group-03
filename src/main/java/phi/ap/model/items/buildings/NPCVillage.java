@@ -11,6 +11,7 @@ import java.util.List;
 public class NPCVillage extends Building {
     public NPCVillage() {
         super(40, 40);
+        setName("NPCVillage");
         fillTile(TileType.NPCVillage.getTile());
         setWalls();
 

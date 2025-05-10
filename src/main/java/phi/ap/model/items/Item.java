@@ -1,10 +1,6 @@
 package phi.ap.model.items;
 
-import phi.ap.model.Coordinate;
 import phi.ap.model.Ground;
-import phi.ap.model.Portal;
-
-import java.util.ArrayList;
 
 public abstract class Item extends Ground {
     private String name = null;
@@ -12,6 +8,7 @@ public abstract class Item extends Ground {
 
     public Item(int height, int width) {
         super(height, width);
+        setName("Item");
     }
 
     public Item() {

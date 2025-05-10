@@ -2,6 +2,7 @@ package phi.ap.model;
 
 import phi.ap.model.enums.FaceWay;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.Portal;
 
 public class Location extends Coordinate{
     private Ground ground;
@@ -123,5 +124,8 @@ public class Location extends Coordinate{
         return ground.getPortal(getY() + yDiff, getX() + xDiff);
     }
 
+    public void setFaceWay(FaceWay faceWay) {
+        this.faceWay = faceWay;
+    }
 
 }

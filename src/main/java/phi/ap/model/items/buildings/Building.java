@@ -10,5 +10,6 @@ import java.util.ArrayList;
 public abstract class Building extends Item {
     public Building(int height, int width) {
         super(height, width);
+        setName("Building");
     }
 }

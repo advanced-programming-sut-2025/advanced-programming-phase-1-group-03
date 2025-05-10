@@ -5,7 +5,7 @@ import phi.ap.model.enums.*;
 import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.items.Dirt;
 import phi.ap.model.items.Item;
-import phi.ap.model.items.PlayerIcon;
+import phi.ap.model.items.Portal;
 import phi.ap.model.items.buildings.Cottage;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.buildings.NPCVillage;
@@ -15,8 +15,6 @@ import phi.ap.model.items.producers.Tree;
 import phi.ap.model.items.products.Crop;
 import phi.ap.model.items.products.Mineral;
 import phi.ap.model.items.products.Stone;
-
-import java.util.ArrayList;
 
 public class GameService {
     private Game game;

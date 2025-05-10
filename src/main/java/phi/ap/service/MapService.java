@@ -51,40 +51,36 @@ public class MapService {
     }
 
     public Path getPath(Location source, Location sink) {
-        class Node {
-            public Location location;
-            public Node parent;
-            public Coordinate step;
-            public boolean isSource;
-            public int costFromSource;
-            public final int heuristicCostToSink;
-            public Node(Location location, Node parent, Coordinate step) {
-                this.location = location;
-                this.parent = parent;
-                isSource = (parent == null);
-                heuristicCostToSink = getHeuristicTravelCost(location, sink);
-                if (isSource) costFromSource = 0;
-                else costFromSource = Integer.MAX_VALUE;
-                this.step = step;
+        ArrayList<Location> sinks = new ArrayList<>();
+        if (sink.getFaceWay() != null) sinks.add(sink);
+        else {
+            for (int i = 0; i < FaceWay.values().length; i++) {
+                sink.setFaceWay(FaceWay.values()[i]);
+                sinks.add(new Location(sink));
             }
+            sink.setFaceWay(null);
+        }
+        class Node {
+            private Location location;
+            private Node parent;
+            private Coordinate step;
 
-            public Node(Location location, Node parent, int costFromSource, Coordinate step) {
+            private int g;
+            private final int h;
+            public Node(Location location) {
                 this.location = location;
-                this.parent = parent;
-                this.costFromSource = costFromSource;
-                isSource = (parent == null);
-                heuristicCostToSink = getHeuristicTravelCost(location, sink);
-                this.step = step;
+                h = getHeuristicTravelCost(location, sink);
             }
 
             public Path getPath() {
-                if (isSource) {
+                if (parent == null) {
                     Path path = new Path();
                     path.setSource(location);
                     return path;
                 }
                 Path path = parent.getPath();
                 path.addStep(step);
+                path.setTarget(location);
                 return path;
             }
 
@@ -92,41 +88,63 @@ public class MapService {
                 return location;
             }
 
-            public Node getParent() {
-                return parent;
+            public Coordinate getStep() {
+                return step;
             }
 
-            public boolean isSource() {
-                return isSource;
+            public int getG() {
+                return g;
+            }
+
+            public int getH() {
+                return h;
+            }
+
+            public Node getParent() {
+                return parent;
             }
 
             public void setLocation(Location location) {
                 this.location = location;
             }
 
-            public void setParent(Node parent) {
+            public void setParent(Node parent, Coordinate step) {
                 this.parent = parent;
+                this.step = step;
             }
 
-            public void setSource(boolean source) {
-                isSource = source;
-            }
-
-            public int totalCost() {
-                return costFromSource + heuristicCostToSink;
+            public int f() {
+                return g + h;
             }
 
             @Override
             public boolean equals(Object obj) {
-                if (this == obj) return true;
                 if (obj == null) return false;
-                if (!(obj instanceof Node)) return false;
-                Node n = (Node) obj;
-                return location.getX() == n.getLocation().getX() && location.getY() == n.getLocation().getY();
+                if (!(obj instanceof Node)) {
+                    return false;
+                }
+                Node node = (Node) obj;
+                return location.equals(node.location);
             }
 
-            public void setCostFromSource(int costFromSource) {
-                this.costFromSource = costFromSource;
+            public void setG(int g) {
+                this.g = g;
+            }
+
+            public static void addNeighborsToSack(Node v, PriorityQueue<Node> sack, HashMap<Node, Integer> bestG) {
+                int[][] dir = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+                for (int[] d : dir) {
+                    Location ul = new Location(v.getLocation());
+                    int cost = ul.getCostOfWalkOne(d[0], d[1]);
+                    if (!ul.walkOne(d[0], d[1])) continue;
+                    Node u = new Node(ul);
+                    u.setG(v.getG() + cost);
+                    int betterG = bestG.getOrDefault(u, Integer.MAX_VALUE);
+                    if (betterG <= u.getG()) continue;
+                    u.setParent(v, new Coordinate(d[0], d[1]));
+                    bestG.put(u, u.getG());
+                    sack.add(u);
+                }
             }
         }
         if (!map.isCoordinateValid(source.getY(), source.getX()) ||
@@ -134,47 +152,41 @@ public class MapService {
             return null;
         }
 
-        PriorityQueue<Node> sack = new PriorityQueue<>(Comparator.comparing(Node::totalCost)
-                .thenComparing(e -> e.costFromSource));
-//        HashMap<Coordinate, Integer> g = new HashMap<>();
-        Node src;
-        sack.add(src = new Node(source, null, 0, null));
-//        g.put(source, src.totalCost());
-        Node dst = null;
+        PriorityQueue<Node> sack = new PriorityQueue<>(Comparator.comparing(Node::f)
+                .thenComparing(e -> e.g));
+        HashMap<Node, Integer> bestG = new HashMap<>();
+        Node src = new Node(source);
+        src.setG(0);
+        bestG.put(src, src.getG());
+        Node.addNeighborsToSack(src, sack, bestG);
+        Node dest = null;
         while (!sack.isEmpty()) {
-            Node n = sack.poll();
-//            if (g.get(n.getLocation()) < n.totalCost()) continue;
-            if (n.getLocation().getCoordinate().equals(sink.getCoordinate())) {
-                dst = n;
-                break;
-            }
-            int[][] dir = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-            Ground ground = n.getLocation().getGround();
-            for (int[] d : dir) {
-                int y = n.getLocation().getY() + d[0];
-                int x = n.getLocation().getX() + d[1];
-                if (!n.getLocation().isWalkable(d[0], d[1])) continue;
-                int price = n.costFromSource + n.getLocation().getCostOfWalkOne(d[0], d[1]);
-                Ground newGround = ground;
-                if (ground.getPortal(y, x) != null) {
-                    Portal p = ground.getPortal(y, x);
-                    newGround = p.getDestination();
-                    y = p.getCoordinateOnDest().getY();
-                    x = p.getCoordinateOnDest().getX();
-
+            Node v = sack.poll();
+            for (Location location : sinks) {
+                if (v.location.equals(location)) {
+                    dest = v;
+                    break;
                 }
-                Location uL = new Location(new Coordinate(y, x), newGround,
-                        n.getLocation().getFaceWayOfWalk(d[0], d[1]));
-                Node u = new Node(uL, n, price, new Coordinate(d[0], d[1]));
-                sack.add(u);
             }
+            Node.addNeighborsToSack(v, sack, bestG);
         }
-        if (dst == null) return null;
-        Path path = dst.getPath();
-        path.setCost(dst.totalCost());
+        if (dest == null) {
+            return null;
+        }
+        Path path = dest.getPath();
+        path.setCost(dest.getG());
         path.setDone(true);
-        path.setTarget(dst.getLocation());
         return path;
+    }
+
+    public Integer walkPlayer(Player player, Location target) {
+        Path path = getPath(player.getLocation(), target);
+        if (path == null) return null;
+        Location tempL = new Location(player.getLocation());
+        for (Coordinate step : path.getSteps()) {
+            tempL.walkOne(step.getY(), step.getX());
+            if ()
+        }
     }
 
     public Location getLocationOnMap(int y, int x) {

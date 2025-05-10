@@ -1,8 +1,8 @@
 package phi.ap.model;
 
-import phi.ap.model.enums.FaceWay;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.Portal;
 
 import java.util.ArrayList;
 
@@ -76,6 +76,19 @@ public class Ground {
     public void addItem(Item item) { //base on ground
         int y = item.getCoordinate().getY();
         int x = item.getCoordinate().getX();
+//        for (int i = y; i < y + item.getHeight(); i++) {
+//            for (int j = x; j < x + item.getWidth(); j++) {
+//                if (items[i][j] == null) continue;
+//                int sy = items[i][j].getCoordinate().getY();
+//                int sx = items[i][j].getCoordinate().getX();
+//                int ey = sy + items[i][j].getHeight() - 1;
+//                int ex = sy + items[i][j].getWidth() - 1;
+//                if (sy >= y && sx >= x && ey < y + item.getHeight() && sx < x + item.getWidth()) {
+//                    removeItem(items[i][j]);
+//                }
+//            }
+//        }
+
         for (int i = y; i < y + item.getHeight(); i++) {
             for (int j = x; j < x + item.getWidth(); j++) {
                 items[i][j] = item;

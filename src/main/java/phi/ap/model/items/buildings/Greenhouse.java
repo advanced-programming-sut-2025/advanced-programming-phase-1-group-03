@@ -7,6 +7,7 @@ import phi.ap.model.enums.TileType;
 public class Greenhouse extends Building {
     public Greenhouse(int height, int width, Coordinate coordinate) {
         super(height, width);
+        setName("Greenhouse");
         setCoordinate(coordinate);
         fillTile(TileType.Greenhouse.getTile());
         setWalls();

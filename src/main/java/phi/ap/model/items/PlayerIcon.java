@@ -11,6 +11,7 @@ public class PlayerIcon extends Item{
 
     public PlayerIcon(Player player, FaceWay faceWay) {
         super(1, 1);
+        setName("PlayerIcon");
         this.player = player;
         this.faceWay = faceWay;
         fillTile(TileType.Player.getTileWithFaceWay(faceWay));

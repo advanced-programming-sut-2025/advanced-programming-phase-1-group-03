@@ -4,6 +4,7 @@ public class Dirt extends Item {
     //TODO : fields
     public Dirt() {
         super();
+        setName("Dirt");
     }
 
     @Override
