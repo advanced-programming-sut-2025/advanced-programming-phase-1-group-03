@@ -1,6 +1,8 @@
 package phi.ap.model;
 
+import phi.ap.model.enums.FoodTypes;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.products.Food;
 import phi.ap.model.items.tools.Backpack;
 import phi.ap.model.items.tools.TrashCan;
 
@@ -60,6 +62,19 @@ public class InventoryManager {
             }
         }
         return stack;
+    }
+    public Food getFood(FoodTypes foodType) {
+        Food food = null;
+        for (ItemStack stack1 : storage.getStacks()) {
+            if (stack1.getItem() instanceof Food) {
+                if(((Food)stack1.getItem()).getFoodType().equals(foodType)) {
+                    stack1.advanceAmount(-1);
+                    food = new Food(1, 1, foodType);
+                    break;
+                }
+            }
+        }
+        return food;
     }
 }
 

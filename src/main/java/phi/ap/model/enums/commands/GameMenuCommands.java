@@ -23,7 +23,13 @@ public enum GameMenuCommands implements Command{
     purchase("\\s*purchase\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*"),
     Build("\\s*build\\s+-a\\s+(?<name>.*)\\s+-l\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*"),
     test("\\s*test\\s*"),
-    BuyAnimal("^\\s*buy\\s+animal\\s+-a\\s+(?<animalName>\\S+)\\s+-n\\s+(?<name>\\S+)\\s*$")
+    BuyAnimal("^\\s*buy\\s+animal\\s+-a\\s+(?<animalName>\\S+)\\s+-n\\s+(?<name>\\S+)\\s*$"),
+    Pet("\\s*pet\\s+-n\\s+(?<name>.*)\\s*"),
+    Animals("\\s*animals\\s*"),
+    FeedHay("\\s*feed\\s+hay\\s+-n\\s+(?<name>.*)\\s*"),
+    Produces("\\s*produces\\s*"),
+    CollectProduce("\\s*collect\\s+produce\\s+-n\\s+(?<name>.*)\\s*"),
+    SellAnimal("\\s*sell\\s+animal\\s+-n\\s+(?<name>.*)\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

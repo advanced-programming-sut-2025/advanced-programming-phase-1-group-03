@@ -19,9 +19,6 @@ public class Player extends Human {
     private ToolManager toolManager = new ToolManager();
 
 
-    private ArrayList<Animal> ownedAnimals = new ArrayList<>();
-
-
     private ArrayList<AnimalHouse> ownedAnimalHouse = new ArrayList<>();
     private ArrayList<Recipe> craftingRecipes;
     private ArrayList<Recipe> cookingRecipes;
@@ -34,8 +31,12 @@ public class Player extends Human {
     private Farm farm = null;
     private Location location;
 
-    public ArrayList<Animal> getOwnedAnimals() {
-        return ownedAnimals;
+    public Animal getAnimalByName(String name) {
+        for(Animal animal : animals) {
+            if(animal.getName().equals(name))
+                return animal;
+        }
+        return null;
     }
 
     public ArrayList<AnimalHouse> getOwnedAnimalHouse() {

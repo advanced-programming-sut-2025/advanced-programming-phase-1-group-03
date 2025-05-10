@@ -7,12 +7,18 @@ import phi.ap.model.items.Item;
 import phi.ap.model.items.tools.FishingPole;
 
 public enum FishShopProducts {
-    FishSmoker("Fish Smoker (Recipe)", "A recipe to make Fish Smoker", 10000, 1, 0, new FishingPole(1, 1, LevelName.initial)),
-    TroutSoup("Trout Soup", "Pretty salty.", 250, 1, 0, new FishingPole(1, 1, LevelName.bamboo)),
-    BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500, 1, 0, new FishingPole(1, 1, LevelName.bamboo)),
-    TrainingRod("Training Rod", "It's a lot easier to use than other rods, but can only catch basic fish.", 25, 1, 0, new FishingPole(1, 1, LevelName.training)),
-    FiberglassRod("Fiberglass Rod", "Use in the water to catch fish.", 1800, 1, 2, new FishingPole(1, 1, LevelName.fiberGlass)),
-    IridiumRod("Iridium Rod", "Use in the water to catch fish.", 7500, 1, 4, new FishingPole(1, 1, LevelName.iridium));
+    FishSmoker("Fish Smoker (Recipe)", "A recipe to make Fish Smoker",
+            10000, 1, 0, new FishingPole(1, 1, LevelName.initial)),
+    TroutSoup("Trout Soup", "Pretty salty.", 250, 1,
+            0, new FishingPole(1, 1, LevelName.bamboo)),
+    BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500,
+            1, 0, new FishingPole(1, 1, LevelName.bamboo)),
+    TrainingRod("Training Rod", "It's a lot easier to use than other rods, but can only catch " +
+            "basic fish.", 25, 1, 0, new FishingPole(1, 1, LevelName.training)),
+    FiberglassRod("Fiberglass Rod", "Use in the water to catch fish.", 1800,
+            1, 2, new FishingPole(1, 1, LevelName.fiberGlass)),
+    IridiumRod("Iridium Rod", "Use in the water to catch fish.", 7500,
+            1, 4, new FishingPole(1, 1, LevelName.iridium));
     private final String name;
     private final String description;
     private final Integer price;
@@ -20,7 +26,8 @@ public enum FishShopProducts {
     private Integer availableAmount = 1000;
     private final Integer fishingSkill;
     private final Item item;
-    FishShopProducts(String name, String description, Integer price, Integer dailyLimit, Integer fishingSkill, Item item) {
+    FishShopProducts(String name, String description, Integer price, Integer dailyLimit, Integer fishingSkill,
+                     Item item) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -50,7 +57,8 @@ public enum FishShopProducts {
         }
         fishShopProducts.availableAmount -= amount;
         fishShopProducts.dailyLimit -= amount;
-        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * fishShopProducts.price);
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount *
+                fishShopProducts.price);
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(fishShopProducts.item, amount);
         return new Result<>(true, "Item purchased successfully");
     }
@@ -58,7 +66,8 @@ public enum FishShopProducts {
     public static Result<String> showAllProducts() {
         StringBuilder stringBuilder = new StringBuilder();
         for(FishShopProducts fishShopProducts : FishShopProducts.values()) {
-            stringBuilder.append("Name : " + "\"" + fishShopProducts.getName() + "\"" + "     " + "Price: "  + fishShopProducts.getPrice() + "g" + "\n");
+            stringBuilder.append("Name : " + "\"" + fishShopProducts.getName() + "\"" + "     " + "Price: "  +
+                    fishShopProducts.getPrice() + "g" + "\n");
         }
         return new Result<>(true, stringBuilder.toString());
     }
@@ -67,7 +76,8 @@ public enum FishShopProducts {
         StringBuilder stringBuilder = new StringBuilder();
         for(FishShopProducts fishShopProducts : FishShopProducts.values()) {
             if(fishShopProducts.availableAmount > 0 && fishShopProducts.dailyLimit > 0)
-                stringBuilder.append("Name : " + "\"" + fishShopProducts.getName() + "\"" + "     " + "Price: "  + fishShopProducts.getPrice() + "g" + "\n");
+                stringBuilder.append("Name : " + "\"" + fishShopProducts.getName() + "\"" + "     " + "Price: "  +
+                        fishShopProducts.getPrice() + "g" + "\n");
         }
         return new Result<>(true, stringBuilder.toString());
     }

@@ -1,14 +1,18 @@
 package phi.ap.Controller.MenuControllers.MainMenuControllers;
 
 import phi.ap.model.*;
-import phi.ap.model.enums.FarmTypes;
+import phi.ap.model.enums.*;
 import phi.ap.model.enums.Menus.Menu;
 import phi.ap.model.enums.StoreProducts.*;
-import phi.ap.model.enums.StoreTypes;
-import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.buildings.Farm;
+import phi.ap.model.items.producers.Animal;
+import phi.ap.model.items.products.AnimalProduct;
+import phi.ap.model.items.products.Food;
+import phi.ap.model.items.tools.MilkPail;
+import phi.ap.model.items.tools.Shear;
+import phi.ap.model.items.tools.Tool;
 import phi.ap.service.MapService;
 
 import java.awt.*;
@@ -16,6 +20,12 @@ import java.util.ArrayList;
 
 public class GameMenuController {
     public Result<String> test() {
+        Farm farm = Game.getInstance().getCurrentPlayer().getFarm();
+        for(int i = 0; i < farm.getHeight(); i++) {
+            for(int j = 0; j < farm.getWidth(); j++) {
+                System.out.println(farm.getTopItem(i, j) + " " + farm.getTopTile(i, j));
+            }
+        }
         return null;
     }
     public Result<String> newGame(ArrayList<String> usernames) {
@@ -102,11 +112,31 @@ public class GameMenuController {
             doNightTasks();
         }
     }
+    private void doAnimalSystemTasks() {
+        ArrayList<Animal> animals = Game.getInstance().getCurrentPlayer().getAnimals();
+        for(Animal animal : animals) {
+            if(!animal.getIsFeeded())
+                animal.addFriendShip(-20);
+            if(!animal.getIsBeenPet())
+                animal.addFriendShip(-10);
+            if(!animal.getIsInHome())
+                animal.addFriendShip(-20);
+            animal.reduceRemainingDayToProduce();
+            if(animal.getIsFeeded() && animal.getRemainingDayToProduce() == 0) {
+                AnimalProduct animalProduct = animal.produceProduct();
+                if(animalProduct != null) {
+                    ArrayList<AnimalProduct> animalProduct1 = animal.getAnimalProducts();
+                    animalProduct1.add(animalProduct);
+                }
+                animal.setRemainingDayToProduce();
+            }
+            animal.setFeeded(false);
+            animal.setBeenPet(false);
+        }
+    }
     private void doNightTasks() {
-        // in khat hazf mishe alan serfan baraie debuge
-        System.out.println("zzz... sleeping");
-
         //TODO
+        doAnimalSystemTasks();
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
@@ -313,28 +343,94 @@ public class GameMenuController {
         return MarnieRanchProducts.buyAnimal(animalType, animalName);
     }
     public Result<String> petAnimal(String name) {
-        return null;
+        Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(name);
+        if(animal == null)
+            return new Result<>(false, "There is no animal with this name.");
+        animal.addFriendShip(15);
+        animal.setBeenPet(true);
+        return new Result<>(true, "yo have pet the animal, 15 FriendShip added");
     }
-    public Result<String> cheatSetFreindship(String animalName, String amount) {
-        return null;
+    public Result<String> cheatSetFriendship(String name, String amount) {
+        Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(name);
+        if(animal == null)
+            return new Result<>(false, "There is no animal with this name.");
+        animal.addFriendShip(15);
+        animal.setBeenPet(true);
+        return new Result<>(true, "yo have pet the animal, 15 FriendShip added");
     }
     public Result<String> showAnimalsInfo() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        ArrayList<Animal> animals = Game.getInstance().getCurrentPlayer().getAnimals();
+        for(Animal animal : animals) {
+            stringBuilder.append("Animal name: " + animal.getName() + " Type: " + animal.getType().toString() +
+                    " friendShipAmount: " + animal.getFriendShipAmount() + " isFed: " + animal.getIsFeeded() +
+                    " isPet: " + animal.getIsBeenPet());
+        }
+        return new Result<>(true, stringBuilder.toString());
     }
     public Result<String> shepherdAnimal(String animalName, String x, String y) {
         return null;
     }
     public Result<String> feedAnimal(String animalName) {
-        return null;
+        Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(animalName);
+        if(animal == null) {
+            return new Result<>(false, "There is not any Animal with this name.");
+        }
+        Food food = Game.getInstance().getCurrentPlayer().getInventoryManager().getFood(FoodTypes.Hay);
+        if(food == null)
+            return new Result<>(false, "You don't have any Hay to feed " + animalName);
+        animal.setFeeded(true);
+        return new Result<>(true, "Animal fed successfully.");
     }
     public Result<String> produces() {
-        return null;
+        ArrayList<Animal> animals = Game.getInstance().getCurrentPlayer().getAnimals();
+        StringBuilder stringBuilder = new StringBuilder();
+        for(Animal animal : animals) {
+            if(animal.getAnimalProducts().size() > 0) {
+                stringBuilder.append("Animal name: " + animal.getName() + " " + "Type: " + animal.getType().toString());
+                for(AnimalProduct animalProduct : animal.getAnimalProducts()) {
+                    stringBuilder.append(animalProduct.getAnimalProductType().toString());
+                }
+            }
+        }
+        return new Result<>(true, stringBuilder.toString());
     }
-    public Result<String> collectProduce(String name) {
-        return null;
+    public Result<String> collectProduce(String name, Tool tool) {
+        Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(name);
+        if(animal == null)
+            return new Result<>(false, "There is not any animal with this name.");
+        ArrayList<AnimalProduct> animalProducts = animal.getAnimalProducts();
+        if(animalProducts.isEmpty())
+            return new Result<>(false, "this animal doesn't have any product.");
+        if(animal.getType().equals(AnimalTypes.Cow) || animal.getType().equals(AnimalTypes.Goat))
+            if(!(tool instanceof MilkPail))
+                return new Result<>(false, "You don't have milkPail.");
+        if(animal.getType().equals(AnimalTypes.Sheep))
+            if(!(tool instanceof Shear))
+                return new Result<>(false, "You don't have Shear.");
+        for(AnimalProduct animalProduct : animalProducts) {
+            // TODO set currect amount
+            Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(animalProduct, 1);
+        }
+        animalProducts.clear();
+        return new Result<>(true, "products collected successfully");
     }
     public Result<String> sellAnimal(String name) {
-        return null;
+        Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(name);
+        if(animal == null)
+            return new Result<>(false, "There is no Animal with this name.");
+        ArrayList<Animal> animals = Game.getInstance().getCurrentPlayer().getAnimals();
+        int ind = 0;
+        for(int i = 0; i < animals.size(); i++) {
+            Animal animal1 = animals.get(i);
+            if(animal1.getName().equals(name)) {
+                ind = i;
+            }
+        }
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() +
+                (int)animal.getSellPrice());
+        animals.remove(ind);
+        return new Result<>(true, "animal selled successfully");
     }
     public Result<String> fishing(String fishingPole) {
         return null;

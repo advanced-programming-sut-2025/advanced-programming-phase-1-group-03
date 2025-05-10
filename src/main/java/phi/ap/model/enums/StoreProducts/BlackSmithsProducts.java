@@ -8,10 +8,14 @@ import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Mineral;
 
 public enum BlackSmithsProducts {
-    CopperOre("Copper Ore", "A common ore that can be smelted into bars.", 75, Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.COPPER), StoreTypes.Blacksmith),
-    IronOre("Iron Ore", "A fairly common ore that can be smelted into bars.", 75, Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.IRON), StoreTypes.Blacksmith),
-    Coal("Coal", "A combustible rock that is useful for crafting and smelting.", 150, Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.COAL), StoreTypes.Blacksmith),
-    GoldOre("Gold Ore", "A precious ore that can be smelted into bars.", 400, Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.GOLD), StoreTypes.Blacksmith);
+    CopperOre("Copper Ore", "A common ore that can be smelted into bars.", 75,
+            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.COPPER), StoreTypes.Blacksmith),
+    IronOre("Iron Ore", "A fairly common ore that can be smelted into bars.", 75,
+            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.IRON), StoreTypes.Blacksmith),
+    Coal("Coal", "A combustible rock that is useful for crafting and smelting.", 150,
+            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.COAL), StoreTypes.Blacksmith),
+    GoldOre("Gold Ore", "A precious ore that can be smelted into bars.", 400,
+            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.GOLD), StoreTypes.Blacksmith);
     // TODO update Tools
     private final String name;
     private final String description;
@@ -20,7 +24,8 @@ public enum BlackSmithsProducts {
     private Integer availableAmount = 1000;
     private final Item item;
     private final StoreTypes storeType;
-    BlackSmithsProducts(String name, String description, Integer price, Integer dailyLimit, Item item, StoreTypes storeType) {
+    BlackSmithsProducts(String name, String description, Integer price, Integer dailyLimit, Item item,
+                        StoreTypes storeType) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -48,14 +53,16 @@ public enum BlackSmithsProducts {
         }
         blackSmithsProducts.availableAmount -= amount;
         blackSmithsProducts.dailyLimit -= amount;
-        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * blackSmithsProducts.price);
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() -
+                amount * blackSmithsProducts.price);
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(blackSmithsProducts.item, amount);
         return new Result<>(true, "Item purchased successfully");
     }
     public static Result<String> showAllProducts() {
         StringBuilder stringBuilder = new StringBuilder();
         for(BlackSmithsProducts blackSmithsProducts : BlackSmithsProducts.values()) {
-            stringBuilder.append("Name : " + "\"" + blackSmithsProducts.getName() + "\"" + "     " + "Price: "  + blackSmithsProducts.getPrice() + "g" + "\n");
+            stringBuilder.append("Name : " + "\"" + blackSmithsProducts.getName() + "\"" + "     " + "Price: "  +
+                    blackSmithsProducts.getPrice() + "g" + "\n");
         }
         return new Result<>(true, stringBuilder.toString());
     }
@@ -64,7 +71,8 @@ public enum BlackSmithsProducts {
         StringBuilder stringBuilder = new StringBuilder();
         for(BlackSmithsProducts blackSmithsProducts : BlackSmithsProducts.values()) {
             if(blackSmithsProducts.availableAmount > 0 && blackSmithsProducts.dailyLimit > 0)
-                stringBuilder.append("Name : " + "\"" + blackSmithsProducts.getName() + "\"" + "     " + "Price: "  + blackSmithsProducts.getPrice() + "g" + "\n");
+                stringBuilder.append("Name : " + "\"" + blackSmithsProducts.getName() + "\"" + "     " + "Price: "  +
+                        blackSmithsProducts.getPrice() + "g" + "\n");
         }
         return new Result<>(true, stringBuilder.toString());
     }
