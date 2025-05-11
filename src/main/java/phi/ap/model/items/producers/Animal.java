@@ -24,6 +24,7 @@ public class Animal extends Producer {
         super(height, width);
         this.type = animalType;
         this.remainingDayToProduce = this.type.getDayToProduce();
+        setName(animalType.name());
     }
 
     public void setRemainingDayToProduce() {

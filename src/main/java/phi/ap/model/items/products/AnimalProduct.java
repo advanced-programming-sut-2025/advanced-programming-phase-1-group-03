@@ -19,6 +19,10 @@ public class AnimalProduct extends Product {
         this.productNum = productNum;
         this.animal = animal;
     }
+    public AnimalProduct(int height, int width, AnimalProductTypes animalProductType) {
+        super(height, width);
+        this.animalProductType = animalProductType;
+    }
 
     public AnimalProductTypes getAnimalProductType() {
         return animalProductType;

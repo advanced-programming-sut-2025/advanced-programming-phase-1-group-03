@@ -15,10 +15,21 @@ public enum AnimalProductTypes {
     Cheese("Cheese", 340),
     Truffle("Truffle", 625)
     ;
+
+
     private final String name;
     private final int price;
     AnimalProductTypes(String name, int price) {
         this.price = price;
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
 }

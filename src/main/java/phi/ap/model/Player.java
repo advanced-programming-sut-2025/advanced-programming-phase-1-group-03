@@ -24,7 +24,7 @@ public class Player extends Human {
     private ArrayList<AnimalHouse> ownedAnimalHouse;
     private ArrayList<Recipe> craftingRecipes;
     private ArrayList<Recipe> cookingRecipes;
-    private ArrayList<Animal> animals;
+    private ArrayList<Animal> animals = new ArrayList<>();
     private ArrayList<Gift> giftsReceived;
     private ArrayList<MarriageRequest> marriageRequests;
     private ArrayList<TradeRequest> tradeRequests;
