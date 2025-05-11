@@ -8,6 +8,8 @@ public class Food extends Product {
     public Food(int height, int width, FoodTypes foodType) {
         super(height, width);
         this.foodType = foodType;
+        setName(foodType.getName());
+        setMaxStackSize(5);
     }
 
     public FoodTypes getFoodType() {
