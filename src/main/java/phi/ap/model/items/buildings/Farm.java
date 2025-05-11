@@ -93,9 +93,8 @@ public class Farm extends Building {
     }
 
     public boolean isPlayerAvailable(Player player) {
-//        return availablePlayers.contains(player);
-        return true;
-        //TODO fix it
+        return availablePlayers.contains(player);
+//        return true;
     }
 
     @Override
