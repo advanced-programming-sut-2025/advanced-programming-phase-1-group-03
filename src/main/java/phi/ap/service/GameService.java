@@ -84,7 +84,7 @@ public class GameService {
             Portal.makePortalTwoWay(farm, fp2, village, vp2, TileType.Door.getTile());
         }
 
-        //adding trees with probability 10%, stones 5% foraging 3% minerals 5%
+        //adding trees with probability 10%, stones 5% foraging 3% minerals 10%
         for (Item ground : game.getMap().getHoldingItems()) {
             if (ground instanceof Farm) {
                 //tree
@@ -140,10 +140,15 @@ public class GameService {
                 }
                 for (Item quarry : ground.getHoldingItems()) {
                     if (!(quarry instanceof Quarry)) continue;
-                    for (int i = 1; i < quarry.getHeight() - 1; i++) {
-                        for (int j = 1; j < quarry.getWidth() - 1; j++) {
+                    for (int i = 2; i < quarry.getHeight() - 2; i++) {
+                        for (int j = 2; j < quarry.getWidth() - 2; j++) {
+//                            if ((i == 1 && j == 1) || (i == 1 && j == quarry.getWidth() - 2)
+//                                    || (i == quarry.getHeight() - 2 && j == 1)
+//                                    || (i == quarry.getHeight() - 2 && j == quarry.getWidth() - 2)) {
+//                                continue;
+//                            }
                             if (quarry.getItem(i, j) != null) continue;
-                            if (App.getInstance().eventRandom(5)) {
+                            if (App.getInstance().eventRandom(10)) {
                                 Mineral mineral = new Mineral(1, 1, ForagingMineralTypes.getRandom());
                                 mineral.setCoordinate(new Coordinate(i, j));
                                 quarry.addItem(mineral);

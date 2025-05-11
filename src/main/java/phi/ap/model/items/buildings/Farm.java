@@ -56,18 +56,18 @@ public class Farm extends Building {
             Quarry quarry = new Quarry(quarryInfos.getHeight(), quarryInfos.getWidth(), quarryInfos.getCoordinate());
             addItem(quarry);
             Coordinate tempCo;
-            tempCo = new Coordinate(0, 0);
-            Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
-                    quarry, new Coordinate(1, 1), null);
-            tempCo = new Coordinate(0, quarry.getWidth() - 1);
-            Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
-                    quarry, new Coordinate(1, quarry.getHeight() - 2), null);
-            tempCo = new Coordinate(quarry.getHeight() - 1, 0);
-            Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
-                    quarry, new Coordinate(quarry.getHeight() - 2, 1), null);
-            tempCo = new Coordinate(quarry.getHeight() - 1, quarry.getWidth() - 1);
-            Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
-                    quarry, new Coordinate(quarry.getHeight() - 2, quarry.getWidth() - 2), null);
+//            tempCo = new Coordinate(0, 0);
+//            Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
+//                    quarry, new Coordinate(1, 1), null);
+//            tempCo = new Coordinate(0, quarry.getWidth() - 1);
+//            Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
+//                    quarry, new Coordinate(1, quarry.getHeight() - 2), null);
+//            tempCo = new Coordinate(quarry.getHeight() - 1, 0);
+//            Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
+//                    quarry, new Coordinate(quarry.getHeight() - 2, 1), null);
+//            tempCo = new Coordinate(quarry.getHeight() - 1, quarry.getWidth() - 1);
+//            Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
+//                    quarry, new Coordinate(quarry.getHeight() - 2, quarry.getWidth() - 2), null);
             for (int i = 1; i < quarry.getHeight() - 1; i++) {
                 tempCo = new Coordinate(i, 0);
                 Portal.makePortalTwoWay(this, getCoordinateOfCoordinateInChild(quarry,tempCo),
