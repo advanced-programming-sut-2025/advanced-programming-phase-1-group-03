@@ -19,18 +19,8 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        Item item = new Food(1, 1, FoodTypes.Hay);
-        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, 10);
-        System.out.println(Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
-        Refrigerator.getInstance().putItem(new ItemStack(item, 8));
-        System.out.println(Refrigerator.getInstance().showStorage());
-        Refrigerator.getInstance().putItem(new ItemStack(item, 2));
-        System.out.println(Refrigerator.getInstance().showStorage());
-        Refrigerator.getInstance().pickItem(new ItemStack(item, 3));
-        System.out.println(Refrigerator.getInstance().showStorage());
-        Refrigerator.getInstance().pickItem(new ItemStack(item, 20));
-        System.out.println(Refrigerator.getInstance().showStorage());
-        return null;
+        return new Result<>(false, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+
     }
     public Result<String> test1(String input) {
         //get info in coordinate;
@@ -153,6 +143,7 @@ public class GameMenuController {
 
         //TODO
         doAnimalSystemTasks();
+        Game.getInstance().getWeatherManager().setWeathersInMorning();
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
@@ -209,15 +200,18 @@ public class GameMenuController {
     }
 
     public Result<String> showWeather() {
-        return null;
+        return new Result<>(true, Game.getInstance().getWeatherManager().getCurrentWeather().toString());
     }
 
     public Result<String> showWeatherForecast() {
-        return null;
+        return new Result<>(true, Game.getInstance().getWeatherManager().getTomorrowWeather().toString());
     }
 
-    public Result<String> cheatSetTomorrowWeather(String weather) {
-        return null;
+    public Result<String> cheatSetTomorrowWeather(String weatherName) {
+        Weather weather = Weather.getWeatherByName(weatherName);
+        if (weather == null) return new Result<>(false, weatherName + "doesn't exist");
+        Game.getInstance().getWeatherManager().setTomorrowWeather(weather);
+        return new Result<>(true, "Tomorrow weather is " + weather + " now");
     }
 
     public Result<String> buildGreenhouse() {

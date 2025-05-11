@@ -41,7 +41,10 @@ public enum GameMenuCommands implements Command{
     PickRefrigerator("\\s*cooking\\s+refrigerator\\s+pick\\s+(?<name>.*)\\s+(?<amount>\\d+)\\s*"),
     ShowCookingRecipes("\\s*cooking\\s+show\\s+recipes\\s*"),
     PrepareCooking("\\s*cooking\\s+prepare\\s+(?<name>.*)\\s*"),
-    EatFood("\\s*eat\\s+(?<name>.*)\\s*")
+    EatFood("\\s*eat\\s+(?<name>.*)\\s*"),
+    Weather("\\s*weather\\s*"),
+    WeatherForecast("\\s*weather\\s*forecast\\s*"),
+    CheatWeatherSet("\\s*cheat\\s*weather\\s*set\\s+(?<weatherName>\\S+)\\s*"),
     ;
     private final String command;
     GameMenuCommands(String command) {

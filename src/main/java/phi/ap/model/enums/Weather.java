@@ -23,6 +23,16 @@ public enum Weather {
         return seasonList;
     }
 
+    public static Weather getWeatherByName(String name) {
+        name = name.toLowerCase();
+        for (Weather weather : Weather.values()) {
+            if (weather.name().toLowerCase().equals(name)) {
+                return weather;
+            }
+        }
+        return null;
+    }
+
     public static void doThunderStorm(int x, int y){
 
     }

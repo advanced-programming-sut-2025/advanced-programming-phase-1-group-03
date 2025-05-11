@@ -25,6 +25,7 @@ public class GameService {
 
     public void initializeGame() {
         game.setMap(new Map());
+        game.getWeatherManager().setWeathersInMorning();
         //adding farms
         for (Player player : game.getPlayers()) {
             game.getMap().addFarm(new Farm(player.getFarmType()), player);
