@@ -24,6 +24,8 @@ public class Animal extends Item {
         this.type = animalType;
         this.remainingDayToProduce = this.type.getDayToProduce();
         setName(animalType.name());
+        setSellable(true);
+        setSellPrice(animalType.getPrice());
     }
 
     public void setRemainingDayToProduce() {
@@ -117,8 +119,8 @@ public class Animal extends Item {
             return new AnimalProduct(1, 1, type.getAnimalProductTypes().get(0), levelName, productNum, this);
     }
 
-    public double getSellPrice() {
-        return type.getPrice() * (friendShipAmount/1000 + 0.3);
+    public int getSellPrice() {
+        return (int)(type.getPrice() * (friendShipAmount/1000 + 0.3));
     }
 
     @Override

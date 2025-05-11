@@ -10,6 +10,8 @@ public class Food extends Product {
         this.foodType = foodType;
         setName(foodType.getName());
         setMaxStackSize(5);
+        setSellable(true);
+        setSellPrice(foodType.getSellPrice());
     }
 
     public FoodTypes getFoodType() {

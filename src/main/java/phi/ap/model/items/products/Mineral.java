@@ -11,6 +11,8 @@ public class Mineral extends Product {
         this.foragingType = foragingType;
         setName(foragingType.getName());
         fillTile(foragingType.getTile());
+        setSellable(true);
+        setSellPrice(foragingType.getSellPrice());
     }
 
     public ForagingMineralTypes getForagingType() {

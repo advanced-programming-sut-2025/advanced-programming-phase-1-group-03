@@ -10,6 +10,7 @@ public class Seed extends Item {
         super(height, width);
         this.seedType = seedType;
         fillTile(seedType.getTile());
+        setSellable(false);
     }
 
     @Override
