@@ -98,7 +98,7 @@ public class GameService {
                         if (App.getInstance().eventRandom(10)) {
                             int ind = App.getInstance().getRandomNumber(0, TreeTypes.values().length - 1);
                             TreeTypes type = TreeTypes.values()[ind];
-                            Tree tree = new Tree(type, 1, 1);
+                            Tree tree = new Tree(1, 1, type, true);
                             tree.setCoordinate(new Coordinate(0, 0));
                             ground.getItem(i, j).addItem(tree);
                         }

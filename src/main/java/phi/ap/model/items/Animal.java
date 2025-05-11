@@ -117,8 +117,8 @@ public class Animal extends Item {
             return new AnimalProduct(1, 1, type.getAnimalProductTypes().get(0), levelName, productNum, this);
     }
 
-    public double getSellPrice() {
-        return type.getPrice() * (friendShipAmount/1000 + 0.3);
+    public int getSellPrice() {
+        return (int) (type.getPrice() * ((double) friendShipAmount /1000 + 0.3)); // TODO : bug possible
     }
 
     @Override

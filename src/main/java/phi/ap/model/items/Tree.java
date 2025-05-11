@@ -20,10 +20,15 @@ public class Tree extends Plant {
     private int HarvestRegrowthTime = 1; // default : last stage
     private Date lastHarvestDate;
 
-    public Tree(int height, int width, TreeTypes type, SeedTypes seedType, SaplingTypes saplingType) {
+    public Tree(int height, int width, TreeTypes type, boolean isForaging) {
 
         super(height, width, null, type.getStages(), false, Game.getInstance().getDate());
+        if (isForaging) {
+            setPlantingDate(new Date(Game.getInstance().getDate().getDay() - totalHarvestTime()));
+        }
         String sourceName = null;
+        seedType = type.getSeedType();
+        saplingType = type.getSaplingType();
         if (seedType != null) sourceName = seedType.toString();
         else if (saplingType != null) sourceName = saplingType.toString();
         setSourceName(sourceName);
@@ -38,6 +43,7 @@ public class Tree extends Plant {
         }
         fillTile(type.getTile());//TODO : look manage;
     }
+
 
     public TreeTypes getType() {
         return type;

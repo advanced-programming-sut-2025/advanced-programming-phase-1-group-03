@@ -77,7 +77,7 @@ public enum CropsTypes {
     public String getName() {
         return name;
     }
-    public SeedTypes getSead() {
+    public SeedTypes getSeed() {
         return source;
     }
     public ArrayList<Integer> getStage() {

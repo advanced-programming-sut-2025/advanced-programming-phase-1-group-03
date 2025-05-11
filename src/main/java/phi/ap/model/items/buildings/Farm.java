@@ -4,6 +4,7 @@ import phi.ap.model.*;
 import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Dirt;
+import phi.ap.model.items.Item;
 import phi.ap.model.items.Portal;
 
 import java.util.ArrayList;
@@ -85,6 +86,22 @@ public class Farm extends Building {
                         quarry, tempCo, null);
             }
 
+        }
+    }
+
+    public void removeItem(Item item) { //base on ground;
+        super.removeItem(item);
+        int y = item.getCoordinate().getY();
+        int x = item.getCoordinate().getX();
+        for (int i = y; i < y + item.getHeight(); i++) {
+            for (int j = x; j < x + item.getWidth(); j++) {
+                if (getItem(i, j) == null) {
+                    Dirt dirt = new Dirt();
+                    dirt.setTile(0, 0, TileType.Dirt.getTile());
+                    dirt.setCoordinate(new Coordinate(i, j));
+                    addItem(dirt);
+                }
+            }
         }
     }
 
