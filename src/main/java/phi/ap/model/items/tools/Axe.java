@@ -5,6 +5,7 @@ import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.LevelName;
 import phi.ap.model.items.*;
 import phi.ap.model.items.products.Fruit;
+import phi.ap.model.items.products.Tree;
 import phi.ap.model.items.products.Wood;
 
 import java.util.ArrayList;

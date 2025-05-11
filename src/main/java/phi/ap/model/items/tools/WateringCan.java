@@ -7,7 +7,7 @@ import phi.ap.model.Result;
 import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.LevelName;
 import phi.ap.model.items.Item;
-import phi.ap.model.items.Plant;
+import phi.ap.model.items.products.Plant;
 import phi.ap.model.items.Water;
 
 import java.util.ArrayList;

@@ -24,6 +24,22 @@ public class LevelProcess {
         this.currentLevel = levelProcess.getCurrentLevel();
     }
 
+    public boolean levelNamesEqual(ArrayList<LevelName> levelNames) {
+        if (levelNames == null) return false;
+        if (levelNames.size() != this.levelNames.size()) return false;
+        for (int i = 0; i < levelNames.size(); i++) {
+            if (!levelNames.get(i).equals(this.levelNames.get(i))) return false;
+        }
+        return true;
+    }
+
+    public boolean isEqual(LevelProcess levelProcess) {
+        if (levelProcess == null) return false;
+        if (!levelNamesEqual(levelProcess.getLevelNames())) return false;
+        if (levelProcess.getCurrentLevel() != this.currentLevel) return false;
+        return true;
+    }
+
     public ArrayList<LevelName> getLevelNames() {
         return levelNames;
     }

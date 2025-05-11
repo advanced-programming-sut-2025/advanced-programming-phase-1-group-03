@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Product extends Item {
-    private LevelProcess levels;
+    private LevelProcess levels = null;
     private ArrayList<ItemStack> drops = new ArrayList<>();
     private ArrayList<ItemStack> products = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class Product extends Item {
 
     public Product(Product product) {
         super(product.getHeight(), product.getWidth());
-        this.levels = new LevelProcess(product.getLevels());
+        if (product.getLevels() != null) this.levels = new LevelProcess(product.getLevels());
         if (product.getEatable() != null) setEatable(new Eatable(product.getEatable()));
         else setEatable(null);
         setName(product.getName());
@@ -46,7 +46,7 @@ public class Product extends Item {
     public Product(ProductNames type) {
         super(type.getInstance().getHeight(), type.getInstance().getWidth());
         Product product = type.getInstance();
-        this.levels = new LevelProcess(product.getLevels());
+        if (product.getLevels() != null) this.levels = new LevelProcess(product.getLevels());
         if (product.getEatable() != null) setEatable(new Eatable(product.getEatable()));
         else setEatable(null);
         setName(product.getName());
@@ -73,7 +73,12 @@ public class Product extends Item {
     public boolean canStackWith(Item otherItem) {
         if (!super.canStackWith(otherItem)) return false;
         if (!(otherItem instanceof Product otherProduct)) return false;
-        return otherProduct.getName().equals(getName());
+        if(!otherProduct.getName().equals(getName())) return false;
+        if (otherProduct.getLevels() != null) {
+            if (levels == null) return false;
+            if (!levels.isEqual(otherProduct.getLevels())) return false;
+        }
+        return true;
     }
 
     public LevelProcess getLevels() {
