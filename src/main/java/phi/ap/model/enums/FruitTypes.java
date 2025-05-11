@@ -22,6 +22,7 @@ public enum FruitTypes {
     MysticSyrup("MysticSyrup", 1000, new Eatable(500), Seasons.getAll()),
     RegularSampleFruit("RegularSampleFruit", 10, new Eatable(10), Seasons.getAll());//TODO : remove it
 
+
     private final String name;
     private int baseSellPrice;
     private Eatable eatable;
@@ -31,7 +32,16 @@ public enum FruitTypes {
         this.eatable = eatable;
         this.name = name;
     }
+
     public String getName() {
         return name;
+    }
+
+    public int getBaseSellPrice() {
+        return baseSellPrice;
+    }
+
+    public Eatable getEatable() {
+        return eatable;
     }
 }

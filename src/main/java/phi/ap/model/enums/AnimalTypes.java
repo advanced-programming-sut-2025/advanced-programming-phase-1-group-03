@@ -18,6 +18,7 @@ public enum AnimalTypes {
     Dinosaur("Dinosaur", 8000,3, new ArrayList<>(Arrays.asList(AnimalProductTypes.DinosaurEgg))),
     Pig("Pig", 16000, Integer.MAX_VALUE, new ArrayList<>(Arrays.asList(AnimalProductTypes.Truffle)));
 
+
     private final String name;
     private final int price;
     private final int dayToProduce;
@@ -32,6 +33,10 @@ public enum AnimalTypes {
 
     public int getDayToProduce() {
         return dayToProduce;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public ArrayList<AnimalProductTypes> getAnimalProductTypes() {

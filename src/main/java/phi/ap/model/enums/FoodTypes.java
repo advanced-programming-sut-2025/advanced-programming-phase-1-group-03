@@ -122,21 +122,22 @@ public enum FoodTypes {
     DishOTheSea("DishOTheSea", new ArrayList<>(Arrays.asList(
             new ItemStack(new Fish(1, 1, FishTypes.Sardine), 2),
             new ItemStack(new Food(1, 1, FoodTypes.HashBrowns), 1))),
-            new Eatable(150), 220, null, null)
+            new Eatable(150), 220, null, null),
+    SeafoamPudding("SeafoamPudding", new ArrayList<>(Arrays.asList(
+            new ItemStack(new Fish(1, 1, FishTypes.Flounder), 1),
+            new ItemStack(new Fish(1, 1, FishTypes.MidnightCarp), 1))),
+            new Eatable(175), 300, null, null),
 
-//    SeafoamPudding("SeafoamPudding", new ArrayList<>(Arrays.asList(
-//            new ItemStack(new AnimalProduct(1, 1, CropsTypes.F), 1),
-//            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.MidnightCarp), 1))),
-//            new Eatable(175), 300, new Buff(10, "Fishing (10 hours)"), null),
-//
-//    MinersTreat("MinersTreat", new ArrayList<>(Arrays.asList(
-//            new ItemStack(new Crop(1, 1, CropsTypes.Carrot), 2),
-//            new ItemStack(new Food(1, 1, FoodTypes.Sugar), 1),
-//            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Milk), 1))),
-//            new Eatable(125), 200, new Buff(5, "Mining (5 hours)"), null);
-    ;
+    MinersTreat("MinersTreat", new ArrayList<>(Arrays.asList(
+            new ItemStack(new Crop(1, 1, CropsTypes.CARROT), 2),
+            new ItemStack(new Food(1, 1, FoodTypes.Sugar), 1),
+            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Milk), 1))),
+            new Eatable(125), 200, null, null);
     // making foods.
     private ArrayList<ItemStack> ingredients;
+    private Recipe recipe;
+
+
     private String name;
     private Eatable eatable;
     private int sellPrice;
@@ -144,6 +145,7 @@ public enum FoodTypes {
     private Integer hour;
     private FoodTypes(String name, ArrayList<ItemStack> ingredients, Eatable eatable, int sellPrice, AbilityType abilityType, Integer hour) {
         this.ingredients = ingredients;
+        recipe = new Recipe(1, 1, ingredients, new ItemStack(new Food(1, 1, FoodTypes.valueOf(name)), 1), RecipeTypes.valueOf(name));
         this.eatable = eatable;
         this.sellPrice = sellPrice;
         this.name = name;
@@ -159,58 +161,13 @@ public enum FoodTypes {
     public String getName() {
         return name;
     }
-}
-/*
-public enum FoodItem {
-    FriedEgg("FriedEgg", new ArrayList<>(Arrays.asList(
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.ChickenEgg), 1))),
-            new Eatable(50), 35, null, null),
 
-    BakedFish("BakedFish", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Fish(1, 1, FishTypes.Sardine), 1),
-            new ItemStack(new Fish(1, 1, FishTypes.Salmon), 1),
-            new ItemStack(new Crop(1, 1, CropTypes.Wheat), 1))),
-            new Eatable(75), 100, null, null),
-
-    Salad("Salad", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropTypes.Leek), 1),
-            new ItemStack(new Forage(1, 1, ForageTypes.Dandelion), 1))),
-            new Eatable(113), 110, null, null),
-
-    Omelet("Omelet", new ArrayList<>(Arrays.asList(
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.ChickenEgg), 1),
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Milk), 1))),
-            new Eatable(100), 125, null, null),
-
-    PumpkinPie("PumpkinPie", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropTypes.Pumpkin), 1),
-            new ItemStack(new Crop(1, 1, CropTypes.Wheat), 1),
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Milk), 1),
-            new ItemStack(new Crop(1, 1, CropTypes.Sugar), 1))),
-            new Eatable(225), 385, null, null);
-
-    private final String name;
-    private final List<ItemStack> ingredients;
-    private final Eatable eatable;
-    private final int sellPrice;
-    private final Object source;
-    private final Object buff;
-
-    FoodItem(String name, List<ItemStack> ingredients, Eatable eatable, int sellPrice, Object source, Object buff) {
-        this.name = name;
-        this.ingredients = ingredients;
-        this.eatable = eatable;
-        this.sellPrice = sellPrice;
-        this.source = source;
-        this.buff = buff;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<ItemStack> getIngredients() {
+    public ArrayList<ItemStack> getIngredients() {
         return ingredients;
+    }
+
+    public Recipe getRecipe() {
+        return recipe;
     }
 
     public Eatable getEatable() {
@@ -221,220 +178,11 @@ public enum FoodItem {
         return sellPrice;
     }
 
-    public Object getSource() {
-        return source;
+    public AbilityType getAbilityType() {
+        return abilityType;
     }
 
-    public Object getBuff() {
-        return buff;
-    }
-}
-
-
-public enum FoodItem {
-    Spaghetti("Spaghetti", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Food(1, 1, FoodTypes.WheatFlour), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Tomato), 1))),
-            new Eatable(75), 120, null, null),
-
-    Pizza("Pizza", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Food(1, 1, FoodTypes.WheatFlour), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Tomato), 1),
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Cheese), 1))),
-            new Eatable(150), 300, null, null),
-
-    Tortilla("Tortilla", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropsTypes.Corn), 1))),
-            new Eatable(50), 50, null, null),
-
-    MakiRoll("MakiRoll", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Fish(1, 1, FishTypes.AnyFish), 1),
-            new ItemStack(new Food(1, 1, FoodTypes.Rice), 1),
-            new ItemStack(new Food(1, 1, FoodTypes.Fiber), 1))),
-            new Eatable(100), 220, null, null),
-
-    TripleShotEspresso("TripleShotEspresso", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Food(1, 1, FoodTypes.Coffee), 3))),
-            new Eatable(200), 450, new Buff(100, 5), null),
-
-    Cookie("Cookie", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Food(1, 1, FoodTypes.WheatFlour), 1),
-            new ItemStack(new Food(1, 1, FoodTypes.Sugar), 1),
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.ChickenEgg), 1))),
-            new Eatable(90), 140, null, null),
-
-    HashBrowns("HashBrowns", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropsTypes.Potato), 1),
-            new ItemStack(new Food(1, 1, FoodTypes.Oil), 1))),
-            new Eatable(90), 120, new Buff(5, "Farming"), null),
-
-    Pancakes("Pancakes", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Food(1, 1, FoodTypes.WheatFlour), 1),
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.ChickenEgg), 1))),
-            new Eatable(90), 80, new Buff(11, "Foraging"), null);
-
-    private final String name;
-    private final List<ItemStack> ingredients;
-    private final Eatable eatable;
-    private final int sellPrice;
-    private final Object source;
-    private final Object buff;
-
-    FoodItem(String name, List<ItemStack> ingredients, Eatable eatable, int sellPrice, Object source, Object buff) {
-        this.name = name;
-        this.ingredients = ingredients;
-        this.eatable = eatable;
-        this.sellPrice = sellPrice;
-        this.source = source;
-        this.buff = buff;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<ItemStack> getIngredients() {
-        return ingredients;
-    }
-
-    public Eatable getEatable() {
-        return eatable;
-    }
-
-    public int getSellPrice() {
-        return sellPrice;
-    }
-
-    public Object getSource() {
-        return source;
-    }
-
-    public Object getBuff() {
-        return buff;
+    public Integer getHour() {
+        return hour;
     }
 }
-
-
-public enum FoodRecipe {
-    HashBrowns("HashBrowns", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropsTypes.Potato), 1),
-            new ItemStack(new Food(1, 1, FoodTypes.Oil), 1))),
-            new Eatable(90), 120, new Buff(5, "Farming"), null),
-
-    Pancakes("Pancakes", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Food(1, 1, FoodTypes.WheatFlour), 1),
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.ChickenEgg), 1))),
-            new Eatable(90), 80, new Buff(11, "Foraging"), null),
-
-    FruitSalad("FruitSalad", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropsTypes.Blueberry), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Melon), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Apricot), 1))),
-            new Eatable(263), 450, null, null),
-
-    RedPlate("RedPlate", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropsTypes.RedCabbage), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Radish), 1))),
-            new Eatable(240), 400, new Buff(3, "max Energy +50"), null),
-
-    Bread("Bread", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Food(1, 1, FoodTypes.WheatFlour), 1))),
-            new Eatable(50), 60, null, null),
-
-    Omelet("Omelet", new ArrayList<>(Arrays.asList(
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.ChickenEgg), 1),
-            new ItemStack(new Food(1, 1, FoodTypes.Oil), 1))),
-            new Eatable(100), 150, new Buff(2, "Attack"), null),
-
-    VegetableStew("VegetableStew", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropsTypes.Carrot), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Potato), 1))),
-            new Eatable(180), 300, new Buff(7, "Defense"), null);
-
-    private final String name;
-    private final List<ItemStack> ingredients;
-    private final Eatable eatable;
-    private final int price;
-    private final Buff buff;
-    private final String source;
-
-    FoodRecipe(String name, List<ItemStack> ingredients, Eatable eatable, int price, Buff buff, String source) {
-        this.name = name;
-        this.ingredients = ingredients;
-        this.eatable = eatable;
-        this.price = price;
-        this.buff = buff;
-        this.source = source;
-    }
-
-    public String getName() { return name; }
-    public List<ItemStack> getIngredients() { return ingredients; }
-    public Eatable getEatable() { return eatable; }
-    public int getPrice() { return price; }
-    public Buff getBuff() { return buff; }
-    public String getSource() { return source; }
-}
-
-public enum FoodRecipe {
-    SalmonDinner("SalmonDinner", new ArrayList<>(Arrays.asList(
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Salmon), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Amaranth), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Kale), 1))),
-            new Eatable(125), 300, new Buff(0, "Leah reward"), null),
-
-    VegetableMedley("VegetableMedley", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropsTypes.Tomato), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Beet), 1))),
-            new Eatable(165), 120, new Buff(2, "Foraging Level 2"), null),
-
-    FarmersLunch("FarmersLunch", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Food(1, 1, FoodTypes.Omelet), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Parsnip), 1))),
-            new Eatable(200), 150, new Buff(1, "Farming Level 1"), null),
-
-    SurvivalBurger("SurvivalBurger", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Food(1, 1, FoodTypes.Bread), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Carrot), 1),
-            new ItemStack(new Crop(1, 1, CropsTypes.Eggplant), 1))),
-            new Eatable(125), 180, new Buff(5, "Foraging (5 hours)"), null),
-
-    DishOTheSea("DishOTheSea", new ArrayList<>(Arrays.asList(
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Sardine), 2),
-            new ItemStack(new Food(1, 1, FoodTypes.HashBrowns), 1))),
-            new Eatable(150), 220, new Buff(5, "Fishing (5 hours)"), null),
-
-    SeafoamPudding("SeafoamPudding", new ArrayList<>(Arrays.asList(
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Flounder), 1),
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.MidnightCarp), 1))),
-            new Eatable(175), 300, new Buff(10, "Fishing (10 hours)"), null),
-
-    MinersTreat("MinersTreat", new ArrayList<>(Arrays.asList(
-            new ItemStack(new Crop(1, 1, CropsTypes.Carrot), 2),
-            new ItemStack(new Food(1, 1, FoodTypes.Sugar), 1),
-            new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Milk), 1))),
-            new Eatable(125), 200, new Buff(5, "Mining (5 hours)"), null);
-
-    private final String name;
-    private final List<ItemStack> ingredients;
-    private final Eatable eatable;
-    private final int price;
-    private final Buff buff;
-    private final String source;
-
-    FoodRecipe(String name, List<ItemStack> ingredients, Eatable eatable, int price, Buff buff, String source) {
-        this.name = name;
-        this.ingredients = ingredients;
-        this.eatable = eatable;
-        this.price = price;
-        this.buff = buff;
-        this.source = source;
-    }
-
-    public String getName() { return name; }
-    public List<ItemStack> getIngredients() { return ingredients; }
-    public Eatable getEatable() { return eatable; }
-    public int getPrice() { return price; }
-    public Buff getBuff() { return buff; }
-    public String getSource() { return source; }
-}
- */

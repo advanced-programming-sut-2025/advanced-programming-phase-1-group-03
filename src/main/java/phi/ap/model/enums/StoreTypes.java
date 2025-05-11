@@ -8,20 +8,44 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public enum StoreTypes {
-    Blacksmith(NPCTypes.Clint, 9, 16),
-    MarnieRanch(NPCTypes.Marnie, 9, 16),
-    TheStarDropSaloon(NPCTypes.Gus, 12, 24),
-    CarpenterShop(NPCTypes.Robin, 9, 20),
-    JojaMart(NPCTypes.Morris, 9, 23),
-    PierreGeneralStore(NPCTypes.Pierre, 9, 17),
-    FishShop(NPCTypes.Willy, 9, 17);
+    Blacksmith("Blacksmith", NPCTypes.Clint, 9, 16),
+    MarnieRanch("MarnieRanch", NPCTypes.Marnie, 9, 16),
+    TheStarDropSaloon("TheStarDropSaloon", NPCTypes.Gus, 12, 24),
+    CarpenterShop("CarpenterShop", NPCTypes.Robin, 9, 20),
+    JojaMart("JojaMart", NPCTypes.Morris, 9, 23),
+    PierreGeneralStore("PierreGeneralStore", NPCTypes.Pierre, 9, 17),
+    FishShop("FishShop", NPCTypes.Willy, 9, 17);
     private NPCTypes storeManager;
+
+
     private int openingTime;
     private int closingTime;
     private ArrayList<Item> products;
-    StoreTypes(NPCTypes npcTypes, int openingTime, int closingTime) {
+    private String name;
+    StoreTypes(String name, NPCTypes npcTypes, int openingTime, int closingTime) {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
         this.products = products;
+        this.name = name;
+    }
+
+    public NPCTypes getStoreManager() {
+        return storeManager;
+    }
+
+    public int getOpeningTime() {
+        return openingTime;
+    }
+
+    public int getClosingTime() {
+        return closingTime;
+    }
+
+    public ArrayList<Item> getProducts() {
+        return products;
+    }
+
+    public String getName() {
+        return name;
     }
 }

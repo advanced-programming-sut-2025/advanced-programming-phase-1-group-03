@@ -7,10 +7,11 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Store extends Building {
-    public Store(int height, int width) {
-
+    private StoreTypes storeType;
+    public Store(int height, int width, StoreTypes storeType) {
         super(height, width);
-        setName("Store");
+        setName(storeType.getName());
+        this.storeType = storeType;
     }
 
     StoreTypes storeTypes;

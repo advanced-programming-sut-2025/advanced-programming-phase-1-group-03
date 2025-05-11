@@ -22,8 +22,8 @@ public class Player extends Human {
 
     private ArrayList<Ability> abilities = new ArrayList<>();
     private ArrayList<AnimalHouse> ownedAnimalHouse;
-    private ArrayList<Recipe> craftingRecipes;
-    private ArrayList<Recipe> cookingRecipes;
+    private ArrayList<Recipe> craftingRecipes = new ArrayList<>();
+    private ArrayList<Recipe> cookingRecipes = new ArrayList<>();
     private ArrayList<Animal> animals = new ArrayList<>();
     private ArrayList<Gift> giftsReceived;
     private ArrayList<MarriageRequest> marriageRequests;
@@ -32,6 +32,15 @@ public class Player extends Human {
     private FarmTypes farmType = null;
     private Farm farm = null;
     private Location location;
+
+    public Recipe getRecipe(String name) {
+        for(Recipe recipe : Game.getInstance().getCurrentPlayer().getCookingRecipes()) {
+            if(recipe.getName().equals(name)) {
+                return recipe;
+            }
+        }
+        return null;
+    }
 
     public Animal getAnimalByName(String name) {
         for(Animal animal : animals) {

@@ -13,10 +13,12 @@ public class Crop extends Product {
         super(height, width);
         this.foragingType = type;
         fillTile(type.getTile());
+        setName(type.getName());
     }
     public Crop(int height, int width, CropsTypes cropsType) {
         super(height, width);
         this.cropsType = cropsType;
+        setName(cropsType.getName());
     }
 
     public ForagingCropsTypes getForagingType() {

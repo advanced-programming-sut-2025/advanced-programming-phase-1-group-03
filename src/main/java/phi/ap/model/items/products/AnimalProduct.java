@@ -18,10 +18,12 @@ public class AnimalProduct extends Product {
         this.levelName = levelName;
         this.productNum = productNum;
         this.animal = animal;
+        setName(animalProductType.getName());
     }
     public AnimalProduct(int height, int width, AnimalProductTypes animalProductType) {
         super(height, width);
         this.animalProductType = animalProductType;
+        setName(animalProductType.getName());
     }
 
     public AnimalProductTypes getAnimalProductType() {

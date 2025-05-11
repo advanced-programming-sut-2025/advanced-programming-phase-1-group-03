@@ -9,6 +9,8 @@ import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Food;
 import phi.ap.model.items.products.Recipe;
 
+import java.util.ArrayList;
+
 public enum StarDropSaloonProducts {
     BEER("Beer", "Drink in moderation.", 400, Integer.MAX_VALUE, new Food(1, 1,
             FoodTypes.Beer), StoreTypes.TheStarDropSaloon),
@@ -83,7 +85,8 @@ public enum StarDropSaloonProducts {
         starDropSaloonProducts.dailyLimit -= amount;
         Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() -
                 amount * starDropSaloonProducts.price);
-        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(starDropSaloonProducts.item, amount);
+        ArrayList<Recipe> recipe = Game.getInstance().getCurrentPlayer().getCookingRecipes();
+        recipe.add(new Recipe(1, 1, null, null, ((Recipe)starDropSaloonProducts.item).getRecipeType()));
         return new Result<>(true, "Item purchased successfully");
     }
 

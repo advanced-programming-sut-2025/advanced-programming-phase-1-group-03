@@ -12,7 +12,7 @@ public class AnimalHouse extends Building {
 
     public AnimalHouse(int height, int width, BuildingTypes buildingType, Coordinate coordinate) {
         super(height, width);
-        setName("AnimalHouse");
+        setName(buildingType.getName());
         this.buildingType = buildingType;
         setCoordinate(coordinate);
         fillTile(buildingType.getTile());

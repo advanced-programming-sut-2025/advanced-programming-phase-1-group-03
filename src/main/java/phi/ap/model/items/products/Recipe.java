@@ -14,6 +14,7 @@ public class Recipe extends Product {
         this.ingredients = ingredients;
         this.result = result;
         this.recipeType = recipeType;
+        setName(recipeType.getName());
     }
 
     public ArrayList<ItemStack> getIngredients() {
@@ -22,6 +23,10 @@ public class Recipe extends Product {
 
     public ItemStack getResult() {
         return result;
+    }
+
+    public RecipeTypes getRecipeType() {
+        return this.recipeType;
     }
 
     @Override

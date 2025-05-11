@@ -9,6 +9,7 @@ public class Mineral extends Product {
     public Mineral(int height, int width, ForagingMineralTypes foragingType) {
         super(height, width);
         this.foragingType = foragingType;
+        setName(foragingType.getName());
         fillTile(foragingType.getTile());
     }
 
