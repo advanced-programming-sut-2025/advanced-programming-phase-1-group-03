@@ -45,9 +45,9 @@ public class Pickaxe extends Tool{
             }
             case Mineral mineral -> {
                 if(!reduceSuccessEnergy()) return new Result<>(false, "You don't have enough energy!");
-                if(canIMineThisLevel(mineral.getForagingType().getLevelNeedToMine()))
+                if(!canIMineThisLevel(mineral.getForagingType().getLevelNeedToMine()))
                     return new Result<>(false,
-                            "Your pickaxe must be at least" + mineral.getForagingType().getLevelNeedToMine().toString());
+                            "Your pickaxe must be at least " + mineral.getForagingType().getLevelNeedToMine().toString());
                 Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(mineral, 1);
                 mineral.getFather().removeItem(mineral);
                 return new Result<>(true, "You gained one " + mineral.getName() +"!");
