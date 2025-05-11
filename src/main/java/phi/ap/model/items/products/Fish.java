@@ -9,6 +9,8 @@ public class Fish extends Product {
         super(height, width);
         this.fishTypes = fishTypes;
         setName(fishTypes.getName());
+        setSellPrice(fishTypes.getBasePrice());
+        setSellable(true);
     }
 
     @Override

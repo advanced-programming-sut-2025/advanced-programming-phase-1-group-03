@@ -24,6 +24,8 @@ public class Animal extends Item {
         this.type = animalType;
         this.remainingDayToProduce = this.type.getDayToProduce();
         setName(animalType.name());
+        setSellable(true);
+        setSellPrice(animalType.getPrice());
     }
 
     public void setRemainingDayToProduce() {
