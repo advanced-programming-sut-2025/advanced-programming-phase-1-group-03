@@ -86,5 +86,12 @@ public class InventoryManager {
         }
         return food;
     }
+    public String showStorage() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for(ItemStack itemStack : storage.getStacks()) {
+            stringBuilder.append("Name: " + itemStack.getItem().getName() + " Amount: " + itemStack.getAmount() + "\n");
+        }
+        return stringBuilder.toString();
+    }
 }
 

@@ -11,6 +11,10 @@ public class ItemStack {
         this.amount = amount;
     }
 
+    public void reduceAmount(int amount) {
+        this.amount -= amount;
+    }
+
     public boolean isFull() {
         if (amount == item.getMaxStackSize()) {
             return true;

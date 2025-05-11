@@ -3,11 +3,15 @@ package phi.ap.Controller.MenuControllers.MainMenuControllers;
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
 import phi.ap.model.enums.StoreProducts.*;
+import phi.ap.model.items.Item;
 import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.buildings.Farm;
+import phi.ap.model.items.machines.Refrigerator;
 import phi.ap.model.items.producers.Animal;
 import phi.ap.model.items.products.AnimalProduct;
+import phi.ap.model.items.products.Fish;
 import phi.ap.model.items.products.Food;
+import phi.ap.model.items.products.Fruit;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
@@ -18,8 +22,17 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        String[] params = Arrays.stream(input.split("\\s+")).filter(s -> !s.isEmpty()).toArray(String[]::new);
-
+        Item item = new Food(1, 1, FoodTypes.Hay);
+        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, 10);
+        System.out.println(Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+        Refrigerator.getInstance().putItem(new ItemStack(item, 8));
+        System.out.println(Refrigerator.getInstance().showStorage());
+        Refrigerator.getInstance().putItem(new ItemStack(item, 2));
+        System.out.println(Refrigerator.getInstance().showStorage());
+        Refrigerator.getInstance().pickItem(new ItemStack(item, 3));
+        System.out.println(Refrigerator.getInstance().showStorage());
+        Refrigerator.getInstance().pickItem(new ItemStack(item, 20));
+        System.out.println(Refrigerator.getInstance().showStorage());
         return null;
     }
     public Result<String> test1(String input) {
@@ -427,8 +440,103 @@ public class GameMenuController {
     public Result<String> cheatAddItem(String itemName, String amount) {
         return null;
     }
-    public Result<String> openRefrigerator(String pickPut, String Item) {
-        return null;
+    public Result<String> putItemToRefrigerator(String name, int amount) {
+        Item item;
+        Boolean isFood = false;
+        FoodTypes foodType = null;
+        try {
+            foodType = FoodTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+
+        }
+        if(foodType != null) {
+            isFood = true;
+            Refrigerator.getInstance().putItem(new ItemStack(new Food(1, 1, foodType), amount));
+        }
+        AnimalProductTypes animalProductType = null;
+        try {
+            animalProductType = AnimalProductTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+
+        }
+        if(animalProductType != null && !animalProductType.equals(AnimalProductTypes.Wool) && !animalProductType.equals(AnimalProductTypes.RabbitFoot)) {
+            isFood = true;
+            Refrigerator.getInstance().putItem(new ItemStack(new AnimalProduct(1, 1, animalProductType, null, 0, null), amount));
+        }
+        FishTypes fishType = null;
+        try {
+            fishType = FishTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+
+        }
+        if(fishType != null) {
+            isFood = true;
+            Refrigerator.getInstance().putItem(new ItemStack(new Fish(1, 1, fishType), amount));
+        }
+        FruitTypes fruitType = null;
+        try {
+            fruitType = FruitTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+
+        }
+        if(fruitType != null) {
+            isFood = true;
+            Refrigerator.getInstance().putItem(new ItemStack(new Fruit(1, 1, fruitType), amount));
+        }
+        if(isFood)
+            return new Result<>(true, "Item added to refrigerator successfully.");
+        else
+            return new Result<>(false, "This item is not food.");
+    }
+    public Result<String> pickItemFromRefrigerator(String name, String amountString) {
+        int amount = Integer.parseInt(amountString);
+        int pickAmount = 0;
+        Item item;
+        Boolean isFood = false;
+        FoodTypes foodType = null;
+        try {
+            foodType = FoodTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+
+        }
+        if(foodType != null) {
+            isFood = true;
+            pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new Food(1, 1, foodType), amount));
+        }
+        AnimalProductTypes animalProductType = null;
+        try {
+            animalProductType = AnimalProductTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+
+        }
+        if(animalProductType != null && !animalProductType.equals(AnimalProductTypes.Wool) && !animalProductType.equals(AnimalProductTypes.RabbitFoot)) {
+            isFood = true;
+            pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new AnimalProduct(1, 1, animalProductType, null, 0, null), amount));
+        }
+        FishTypes fishType = null;
+        try {
+            fishType = FishTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+
+        }
+        if(fishType != null) {
+            isFood = true;
+            pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new Fish(1, 1, fishType), amount));
+        }
+        FruitTypes fruitType = null;
+        try {
+            fruitType = FruitTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+
+        }
+        if(fruitType != null) {
+            isFood = true;
+            pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new Fruit(1, 1, fruitType), amount));
+        }
+        if(isFood)
+            return new Result<>(true, pickAmount + " Items picked from refrigerator successfully.");
+        else
+            return new Result<>(false, "This item is not food.");
     }
     public Result<String> showCookingRecipe() {
         return null;
