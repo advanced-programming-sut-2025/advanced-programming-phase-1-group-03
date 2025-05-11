@@ -1,8 +1,8 @@
-package phi.ap.model.items.producers;
+package phi.ap.model.items;
 
 import phi.ap.model.enums.SeedTypes;
 
-public class Seed extends Producer {
+public class Seed extends Item {
 
     private SeedTypes seedType;
 
@@ -10,11 +10,6 @@ public class Seed extends Producer {
         super(height, width);
         this.seedType = seedType;
         fillTile(seedType.getTile());
-    }
-
-    @Override
-    public void produce() {
-
     }
 
     @Override

@@ -8,6 +8,10 @@ public class Eatable {
         this.energy = energy;
     }
 
+    public Eatable(Eatable eatable) {
+        this.energy = eatable.getEnergy();
+    }
+
     public int getEnergy() {
         return energy;
     }

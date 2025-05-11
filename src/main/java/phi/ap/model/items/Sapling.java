@@ -1,18 +1,13 @@
-package phi.ap.model.items.producers;
+package phi.ap.model.items;
 
 import phi.ap.model.enums.SaplingTypes;
-import phi.ap.model.enums.SeedTypes;
 
-public class Sapling extends Producer {
+public class Sapling extends Item {
     private SaplingTypes saplingType;
 
     public Sapling(int height, int width, SaplingTypes saplingType) {
         super(height, width);
         this.saplingType = saplingType;
-    }
-    @Override
-    public void produce() {
-
     }
 
     @Override

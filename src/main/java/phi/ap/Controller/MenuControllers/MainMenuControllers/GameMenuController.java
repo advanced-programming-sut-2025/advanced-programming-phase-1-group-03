@@ -7,7 +7,7 @@ import phi.ap.model.items.Item;
 import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.machines.Refrigerator;
-import phi.ap.model.items.producers.Animal;
+import phi.ap.model.items.Animal;
 import phi.ap.model.items.products.*;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;

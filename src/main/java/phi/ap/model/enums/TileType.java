@@ -20,7 +20,8 @@ public enum TileType {
     Wall_H_LINE("─", Colors.fg(0), ""),
     Wall_V_LINE("│", Colors.fg(0), ""),
     Door("+", Colors.fg(0), "", true),
-    Player("⍢", Colors.fg(57), "")
+    Player("⍢", Colors.fg(57), ""),
+    Wood("#", Colors.fg(94), "")
     ;
     private final Tile tile;
 

@@ -7,7 +7,7 @@ import phi.ap.model.enums.SeedTypes;
 import phi.ap.model.enums.SoilTypes;
 import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.items.Item;
-import phi.ap.model.items.producers.Seed;
+import phi.ap.model.items.Seed;
 import phi.ap.model.items.products.Food;
 import phi.ap.model.items.products.Soil;
 

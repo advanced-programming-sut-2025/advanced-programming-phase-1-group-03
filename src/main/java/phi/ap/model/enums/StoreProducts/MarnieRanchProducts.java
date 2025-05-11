@@ -8,7 +8,7 @@ import phi.ap.model.enums.FoodTypes;
 import phi.ap.model.enums.StoreTypes;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.buildings.AnimalHouse;
-import phi.ap.model.items.producers.Animal;
+import phi.ap.model.items.Animal;
 import phi.ap.model.items.products.Food;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;

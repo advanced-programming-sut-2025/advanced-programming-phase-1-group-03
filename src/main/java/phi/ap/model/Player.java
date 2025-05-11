@@ -4,12 +4,11 @@ import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.items.buildings.AnimalHouse;
 import phi.ap.model.items.buildings.Farm;
-import phi.ap.model.items.producers.Animal;
+import phi.ap.model.items.Animal;
 import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.relations.MarriageRequest;
 import phi.ap.model.items.relations.Quest;
 import phi.ap.model.items.relations.TradeRequest;
-import phi.ap.model.items.tools.Tool;
 
 import java.util.ArrayList;
 import java.util.List;

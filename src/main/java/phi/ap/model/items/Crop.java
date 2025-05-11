@@ -1,11 +1,10 @@
-package phi.ap.model.items.products;
+package phi.ap.model.items;
 
 import phi.ap.model.enums.CropsTypes;
 import phi.ap.model.enums.ForagingCropsTypes;
-import phi.ap.model.items.producers.Producer;
 
-public class Crop extends Product {
-    private Producer source;
+public class Crop extends Plant {
+//    private Producer source;
     private CropsTypes cropsType = null;
     private ForagingCropsTypes foragingType;
 

@@ -2,7 +2,7 @@ package phi.ap.model.items.buildings;
 
 import phi.ap.model.Coordinate;
 import phi.ap.model.enums.BuildingTypes;
-import phi.ap.model.items.producers.Animal;
+import phi.ap.model.items.Animal;
 
 import java.util.ArrayList;
 

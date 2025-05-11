@@ -1,9 +1,8 @@
 package phi.ap.model.items.products;
 
 import phi.ap.model.enums.AnimalProductTypes;
-import phi.ap.model.enums.AnimalTypes;
 import phi.ap.model.enums.LevelName;
-import phi.ap.model.items.producers.Animal;
+import phi.ap.model.items.Animal;
 
 public class AnimalProduct extends Product {
 

@@ -56,4 +56,7 @@ public enum Seasons {
     public static ArrayList<Seasons> getAll(){
         return new ArrayList<Seasons>(Arrays.asList(Seasons.values()));
     }
+    public boolean equals(Seasons season){
+        return (name().equals(season.name()) || name().equals("Special") || season == Seasons.Special);
+    }
 }

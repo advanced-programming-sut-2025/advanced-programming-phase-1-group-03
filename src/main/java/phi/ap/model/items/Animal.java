@@ -1,14 +1,13 @@
-package phi.ap.model.items.producers;
+package phi.ap.model.items;
 
 import phi.ap.model.ItemStack;
 import phi.ap.model.enums.AnimalTypes;
 import phi.ap.model.enums.LevelName;
 import phi.ap.model.items.products.AnimalProduct;
-import phi.ap.model.items.relations.Friendship;
 
 import java.util.ArrayList;
 
-public class Animal extends Producer {
+public class Animal extends Item {
     private AnimalTypes type;
     private int friendShipAmount = 0;
 
@@ -87,16 +86,12 @@ public class Animal extends Producer {
     public void setType(AnimalTypes type) {
         this.type = type;
     }
-    @Override
-    public void produce() {
-
-    }
 
     public AnimalProduct produceProduct() {
         if(!getIsFeeded())
             return null;
         double randomDouble = 0.5 + Math.random();
-        double quality = (friendShipAmount/1000)*(0.5 + 0.5 * Math.random());
+        double quality = (friendShipAmount/1000)*(0.5 + 0.5 * Math.random()); // TODO : cast to double?
         LevelName levelName;
         double productNum;
         if(quality <= 0.5) {
