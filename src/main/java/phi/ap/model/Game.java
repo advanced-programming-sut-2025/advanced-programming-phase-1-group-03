@@ -32,7 +32,7 @@ public class Game {
     private final Integer gameID;
     private Map map;
     private ArrayList<Item> items;
-    private Weather currentWeather;
+    private WeatherManager weatherManager = new WeatherManager();
     private final ArrayList<Player> players = new ArrayList<>();
     private final ArrayList<Friendship> friendships = new ArrayList<>();
     private User gameLoader;
@@ -89,5 +89,13 @@ public class Game {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public WeatherManager getWeatherManager() {
+        return weatherManager;
+    }
+
+    public void setWeatherManager(WeatherManager weatherManager) {
+        this.weatherManager = weatherManager;
     }
 }

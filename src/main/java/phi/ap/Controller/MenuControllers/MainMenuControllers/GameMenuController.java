@@ -156,6 +156,7 @@ public class GameMenuController {
 
         //TODO
         doAnimalSystemTasks();
+        Game.getInstance().getWeatherManager().setWeathersInMorning();
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
@@ -212,15 +213,18 @@ public class GameMenuController {
     }
 
     public Result<String> showWeather() {
-        return null;
+        return new Result<>(true, Game.getInstance().getWeatherManager().getCurrentWeather().toString());
     }
 
     public Result<String> showWeatherForecast() {
-        return null;
+        return new Result<>(true, Game.getInstance().getWeatherManager().getTomorrowWeather().toString());
     }
 
-    public Result<String> cheatSetTomorrowWeather(String weather) {
-        return null;
+    public Result<String> cheatSetTomorrowWeather(String weatherName) {
+        Weather weather = Weather.getWeatherByName(weatherName);
+        if (weather == null) return new Result<>(false, weatherName + "doesn't exist");
+        Game.getInstance().getWeatherManager().setTomorrowWeather(weather);
+        return new Result<>(true, "Tomorrow weather is " + weather + " now");
     }
 
     public Result<String> buildGreenhouse() {
