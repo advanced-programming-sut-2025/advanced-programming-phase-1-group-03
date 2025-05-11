@@ -3,6 +3,7 @@ package phi.ap.service;
 import phi.ap.model.*;
 import phi.ap.model.Map;
 import phi.ap.model.enums.FaceWay;
+import phi.ap.model.items.Portal;
 import phi.ap.model.items.buildings.Building;
 import phi.ap.model.items.buildings.Farm;
 
@@ -66,11 +67,15 @@ public class MapService {
             private Coordinate step;
 
             private int g;
-            private final int h;
+            private int h;
             public Node(Location location) {
                 this.location = location;
 //                h = getHeuristicTravelCost(location, sink);
                 h = 0;
+            }
+
+            public void setH(int h) {
+                this.h = h;
             }
 
             public Path getPath() {
@@ -156,6 +161,14 @@ public class MapService {
         if (!source.getGround().isCoordinateValid(source.getY(), source.getX()) ||
             !source.getGround().isCoordinateValid(sink.getY(), sink.getX())) {
             return null;
+        }
+        Portal p;
+        if ((p = sink.getGround().getPortal(sink.getY(), sink.getX())) != null) {
+            Location lp = new Location(p.getCoordinateOnDest(), p.getDestination(), null);
+            for (FaceWay faceWay : FaceWay.values()) {
+                lp.setFaceWay(faceWay);
+                sinks.add(new Location(lp));
+            }
         }
 
         PriorityQueue<Node> sack = new PriorityQueue<>(Comparator.comparing(Node::f)

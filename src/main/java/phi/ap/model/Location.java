@@ -101,6 +101,7 @@ public class Location extends Coordinate{
         return true;
     }
 
+
     public int getCostOfWalkOne(int yDiff, int xDiff) {
         if (!isWalkable(yDiff, xDiff)) return Integer.MAX_VALUE;
         FaceWay newFace;
