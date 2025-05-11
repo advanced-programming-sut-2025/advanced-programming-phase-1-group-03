@@ -1,0 +1,76 @@
+package phi.ap.model.items.products;
+
+import phi.ap.model.Date;
+import phi.ap.model.Eatable;
+import phi.ap.model.Game;
+import phi.ap.model.ItemStack;
+import phi.ap.model.enums.CropsTypes;
+import phi.ap.model.enums.ForagingCropsTypes;
+import phi.ap.model.enums.SeedTypes;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Crop extends Plant {
+    private SeedTypes seedType;
+    private CropsTypes type = null;
+    private ForagingCropsTypes foragingType = null;
+    private boolean oneTime = true;
+    private int regrowthTime = 100000000;
+    private Date lastHarvestDate = null;
+
+    public Crop(int height, int width, CropsTypes type) {
+        super(height, width, type.getSeed().toString(), type.getStage(), type.getCanBecomeGiant(),
+                Game.getInstance().getDate());
+        this.seedType = type.getSeed();
+        this.type = type;
+        oneTime = type.getOneTime();
+        regrowthTime = type.getRegrowthTime();
+
+    }
+
+    public Crop(int height, int width, ForagingCropsTypes type) {
+        super(height, width, "foragingSystem", new ArrayList<>(List.of(0)), false,
+                Game.getInstance().getDate());
+        this.foragingType = type;
+        this.seedType = null;
+        fillTile(type.getTile());
+        setName(type.getName());
+    }
+
+    @Override
+    public ArrayList<ItemStack> getProducts() {
+        ArrayList<ItemStack> products = new ArrayList<>();
+        if (!isAlive()) return products;
+        if (!isStagesDone()) return products;
+        if (!type.getSeasonsList().contains(Game.getInstance().getDate().getSeason())) return products;
+        if (lastHarvestDate != null && oneTime) return products;
+        if (lastHarvestDate == null || Game.getInstance().getDate().getDay() - lastHarvestDate.getDay() > regrowthTime) {
+            Crop instance;
+            int amount = 1;
+            if (type != null) {
+                instance = new Crop(getHeight(), getWidth(), type);
+                if (type.getEatable() != null) setEatable(new Eatable(type.getEatable()));
+                amount = type.getStackSize();
+            }
+            else {
+                instance = new Crop(getHeight(), getWidth(), foragingType);
+                setEatable(new Eatable(foragingType.getEnergy()));
+                if (foragingType != null) amount = foragingType.getStackSize();
+            }
+            products.add(new ItemStack(instance, amount));
+            lastHarvestDate = Game.getInstance().getDate();
+        }
+        return products;
+    }
+
+    @Override
+    public ArrayList<ItemStack> getDrops() {
+        return new ArrayList<>();
+    }
+
+    @Override
+    public void doTask() {
+
+    }
+}

@@ -1,5 +1,6 @@
-package phi.ap.model.items;
+package phi.ap.model.items.products;
 
+import phi.ap.model.App;
 import phi.ap.model.Date;
 import phi.ap.model.Game;
 import phi.ap.model.ItemStack;
@@ -7,7 +8,8 @@ import phi.ap.model.enums.FruitTypes;
 import phi.ap.model.enums.SaplingTypes;
 import phi.ap.model.enums.SeedTypes;
 import phi.ap.model.enums.TreeTypes;
-import phi.ap.model.items.products.Fruit;
+import phi.ap.model.items.Sapling;
+import phi.ap.model.items.Seed;
 
 import java.util.ArrayList;
 
@@ -55,6 +57,7 @@ public class Tree extends Plant {
         if (!isAlive()) return products;
         if (!isStagesDone()) return products;
         if (remainingHarvestCycles == 0) return products;
+        if (!type.getSeason().equals(Game.getInstance().getDate().getSeason())) return products;
         if (lastHarvestDate != null) {
             if (Game.getInstance().getDate().getDay() - lastHarvestDate.getDay() > HarvestRegrowthTime) {
                 products.add(new ItemStack(new Fruit(1, 1, fruit), fruit.getStackSize()));
@@ -69,7 +72,23 @@ public class Tree extends Plant {
 
     @Override
     public ArrayList<ItemStack> getDrops() {
-        return null;
+        ArrayList<ItemStack> drops = new ArrayList<>();
+        if (!isAlive()) {
+            drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
+            //TODO : coal in case of strike
+        } else {
+            drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
+            if (fruit == FruitTypes.MapleSyrup || fruit == FruitTypes.MysticSyrup) {
+                drops.add(new ItemStack(new Fruit(1, 1, fruit), fruit.getStackSize()));
+            }
+            if (seedType != null) {
+                drops.add(new ItemStack(new Seed(1, 1, seedType),
+                        App.getInstance().getRandomNumber(0, 2)));
+            } else if (saplingType != null) {
+                drops.add(new ItemStack(new Sapling(1, 1, saplingType), App.getInstance().getRandomNumber(0, 1)));
+            }
+        }
+        return drops;
     }
 
     @Override

@@ -2,7 +2,7 @@ package phi.ap.model.enums;
 
 import phi.ap.model.Eatable;
 import phi.ap.model.ItemStack;
-import phi.ap.model.items.Crop;
+import phi.ap.model.items.products.Crop;
 import phi.ap.model.items.products.*;
 
 import java.util.ArrayList;

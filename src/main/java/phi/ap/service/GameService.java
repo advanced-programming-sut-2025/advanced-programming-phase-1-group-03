@@ -11,8 +11,8 @@ import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.buildings.NPCVillage;
 import phi.ap.model.items.buildings.Quarry;
 import phi.ap.model.items.Seed;
-import phi.ap.model.items.Tree;
-import phi.ap.model.items.Crop;
+import phi.ap.model.items.products.Tree;
+import phi.ap.model.items.products.Crop;
 import phi.ap.model.items.products.Mineral;
 import phi.ap.model.items.products.Stone;
 

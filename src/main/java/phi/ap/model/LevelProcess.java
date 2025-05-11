@@ -3,14 +3,25 @@ package phi.ap.model;
 import phi.ap.model.enums.LevelName;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LevelProcess {
     private ArrayList<LevelName> levelNames;
     private int currentLevel;
 
+    public LevelProcess() {
+        this.levelNames = new ArrayList<>(List.of(LevelName.normal));
+        this.currentLevel = 0;
+    }
+
     public LevelProcess(ArrayList<LevelName> levelNames, int currentLevel) {
         this.levelNames = levelNames;
         this.currentLevel = currentLevel;
+    }
+
+    public LevelProcess(LevelProcess levelProcess) {
+        this.levelNames = new ArrayList<>(levelProcess.getLevelNames());
+        this.currentLevel = levelProcess.getCurrentLevel();
     }
 
     public ArrayList<LevelName> getLevelNames() {

@@ -1,4 +1,4 @@
-package phi.ap.model.items;
+package phi.ap.model.items.products;
 
 import phi.ap.model.Date;
 import phi.ap.model.Game;
@@ -6,12 +6,13 @@ import phi.ap.model.ItemStack;
 
 import java.util.ArrayList;
 
-public abstract class Plant extends Item {
+public abstract class Plant extends Product {
     private String sourceName;
     private final ArrayList<Integer> stages;
     private final boolean canBecomeGiant;
     private Date plantingDate;
     private Date lastWateredDate;
+
 
     public Plant(int height, int width, String sourceName, ArrayList<Integer> stages, boolean canBecomeGiant, Date plantingDate) {
         super(height, width);
@@ -22,6 +23,7 @@ public abstract class Plant extends Item {
         this.plantingDate = plantingDate;
         this.lastWateredDate = new Date(plantingDate.getHour());
     }
+
 
     public int totalHarvestTime() {
         int res = 0;
@@ -71,8 +73,6 @@ public abstract class Plant extends Item {
         this.sourceName = sourceName;
     }
 
-    public abstract ArrayList<ItemStack> getProducts(); // with scythe(dus);
-    public abstract ArrayList<ItemStack> getDrops(); // with axe;
     public void watering() {
         if (!isAlive()) return;
         lastWateredDate = Game.getInstance().getDate();
