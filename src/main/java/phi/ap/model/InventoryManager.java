@@ -7,6 +7,8 @@ import phi.ap.model.items.products.Stone;
 import phi.ap.model.items.tools.Backpack;
 import phi.ap.model.items.tools.TrashCan;
 
+import java.util.ArrayList;
+
 public class InventoryManager {
     private final Backpack storage;
     private final TrashCan trashCan;
@@ -18,6 +20,9 @@ public class InventoryManager {
         if(!storage.isFull())
             return true;
         return false;
+    }
+    public int addItem(ItemStack itemStack) {
+        return addItem(itemStack.getItem(), itemStack.getAmount());
     }
     public int addItem(Item item, int amount) {
         int added = 0;

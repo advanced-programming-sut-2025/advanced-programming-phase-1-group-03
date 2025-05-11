@@ -29,7 +29,7 @@ public class Pickaxe extends Tool{
         switch (item) {
             case Dirt dirt -> {
                 if(dirt.isPlowed()){
-                    if(!reduceSuccessEnergy()) return new Result<>(false, "You don't have enough energy!");
+                    if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
                     dirt.unPlow();
                     return new Result<>(true, "Ok ok, now the dirt is not plowed");
                 }else{
@@ -38,13 +38,13 @@ public class Pickaxe extends Tool{
                 }
             }
             case Stone stone -> {
-                if(!reduceSuccessEnergy()) return new Result<>(false, "You don't have enough energy!");
+                if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
                 Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(stone, 1);
                 stone.getFather().removeItem(stone);
                 return new Result<>(true, "You gained one stone!");
             }
             case Mineral mineral -> {
-                if(!reduceSuccessEnergy()) return new Result<>(false, "You don't have enough energy!");
+                if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
                 if(!canIMineThisLevel(mineral.getForagingType().getLevelNeedToMine()))
                     return new Result<>(false,
                             "Your pickaxe must be at least " + mineral.getForagingType().getLevelNeedToMine().toString());
@@ -54,26 +54,19 @@ public class Pickaxe extends Tool{
             }
             case null, default -> {
                 if(item != null && item.isRemovableByPickaxe()){
-                    if(!reduceSuccessEnergy()) return new Result<>(false, "You don't have enough energy!");
+                    if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
                     item.getFather().removeItem(item);
                     return new Result<>(true, "Item removed");
                 }
                 if(!reduceFailedEnergy()) return new Result<>(false, "You don't have enough energy!");
                 return new Result<>(false, "you can't do anything with this item!\n" +
-                        "you only waste your energy -_-");
+                        "you only wasted your energy -_-");
             }
         }
     }
 
     private boolean canIMineThisLevel(LevelName level){
         return getLevelProcess().getLevelOfThisType(level) <= getLevelProcess().getCurrentLevel();
-    }
-    private boolean reduceSuccessEnergy(){
-        int energy = getEnergyNeed();
-        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(energy))
-            return false;
-        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseUnit(-energy);
-        return true;
     }
     private boolean reduceFailedEnergy(){
         int energy = getEnergyNeed() - 1;

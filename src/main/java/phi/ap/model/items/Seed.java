@@ -6,11 +6,13 @@ public class Seed extends Item {
 
     private SeedTypes seedType;
 
+
     public Seed(int height, int width, SeedTypes seedType) {
         super(height, width);
         this.seedType = seedType;
         fillTile(seedType.getTile());
         setSellable(false);
+        setName(seedType.name());
     }
 
     @Override

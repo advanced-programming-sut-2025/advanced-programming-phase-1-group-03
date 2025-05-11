@@ -18,6 +18,7 @@ public class Tree extends Plant {
     private FruitTypes fruit;
     private int remainingHarvestCycles;
     private int HarvestRegrowthTime = 1; // default : last stage
+    private int woodAmount = 2;
     private Date lastHarvestDate;
 
     public Tree(int height, int width, TreeTypes type, boolean isForaging) {
@@ -33,8 +34,6 @@ public class Tree extends Plant {
         else if (saplingType != null) sourceName = saplingType.toString();
         setSourceName(sourceName);
         this.type = type;
-        this.seedType = seedType;
-        this.saplingType = saplingType;
         this.fruit = type.getFruit();
         setName(type.toString());
         this.remainingHarvestCycles = fruit.getFruitHarvestCycle();
@@ -78,4 +77,15 @@ public class Tree extends Plant {
     }
 
 
+    public int getWoodAmount() {
+        return woodAmount;
+    }
+
+    public SeedTypes getSeedType() {
+        return seedType;
+    }
+
+    public FruitTypes getFruit() {
+        return fruit;
+    }
 }

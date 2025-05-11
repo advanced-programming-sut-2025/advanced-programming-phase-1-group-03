@@ -47,4 +47,11 @@ public abstract class Tool extends Item {
         if(energy < 0) energy = 0;
         return energy;
     }
+    public boolean reduceEnergy(){
+        int energy = getEnergyNeed();
+        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(energy))
+            return false;
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseUnit(-energy);
+        return true;
+    }
 }

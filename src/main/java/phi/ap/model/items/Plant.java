@@ -80,7 +80,7 @@ public abstract class Plant extends Item {
     public boolean isWateredToday() {
         return lastWateredDate.getDay() == Game.getInstance().getDate().getDay();
     }
-    public boolean isAlive() {
+    public boolean isAlive() { // TODO bayad bad 48 saat kharab beshe
         return Game.getInstance().getDate().getDay() - lastWateredDate.getDay() <= 2;
     }
 
