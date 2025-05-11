@@ -29,6 +29,12 @@ public class LevelProcess {
             if(levelNames.get(i) == currentLevel)
                 this.currentLevel = i;
     }
+    public int getLevelOfThisType(LevelName levelName){
+        for(int i = 0; i < levelNames.size(); i++)
+            if(levelNames.get(i) == levelName)
+                return i;
+        return -1;
+    }
     @Override
     public String toString() {
         return levelNames.get(currentLevel).toString();

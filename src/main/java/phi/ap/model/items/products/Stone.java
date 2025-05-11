@@ -10,6 +10,7 @@ public class Stone extends Product {
     public Stone(int height, int width, StoneTypes type) {
         super(height, width);
         this.type = type;
+        setName(type.name());
         fillTile(type.getTile());
     }
 

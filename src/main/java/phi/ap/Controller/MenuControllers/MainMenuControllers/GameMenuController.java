@@ -22,18 +22,8 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        Item item = new Food(1, 1, FoodTypes.Hay);
-        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, 10);
-        System.out.println(Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
-        Refrigerator.getInstance().putItem(new ItemStack(item, 8));
-        System.out.println(Refrigerator.getInstance().showStorage());
-        Refrigerator.getInstance().putItem(new ItemStack(item, 2));
-        System.out.println(Refrigerator.getInstance().showStorage());
-        Refrigerator.getInstance().pickItem(new ItemStack(item, 3));
-        System.out.println(Refrigerator.getInstance().showStorage());
-        Refrigerator.getInstance().pickItem(new ItemStack(item, 20));
-        System.out.println(Refrigerator.getInstance().showStorage());
-        return null;
+        return new Result<>(false, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+
     }
     public Result<String> test1(String input) {
         //get info in coordinate;

@@ -4,7 +4,8 @@ import phi.ap.model.Ground;
 
 public abstract class Item extends Ground {
     private String name = null;
-    private int maxStackSize;
+    private int maxStackSize = 64;
+    private boolean isRemovableByPickaxe = false;
 
     public Item(int height, int width) {
         super(height, width);
@@ -35,5 +36,12 @@ public abstract class Item extends Ground {
 
     public boolean canStackWith(Item otherItem) {
         return otherItem.getName().equals(this.getName());
+    }
+
+    public boolean isRemovableByPickaxe() {
+        return isRemovableByPickaxe;
+    }
+    public void makeRemovableByPickaxe() {
+        isRemovableByPickaxe = true;
     }
 }

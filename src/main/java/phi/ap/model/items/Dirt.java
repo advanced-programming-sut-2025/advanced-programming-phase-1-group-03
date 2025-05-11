@@ -19,4 +19,12 @@ public class Dirt extends Item {
         plowed = true;
         setTile(0, 0, TileType.PlowedDirt.getTile());
     }
+    public void unPlow(){
+        plowed = false;
+        setTile(0, 0, TileType.Dirt.getTile());
+    }
+
+    public boolean isPlowed() {
+        return this.plowed;
+    }
 }
