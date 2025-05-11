@@ -8,10 +8,7 @@ import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.machines.Refrigerator;
 import phi.ap.model.items.producers.Animal;
-import phi.ap.model.items.products.AnimalProduct;
-import phi.ap.model.items.products.Fish;
-import phi.ap.model.items.products.Food;
-import phi.ap.model.items.products.Fruit;
+import phi.ap.model.items.products.*;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
@@ -440,8 +437,9 @@ public class GameMenuController {
     public Result<String> cheatAddItem(String itemName, String amount) {
         return null;
     }
-    public Result<String> putItemToRefrigerator(String name, int amount) {
+    public Result<String> putItemToRefrigerator(String name, String amountString) {
         Item item;
+        int amount = Integer.parseInt(amountString);
         Boolean isFood = false;
         FoodTypes foodType = null;
         try {
@@ -539,13 +537,40 @@ public class GameMenuController {
             return new Result<>(false, "This item is not food.");
     }
     public Result<String> showCookingRecipe() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Learned Recipes: \n");
+        for(Recipe recipe : Game.getInstance().getCurrentPlayer().getCookingRecipes()) {
+            stringBuilder.append(recipe.getRecipeType().toString() + "\n");
+        }
+        return new Result<>(true, stringBuilder.toString());
     }
-    public Result<String> prepareCooking(String recipeName){
-        return null;
+    public Result<String> prepareCooking(String recipeName) {
+        Recipe recipe = Game.getInstance().getCurrentPlayer().getRecipe(recipeName);
+        if(recipe == null)
+            return new Result<>(false, "You don't have the recipe.");
+        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(3))
+            return new Result<>(false, "You don't have enough energy.");
+        if(!Game.getInstance().getCurrentPlayer().getInventoryManager().canAdd())
+            return new Result<>(false, "Inventory is full.");
+        ArrayList<ItemStack> itemStack = recipe.getIngredients();
+        for(ItemStack itemStack1 : itemStack) {
+            if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckExistence(itemStack1))
+                return new Result<>(false, "You don't have enough " + itemStack1.getItem().getName() +  " in your inventory. you can add it from refrigerator");
+        }
+        for(ItemStack itemStack1 : itemStack) {
+            Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack1.getItem(), itemStack1.getAmount());
+        }
+        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(recipe.getResult().getItem(), recipe.getResult().getAmount());
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(3);
+        return new Result<>(true, recipe.getResult().getItem().getName() + " created and added to Inventory.");
     }
     public Result<String> eatFood(String foodName) {
-        return null;
+        Food food = Game.getInstance().getCurrentPlayer().getInventoryManager().getFood(FoodTypes.valueOf(foodName));
+        if(food == null)
+            return new Result<>(false, "There is not any food with this name.");
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(food, 1);
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getFoodType().getEatable().getEnergy());
+        return new Result<>(true, food.getName() + " eated. " + "You earned " + food.getFoodType().getEatable().getEnergy() + " amount of energy.");
     }
     public Result<String> buildBuilding(String buildingName, String x, String y) {
         return CarpenterShopProducts.Build(buildingName, Integer.parseInt(x), Integer.parseInt(y));

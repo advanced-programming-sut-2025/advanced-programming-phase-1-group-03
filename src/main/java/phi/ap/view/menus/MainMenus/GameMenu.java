@@ -85,6 +85,16 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.test1(matcher.group(1)));
         } else if ((matcher = GameMenuCommands.WalkOne.getMatcher(input)) != null) {
             System.out.println(controller.walkOne(matcher.group("y"), matcher.group("x")));
+        } else if ((matcher = GameMenuCommands.PutRefrigerator.getMatcher(input)) != null) {
+            System.out.println(controller.putItemToRefrigerator(matcher.group("name"), (matcher.group("amount"))));
+        } else if ((matcher = GameMenuCommands.PickRefrigerator.getMatcher(input)) != null) {
+            System.out.println(controller.pickItemFromRefrigerator(matcher.group("name"), (matcher.group("amount"))));
+        } else if ((matcher = GameMenuCommands.ShowCookingRecipes.getMatcher(input)) != null) {
+            System.out.println(controller.showCookingRecipe());
+        } else if ((matcher = GameMenuCommands.PrepareCooking.getMatcher(input)) != null) {
+            System.out.println(controller.prepareCooking(matcher.group("name")));
+        } else if ((matcher = GameMenuCommands.EatFood.getMatcher(input)) != null) {
+            System.out.println(controller.eatFood(matcher.group("name")));
         } else {
             super.check(input);
         }

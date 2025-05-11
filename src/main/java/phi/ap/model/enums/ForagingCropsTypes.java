@@ -29,7 +29,7 @@ public enum ForagingCropsTypes {
     SNOW_YAM("c", Colors.fg(52), "", "Snow Yam", Seasons.Winter, 30),
     WINTER_ROOT("c", Colors.fg(52), "", "Winter Root", Seasons.Winter, 25);
 
-    private final String name;
+private final String name;
     private final Seasons season;
     private final int energy;
     private Tile tile;
@@ -43,6 +43,18 @@ public enum ForagingCropsTypes {
 
     public Tile getTile() {
         return tile;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Seasons getSeason() {
+        return season;
+    }
+
+    public int getEnergy() {
+        return energy;
     }
 
     public static ForagingCropsTypes getRandomFromSeason(Seasons season) {

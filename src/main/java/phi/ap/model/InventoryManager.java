@@ -13,6 +13,11 @@ public class InventoryManager {
         this.trashCan = trashCan;
         this.storage = storage;
     }
+    public boolean canAdd() {
+        if(!storage.isFull())
+            return true;
+        return false;
+    }
     public int addItem(Item item, int amount) {
         int added = 0;
         for (ItemStack stack : storage.getStacks()) {
@@ -52,6 +57,18 @@ public class InventoryManager {
         }
         //TODO : gain from trashCan
         return removed;
+    }
+    public boolean CheckExistence(ItemStack itemStack) {
+        Item item = itemStack.getItem();
+        int amount = itemStack.getAmount();
+        if(removeItem(item, amount) == amount) {
+            addItem(item, amount);
+            return true;
+        }
+        else {
+            addItem(item, amount);
+            return false;
+        }
     }
     public ItemStack getItem(Item item) {
         //get new ItemStack with sum of amounts in ItemStack

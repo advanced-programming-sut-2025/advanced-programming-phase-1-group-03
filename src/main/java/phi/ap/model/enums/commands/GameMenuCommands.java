@@ -36,7 +36,12 @@ public enum GameMenuCommands implements Command{
     SellAnimal("\\s*sell\\s+animal\\s+-n\\s+(?<name>.*)\\s*"),
     test("\\s*test(\\s*|\\s+.*)"),
     test1("\\s*test1\\s*(\\s*|\\s+.*)"),
-    WalkOne("\\s*walk\\s+-one\\s+(?<x>-?\\d+)(\\s+|\\s*,\\s*)(?<y>-?\\d+)\\s*")
+    WalkOne("\\s*walk\\s+-one\\s+(?<x>-?\\d+)(\\s+|\\s*,\\s*)(?<y>-?\\d+)\\s*"),
+    PutRefrigerator("\\s*cooking\\s+refrigerator\\s+put\\s+(?<name>.*)\\s+(?<amount>\\d+)\\s*"),
+    PickRefrigerator("\\s*cooking\\s+refrigerator\\s+pick\\s+(?<name>.*)\\s+(?<amount>\\d+)\\s*"),
+    ShowCookingRecipes("\\s*cooking\\s+show\\s+recipes\\s*"),
+    PrepareCooking("\\s*cooking\\s+prepare\\s+(?<name>.*)\\s*"),
+    EatFood("\\s*eat\\s+(?<name>.*)\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

@@ -4,7 +4,7 @@ import phi.ap.model.Ground;
 
 public abstract class Item extends Ground {
     private String name = null;
-    private int maxStackSize;
+    private int maxStackSize = 64;
 
     public Item(int height, int width) {
         super(height, width);
