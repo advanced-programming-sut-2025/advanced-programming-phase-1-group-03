@@ -102,7 +102,7 @@ public class Ground {
         int x = item.getCoordinate().getX();
         for (int i = y; i < y + item.getHeight(); i++) {
             for (int j = x; j < x + item.getWidth(); j++) {
-                if (items[i][j] == item) item = null;
+                if (items[i][j] == item) items[i][j] = null;
             }
         }
         holdingItems.remove(item);
