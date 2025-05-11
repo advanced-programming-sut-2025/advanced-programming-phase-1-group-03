@@ -6,6 +6,7 @@ import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Dirt;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.Portal;
+import phi.ap.model.items.Water;
 
 import java.util.ArrayList;
 
@@ -48,6 +49,14 @@ public class Farm extends Building {
         for (BuildingStructure lakeInfos : farmType.getLakes()) {
             Lake lake = new Lake(lakeInfos.getHeight(), lakeInfos.getWidth(), lakeInfos.getCoordinate());
             lakes.add(lake);
+            //Adding water item to the lakes
+            for(int i = 0; i < lakeInfos.getHeight(); i++)
+                for(int j = 0; j < lakeInfos.getWidth(); j++){
+                    Water water = new Water();
+                    water.setCoordinate(new Coordinate(i, j));
+                    water.fillTile(TileType.Water.getTile());
+                    lake.addItem(water);
+                }
         }
         for (Lake lake : lakes) {
             addItem(lake);

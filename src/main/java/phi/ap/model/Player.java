@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Player extends Human {
     private User user;
-    private int gold = Integer.MAX_VALUE;
+    private int gold = Integer.MAX_VALUE; //TODO is it actually needed?
     private final EnergyManager energy = new EnergyManager();
     private ToolManager toolManager = new ToolManager();
 

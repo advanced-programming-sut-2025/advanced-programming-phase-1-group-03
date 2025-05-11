@@ -6,21 +6,21 @@ import phi.ap.model.enums.Time.Seasons;
 import java.util.ArrayList;
 
 public enum FruitTypes {
-    Apricot("Apricot", 59, new Eatable(38), Seasons.buildList(Seasons.Spring),1, 1),
-    Cherry("Cherry", 80, new Eatable(38), Seasons.buildList(Seasons.Spring), 1, 1),
-    Banana("Banana", 150, new Eatable(75), Seasons.buildList(Seasons.Summer), 1, 1),
-    Mango("Mango", 130, new Eatable(100), Seasons.buildList(Seasons.Summer), 1, 1),
-    Orange("Orange", 100, new Eatable(38), Seasons.buildList(Seasons.Summer), 1, 1),
-    Peach("Peach", 140, new Eatable(38), Seasons.buildList(Seasons.Summer), 1, 1),
-    Apple("Apple", 100, new Eatable(38), Seasons.buildList(Seasons.Fall), 1, 1),
-    Pomegranate("Pomegranate", 140, new Eatable(38), Seasons.buildList(Seasons.Fall), 1, 1),
-    OakResin("OakResin", 150, null, Seasons.getAll(), 7, 1),
-    MapleSyrup("MapleSyrup", 200, null, Seasons.getAll(), 9, 1),
-    PineTar("PineTar", 100, null, Seasons.getAll(), 5, 1),
-    Sap("Sap", 2, new Eatable(-2), Seasons.getAll(), 1, 1),
-    CommonMushroom("CommonMushroom", 40, new Eatable(38), Seasons.getAll(), 1, 1),
-    MysticSyrup("MysticSyrup", 1000, new Eatable(500), Seasons.getAll(), 7, 1),
-    RegularSampleFruit("RegularSampleFruit", 10, new Eatable(10), Seasons.getAll(), 1, 1);//TODO : remove it
+    Apricot("Apricot", false,59, new Eatable(38), Seasons.buildList(Seasons.Spring),1, 1),
+    Cherry("Cherry", false,80, new Eatable(38), Seasons.buildList(Seasons.Spring), 1, 1),
+    Banana("Banana", false,150, new Eatable(75), Seasons.buildList(Seasons.Summer), 1, 1),
+    Mango("Mango", false,130, new Eatable(100), Seasons.buildList(Seasons.Summer), 1, 1),
+    Orange("Orange", false,100, new Eatable(38), Seasons.buildList(Seasons.Summer), 1, 1),
+    Peach("Peach", false,140, new Eatable(38), Seasons.buildList(Seasons.Summer), 1, 1),
+    Apple("Apple", false,100, new Eatable(38), Seasons.buildList(Seasons.Fall), 1, 1),
+    Pomegranate("Pomegranate", false,140, new Eatable(38), Seasons.buildList(Seasons.Fall), 1, 1),
+    OakResin("OakResin", false,150, null, Seasons.getAll(), 7, 1),
+    MapleSyrup("MapleSyrup", true,200, null, Seasons.getAll(), 9, 1),
+    PineTar("PineTar", false,100, null, Seasons.getAll(), 5, 1),
+    Sap("Sap", false,2, new Eatable(-2), Seasons.getAll(), 1, 1),
+    CommonMushroom("CommonMushroom", false,40, new Eatable(38), Seasons.getAll(), 1, 1),
+    MysticSyrup("MysticSyrup", true,1000, new Eatable(500), Seasons.getAll(), 7, 1),
+    RegularSampleFruit("RegularSampleFruit", false,10, new Eatable(10), Seasons.getAll(), 1, 1);//TODO : remove it
 
 
     private final String name;
@@ -28,8 +28,10 @@ public enum FruitTypes {
     private Eatable eatable;
     private int fruitHarvestCycle;
     private int stackSize;
+    private boolean isSyrup;
 
-    FruitTypes(String name, int baseSellPrice, Eatable eatable, ArrayList<Seasons> seasons, int fruitHarvestCycle, int stackSize) {
+    FruitTypes(String name, boolean isSyrup,int baseSellPrice, Eatable eatable, ArrayList<Seasons> seasons, int fruitHarvestCycle, int stackSize) {
+        this.isSyrup = isSyrup;
         this.baseSellPrice = baseSellPrice;
         this.eatable = eatable;
         this.name = name;
@@ -55,5 +57,9 @@ public enum FruitTypes {
 
     public int getStackSize() {
         return stackSize;
+    }
+
+    public boolean isSyrup() {
+        return isSyrup;
     }
 }
