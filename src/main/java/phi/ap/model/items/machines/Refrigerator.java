@@ -6,7 +6,7 @@ import phi.ap.model.items.Item;
 
 import java.util.ArrayList;
 
-public class Refrigerator extends Machine {
+public class Refrigerator {
     private ArrayList<ItemStack> storage = new ArrayList<>();
     private static Refrigerator refrigerator = null;
 
@@ -81,10 +81,5 @@ public class Refrigerator extends Machine {
             stringBuilder.append("Name: " + itemStack.getItem().getName() + " Amount: " + itemStack.getAmount() + "\n");
         }
         return stringBuilder.toString();
-    }
-
-    @Override
-    public void doTask() {
-
     }
 }

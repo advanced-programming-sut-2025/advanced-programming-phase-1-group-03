@@ -45,6 +45,8 @@ public enum GameMenuCommands implements Command{
     Weather("\\s*weather\\s*"),
     WeatherForecast("\\s*weather\\s*forecast\\s*"),
     CheatWeatherSet("\\s*cheat\\s*weather\\s*set\\s+(?<weatherName>\\S+)\\s*"),
+    ShowCraftingRecipes("\\s*crafting\\s+show\\s+recipes\\s*"),
+    Craft("\\s*crafting\\s+craft\\s+(?<name>.*)\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

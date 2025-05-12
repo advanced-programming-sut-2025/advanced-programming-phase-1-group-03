@@ -101,6 +101,10 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.prepareCooking(matcher.group("name")));
         } else if ((matcher = GameMenuCommands.EatFood.getMatcher(input)) != null) {
             System.out.println(controller.eatFood(matcher.group("name")));
+        } else if ((matcher = GameMenuCommands.ShowCraftingRecipes.getMatcher(input)) != null) {
+            System.out.println(controller.showCraftingRecipes());
+        } else if ((matcher = GameMenuCommands.Craft.getMatcher(input)) != null) {
+            System.out.println(controller.craftItem(matcher.group("name")));
         } else {
             super.check(input);
         }

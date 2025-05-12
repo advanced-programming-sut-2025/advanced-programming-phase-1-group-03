@@ -19,11 +19,14 @@ public enum ForagingMineralTypes {
     JADE("*", Colors.fg(251), "", "Jade", LevelName.iron,"A pale green ornamental stone.", 200),
     DIAMOND("D", Colors.fg(251), "", "Diamond", LevelName.iron,"A rare and valuable gem.", 750),
     PRISMATIC_SHARD("*", Colors.fg(251), "", "Prismatic Shard", LevelName.iron,"A very rare and powerful substance with unknown origins.", 2000),
-    COPPER("C", Colors.fg(251), "", "Copper", LevelName.normal,"A common ore that can be smelted into bars.", 5),
-    IRON("i", Colors.fg(251), "", "Iron", LevelName.copper, "A fairly common ore that can be smelted into bars.", 10),
-    GOLD("G", Colors.fg(251), "", "Gold", LevelName.iron, "A precious ore that can be smelted into bars.", 25),
+    COPPER("C", Colors.fg(251), "", "Copper", LevelName.normal,"A common ore that can be smelted into bars.", 75),
+    COPPER_BAR("C", Colors.fg(253), "", "Copper", LevelName.normal,"A common ore that can be smelted into bars.", 75),
+    IRON("i", Colors.fg(251), "", "Iron", LevelName.copper, "A fairly common ore that can be smelted into bars.", 150),
+    IRON_BAR("i", Colors.fg(253), "", "Iron", LevelName.copper, "A fairly common ore that can be smelted into bars.", 150),
+    GOLD("G", Colors.fg(251), "", "Gold", LevelName.iron, "A precious ore that can be smelted into bars.", 400),
+    GOLD_BAR("G", Colors.fg(251), "", "Gold", LevelName.iron, "A precious ore that can be smelted into bars.", 400),
     IRIDIUM("I", Colors.fg(251), "", "Iridium", LevelName.golden, "An exotic ore with many curious properties. Can be smelted into bars.", 100),
-    COAL("c", Colors.fg(251), "", "Coal", LevelName.copper,"A combustible rock that is useful for crafting and smelting.", 15);
+    COAL("c", Colors.fg(251), "", "Coal", LevelName.copper,"A combustible rock that is useful for crafting and smelting.", 150);
     private final int sellPrice;
     private final String description;
     private final String name;

@@ -1,6 +1,15 @@
 package phi.ap.model.enums;
 
+import phi.ap.model.ItemStack;
+import phi.ap.model.items.products.Mineral;
+import phi.ap.model.items.products.Stone;
+import phi.ap.model.items.products.Wood;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public enum RecipeTypes {
+    // Cooking Recipes
     Hashbrowns("Hashbrowns"),
     Omelet("Omelet"),
     Pancakes("Pancakes"),
@@ -25,8 +34,28 @@ public enum RecipeTypes {
     SeafoamPudding("SeafoamPudding"),
     MinersTreat("MinersTreat"),
 
+    // Crafting Recipes
+
+    CherryBomb("CherryBomb"),
+    Bomb("Bomb"),
+    MegaBomb("MegaBomb"),
+    Sprinkler("Sprinkler"),
+    QualitySprinkler("QualitySprinkler"),
+    IridiumSprinkler("IridiumSprinkler"),
+    Furnace("Furnace"),
+    CharcoalKiln("CharcoalKiln"),
+    Scarecrow("Scarecrow"),
+    DeluxeScarecrow("DeluxeScarecrow"),
+    BeeHouse("BeeHouse"),
+    CheesePress("CheesePress"),
+    Keg("Keg"),
+    Loom("Loom"),
+    MayonnaiseMachine("MayonnaiseMachine"),
+    OilMaker("OilMaker"),
+    PreservesJar("PreservesJar"),
     Dehydrator("Dehydrator"),
-    GrassStarter("GrassStarter")
+    GrassStarter("GrassStarter"),
+    FishSmoker("FishSmoker")
     ;
     private final String name;
     RecipeTypes(String name) {

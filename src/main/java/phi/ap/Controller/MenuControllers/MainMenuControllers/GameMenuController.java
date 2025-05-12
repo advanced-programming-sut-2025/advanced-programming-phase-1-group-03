@@ -19,8 +19,12 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        return new Result<>(false, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
-
+        System.out.println(Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+        Ability ability = new Ability(AbilityType.Farming);
+        ability.advanceLevel();
+        System.out.println(craftItem("Sprinkler"));
+        System.out.println(Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+        return null;
     }
     public Result<String> test1(String input) {
         //get info in coordinate;
@@ -373,7 +377,7 @@ public class GameMenuController {
     }
 
     public Result<String> showInventory() {
-        return null;
+        return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
 
     public Result<String> inventoryTrash(String itemName, String amount) {
@@ -420,10 +424,27 @@ public class GameMenuController {
         return currentTool.useTool(Misc.getDiffFromDirection(d));
     }
     public Result<String> showCraftingRecipes() {
-        return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("showCraftingRecipes:\n");
+        for(Recipe recipe : Game.getInstance().getCurrentPlayer().getCraftingRecipes())
+            stringBuilder.append(recipe.getRecipeType().getName() + "\n");
+        return new Result<>(true, stringBuilder.toString());
     }
     public Result<String> craftItem(String itemName) {
-        return null;
+        Recipe recipe = null;
+        for(Recipe recipe1 : Game.getInstance().getCurrentPlayer().getCraftingRecipes()) {
+            if(recipe1.getRecipeType().getName().equals(itemName))
+                recipe = recipe1;
+        }
+        if(recipe == null)
+            return new Result<>(false, "there is not any item with this name.");
+        if(!Game.getInstance().getCurrentPlayer().getInventoryManager().canAdd())
+            return new Result<>(false, "Inventory is full.");
+        if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(recipe))
+            return new Result<>(false, "You don't have enough ingredients.");
+        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(recipe.getResult().getItem(), 1);
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-2);
+        return new Result<>(true, "item crafted successfully.");
     }
     public Result<String> placeItem(String itemName, String direction) {
         return null;
@@ -546,16 +567,10 @@ public class GameMenuController {
             return new Result<>(false, "You don't have enough energy.");
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().canAdd())
             return new Result<>(false, "Inventory is full.");
-        ArrayList<ItemStack> itemStack = recipe.getIngredients();
-        for(ItemStack itemStack1 : itemStack) {
-            if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckExistence(itemStack1))
-                return new Result<>(false, "You don't have enough " + itemStack1.getItem().getName() +  " in your inventory. you can add it from refrigerator");
-        }
-        for(ItemStack itemStack1 : itemStack) {
-            Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack1.getItem(), itemStack1.getAmount());
-        }
+        if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(recipe))
+                return new Result<>(false, "You don't have enough ingredients in your inventory. you can add it from refrigerator");
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(recipe.getResult().getItem(), recipe.getResult().getAmount());
-        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(3);
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-3);
         return new Result<>(true, recipe.getResult().getItem().getName() + " created and added to Inventory.");
     }
     public Result<String> eatFood(String foodName) {

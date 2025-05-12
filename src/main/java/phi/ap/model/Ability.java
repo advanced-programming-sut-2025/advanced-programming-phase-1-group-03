@@ -1,7 +1,11 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.AbilityType;
+import phi.ap.model.enums.CraftingTypes;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.machines.Machine;
+import phi.ap.model.items.machines.craftingMachines.Sprinkler;
+import phi.ap.model.items.products.Recipe;
 
 import java.util.ArrayList;
 
@@ -13,12 +17,29 @@ public class Ability {
     public Ability(AbilityType abilityType) {
         this.abilityType = abilityType;
     }
-    private int xpNeedToNextLevel(){
+
+    private int xpNeedToNextLevel() {
         return (level + 1) * 100 + 50;
     }
 
-    private void advanceLevel(){
+    // TODO food recipes
+
+    public void checkingCraftingRecipes() {
+        ArrayList<Recipe> recipe = Game.getInstance().getCurrentPlayer().getCraftingRecipes();
+        for(CraftingTypes craftingTypes : CraftingTypes.values()) {
+            //System.out.println(craftingTypes.getAbilityType() + " " + abilityType);
+            if(craftingTypes.getAbilityType() != null && craftingTypes.getLevel() != null)
+                if(craftingTypes.getAbilityType().equals(abilityType) && craftingTypes.getLevel().equals(level)) {
+                    ((Machine)(craftingTypes.getRecipe().getResult().getItem())).setCraftingType(craftingTypes.getRecipe().getRecipeType().getName());
+                    ((Machine)(craftingTypes.getRecipe().getResult().getItem())).setName(craftingTypes.getRecipe().getRecipeType().getName());
+                    recipe.add(craftingTypes.getRecipe());
+                }
+        }
+    }
+
+    public void advanceLevel(){
         level = Math.min(4, level + 1);
+        checkingCraftingRecipes();
     }
     public void advanceXP(int gained){
         while(gained > 0){
