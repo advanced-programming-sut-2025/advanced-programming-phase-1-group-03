@@ -6,6 +6,24 @@ public enum SaplingTypes {
     CherrySapling,
     OrangeSapling,
     PeachSapling,
-    PomegranateSapling;
+    PomegranateSapling,
+    BananaSapling,
+    MangoSapling
+    ;
+
+    public static SaplingTypes find(String name) {
+        name = name.toLowerCase();
+        for (SaplingTypes value : values()) {
+            if (value.toString().toLowerCase().equals(name)) return value;
+        }
+        return null;
+    }
+
+    public TreeTypes getTreeType() {
+        for (TreeTypes value : TreeTypes.values()) {
+            if (this.equals(value.getSaplingType())) return value;
+        }
+        return null;
+    }
 
 }

@@ -144,7 +144,7 @@ public abstract class Plant extends Product {
                 watering();
                 break;
             case SpeedGro:
-                plantingDate.advanceHourWithoutSleep(-24);
+                plantingDate.advanceHourRaw(-24);
                 break;
         }
     }

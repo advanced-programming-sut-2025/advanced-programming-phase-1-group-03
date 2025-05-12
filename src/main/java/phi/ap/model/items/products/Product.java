@@ -25,10 +25,12 @@ public class Product extends Item {
 
     public Product(int height, int width) {
         super(height, width);
+        levels = new LevelProcess(new ArrayList<>(List.of(LevelName.normal)), 0);
     }
 
     public Product(Product product) {
         super(product.getHeight(), product.getWidth());
+        levels = new LevelProcess(new ArrayList<>(List.of(LevelName.normal)), 0);
         if (product.getLevels() != null) this.levels = new LevelProcess(product.getLevels());
         if (product.getEatable() != null) setEatable(new Eatable(product.getEatable()));
         else setEatable(null);
@@ -46,6 +48,7 @@ public class Product extends Item {
 
     public Product(ProductNames type) {
         super(type.getInstance().getHeight(), type.getInstance().getWidth());
+        levels = new LevelProcess(new ArrayList<>(List.of(LevelName.normal)), 0);
         Product product = type.getInstance();
         if (product.getLevels() != null) this.levels = new LevelProcess(product.getLevels());
         if (product.getEatable() != null) setEatable(new Eatable(product.getEatable()));

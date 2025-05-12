@@ -29,6 +29,7 @@ public enum FruitTypes {
     private int fruitHarvestCycle;
     private int stackSize;
     private boolean isSyrup;
+    private ArrayList<Seasons> seasons;
 
     FruitTypes(String name, boolean isSyrup,int baseSellPrice, Eatable eatable, ArrayList<Seasons> seasons, int fruitHarvestCycle, int stackSize) {
         this.isSyrup = isSyrup;
@@ -37,6 +38,7 @@ public enum FruitTypes {
         this.name = name;
         this.fruitHarvestCycle = fruitHarvestCycle;
         this.stackSize = stackSize;
+        this.seasons = seasons;
     }
 
     public String getName() {
@@ -61,5 +63,24 @@ public enum FruitTypes {
 
     public boolean isSyrup() {
         return isSyrup;
+    }
+
+    public static FruitTypes find(String name) {
+        name = name.toLowerCase();
+        for (FruitTypes value : FruitTypes.values()) {
+            if (value.toString().toLowerCase().equals(name)) return value;
+        }
+        return null;
+    }
+
+    public TreeTypes getTreeType() {
+        for (TreeTypes value : TreeTypes.values()) {
+            if (value.getFruit() == this) return value;
+        }
+        return null;
+    }
+
+    public ArrayList<Seasons> getSeasonList() {
+        return seasons;
     }
 }

@@ -6,7 +6,7 @@ import phi.ap.model.enums.LevelName;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.tools.FishingPole;
 
-public enum FishShopProducts {
+public enum FishShopProducts{
     FishSmoker("Fish Smoker (Recipe)", "A recipe to make Fish Smoker", 10000, 1, 0, LevelName.training),
     TroutSoup("Trout Soup", "Pretty salty.", 250, 1, 0, LevelName.bamboo),
     BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500, 1, 0, LevelName.bamboo),

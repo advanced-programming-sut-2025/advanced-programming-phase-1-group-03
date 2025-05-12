@@ -26,7 +26,11 @@ public class Crop extends Plant {
         this.type = type;
         oneTime = type.getOneTime();
         regrowthTime = type.getRegrowthTime();
-
+        setSellable(true);
+        setSellPrice(type.getBaseSellPrice());
+        if (type.getEatable() != null) {
+            setEatable(new Eatable(type.getEatable()));
+        }
     }
 
     public Crop(int height, int width, ForagingCropsTypes type) {
@@ -36,6 +40,9 @@ public class Crop extends Plant {
         this.seedType = null;
         fillTile(type.getTile());
         setName(type.getName());
+        setSellable(true);
+        setSellPrice(foragingType.getBaseSellPrice());
+        setEatable(new Eatable(foragingType.getEnergy()));
     }
 
     @Override
@@ -62,12 +69,10 @@ public class Crop extends Plant {
             int amount = 1;
             if (type != null) {
                 instance = new Crop(getHeight(), getWidth(), type);
-                if (type.getEatable() != null) setEatable(new Eatable(type.getEatable()));
                 amount = type.getStackSize();
             }
             else {
                 instance = new Crop(getHeight(), getWidth(), foragingType);
-                setEatable(new Eatable(foragingType.getEnergy()));
                 if (foragingType != null) amount = foragingType.getStackSize();
             }
             products.add(new ItemStack(instance, amount));
@@ -91,6 +96,30 @@ public class Crop extends Plant {
         this.regrowthTime = otherCrop.regrowthTime;
         if (otherCrop.lastHarvestDate != null) this.lastHarvestDate = new Date(otherCrop.lastHarvestDate.getHour());
         else lastHarvestDate = null;
+    }
+
+    public SeedTypes getSeedType() {
+        return seedType;
+    }
+
+    public CropsTypes getType() {
+        return type;
+    }
+
+    public ForagingCropsTypes getForagingType() {
+        return foragingType;
+    }
+
+    public boolean isOneTime() {
+        return oneTime;
+    }
+
+    public int getRegrowthTime() {
+        return regrowthTime;
+    }
+
+    public Date getLastHarvestDate() {
+        return lastHarvestDate;
     }
 
     @Override

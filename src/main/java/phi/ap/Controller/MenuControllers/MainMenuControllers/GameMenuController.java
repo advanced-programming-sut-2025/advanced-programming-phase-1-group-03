@@ -427,6 +427,111 @@ public class GameMenuController {
             return new Result<>(false, "you don't have tool, first equip some of them");
         return currentTool.useTool(Misc.getDiffFromDirection(d));
     }
+
+    public Result<String> craftInfo(String nameSt) {
+
+        String name = nameSt.replaceAll("\\s+", "").toLowerCase();
+
+        CropsTypes cropsType = CropsTypes.find(name);
+        ForagingCropsTypes foragingCropsType = ForagingCropsTypes.find(name);
+        TreeTypes treeType = TreeTypes.find(name);
+        ForagingTreeTypes foragingTreeType = ForagingTreeTypes.find(name);
+        FruitTypes fruitType = FruitTypes.find(name);
+        SeedTypes seedType = SeedTypes.find(name);
+        SaplingTypes saplingType = SaplingTypes.find(name);
+        MixedSeedsTypes mixedSeedsType = MixedSeedsTypes.find(name);
+
+        StringBuilder res = new StringBuilder();
+        if (cropsType != null || foragingCropsType != null) {
+            Crop v;
+            if (cropsType != null) v = new Crop(1, 1, cropsType);
+            else v = new Crop(1, 1, foragingCropsType);
+            res.append("Name: " + v.getName() + "\n");
+            res.append("Type: ");
+            if (cropsType != null) res.append("crop\n");
+            else res.append("foraging crop\n");
+            res.append("Source: " + v.getSourceName() + "\n");
+            res.append("Total harvest time: " + v.totalHarvestTime() + "\n");
+            res.append("One time: " + v.isOneTime() + "\n");
+            if (!v.isOneTime()) res.append("Regrowth time: " + v.getRegrowthTime() + "\n");
+            res.append("Growing stages: " + v.getStages().toString() + "\n");
+            res.append("Base sell price: " + v.getSellPrice() + "\n");
+            res.append("Eatable: " + (v.getEatable() != null) + "\n");
+            if (v.getEatable() != null) {
+                res.append("Energy: " + v.getEatable().getEnergy() + "\n");
+            }
+            if (cropsType != null) res.append("Seasons: " + cropsType.getSeasonsList().toString() + "\n");
+            else res.append("Seasons: " + foragingCropsType.getSeasonList() + "\n");
+            res.append("Giantable: " + v.isCanBecomeGiant() + "\n");
+        } else if (foragingTreeType != null || treeType != null) {
+            Tree v;
+            TreeTypes foragingType = null;
+            if (foragingTreeType != null) {
+                foragingType = foragingTreeType.getTreeType();
+            }
+            if (foragingTreeType != null) v = new Tree(1, 1, foragingType, true);
+            else v = new Tree(1, 1, treeType, false);
+
+            res.append("Name: " + v.getName() + "\n");
+            res.append("Type: ");
+            if (foragingTreeType != null) res.append("foraging tree\n");
+            else res.append("tree\n");
+            res.append("Fruit name: " + v.getFruit().toString() + "\n");
+            res.append("Source: " + v.getSourceName() + "\n");
+            res.append("Total harvest time: " + v.totalHarvestTime() + "\n");
+            res.append("Fruit harvest cycles: " + v.getRemainingHarvestCycles() + "\n");
+            if (v.getRemainingHarvestCycles() > 1) res.append("Fruit regrowth time: " + v.getHarvestRegrowthTime() + "\n");
+            res.append("Growing stages: " + v.getStages().toString() + "\n");
+            res.append("Fruit base sell price: " + v.getFruit().getBaseSellPrice() + "\n");
+            if (treeType != null) res.append("Seasons: " + treeType.getSeasonList() + "\n");
+            else res.append("Seasons: " + foragingType.getSeasonList() + "\n");
+            res.append("Giantable: " + v.isCanBecomeGiant() + "\n");
+        } else if (fruitType != null) {
+            Fruit v = new Fruit(1, 1, fruitType);
+
+            res.append("Name: " + v.getName() + "\n");
+            res.append("Type: fruit\n");
+            res.append("Source: " + fruitType.getTreeType() + "\n");
+            res.append("Eatable: " + (fruitType.getEatable() != null) + "\n");
+            if (fruitType.getEatable() != null) res.append("Energy: " + fruitType.getEatable().getEnergy() + "\n");
+            res.append("Harvest cycles: " + fruitType.getFruitHarvestCycle() + "\n");
+            res.append("Fruit regrowth time: " + fruitType.getTreeType().getStages().getLast() + "\n");
+            res.append("Base sell price: " + v.getSellPrice() + "\n");
+            res.append("Seasons: " + fruitType.getSeasonList() + "\n");
+        } else if(mixedSeedsType != null) {
+            res.append("Name: " + mixedSeedsType + "\n");
+            res.append("Type: mixed seed\n");
+            res.append("Possible seeds: " + mixedSeedsType.getMixedSeeds() + "\n");
+            res.append(("Season: " + mixedSeedsType.getSeasonList() + "\n"));
+        } else if (seedType != null) {
+            res.append("Name: " + seedType + "\n");
+            res.append("Type: seed\n");
+            res.append("Product: ");
+            res.append(seedType.findCropType() + "\n");
+            res.append("Seasons: " + seedType.getSeasonList() + "\n");
+        } else if (saplingType != null) {
+            res.append("Name: " + saplingType + "\n");
+            res.append("Type: sapling\n");
+            res.append("Product: ");
+            res.append(saplingType.getTreeType() + "\n");
+            res.append("Seasons: " + saplingType.getTreeType().getSeasonList() + "\n");
+        } else {
+            return new Result<>(false, "Nothing found");
+        }
+        return new Result<>(true, res.toString());
+
+    }
+
+
+
+
+
+
+
+
+
+
+
     public Result<String> showCraftingRecipes() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("showCraftingRecipes:\n");
