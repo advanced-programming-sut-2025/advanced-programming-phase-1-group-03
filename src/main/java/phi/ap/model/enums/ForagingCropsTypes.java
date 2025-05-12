@@ -76,7 +76,7 @@ private final String name;
             int ind = App.getInstance().getRandomNumber(0, ForagingCropsTypes.values().length - 1);
             result = ForagingCropsTypes.values()[ind];
         } while (result.season != season && result.season != Seasons.Special);
-        return result;
+        return CommonMushroom;
     }
 
     public int getStackSize() {

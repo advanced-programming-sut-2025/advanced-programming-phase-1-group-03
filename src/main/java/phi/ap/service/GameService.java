@@ -11,16 +11,97 @@ import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.buildings.NPCVillage;
 import phi.ap.model.items.buildings.Quarry;
 import phi.ap.model.items.Seed;
-import phi.ap.model.items.products.Tree;
-import phi.ap.model.items.products.Crop;
-import phi.ap.model.items.products.Mineral;
-import phi.ap.model.items.products.Stone;
+import phi.ap.model.items.products.*;
 
 public class GameService {
     private Game game;
 
     public GameService(Game game) {
         this.game = game;
+    }
+
+    public void setForaging(int y, int x, boolean force, int probBoost) {
+        for (Player player : game.getPlayers()) {
+            if (player.getLocation().getGround().getTileCoordinateBaseMap(
+                    player.getLocation().getY(), player.getLocation().getX())
+                    .equals(new Coordinate(y, x))) return;
+        }
+        Location loc = App.getInstance().getMapService().getLocationOnMap(y, x);
+        if (loc == null) return; // TODO : || get.ground() == null
+        Item topItem = loc.getGround().getTopItem(loc.getY(), loc.getX());
+        if (loc.getGround().getClass().getSimpleName().equals(Farm.class.getSimpleName())) {
+            if (!force && App.getInstance().getRandomNumber(1, 100) > 1 * probBoost) return;
+            if (!(topItem instanceof Dirt dirt)) return;
+            if (dirt.isPlowed()) {
+                return;
+                //TODO : add foraging seed random after planting system completed;
+            }
+
+            int rand = App.getInstance().getRandomNumber(1, 100);
+            int[] probs = {20, 20, 10, 15, 15, 20};
+            int ind = 0; int sum = 0;
+            for (int i = 0; i < probs.length; i++) {
+                sum += probs[i];
+                if (rand <= sum) {
+                    ind = i;
+                    break;
+                }
+            }
+            Item item = null;
+            switch (ind) {
+                case 1:
+                    Product product = new Product(ProductNames.Grass);
+                    if (App.getInstance().getRandomNumber(1, 3) == 1) {
+                        product.getDrops().add(new ItemStack(new Product(ProductNames.Fiber), 1));
+                    }
+                    item = product;
+                    break;
+                case 2:
+                    item = new Wood(1, 1);
+                    break;
+                case 3:
+                    ForagingCropsTypes fCropType = ForagingCropsTypes.getRandomFromSeason(Game.getInstance().getDate().getSeason());
+                    //TODO: Set null checker;
+                    Crop crop = new Crop(1, 1, fCropType);
+                    item = crop;
+                    break;
+                case 4:
+                    SeedTypes seedType = SeedTypes.getRandomFromSeason(Game.getInstance().getDate().getSeason());
+                    Seed seed = new Seed(1, 1, seedType);
+                    item = seed;
+                    break;
+                case 5:
+                    ForagingTreeTypes fTreeType= ForagingTreeTypes.getRandom(Game.getInstance().getDate().getSeason());
+                    Tree tree = new Tree(1, 1, fTreeType.getTreeType(), true);
+                    item = tree;
+                    break;
+                default:
+                    item = new Stone(1, 1, StoneTypes.RegularStone);
+            }
+            item.setCoordinate(new Coordinate(0, 0));
+            dirt.addItem(item);
+        }
+        else if(loc.getGround().getClass().getSimpleName().equals(Quarry.class.getSimpleName())) {
+            if (!force && App.getInstance().getRandomNumber(1, 100) > 1 * probBoost) return;
+            if (topItem != null) return;
+            Item item;
+            if (App.getInstance().getRandomNumber(1, 10) == 1) {
+                item = new Stone(1, 1, StoneTypes.RegularStone);
+            } else {
+                item = new Mineral(1, 1, ForagingMineralTypes.getRandom());
+            }
+            item.setCoordinate(new Coordinate(loc.getY(), loc.getX()));
+            loc.getGround().addItem(item);
+        }
+    }
+
+    public void generateForaging(int probBoost) {
+        if (probBoost < 1) probBoost = 1;
+        for (int i = 0; i < game.getMap().getHeight(); i++) {
+            for (int j = 0; j < game.getMap().getWidth(); j++) {
+                setForaging(i, j, false, probBoost);
+            }
+        }
     }
 
     public void initializeGame() {
@@ -84,8 +165,8 @@ public class GameService {
             Portal.makePortalTwoWay(farm, fp2, village, vp2, TileType.Door.getTile());
         }
 
-        //adding trees with probability 10%, stones 5% foraging 3% minerals 10%
-        for (Item ground : game.getMap().getHoldingItems()) {
+        //adding foraging;
+        /*for (Item ground : game.getMap().getHoldingItems()) {
             if (ground instanceof Farm) {
                 //tree
                 for (int i = 1; i < ground.getHeight() - 1; i++) {
@@ -158,5 +239,7 @@ public class GameService {
                 }
             }
         }
+        */
+        generateForaging(20);
     }
 }

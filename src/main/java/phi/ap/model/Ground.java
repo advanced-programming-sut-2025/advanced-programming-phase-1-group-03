@@ -43,7 +43,7 @@ public class Ground {
 
     public void setTile(int y, int x, Tile tile) {
         if (!isCoordinateValid(y, x)) return;
-        if (tile.getSymbol().equals(" ")) tile.setSymbol(tiles[y][x].getSymbol());
+        if (tile.getSymbol().equals(" ") && tiles[y][x] != null) tile.setSymbol(tiles[y][x].getSymbol());
         tiles[y][x].set(new Tile(tile.getSymbol(), tiles[y][x].getFgColor() + tile.getFgColor(),
                 tiles[y][x].getBgColor() + tile.getBgColor(), tile.isWalkable()));
     }

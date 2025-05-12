@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum ProductNames {
-    Grass("Grass", new LevelProcess(), new Tile("#", Colors.GREEN.toString(), "", true)),
+    Grass("Grass", new LevelProcess(), new Tile("#", Colors.fg(28), "", true)),
+    Fiber("Fiber", new LevelProcess(), new Tile("#", Colors.fg(28), "", true)),
     ;
     private String name;
     private LevelProcess levels;

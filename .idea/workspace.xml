@@ -4,25 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding one function to time">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="craft info added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/CropsTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/CropsTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FoodTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FoodTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ground.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingCropsTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingCropsTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingMineralTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingMineralTypes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingTreeTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingTreeTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FruitTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FruitTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/MixedSeedsTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/MixedSeedsTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/SaplingTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/SaplingTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/SeedTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/SeedTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/FishShopProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/FishShopProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TreeTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TreeTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Crop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Crop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Plant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Plant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ProductNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ProductNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Mineral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Mineral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Scythe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Scythe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,23 +84,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Gradle.StardewValley [run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="phi.ap.Main" />
@@ -210,7 +203,15 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۰۵" />
       <updated>1747038571776</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="craft info added">
+      <option name="closed" value="true" />
+      <created>1747071291861</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747071291861</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +234,8 @@
     <MESSAGE value="animal fixed" />
     <MESSAGE value="canStackWith bug fixed" />
     <MESSAGE value="Adding one function to time" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding one function to time" />
+    <MESSAGE value="craft info added" />
+    <option name="LAST_COMMIT_MESSAGE" value="craft info added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -251,21 +253,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
           <line>468</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingTreeTypes.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingTreeTypes.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingTreeTypes.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
