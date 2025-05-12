@@ -1,5 +1,6 @@
 package phi.ap.model.items.products;
 
+import phi.ap.model.App;
 import phi.ap.model.Eatable;
 import phi.ap.model.ItemStack;
 import phi.ap.model.LevelProcess;
@@ -61,8 +62,17 @@ public class Product extends Item {
         products = new ArrayList<>(product.getProducts());
     }
 
-    private final static  LevelProcess levelProcess = new LevelProcess(new ArrayList<>(
+    public final static  LevelProcess levelProcessSample = new LevelProcess(new ArrayList<>(
             List.of(LevelName.normal, LevelName.silver, LevelName.golden, LevelName.iridium)), 0);
+    public static LevelProcess getRandomLevelProcessSample() {
+        LevelProcess levelsSample = new LevelProcess(new LevelProcess(Product.levelProcessSample));
+        int rand = App.getInstance().getRandomNumber(1, 100);
+        if (rand <= 50) levelsSample.setCurrentLevel(0);
+        else if (rand <= 70) levelsSample.setCurrentLevel(1);
+        else if (rand <= 90) levelsSample.setCurrentLevel(2);
+        else levelsSample.setCurrentLevel(3);
+        return levelsSample;
+    }
 
     @Override
     public void doTask() {
@@ -95,5 +105,27 @@ public class Product extends Item {
 
     public void setDrops(ArrayList<ItemStack> drops) {
         this.drops = drops;
+    }
+
+    public void copy(Product product) {
+        if (product.getLevels() != null) this.levels = new LevelProcess(product.getLevels());
+        else this.levels = null;
+        if (product.getEatable() != null) setEatable(new Eatable(product.getEatable()));
+        else setEatable(null);
+        setName(product.getName());
+        for (int i = 0; i < getHeight(); i++) {
+            for (int j = 0; j < getWidth(); j++) {
+                if (product.getTile(i, j) != null)setTile(i, j, product.getTile(i, j));
+            }
+        }
+        setSellable(product.isSellable());
+        setSellPrice(product.getSellPrice());
+        drops = new ArrayList<>(product.getDrops());
+        products = new ArrayList<>(product.getProducts());
+    }
+
+    public int getSellPrice() {
+        if (levels == null) return super.getSellPrice();
+        return (int) (super.getSellPrice() * levels.getCurrentLevelName().getSellPrinceCoefficient());
     }
 }

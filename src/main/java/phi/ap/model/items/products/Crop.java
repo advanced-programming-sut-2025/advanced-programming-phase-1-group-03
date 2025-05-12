@@ -41,10 +41,22 @@ public class Crop extends Plant {
     @Override
     public ArrayList<ItemStack> getProducts() {
         ArrayList<ItemStack> products = new ArrayList<>();
-        if (!isAlive()) return products;
-        if (!isStagesDone()) return products;
-        if (!type.getSeasonsList().contains(Game.getInstance().getDate().getSeason())) return products;
-        if (lastHarvestDate != null && oneTime) return products;
+        if (!isAlive()) {
+            setLevelsForArrayList(products);
+            return products;
+        }
+        if (!isStagesDone()) {
+            setLevelsForArrayList(products);
+            return products;
+        }
+        if (!type.getSeasonsList().contains(Game.getInstance().getDate().getSeason())) {
+            setLevelsForArrayList(products);
+            return products;
+        }
+        if (lastHarvestDate != null && oneTime) {
+            setLevelsForArrayList(products);
+            return products;
+        }
         if (lastHarvestDate == null || Game.getInstance().getDate().getDay() - lastHarvestDate.getDay() > regrowthTime) {
             Crop instance;
             int amount = 1;
@@ -61,12 +73,24 @@ public class Crop extends Plant {
             products.add(new ItemStack(instance, amount));
             lastHarvestDate = Game.getInstance().getDate();
         }
+        setLevelsForArrayList(products);
         return products;
     }
 
     @Override
     public ArrayList<ItemStack> getDrops() {
         return new ArrayList<>();
+    }
+
+    public void copy(Crop otherCrop) {
+        super.copy(otherCrop);
+        this.seedType = otherCrop.seedType;
+        this.type = otherCrop.type;
+        this.foragingType = otherCrop.foragingType;
+        this.oneTime = otherCrop.oneTime;
+        this.regrowthTime = otherCrop.regrowthTime;
+        if (otherCrop.lastHarvestDate != null) this.lastHarvestDate = new Date(otherCrop.lastHarvestDate.getHour());
+        else lastHarvestDate = null;
     }
 
     @Override

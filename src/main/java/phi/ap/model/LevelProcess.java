@@ -48,6 +48,11 @@ public class LevelProcess {
         return currentLevel;
     }
 
+    public LevelName getCurrentLevelName() {
+        if (levelNames == null) return null;
+        return levelNames.get(currentLevel);
+    }
+
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
     }

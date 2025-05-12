@@ -1,18 +1,17 @@
 package phi.ap.model.items.products;
 
-import phi.ap.model.Date;
-import phi.ap.model.Game;
-import phi.ap.model.ItemStack;
+import phi.ap.model.*;
+import phi.ap.model.enums.SoilTypes;
 
 import java.util.ArrayList;
 
 public abstract class Plant extends Product {
     private String sourceName;
-    private final ArrayList<Integer> stages;
-    private final boolean canBecomeGiant;
+    private ArrayList<Integer> stages;
+    private boolean canBecomeGiant;
     private Date plantingDate;
     private Date lastWateredDate;
-
+    private Giant giant = null;
 
     public Plant(int height, int width, String sourceName, ArrayList<Integer> stages, boolean canBecomeGiant, Date plantingDate) {
         super(height, width);
@@ -73,9 +72,18 @@ public abstract class Plant extends Product {
         this.sourceName = sourceName;
     }
 
-    public void watering() {
+    public void wateringSingle() {
         if (!isAlive()) return;
         lastWateredDate = Game.getInstance().getDate();
+    }
+
+    public void watering() {
+        if (giant == null) wateringSingle();
+        else {
+            for (Plant member : giant.getMembers()) {
+                member.wateringSingle();
+            }
+        }
     }
     public boolean isWateredToday() {
         return lastWateredDate.getDay() == Game.getInstance().getDate().getDay();
@@ -84,8 +92,61 @@ public abstract class Plant extends Product {
         return Game.getInstance().getDate().getDay() - lastWateredDate.getDay() <= 2;
     }
 
+
+    public void setLastWateredDate(Date lastWateredDate) {
+        this.lastWateredDate = lastWateredDate;
+    }
+
+    public Giant getGiant() {
+        return giant;
+    }
+
+    public void setGiant(Giant giant) {
+        this.giant = giant;
+    }
+
     @Override
     public void doTask() {
 
     }
+
+    public void copy(Plant otherPlant) {
+        super.copy(otherPlant);
+        setSourceName(otherPlant.getSourceName());
+        stages = new ArrayList<>(otherPlant.getStages());
+        canBecomeGiant = otherPlant.canBecomeGiant;
+        if (otherPlant.plantingDate != null) setPlantingDate(new Date(otherPlant.getPlantingDate().getHour()));
+        else setPlantingDate(null);
+        if (otherPlant.lastWateredDate != null)setLastWateredDate(new Date(otherPlant.getLastWateredDate().getDay()));
+        else setLastWateredDate(null);
+    }
+
+    public Date getLastWateredDate() {
+        return lastWateredDate;
+    }
+
+    public void setLevelsForArrayList(ArrayList<ItemStack> list) {
+        for (ItemStack itemStack : list) {
+            if (!(itemStack.getItem() instanceof Product product)) continue;
+            if (product.getLevels() == null) continue;
+            product.setLevels(Product.getRandomLevelProcessSample());
+            if (getLevels() == null) continue;
+            if (product.getLevels().getCurrentLevel() == 0) {
+                int rand = App.getInstance().getRandomNumber(1, 2);
+                if (rand == 2) product.getLevels().setCurrentLevel(getLevels().getCurrentLevel());
+            }
+        }
+    }
+
+    public void fertilize(SoilTypes soilType) {
+        switch (soilType) {
+            case DeluxeRetaining:
+                watering();
+                break;
+            case SpeedGro:
+                plantingDate.advanceHourWithoutSleep(-24);
+                break;
+        }
+    }
+
 }
