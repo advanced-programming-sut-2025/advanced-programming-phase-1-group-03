@@ -80,7 +80,7 @@ public class Tree extends Plant {
             drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
         } else {
             drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
-            if (fruit == FruitTypes.MapleSyrup || fruit == FruitTypes.MysticSyrup) {
+            if (fruit.isSyrup()) {
                 drops.add(new ItemStack(new Fruit(1, 1, fruit), fruit.getStackSize()));
             }
             if (seedType != null) {

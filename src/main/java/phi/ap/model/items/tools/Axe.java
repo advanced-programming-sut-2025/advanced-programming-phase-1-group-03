@@ -30,10 +30,9 @@ public class Axe extends Tool{
                 wood.getFather().removeItem(wood);
             }
             case Tree tree -> {
-
                 for (ItemStack drop : tree.getDrops()) {
                     int cnt = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(drop);
-                    response.append(cnt + "amount of " + drop.getItem().getName() + " gained!");
+                    response.append(cnt + "amount of " + drop.getItem().getName() + " gained!\n");
                 }
                 tree.getFather().removeItem(tree);
             }

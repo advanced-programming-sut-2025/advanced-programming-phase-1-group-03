@@ -1,9 +1,11 @@
 package phi.ap.model.items.tools;
 
-import phi.ap.model.Coordinate;
-import phi.ap.model.LevelProcess;
-import phi.ap.model.Result;
+import phi.ap.model.*;
 import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.ProductNames;
+import phi.ap.model.items.Dirt;
+import phi.ap.model.items.Item;
+import phi.ap.model.items.products.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,30 @@ public class Scythe extends Tool{
     }
     @Override
     public Result<String> useTool(Coordinate direction) {
-        return null;
+        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getX(), direction.getY());
+        if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
+
+        StringBuilder response = new StringBuilder();
+        switch (item) {
+            case Plant plant -> {
+                for(ItemStack itemStack : plant.getProducts()){
+                    Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(itemStack);
+                    response.append(itemStack.getAmount()).append(" of ").append(itemStack.getItem().getName()).append(" gained!\n");
+                }
+                if(plant instanceof Tree && ((Tree)plant).isThundered()){
+                    plant.getFather().removeItem(plant);
+                }
+                return new Result<>(true, response.toString());
+            }case Product grass -> {
+                if(grass.canStackWith(ProductNames.Grass.getInstance())){
+
+                }
+            }
+            case null, default -> {
+                return new Result<>(false, "you can't do anything with this item!\n" +
+                        "you only wasted your energy -_-");
+            }
+        }
     }
 
     @Override

@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="canStackWith bug fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Date.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Axe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Scythe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Scythe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

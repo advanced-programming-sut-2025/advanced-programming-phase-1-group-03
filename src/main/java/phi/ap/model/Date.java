@@ -41,6 +41,9 @@ public class Date {
         this.hour += (START_HOUR - getHour() + 24);
     }
 
+    public void advanceHourWithoutSleep(int hour){
+        this.hour += hour;
+    }
     //return if it's sleeping time or not
     public boolean advanceHour(){
         this.hour += 1;
