@@ -150,6 +150,7 @@ public class GameMenuController {
         //TODO
         doAnimalSystemTasks();
         Game.getInstance().getWeatherManager().setWeathersInMorning();
+        App.getInstance().getGameService().generateForaging(1);
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
