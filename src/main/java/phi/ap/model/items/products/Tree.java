@@ -4,10 +4,7 @@ import phi.ap.model.App;
 import phi.ap.model.Date;
 import phi.ap.model.Game;
 import phi.ap.model.ItemStack;
-import phi.ap.model.enums.FruitTypes;
-import phi.ap.model.enums.SaplingTypes;
-import phi.ap.model.enums.SeedTypes;
-import phi.ap.model.enums.TreeTypes;
+import phi.ap.model.enums.*;
 import phi.ap.model.items.Sapling;
 import phi.ap.model.items.Seed;
 
@@ -22,6 +19,8 @@ public class Tree extends Plant {
     private int HarvestRegrowthTime = 1; // default : last stage
     private int woodAmount = 2;
     private Date lastHarvestDate;
+    private boolean isThundered = false;
+
 
     public Tree(int height, int width, TreeTypes type, boolean isForaging) {
 
@@ -53,6 +52,11 @@ public class Tree extends Plant {
     @Override
     public ArrayList<ItemStack> getProducts() {
         ArrayList<ItemStack> products = new ArrayList<>();
+        if (isThundered) {
+            products.add(new ItemStack(new Mineral(1, 1, ForagingMineralTypes.COAL),
+                    App.getInstance().getRandomNumber(1, 2)));
+            return products;
+        }
         if (!isAlive()) return products;
         if (!isStagesDone()) return products;
         if (remainingHarvestCycles == 0) return products;
@@ -72,9 +76,8 @@ public class Tree extends Plant {
     @Override
     public ArrayList<ItemStack> getDrops() {
         ArrayList<ItemStack> drops = new ArrayList<>();
-        if (!isAlive()) {
+        if (!isAlive() || isThundered) {
             drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
-            //TODO : coal in case of strike
         } else {
             drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
             if (fruit == FruitTypes.MapleSyrup || fruit == FruitTypes.MysticSyrup) {
@@ -106,5 +109,13 @@ public class Tree extends Plant {
 
     public FruitTypes getFruit() {
         return fruit;
+    }
+
+    public void setThundered(boolean thundered) {
+        isThundered = thundered;
+    }
+
+    public boolean isThundered() {
+        return isThundered;
     }
 }

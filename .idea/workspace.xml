@@ -4,33 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Product Name and system added">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="canStackWith bug fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/LevelProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/LevelProcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Axe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/WateringCan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/WateringCan.java" afterDir="false" />
-    </list>
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="animal fixed">
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/CraftingTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingTreeTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/InventoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/InventoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/Crafts.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingMineralTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingMineralTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/RecipeTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/RecipeTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/Machine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/Machine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/Refrigerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/Refrigerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Converter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Converter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/CraftedProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/CraftedProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/CraftingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/CraftingMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Scarecrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Scarecrow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Sprinkler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Sprinkler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +169,8 @@
       <option name="presentableId" value="Default" />
       <updated>1746950472838</updated>
       <workItem from="1747002200935" duration="569000" />
-      <workItem from="1747002784117" duration="343000" />
+      <workItem from="1747002784117" duration="530000" />
+      <workItem from="1747030796899" duration="1454000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -202,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746958299161</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="canStackWith bug fixed">
+      <option name="closed" value="true" />
+      <created>1747003306992</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747003306992</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +209,8 @@
     <MESSAGE value="refrigerator completed" />
     <MESSAGE value="refrigerator bug fixed." />
     <MESSAGE value="animal fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="animal fixed" />
+    <MESSAGE value="canStackWith bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="canStackWith bug fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
