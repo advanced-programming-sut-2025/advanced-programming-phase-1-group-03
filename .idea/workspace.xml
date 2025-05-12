@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="canStackWith bug fixed">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding one function to time">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Axe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Scythe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Scythe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -190,7 +189,14 @@
       <option name="project" value="LOCAL" />
       <updated>1747003306992</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL‎−۰۰۰۰۵" summary="Adding one function to time">
+      <option name="closed" value="true" />
+      <created>1747038571763</created>
+      <option name="number" value="LOCAL‎−۰۰۰۰۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۰۵" />
+      <updated>1747038571776</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,14 +218,15 @@
     <MESSAGE value="refrigerator bug fixed." />
     <MESSAGE value="animal fixed" />
     <MESSAGE value="canStackWith bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="canStackWith bug fixed" />
+    <MESSAGE value="Adding one function to time" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding one function to time" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>425</line>
+          <line>433</line>
           <properties class="phi.ap.Controller.MenuControllers.MainMenuControllers.GameMenuController" method="showCraftingRecipes">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -228,7 +235,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>432</line>
+          <line>440</line>
           <properties class="phi.ap.Controller.MenuControllers.MainMenuControllers.GameMenuController" method="craftItem">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -237,7 +244,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>439</line>
+          <line>447</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

@@ -114,11 +114,13 @@ public class GameMenuController {
         return new Result<>(true, message);
     }
 
-    private void advanceHour(){
+    private boolean advanceHour(){
         if(Game.getInstance().getDate().advanceHour()) {
             Game.getInstance().getDate().goToNextDay();
             doNightTasks();
+            return true;
         }
+        return false;
     }
     private void doAnimalSystemTasks() {
         ArrayList<Animal> animals = Game.getInstance().getCurrentPlayer().getAnimals();
@@ -180,8 +182,10 @@ public class GameMenuController {
         if(hour < 0)
             return new Result<>(false, "can time be negative???!");
 
-        for(int i = 0; i < hour; i++)
-            advanceHour();
+        for(int i = 0; i < hour; i++) {
+            if(advanceHour())
+                hour = hour - Date.SLEEP_TIME;
+        }
         return new Result<>(true, "zaman " + amount + " saat raft jeloo");
     }
 
