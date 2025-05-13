@@ -136,5 +136,8 @@ public class InventoryManager {
         }
         return stringBuilder.toString();
     }
+    public ArrayList<ItemStack> getAllItems(){
+        return storage.getStacks();
+    }
 }
 

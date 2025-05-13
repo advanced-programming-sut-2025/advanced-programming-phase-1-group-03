@@ -2,7 +2,9 @@ package phi.ap.model.enums.StoreProducts;
 
 import phi.ap.model.Game;
 import phi.ap.model.Result;
+import phi.ap.model.enums.CraftingTypes;
 import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.ProductNames;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Product;
 import phi.ap.model.items.products.Recipe;
@@ -12,43 +14,49 @@ public enum FishShopProducts{
     FishSmoker("Fish Smoker (Recipe)", "A recipe to make Fish Smoker", 10000, 1, 0, null){
         @Override
         public Item getItem() {
-            return null;
-           // return new Recipe();
+            Item p = CraftingTypes.FishSmoker.getRecipe();
+            p.setSellPrice(getPrice());
+            return p;
         }
     },
     TroutSoup("Trout Soup", "Pretty salty.", 250, 1, 0, null){
         @Override
         public Item getItem() {
-            System.out.println(getDescription());
-            return new Product(1,1);
+            Item p =  new Product(ProductNames.TroutSoup);
+            p.setSellPrice(getPrice());
+            return p;
         }
     },
     BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500, 1, 0, LevelName.bamboo){
         @Override
         public Item getItem() {
-            System.out.println(getDescription());
-            return new Product(1,1);
+            Item p = getFishingPole();
+            p.setSellPrice(getPrice());
+            return p;
         }
     },
     TrainingRod("Training Rod", "It's a lot easier to use than other rods, but can only catch basic fish.", 25, 1, 0, LevelName.training){
         @Override
         public Item getItem() {
-            System.out.println(getDescription());
-            return new Product(1,1);
+            Item p = getFishingPole();
+            p.setSellPrice(getPrice());
+            return p;
         }
     },
     FiberglassRod("Fiberglass Rod", "Use in the water to catch fish.", 1800, 1, 2,LevelName.fiberGlass){
         @Override
         public Item getItem() {
-            System.out.println(getDescription());
-            return new Product(1,1);
+            Item p = getFishingPole();
+            p.setSellPrice(getPrice());
+            return p;
         }
     },
     IridiumRod("Iridium Rod", "Use in the water to catch fish.", 7500, 1, 4, LevelName.iridium){
         @Override
         public Item getItem() {
-            System.out.println(getDescription());
-            return new Product(1,1);
+            Item p = getFishingPole();
+            p.setSellPrice(getPrice());
+            return p;
         }
     };
     private final String name;
@@ -68,51 +76,6 @@ public enum FishShopProducts{
         this.fishingSkill = fishingSkill;
     }
 
-
-    public static Result<String> purchase(String productName, String amountString) {
-        int amount = Integer.parseInt(amountString);
-        FishShopProducts fishShopProducts;
-        try {
-            fishShopProducts  = FishShopProducts.valueOf(productName);
-        }
-        catch (IllegalArgumentException e) {
-            return new Result<>(false, "There is no product with this name.");
-        }
-        if(amount > fishShopProducts.availableAmount) {
-            return new Result<>(false, "There is not enough amount of this product.");
-        }
-        else if(amount > fishShopProducts.dailyLimit) {
-            return new Result<>(false, "You can't purchase this amount of product on this day.");
-        }
-        else if(amount * fishShopProducts.price > Game.getInstance().getCurrentPlayer().getGold()) {
-            return new Result<>(false, "You don't have enough money.");
-        }
-        fishShopProducts.availableAmount -= amount;
-        fishShopProducts.dailyLimit -= amount;
-        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() - amount * fishShopProducts.price);
-
-        FishingPole item = new FishingPole();
-        item.getLevelProcess().setCurrentLevel(fishShopProducts.level);
-        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, amount);
-        return new Result<>(true, "Item purchased successfully");
-    }
-
-    public static Result<String> showAllProducts() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for(FishShopProducts fishShopProducts : FishShopProducts.values()) {
-            stringBuilder.append("Name : " + "\"" + fishShopProducts.getName() + "\"" + "     " + "Price: "  + fishShopProducts.getPrice() + "g" + "\n");
-        }
-        return new Result<>(true, stringBuilder.toString());
-    }
-
-    public static Result<String> showAvailableProducts() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for(FishShopProducts fishShopProducts : FishShopProducts.values()) {
-            if(fishShopProducts.availableAmount > 0 && fishShopProducts.dailyLimit > 0)
-                stringBuilder.append("Name : " + "\"" + fishShopProducts.getName() + "\"" + "     " + "Price: "  + fishShopProducts.getPrice() + "g" + "\n");
-        }
-        return new Result<>(true, stringBuilder.toString());
-    }
     public String getName() {
         return name;
     }
@@ -130,4 +93,22 @@ public enum FishShopProducts{
     }
 
     public abstract Item getItem();
+
+    //if we use this method for non-fishing pole items throws exception
+    public FishingPole getFishingPole() {
+        FishingPole fishingPole = new FishingPole();
+        fishingPole.getLevelProcess().setCurrentLevel(level);
+        return fishingPole;
+    }
+
+    public Integer getFishingSkill() {
+        return fishingSkill;
+    }
+
+    public static FishShopProducts fromString(String string) {
+        for(FishShopProducts product : FishShopProducts.values())
+            if(product.name.equalsIgnoreCase(string))
+                return product;
+        return null;
+    }
 }

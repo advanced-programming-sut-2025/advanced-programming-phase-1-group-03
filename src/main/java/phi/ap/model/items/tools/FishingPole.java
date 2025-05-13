@@ -14,9 +14,12 @@ public class FishingPole extends Tool {
         super(new LevelProcess(new ArrayList<>(List.of(LevelName.training,
                 LevelName.bamboo, LevelName.fiberGlass, LevelName.iridium)),0),
                 new ArrayList<>(List.of(8, 8, 6, 4)), AbilityType.Fishing);
-        this.setName("Fishing Pole");
     }
 
+    @Override
+    public String getName() {
+        return "Fishing Pole level : " + getLevelProcess().toString();
+    }
     @Override
     public Result<String> useTool(Coordinate direction) {
         return null;

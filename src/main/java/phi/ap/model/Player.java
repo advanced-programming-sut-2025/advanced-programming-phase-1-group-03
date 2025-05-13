@@ -202,7 +202,7 @@ public class Player extends Human {
 
     //This method create default tools
     public void init() {
-        this.getToolManager().createDefaultTools();
+        this.getToolManager().addBackpack();
         this.getToolManager().addDefaultTools(this.getInventoryManager());
         this.ownedAnimalHouse = new ArrayList<>();
         this.abilities = new ArrayList<>(List.of(new Ability(AbilityType.Farming), new Ability(AbilityType.Extraction),

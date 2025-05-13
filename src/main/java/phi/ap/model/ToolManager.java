@@ -1,29 +1,17 @@
 package phi.ap.model;
 
+import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Fish;
 import phi.ap.model.items.tools.*;
 
+import java.util.ArrayList;
+
 public class ToolManager {
-    private Hoe hoe;
-    private TrashCan trashCan;
+
     private Backpack backpack;
-    private Pickaxe pickaxe;
-    private Axe axe;
-    private WateringCan wateringCan;
-    private FishingPole fishingPole;
-    private Scythe scythe;
-    private MilkPail milkPail;
-    private Shear shear;
+    private TrashCan trashCan;
 
     private Tool currentTool = null;
-
-    public Hoe getHoe() {
-        return hoe;
-    }
-
-    public TrashCan getTrashCan() {
-        return trashCan;
-    }
 
     public Backpack getBackpack() {
         return backpack;
@@ -31,35 +19,6 @@ public class ToolManager {
 
     public void setBackpack(Backpack backpack) {
         this.backpack = backpack;
-    }
-
-
-    public Pickaxe getPickaxe() {
-        return pickaxe;
-    }
-
-    public Axe getAxe() {
-        return axe;
-    }
-
-    public WateringCan getWateringCan() {
-        return wateringCan;
-    }
-
-    public FishingPole getFishingPole() {
-        return fishingPole;
-    }
-
-    public Scythe getScythe() {
-        return scythe;
-    }
-
-    public MilkPail getMilkPail() {
-        return milkPail;
-    }
-
-    public Shear getShear() {
-        return shear;
     }
 
     public Tool getCurrentTool() {
@@ -70,26 +29,23 @@ public class ToolManager {
         this.currentTool = currentTool;
     }
 
-    public void createDefaultTools() {
-        this.hoe = new Hoe();
+    public void addBackpack() {
         this.backpack = new Backpack();
         this.trashCan = new TrashCan();
-        this.pickaxe = new Pickaxe();
-        this.axe = new Axe();
-        this.wateringCan = new WateringCan();
-        this.scythe = new Scythe();
-        this.milkPail = new MilkPail();
-        this.shear = new Shear();
     }
     public void addDefaultTools(InventoryManager inventoryManager) {
-        inventoryManager.addItem(this.hoe, 1);
+        inventoryManager.addItem(new Hoe(), 1);
         inventoryManager.addItem(this.backpack, 1);
         inventoryManager.addItem(this.trashCan, 1);
-        inventoryManager.addItem(this.pickaxe, 1);
-        inventoryManager.addItem(this.axe, 1);
-        inventoryManager.addItem(this.wateringCan, 1);
-        inventoryManager.addItem(this.scythe, 1);
-        inventoryManager.addItem(this.milkPail, 1);
-        inventoryManager.addItem(this.shear, 1);
+        inventoryManager.addItem(new Pickaxe(), 1);
+        inventoryManager.addItem(new Axe(), 1);
+        inventoryManager.addItem(new WateringCan(), 1);
+        inventoryManager.addItem(new Scythe(), 1);
+        inventoryManager.addItem(new MilkPail(), 1);
+        inventoryManager.addItem(new Shear(), 1);
+    }
+
+    public TrashCan getTrashCan() {
+        return trashCan;
     }
 }
