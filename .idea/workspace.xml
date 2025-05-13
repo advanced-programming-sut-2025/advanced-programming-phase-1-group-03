@@ -4,32 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding one function to time">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/InventoryManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/InventoryManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/CraftingTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/CraftingTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/CropsTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/CropsTypes.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Merge remote-tracking branch 'origin/main'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/phi/ap/model/enums/ForagingMineralTypes.java">
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FoodTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FoodTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingMineralTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingMineralTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/RecipeTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/RecipeTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/BlackSmithsProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/BlackSmithsProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/StarDropSaloonProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/StarDropSaloonProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/Machine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/Machine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Bomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Converter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/CraftedProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/CraftedProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/CraftingMachine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Scarecrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Scarecrow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Sprinkler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/machines/craftingMachines/Sprinkler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/ArtisanFood.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
