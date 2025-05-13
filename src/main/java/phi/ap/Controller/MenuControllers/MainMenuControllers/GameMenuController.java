@@ -34,9 +34,13 @@ public class GameMenuController {
         Farm farm = Game.getInstance().getCurrentPlayer().getFarm();
         Map map = Game.getInstance().getMap();
         String[] params = Arrays.stream(input.split("\\s+")).filter(s -> !s.isEmpty()).toArray(String[]::new);
-        int y = Integer.parseInt(params[0].replaceAll("\\s+", ""));
-        int x = Integer.parseInt(params[1].replaceAll("\\s+", ""));
-        System.out.println(map.getTopItem(y, x) + map.getTopTile(y, x).toString(true));
+        try {
+            int y = Integer.parseInt(params[1].replaceAll("\\s+", ""));
+            int x = Integer.parseInt(params[0].replaceAll("\\s+", ""));
+            System.out.println(map.getTopItem(y, x) + map.getTopTile(y, x).toString(true));
+        } catch (Exception e) {
+            return new Result<>(true, e.getMessage());
+        }
         return null;
     }
     public Result<String> newGame(ArrayList<String> usernames) {

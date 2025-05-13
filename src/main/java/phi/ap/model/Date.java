@@ -13,7 +13,7 @@ public class Date {
     public int getDay(){
         return (hour/24)%SEASONS_DAYS + 1;
     }
-    private int getRawDay(){
+    public int getRawDay(){
         return (hour/24) + 1;
     }
     public Seasons getSeason(){
@@ -42,6 +42,7 @@ public class Date {
         this.hour += (START_HOUR - getHour() + 24);
     }
     public void advanceHourRaw(int hour){
+
         this.hour += hour;
     }
     //return if it's sleeping time or not

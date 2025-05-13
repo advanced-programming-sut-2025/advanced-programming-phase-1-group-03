@@ -31,6 +31,8 @@ public class Crop extends Plant {
         if (type.getEatable() != null) {
             setEatable(new Eatable(type.getEatable()));
         }
+        setShapeAtStage(type.getShapeAtStages());
+        setShapeForCurrentStage();
     }
 
     public Crop(int height, int width, ForagingCropsTypes type) {
@@ -38,11 +40,12 @@ public class Crop extends Plant {
                 Game.getInstance().getDate());
         this.foragingType = type;
         this.seedType = null;
-        fillTile(type.getTile());
         setName(type.getName());
         setSellable(true);
         setSellPrice(foragingType.getBaseSellPrice());
         setEatable(new Eatable(foragingType.getEnergy()));
+        setShapeAtStage(new ArrayList<>(List.of(type.getTile(), type.getTile())));
+        setShapeForCurrentStage();
     }
 
     @Override
@@ -64,7 +67,7 @@ public class Crop extends Plant {
             setLevelsForArrayList(products);
             return products;
         }
-        if (lastHarvestDate == null || Game.getInstance().getDate().getDay() - lastHarvestDate.getDay() > regrowthTime) {
+        if (lastHarvestDate == null || Game.getInstance().getDate().getRawDay() - lastHarvestDate.getRawDay() > regrowthTime) {
             Crop instance;
             int amount = 1;
             if (type != null) {
