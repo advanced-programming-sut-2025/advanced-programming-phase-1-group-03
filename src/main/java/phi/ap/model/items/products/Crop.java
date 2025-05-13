@@ -80,7 +80,7 @@ public class Crop extends Plant {
                 if (foragingType != null) amount = foragingType.getStackSize();
             }
             products.add(new ItemStack(instance, amount));
-            lastHarvestDate = Game.getInstance().getDate();
+            lastHarvestDate = new Date(Game.getInstance().getDate().getHour());
         }
         setLevelsForArrayList(products);
         return products;

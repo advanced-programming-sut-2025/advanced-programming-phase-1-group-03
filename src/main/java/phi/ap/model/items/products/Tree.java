@@ -1,9 +1,6 @@
 package phi.ap.model.items.products;
 
-import phi.ap.model.App;
-import phi.ap.model.Date;
-import phi.ap.model.Game;
-import phi.ap.model.ItemStack;
+import phi.ap.model.*;
 import phi.ap.model.enums.*;
 import phi.ap.model.items.Sapling;
 import phi.ap.model.items.Seed;
@@ -25,9 +22,9 @@ public class Tree extends Plant {
 
         super(height, width, null, type.getStages(), false, Game.getInstance().getDate());
         if (isForaging) {
-            getPlantingDate().advanceHourRaw(-1 * totalHarvestTime() * 24);
+//            getPlantingDate().advanceHourRaw(-1 * totalHarvestTime() * 24);
         }
-        this.isThundered = isForaging;
+        this.isForaging = isForaging;
         String sourceName = null;
         seedType = type.getSeedType();
         saplingType = type.getSaplingType();
@@ -79,10 +76,12 @@ public class Tree extends Plant {
             if (Game.getInstance().getDate().getRawDay() - lastHarvestDate.getRawDay() > HarvestRegrowthTime) {
                 products.add(new ItemStack(new Fruit(1, 1, fruit), fruit.getStackSize()));
                 --remainingHarvestCycles;
+                lastHarvestDate = new Date(Game.getInstance().getDate().getHour());
             }
         } else {
             products.add(new ItemStack(new Fruit(1, 1, fruit), fruit.getStackSize()));
             --remainingHarvestCycles;
+            lastHarvestDate = new Date(Game.getInstance().getDate().getHour());
         }
         setLevelsForArrayList(products);
         return products;
@@ -97,6 +96,7 @@ public class Tree extends Plant {
             drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
             if (fruit.isSyrup()) {
                 drops.add(new ItemStack(new Fruit(1, 1, fruit), fruit.getStackSize()));
+                lastHarvestDate = new Date(Game.getInstance().getDate().getHour());
             }
             if (seedType != null) {
                 drops.add(new ItemStack(new Seed(1, 1, seedType),
@@ -124,7 +124,13 @@ public class Tree extends Plant {
     }
 
     public void setThundered(boolean thundered) {
+        getDeadShapeColor().setFgColor(Colors.fg(0));
         isThundered = thundered;
+    }
+
+    public boolean isAlive() {
+        if (!super.isAlive()) return false;
+        return !isThundered;
     }
 
     public boolean isThundered() {
@@ -164,4 +170,6 @@ public class Tree extends Plant {
     public boolean isForaging() {
         return isForaging;
     }
+
+
 }

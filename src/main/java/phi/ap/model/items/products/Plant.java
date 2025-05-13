@@ -1,6 +1,7 @@
 package phi.ap.model.items.products;
 
 import phi.ap.model.*;
+import phi.ap.model.enums.Colors;
 import phi.ap.model.enums.SoilTypes;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public abstract class Plant extends Product {
     private Date lastWateredDate;
     private Giant giant = null;
     private ArrayList<Tile> shapeAtStage;
+    private Tile deadShapeColor = new Tile(" ", Colors.fg(87), "");
 
     public Plant(int height, int width, String sourceName, ArrayList<Integer> stages, boolean canBecomeGiant, Date plantingDate) {
         super(height, width);
@@ -21,7 +23,7 @@ public abstract class Plant extends Product {
         this.stages = stages;
         this.canBecomeGiant = canBecomeGiant;
         this.plantingDate = new Date(plantingDate.getHour());
-        this.lastWateredDate = new Date(plantingDate.getHour());
+        this.lastWateredDate = new Date(Game.getInstance().getDate().getHour());
     }
 
     public void setShapeAtStage(ArrayList<Tile> shapeAtStage) {
@@ -34,6 +36,7 @@ public abstract class Plant extends Product {
 
     public void show(int startY, int startX, Tile[][] map) {
         setShapeForCurrentStage();
+        if (!isAlive()) fillTile(deadShapeColor);
         super.show(startY, startX, map);
     }
 
@@ -81,7 +84,8 @@ public abstract class Plant extends Product {
     }
 
     public void setPlantingDate(Date plantingDate) {
-        this.plantingDate = plantingDate;
+        if (plantingDate == null) {this.plantingDate = null;}
+        else this.plantingDate = new Date(plantingDate.getHour());
     }
 
     public void setSourceName(String sourceName) {
@@ -90,7 +94,7 @@ public abstract class Plant extends Product {
 
     public void wateringSingle() {
         if (!isAlive()) return;
-        lastWateredDate = Game.getInstance().getDate();
+        lastWateredDate = new Date(Game.getInstance().getDate().getHour());
     }
 
     public void watering() {
@@ -104,13 +108,16 @@ public abstract class Plant extends Product {
     public boolean isWateredToday() {
         return lastWateredDate.getRawDay() == Game.getInstance().getDate().getRawDay();
     }
-    public boolean isAlive() { // TODO bayad bad 48 saat kharab beshe
-        return (Game.getInstance().getDate().getRawDay() - lastWateredDate.getRawDay()) <= 2;
+    public boolean isAlive() {
+        if ((Game.getInstance().getDate().getRawDay() - lastWateredDate.getRawDay()) <= 2) return true;
+        return false;
+//        return true;
     }
 
 
     public void setLastWateredDate(Date lastWateredDate) {
-        this.lastWateredDate = lastWateredDate;
+        if (lastWateredDate == null) this.lastWateredDate = null;
+        else this.lastWateredDate = new Date(lastWateredDate.getHour());
     }
 
     public Giant getGiant() {
@@ -166,4 +173,11 @@ public abstract class Plant extends Product {
         }
     }
 
+    public Tile getDeadShapeColor() {
+        return deadShapeColor;
+    }
+
+    public void setDeadShapeColor(Tile deadShapeColor) {
+        this.deadShapeColor = deadShapeColor;
+    }
 }
