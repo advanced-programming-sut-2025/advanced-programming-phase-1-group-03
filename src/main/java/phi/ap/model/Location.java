@@ -50,10 +50,7 @@ public class Location extends Coordinate{
     }
 
     public boolean isWalkable(int yDiff, int xDiff) {
-        if (Math.abs(yDiff) != 0 && Math.abs(xDiff) != 0) {
-            return false;
-        }
-        if (yDiff == 0 && xDiff == 0) {
+        if (!(Math.abs(yDiff) == 1 && Math.abs(xDiff) == 0 || Math.abs(yDiff) == 0 && Math.abs(xDiff) == 1)) {
             return false;
         }
         int y = getY() + yDiff;
@@ -86,10 +83,7 @@ public class Location extends Coordinate{
     }
 
     public boolean walkOne(int yDiff, int xDiff) {
-        if (Math.abs(yDiff) != 0 && Math.abs(xDiff) != 0) {
-            return false;
-        }
-        if (yDiff == 0 && xDiff == 0) {
+        if (!(Math.abs(yDiff) == 1 && Math.abs(xDiff) == 0 || Math.abs(yDiff) == 0 && Math.abs(xDiff) == 1)) {
             return false;
         }
         if (!isWalkable(yDiff, xDiff)) return false;

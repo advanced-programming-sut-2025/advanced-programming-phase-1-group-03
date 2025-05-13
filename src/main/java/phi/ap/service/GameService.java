@@ -29,6 +29,7 @@ public class GameService {
         Location loc = App.getInstance().getMapService().getLocationOnMap(y, x);
         if (loc == null) return; // TODO : || get.ground() == null
         Item topItem = loc.getGround().getTopItem(loc.getY(), loc.getX());
+        if (!loc.getGround().getTopTile(loc.getY(), loc.getX()).isWalkable()) return;
         if (loc.getGround().getClass().getSimpleName().equals(Farm.class.getSimpleName())) {
             if (!force && App.getInstance().getRandomNumber(1, 100) > 1 * probBoost) return;
             if (!(topItem instanceof Dirt dirt)) return;
