@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum CropsTypes {
-    BlueJazz("Blue Jazz",
+    BlueJazz("BlueJazz",
             SeedTypes.JazzSeeds,
             new ArrayList<>(Arrays.asList(1, 2, 2, 2)),
             7,
@@ -45,7 +45,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Spring)),
             true,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    CoffeeBean("Coffee Bean",
+    CoffeeBean("CoffeeBean",
             SeedTypes.CoffeeBean,
             new ArrayList<>(Arrays.asList(1, 2, 2, 3, 2)),
             10,
@@ -69,7 +69,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Spring)),
             false,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    GreenBean("Green Bean",
+    GreenBean("GreenBean",
             SeedTypes.BeanStarter,
             new ArrayList<>(Arrays.asList(1, 1, 1, 3, 4)),
             10,
@@ -153,7 +153,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Spring)),
             false,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    UnmilledRice("Unmilled Rice",
+    UnmilledRice("UnmilledRice",
             SeedTypes.RiceShoot,
             new ArrayList<>(Arrays.asList(1, 2, 2, 3)),
             8,
@@ -201,7 +201,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Summer)),
             false,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    HotPepper("Hot Pepper",
+    HotPepper("HotPepper",
             SeedTypes.PepperSeeds,
             new ArrayList<>(Arrays.asList(1, 1, 1, 3, 1)),
             5,
@@ -249,7 +249,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Summer)),
             false,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    RedCabbage("Red Cabbage",
+    RedCabbage("RedCabbage",
             SeedTypes.RedCabbageSeeds,
             new ArrayList<>(Arrays.asList(2, 1, 2, 2, 2)),
             9,
@@ -273,7 +273,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Summer)),
             false,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    SummerSpangle("Summer Spangle",
+    SummerSpangle("SummerSpangle",
             SeedTypes.SpangleSeeds,
             new ArrayList<>(Arrays.asList(1, 2, 3, 1)),
             8,
@@ -285,7 +285,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Summer)),
             false,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    SummerSquash("Summer Squash",
+    SummerSquash("SummerSquash",
             SeedTypes.SummerSquashSeeds,
             new ArrayList<>(Arrays.asList(1, 1, 1, 2, 1)),
             6,
@@ -369,7 +369,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Fall)),
             false,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    BokChoy("Bok Choy",
+    BokChoy("BokChoy",
             SeedTypes.BokChoySeeds,
             new ArrayList<>(Arrays.asList(1, 1, 1, 1)),
             4,
@@ -417,7 +417,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Fall)),
             false,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    FairyRose("Fairy Rose",
+    FairyRose("FairyRose",
             SeedTypes.FairySeeds,
             new ArrayList<>(Arrays.asList(1, 4, 4, 3)),
             12,
@@ -465,7 +465,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Fall)),
             false,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    SweetGemBarry("Sweet Gem Berry",
+    SweetGemBarry("SweetGemBerry",
             SeedTypes.RareSeed,
             new ArrayList<>(Arrays.asList(2, 4, 6, 6, 6)),
             24,
@@ -489,7 +489,7 @@ public enum CropsTypes {
             new ArrayList<>(List.of(Seasons.Fall)),
             true,
             1, new ArrayList<>(List.of(new Tile("c", Colors.fg(185), ""), new Tile("c", Colors.fg(196), ""), new Tile("c", Colors.fg(190), ""), new Tile("c", Colors.fg(136), ""), new Tile("c", Colors.fg(28), ""), new Tile("c", Colors.fg(58), "")))),
-    AncientFruit("Ancient Fruit",
+    AncientFruit("AncientFruit",
             SeedTypes.AncientSeeds,
             new ArrayList<>(Arrays.asList(2, 7, 7, 7, 5)),
             28,
@@ -590,14 +590,6 @@ public enum CropsTypes {
         return null;
     }
 
-    public static CropsTypes getType(String name) {
-        CropsTypes cropsType;
-        try {
-            cropsType = CropsTypes.valueOf(name);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
-        return cropsType;
     public SeedTypes getSource() {
         return source;
     }
@@ -612,5 +604,14 @@ public enum CropsTypes {
 
     public ArrayList<Tile> getShapeAtStages() {
         return new ArrayList<>(shapeAtStages);
+    }
+    public static CropsTypes getType(String name) {
+        CropsTypes cropsType;
+        try {
+            cropsType = CropsTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return cropsType;
     }
 }
