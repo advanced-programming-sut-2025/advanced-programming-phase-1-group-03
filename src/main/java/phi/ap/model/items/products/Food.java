@@ -23,6 +23,7 @@ public class Food extends Product {
         setSellable(true);
         setSellPrice(foodType.getSellPrice());
         setEatable(foodType.getEatable());
+        setWaitingTime(foodType.getProcessingTime());
     }
 
     public FoodTypes getFoodType() {

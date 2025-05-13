@@ -134,7 +134,7 @@ public enum CropsTypes {
         return null;
     }
 
-    public CropsTypes getType(String name) {
+    public static CropsTypes getType(String name) {
         CropsTypes cropsType;
         try {
             cropsType = CropsTypes.valueOf(name);

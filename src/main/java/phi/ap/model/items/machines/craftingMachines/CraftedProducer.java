@@ -201,7 +201,7 @@ public class CraftedProducer extends Machine {
             else if(ingredientName.equals("SunflowerSeeds")) {
                 if(Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(new ItemStack(new Seed(1, 1, SeedTypes.SunflowerSeeds), 1))) {
                     food = new Food(1, 1, FoodTypes.Oil);
-                    food.setWaitingTime(2 * 24);
+                    food.setWaitingTime(2 * 14);
                 }
                 else
                     return new Result<>(false, "You don't have " + ingredientName);
@@ -241,7 +241,7 @@ public class CraftedProducer extends Machine {
                 return new Result<>(false, "You don't have enough " + ingredientName);
             food = new Food(1, 1, FoodTypes.Jelly);
             food.setEatable(new Eatable(fruitType.getEatable().getEnergy() * 2));
-            food.setWaitingTime(3 * 24);
+            food.setWaitingTime(3 * 14);
             food.setSellable(true);
             food.setSellPrice((2 * fruitType.getBaseSellPrice()) + 50);
         } else if(foodName.equals("Pickles")) {

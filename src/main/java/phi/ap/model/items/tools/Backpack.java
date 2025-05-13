@@ -33,7 +33,8 @@ public class Backpack extends Tool{
 
     public int getSize() {
         return switch (getLevelProcess().getCurrentLevel()) {
-            case 0 -> 12;
+            // TODO set it to 12 again
+            case 0 -> 2000;
             case 1 -> 24;
             case 2 -> Integer.MAX_VALUE;
             default -> -1;

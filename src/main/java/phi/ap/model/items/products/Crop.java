@@ -28,6 +28,7 @@ public class Crop extends Plant {
         regrowthTime = type.getRegrowthTime();
         setSellable(true);
         setSellPrice(type.getBaseSellPrice());
+        setName(type.getName());
         if (type.getEatable() != null) {
             setEatable(new Eatable(type.getEatable()));
         }

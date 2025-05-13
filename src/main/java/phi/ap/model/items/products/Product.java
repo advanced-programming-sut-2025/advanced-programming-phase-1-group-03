@@ -7,6 +7,7 @@ import phi.ap.model.LevelProcess;
 import phi.ap.model.enums.LevelName;
 import phi.ap.model.enums.ProductNames;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.machines.Machine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class Product extends Item {
     }
 
     public void reduceWaitingTime(int diff) {
-        this.waitingTime -= diff;
+        this.waitingTime  = Math.max(0, this.waitingTime + diff);
     }
     public ArrayList<ItemStack> getProducts(){
         return products;

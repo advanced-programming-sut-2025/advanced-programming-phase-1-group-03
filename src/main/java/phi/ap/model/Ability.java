@@ -27,10 +27,12 @@ public class Ability {
     public void checkingCraftingRecipes() {
         ArrayList<Recipe> recipe = Game.getInstance().getCurrentPlayer().getCraftingRecipes();
         for(CraftingTypes craftingTypes : CraftingTypes.values()) {
-            //System.out.println(craftingTypes.getAbilityType() + " " + abilityType);
+            //if(level == 3)
+                //System.out.println(craftingTypes.getAbilityType() + " " + craftingTypes.getLevel() + " " + abilityType + " " + level);
             if(craftingTypes.getAbilityType() != null && craftingTypes.getLevel() != null)
-                if(craftingTypes.getAbilityType().equals(abilityType) && craftingTypes.getLevel().equals(level)) {
+                if(craftingTypes.getAbilityType().toString().equals(abilityType.toString()) && craftingTypes.getLevel().equals(level)) {
                     recipe.add(craftingTypes.getRecipe());
+                    //System.out.println("!!!");
                 }
         }
     }

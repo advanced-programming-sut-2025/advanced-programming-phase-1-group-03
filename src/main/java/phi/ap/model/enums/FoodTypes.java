@@ -33,7 +33,7 @@ public enum FoodTypes {
             null, 0, 6),
 
     Jelly("Jelly", null,
-            null, 0, 3 * 24),
+            null, 0, 3 * 14),
 
     SmokedFish("SmokedFish", null,
             null, 0, 1),
@@ -50,7 +50,7 @@ public enum FoodTypes {
             new ItemStack(new Crop(1, 1, CropsTypes.CoffeeBean), 5))),
             new Eatable(75), 150, 2),
 
-    Juice("Juice", null, null, 0, 4 * 24),
+    Juice("Juice", null, null, 0, 4 * 14),
 
     Mead("Mead", new ArrayList<ItemStack>(Arrays.asList(
             new ItemStack(new Food(1, 1, "Honey", 35, new Eatable(75)), 1))),
@@ -60,9 +60,9 @@ public enum FoodTypes {
             new ItemStack(new Crop(1, 1, CropsTypes.Hops), 1))),
             new Eatable(50), 300, 3 * 24),
 
-    Wine("Wine", null, null, 0, 7 * 24),
+    Wine("Wine", null, null, 0, 7 * 14),
 
-    Honey("Honey", null, new Eatable(75), 350, 4 * 24),
+    Honey("Honey", null, new Eatable(75), 350, 4 * 14),
 
     Cheese("Cheese", new ArrayList<ItemStack>(Arrays.asList(
             new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Milk), 1))),
@@ -80,9 +80,9 @@ public enum FoodTypes {
             new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.LargeGoatMilk), 1))),
             new Eatable(100), 600, 3),
 
-    DriedMushrooms("DriedMushrooms", null, null, 0, 24),
+    DriedMushrooms("DriedMushrooms", null, null, 0, 14),
 
-    DriedFruit("DriedFruit", null, null, 0, 24),
+    DriedFruit("DriedFruit", null, null, 0, 14),
 
     Raisins("Raisins", new ArrayList<ItemStack>(Arrays.asList(
             new ItemStack(new Fruit(1, 1, FruitTypes.Cherry), 5))),

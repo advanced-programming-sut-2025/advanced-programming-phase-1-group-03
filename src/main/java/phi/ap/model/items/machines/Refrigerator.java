@@ -2,6 +2,7 @@ package phi.ap.model.items.machines;
 
 import phi.ap.model.Game;
 import phi.ap.model.ItemStack;
+import phi.ap.model.Result;
 import phi.ap.model.items.Item;
 
 import java.util.ArrayList;
@@ -16,11 +17,13 @@ public class Refrigerator {
         return refrigerator;
     }
 
-    public void putItem(ItemStack itemStack) {
+    public Result<String> putItem(ItemStack itemStack) {
         int added = 0;
         Item item = itemStack.getItem();
         int amount = itemStack.getAmount();
         ItemStack invertorytStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(item);
+        if(invertorytStack.getAmount() == 0)
+            return new Result<>(false, "You don't have " + invertorytStack.getItem().getName() + " in your inventory.");
         amount = Math.min(invertorytStack.getAmount(), amount);
         for (ItemStack stack : storage) {
             if (!stack.getItem().canStackWith(item)) {
@@ -33,7 +36,7 @@ public class Refrigerator {
             added += toAdd;
         }
         if (amount == 0) {
-            return;
+            return new Result<>(true, "Item added successfully.");
         }
         while (true) {
             int toAdd = Math.min(item.getMaxStackSize(), amount);
@@ -42,7 +45,7 @@ public class Refrigerator {
             added += toAdd;
             amount -= toAdd;
             if (amount == 0) {
-                return;
+                return new Result<>(true, "Item added successfully.");
             }
         }
     }
@@ -51,7 +54,6 @@ public class Refrigerator {
         Item item = stack.getItem();
         int amount = stack.getAmount();
         ItemStack newItemStack = new ItemStack(item, 0);
-        System.out.println("EE " + amount);
         for (ItemStack stack1 : storage) {
             if (stack1.canStackWith(item)) {
                 int value = Math.min(amount, stack1.getAmount());

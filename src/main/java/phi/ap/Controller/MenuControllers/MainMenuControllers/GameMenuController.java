@@ -21,6 +21,14 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
+        Ability ability = new Ability(AbilityType.Farming);
+        ability.advanceLevel();
+        ability.advanceLevel();
+        ability.advanceLevel();
+        ability.advanceLevel();
+        System.out.println("*****");
+        for (Recipe recipe : Game.getInstance().getCurrentPlayer().getCraftingRecipes())
+            System.out.println(recipe.getResult().getItem().getName());
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
     public Result<String> test1(String input) {
@@ -111,7 +119,19 @@ public class GameMenuController {
         return new Result<>(true, message);
     }
 
+    private void doArtisanTask() {
+        for(Product product : Game.getInstance().getCurrentPlayer().getArtisanItems()) {
+            product.reduceWaitingTime(-1);
+            System.out.println(product.getWaitingTime());
+        }
+    }
+
+    private void doHourTask() {
+        doArtisanTask();
+    }
+
     private boolean advanceHour(){
+        doHourTask();
         if(Game.getInstance().getDate().advanceHour()) {
             Game.getInstance().getDate().goToNextDay();
             doNightTasks();
@@ -547,13 +567,16 @@ public class GameMenuController {
         return new Result<>(true, stringBuilder.toString());
     }
     public Result<String> craftItem(String itemName) {
+        if(CraftingTypes.getType(itemName) == null)
+            return new Result<>(false, "there is not any machine with this name.");
+        System.out.println(itemName);
         Recipe recipe = null;
         for(Recipe recipe1 : Game.getInstance().getCurrentPlayer().getCraftingRecipes()) {
             if(recipe1.getRecipeType().getName().equals(itemName))
                 recipe = recipe1;
         }
         if(recipe == null)
-            return new Result<>(false, "there is not any item with this name.");
+            return new Result<>(false, "You don't have it's recipe.");
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().canAdd())
             return new Result<>(false, "Inventory is full.");
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(recipe))
@@ -566,10 +589,16 @@ public class GameMenuController {
         return null;
     }
     public Item getItem(String name) {
+        if(name.equals("Wood"))
+            return new Wood(1, 1);
+        if(name.equals("Stone"))
+            return new Stone(1, 1, StoneTypes.RegularStone);
         if(AnimalProductTypes.getType(name) != null)
             return new AnimalProduct(1, 1, AnimalProductTypes.getType(name));
         if(AnimalTypes.getType(name) != null)
             return new Animal(AnimalTypes.getType(name), 1, 1);
+        if(CropsTypes.getType(name) != null)
+            return new Crop(1, 1 , CropsTypes.getType(name));
         if(CraftingTypes.getType(name) != null)
             return CraftingTypes.getType(name).getRecipe().getResult().getItem();
         if(FishTypes.getType(name) != null)
@@ -602,45 +631,30 @@ public class GameMenuController {
         Item item;
         int amount = Integer.parseInt(amountString);
         Boolean isFood = false;
-        FoodTypes foodType = null;
-        try {
-            foodType = FoodTypes.valueOf(name);
-        } catch (IllegalArgumentException e) {
-
-        }
+        FoodTypes foodType = FoodTypes.getType(name);
         if(foodType != null) {
             isFood = true;
-            Refrigerator.getInstance().putItem(new ItemStack(new Food(1, 1, foodType), amount));
+            return Refrigerator.getInstance().putItem(new ItemStack(new Food(1, 1, foodType), amount));
         }
-        AnimalProductTypes animalProductType = null;
-        try {
-            animalProductType = AnimalProductTypes.valueOf(name);
-        } catch (IllegalArgumentException e) {
-
-        }
+        AnimalProductTypes animalProductType = AnimalProductTypes.getType(name);
         if(animalProductType != null && !animalProductType.equals(AnimalProductTypes.Wool) && !animalProductType.equals(AnimalProductTypes.RabbitFoot)) {
             isFood = true;
-            Refrigerator.getInstance().putItem(new ItemStack(new AnimalProduct(1, 1, animalProductType, null, 0, null), amount));
+            return Refrigerator.getInstance().putItem(new ItemStack(new AnimalProduct(1, 1, animalProductType, null, 0, null), amount));
         }
-        FishTypes fishType = null;
-        try {
-            fishType = FishTypes.valueOf(name);
-        } catch (IllegalArgumentException e) {
-
-        }
+        FishTypes fishType = FishTypes.getType(name);
         if(fishType != null) {
             isFood = true;
-            Refrigerator.getInstance().putItem(new ItemStack(new Fish(1, 1, fishType), amount));
+            return Refrigerator.getInstance().putItem(new ItemStack(new Fish(1, 1, fishType), amount));
         }
-        FruitTypes fruitType = null;
-        try {
-            fruitType = FruitTypes.valueOf(name);
-        } catch (IllegalArgumentException e) {
-
-        }
+        FruitTypes fruitType = FruitTypes.getType(name);
         if(fruitType != null) {
             isFood = true;
-            Refrigerator.getInstance().putItem(new ItemStack(new Fruit(1, 1, fruitType), amount));
+            return Refrigerator.getInstance().putItem(new ItemStack(new Fruit(1, 1, fruitType), amount));
+        }
+        CropsTypes cropsType = CropsTypes.getType(name);
+        if(cropsType != null) {
+            isFood = true;
+            return Refrigerator.getInstance().putItem(new ItemStack(new Crop(1, 1, cropsType), amount));
         }
         if(isFood)
             return new Result<>(true, "Item added to refrigerator successfully.");
@@ -652,45 +666,30 @@ public class GameMenuController {
         int pickAmount = 0;
         Item item;
         Boolean isFood = false;
-        FoodTypes foodType = null;
-        try {
-            foodType = FoodTypes.valueOf(name);
-        } catch (IllegalArgumentException e) {
-
-        }
+        FoodTypes foodType = FoodTypes.getType(name);
         if(foodType != null) {
             isFood = true;
             pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new Food(1, 1, foodType), amount));
         }
-        AnimalProductTypes animalProductType = null;
-        try {
-            animalProductType = AnimalProductTypes.valueOf(name);
-        } catch (IllegalArgumentException e) {
-
-        }
+        AnimalProductTypes animalProductType = AnimalProductTypes.getType(name);
         if(animalProductType != null && !animalProductType.equals(AnimalProductTypes.Wool) && !animalProductType.equals(AnimalProductTypes.RabbitFoot)) {
             isFood = true;
             pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new AnimalProduct(1, 1, animalProductType, null, 0, null), amount));
         }
-        FishTypes fishType = null;
-        try {
-            fishType = FishTypes.valueOf(name);
-        } catch (IllegalArgumentException e) {
-
-        }
+        FishTypes fishType = FishTypes.getType(name);
         if(fishType != null) {
             isFood = true;
             pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new Fish(1, 1, fishType), amount));
         }
-        FruitTypes fruitType = null;
-        try {
-            fruitType = FruitTypes.valueOf(name);
-        } catch (IllegalArgumentException e) {
-
-        }
+        FruitTypes fruitType = FruitTypes.getType(name);
         if(fruitType != null) {
             isFood = true;
             pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new Fruit(1, 1, fruitType), amount));
+        }
+        CropsTypes cropsType = CropsTypes.getType(name);
+        if(fruitType != null) {
+            isFood = true;
+            pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new Crop(1, 1, cropsType), amount));
         }
         if(isFood)
             return new Result<>(true, pickAmount + " Items picked from refrigerator successfully.");
@@ -836,7 +835,8 @@ public class GameMenuController {
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckExistence(new ItemStack(craftingType.getRecipe().getResult().getItem(), 1)))
             return new Result<>(false, "You don't have this machine.");
         Machine machine = (Machine)craftingType.getRecipe().getResult().getItem();
-        switch (itemName) {
+        System.out.println("!!" + itemName);
+        switch (artisanName) {
             case "Furnace" : return ((CraftedProducer)machine).produceFurnace(itemName);
             case "CharcoalKiln" : return ((CraftedProducer)machine).produceCoal();
             case "BeeHouse" : return ((CraftedProducer)machine).produceHoney(itemName);
@@ -854,6 +854,7 @@ public class GameMenuController {
     public Result<String> getArtisan(String artisanName) {
         ArrayList<Product> removeProducts = new ArrayList<>();
         for(Product product : Game.getInstance().getCurrentPlayer().getArtisanItems()) {
+            System.out.println(product.getName() + " " + artisanName + " " + product.getWaitingTime());
             if(product.getName().equals(artisanName) && product.getWaitingTime() == 0) {
                 Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(product, 1);
                 removeProducts.add(product);
