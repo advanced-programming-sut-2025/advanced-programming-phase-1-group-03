@@ -3,6 +3,7 @@ package phi.ap.model.items;
 import phi.ap.model.Coordinate;
 import phi.ap.model.Ground;
 import phi.ap.model.Tile;
+import phi.ap.model.enums.FaceWay;
 
 public class Portal extends Item {
     private Ground destination;
@@ -60,7 +61,31 @@ public class Portal extends Item {
         makePortalTwoWay(child, new Coordinate(h, w), father,
                 new Coordinate(hh, ww), shape);
     }
-
+    public static void makeMiddleDoor(Ground child, Ground father, Tile shape, FaceWay direction) {
+        int h, w;
+        w = switch (direction) {
+            case FaceWay.Down -> {
+                h = child.getHeight() - 1;
+                yield child.getWidth() / 2;
+            }
+            case FaceWay.Up -> {
+                h = 0;
+                yield child.getWidth() / 2;
+            }
+            case FaceWay.Left -> {
+                h = child.getHeight() / 2;
+                yield 0;
+            }
+            case FaceWay.Right -> {
+                h = child.getHeight() / 2;
+                yield child.getWidth() - 1;
+            }
+        };
+        int hh = child.getCoordinate().getY() + h;
+        int ww = child.getCoordinate().getX() + w;
+        makePortalTwoWay(child, new Coordinate(h, w), father,
+                new Coordinate(hh, ww), shape);
+    }
     @Override
     public void doTask() {
 

@@ -17,10 +17,10 @@ public class Date {
         return (hour/24) + 1;
     }
     public Seasons getSeason(){
-        return Seasons.values()[(getRawDay()-1)/SEASONS_DAYS];
+        return Seasons.values()[((getRawDay()-1)/SEASONS_DAYS)%4];
     }
     public Seasons getTomorrowSeason(){
-        return Seasons.values()[(getRawDay() -1 + 1)/SEASONS_DAYS];
+        return Seasons.values()[((getRawDay() -1 + 1)/SEASONS_DAYS)%4];
     }
     public WeekDays getWeekDay(){
         return WeekDays.values()[(getRawDay()-1)%7];

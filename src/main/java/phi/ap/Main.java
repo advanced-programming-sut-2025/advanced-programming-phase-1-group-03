@@ -17,8 +17,5 @@ public class Main {
         System.out.println("Start...");
         App.getInstance().load();
         AppView.runProgram();
-
-
-
     }
 }

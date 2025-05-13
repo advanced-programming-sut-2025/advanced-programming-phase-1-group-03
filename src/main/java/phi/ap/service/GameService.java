@@ -241,5 +241,6 @@ public class GameService {
         }
         */
         generateForaging(20);
+        Game.getInstance().whenMapLoaded();
     }
 }

@@ -76,7 +76,7 @@ public class GameMenu extends AppMenu {
         }else if((matcher = GameMenuCommands.EquipTool.getMatcher(input)) != null) {
             System.out.println(controller.toolEquip(matcher.group("toolName")));
         }else if((matcher = GameMenuCommands.ShowAvailableTools.getMatcher(input)) != null) {
-            System.out.println(controller.showAllAvailableProducts());
+            System.out.println(controller.showAllAvailableTools());
         } else if((matcher = GameMenuCommands.UseTool.getMatcher(input)) != null) {
             System.out.println(controller.useTool(matcher.group("direction")));
         } else if((matcher = GameMenuCommands.test.getMatcher(input)) != null) {

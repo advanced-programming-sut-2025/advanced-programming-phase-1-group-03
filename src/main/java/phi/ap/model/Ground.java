@@ -6,7 +6,7 @@ import phi.ap.model.items.Portal;
 
 import java.util.ArrayList;
 
-public class Ground {
+public abstract class Ground {
     private Coordinate coordinate = null; //base on father ground
     private Ground father = null;
     private final int height;

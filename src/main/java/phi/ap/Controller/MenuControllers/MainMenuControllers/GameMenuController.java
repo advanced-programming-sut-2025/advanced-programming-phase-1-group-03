@@ -5,6 +5,7 @@ import phi.ap.model.enums.*;
 import phi.ap.model.enums.StoreProducts.*;
 import phi.ap.model.items.*;
 import phi.ap.model.items.buildings.Farm;
+import phi.ap.model.items.buildings.Store;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
 import phi.ap.model.items.machines.craftingMachines.Bomber;
@@ -21,6 +22,11 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
+        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(0, 0);
+        if(item instanceof Store){
+            return new Result<>(true, ((Store)item).getName());
+
+        }
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
     public Result<String> test1(String input) {
@@ -898,7 +904,7 @@ public class GameMenuController {
             }
         }
     }
-    public Result<String> showAllAvailableProducts() {
+    public Result<String> showAllAvailableTools() {
         String response = "";
         response += Game.getInstance().getCurrentPlayer().getToolManager().getAxe().toString()+"\n";
         response += Game.getInstance().getCurrentPlayer().getToolManager().getBackpack().toString()+"\n";

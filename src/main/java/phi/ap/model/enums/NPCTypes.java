@@ -1,7 +1,6 @@
 package phi.ap.model.enums;
 
 import phi.ap.model.items.Item;
-import phi.ap.model.items.buildings.Store;
 import phi.ap.model.items.relations.Dialogue;
 
 import java.util.ArrayList;
