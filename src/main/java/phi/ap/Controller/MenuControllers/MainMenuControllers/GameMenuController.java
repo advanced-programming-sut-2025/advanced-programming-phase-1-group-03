@@ -3,12 +3,10 @@ package phi.ap.Controller.MenuControllers.MainMenuControllers;
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
 import phi.ap.model.enums.StoreProducts.*;
-import phi.ap.model.items.Item;
-import phi.ap.model.items.PlayerIcon;
+import phi.ap.model.items.*;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
-import phi.ap.model.items.Animal;
 import phi.ap.model.items.machines.craftingMachines.Bomber;
 import phi.ap.model.items.machines.craftingMachines.CraftedProducer;
 import phi.ap.model.items.machines.craftingMachines.Sprinkler;
@@ -570,10 +568,37 @@ public class GameMenuController {
         return null;
     }
     public Item getItem(String name) {
+        if(AnimalProductTypes.getType(name) != null)
+            return new AnimalProduct(1, 1, AnimalProductTypes.getType(name));
+        if(AnimalTypes.getType(name) != null)
+            return new Animal(AnimalTypes.getType(name), 1, 1);
+        if(CraftingTypes.getType(name) != null)
+            return CraftingTypes.getType(name).getRecipe().getResult().getItem();
+        if(FishTypes.getType(name) != null)
+            return new Fish(1, 1, FishTypes.getType(name));
+        if(FoodTypes.getType(name) != null)
+            return new Food(1, 1, FoodTypes.getType(name));
+        if(ForagingCropsTypes.getType(name) != null)
+            return new Crop(1, 1, ForagingCropsTypes.getType(name));
+        if(ForagingMineralTypes.getType(name) != null)
+            return new Mineral(1, 1, ForagingMineralTypes.getType(name));
+        if(TreeTypes.getType(name) != null)
+            return new Tree(1, 1, TreeTypes.getType(name), false);
+        if(SeedTypes.getType(name) != null)
+            return new Seed(1, 1, SeedTypes.getType(name));
+        if(SaplingTypes.getType(name) != null)
+            return new Sapling(1, 1, SaplingTypes.getType(name));
+        if(StoneTypes.getType(name) != null)
+            return new Stone(1, 1, StoneTypes.getType(name));
         return null;
     }
-    public Result<String> cheatAddItem(String itemName, String amount) {
-        return null;
+    public Result<String> cheatAddItem(String itemName, String amountString) {
+        int amount = Integer.parseInt(amountString);
+        Item item = getItem(itemName);
+        if(item == null)
+            return new Result<>(false, "There is no item with this name.");
+        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, amount);
+        return new Result<>(true, item.getName() + " with amount " + amount + " has been added to inventoryManger.");
     }
     public Result<String> putItemToRefrigerator(String name, String amountString) {
         Item item;

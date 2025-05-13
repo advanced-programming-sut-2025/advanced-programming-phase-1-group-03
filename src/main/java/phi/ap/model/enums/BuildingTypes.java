@@ -32,7 +32,7 @@ public enum BuildingTypes {
     public String getName() {
         return name;
     }
-    public BuildingTypes getType(String name) {
+    public static BuildingTypes getType(String name) {
         BuildingTypes buildingType;
         try {
             buildingType = BuildingTypes.valueOf(name);

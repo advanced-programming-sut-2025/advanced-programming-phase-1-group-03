@@ -76,7 +76,7 @@ public enum ForagingMineralTypes {
         return probabilityPercent;
     }
 
-    public ForagingMineralTypes getType(String name) {
+    public static ForagingMineralTypes getType(String name) {
         ForagingMineralTypes foragingMineralType;
         try {
             foragingMineralType = ForagingMineralTypes.valueOf(name);

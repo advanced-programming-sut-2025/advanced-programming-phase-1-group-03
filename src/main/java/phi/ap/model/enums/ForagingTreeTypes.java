@@ -29,7 +29,7 @@ public enum ForagingTreeTypes {
         //all Seasons are special
     }
 
-    public ForagingTreeTypes getType(String name) {
+    public static ForagingTreeTypes getType(String name) {
         ForagingTreeTypes foragingTreeTypes;
         try {
             foragingTreeTypes = ForagingTreeTypes.valueOf(name);

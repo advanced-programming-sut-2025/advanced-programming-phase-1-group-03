@@ -94,7 +94,7 @@ public enum TreeTypes {
         return null;
     }
 
-    public TreeTypes getType(String name) {
+    public static TreeTypes getType(String name) {
         TreeTypes treeType;
         try {
             treeType = TreeTypes.valueOf(name);

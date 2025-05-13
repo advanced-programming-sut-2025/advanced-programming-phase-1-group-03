@@ -41,7 +41,7 @@ public enum FishTypes {
         return season;
     }
 
-    public FishTypes getType(String name) {
+    public static FishTypes getType(String name) {
         FishTypes fishTypes;
         try {
             fishTypes = FishTypes.valueOf(name);

@@ -26,7 +26,7 @@ public enum SaplingTypes {
         return null;
     }
 
-    public SaplingTypes getType(String name) {
+    public static SaplingTypes getType(String name) {
         SaplingTypes saplingType;
         try {
             saplingType = SaplingTypes.valueOf(name);

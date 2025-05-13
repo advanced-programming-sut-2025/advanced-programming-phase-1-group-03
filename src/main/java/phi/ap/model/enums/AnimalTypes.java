@@ -47,7 +47,7 @@ public enum AnimalTypes {
         return price;
     }
 
-    public AnimalTypes getType(String name) {
+    public static AnimalTypes getType(String name) {
         AnimalTypes animalType;
         try {
             animalType = AnimalTypes.valueOf(name);

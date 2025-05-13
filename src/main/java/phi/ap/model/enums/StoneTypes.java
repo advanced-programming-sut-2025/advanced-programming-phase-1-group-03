@@ -17,7 +17,7 @@ public enum StoneTypes {
         return tile;
     }
 
-    public StoneTypes getType(String name) {
+    public static StoneTypes getType(String name) {
         StoneTypes stoneType;
         try {
             stoneType = StoneTypes.valueOf(name);

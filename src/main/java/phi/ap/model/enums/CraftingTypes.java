@@ -157,7 +157,7 @@ public enum CraftingTypes {
         return sellPrice;
     }
 
-    public CraftingTypes getType(String name) {
+    public static CraftingTypes getType(String name) {
         CraftingTypes craftingType;
         try {
             craftingType = CraftingTypes.valueOf(name);

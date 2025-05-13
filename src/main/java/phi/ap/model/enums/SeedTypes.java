@@ -119,7 +119,7 @@ public enum SeedTypes {
         return null;
     }
 
-    public SeedTypes getType(String name) {
+    public static SeedTypes getType(String name) {
         SeedTypes seedType;
         try {
             seedType = SeedTypes.valueOf(name);

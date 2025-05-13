@@ -84,7 +84,7 @@ public enum FruitTypes {
         return seasons;
     }
 
-    public FruitTypes getType(String name) {
+    public static FruitTypes getType(String name) {
         FruitTypes fruitType;
         try {
             fruitType = FruitTypes.valueOf(name);

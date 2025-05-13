@@ -49,7 +49,7 @@ public enum StoreTypes {
         return name;
     }
 
-    public StoreTypes getType(String name) {
+    public static StoreTypes getType(String name) {
         StoreTypes storeType;
         try {
             storeType = StoreTypes.valueOf(name);

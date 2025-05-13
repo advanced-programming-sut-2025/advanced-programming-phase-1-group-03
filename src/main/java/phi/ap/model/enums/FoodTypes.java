@@ -277,7 +277,7 @@ public enum FoodTypes {
         return Buffhour;
     }
 
-    public FoodTypes getType(String name) {
+    public static FoodTypes getType(String name) {
         FoodTypes foodType;
         try {
             foodType = FoodTypes.valueOf(name);

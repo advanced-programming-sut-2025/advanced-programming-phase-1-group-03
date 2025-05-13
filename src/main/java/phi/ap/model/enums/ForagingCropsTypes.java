@@ -100,7 +100,7 @@ private final String name;
         return new ArrayList<>(List.of(Seasons.Spring, Seasons.Summer, Seasons.Fall, Seasons.Winter));
     }
 
-    public ForagingCropsTypes getType(String name) {
+    public static ForagingCropsTypes getType(String name) {
         ForagingCropsTypes foragingCropsType;
         try {
             foragingCropsType = ForagingCropsTypes.valueOf(name);

@@ -93,7 +93,7 @@ public class Animal extends Item {
         if(!getIsFeeded())
             return null;
         double randomDouble = 0.5 + Math.random();
-        double quality = (friendShipAmount/1000)*(0.5 + 0.5 * Math.random()); // TODO : cast to double?
+        double quality = ((double)(friendShipAmount/1000))*(0.5 + 0.5 * Math.random()); // TODO : cast to double?
         LevelName levelName;
         double productNum;
         if(quality <= 0.5) {
