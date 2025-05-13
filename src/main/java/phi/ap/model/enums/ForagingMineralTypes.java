@@ -2,6 +2,9 @@ package phi.ap.model.enums;
 
 import phi.ap.model.App;
 import phi.ap.model.Tile;
+import phi.ap.model.enums.Time.Seasons;
+
+import java.util.ArrayList;
 
 public enum ForagingMineralTypes {
     Quartz("*", Colors.fg(251), "", "Quartz", LevelName.iron, "A clear crystal commonly found in caves and mines.", 25),
@@ -30,13 +33,15 @@ public enum ForagingMineralTypes {
     private final String name;
     private Tile tile;
     private LevelName levelNeedToMine;
+    private int probabilityPercent;
     ForagingMineralTypes(String symbol, String fgColor, String bgColor, String name, LevelName levelNeedToMine,
-                         String Description, int sellPrice) {
+                         String Description, int sellPrice, int probabilityPercent) {
         this.sellPrice = sellPrice;
         this.description = Description;
         this.name = name;
         this.levelNeedToMine = levelNeedToMine;
         this.tile = new Tile(symbol, fgColor, bgColor);
+        this.probabilityPercent = probabilityPercent;
     }
     public String getDescription() {
         return this.description;
@@ -53,11 +58,21 @@ public enum ForagingMineralTypes {
     }
 
     public static ForagingMineralTypes getRandom() {
-        int ind = App.getInstance().getRandomNumber(0, ForagingMineralTypes.values().length - 1);
-        return ForagingMineralTypes.values()[ind];
+        int ind = App.getInstance().getRandomNumber(1, 100);
+        int sum = 0;
+        for (ForagingMineralTypes value : values()) {
+            sum += value.getProbabilityPercent();
+            if (ind <= sum) return value;
+        }
+        return COAL;
     }
 
     public LevelName getLevelNeedToMine() {
+
         return levelNeedToMine;
+    }
+
+    public int getProbabilityPercent() {
+        return probabilityPercent;
     }
 }

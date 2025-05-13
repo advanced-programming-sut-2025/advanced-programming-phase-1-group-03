@@ -34,6 +34,7 @@ public class Scythe extends Tool{
                 return new Result<>(true, response.toString());
             }case Product grass -> {
                 if(grass.canStackWith(ProductNames.Grass.getInstance())){
+                    //TODO : getFiber;
                 }
             }
             case null, default -> {

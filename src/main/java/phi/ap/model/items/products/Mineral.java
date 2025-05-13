@@ -1,6 +1,7 @@
 package phi.ap.model.items.products;
 
 import phi.ap.model.enums.ForagingMineralTypes;
+import phi.ap.model.enums.ProductNames;
 import phi.ap.model.items.Item;
 
 public class Mineral extends Product {
