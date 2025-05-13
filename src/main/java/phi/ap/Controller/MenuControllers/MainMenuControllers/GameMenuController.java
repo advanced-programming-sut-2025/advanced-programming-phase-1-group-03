@@ -178,7 +178,7 @@ public class GameMenuController {
     }
 
     public Result<String> showTime() {
-        return new Result<>(true, "It's " + Game.getInstance().getDate().getHour()+" o'clock");
+        return new Result<>(true, "It's " + Game.getInstance().getDate().getHour()%24+" o'clock");
     }
 
     public Result<String> showDate() {

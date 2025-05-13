@@ -29,9 +29,8 @@ public class Date {
     }
 
     public int getHour() {
-        return hour%24;
+        return hour;
     }
-    public int getRawHour() {return hour;}
     public Date(int hour) {
         this.hour = hour;
     }
