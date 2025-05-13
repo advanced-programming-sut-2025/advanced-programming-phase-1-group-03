@@ -21,7 +21,7 @@ public class Crop extends Plant {
 
     public Crop(int height, int width, CropsTypes type) {
         super(height, width, type.getSeed().toString(), type.getStage(), type.getCanBecomeGiant(),
-                Game.getInstance().getDate());
+                Game.getInstance() != null ? Game.getInstance().getDate() : null);
         this.seedType = type.getSeed();
         this.type = type;
         oneTime = type.getOneTime();
@@ -38,7 +38,7 @@ public class Crop extends Plant {
 
     public Crop(int height, int width, ForagingCropsTypes type) {
         super(height, width, "foragingSystem", new ArrayList<>(List.of(0)), false,
-                Game.getInstance().getDate());
+                Game.getInstance() != null ? Game.getInstance().getDate() : null);
         this.foragingType = type;
         this.seedType = null;
         setName(type.getName());

@@ -14,13 +14,14 @@ public class Tree extends Plant {
     private FruitTypes fruit;
     private int remainingHarvestCycles;
     private int HarvestRegrowthTime = 1; // default : last stage
-    private Date lastHarvestDate;
+    private Date lastHarvestDate = null;
     private boolean isThundered = false;
     private boolean isForaging;
 
     public Tree(int height, int width, TreeTypes type, boolean isForaging) {
 
-        super(height, width, null, type.getStages(), false, Game.getInstance().getDate());
+        super(height, width, null, type.getStages(), false,
+                Game.getInstance() != null ? Game.getInstance().getDate() : null);
         if (isForaging) {
 //            getPlantingDate().advanceHourRaw(-1 * totalHarvestTime() * 24);
         }

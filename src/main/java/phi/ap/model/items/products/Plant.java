@@ -10,8 +10,8 @@ public abstract class Plant extends Product {
     private String sourceName;
     private ArrayList<Integer> stages;
     private boolean canBecomeGiant;
-    private Date plantingDate;
-    private Date lastWateredDate;
+    private Date plantingDate = null;
+    private Date lastWateredDate = null;
     private Giant giant = null;
     private ArrayList<Tile> shapeAtStage;
     private Tile deadShapeColor = new Tile(" ", Colors.fg(87), "");
@@ -22,8 +22,8 @@ public abstract class Plant extends Product {
         this.sourceName = sourceName;
         this.stages = stages;
         this.canBecomeGiant = canBecomeGiant;
-        this.plantingDate = new Date(plantingDate.getHour());
-        this.lastWateredDate = new Date(Game.getInstance().getDate().getHour());
+        this.plantingDate = plantingDate != null ? new Date(plantingDate.getHour()) : null;
+        this.lastWateredDate = Game.getInstance() != null ? new Date(Game.getInstance().getDate().getHour()) : null;
     }
 
     public void setShapeAtStage(ArrayList<Tile> shapeAtStage) {
