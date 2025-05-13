@@ -38,6 +38,7 @@ public class Game {
     private User gameLoader;
     private Date date = new Date(Date.START_HOUR); // zaman aghaz bazi 9 sobhe
     private Player currentPlayer;
+    private StoreManager storeManager;
 
     public Map getMap() {
         return map;
@@ -97,5 +98,13 @@ public class Game {
 
     public void setWeatherManager(WeatherManager weatherManager) {
         this.weatherManager = weatherManager;
+    }
+
+    public StoreManager getStoreManager() {
+        return storeManager;
+    }
+
+    public void whenMapLoaded() {
+        this.storeManager = new StoreManager();
     }
 }

@@ -34,17 +34,15 @@ public class Scythe extends Tool{
                 return new Result<>(true, response.toString());
             }case Product grass -> {
                 if(grass.canStackWith(ProductNames.Grass.getInstance())){
+                    grass.getFather().removeItem(grass);
+                    return new Result<>(true, "Grass destroyed!");
                     //TODO : getFiber;
                 }
             }
-            case null, default -> {
-                return new Result<>(false, "you can't do anything with this item!\n" +
-                        "you only wasted your energy -_-");
-            }
-
+            case null, default -> {}
         }
-        return null;
-
+        return new Result<>(false, "you can't do anything with this item!\n" +
+                "you only wasted your energy -_-");
     }
 
     @Override

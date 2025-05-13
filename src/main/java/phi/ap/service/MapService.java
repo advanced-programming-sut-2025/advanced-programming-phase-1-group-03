@@ -159,7 +159,7 @@ public class MapService {
             }
         }
         if (!source.getGround().isCoordinateValid(source.getY(), source.getX()) ||
-            !source.getGround().isCoordinateValid(sink.getY(), sink.getX())) {
+            !sink.getGround().isCoordinateValid(sink.getY(), sink.getX())) {
             return null;
         }
         Portal p;
@@ -179,8 +179,10 @@ public class MapService {
         bestG.put(src, src.getG());
         sack.add(src);
         Node dest = null;
+        int c = 0;
         while (!sack.isEmpty()) {
             Node v = sack.poll();
+            ++c;
             for (Location location : sinks) {
                 if (v.location.equals(location)) {
                     dest = v;

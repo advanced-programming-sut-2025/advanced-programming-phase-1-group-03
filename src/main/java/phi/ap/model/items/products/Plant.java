@@ -12,6 +12,7 @@ public abstract class Plant extends Product {
     private Date plantingDate;
     private Date lastWateredDate;
     private Giant giant = null;
+    private ArrayList<Tile> shapeAtStage;
 
     public Plant(int height, int width, String sourceName, ArrayList<Integer> stages, boolean canBecomeGiant, Date plantingDate) {
         super(height, width);
@@ -19,10 +20,22 @@ public abstract class Plant extends Product {
         this.sourceName = sourceName;
         this.stages = stages;
         this.canBecomeGiant = canBecomeGiant;
-        this.plantingDate = plantingDate;
+        this.plantingDate = new Date(plantingDate.getHour());
         this.lastWateredDate = new Date(plantingDate.getHour());
     }
 
+    public void setShapeAtStage(ArrayList<Tile> shapeAtStage) {
+        this.shapeAtStage = shapeAtStage;
+    }
+
+    public void setShapeForCurrentStage() {
+        fillTile(shapeAtStage.get(getFinishedStages()));
+    }
+
+    public void show(int startY, int startX, Tile[][] map) {
+        setShapeForCurrentStage();
+        super.show(startY, startX, map);
+    }
 
     public int totalHarvestTime() {
         int res = 0;
@@ -33,7 +46,10 @@ public abstract class Plant extends Product {
     }
 
     public int getFinishedStages() {
-        int d = Game.getInstance().getDate().getDay() - plantingDate.getDay();
+        int d = Game.getInstance().getDate().getRawDay() - plantingDate.getRawDay();
+        if (!isAlive()) {
+            d = lastWateredDate.getRawDay() - plantingDate.getRawDay() + 2;
+        }
         int sum = 0;
         int cnt = 0;
         for(Integer stage : stages) {
@@ -86,10 +102,10 @@ public abstract class Plant extends Product {
         }
     }
     public boolean isWateredToday() {
-        return lastWateredDate.getDay() == Game.getInstance().getDate().getDay();
+        return lastWateredDate.getRawDay() == Game.getInstance().getDate().getRawDay();
     }
     public boolean isAlive() { // TODO bayad bad 48 saat kharab beshe
-        return Game.getInstance().getDate().getDay() - lastWateredDate.getDay() <= 2;
+        return (Game.getInstance().getDate().getRawDay() - lastWateredDate.getRawDay()) <= 2;
     }
 
 
@@ -117,7 +133,7 @@ public abstract class Plant extends Product {
         canBecomeGiant = otherPlant.canBecomeGiant;
         if (otherPlant.plantingDate != null) setPlantingDate(new Date(otherPlant.getPlantingDate().getHour()));
         else setPlantingDate(null);
-        if (otherPlant.lastWateredDate != null)setLastWateredDate(new Date(otherPlant.getLastWateredDate().getDay()));
+        if (otherPlant.lastWateredDate != null)setLastWateredDate(new Date(otherPlant.getLastWateredDate().getRawDay()));
         else setLastWateredDate(null);
     }
 
@@ -139,6 +155,7 @@ public abstract class Plant extends Product {
     }
 
     public void fertilize(SoilTypes soilType) {
+        if (!isAlive()) return;
         switch (soilType) {
             case DeluxeRetaining:
                 watering();

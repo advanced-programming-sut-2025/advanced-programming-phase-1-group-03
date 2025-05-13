@@ -50,6 +50,9 @@ public class Location extends Coordinate{
     }
 
     public boolean isWalkable(int yDiff, int xDiff) {
+        if (!(Math.abs(yDiff) == 1 && Math.abs(xDiff) == 0 || Math.abs(yDiff) == 0 && Math.abs(xDiff) == 1)) {
+            return false;
+        }
         int y = getY() + yDiff;
         int x = getX() + xDiff;
         if (!ground.isCoordinateValid(y, x)) return false;
@@ -63,6 +66,8 @@ public class Location extends Coordinate{
             if (farm == null) return true;
             return farm.isPlayerAvailable(player);
         }
+        Location loc = App.getInstance().getMapService().getLocationOnMap(ground.getCoordinateBaseMap().getY() + y, ground.getCoordinateBaseMap().getX() + x);
+        if (loc.ground != ground) return false;
         return ground.getTopTile(y, x).isWalkable();
     }
 
@@ -78,10 +83,7 @@ public class Location extends Coordinate{
     }
 
     public boolean walkOne(int yDiff, int xDiff) {
-        if (Math.abs(yDiff) != 0 && Math.abs(xDiff) != 0) {
-            return false;
-        }
-        if (yDiff == 0 && xDiff == 0) {
+        if (!(Math.abs(yDiff) == 1 && Math.abs(xDiff) == 0 || Math.abs(yDiff) == 0 && Math.abs(xDiff) == 1)) {
             return false;
         }
         if (!isWalkable(yDiff, xDiff)) return false;

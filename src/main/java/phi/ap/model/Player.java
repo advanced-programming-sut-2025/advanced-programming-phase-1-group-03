@@ -207,6 +207,12 @@ public class Player extends Human {
                 return ability.getLevel();
         return -1; // this can not happen
     }
+    public Ability getAbility(AbilityType abilityType){
+        for(Ability ability : abilities)
+            if(ability.getAbilityType() == abilityType)
+                return ability;
+        return null; // this can not happen
+    }
     public boolean isAbilityMax(AbilityType abilityType) {
         return getAbilityLevel(abilityType) == AbilityType.MAX_VALUE;
     }

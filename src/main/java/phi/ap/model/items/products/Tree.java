@@ -25,7 +25,7 @@ public class Tree extends Plant {
 
         super(height, width, null, type.getStages(), false, Game.getInstance().getDate());
         if (isForaging) {
-            setPlantingDate(new Date(Game.getInstance().getDate().getDay() - totalHarvestTime()));
+            getPlantingDate().advanceHourRaw(-1 * totalHarvestTime() * 24);
         }
         this.isThundered = isForaging;
         String sourceName = null;
@@ -42,7 +42,8 @@ public class Tree extends Plant {
             HarvestRegrowthTime = getStages().getLast();
         }
         setSellable(false);
-        fillTile(type.getTile());//TODO : look manage;
+        setShapeAtStage(type.getShapeAtStages());
+        setShapeForCurrentStage();
     }
 
 
@@ -75,7 +76,7 @@ public class Tree extends Plant {
             return products;
         }
         if (lastHarvestDate != null) {
-            if (Game.getInstance().getDate().getDay() - lastHarvestDate.getDay() > HarvestRegrowthTime) {
+            if (Game.getInstance().getDate().getRawDay() - lastHarvestDate.getRawDay() > HarvestRegrowthTime) {
                 products.add(new ItemStack(new Fruit(1, 1, fruit), fruit.getStackSize()));
                 --remainingHarvestCycles;
             }

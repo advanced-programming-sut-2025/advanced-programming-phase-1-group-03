@@ -5,6 +5,7 @@ import phi.ap.model.enums.*;
 import phi.ap.model.enums.StoreProducts.*;
 import phi.ap.model.items.*;
 import phi.ap.model.items.buildings.Farm;
+import phi.ap.model.items.buildings.Store;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
 import phi.ap.model.items.machines.craftingMachines.Bomber;
@@ -21,14 +22,11 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        Ability ability = new Ability(AbilityType.Farming);
-        ability.advanceLevel();
-        ability.advanceLevel();
-        ability.advanceLevel();
-        ability.advanceLevel();
-        System.out.println("*****");
-        for (Recipe recipe : Game.getInstance().getCurrentPlayer().getCraftingRecipes())
-            System.out.println(recipe.getResult().getItem().getName());
+        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(0, 0);
+        if(item instanceof Store){
+            return new Result<>(true, ((Store)item).getName());
+
+        }
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
     public Result<String> test1(String input) {
@@ -36,9 +34,13 @@ public class GameMenuController {
         Farm farm = Game.getInstance().getCurrentPlayer().getFarm();
         Map map = Game.getInstance().getMap();
         String[] params = Arrays.stream(input.split("\\s+")).filter(s -> !s.isEmpty()).toArray(String[]::new);
-        int y = Integer.parseInt(params[0].replaceAll("\\s+", ""));
-        int x = Integer.parseInt(params[1].replaceAll("\\s+", ""));
-        System.out.println(map.getTopItem(y, x) + map.getTopTile(y, x).toString(true));
+        try {
+            int y = Integer.parseInt(params[1].replaceAll("\\s+", ""));
+            int x = Integer.parseInt(params[0].replaceAll("\\s+", ""));
+            System.out.println(map.getTopItem(y, x) + map.getTopTile(y, x).toString(true));
+        } catch (Exception e) {
+            return new Result<>(true, e.getMessage());
+        }
         return null;
     }
     public Result<String> newGame(ArrayList<String> usernames) {
@@ -835,7 +837,6 @@ public class GameMenuController {
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckExistence(new ItemStack(craftingType.getRecipe().getResult().getItem(), 1)))
             return new Result<>(false, "You don't have this machine.");
         Machine machine = (Machine)craftingType.getRecipe().getResult().getItem();
-        System.out.println("!!" + itemName);
         switch (artisanName) {
             case "Furnace" : return ((CraftedProducer)machine).produceFurnace(itemName);
             case "CharcoalKiln" : return ((CraftedProducer)machine).produceCoal();
@@ -854,7 +855,6 @@ public class GameMenuController {
     public Result<String> getArtisan(String artisanName) {
         ArrayList<Product> removeProducts = new ArrayList<>();
         for(Product product : Game.getInstance().getCurrentPlayer().getArtisanItems()) {
-            System.out.println(product.getName() + " " + artisanName + " " + product.getWaitingTime());
             if(product.getName().equals(artisanName) && product.getWaitingTime() == 0) {
                 Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(product, 1);
                 removeProducts.add(product);
@@ -899,7 +899,7 @@ public class GameMenuController {
             }
         }
     }
-    public Result<String> showAllAvailableProducts() {
+    public Result<String> showAllAvailableTools() {
         String response = "";
         response += Game.getInstance().getCurrentPlayer().getToolManager().getAxe().toString()+"\n";
         response += Game.getInstance().getCurrentPlayer().getToolManager().getBackpack().toString()+"\n";

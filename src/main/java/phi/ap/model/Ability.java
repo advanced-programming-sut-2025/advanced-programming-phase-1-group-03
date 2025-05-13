@@ -38,7 +38,7 @@ public class Ability {
     }
 
     public void advanceLevel(){
-        level = Math.min(4, level + 1);
+        level = Math.min(AbilityType.MAX_VALUE, level + 1);
         checkingCraftingRecipes();
     }
     public void advanceXP(int gained){
