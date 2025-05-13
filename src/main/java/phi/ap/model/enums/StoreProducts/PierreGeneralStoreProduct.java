@@ -26,9 +26,9 @@ public enum PierreGeneralStoreProduct {
     // WeddingRing("Wedding Ring", "It's used to ask for another farmer's hand in marriage.", 10000,null, 2),
 
     DehydratorRecipe("Dehydrator Recipe", "A recipe to make Dehydrator", 10000, null,
-            1, new Recipe(1, 1, null, null, RecipeTypes.Dehydrator), null),
+            1, new Recipe(null, null, RecipeTypes.Dehydrator), null),
     GrassStarterRecipe("Grass Starter Recipe", "A recipe to make Grass Starter", 1000,
-            null, 1, new Recipe(1, 1, null, null,
+            null, 1, new Recipe(null, null,
             RecipeTypes.GrassStarter), null),
     Sugar("Sugar", "Adds sweetness to pastries and candies. Too much can be unhealthy.", 100,
             null, Integer.MAX_VALUE, new Food(1, 1, FoodTypes.Sugar), null),

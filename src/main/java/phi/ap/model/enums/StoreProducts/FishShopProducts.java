@@ -4,15 +4,53 @@ import phi.ap.model.Game;
 import phi.ap.model.Result;
 import phi.ap.model.enums.LevelName;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.products.Product;
+import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.tools.FishingPole;
 
 public enum FishShopProducts{
-    FishSmoker("Fish Smoker (Recipe)", "A recipe to make Fish Smoker", 10000, 1, 0, LevelName.training),
-    TroutSoup("Trout Soup", "Pretty salty.", 250, 1, 0, LevelName.bamboo),
-    BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500, 1, 0, LevelName.bamboo),
-    TrainingRod("Training Rod", "It's a lot easier to use than other rods, but can only catch basic fish.", 25, 1, 0, LevelName.training),
-    FiberglassRod("Fiberglass Rod", "Use in the water to catch fish.", 1800, 1, 2,LevelName.fiberGlass),
-    IridiumRod("Iridium Rod", "Use in the water to catch fish.", 7500, 1, 4, LevelName.iridium);
+    FishSmoker("Fish Smoker (Recipe)", "A recipe to make Fish Smoker", 10000, 1, 0, null){
+        @Override
+        public Item getItem() {
+            return null;
+           // return new Recipe();
+        }
+    },
+    TroutSoup("Trout Soup", "Pretty salty.", 250, 1, 0, null){
+        @Override
+        public Item getItem() {
+            System.out.println(getDescription());
+            return new Product(1,1);
+        }
+    },
+    BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500, 1, 0, LevelName.bamboo){
+        @Override
+        public Item getItem() {
+            System.out.println(getDescription());
+            return new Product(1,1);
+        }
+    },
+    TrainingRod("Training Rod", "It's a lot easier to use than other rods, but can only catch basic fish.", 25, 1, 0, LevelName.training){
+        @Override
+        public Item getItem() {
+            System.out.println(getDescription());
+            return new Product(1,1);
+        }
+    },
+    FiberglassRod("Fiberglass Rod", "Use in the water to catch fish.", 1800, 1, 2,LevelName.fiberGlass){
+        @Override
+        public Item getItem() {
+            System.out.println(getDescription());
+            return new Product(1,1);
+        }
+    },
+    IridiumRod("Iridium Rod", "Use in the water to catch fish.", 7500, 1, 4, LevelName.iridium){
+        @Override
+        public Item getItem() {
+            System.out.println(getDescription());
+            return new Product(1,1);
+        }
+    };
     private final String name;
     private final String description;
     private final Integer price;
@@ -20,6 +58,7 @@ public enum FishShopProducts{
     private Integer availableAmount = 1000;
     private final Integer fishingSkill;
     private final LevelName level;
+    private Item item;
     FishShopProducts(String name, String description, Integer price, Integer dailyLimit, Integer fishingSkill, LevelName level) {
         this.name = name;
         this.description = description;
@@ -89,4 +128,6 @@ public enum FishShopProducts{
     public Integer getDailyLimit() {
         return dailyLimit;
     }
+
+    public abstract Item getItem();
 }

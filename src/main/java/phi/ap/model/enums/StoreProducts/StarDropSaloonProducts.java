@@ -26,24 +26,24 @@ public enum StarDropSaloonProducts {
             Integer.MAX_VALUE, new Food(1, 1, FoodTypes.Coffee), StoreTypes.TheStarDropSaloon),
     // Recipes
     HASHBROWNSRECIPE("Hashbrowns Recipe", "A recipe to make Hashbrowns", 50, 1,
-            new Recipe(1, 1, null, null, RecipeTypes.HashBrowns), StoreTypes.TheStarDropSaloon),
+            new Recipe( null, null, RecipeTypes.HashBrowns), StoreTypes.TheStarDropSaloon),
     OMELETRECIPE("Omelet Recipe", "A recipe to make Omelet", 100, 1,
-            new Recipe(1, 1, null, null, RecipeTypes.Omelet), StoreTypes.TheStarDropSaloon),
+            new Recipe(null, null, RecipeTypes.Omelet), StoreTypes.TheStarDropSaloon),
     PANCAKESRECIPE("Pancakes Recipe", "A recipe to make Pancakes", 100, 1,
-            new Recipe(1, 1, null, null, RecipeTypes.Pancakes), StoreTypes.TheStarDropSaloon),
+            new Recipe(null, null, RecipeTypes.Pancakes), StoreTypes.TheStarDropSaloon),
     BREADRECIPE("Bread Recipe", "A recipe to make Bread", 100, 1,
-            new Recipe(1, 1, null, null, RecipeTypes.Bread), StoreTypes.TheStarDropSaloon),
+            new Recipe( null, null, RecipeTypes.Bread), StoreTypes.TheStarDropSaloon),
     TORTILLARECIPE("Tortilla Recipe", "A recipe to make Tortilla", 100, 1,
-            new Recipe(1, 1, null, null, RecipeTypes.Tortilla), StoreTypes.TheStarDropSaloon),
+            new Recipe(null, null, RecipeTypes.Tortilla), StoreTypes.TheStarDropSaloon),
     PIZZARECIPE("Pizza Recipe", "A recipe to make Pizza", 150, 1,
-            new Recipe(1, 1, null, null, RecipeTypes.Pizza), StoreTypes.TheStarDropSaloon),
+            new Recipe( null, null, RecipeTypes.Pizza), StoreTypes.TheStarDropSaloon),
     MAKIROLLRECIPE("Maki Roll Recipe", "A recipe to make Maki Roll", 300, 1,
-            new Recipe(1, 1, null, null, RecipeTypes.MakiRoll), StoreTypes.TheStarDropSaloon),
+            new Recipe(null, null, RecipeTypes.MakiRoll), StoreTypes.TheStarDropSaloon),
     TRIPLESHOTESPRESSORECIPE("Triple Shot Espresso Recipe", "A recipe to make Triple Shot Espresso",
-            5000, 1, new Recipe(1, 1, null, null,
+            5000, 1, new Recipe(null, null,
             RecipeTypes.TripleShotEspresso), StoreTypes.TheStarDropSaloon),
     COOKIERECIPE("Cookie Recipe", "A recipe to make Cookie", 300, 1,
-            new Recipe(1, 1, null, null, RecipeTypes.Cookie), StoreTypes.TheStarDropSaloon);
+            new Recipe(null, null, RecipeTypes.Cookie), StoreTypes.TheStarDropSaloon);
 
     private final String name;
     private final String description;
@@ -86,7 +86,7 @@ public enum StarDropSaloonProducts {
         Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() -
                 amount * starDropSaloonProducts.price);
         ArrayList<Recipe> recipe = Game.getInstance().getCurrentPlayer().getCookingRecipes();
-        recipe.add(new Recipe(1, 1, null, null, ((Recipe)starDropSaloonProducts.item).getRecipeType()));
+        recipe.add(new Recipe(null, null, ((Recipe)starDropSaloonProducts.item).getRecipeType()));
         return new Result<>(true, "Item purchased successfully");
     }
 

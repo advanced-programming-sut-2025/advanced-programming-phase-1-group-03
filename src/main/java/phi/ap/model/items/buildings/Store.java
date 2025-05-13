@@ -8,16 +8,17 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Store extends Building {
+    private StoreTypes storeTypes;
+    private ArrayList<ItemStack> availableProducts;
 
     public Store(int height, int width, StoreTypes storeType) {
         super(height, width);
         setName(storeType.getName());
         fillTile(storeType.getTileType().getTile());
         setWalls();
+        this.storeTypes = storeType;
     }
 
-    StoreTypes storeTypes;
-    private ArrayList<ItemStack> availableProducts;
 
     @Override
     public void doTask() {

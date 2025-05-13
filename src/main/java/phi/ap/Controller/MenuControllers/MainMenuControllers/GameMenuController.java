@@ -22,6 +22,7 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
+
         Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(0, 0);
         if(item instanceof Store){
             return new Result<>(true, ((Store)item).getName());
@@ -134,8 +135,11 @@ public class GameMenuController {
 
     private boolean advanceHour(){
         doHourTask();
-        if(Game.getInstance().getDate().advanceHour()) {
-            Game.getInstance().getDate().goToNextDay();
+        int nightHours = Game.getInstance().getDate().advanceHour();
+        for(int i = 0; i < nightHours; i++){
+            Game.getInstance().getDate().advanceHour();
+        }
+        if(nightHours != 0) {
             doNightTasks();
             return true;
         }
@@ -216,10 +220,7 @@ public class GameMenuController {
         }catch (Exception e){
             return new Result<>(false, "dorost bede dige, in chie akhe?");
         }
-        for(int i = 0; i < day; i++) {
-            Game.getInstance().getDate().goToNextDay();
-            doNightTasks();
-        }
+        cheatAdvanceTime(String.valueOf(day*24));
         return new Result<>(true, "zaman " + day + " rooz raft jeloo");
     }
 
@@ -583,6 +584,10 @@ public class GameMenuController {
             return new Result<>(false, "Inventory is full.");
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(recipe))
             return new Result<>(false, "You don't have enough ingredients.");
+
+        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(2))
+            return new Result<>(false, "You don't have enough energy");
+
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(recipe.getResult().getItem(), 1);
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-2);
         return new Result<>(true, "item crafted successfully.");

@@ -9,8 +9,8 @@ public class Recipe extends Product {
     private final ArrayList<ItemStack> ingredients;
     private final ItemStack result;
     private final RecipeTypes recipeType;
-    public Recipe(int height, int width, ArrayList<ItemStack> ingredients, ItemStack result, RecipeTypes recipeType) {
-        super(height, width);
+    public Recipe(ArrayList<ItemStack> ingredients, ItemStack result, RecipeTypes recipeType) {
+        super(1, 1);
         this.ingredients = ingredients;
         this.result = result;
         this.recipeType = recipeType;

@@ -223,7 +223,7 @@ public enum FoodTypes {
 
     private FoodTypes(String name, ArrayList<ItemStack> ingredients, Eatable eatable, int sellPrice, AbilityType abilityType, Integer hour) {
         this.ingredients = ingredients;
-        recipe = new Recipe(1, 1, ingredients, new ItemStack(new Food(1, 1, name, sellPrice, eatable), 1), RecipeTypes.valueOf(name));
+        recipe = new Recipe(ingredients, new ItemStack(new Food(1, 1, name, sellPrice, eatable), 1), RecipeTypes.valueOf(name));
         this.eatable = eatable;
         this.sellPrice = sellPrice;
         this.name = name;
@@ -238,7 +238,7 @@ public enum FoodTypes {
     }
     private FoodTypes(String name, ArrayList<ItemStack> ingredients, Eatable eatable, int sellPrice, Integer processingTime) {
         this.ingredients = ingredients;
-        recipe = new Recipe(1, 1, ingredients, new ItemStack(new Food(1, 1, name, sellPrice, eatable), 1), RecipeTypes.valueOf(name));
+        recipe = new Recipe(ingredients, new ItemStack(new Food(1, 1, name, sellPrice, eatable), 1), RecipeTypes.valueOf(name));
         this.eatable = eatable;
         this.sellPrice = sellPrice;
         this.name = name;

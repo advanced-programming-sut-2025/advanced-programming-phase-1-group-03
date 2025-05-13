@@ -31,7 +31,7 @@ public class Date {
     public int getHour() {
         return hour%24;
     }
-
+    public int getRawHour() {return hour;}
     public Date(int hour) {
         this.hour = hour;
     }
@@ -40,17 +40,16 @@ public class Date {
         this.hour = hour;
     }
 
-    public void goToNextDay() {
-        this.hour += (START_HOUR - getHour() + 24);
-    }
     public void advanceHourRaw(int hour){
 
         this.hour += hour;
     }
     //return if it's sleeping time or not
-    public boolean advanceHour(){
+    public int advanceHour(){
         this.hour += 1;
-        return this.getHour() == SLEEP_HOUR;
+        if(this.hour == SLEEP_HOUR)
+            return START_HOUR - SLEEP_HOUR + 24;
+        return 0;
     }
 
 }

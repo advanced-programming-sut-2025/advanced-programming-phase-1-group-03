@@ -134,7 +134,7 @@ public enum CraftingTypes {
         this.abilityType = abilityType;
         this.level = level;
         this.sellPrice = sellPrice;
-        this.recipe = new Recipe(1 , 1, arrayList, new ItemStack(machine, 1), RecipeTypes.valueOf(name));
+        this.recipe = new Recipe(arrayList, new ItemStack(machine, 1), RecipeTypes.valueOf(name));
     }
 
     public String getName() {
