@@ -156,4 +156,14 @@ public enum CraftingTypes {
     public Integer getSellPrice() {
         return sellPrice;
     }
+
+    public CraftingTypes getType(String name) {
+        CraftingTypes craftingType;
+        try {
+            craftingType = CraftingTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return craftingType;
+    }
 }

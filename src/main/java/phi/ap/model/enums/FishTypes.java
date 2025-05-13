@@ -40,4 +40,14 @@ public enum FishTypes {
     public Seasons getSeason() {
         return season;
     }
+
+    public FishTypes getType(String name) {
+        FishTypes fishTypes;
+        try {
+            fishTypes = FishTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return fishTypes;
+    }
 }

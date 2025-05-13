@@ -48,4 +48,14 @@ public enum StoreTypes {
     public String getName() {
         return name;
     }
+
+    public StoreTypes getType(String name) {
+        StoreTypes storeType;
+        try {
+            storeType = StoreTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return storeType;
+    }
 }

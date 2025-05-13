@@ -16,4 +16,14 @@ public enum StoneTypes {
     public Tile getTile() {
         return tile;
     }
+
+    public StoneTypes getType(String name) {
+        StoneTypes stoneType;
+        try {
+            stoneType = StoneTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return stoneType;
+    }
 }

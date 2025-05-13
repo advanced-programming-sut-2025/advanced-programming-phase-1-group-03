@@ -26,4 +26,13 @@ public enum SaplingTypes {
         return null;
     }
 
+    public SaplingTypes getType(String name) {
+        SaplingTypes saplingType;
+        try {
+            saplingType = SaplingTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return saplingType;
+    }
 }

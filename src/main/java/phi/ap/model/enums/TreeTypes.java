@@ -93,4 +93,14 @@ public enum TreeTypes {
         }
         return null;
     }
+
+    public TreeTypes getType(String name) {
+        TreeTypes treeType;
+        try {
+            treeType = TreeTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return treeType;
+    }
 }

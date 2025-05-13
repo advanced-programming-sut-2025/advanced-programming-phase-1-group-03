@@ -99,4 +99,14 @@ private final String name;
         if (season != Seasons.Special) return new ArrayList<>(List.of(season));
         return new ArrayList<>(List.of(Seasons.Spring, Seasons.Summer, Seasons.Fall, Seasons.Winter));
     }
+
+    public ForagingCropsTypes getType(String name) {
+        ForagingCropsTypes foragingCropsType;
+        try {
+            foragingCropsType = ForagingCropsTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return foragingCropsType;
+    }
 }

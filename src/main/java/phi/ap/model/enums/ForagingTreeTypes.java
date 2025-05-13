@@ -28,4 +28,14 @@ public enum ForagingTreeTypes {
         return ForagingTreeTypes.values()[ind];
         //all Seasons are special
     }
+
+    public ForagingTreeTypes getType(String name) {
+        ForagingTreeTypes foragingTreeTypes;
+        try {
+            foragingTreeTypes = ForagingTreeTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return foragingTreeTypes;
+    }
 }

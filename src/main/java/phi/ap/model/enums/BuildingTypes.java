@@ -32,4 +32,13 @@ public enum BuildingTypes {
     public String getName() {
         return name;
     }
+    public BuildingTypes getType(String name) {
+        BuildingTypes buildingType;
+        try {
+            buildingType = BuildingTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return buildingType;
+    }
 }

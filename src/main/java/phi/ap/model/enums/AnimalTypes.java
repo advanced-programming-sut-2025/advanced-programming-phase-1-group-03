@@ -46,4 +46,14 @@ public enum AnimalTypes {
     public int getPrice() {
         return price;
     }
+
+    public AnimalTypes getType(String name) {
+        AnimalTypes animalType;
+        try {
+            animalType = AnimalTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return animalType;
+    }
 }

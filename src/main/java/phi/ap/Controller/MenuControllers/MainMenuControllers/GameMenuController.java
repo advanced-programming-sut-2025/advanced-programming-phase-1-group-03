@@ -569,6 +569,9 @@ public class GameMenuController {
     public Result<String> placeItem(String itemName, String direction) {
         return null;
     }
+    public Item getItem(String name) {
+        return null;
+    }
     public Result<String> cheatAddItem(String itemName, String amount) {
         return null;
     }

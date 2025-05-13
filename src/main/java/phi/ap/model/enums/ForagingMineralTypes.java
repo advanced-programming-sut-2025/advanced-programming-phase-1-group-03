@@ -75,4 +75,14 @@ public enum ForagingMineralTypes {
     public int getProbabilityPercent() {
         return probabilityPercent;
     }
+
+    public ForagingMineralTypes getType(String name) {
+        ForagingMineralTypes foragingMineralType;
+        try {
+            foragingMineralType = ForagingMineralTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return foragingMineralType;
+    }
 }

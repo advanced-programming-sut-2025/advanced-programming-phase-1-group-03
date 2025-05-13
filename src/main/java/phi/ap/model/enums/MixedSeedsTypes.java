@@ -34,4 +34,13 @@ public enum MixedSeedsTypes {
         return new ArrayList<>(List.of(Seasons.Spring, Seasons.Summer, Seasons.Fall, Seasons.Winter));
     }
 
+    public MixedSeedsTypes getType(String name) {
+        MixedSeedsTypes mixedSeedsType;
+        try {
+            mixedSeedsType = MixedSeedsTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return mixedSeedsType;
+    }
 }

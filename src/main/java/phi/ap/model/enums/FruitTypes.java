@@ -83,4 +83,14 @@ public enum FruitTypes {
     public ArrayList<Seasons> getSeasonList() {
         return seasons;
     }
+
+    public FruitTypes getType(String name) {
+        FruitTypes fruitType;
+        try {
+            fruitType = FruitTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return fruitType;
+    }
 }

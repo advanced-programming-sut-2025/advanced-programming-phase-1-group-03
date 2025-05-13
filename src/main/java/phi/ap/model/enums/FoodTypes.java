@@ -276,4 +276,14 @@ public enum FoodTypes {
     public Integer getHour() {
         return Buffhour;
     }
+
+    public FoodTypes getType(String name) {
+        FoodTypes foodType;
+        try {
+            foodType = FoodTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return foodType;
+    }
 }

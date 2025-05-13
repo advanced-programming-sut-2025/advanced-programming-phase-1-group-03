@@ -1,5 +1,8 @@
 package phi.ap.model.enums;
 
+import phi.ap.model.items.Item;
+import phi.ap.model.items.products.AnimalProduct;
+
 public enum AnimalProductTypes {
     ChickenEgg("Chicken Egg", 50),
     LargeChickenEgg("Large Chicken Egg", 95),
@@ -19,6 +22,7 @@ public enum AnimalProductTypes {
 
     private final String name;
     private final int price;
+
     AnimalProductTypes(String name, int price) {
         this.price = price;
         this.name = name;
@@ -30,6 +34,16 @@ public enum AnimalProductTypes {
 
     public int getPrice() {
         return price;
+    }
+
+    public AnimalProductTypes getType(String name) {
+        AnimalProductTypes animalProductType;
+        try {
+            animalProductType = AnimalProductTypes.valueOf(name);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+        return animalProductType;
     }
 
 }
