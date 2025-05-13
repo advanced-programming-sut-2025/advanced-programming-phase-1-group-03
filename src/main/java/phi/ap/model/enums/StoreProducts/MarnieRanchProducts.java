@@ -115,6 +115,7 @@ public enum MarnieRanchProducts {
         ArrayList<AnimalHouse> animalHouse = Game.getInstance().getCurrentPlayer().getOwnedAnimalHouse();
         boolean ok = false;
         for(AnimalHouse animalHouse1 : animalHouse) {
+            System.out.println(animalHouse1);
             if(animalHouse1.getBuildingType().equals(marnieRanchProducts.buildingType) && animalHouse1.addAnimal(animal))
                 ok = true;
         }

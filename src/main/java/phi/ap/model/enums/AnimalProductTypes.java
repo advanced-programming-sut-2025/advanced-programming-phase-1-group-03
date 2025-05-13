@@ -4,17 +4,17 @@ import phi.ap.model.items.Item;
 import phi.ap.model.items.products.AnimalProduct;
 
 public enum AnimalProductTypes {
-    ChickenEgg("Chicken Egg", 50),
-    LargeChickenEgg("Large Chicken Egg", 95),
-    DuckEgg("Duck Egg", 95),
-    LargeDuckEgg("Large Duck Egg", 250),
+    ChickenEgg("ChickenEgg", 50),
+    LargeChickenEgg("LargeChickenEgg", 95),
+    DuckEgg("DuckEgg", 95),
+    LargeDuckEgg("LargeDuckEgg", 250),
     Wool("Wool", 340),
-    RabbitFoot("Rabbit Foot", 565),
-    DinosaurEgg("Dinosaur Egg", 350),
+    RabbitFoot("RabbitFoot", 565),
+    DinosaurEgg("DinosaurEgg", 350),
     Milk("Milk", 125),
-    LargeMilk("Large Milk", 190),
-    GoatMilk("Goat Milk", 225),
-    LargeGoatMilk("Large Goat Milk", 345),
+    LargeMilk("LargeMilk", 190),
+    GoatMilk("GoatMilk", 225),
+    LargeGoatMilk("LargeGoatMilk", 345),
     Cheese("Cheese", 340),
     Truffle("Truffle", 625)
     ;

@@ -22,6 +22,7 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
+        System.out.println(Game.getInstance().getCurrentPlayer().getGold());
         Ability ability = new Ability(AbilityType.Farming);
         System.out.println(Game.getInstance().getCurrentPlayer().getCookingRecipes());
         ability.advanceLevel();
@@ -156,7 +157,9 @@ public class GameMenuController {
                 animal.addFriendShip(-10);
             if(!animal.getIsInHome())
                 animal.addFriendShip(-20);
+            System.out.println("!! " + animal.getRemainingDayToProduce());
             animal.reduceRemainingDayToProduce();
+            System.out.println("!! " + animal.getRemainingDayToProduce());
             if(animal.getIsFeeded() && animal.getRemainingDayToProduce() == 0) {
                 AnimalProduct animalProduct = animal.produceProduct();
                 if(animalProduct != null) {
@@ -784,9 +787,10 @@ public class GameMenuController {
     public Result<String> produces() {
         ArrayList<Animal> animals = Game.getInstance().getCurrentPlayer().getAnimals();
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("collecting produces: \n");
         for(Animal animal : animals) {
             if(animal.getAnimalProducts().size() > 0) {
-                stringBuilder.append("Animal name: " + animal.getName() + " " + "Type: " + animal.getType().toString());
+                stringBuilder.append("Animal name: " + animal.getName() + " " + "Type: " + animal.getType().toString() + "\n");
                 for(AnimalProduct animalProduct : animal.getAnimalProducts()) {
                     stringBuilder.append(animalProduct.getAnimalProductType().toString());
                 }

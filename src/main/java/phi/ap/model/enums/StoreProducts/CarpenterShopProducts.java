@@ -140,6 +140,7 @@ public enum CarpenterShopProducts {
         AnimalHouse animalHouse = new AnimalHouse(carpenterShopProduct.item.getHeight(), carpenterShopProduct.width,
                 ((AnimalHouse)carpenterShopProduct.item).getBuildingType(), new Coordinate(y, x));
         farm.addItem(animalHouse);
+        Game.getInstance().getCurrentPlayer().getOwnedAnimalHouse().add(animalHouse);
         return new Result<>(true, "Building added successfully.");
     }
     public String getName() {

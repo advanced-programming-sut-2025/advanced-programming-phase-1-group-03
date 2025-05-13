@@ -17,7 +17,9 @@ public class Animal extends Item {
     private boolean beenPet = false;
     private boolean inHome = true;
     private boolean feeded = false;
-    private ArrayList<AnimalProduct> animalProducts;
+
+
+    private ArrayList<AnimalProduct> animalProducts = new ArrayList<>();
 
     public Animal(AnimalTypes animalType, int height, int width) {
         super(height, width);
