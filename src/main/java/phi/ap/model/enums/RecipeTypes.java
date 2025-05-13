@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 public enum RecipeTypes {
     // Cooking Recipes
-    Hashbrowns("Hashbrowns"),
+    HashBrowns("Hashbrowns"),
     Omelet("Omelet"),
     Pancakes("Pancakes"),
     Bread("Bread"),

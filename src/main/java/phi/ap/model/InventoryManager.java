@@ -77,6 +77,12 @@ public class InventoryManager {
         }
         return true;
     }
+    public boolean CheckCanBuild(ItemStack itemStack1) {
+        if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckExistence(itemStack1))
+            return false;
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack1.getItem(), itemStack1.getAmount());
+        return true;
+    }
     public boolean CheckExistence(ItemStack itemStack) {
         Item item = itemStack.getItem();
         int amount = itemStack.getAmount();

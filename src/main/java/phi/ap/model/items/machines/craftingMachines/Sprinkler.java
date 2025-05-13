@@ -4,8 +4,11 @@ import phi.ap.model.enums.CraftingTypes;
 import phi.ap.model.items.machines.Machine;
 
 public class Sprinkler extends Machine {
-    public Sprinkler(int height, int width) {
-        super(height, width);
+    public Sprinkler(int height, int width, CraftingTypes craftingType) {
+        super(height, width, craftingType);
+    }
+    public Sprinkler(int height, int width, String machineName, Integer price) {
+        super(height, width, machineName, price);
     }
     @Override
     public void doTask() {

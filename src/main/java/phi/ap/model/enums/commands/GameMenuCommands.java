@@ -48,6 +48,8 @@ public enum GameMenuCommands implements Command{
     ShowCraftingRecipes("\\s*crafting\\s+show\\s+recipes\\s*"),
     Craft("\\s*crafting\\s+craft\\s+(?<name>.*)\\s*"),
     CraftInfo("\\s*craft\\s*info\\s+-n\\s+(?<name>.*)\\s*"),
+    UseArtisan("\\s*artisan\\s+use\\s+(?<name>\\S+)\\s+(?<itemName>\\S+)\\s*(?<ingredientName>\\S+)?\\s*"),
+    GetArtisan("\\s*artisan\\s+get\\s+(?<name>\\S+)\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

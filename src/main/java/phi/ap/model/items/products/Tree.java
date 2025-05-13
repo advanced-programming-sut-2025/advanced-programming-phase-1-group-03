@@ -53,7 +53,7 @@ public class Tree extends Plant {
     public ArrayList<ItemStack> getProducts() {
         ArrayList<ItemStack> products = new ArrayList<>();
         if (isThundered) {
-            products.add(new ItemStack(new Mineral(1, 1, ForagingMineralTypes.COAL),
+            products.add(new ItemStack(new Mineral(1, 1, ForagingMineralTypes.Coal),
                     App.getInstance().getRandomNumber(1, 2)));
             setLevelsForArrayList(products);
             return products;

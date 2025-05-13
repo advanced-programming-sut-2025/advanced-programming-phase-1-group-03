@@ -107,6 +107,10 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.craftItem(matcher.group("name")));
         } else if ((matcher = GameMenuCommands.CraftInfo.getMatcher(input)) != null) {
             System.out.println(controller.craftInfo(matcher.group("name")));
+        } else if ((matcher = GameMenuCommands.UseArtisan.getMatcher(input)) != null) {
+            System.out.println(controller.useArtisan(matcher.group("name"), matcher.group("itemName"), matcher.group("ingredientName")));
+        } else if ((matcher = GameMenuCommands.GetArtisan.getMatcher(input)) != null) {
+            System.out.println(controller.getArtisan(matcher.group("name")));
         }
         else {
             super.check(input);

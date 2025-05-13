@@ -26,7 +26,7 @@ public enum StarDropSaloonProducts {
             Integer.MAX_VALUE, new Food(1, 1, FoodTypes.Coffee), StoreTypes.TheStarDropSaloon),
     // Recipes
     HASHBROWNSRECIPE("Hashbrowns Recipe", "A recipe to make Hashbrowns", 50, 1,
-            new Recipe(1, 1, null, null, RecipeTypes.Hashbrowns), StoreTypes.TheStarDropSaloon),
+            new Recipe(1, 1, null, null, RecipeTypes.HashBrowns), StoreTypes.TheStarDropSaloon),
     OMELETRECIPE("Omelet Recipe", "A recipe to make Omelet", 100, 1,
             new Recipe(1, 1, null, null, RecipeTypes.Omelet), StoreTypes.TheStarDropSaloon),
     PANCAKESRECIPE("Pancakes Recipe", "A recipe to make Pancakes", 100, 1,

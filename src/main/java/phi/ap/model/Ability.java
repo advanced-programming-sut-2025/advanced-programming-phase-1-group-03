@@ -30,8 +30,6 @@ public class Ability {
             //System.out.println(craftingTypes.getAbilityType() + " " + abilityType);
             if(craftingTypes.getAbilityType() != null && craftingTypes.getLevel() != null)
                 if(craftingTypes.getAbilityType().equals(abilityType) && craftingTypes.getLevel().equals(level)) {
-                    ((Machine)(craftingTypes.getRecipe().getResult().getItem())).setCraftingType(craftingTypes.getRecipe().getRecipeType().getName());
-                    ((Machine)(craftingTypes.getRecipe().getResult().getItem())).setName(craftingTypes.getRecipe().getRecipeType().getName());
                     recipe.add(craftingTypes.getRecipe());
                 }
         }

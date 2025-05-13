@@ -6,8 +6,12 @@ import phi.ap.model.enums.StoreProducts.*;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.PlayerIcon;
 import phi.ap.model.items.buildings.Farm;
+import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
 import phi.ap.model.items.Animal;
+import phi.ap.model.items.machines.craftingMachines.Bomber;
+import phi.ap.model.items.machines.craftingMachines.CraftedProducer;
+import phi.ap.model.items.machines.craftingMachines.Sprinkler;
 import phi.ap.model.items.products.*;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
@@ -19,11 +23,8 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        System.out.println(Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
-        Ability ability = new Ability(AbilityType.Farming);
-        ability.advanceLevel();
-        System.out.println(craftItem("Sprinkler"));
-        System.out.println(Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+        Machine machine = new Bomber(1, 1, "Bomber", 50);
+        System.out.println(machine.getSellPrice());
         return null;
     }
     public Result<String> test1(String input) {
@@ -369,15 +370,24 @@ public class GameMenuController {
     }
 
     public Result<String> showEnergy() {
-        return null;
+        return new Result<>(true, "Energy: " + Game.getInstance().getCurrentPlayer().getEnergy().getAmount());
     }
 
-    public Result<String> cheatSetEnergy(String energy) {
-        return null;
+    public Result<String> cheatSetEnergy(String energyString) {
+        int energy = Integer.parseInt(energyString);
+        int dif = energy - Game.getInstance().getCurrentPlayer().getEnergy().getAmount();
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(dif);
+        return new Result<>(true, "energ has been set to " + energy);
+    }
+    public Result<String> cheatSetEnergy(int energy) {
+        int dif = energy - Game.getInstance().getCurrentPlayer().getEnergy().getAmount();
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(dif);
+        return new Result<>(true, "energ has been set to " + energy);
     }
 
     public Result<String> cheatSetEnergyUnlimited() {
-        return null;
+        Game.getInstance().getCurrentPlayer().getEnergy().setMaxAmount(Integer.MAX_VALUE);
+        return cheatSetEnergy(Integer.MAX_VALUE);
     }
 
     public Result<String> showInventory() {
@@ -687,7 +697,7 @@ public class GameMenuController {
         if(food == null)
             return new Result<>(false, "There is not any food with this name.");
         Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(food, 1);
-        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getFoodType().getEatable().getEnergy());
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getEatable().getEnergy());
         return new Result<>(true, food.getName() + " eated. " + "You earned " + food.getFoodType().getEatable().getEnergy() + " amount of energy.");
     }
     public Result<String> buildBuilding(String buildingName, String x, String y) {
@@ -789,11 +799,45 @@ public class GameMenuController {
     public Result<String> fishing(String fishingPole) {
         return null;
     }
-    public Result<String> useArtisan(String artisanName, String itemName) {
+    public Result<String> useArtisan(String artisanName, String itemName, String ingredient) {
+        CraftingTypes craftingType;
+        try {
+            craftingType = CraftingTypes.valueOf(artisanName);
+        } catch (IllegalArgumentException e) {
+            return new Result<>(false, "There is no machine with this name.");
+        }
+        if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckExistence(new ItemStack(craftingType.getRecipe().getResult().getItem(), 1)))
+            return new Result<>(false, "You don't have this machine.");
+        Machine machine = (Machine)craftingType.getRecipe().getResult().getItem();
+        switch (itemName) {
+            case "Furnace" : return ((CraftedProducer)machine).produceFurnace(itemName);
+            case "CharcoalKiln" : return ((CraftedProducer)machine).produceCoal();
+            case "BeeHouse" : return ((CraftedProducer)machine).produceHoney(itemName);
+            case "CheesePress" : return ((CraftedProducer)machine).produceCheese(itemName);
+            case "Keg" : return ((CraftedProducer)machine).produceKeg(itemName, ingredient);
+            case "Loom" : return ((CraftedProducer)machine).produceLoom();
+            case "MayonnaiseMachine" : return ((CraftedProducer)machine).produceMayonnaiseMachine(itemName, ingredient);
+            case "OilMaker" : return ((CraftedProducer)machine).produceOilMaker(itemName, ingredient);
+            case "PreservesJar" : return ((CraftedProducer)machine).producePreservesJar(itemName, ingredient);
+            case "Dehydrator" : return ((CraftedProducer)machine).produceDehydrator(itemName, ingredient);
+            case "FishSmoker" : return ((CraftedProducer)machine).produceFishSmoker(itemName, ingredient);
+        }
         return null;
     }
     public Result<String> getArtisan(String artisanName) {
-        return null;
+        ArrayList<Product> removeProducts = new ArrayList<>();
+        for(Product product : Game.getInstance().getCurrentPlayer().getArtisanItems()) {
+            if(product.getName().equals(artisanName) && product.getWaitingTime() == 0) {
+                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(product, 1);
+                removeProducts.add(product);
+            }
+        }
+        if(removeProducts.isEmpty())
+            return new Result<>(false, "There is no collecting products with this name");
+        for(Product product : removeProducts) {
+            Game.getInstance().getCurrentPlayer().getArtisanItems().remove(product);
+        }
+        return new Result<>(true, artisanName + " collected successfully.");
     }
     public Result<String> showAllProducts() {
         // TODO give a true value to storeType based on the store we are there.
@@ -859,7 +903,8 @@ public class GameMenuController {
         }
     }
     public Result<String> cheatAddGold(String amount) {
-        return null;
+        Game.getInstance().getCurrentPlayer().setGold(Integer.parseInt(amount));
+        return new Result<>(true, Integer.parseInt(amount) + " Gold added.");
     }
     public Result<String> sellProduct(String productName, String amount) {
         return null;

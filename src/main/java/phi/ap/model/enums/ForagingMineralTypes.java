@@ -2,31 +2,29 @@ package phi.ap.model.enums;
 
 import phi.ap.model.App;
 import phi.ap.model.Tile;
-import phi.ap.model.enums.Time.Seasons;
-
-import java.util.ArrayList;
 
 public enum ForagingMineralTypes {
-    QUARTZ("*", Colors.fg(251), "", "Quartz", LevelName.iron, "A clear crystal commonly found in caves and mines.", 25),
-    EARTH_CRYSTAL("*", Colors.fg(251), "", "Earth Crystal", LevelName.iron, "A resinous substance found near the surface.", 50),
-    FROZEN_TEAR("*", Colors.fg(251), "", "Frozen Tear", LevelName.iron, "A crystal fabled to be the frozen tears of a yeti.", 75),
-    FIRE_QUARTZ("*", Colors.fg(251), "", "Fire Quartz", LevelName.iron,"A glowing red crystal commonly found near hot lava.", 100),
-    EMERALD("*", Colors.fg(251), "", "Emerald", LevelName.iron,"A precious stone with a brilliant green color.", 250),
-    AQUAMARINE("*", Colors.fg(251), "", "Aquamarine", LevelName.iron, "A shimmery blue-green gem.", 180),
-    RUBY("*", Colors.fg(251), "", "Ruby",LevelName.iron, "A precious stone that is sought after for its rich color and beautiful luster.", 250),
-    AMETHYST("*", Colors.fg(251), "", "Amethyst", LevelName.iron,"A purple variant of quartz.", 100),
-    TOPAZ("*", Colors.fg(251), "", "Topaz", LevelName.iron,"Fairly common but still prized for its beauty.", 80),
-    JADE("*", Colors.fg(251), "", "Jade", LevelName.iron,"A pale green ornamental stone.", 200),
-    DIAMOND("D", Colors.fg(251), "", "Diamond", LevelName.iron,"A rare and valuable gem.", 750),
-    PRISMATIC_SHARD("*", Colors.fg(251), "", "Prismatic Shard", LevelName.iron,"A very rare and powerful substance with unknown origins.", 2000),
-    COPPER("C", Colors.fg(251), "", "Copper", LevelName.normal,"A common ore that can be smelted into bars.", 75),
-    COPPER_BAR("C", Colors.fg(253), "", "Copper", LevelName.normal,"A common ore that can be smelted into bars.", 75),
-    IRON("i", Colors.fg(251), "", "Iron", LevelName.copper, "A fairly common ore that can be smelted into bars.", 150),
-    IRON_BAR("i", Colors.fg(253), "", "Iron", LevelName.copper, "A fairly common ore that can be smelted into bars.", 150),
-    GOLD("G", Colors.fg(251), "", "Gold", LevelName.iron, "A precious ore that can be smelted into bars.", 400),
-    GOLD_BAR("G", Colors.fg(251), "", "Gold", LevelName.iron, "A precious ore that can be smelted into bars.", 400),
-    IRIDIUM("I", Colors.fg(251), "", "Iridium", LevelName.golden, "An exotic ore with many curious properties. Can be smelted into bars.", 100),
-    COAL("c", Colors.fg(251), "", "Coal", LevelName.copper,"A combustible rock that is useful for crafting and smelting.", 150);
+    Quartz("*", Colors.fg(251), "", "Quartz", LevelName.iron, "A clear crystal commonly found in caves and mines.", 25),
+    EarthCrystal("*", Colors.fg(251), "", "EarthCrystal", LevelName.iron, "A resinous substance found near the surface.", 50),
+    FrozenTear("*", Colors.fg(251), "", "FrozenTear", LevelName.iron, "A crystal fabled to be the frozen tears of a yeti.", 75),
+    FireQuartz("*", Colors.fg(251), "", "FireQuartz", LevelName.iron,"A glowing red crystal commonly found near hot lava.", 100),
+    Emerald("*", Colors.fg(251), "", "Emerald", LevelName.iron,"A precious stone with a brilliant green color.", 250),
+    Aquamarine("*", Colors.fg(251), "", "Aquamarine", LevelName.iron, "A shimmery blue-green gem.", 180),
+    Ruby("*", Colors.fg(251), "", "Ruby",LevelName.iron, "A precious stone that is sought after for its rich color and beautiful luster.", 250),
+    Amethyst("*", Colors.fg(251), "", "Amethyst", LevelName.iron,"A purple variant of quartz.", 100),
+    Topaz("*", Colors.fg(251), "", "Topaz", LevelName.iron,"Fairly common but still prized for its beauty.", 80),
+    Jade("*", Colors.fg(251), "", "Jade", LevelName.iron,"A pale green ornamental stone.", 200),
+    Diamond("D", Colors.fg(251), "", "Diamond", LevelName.iron,"A rare and valuable gem.", 750),
+    PrismaticShard("*", Colors.fg(251), "", "PrismaticShard", LevelName.iron,"A very rare and powerful substance with unknown origins.", 2000),
+    Copper("C", Colors.fg(251), "", "Copper", LevelName.normal,"A common ore that can be smelted into bars.", 75),
+    CopperBar("C", Colors.fg(253), "", "CopperBar", LevelName.normal,"A common ore that can be smelted into bars.", 75),
+    Iron("i", Colors.fg(251), "", "Iron", LevelName.copper, "A fairly common ore that can be smelted into bars.", 150),
+    IronBar("i", Colors.fg(253), "", "IronBar", LevelName.copper, "A fairly common ore that can be smelted into bars.", 150),
+    Gold("G", Colors.fg(251), "", "Gold", LevelName.iron, "A precious ore that can be smelted into bars.", 400),
+    GoldBar("G", Colors.fg(251), "", "GoldBar", LevelName.iron, "A precious ore that can be smelted into bars.", 400),
+    Iridium("I", Colors.fg(251), "", "Iridium", LevelName.golden, "An exotic ore with many curious properties. Can be smelted into bars.", 100),
+    IridiumBar("I", Colors.fg(251), "", "IridiumBar", LevelName.golden, "An exotic ore with many curious properties. Can be smelted into bars.", 100),
+    Coal("c", Colors.fg(251), "", "Coal", LevelName.copper,"A combustible rock that is useful for crafting and smelting.", 150);
     private final int sellPrice;
     private final String description;
     private final String name;

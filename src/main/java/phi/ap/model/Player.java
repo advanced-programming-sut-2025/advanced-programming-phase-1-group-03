@@ -2,9 +2,11 @@ package phi.ap.model;
 
 import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.FarmTypes;
+import phi.ap.model.items.Item;
 import phi.ap.model.items.buildings.AnimalHouse;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.Animal;
+import phi.ap.model.items.products.Product;
 import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.relations.MarriageRequest;
 import phi.ap.model.items.relations.Quest;
@@ -19,6 +21,8 @@ public class Player extends Human {
     private final EnergyManager energy = new EnergyManager();
     private ToolManager toolManager = new ToolManager();
 
+
+    private ArrayList<Product> artisanItems = new ArrayList<>();
     private ArrayList<Ability> abilities = new ArrayList<>();
     private ArrayList<AnimalHouse> ownedAnimalHouse;
     private ArrayList<Recipe> craftingRecipes = new ArrayList<>();
@@ -31,6 +35,14 @@ public class Player extends Human {
     private FarmTypes farmType = null;
     private Farm farm = null;
     private Location location;
+
+    public ArrayList<Product> getArtisanItems() {
+        return artisanItems;
+    }
+
+    public void setArtisanItems(ArrayList<Product> artisanItems) {
+        this.artisanItems = artisanItems;
+    }
 
     public Recipe getRecipe(String name) {
         for(Recipe recipe : Game.getInstance().getCurrentPlayer().getCookingRecipes()) {

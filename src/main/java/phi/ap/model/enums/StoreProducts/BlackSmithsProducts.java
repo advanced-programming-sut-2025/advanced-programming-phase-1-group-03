@@ -9,13 +9,13 @@ import phi.ap.model.items.products.Mineral;
 
 public enum BlackSmithsProducts {
     CopperOre("Copper Ore", "A common ore that can be smelted into bars.", 75,
-            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.COPPER), StoreTypes.Blacksmith),
+            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.Copper), StoreTypes.Blacksmith),
     IronOre("Iron Ore", "A fairly common ore that can be smelted into bars.", 75,
-            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.IRON), StoreTypes.Blacksmith),
+            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.Iron), StoreTypes.Blacksmith),
     Coal("Coal", "A combustible rock that is useful for crafting and smelting.", 150,
-            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.COAL), StoreTypes.Blacksmith),
+            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.Coal), StoreTypes.Blacksmith),
     GoldOre("Gold Ore", "A precious ore that can be smelted into bars.", 400,
-            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.GOLD), StoreTypes.Blacksmith);
+            Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.Gold), StoreTypes.Blacksmith);
     // TODO update Tools
     private final String name;
     private final String description;

@@ -15,7 +15,20 @@ public class Product extends Item {
     private LevelProcess levels = null;
     private ArrayList<ItemStack> drops = new ArrayList<>();
     private ArrayList<ItemStack> products = new ArrayList<>();
+    private Integer waitingTime = null;
 
+    public void setWaitingTime(Integer waitingTime) {
+        this.waitingTime = waitingTime;
+    }
+
+
+    public Integer getWaitingTime() {
+        return waitingTime;
+    }
+
+    public void reduceWaitingTime(int diff) {
+        this.waitingTime -= diff;
+    }
     public ArrayList<ItemStack> getProducts(){
         return products;
     }; // with scythe(dus);
