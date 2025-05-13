@@ -2,6 +2,8 @@ package phi.ap.model;
 
 import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.FarmTypes;
+import phi.ap.model.enums.FoodTypes;
+import phi.ap.model.enums.RecipeTypes;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.buildings.AnimalHouse;
 import phi.ap.model.items.buildings.Farm;
@@ -13,6 +15,7 @@ import phi.ap.model.items.relations.Quest;
 import phi.ap.model.items.relations.TradeRequest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Player extends Human {
@@ -82,6 +85,11 @@ public class Player extends Human {
 
     public Player(User user) {
         this.user = user;
+    }
+    public void InitializePlayer() {
+        cookingRecipes.add(FoodTypes.FriedEgg.getRecipe());
+        cookingRecipes.add(FoodTypes.Salad.getRecipe());
+        cookingRecipes.add(FoodTypes.BakedFish.getRecipe());
     }
 
     public User getUser() {

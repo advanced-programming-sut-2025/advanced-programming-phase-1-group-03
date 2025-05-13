@@ -22,12 +22,14 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-
-        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(0, 0);
-        if(item instanceof Store){
-            return new Result<>(true, ((Store)item).getName());
-
-        }
+        Ability ability = new Ability(AbilityType.Farming);
+        System.out.println(Game.getInstance().getCurrentPlayer().getCookingRecipes());
+        ability.advanceLevel();
+        System.out.println(Game.getInstance().getCurrentPlayer().getCookingRecipes());
+        ability.advanceLevel();
+        System.out.println(Game.getInstance().getCurrentPlayer().getCookingRecipes());
+        ability.advanceLevel();
+        System.out.println(Game.getInstance().getCurrentPlayer().getCookingRecipes());
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
     public Result<String> test1(String input) {

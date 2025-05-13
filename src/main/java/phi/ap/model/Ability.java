@@ -2,6 +2,7 @@ package phi.ap.model;
 
 import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.CraftingTypes;
+import phi.ap.model.enums.FoodTypes;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.craftingMachines.Sprinkler;
@@ -23,6 +24,15 @@ public class Ability {
     }
 
     // TODO food recipes
+    public void checkingCookingRecipes() {
+        ArrayList<Recipe> recipe = Game.getInstance().getCurrentPlayer().getCookingRecipes();
+        for(FoodTypes foodTypes : FoodTypes.values()) {
+            if(foodTypes.getAbilityType() != null && foodTypes.getLevel() != null)
+                if(foodTypes.getAbilityType().toString().equals(abilityType.toString()) && foodTypes.getLevel().equals(level)) {
+                    recipe.add(foodTypes.getRecipe());
+                }
+        }
+    }
 
     public void checkingCraftingRecipes() {
         ArrayList<Recipe> recipe = Game.getInstance().getCurrentPlayer().getCraftingRecipes();
@@ -40,6 +50,7 @@ public class Ability {
     public void advanceLevel(){
         level = Math.min(AbilityType.MAX_VALUE, level + 1);
         checkingCraftingRecipes();
+        checkingCookingRecipes();
     }
     public void advanceXP(int gained){
         while(gained > 0){
