@@ -3,6 +3,8 @@ package phi.ap.model;
 import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.enums.Time.WeekDays;
 
+import static java.lang.Math.floor;
+
 public class Date {
     public static int START_HOUR = 9;
     public static int SLEEP_HOUR = 23;
@@ -14,7 +16,7 @@ public class Date {
         return (hour/24)%SEASONS_DAYS + 1;
     }
     public int getRawDay(){
-        return (hour/24) + 1;
+        return Math.floorDiv(hour, 24) + 1;
     }
     public Seasons getSeason(){
         return Seasons.values()[((getRawDay()-1)/SEASONS_DAYS)%4];

@@ -105,7 +105,7 @@ public abstract class Plant extends Product {
         return lastWateredDate.getRawDay() == Game.getInstance().getDate().getRawDay();
     }
     public boolean isAlive() { // TODO bayad bad 48 saat kharab beshe
-        return Game.getInstance().getDate().getRawDay() - lastWateredDate.getRawDay() <= 2;
+        return (Game.getInstance().getDate().getRawDay() - lastWateredDate.getRawDay()) <= 2;
     }
 
 
