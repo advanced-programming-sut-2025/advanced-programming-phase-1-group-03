@@ -111,6 +111,8 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.useArtisan(matcher.group("name"), matcher.group("itemName"), matcher.group("ingredientName")));
         } else if ((matcher = GameMenuCommands.GetArtisan.getMatcher(input)) != null) {
             System.out.println(controller.getArtisan(matcher.group("name")));
+        } else if ((matcher = GameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
+            System.out.println(controller.cheatAddItem(matcher.group("name"), matcher.group("amount")));
         }
         else {
             super.check(input);

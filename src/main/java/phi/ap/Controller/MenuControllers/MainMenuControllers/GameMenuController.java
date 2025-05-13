@@ -21,9 +21,7 @@ import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        Machine machine = new Bomber(1, 1, "Bomber", 50);
-        System.out.println(machine.getSellPrice());
-        return null;
+        return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
     public Result<String> test1(String input) {
         //get info in coordinate;
