@@ -27,7 +27,7 @@ public enum ForagingMineralTypes {
     GoldBar("G", Colors.fg(251), "", "GoldBar", LevelName.iron, "A precious ore that can be smelted into bars.", 400, 0),
     Iridium("I", Colors.fg(251), "", "Iridium", LevelName.golden, "An exotic ore with many curious properties. Can be smelted into bars.", 100, 10),
     IridiumBar("I", Colors.fg(251), "", "IridiumBar", LevelName.golden, "An exotic ore with many curious properties. Can be smelted into bars.", 100, 0),
-    Coal("c", Colors.fg(251), "", "Coal", LevelName.copper,"A combustible rock that is useful for crafting and smelting.", 150, 5);
+    Coal("c", Colors.fg(0), "", "Coal", LevelName.copper,"A combustible rock that is useful for crafting and smelting.", 150, 5);
     private final int sellPrice;
     private final String description;
     private final String name;

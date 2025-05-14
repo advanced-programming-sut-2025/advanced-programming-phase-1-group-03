@@ -140,6 +140,8 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.cheatAddDollar(matcher.group("count")));
         } else if ((matcher = GameMenuCommands.GreenHouseBuild.getMatcher(input)) != null) {
             System.out.println(controller.greenHouseBuild());
+        } else if ((matcher = GameMenuCommands.CheatThor.getMatcher(input)) != null) {
+            System.out.println(controller.cheatThor(matcher.group("y"), matcher.group("x")));
         }
         else {
             super.check(input);

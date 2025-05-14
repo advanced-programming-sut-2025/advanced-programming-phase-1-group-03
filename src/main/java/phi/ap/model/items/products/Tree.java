@@ -2,6 +2,7 @@ package phi.ap.model.items.products;
 
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
+import phi.ap.model.items.Item;
 import phi.ap.model.items.Sapling;
 import phi.ap.model.items.Seed;
 
@@ -96,8 +97,16 @@ public class Tree extends Plant {
     @Override
     public ArrayList<ItemStack> getDrops() {
         ArrayList<ItemStack> drops = new ArrayList<>();
-        if (!isAlive() || isThundered) {
+        if (isThundered) {
+            //do nothing
+        } else if (!isAlive()) {
             drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
+            if (seedType != null) {
+                drops.add(new ItemStack(new Seed(1, 1, seedType),
+                        App.getInstance().getRandomNumber(0, 2)));
+            } else if (saplingType != null) {
+                drops.add(new ItemStack(new Sapling(1, 1, saplingType), App.getInstance().getRandomNumber(0, 2)));
+            }
         } else {
             drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
             if (fruit.isSyrup()) {
@@ -185,5 +194,4 @@ public class Tree extends Plant {
     public String showPlant() {
     return super.showPlant() + "Is thundered: " + isThundered + "\n" + "Fruit name: " + fruit + "\n";
     }
-
 }

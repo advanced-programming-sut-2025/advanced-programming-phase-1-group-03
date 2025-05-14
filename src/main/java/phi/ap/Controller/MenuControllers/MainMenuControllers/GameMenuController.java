@@ -174,12 +174,12 @@ public class GameMenuController {
     }
     private void doNightTasks() {
         System.out.println("zzz... sleeping");
-
         //TODO
         doAnimalSystemTasks();
         doStoreTasks();
         Game.getInstance().getWeatherManager().setWeathersInMorning();
         App.getInstance().getGameService().generateForaging(1);
+        App.getInstance().getGameService().doWeatherTasks();
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
@@ -381,6 +381,11 @@ public class GameMenuController {
                 }
             }
         }
+        for (Coordinate thunderedTile : game.getMap().getThunderedTiles()) {
+            int y = thunderedTile.getY();
+            int x = thunderedTile.getX();
+            tiles[y][x].setBgColor(tiles[y][x].getBgColor() + Colors.bg(236));
+        }
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < map.getHeight(); i++) {
             StringBuilder temp = new StringBuilder();
@@ -581,7 +586,7 @@ public class GameMenuController {
     }
 
     public Result<String> plant(String sourceName, String directionSt) {
-        //TODO : giant, season careless in greenhouse
+        //TODO : giant;
         int direction;
         try {
             direction = Integer.parseInt(directionSt);
@@ -593,6 +598,7 @@ public class GameMenuController {
         Player player = Game.getInstance().getCurrentPlayer();
         Location loc = player.getLocation();
         Item item;
+        boolean inGreenhouse = loc.getGround() instanceof Greenhouse;
         if (!((item = loc.getGround().getTopItem(loc.getY() + d.getY(), loc.getX() + d.getX())) instanceof Dirt)) {
             return new Result<>(false, "You cant plant something there!");
         }
@@ -607,13 +613,14 @@ public class GameMenuController {
         if (seedType != null) {
             Seed seed = new Seed(1, 1, seedType);
             if (player.getInventoryManager().getItem(seed).getAmount() == 0) {
-                return new Result<>(false, "Ypu don't have enough seeds");
+                return new Result<>(false, "You don't have enough seeds");
             }
             CropsTypes cropType = seedType.findCropType();
             TreeTypes treeTypes = TreeTypes.findBySeed(seedType);
             if (cropType != null) {
                 Crop crop = new Crop(1, 1, cropType);
                 crop.setCoordinate(new Coordinate(0, 0));
+                crop.setInGreenHouse(inGreenhouse);
                 dirt.unPlow();
                 dirt.addItem(crop);
                 player.getInventoryManager().removeItem(seed, 1);
@@ -621,6 +628,7 @@ public class GameMenuController {
             } else if (treeTypes != null) {
                 Tree tree = new Tree(1, 1, treeTypes, false);
                 tree.setCoordinate(new Coordinate(0, 0));
+                tree.setInGreenHouse(inGreenhouse);
                 dirt.unPlow();
                 dirt.addItem(tree);
                 player.getInventoryManager().removeItem(seed, 1);
@@ -631,12 +639,13 @@ public class GameMenuController {
         } else if (saplingType != null) {
             Sapling sapling = new Sapling(1, 1, saplingType);
             if (player.getInventoryManager().getItem(sapling).getAmount() == 0) {
-                return new Result<>(false, "Ypu don't have enough saplings");
+                return new Result<>(false, "You don't have enough saplings");
             }
             TreeTypes treeTypes = TreeTypes.findBySapling(saplingType);
             if (treeTypes != null) {
                 Tree tree = new Tree(1, 1, treeTypes, false);
                 tree.setCoordinate(new Coordinate(0, 0));
+                tree.setInGreenHouse(inGreenhouse);
                 dirt.unPlow();
                 dirt.addItem(tree);
                 player.getInventoryManager().removeItem(sapling, 1);
@@ -736,6 +745,18 @@ public class GameMenuController {
         return new Result<>(true, "greenhouse built successfully!");
 
     }
+
+    public Result<String> cheatThor(String ySt, String xSt) {
+        int y, x;
+        try {
+            y = Integer.parseInt(ySt);
+            x = Integer.parseInt(xSt);
+        } catch (Exception e) {
+            return new Result<>(false, "invalid coordinate");
+        }
+        return App.getInstance().getGameService().thunderCoordinate(y, x);
+    }
+
 
 
 
