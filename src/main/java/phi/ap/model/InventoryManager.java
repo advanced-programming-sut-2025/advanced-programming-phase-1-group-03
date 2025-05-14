@@ -62,6 +62,7 @@ public class InventoryManager {
             stack.advanceAmount(-toRemove);
             removed += toRemove;
         }
+        storage.getStacks().removeIf(stack -> stack.getAmount() == 0);
         //TODO : gain from trashCan
         return removed;
     }

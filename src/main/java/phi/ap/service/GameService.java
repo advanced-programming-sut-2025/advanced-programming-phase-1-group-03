@@ -2,14 +2,10 @@ package phi.ap.service;
 
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
-import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.items.Dirt;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.Portal;
-import phi.ap.model.items.buildings.Cottage;
-import phi.ap.model.items.buildings.Farm;
-import phi.ap.model.items.buildings.NPCVillage;
-import phi.ap.model.items.buildings.Quarry;
+import phi.ap.model.items.buildings.*;
 import phi.ap.model.items.Seed;
 import phi.ap.model.items.products.*;
 
@@ -104,6 +100,104 @@ public class GameService {
                 setForaging(i, j, false, probBoost);
             }
         }
+    }
+
+    public void waterRainyDay() {
+        Map map = game.getMap();
+        for (int i = 0; i < map.getHeight(); i++) {
+            for (int j = 0; j < map.getWidth(); j++) {
+                Item item = map.getTopItem(i, j);
+                if (item instanceof Plant plant) {
+                    if (!plant.isInGreenHouse()) {
+                        plant.watering();
+                    }
+                }
+            }
+        }
+    }
+
+    public void doWeatherTasks() {
+        WeatherManager w = Game.getInstance().getWeatherManager();
+        if (w.getCurrentWeather() == Weather.Rain || w.getCurrentWeather() == Weather.Storm) {
+            App.getInstance().getGameService().waterRainyDay();
+        }
+        game.getMap().getThunderedTiles().clear();
+        if (w.getCurrentWeather() == Weather.Storm) {
+            //thundeeeeeeeer
+            for (Player player : game.getPlayers()) {
+                Farm farm = player.getFarm();
+                int c = 0;
+                int maxTry = 10000;
+                int tried = 0;
+                while (c < 3) {
+                    if (tried >= maxTry) break;
+                    ++tried;
+                    int y = App.getInstance().getRandomNumber(1, farm.getHeight() - 2);
+                    int x = App.getInstance().getRandomNumber(1, farm.getWidth() - 2);
+                    Result<String> res = thunderCoordinate(farm.getCoordinate().getY() + y,
+                            farm.getCoordinate().getX() + x);
+                    if (res.success) ++c;
+                }
+            }
+        }
+    }
+
+    public Result<String> thunderCoordinate(int y, int x) {
+        Location loc = App.getInstance().getMapService().getLocationOnMap(y, x);
+        if (loc == null) return new Result<>(false, "invalid coordinate");
+        for (Player player : game.getPlayers()) {
+            Coordinate pCoord = player.getLocation().getGround().getTileCoordinateBaseMap(
+                    player.getLocation().getY(), player.getLocation().getX());
+            if (pCoord.equals(new Coordinate(y, x))) {
+                return new Result<>(false, "that's good idea but no:)");
+            }
+        }
+        if (loc.getGround() instanceof Greenhouse) {
+            return new Result<>(false, "you can't thunder greenhouse");
+        }
+        if (!(loc.getGround() instanceof Farm || loc.getGround() instanceof NPCVillage
+                || loc.getGround() instanceof Quarry)) {
+            return new Result<>(false, "you can't thunder buildings");
+        }
+        Item item = game.getMap().getTopItem(y, x);
+        switch (item) {
+            case null :
+                game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+                break;
+            case Tree tree :
+                tree.setThundered(true);
+                game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+                break;
+            case Crop crop :
+                crop.delete();
+                game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+                break;
+            case Seed seed :
+                seed.getFather().removeItem(seed);
+                game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+                break;
+            case Wood wood :
+                Mineral mineral = new Mineral(1, 1, ForagingMineralTypes.Coal);
+                mineral.setCoordinate(wood.getCoordinate());
+                wood.getFather().addItem(mineral);
+                game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+                break;
+            case Stone stone :
+                if (App.getInstance().getRandomNumber(1, 10) == 1) {
+                    Mineral min = new Mineral(1, 1, ForagingMineralTypes.Diamond);
+                    min.setCoordinate(stone.getCoordinate());
+                    stone.getFather().addItem(min);
+                    game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+                } else {
+                    stone.getFather().removeItem(stone);
+                    game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+                }
+                break;
+            default:
+                return new Result<>(false, "thunder has no effect there!");
+        }
+        return new Result<>(true, "⚡⚡");
+
     }
 
     public void initializeGame() {

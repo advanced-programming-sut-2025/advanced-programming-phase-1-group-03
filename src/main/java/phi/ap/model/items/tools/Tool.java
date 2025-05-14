@@ -14,6 +14,8 @@ public abstract class Tool extends Item {
 
     public abstract Result<String> useTool(Coordinate direction);
 
+    //TODO : use energy base weather
+
     public Tool(LevelProcess levelProcess, ArrayList<Integer> energyConsumptionPerLevel, AbilityType contactedAbility) {
         this.levelProcess = levelProcess;
         this.contactedAbility = contactedAbility;

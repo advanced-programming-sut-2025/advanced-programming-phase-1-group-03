@@ -2,6 +2,7 @@ package phi.ap.model;
 
 import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.enums.Weather;
+import phi.ap.model.items.Water;
 
 import java.util.ArrayList;
 
@@ -38,5 +39,7 @@ public class WeatherManager {
             setCurrentWeather(getRandomWeather(Game.getInstance().getDate().getSeason()));
         }
         setTomorrowWeather(getRandomWeather(Game.getInstance().getDate().getTomorrowSeason()));
+//        currentWeather = Weather.Rain;
+//        currentWeather = Weather.Storm;
     }
 }

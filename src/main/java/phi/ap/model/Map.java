@@ -8,6 +8,8 @@ import phi.ap.model.items.buildings.NPCVillage;
 import java.util.ArrayList;
 
 public class Map extends Item{
+
+    private final ArrayList<Coordinate> thunderedTiles = new ArrayList<>();
     public Map() {
         super(102, 102);
         setName("Map");
@@ -18,6 +20,10 @@ public class Map extends Item{
     @Override
     public void doTask() {
 
+    }
+
+    public ArrayList<Coordinate> getThunderedTiles() {
+        return thunderedTiles;
     }
 
     public NPCVillage getNPCVillage() {
