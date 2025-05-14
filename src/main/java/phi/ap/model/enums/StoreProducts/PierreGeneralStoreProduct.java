@@ -160,9 +160,8 @@ public enum PierreGeneralStoreProduct implements StoreItemProducer {
     private final String description;
     private final Integer price;
     private Integer dailyLimit;
-    private Integer availableAmount = 1000;
     private final Item item;
-    private final int priceOutOfSeason;
+    private final Integer priceOutOfSeason;
     private final Seasons season;
 
     PierreGeneralStoreProduct(String name, String description, Integer price, Integer priceOutOfSeason,
