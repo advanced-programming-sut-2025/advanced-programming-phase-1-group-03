@@ -144,14 +144,13 @@ public class Player extends Human {
         this.user = user;
     }
 
-    public void setCraftingRecipes(ArrayList<Recipe> craftingRecipes) {
-        this.craftingRecipes = craftingRecipes;
+    public void addCraftingRecipe(Recipe recipe) {
+        craftingRecipes.add(recipe);
     }
 
-    public void setCookingRecipes(ArrayList<Recipe> cookingRecipes) {
-        this.cookingRecipes = cookingRecipes;
+    public void addCookingRecipe(Recipe recipe) {
+        cookingRecipes.add(recipe);
     }
-
     public void setAnimals(ArrayList<Animal> animals) {
         this.animals = animals;
     }
@@ -231,5 +230,20 @@ public class Player extends Human {
     }
     public boolean isAbilityMax(AbilityType abilityType) {
         return getAbilityLevel(abilityType) == AbilityType.MAX_VALUE;
+    }
+
+    public boolean CheckExistenceCraftingRecipe(Recipe rec) {
+        for(Recipe recipe : craftingRecipes){
+            if(recipe.getRecipeType().equals(rec.getRecipeType()))
+                return true;
+        }
+        return false;
+    }
+    public boolean CheckExistenceCookingRecipe(Recipe rec) {
+        for(Recipe recipe : cookingRecipes){
+            if(recipe.getRecipeType().equals(rec.getRecipeType()))
+                return true;
+        }
+        return false;
     }
 }

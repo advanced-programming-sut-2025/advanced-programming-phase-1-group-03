@@ -9,7 +9,7 @@ public enum TileType {
     Dirt(".", "" ,Colors.bg(172), true),
     PlowedDirt(".", Colors.fg(172) ,Colors.bg(3), true),
     NPCVillage(".", "" ,Colors.bg(65), true),
-    Lake("#", "", Colors.bg(11)), //TODO we don't need Lake TileType(Yes we do:( )
+    Lake("#", "", Colors.bg(11)),
     Cottage("^", "", Colors.bg(22), true),
     Greenhouse(".", "", Colors.bg(71)),
     Quarry(".", "", Colors.bg(240), true),
@@ -24,7 +24,7 @@ public enum TileType {
     Door("+", Colors.fg(0), "", true),
     Player("⍢", Colors.fg(57), ""),
     Wood("=", Colors.fg(94), ""),
-    Water("~", "", Colors.bg(19)),
+    Water("~", "", Colors.bg(19), false),
     BlackSmithStore(" ", "" ,Colors.bg(77), true),
     MarnieSmithStore(" ", "" ,Colors.bg(133), true),
     StarDropSaloon(" ", "" ,Colors.bg(69), true),
@@ -32,7 +32,7 @@ public enum TileType {
     JojaMart(" ", "" ,Colors.bg(155), true),
     PierreGeneralStore(" ", "" ,Colors.bg(230), true),
     FishShop(" ", "" ,Colors.bg(52), true),
-
+    ShippingBin("S", "" ,Colors.bg(120), false),
     A("A", "", Colors.bg(65), true),
     B("B", "", Colors.bg(65), true),
     C("C", "", Colors.bg(65), true),
@@ -84,7 +84,7 @@ public enum TileType {
     w("w", "", Colors.bg(65), true),
     x("x", "", Colors.bg(65), true),
     y("y", "", Colors.bg(65), true),
-    z("z", "", Colors.bg(65), true)
+    z("z", "", Colors.bg(65), true),
     ;
     private final Tile tile;
 

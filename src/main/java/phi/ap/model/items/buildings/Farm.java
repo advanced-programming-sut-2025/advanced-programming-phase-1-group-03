@@ -140,6 +140,16 @@ public class Farm extends Building {
         return farmType;
     }
 
+    public boolean isAreaEmpty(int y, int x, int height, int width){
+        for(int i = y; i < y + height; i++) {
+            for(int j = x; j < x + width; j++) {
+                if(!(getTopItem(i, j) instanceof Dirt)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     @Override
     public void doTask() {
 

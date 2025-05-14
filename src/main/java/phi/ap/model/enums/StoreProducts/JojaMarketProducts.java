@@ -11,7 +11,7 @@ import phi.ap.model.items.Seed;
 import phi.ap.model.items.products.Food;
 import phi.ap.model.items.products.Soil;
 
-public enum JojaMarketProducts {
+public enum JojaMarketProducts implements StoreItemProducer{
     // Season doesn't matter
     JOJACOLA("Joja Cola", "The flagship product of Joja corporation.", 75, 1,
             new Food(1, 1, FoodTypes.JojaCola), null),
@@ -207,5 +207,15 @@ public enum JojaMarketProducts {
     }
     public Seasons getSeason() {
         return this.season;
+    }
+
+    @Override
+    public Item getItem() {
+        return item;
+    }
+
+    @Override
+    public String getNameInStore() {
+        return name;
     }
 }

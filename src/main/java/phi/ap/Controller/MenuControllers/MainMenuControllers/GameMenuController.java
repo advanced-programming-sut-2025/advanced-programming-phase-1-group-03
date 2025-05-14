@@ -4,6 +4,8 @@ import phi.ap.model.*;
 import phi.ap.model.enums.*;
 import phi.ap.model.enums.StoreProducts.*;
 import phi.ap.model.items.*;
+import phi.ap.model.items.buildings.AnimalHouse;
+import phi.ap.model.items.buildings.Building;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.buildings.Greenhouse;
 import phi.ap.model.items.buildings.stores.Store;
@@ -11,6 +13,7 @@ import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
 import phi.ap.model.items.machines.craftingMachines.CraftedProducer;
 import phi.ap.model.items.products.*;
+import phi.ap.model.items.tools.*;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
@@ -447,6 +450,24 @@ public class GameMenuController {
     }
 
     public Result<String> upgradeTool(String toolName) {
+        ItemStack stack = Game.getInstance().getCurrentPlayer().getInventoryManager()
+                .getItemByName(toolName);
+        if (stack == null) {
+            return new Result<>(false, "there is no tool with that name");
+        }
+        Tool tool = (Tool)stack.getItem();
+
+        Ground ground = Game.getInstance().getCurrentPlayer().getLocation().getGround();
+        if(!(ground instanceof Store store)){
+            return new Result<>(false, "You are not in a store!!");
+        }
+        int currentHour = Game.getInstance().getDate().getCurrentHour();
+        if (currentHour < store.getStoreTypes().getOpeningTime() || currentHour > store.getStoreTypes().getClosingTime())
+            return new Result<>(false, "Store is closed in this time!!");
+
+        if(tool instanceof TrashCan){
+
+        }
         return null;
     }
 
@@ -893,8 +914,68 @@ public class GameMenuController {
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getEatable().getEnergy());
         return new Result<>(true, food.getName() + " eated. " + "You earned " + food.getFoodType().getEatable().getEnergy() + " amount of energy.");
     }
-    public Result<String> buildBuilding(String buildingName, String x, String y) {
-        return CarpenterShopProducts.Build(buildingName, Integer.parseInt(x), Integer.parseInt(y));
+    public Result<String> buildBuilding(String buildingName, String sx, String sy) {
+        int x = Integer.parseInt(sx);
+        int y = Integer.parseInt(sy);
+
+        Ground ground = Game.getInstance().getCurrentPlayer().getLocation().getGround();
+
+        if(!(ground instanceof Store store) || !((Store)ground).getStoreTypes().equals(StoreTypes.CarpenterShop)){
+            return new Result<>(false, "You are not in carpenter shop.");
+        }
+        int currentHour = Game.getInstance().getDate().getCurrentHour();
+        if (currentHour < store.getStoreTypes().getOpeningTime() || currentHour > store.getStoreTypes().getClosingTime())
+            return new Result<>(false, "Store is closed in this time!!");
+
+        AbstractMap.SimpleEntry<StoreItemProducer, Integer> toBuy = null;
+        for(Object p : store.getAvailableProducts()){
+            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+            if(product.getKey().getNameInStore().equalsIgnoreCase(buildingName)) {
+                toBuy = product;
+            }
+        }
+        if(toBuy == null)
+            return new Result<>(false, "Building name is invalid");
+        if(toBuy.getValue() == 0)
+            return new Result<>(false, "Your daily limit reached");
+
+        int totalMoney = toBuy.getKey().getItem().getSellPrice();
+        if(totalMoney > Game.getInstance().getCurrentPlayer().getGold())
+            return new Result<>(false, "You don't have enough fucking money.");
+
+        Building house = (Building)toBuy.getKey().getItem();
+
+        if(!Game.getInstance().getCurrentPlayer().getFarm().isAreaEmpty(y, x, house.getHeight(), house.getWidth()))
+            return new Result<>(false, "Chosen area must be empty!!");
+
+        ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager()
+                .getItem(CarpenterShopProducts.Wood.getItem());
+
+        int neededWood = CarpenterShopProducts.fromString(buildingName).getNeededWood();
+        if(itemStack.getAmount() < neededWood)
+            return new Result<>(false, "You don't have enough wood");
+
+        itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager()
+                .getItem(CarpenterShopProducts.Stone.getItem());
+
+        int neededStone = CarpenterShopProducts.fromString(buildingName).getNeededStone();
+        if(itemStack.getAmount() < neededStone)
+            return new Result<>(false, "You don't have enough stone");
+
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(CarpenterShopProducts.Wood.getItem(), neededWood);
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(CarpenterShopProducts.Stone.getItem(), neededStone);
+        store.buy(toBuy.getKey().getItem());
+        Game.getInstance().getCurrentPlayer().setGold(
+                Game.getInstance().getCurrentPlayer().getGold() - totalMoney);
+
+        house.setCoordinate(new Coordinate(y,x));
+
+        Game.getInstance().getCurrentPlayer().getFarm().addItem(house);
+
+        if(house instanceof AnimalHouse)
+            Game.getInstance().getCurrentPlayer().getOwnedAnimalHouse().add((AnimalHouse) house);
+
+        return new Result<>(true, "Building added successfully.");
     }
     public Result<String> buyAnimal(String animalType, String animalName) {
         return MarnieRanchProducts.buyAnimal(animalType, animalName);
@@ -1044,8 +1125,13 @@ public class GameMenuController {
             return new Result<>(false, "Store is closed in this time!!");
 
         StringBuilder response = new StringBuilder();
-        for(AbstractMap.SimpleEntry<String, Item> product : store.getAllProducts()){
-            response.append(product.getKey()).append(" ").append(product.getValue().getSellPrice()).append(" coin\n");
+        for(Object p : store.getAllProducts()){
+            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+
+            String amount = String.valueOf(product.getValue());
+            if(product.getValue() == Integer.MAX_VALUE) amount = " unlimited";
+            response.append(product.getKey().getNameInStore()).append(" ").append(product.getKey().getItem().getSellPrice()).append(" coin")
+                    .append("   amount : ").append(amount).append("\n");
         }
         return new Result<>(true, response.toString());
     }
@@ -1059,8 +1145,13 @@ public class GameMenuController {
             return new Result<>(false, "Store is closed in this time!!");
 
         StringBuilder response = new StringBuilder();
-        for(AbstractMap.SimpleEntry<String, Item> product : store.getAvailableProducts()){
-            response.append(product.getKey()).append(" ").append(product.getValue().getSellPrice()).append(" coin\n");
+        for(Object p : store.getAvailableProducts()){
+            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+
+            String amount = String.valueOf(product.getValue());
+            if(product.getValue() == Integer.MAX_VALUE) amount = " unlimited";
+            response.append(product.getKey().getNameInStore()).append(" ").append(product.getKey().getItem().getSellPrice()).append(" coin")
+                    .append("   amount : ").append(amount).append("\n");
         }
         return new Result<>(true, response.toString());
     }
@@ -1090,41 +1181,76 @@ public class GameMenuController {
             return new Result<>(false, "Store is closed in this time!!");
 
         boolean productExists = false;
-        for(AbstractMap.SimpleEntry<String, Item> item : store.getAllProducts())
-            if(item.getKey().equalsIgnoreCase(productName))
+        for(Object p : store.getAllProducts()){
+            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+            if(product.getKey().getNameInStore().equalsIgnoreCase(productName)) {
                 productExists = true;
+            }
+        }
 
         if(!productExists)
             return new Result<>(false, "Product does not exist!");
 
-        ArrayList<Item> toBuy = new ArrayList<>();
 
-        int totalMoney = 0;
-        for(AbstractMap.SimpleEntry<String, Item> product : store.getAvailableProducts()){
-            if(product.getKey().equalsIgnoreCase(productName) && toBuy.size() != amount) {
-                toBuy.add(product.getValue());
-                totalMoney += product.getValue().getSellPrice();
+        AbstractMap.SimpleEntry<StoreItemProducer, Integer> toBuy = null;
+        for(Object p : store.getAvailableProducts()){
+            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+            if(product.getKey().getNameInStore().equalsIgnoreCase(productName)) {
+                toBuy = product;
             }
         }
-        if(toBuy.size() != amount || amount == 0)
+
+        if(toBuy.getValue() < amount || amount == 0)
             return new Result<>(false, "This item is not available in the Store with this amount!!");
 
-        if(totalMoney > Game.getInstance().getCurrentPlayer().getGold())
-            return new Result<>(false, "You don't have enough fucking money.");
-
-        for(Item buy : toBuy) {
-            store.buy(buy);
-            Game.getInstance().getCurrentPlayer().setGold(
-                    Game.getInstance().getCurrentPlayer().getGold() - buy.getSellPrice());
-
-            if(store.getStoreTypes() == StoreTypes.FishShop){
+        switch (store.getStoreTypes()){
+            case StoreTypes.FishShop -> {
                 FishShopProducts product = FishShopProducts.fromString(productName);
                 if(Game.getInstance().getCurrentPlayer().getAbilityLevel(AbilityType.Fishing) < product.getFishingSkill())
                     return new Result<>(false, "For buying this item your fishing skill must be at least "
                             + product.getFishingSkill());
+
+                if(toBuy.getKey().getItem() instanceof Recipe)
+                    Game.getInstance().getCurrentPlayer().addCraftingRecipe((Recipe) toBuy.getKey().getItem());
+                else
+                    Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
+            }
+            case StoreTypes.CarpenterShop -> {
+                if(toBuy.getKey().getItem() instanceof Building)
+                    return new Result<>(false, "If you want to build an animal house, use build command");
+
+                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
+            }
+            case TheStarDropSaloon -> {
+                if(toBuy.getKey().getItem() instanceof Recipe)
+                    Game.getInstance().getCurrentPlayer().addCookingRecipe((Recipe) toBuy.getKey().getItem());
+                else
+                    Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
+            }
+            case Blacksmith -> {
+                if(toBuy.getKey().getItem() == null)
+                    return new Result<>(false, "use upgrade tool to upgrade your tools");
+                else{
+                    Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
+                }
+            } case MarnieRanch -> {
+                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
+            } case PierreGeneralStore -> {
+                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
+            } case JojaMart -> {
+                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
             }
         }
-        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getFirst(), amount));
+
+        int totalMoney = amount * toBuy.getKey().getItem().getSellPrice();
+        if(totalMoney > Game.getInstance().getCurrentPlayer().getGold())
+            return new Result<>(false, "You don't have enough fucking money.");
+
+        Game.getInstance().getCurrentPlayer().setGold(
+                Game.getInstance().getCurrentPlayer().getGold() - totalMoney);
+
+        store.buy(toBuy.getKey().getItem());
+
         return new Result<>(true, amount + " " + productName + " bought!");
     }
     public Result<String> cheatAddDollar(String amountSt) {

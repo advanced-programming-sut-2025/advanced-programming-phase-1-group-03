@@ -15,7 +15,7 @@ import phi.ap.model.items.tools.Shear;
 
 import java.util.ArrayList;
 
-public enum MarnieRanchProducts {
+public enum MarnieRanchProducts  implements StoreItemProducer{
     MilkPay("Milk Pail", "Gather milk from your animals.",	1000,
             1, new MilkPail(), StoreTypes.MarnieRanch, null),
     Shear("Shears", "Use this to collect wool from sheep", 	1000,
@@ -165,5 +165,15 @@ public enum MarnieRanchProducts {
 
     public Integer getDailyLimit() {
         return dailyLimit;
+    }
+
+    @Override
+    public Item getItem() {
+        return item;
+    }
+
+    @Override
+    public String getNameInStore() {
+        return name;
     }
 }

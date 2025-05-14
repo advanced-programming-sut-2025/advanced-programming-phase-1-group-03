@@ -1,6 +1,7 @@
 package phi.ap.model.items.buildings.stores;
 
 import phi.ap.model.ProductInStore;
+import phi.ap.model.enums.StoreProducts.StoreItemProducer;
 import phi.ap.model.enums.StoreTypes;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.buildings.Building;
@@ -8,10 +9,10 @@ import phi.ap.model.items.buildings.Building;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 
-public class Store extends Building {
+public class Store<T extends StoreItemProducer> extends Building {
     private StoreTypes storeTypes;
-    private ArrayList<AbstractMap.SimpleEntry<String, Item>> availableProducts = new ArrayList<>();
-    private ArrayList<AbstractMap.SimpleEntry<String, Item>> allProducts;
+    private ArrayList<AbstractMap.SimpleEntry<T, Integer>> availableProducts = new ArrayList<>();
+    private ArrayList<AbstractMap.SimpleEntry<T, Integer>> allProducts;
 
     public Store(int height, int width, StoreTypes storeType) {
         super(height, width);
@@ -22,7 +23,7 @@ public class Store extends Building {
     }
 
 
-    public void addProduct(AbstractMap.SimpleEntry<String, Item> item){
+    public void addProduct(AbstractMap.SimpleEntry<T, Integer> item){
         availableProducts.add(item);
     }
     public void clearProducts(){
@@ -37,20 +38,21 @@ public class Store extends Building {
         return storeTypes;
     }
 
-    public ArrayList<AbstractMap.SimpleEntry<String, Item>> getAvailableProducts(){
+    public ArrayList<AbstractMap.SimpleEntry<T, Integer>> getAvailableProducts(){
         return availableProducts;
     }
-    public ArrayList<AbstractMap.SimpleEntry<String, Item>> getAllProducts(){
+    public ArrayList<AbstractMap.SimpleEntry<T, Integer>> getAllProducts(){
         return allProducts;
     }
 
-    public void setAllProducts(ArrayList<AbstractMap.SimpleEntry<String, Item>> allProducts) {
+    public void setAllProducts(ArrayList<AbstractMap.SimpleEntry<T, Integer>> allProducts) {
         this.allProducts = allProducts;
     }
     public void buy(Item it){
-        for(AbstractMap.SimpleEntry<String, Item> item : availableProducts){
-            if(item.getValue().equals(it)){
-                availableProducts.remove(item);
+        for(AbstractMap.SimpleEntry<T, Integer> item : availableProducts){
+            if(item.getKey().getItem().canStackWith(it)){
+                item.setValue(item.getValue() - 1);
+                System.out.println(item.getKey().getNameInStore());
                 return;
             }
         }

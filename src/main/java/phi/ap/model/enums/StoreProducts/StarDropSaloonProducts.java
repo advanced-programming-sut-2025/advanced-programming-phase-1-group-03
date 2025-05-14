@@ -11,7 +11,7 @@ import phi.ap.model.items.products.Recipe;
 
 import java.util.ArrayList;
 
-public enum StarDropSaloonProducts {
+public enum StarDropSaloonProducts implements StoreItemProducer{
     BEER("Beer", "Drink in moderation.", 400, Integer.MAX_VALUE, new Food(1, 1,
             FoodTypes.Beer), StoreTypes.TheStarDropSaloon),
     SALAD("Salad", "A healthy garden salad.", 220, Integer.MAX_VALUE, new Food(1, 1,
@@ -26,30 +26,35 @@ public enum StarDropSaloonProducts {
             Integer.MAX_VALUE, new Food(1, 1, FoodTypes.Coffee), StoreTypes.TheStarDropSaloon),
     // Recipes
     HASHBROWNSRECIPE("Hashbrowns Recipe", "A recipe to make Hashbrowns", 50, 1,
-            new Recipe( null, null, RecipeTypes.HashBrowns), StoreTypes.TheStarDropSaloon),
+           FoodTypes.HashBrowns.getRecipe(), StoreTypes.TheStarDropSaloon),
     OMELETRECIPE("Omelet Recipe", "A recipe to make Omelet", 100, 1,
-            new Recipe(null, null, RecipeTypes.Omelet), StoreTypes.TheStarDropSaloon),
+           FoodTypes.Omelet.getRecipe(), StoreTypes.TheStarDropSaloon),
     PANCAKESRECIPE("Pancakes Recipe", "A recipe to make Pancakes", 100, 1,
-            new Recipe(null, null, RecipeTypes.Pancakes), StoreTypes.TheStarDropSaloon),
+            FoodTypes.Pancakes.getRecipe(), StoreTypes.TheStarDropSaloon),
     BREADRECIPE("Bread Recipe", "A recipe to make Bread", 100, 1,
-            new Recipe( null, null, RecipeTypes.Bread), StoreTypes.TheStarDropSaloon),
+            FoodTypes.Bread.getRecipe(), StoreTypes.TheStarDropSaloon),
     TORTILLARECIPE("Tortilla Recipe", "A recipe to make Tortilla", 100, 1,
-            new Recipe(null, null, RecipeTypes.Tortilla), StoreTypes.TheStarDropSaloon),
+            FoodTypes.Tortilla.getRecipe(), StoreTypes.TheStarDropSaloon),
     PIZZARECIPE("Pizza Recipe", "A recipe to make Pizza", 150, 1,
-            new Recipe( null, null, RecipeTypes.Pizza), StoreTypes.TheStarDropSaloon),
+            FoodTypes.Pizza.getRecipe(), StoreTypes.TheStarDropSaloon),
     MAKIROLLRECIPE("Maki Roll Recipe", "A recipe to make Maki Roll", 300, 1,
-            new Recipe(null, null, RecipeTypes.MakiRoll), StoreTypes.TheStarDropSaloon),
+            FoodTypes.MakiRoll.getRecipe(), StoreTypes.TheStarDropSaloon),
     TRIPLESHOTESPRESSORECIPE("Triple Shot Espresso Recipe", "A recipe to make Triple Shot Espresso",
-            5000, 1, new Recipe(null, null,
-            RecipeTypes.TripleShotEspresso), StoreTypes.TheStarDropSaloon),
+            5000, 1, FoodTypes.TripleShotEspresso.getRecipe(), StoreTypes.TheStarDropSaloon),
     COOKIERECIPE("Cookie Recipe", "A recipe to make Cookie", 300, 1,
-            new Recipe(null, null, RecipeTypes.Cookie), StoreTypes.TheStarDropSaloon);
+            FoodTypes.Cookie.getRecipe(), StoreTypes.TheStarDropSaloon);
 
     private final String name;
     private final String description;
     private final Integer price;
     private Integer dailyLimit;
     private Integer availableAmount = 1000;
+
+    @Override
+    public Item getItem() {
+        return item;
+    }
+
     private final Item item;
     private final StoreTypes storeType;
 
@@ -90,25 +95,6 @@ public enum StarDropSaloonProducts {
         return new Result<>(true, "Item purchased successfully");
     }
 
-    public static Result<String> showAllProducts() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for(StarDropSaloonProducts starDropSaloonProducts : StarDropSaloonProducts.values()) {
-            stringBuilder.append("Name : " + "\"" + starDropSaloonProducts.getName() + "\"" + "     " + "Price: "
-                    + starDropSaloonProducts.getPrice() + "g" + "\n");
-        }
-        return new Result<>(true, stringBuilder.toString());
-    }
-
-    public static Result<String> showAvailableProducts() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for(StarDropSaloonProducts starDropSaloonProducts : StarDropSaloonProducts.values()) {
-            if(starDropSaloonProducts.availableAmount > 0 && starDropSaloonProducts.dailyLimit > 0)
-                stringBuilder.append("Name : " + "\"" + starDropSaloonProducts.getName() + "\"" + "     " + "Price: "
-                        + starDropSaloonProducts.getPrice() + "g" + "\n");
-        }
-        return new Result<>(true, stringBuilder.toString());
-    }
-
     public String getName() {
         return name;
     }
@@ -123,5 +109,10 @@ public enum StarDropSaloonProducts {
 
     public Integer getDailyLimit() {
         return dailyLimit;
+    }
+
+    @Override
+    public String getNameInStore() {
+        return this.name;
     }
 }

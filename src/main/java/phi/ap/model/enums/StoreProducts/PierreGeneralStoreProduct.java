@@ -11,7 +11,7 @@ import phi.ap.model.items.products.Food;
 import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.products.Soil;
 
-public enum PierreGeneralStoreProduct {
+public enum PierreGeneralStoreProduct implements StoreItemProducer {
     // TODO backpack types
 
     // All Season Products
@@ -176,50 +176,7 @@ public enum PierreGeneralStoreProduct {
         this.priceOutOfSeason = priceOutOfSeason;
     }
 
-    public static Result<String> purchase(String productName, String amountString) {
-        int amount = Integer.parseInt(amountString);
-        PierreGeneralStoreProduct pierreGeneralStoreProduct;
-        try {
-            pierreGeneralStoreProduct = PierreGeneralStoreProduct.valueOf(productName);
-        }
-        catch (IllegalArgumentException e) {
-            return new Result<>(false, "There is no product with this name.");
-        }
-        if(amount > pierreGeneralStoreProduct.availableAmount) {
-            return new Result<>(false, "There is not enough amount of this product.");
-        }
-        else if(amount > pierreGeneralStoreProduct.dailyLimit) {
-            return new Result<>(false, "You can't purchase this amount of product on this day.");
-        }
-        else if(amount * pierreGeneralStoreProduct.price > Game.getInstance().getCurrentPlayer().getGold()) {
-            return new Result<>(false, "You don't have enough money.");
-        }
-        pierreGeneralStoreProduct.availableAmount -= amount;
-        pierreGeneralStoreProduct.dailyLimit -= amount;
-        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() -
-                amount * pierreGeneralStoreProduct.price);
-        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(pierreGeneralStoreProduct.item, amount);
-        return new Result<>(true, "Item purchased successfully");
-    }
 
-    public static Result<String> showAllProducts() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for(PierreGeneralStoreProduct pierreGeneralStoreProduct : PierreGeneralStoreProduct.values()) {
-            stringBuilder.append("Name : " + "\"" + pierreGeneralStoreProduct.getName() + "\"" + "     " + "Price: "
-                    + pierreGeneralStoreProduct.getPrice() + "g" + "\n");
-        }
-        return new Result<>(true, stringBuilder.toString());
-    }
-
-    public static Result<String> showAvailableProducts() {
-        StringBuilder stringBuilder = new StringBuilder();
-        for(PierreGeneralStoreProduct pierreGeneralStoreProduct : PierreGeneralStoreProduct.values()) {
-            if(pierreGeneralStoreProduct.availableAmount > 0 && pierreGeneralStoreProduct.dailyLimit > 0)
-                stringBuilder.append("Name : " + "\"" + pierreGeneralStoreProduct.getName() + "\"" + "     "
-                        + "Price: "  + pierreGeneralStoreProduct.getPrice() + "g" + "\n");
-        }
-        return new Result<>(true, stringBuilder.toString());
-    }
     public String getName() {
         return this.name;
     }
@@ -240,5 +197,15 @@ public enum PierreGeneralStoreProduct {
     }
     public Integer getPriceOutOfSeason() {
         return this.priceOutOfSeason;
+    }
+
+    @Override
+    public Item getItem() {
+        return item;
+    }
+
+    @Override
+    public String getNameInStore() {
+        return name;
     }
 }

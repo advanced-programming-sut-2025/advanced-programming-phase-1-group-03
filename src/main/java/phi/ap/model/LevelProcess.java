@@ -24,6 +24,9 @@ public class LevelProcess {
         this.currentLevel = levelProcess.getCurrentLevel();
     }
 
+    public void upgrade(){
+        currentLevel = (currentLevel + 1) % levelNames.size();
+    }
     public boolean levelNamesEqual(ArrayList<LevelName> levelNames) {
         if (levelNames == null) return false;
         if (levelNames.size() != this.levelNames.size()) return false;

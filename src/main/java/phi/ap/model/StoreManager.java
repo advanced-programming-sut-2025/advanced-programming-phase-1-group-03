@@ -1,6 +1,7 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.FaceWay;
+import phi.ap.model.enums.StoreProducts.CarpenterShopProducts;
 import phi.ap.model.enums.StoreProducts.FishShopProducts;
 import phi.ap.model.enums.StoreTypes;
 import phi.ap.model.enums.TileType;
@@ -12,23 +13,50 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 
 public class StoreManager {
-    private BlackSmithStore blacksmith;
-    private MarnieRenchStore marnieRanch;
-    private FishShop fish;
-    private StarDropSaloon starDrop;
-    private JojaMart jojaMart;
-    private PierreStore pierre;
-    private CarpenterStore carpenter;
+    private Store blacksmith;
+    private Store marnieRanch;
+    private Store fish;
+    private Store starDrop;
+    private Store jojaMart;
+    private Store pierre;
+    private Store carpenter;
 
     public StoreManager() {
 
-        blacksmith = new BlackSmithStore(5, 14);
-        marnieRanch = new MarnieRenchStore(7, 15);
-        fish = new FishShop(3, 14);
-        starDrop = new StarDropSaloon(5, 14);
-        jojaMart = new JojaMart(7, 14);
-        pierre = new PierreStore(5, 20);
-        carpenter = new CarpenterStore(3, 14);
+        blacksmith = new Store(5, 14, StoreTypes.Blacksmith);
+        blacksmith.setCoordinate(new Coordinate(2, 2));
+        Text text = new Text("BlackSmith", new Coordinate(2, 2));
+        blacksmith.addItem(text);
+
+        marnieRanch = new Store(7, 15, StoreTypes.MarnieRanch);
+        marnieRanch.setCoordinate(new Coordinate(3, 20));
+        text = new Text("MarnieRanch", new Coordinate(3, 2));
+        marnieRanch.addItem(text);
+
+        fish = new Store<FishShopProducts>(3, 14, StoreTypes.FishShop);
+        fish.setCoordinate(new Coordinate(9, 2));
+        text = new Text("FishShop", new Coordinate(1, 3));
+        fish.addItem(text);
+
+        starDrop = new Store(5, 14, StoreTypes.TheStarDropSaloon);
+        starDrop.setCoordinate(new Coordinate(33, 2));
+        text = new Text("StarDrop", new Coordinate(2, 3));
+        starDrop.addItem(text);
+
+        jojaMart = new Store(7, 14, StoreTypes.JojaMart);
+        jojaMart.setCoordinate(new Coordinate(31, 22));
+        text = new Text("JojaMart", new Coordinate(3, 3));
+        jojaMart.addItem(text);
+
+        pierre = new Store(5, 20, StoreTypes.PierreGeneralStore);
+        pierre.setCoordinate(new Coordinate(25, 2));
+        text = new Text("PierreStore", new Coordinate(2, 5));
+        pierre.addItem(text);
+
+        carpenter = new Store<CarpenterShopProducts>(3, 14, StoreTypes.CarpenterShop);
+        carpenter.setCoordinate(new Coordinate(26, 24));
+        text = new Text("Carpenter", new Coordinate(1, 2));
+        carpenter.addItem(text);
 
         Game.getInstance().getMap().getNPCVillage().addItem(blacksmith);
         Game.getInstance().getMap().getNPCVillage().addItem(fish);
@@ -46,22 +74,31 @@ public class StoreManager {
         Portal.makeMiddleDoor(marnieRanch, Game.getInstance().getMap().getNPCVillage(), TileType.Door.getTile(), FaceWay.Down);
         Portal.makeMiddleDoor(blacksmith, Game.getInstance().getMap().getNPCVillage(), TileType.Door.getTile(), FaceWay.Down);
 
-        refreshFishShop();
+        refreshItems();
     }
 
     private void refreshFishShop(){
         fish.clearProducts();
-        ArrayList<AbstractMap.SimpleEntry<String, Item>> allProducts = new ArrayList<>();
+        ArrayList<AbstractMap.SimpleEntry<FishShopProducts, Integer>> allProducts = new ArrayList<>();
         for(FishShopProducts product : FishShopProducts.values()){
-            for(int i = 0; i < product.getDailyLimit(); i++)
-                fish.addProduct(new AbstractMap.SimpleEntry<>(product.getName(), product.getItem()));
-            allProducts.add(new AbstractMap.SimpleEntry<>(product.getName(), product.getItem()));
+            allProducts.add(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+            fish.addProduct(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
         }
         fish.setAllProducts(allProducts);
+    }
+    private void refreshCarpenter(){
+        carpenter.clearProducts();
+        ArrayList<AbstractMap.SimpleEntry<CarpenterShopProducts, Integer>> allProducts = new ArrayList<>();
+        for(CarpenterShopProducts product : CarpenterShopProducts.values()){
+            allProducts.add(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+            carpenter.addProduct(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+        }
+        carpenter.setAllProducts(allProducts);
     }
 
     public void refreshItems(){
         refreshFishShop();
+        refreshCarpenter();
     }
 
     public Store getStore(StoreTypes storeType){

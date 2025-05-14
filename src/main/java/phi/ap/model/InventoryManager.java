@@ -139,5 +139,6 @@ public class InventoryManager {
     public ArrayList<ItemStack> getAllItems(){
         return storage.getStacks();
     }
+
 }
 

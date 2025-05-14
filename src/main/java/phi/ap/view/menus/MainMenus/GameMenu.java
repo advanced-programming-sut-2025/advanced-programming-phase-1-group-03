@@ -67,12 +67,14 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.showAvailableProducts());
         } else if((matcher = GameMenuCommands.purchase.getMatcher(input)) != null) {
             System.out.println(controller.purchase(matcher.group("productName").trim(), matcher.group("amount")));
-        } else if((matcher = GameMenuCommands.Build.getMatcher(input)) != null) {
+        } else if((matcher = GameMenuCommands.BuildAnimalBarn.getMatcher(input)) != null) {
             System.out.println(controller.buildBuilding(matcher.group("name"), matcher.group("x"), matcher.group("y")));
         } else if((matcher = GameMenuCommands.BuyAnimal.getMatcher(input)) != null) {
             System.out.println(controller.buyAnimal(matcher.group("animalName"), matcher.group("name")));
         }else if((matcher = GameMenuCommands.ShowCurrentTool.getMatcher(input)) != null) {
             System.out.println(controller.showCurrentTool());
+        }else if((matcher = GameMenuCommands.UpgradeTool.getMatcher(input)) != null) {
+            System.out.println(controller.upgradeTool(matcher.group("toolName")));
         }else if((matcher = GameMenuCommands.EquipTool.getMatcher(input)) != null) {
             System.out.println(controller.toolEquip(matcher.group("toolName")));
         }else if((matcher = GameMenuCommands.ShowAvailableTools.getMatcher(input)) != null) {

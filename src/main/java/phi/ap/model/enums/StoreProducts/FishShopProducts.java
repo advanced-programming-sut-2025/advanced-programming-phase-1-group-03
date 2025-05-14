@@ -10,13 +10,18 @@ import phi.ap.model.items.products.Product;
 import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.tools.FishingPole;
 
-public enum FishShopProducts{
+public enum FishShopProducts implements StoreItemProducer {
     FishSmoker("Fish Smoker (Recipe)", "A recipe to make Fish Smoker", 10000, 1, 0, null){
         @Override
         public Item getItem() {
             Item p = CraftingTypes.FishSmoker.getRecipe();
             p.setSellPrice(getPrice());
             return p;
+        }
+
+        @Override
+        public String getNameInStore() {
+            return getName();
         }
     },
     TroutSoup("Trout Soup", "Pretty salty.", 250, 1, 0, null){
@@ -26,6 +31,10 @@ public enum FishShopProducts{
             p.setSellPrice(getPrice());
             return p;
         }
+        @Override
+        public String getNameInStore() {
+            return getName();
+        }
     },
     BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500, 1, 0, LevelName.bamboo){
         @Override
@@ -33,6 +42,10 @@ public enum FishShopProducts{
             Item p = getFishingPole();
             p.setSellPrice(getPrice());
             return p;
+        }
+        @Override
+        public String getNameInStore() {
+            return getName();
         }
     },
     TrainingRod("Training Rod", "It's a lot easier to use than other rods, but can only catch basic fish.", 25, 1, 0, LevelName.training){
@@ -42,6 +55,10 @@ public enum FishShopProducts{
             p.setSellPrice(getPrice());
             return p;
         }
+        @Override
+        public String getNameInStore() {
+            return getName();
+        }
     },
     FiberglassRod("Fiberglass Rod", "Use in the water to catch fish.", 1800, 1, 2,LevelName.fiberGlass){
         @Override
@@ -49,6 +66,10 @@ public enum FishShopProducts{
             Item p = getFishingPole();
             p.setSellPrice(getPrice());
             return p;
+        }
+        @Override
+        public String getNameInStore() {
+            return getName();
         }
     },
     IridiumRod("Iridium Rod", "Use in the water to catch fish.", 7500, 1, 4, LevelName.iridium){
@@ -58,12 +79,16 @@ public enum FishShopProducts{
             p.setSellPrice(getPrice());
             return p;
         }
+        @Override
+        public String getNameInStore() {
+            return getName();
+        }
     };
     private final String name;
     private final String description;
     private final Integer price;
-    private Integer dailyLimit;
-    private Integer availableAmount = 1000;
+    private int dailyLimit;
+    private int availableAmount = 1000;
     private final Integer fishingSkill;
     private final LevelName level;
     private Item item;
@@ -84,11 +109,11 @@ public enum FishShopProducts{
         return description;
     }
 
-    public Integer getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public Integer getDailyLimit() {
+    public int getDailyLimit() {
         return dailyLimit;
     }
 
@@ -101,7 +126,7 @@ public enum FishShopProducts{
         return fishingPole;
     }
 
-    public Integer getFishingSkill() {
+    public int getFishingSkill() {
         return fishingSkill;
     }
 
