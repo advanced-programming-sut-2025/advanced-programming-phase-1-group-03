@@ -60,7 +60,7 @@ public class Crop extends Plant {
             setLevelsForArrayList(products);
             return products;
         }
-        if (!type.getSeasonsList().contains(Game.getInstance().getDate().getSeason())) {
+        if ((type != null ? !type.getSeasonsList().contains(Game.getInstance().getDate().getSeason()) : !foragingType.getSeasonsList().contains(Game.getInstance().getDate().getSeason())) && !isInGreenHouse()) {
             setLevelsForArrayList(products);
             return products;
         }
@@ -79,10 +79,15 @@ public class Crop extends Plant {
             products.add(new ItemStack(instance, amount));
             lastHarvestDate = new Date(Game.getInstance().getDate().getHour());
             if (oneTime) {
-                getFather().removeItem(this);
+                delete();
             }
         }
         setLevelsForArrayList(products);
+        if (getGiant() != null) {
+            for (ItemStack product : products) {
+                product.advanceAmount(9 * product.getAmount());
+            }
+        }
         return products;
     }
 

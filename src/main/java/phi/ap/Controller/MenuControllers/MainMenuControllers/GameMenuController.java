@@ -8,11 +8,8 @@ import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.buildings.stores.Store;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
-import phi.ap.model.items.machines.craftingMachines.Bomber;
 import phi.ap.model.items.machines.craftingMachines.CraftedProducer;
-import phi.ap.model.items.machines.craftingMachines.Sprinkler;
 import phi.ap.model.items.products.*;
-import phi.ap.model.items.tools.FishingPole;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
@@ -464,7 +461,7 @@ public class GameMenuController {
         Tool currentTool = Game.getInstance().getCurrentPlayer().getToolManager().getCurrentTool();
         if(currentTool == null)
             return new Result<>(false, "you don't have tool, first equip some of them");
-        return currentTool.useTool(Misc.getDiffFromDirection(d));
+    return currentTool.useTool(Misc.getDiffFromDirection(d));
     }
 
     public Result<String> craftInfo(String nameSt) {
@@ -500,7 +497,7 @@ public class GameMenuController {
                 res.append("Energy: " + v.getEatable().getEnergy() + "\n");
             }
             if (cropsType != null) res.append("Seasons: " + cropsType.getSeasonsList().toString() + "\n");
-            else res.append("Seasons: " + foragingCropsType.getSeasonList() + "\n");
+            else res.append("Seasons: " + foragingCropsType.getSeasonsList() + "\n");
             res.append("Giantable: " + v.isCanBecomeGiant() + "\n");
         } else if (foragingTreeType != null || treeType != null) {
             Tree v;
@@ -648,6 +645,20 @@ public class GameMenuController {
         return new Result<>(true, plant.showPlant());
     }
 
+    public Result<String> showPlantDiff(String ySt, String xSt) {
+        int y, x;
+        try {
+            y = Integer.parseInt(ySt);
+            x = Integer.parseInt(xSt);
+        } catch (Exception e) {
+            return new Result<>(false, "invalid coordinate");
+        }
+        Location loc = Game.getInstance().getCurrentPlayer().getLocation();
+        y += loc.getGround().getTileCoordinateBaseMap(loc.getY(), loc.getX()).getY();
+        x += loc.getGround().getTileCoordinateBaseMap(loc.getY(), loc.getX()).getX();
+        return showPlant(String.valueOf(y), String.valueOf(x));
+    }
+
     public Result<String> fertilizePlant(String fertilizerSt, String directionSt) {
         int direction;
         try {
@@ -677,8 +688,14 @@ public class GameMenuController {
         };
     }
 
+    public Result<String> howMuchWater() {
+        //TODO : parsa
+        return null;
+    }
 
-
+    public Result<String> greenHouseBuild() {
+        return null;
+    }
 
 
 
@@ -726,26 +743,28 @@ public class GameMenuController {
             return new AnimalProduct(1, 1, AnimalProductTypes.getType(name));
         if(AnimalTypes.getType(name) != null)
             return new Animal(AnimalTypes.getType(name), 1, 1);
-        if(CropsTypes.getType(name) != null)
-            return new Crop(1, 1 , CropsTypes.getType(name));
+        if(CropsTypes.find(name) != null)
+            return new Crop(1, 1 , CropsTypes.find(name));
         if(CraftingTypes.getType(name) != null)
             return CraftingTypes.getType(name).getRecipe().getResult().getItem();
         if(FishTypes.getType(name) != null)
             return new Fish(1, 1, FishTypes.getType(name));
         if(FoodTypes.getType(name) != null)
             return new Food(1, 1, FoodTypes.getType(name));
-        if(ForagingCropsTypes.getType(name) != null)
-            return new Crop(1, 1, ForagingCropsTypes.getType(name));
+        if(ForagingCropsTypes.find(name) != null)
+            return new Crop(1, 1, ForagingCropsTypes.find(name));
         if(ForagingMineralTypes.getType(name) != null)
             return new Mineral(1, 1, ForagingMineralTypes.getType(name));
-        if(TreeTypes.getType(name) != null)
-            return new Tree(1, 1, TreeTypes.getType(name), false);
-        if(SeedTypes.getType(name) != null)
-            return new Seed(1, 1, SeedTypes.getType(name));
-        if(SaplingTypes.getType(name) != null)
-            return new Sapling(1, 1, SaplingTypes.getType(name));
+        if(TreeTypes.find(name) != null)
+            return new Tree(1, 1, TreeTypes.find(name), false);
+        if(SeedTypes.find(name) != null)
+            return new Seed(1, 1, SeedTypes.find(name));
+        if(SaplingTypes.find(name) != null)
+            return new Sapling(1, 1, SaplingTypes.find(name));
         if(StoneTypes.getType(name) != null)
             return new Stone(1, 1, StoneTypes.getType(name));
+        if(SoilTypes.find(name) != null)
+            return new Soil(1, 1, SoilTypes.find(name));
         return null;
     }
     public Result<String> cheatAddItem(String itemName, String amountString) {

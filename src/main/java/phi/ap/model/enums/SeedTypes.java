@@ -112,7 +112,7 @@ public enum SeedTypes {
 
 
     public static SeedTypes find(String name) {
-        name = name.toLowerCase();
+        name = name.toLowerCase().replaceAll("\\s+", "");
         for (SeedTypes value : values()) {
             if (value.toString().toLowerCase().equals(name)) return value;
         }

@@ -21,7 +21,7 @@ public class Axe extends Tool{
     }
     @Override
     public Result<String> useTool(Coordinate direction) {
-        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getX(), direction.getY());
+        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getY(), direction.getX());
         if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
         StringBuilder response = new StringBuilder();
         switch(item){
@@ -35,13 +35,13 @@ public class Axe extends Tool{
                     int cnt = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(drop);
                     response.append(cnt + "amount of " + drop.getItem().getName() + " gained!\n");
                 }
-                tree.getFather().removeItem(tree);
+                tree.delete();
             } case Crop crop -> {
                 for (ItemStack drop : crop.getDrops()) {
                     int cnt = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(drop);
                     response.append(cnt + "amount of " + drop.getItem().getName() + " gained!\n");
                 }
-                crop.getFather().removeItem(crop);
+                crop.delete();
             }
             case null, default -> {
                 return new Result<>(false, "This item is not tree or wood! you just wasted your energy! -_-");

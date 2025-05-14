@@ -18,7 +18,7 @@ public class Hoe extends Tool {
     }
     @Override
     public Result<String> useTool(Coordinate direction) {
-        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getX(), direction.getY());
+        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getY(), direction.getX());
         int energy = getEnergyNeed();
         if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(energy))
             return new Result<>(false, "You don't have enough energy");

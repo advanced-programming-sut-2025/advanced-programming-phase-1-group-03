@@ -14,7 +14,7 @@ public class Fruit extends Product {
         setName(fruitType.getName());
         setSellable(true);
         setSellPrice(fruitType.getBaseSellPrice());
-        setEatable(new Eatable(fruitType.getEatable()));
+        setEatable(fruitType.getEatable() != null? new Eatable(fruitType.getEatable()) : null);
     }
 
     public FruitTypes getFruitType() {

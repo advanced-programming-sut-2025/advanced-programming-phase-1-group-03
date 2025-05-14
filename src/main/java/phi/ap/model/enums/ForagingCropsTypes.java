@@ -84,7 +84,7 @@ private final String name;
     }
 
     public static ForagingCropsTypes find(String name) {
-        name = name.toLowerCase();
+        name = name.toLowerCase().replaceAll("\\s+", "");
         for (ForagingCropsTypes value : values()) {
             if (value.getName().toLowerCase().equals(name)) return value;
         }
@@ -95,7 +95,7 @@ private final String name;
         return baseSellPrice;
     }
 
-    public ArrayList<Seasons> getSeasonList() {
+    public ArrayList<Seasons> getSeasonsList() {
         if (season != Seasons.Special) return new ArrayList<>(List.of(season));
         return new ArrayList<>(List.of(Seasons.Spring, Seasons.Summer, Seasons.Fall, Seasons.Winter));
     }

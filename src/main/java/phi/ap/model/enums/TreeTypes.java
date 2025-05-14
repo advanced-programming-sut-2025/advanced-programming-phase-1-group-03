@@ -196,7 +196,7 @@ public enum TreeTypes {
     }
 
     public static TreeTypes find(String name) {
-        name = name.toLowerCase();
+        name = name.toLowerCase().replaceAll("\\s+", "");
         for (TreeTypes value : values()) {
             if (value.toString().toLowerCase().equals(name)) return value;
         }

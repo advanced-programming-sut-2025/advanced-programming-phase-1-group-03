@@ -9,6 +9,7 @@ import phi.ap.model.enums.LevelName;
 import phi.ap.model.items.Dirt;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Mineral;
+import phi.ap.model.items.products.Plant;
 import phi.ap.model.items.products.Stone;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class Pickaxe extends Tool{
 
     @Override
     public Result<String> useTool(Coordinate direction) {
-        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getX(), direction.getY());
+        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getY(), direction.getX());
 
         switch (item) {
             case Dirt dirt -> {
@@ -55,7 +56,8 @@ public class Pickaxe extends Tool{
             case null, default -> {
                 if(item != null && item.isRemovableByPickaxe()){
                     if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
-                    item.getFather().removeItem(item);
+                    if (item instanceof Plant) ((Plant) item).delete();
+                    else item.getFather().removeItem(item);
                     return new Result<>(true, "Item removed");
                 }
                 if(!reduceFailedEnergy()) return new Result<>(false, "You don't have enough energy!");

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class WateringCan extends Tool{
     private ArrayList<Integer> capacity;
-    private int occupiedCapacity = 0;
+    private int occupiedCapacity = 100;
 
     public WateringCan(){
         super(new LevelProcess(new ArrayList<>(List.of(LevelName.normal, LevelName.copper,
@@ -27,7 +27,7 @@ public class WateringCan extends Tool{
 
     @Override
     public Result<String> useTool(Coordinate direction) {
-        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getX(), direction.getY());
+        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getY(), direction.getX());
         if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
         switch(item){
             case Water water:

@@ -11,6 +11,6 @@ public class Misc {
     public static Coordinate getDiffFromDirection(int direction){
         int[] dx = {-1, 0, +1, -1, +1, -1, 0, +1};
         int[] dy = {-1, -1, -1, 0, 0, +1, +1, +1};
-        return new Coordinate(dx[direction], dy[direction]);
+        return new Coordinate(dy[direction], dx[direction]);
     }
 }

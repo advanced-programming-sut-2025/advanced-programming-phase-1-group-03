@@ -130,10 +130,11 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.plant(matcher.group("source"), matcher.group("direction")));
         } else if ((matcher = GameMenuCommands.ShowPlant.getMatcher(input)) != null) {
             System.out.println(controller.showPlant(matcher.group("y"), matcher.group("x")));
-        } else if((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
+        } else if ((matcher = GameMenuCommands.ShowPlantDiff.getMatcher(input)) != null) {
+            System.out.println(controller.showPlantDiff(matcher.group("y"), matcher.group("x")));
+        } else if ((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
             System.out.println(controller.fertilizePlant(matcher.group("name"), matcher.group("direction")));
-        }
-        else {
+        } else {
             super.check(input);
         }
     }

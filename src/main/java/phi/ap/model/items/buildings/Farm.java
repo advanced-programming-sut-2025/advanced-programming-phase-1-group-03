@@ -43,7 +43,7 @@ public class Farm extends Building {
                 farmType.getGreenhouse().getCoordinate());
         //greenhouse doors
         addItem(greenhouse);
-        Portal.makeMiddleDoor(greenhouse, this, TileType.Door.getTile());
+//        Portal.makeMiddleDoor(greenhouse, this, TileType.Door.getTile());
 
         lakes = new ArrayList<>();
         for (BuildingStructure lakeInfos : farmType.getLakes()) {
@@ -121,6 +121,26 @@ public class Farm extends Building {
     public boolean isPlayerAvailable(Player player) {
         return availablePlayers.contains(player);
 //        return true;
+    }
+
+    public Cottage getCottage() {
+        return cottage;
+    }
+
+    public Greenhouse getGreenhouse() {
+        return greenhouse;
+    }
+
+    public ArrayList<Lake> getLakes() {
+        return lakes;
+    }
+
+    public ArrayList<Quarry> getQuarries() {
+        return quarries;
+    }
+
+    public FarmTypes getFarmType() {
+        return farmType;
     }
 
     @Override

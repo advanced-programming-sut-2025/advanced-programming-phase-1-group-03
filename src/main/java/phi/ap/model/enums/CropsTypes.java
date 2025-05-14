@@ -583,7 +583,7 @@ public enum CropsTypes {
     }
 
     public static CropsTypes find(String name) {
-        name = name.toLowerCase();
+        name = name.toLowerCase().replaceAll("\\s+", "");
         for (CropsTypes value : values()) {
             if (value.toString().toLowerCase().equals(name)) return value;
         }

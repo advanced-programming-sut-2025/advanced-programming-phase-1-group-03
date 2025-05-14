@@ -18,7 +18,7 @@ public class Scythe extends Tool{
     }
     @Override
     public Result<String> useTool(Coordinate direction) {
-        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getX(), direction.getY());
+        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getY(), direction.getX ());
         if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
 
         StringBuilder response = new StringBuilder();
@@ -29,7 +29,7 @@ public class Scythe extends Tool{
                     response.append(cnt).append(" of ").append(itemStack.getItem().getName()).append(" gained!\n");
                 }
                 if(plant instanceof Tree && ((Tree)plant).isThundered()){
-                    plant.getFather().removeItem(plant);
+                    plant.delete();
                 }
                 return new Result<>(true, response.toString());
             }case Product grass -> {

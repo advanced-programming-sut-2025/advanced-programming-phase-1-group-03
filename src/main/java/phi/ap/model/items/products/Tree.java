@@ -69,7 +69,7 @@ public class Tree extends Plant {
             setLevelsForArrayList(products);
             return products;
         }
-        if (!type.getSeason().equals(Game.getInstance().getDate().getSeason())) {
+        if (!type.getSeason().equals(Game.getInstance().getDate().getSeason()) && !isInGreenHouse()) {
             setLevelsForArrayList(products);
             return products;
         }
@@ -85,6 +85,11 @@ public class Tree extends Plant {
             lastHarvestDate = new Date(Game.getInstance().getDate().getHour());
         }
         setLevelsForArrayList(products);
+        if (getGiant() != null) {
+            for (ItemStack product : products) {
+                product.advanceAmount(9 * product.getAmount());
+            }
+        }
         return products;
     }
 
@@ -107,6 +112,11 @@ public class Tree extends Plant {
             }
         }
         setLevelsForArrayList(drops);
+        if (getGiant() != null) {
+            for (ItemStack drop : drops) {
+                drop.advanceAmount(9 * drop.getAmount());
+            }
+        }
         return drops;
     }
 

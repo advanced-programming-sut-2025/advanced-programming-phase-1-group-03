@@ -12,7 +12,7 @@ public enum SaplingTypes {
     ;
 
     public static SaplingTypes find(String name) {
-        name = name.toLowerCase();
+        name = name.toLowerCase().replaceAll("\\s+", "");
         for (SaplingTypes value : values()) {
             if (value.toString().toLowerCase().equals(name)) return value;
         }
