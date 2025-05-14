@@ -8,6 +8,7 @@ public class Dirt extends Item {
     public Dirt() {
         super();
         setName("Dirt");
+        setTile(0, 0, TileType.Dirt.getTile());
     }
 
     @Override

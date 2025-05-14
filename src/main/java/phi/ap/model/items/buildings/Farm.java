@@ -24,7 +24,6 @@ public class Farm extends Building {
         for (int i = 1; i < getHeight() - 1; i++) {
             for (int j = 1; j < getWidth() - 1; j++) {
                 Dirt dirt = new Dirt();
-                dirt.setTile(0, 0, TileType.Dirt.getTile());
                 dirt.setCoordinate(new Coordinate(i, j));
                 addItem(dirt);
             }
@@ -54,7 +53,6 @@ public class Farm extends Building {
                 for(int j = 0; j < lakeInfos.getWidth(); j++){
                     Water water = new Water();
                     water.setCoordinate(new Coordinate(i, j));
-                    water.fillTile(TileType.Water.getTile());
                     lake.addItem(water);
                 }
         }
@@ -106,7 +104,6 @@ public class Farm extends Building {
             for (int j = x; j < x + item.getWidth(); j++) {
                 if (getItem(i, j) == null) {
                     Dirt dirt = new Dirt();
-                    dirt.setTile(0, 0, TileType.Dirt.getTile());
                     dirt.setCoordinate(new Coordinate(i, j));
                     addItem(dirt);
                 }

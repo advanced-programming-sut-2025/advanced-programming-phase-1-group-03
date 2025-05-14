@@ -15,7 +15,7 @@ import java.util.List;
 
 public class WateringCan extends Tool{
     private ArrayList<Integer> capacity;
-    private int occupiedCapacity = 100;
+    private int occupiedCapacity = 0;
 
     public WateringCan(){
         super(new LevelProcess(new ArrayList<>(List.of(LevelName.normal, LevelName.copper,

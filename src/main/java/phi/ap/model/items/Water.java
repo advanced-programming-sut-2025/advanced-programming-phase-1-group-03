@@ -1,5 +1,7 @@
 package phi.ap.model.items;
 
+import phi.ap.model.enums.TileType;
+
 public class Water extends Item {
     private int capacity = Integer.MAX_VALUE;
 
@@ -7,6 +9,7 @@ public class Water extends Item {
         super();
         setName("Water");
         setMaxStackSize(0);
+        fillTile(TileType.Water.getTile());
     }
     @Override
     public void doTask() {

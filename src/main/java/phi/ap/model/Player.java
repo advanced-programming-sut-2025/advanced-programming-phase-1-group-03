@@ -20,10 +20,10 @@ import java.util.List;
 
 public class Player extends Human {
     private User user;
-    private int gold = Integer.MAX_VALUE; //TODO is it actually needed?
+    private int gold = 0;
     private final EnergyManager energy = new EnergyManager();
     private ToolManager toolManager = new ToolManager();
-
+    private String color = "";
 
     private ArrayList<Product> artisanItems = new ArrayList<>();
     private ArrayList<Ability> abilities = new ArrayList<>();
@@ -45,6 +45,14 @@ public class Player extends Human {
 
     public void setArtisanItems(ArrayList<Product> artisanItems) {
         this.artisanItems = artisanItems;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Recipe getRecipe(String name) {

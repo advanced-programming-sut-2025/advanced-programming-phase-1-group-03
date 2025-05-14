@@ -11,7 +11,7 @@ import java.util.List;
 public enum FarmTypes {
     STANDARD(
             new BuildingStructure(new Coordinate(1, 1), 4 + 1, 4 + 1),
-            new BuildingStructure(new Coordinate(1, 12), 5 + 1, 6 + 1),
+            new BuildingStructure(new Coordinate(1, 11), 6 + 2, 5 + 2),
             new ArrayList<>(List.of(
                     new BuildingStructure(new Coordinate(21, 10), 7, 12)
             )),
@@ -21,7 +21,7 @@ public enum FarmTypes {
     ),
     RIVERLAND(
             new BuildingStructure(new Coordinate(1, 1), 4 + 1, 4 + 1),
-            new BuildingStructure(new Coordinate(3, 15), 5 + 1, 6 + 1),
+            new BuildingStructure(new Coordinate(3, 13), 6 + 2, 5 + 2),
             new ArrayList<>(List.of(
                     new BuildingStructure(new Coordinate(23, 7), 5, 17),
                     new BuildingStructure(new Coordinate(1, 25), 7, 4)
@@ -32,7 +32,7 @@ public enum FarmTypes {
     ),
     FOREST(
             new BuildingStructure(new Coordinate(13, 13), 4 + 1, 4 + 1),
-            new BuildingStructure(new Coordinate(1, 1), 5 + 1, 6 + 1),
+            new BuildingStructure(new Coordinate(1, 1), 6 + 2, 5 + 2),
             new ArrayList<>(List.of(
                     new BuildingStructure(new Coordinate(23, 7), 4, 14)
             )),
@@ -42,7 +42,7 @@ public enum FarmTypes {
     ),
     HILLTOP(
             new BuildingStructure(new Coordinate(23, 23), 4 + 1, 4 + 1),
-            new BuildingStructure(new Coordinate(1, 22), 5 + 1, 6 + 1),
+            new BuildingStructure(new Coordinate(1, 22), 6 + 2, 5 + 2),
             new ArrayList<>(List.of(
                     new BuildingStructure(new Coordinate(24, 3), 3, 12)
             )),

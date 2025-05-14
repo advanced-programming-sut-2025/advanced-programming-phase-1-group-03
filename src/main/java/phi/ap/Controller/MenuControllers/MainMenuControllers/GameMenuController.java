@@ -5,6 +5,7 @@ import phi.ap.model.enums.*;
 import phi.ap.model.enums.StoreProducts.*;
 import phi.ap.model.items.*;
 import phi.ap.model.items.buildings.Farm;
+import phi.ap.model.items.buildings.Greenhouse;
 import phi.ap.model.items.buildings.stores.Store;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
@@ -694,7 +695,25 @@ public class GameMenuController {
     }
 
     public Result<String> greenHouseBuild() {
-        return null;
+        Player player = Game.getInstance().getCurrentPlayer();
+        Greenhouse greenhouse = player.getFarm().getGreenhouse();
+        if (greenhouse.isBuilt()) {
+            return new Result<>(false, "greenhouse has been built already!");
+        }
+        if (player.getInventoryManager().getItem(new Wood(1, 1)).getAmount() < Greenhouse.woodRequired
+            || player.getGold() < Greenhouse.goldRequired) {
+            return new Result<>(false, "You need " +
+                    Greenhouse.goldRequired + "gold and " +
+                    Greenhouse.woodRequired + "wood " +
+                    "to build greenhouse!");
+        }
+        player.setGold(player.getGold() - Greenhouse.goldRequired);
+        player.getInventoryManager().removeItem(new Wood(1, 1), Greenhouse.woodRequired);
+
+        greenhouse.build();
+
+        return new Result<>(true, "greenhouse built successfully!");
+
     }
 
 
@@ -1108,9 +1127,16 @@ public class GameMenuController {
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getFirst(), amount));
         return new Result<>(true, amount + " " + productName + " bought!");
     }
-    public Result<String> cheatAddGold(String amount) {
-        Game.getInstance().getCurrentPlayer().setGold(Integer.parseInt(amount));
-        return new Result<>(true, Integer.parseInt(amount) + " Gold added.");
+    public Result<String> cheatAddDollar(String amountSt) {
+        int amount;
+        try {
+            amount = Integer.parseInt(amountSt);
+        } catch (Exception e) {
+            return new Result<>(false, "Invalid amount!");
+        }
+        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() + amount);
+        return new Result<>(true, amount + "dollars added, your currency: " +
+                Game.getInstance().getCurrentPlayer().getGold() + "$");
     }
     public Result<String> sellProduct(String productName, String amount) {
         return null;

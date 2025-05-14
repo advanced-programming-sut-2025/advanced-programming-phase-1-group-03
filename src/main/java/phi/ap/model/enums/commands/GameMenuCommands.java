@@ -56,7 +56,8 @@ public enum GameMenuCommands implements Command{
     ShowPlantDiff("\\s*show\\s*plant\\s+-diff\\s+(?<x>-?\\d+)(\\s+|\\s*,\\s*)(?<y>-?\\d+)\\s*"),
     Fertilize("\\s*fertilize\\s+-f\\s+(?<name>.*)\\s+-d\\s+(?<direction>\\d)\\s*"),
     HowMuchWater("\\s*how\\s+much\\s+water\\s*"),
-    GreenHouse("\\s*green\\s*house\\s+build\\*")
+    GreenHouseBuild("\\s*green\\s*house\\s+build\\s*"),
+    CheatAddDollar("\\s*cheat\\s*add\\s+(?<count>-?\\d+)\\s+dollars\\s*"),
     ;
     private final String command;
     GameMenuCommands(String command) {

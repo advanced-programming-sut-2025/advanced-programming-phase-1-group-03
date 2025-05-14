@@ -134,7 +134,12 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.showPlantDiff(matcher.group("y"), matcher.group("x")));
         } else if ((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
             System.out.println(controller.fertilizePlant(matcher.group("name"), matcher.group("direction")));
-        } else {
+        } else if((matcher = GameMenuCommands.CheatAddDollar.getMatcher(input)) != null) {
+            System.out.println(controller.cheatAddDollar(matcher.group("count")));
+        } else if ((matcher = GameMenuCommands.GreenHouseBuild.getMatcher(input)) != null) {
+            System.out.println(controller.greenHouseBuild());
+        }
+        else {
             super.check(input);
         }
     }

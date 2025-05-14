@@ -18,6 +18,7 @@ public abstract class Item extends Ground {
 
     public Item() {
         super(1, 1);
+        setName("Item");
     }
 
     public abstract void doTask();

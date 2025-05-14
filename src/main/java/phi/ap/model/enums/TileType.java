@@ -4,6 +4,7 @@ import phi.ap.model.Tile;
 
 public enum TileType {
     Pillar("●", Colors.fg(195), ""),
+    GreenhouseMargin(" ", "", Colors.bg(94), true),
     Farm(".", "" ,Colors.bg(77), true),
     Dirt(".", "" ,Colors.bg(172), true),
     PlowedDirt(".", Colors.fg(172) ,Colors.bg(3), true),

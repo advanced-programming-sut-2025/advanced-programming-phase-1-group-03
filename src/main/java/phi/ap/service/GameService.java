@@ -111,6 +111,23 @@ public class GameService {
         game.getWeatherManager().setWeathersInMorning();
         //adding farms
         for (Player player : game.getPlayers()) {
+
+            if (player.getColor().isEmpty()) {
+                switch (App.getInstance().getPlayerService().getPlayerIndex(player)) {
+                    case 0:
+                        player.setColor(Colors.fg(15));
+                        break;
+                    case 1:
+                        player.setColor(Colors.fg(0));
+                        break;
+                    case 2:
+                        player.setColor(Colors.fg(160));
+                        break;
+                    case 3:
+                        player.setColor(Colors.fg(17));
+                        break;
+                }
+            }
             game.getMap().addFarm(new Farm(player.getFarmType()), player);
             Farm farm = player.getFarm();
             farm.getAvailablePlayers().add(player);
