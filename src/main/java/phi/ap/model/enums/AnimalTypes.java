@@ -6,7 +6,7 @@ import java.util.Arrays;
 public enum AnimalTypes {
     Chicken("Chicken",800,1, new ArrayList<>(Arrays.asList(AnimalProductTypes.ChickenEgg,
             AnimalProductTypes.LargeChickenEgg))),
-    Cow("Cow", 1200,2, new ArrayList<>(Arrays.asList(AnimalProductTypes.Milk,
+    Cow("Cow", 1200,1, new ArrayList<>(Arrays.asList(AnimalProductTypes.Milk,
             AnimalProductTypes.LargeMilk))),
     Goat("Goat", 8000,4, new ArrayList<>(Arrays.asList(AnimalProductTypes.GoatMilk,
             AnimalProductTypes.LargeGoatMilk))),

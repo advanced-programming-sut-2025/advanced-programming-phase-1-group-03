@@ -1,56 +1,34 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.FaceWay;
+import phi.ap.model.enums.StoreProducts.FishShopProducts;
 import phi.ap.model.enums.StoreTypes;
 import phi.ap.model.enums.TileType;
+import phi.ap.model.items.Item;
 import phi.ap.model.items.Portal;
-import phi.ap.model.items.buildings.Store;
+import phi.ap.model.items.buildings.stores.*;
 
-import java.awt.*;
+import java.util.AbstractMap;
+import java.util.ArrayList;
 
 public class StoreManager {
-    private Store blacksmith;
-    private Store marnieRanch;
-    private Store fish;
-    private Store starDrop;
-    private Store jojaMart;
-    private Store pierre;
-    private Store carpenter;
+    private BlackSmithStore blacksmith;
+    private MarnieRenchStore marnieRanch;
+    private FishShop fish;
+    private StarDropSaloon starDrop;
+    private JojaMart jojaMart;
+    private PierreStore pierre;
+    private CarpenterStore carpenter;
+
     public StoreManager() {
-        blacksmith = new Store(5, 14, StoreTypes.Blacksmith);
-        blacksmith.setCoordinate(new Coordinate(2, 2));
-        Text text = new Text("BlackSmith", new Coordinate(2, 2));
-        blacksmith.addItem(text);
 
-        marnieRanch = new Store(7, 15, StoreTypes.MarnieRanch);
-        marnieRanch.setCoordinate(new Coordinate(3, 20));
-        text = new Text("MarnieRanch", new Coordinate(3, 2));
-        marnieRanch.addItem(text);
-
-        fish = new Store(3, 14, StoreTypes.FishShop);
-        fish.setCoordinate(new Coordinate(9, 2));
-        text = new Text("FishShop", new Coordinate(1, 3));
-        fish.addItem(text);
-
-        starDrop = new Store(5, 14, StoreTypes.TheStarDropSaloon);
-        starDrop.setCoordinate(new Coordinate(33, 2));
-        text = new Text("StarDrop", new Coordinate(2, 3));
-        starDrop.addItem(text);
-
-        jojaMart = new Store(7, 14, StoreTypes.JojaMart);
-        jojaMart.setCoordinate(new Coordinate(31, 22));
-        text = new Text("JojaMart", new Coordinate(3, 3));
-        jojaMart.addItem(text);
-
-        pierre = new Store(5, 20, StoreTypes.PierreGeneralStore);
-        pierre.setCoordinate(new Coordinate(25, 2));
-        text = new Text("PierreStore", new Coordinate(2, 5));
-        pierre.addItem(text);
-
-        carpenter = new Store(3, 14, StoreTypes.CarpenterShop);
-        carpenter.setCoordinate(new Coordinate(26, 24));
-        text = new Text("Carpenter", new Coordinate(1, 2));
-        carpenter.addItem(text);
+        blacksmith = new BlackSmithStore(5, 14);
+        marnieRanch = new MarnieRenchStore(7, 15);
+        fish = new FishShop(3, 14);
+        starDrop = new StarDropSaloon(5, 14);
+        jojaMart = new JojaMart(7, 14);
+        pierre = new PierreStore(5, 20);
+        carpenter = new CarpenterStore(3, 14);
 
         Game.getInstance().getMap().getNPCVillage().addItem(blacksmith);
         Game.getInstance().getMap().getNPCVillage().addItem(fish);
@@ -67,9 +45,40 @@ public class StoreManager {
         Portal.makeMiddleDoor(fish, Game.getInstance().getMap().getNPCVillage(), TileType.Door.getTile(), FaceWay.Down);
         Portal.makeMiddleDoor(marnieRanch, Game.getInstance().getMap().getNPCVillage(), TileType.Door.getTile(), FaceWay.Down);
         Portal.makeMiddleDoor(blacksmith, Game.getInstance().getMap().getNPCVillage(), TileType.Door.getTile(), FaceWay.Down);
+
+        refreshFishShop();
     }
 
     private void refreshFishShop(){
+        fish.clearProducts();
+        ArrayList<AbstractMap.SimpleEntry<String, Item>> allProducts = new ArrayList<>();
+        for(FishShopProducts product : FishShopProducts.values()){
+            for(int i = 0; i < product.getDailyLimit(); i++)
+                fish.addProduct(new AbstractMap.SimpleEntry<>(product.getName(), product.getItem()));
+            allProducts.add(new AbstractMap.SimpleEntry<>(product.getName(), product.getItem()));
+        }
+        fish.setAllProducts(allProducts);
+    }
 
+    public void refreshItems(){
+        refreshFishShop();
+    }
+
+    public Store getStore(StoreTypes storeType){
+        if(storeType == StoreTypes.PierreGeneralStore)
+            return pierre;
+        else if(storeType == StoreTypes.Blacksmith)
+            return blacksmith;
+        else if(storeType == StoreTypes.CarpenterShop)
+            return carpenter;
+        else if(storeType == StoreTypes.JojaMart)
+            return jojaMart;
+        else if(storeType == StoreTypes.TheStarDropSaloon)
+            return starDrop;
+        else if(storeType == StoreTypes.MarnieRanch)
+            return marnieRanch;
+        else if(storeType == StoreTypes.FishShop)
+            return fish;
+        return null; //this never happen
     }
 }

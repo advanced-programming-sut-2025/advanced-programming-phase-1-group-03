@@ -86,12 +86,13 @@ public class InventoryManager {
     public boolean CheckExistence(ItemStack itemStack) {
         Item item = itemStack.getItem();
         int amount = itemStack.getAmount();
-        if(removeItem(item, amount) == amount) {
+        int deleted;
+        if((deleted = removeItem(item, amount)) == amount) {
             addItem(item, amount);
             return true;
         }
         else {
-            addItem(item, amount);
+            addItem(item, deleted);
             return false;
         }
     }
@@ -134,6 +135,9 @@ public class InventoryManager {
             stringBuilder.append("Name: " + itemStack.getItem().getName() + " Amount: " + itemStack.getAmount() + "\n");
         }
         return stringBuilder.toString();
+    }
+    public ArrayList<ItemStack> getAllItems(){
+        return storage.getStacks();
     }
 }
 

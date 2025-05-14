@@ -5,28 +5,30 @@ import phi.ap.model.enums.*;
 import phi.ap.model.enums.StoreProducts.*;
 import phi.ap.model.items.*;
 import phi.ap.model.items.buildings.Farm;
-import phi.ap.model.items.buildings.Store;
+import phi.ap.model.items.buildings.stores.Store;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
 import phi.ap.model.items.machines.craftingMachines.Bomber;
 import phi.ap.model.items.machines.craftingMachines.CraftedProducer;
 import phi.ap.model.items.machines.craftingMachines.Sprinkler;
 import phi.ap.model.items.products.*;
+import phi.ap.model.items.tools.FishingPole;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
 import phi.ap.utils.Misc;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameMenuController {
     public Result<String> test(String input) {
+        System.out.println(Game.getInstance().getCurrentPlayer().getGold());
 
-        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(0, 0);
+        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(0,0);
         if(item instanceof Store){
-            return new Result<>(true, ((Store)item).getName());
-
+            System.out.println("kooni");
         }
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
@@ -154,7 +156,9 @@ public class GameMenuController {
                 animal.addFriendShip(-10);
             if(!animal.getIsInHome())
                 animal.addFriendShip(-20);
+            System.out.println("!! " + animal.getRemainingDayToProduce());
             animal.reduceRemainingDayToProduce();
+            System.out.println("!! " + animal.getRemainingDayToProduce());
             if(animal.getIsFeeded() && animal.getRemainingDayToProduce() == 0) {
                 AnimalProduct animalProduct = animal.produceProduct();
                 if(animalProduct != null) {
@@ -172,9 +176,14 @@ public class GameMenuController {
 
         //TODO
         doAnimalSystemTasks();
+        doStoreTasks();
         Game.getInstance().getWeatherManager().setWeathersInMorning();
         App.getInstance().getGameService().generateForaging(1);
         //anjam kar haiee ke bayad too shab anjam beshan
+    }
+
+    private void doStoreTasks() {
+        Game.getInstance().getStoreManager().refreshItems();
     }
 
     public Result<String> showTime() {
@@ -895,9 +904,10 @@ public class GameMenuController {
     public Result<String> produces() {
         ArrayList<Animal> animals = Game.getInstance().getCurrentPlayer().getAnimals();
         StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("collecting produces: \n");
         for(Animal animal : animals) {
             if(animal.getAnimalProducts().size() > 0) {
-                stringBuilder.append("Animal name: " + animal.getName() + " " + "Type: " + animal.getType().toString());
+                stringBuilder.append("Animal name: " + animal.getName() + " " + "Type: " + animal.getType().toString() + "\n");
                 for(AnimalProduct animalProduct : animal.getAnimalProducts()) {
                     stringBuilder.append(animalProduct.getAnimalProductType().toString());
                 }
@@ -986,67 +996,98 @@ public class GameMenuController {
         return new Result<>(true, artisanName + " collected successfully.");
     }
     public Result<String> showAllProducts() {
-        // TODO give a true value to storeType based on the store we are there.
-        StoreTypes storeType = StoreTypes.MarnieRanch;
-        switch (storeType) {
-            case StoreTypes.Blacksmith -> {return BlackSmithsProducts.showAllProducts();}
-            case StoreTypes.MarnieRanch -> {return MarnieRanchProducts.showAllProducts();}
-            case StoreTypes.CarpenterShop -> {return CarpenterShopProducts.showAllProducts();}
-            case StoreTypes.FishShop -> {return FishShopProducts.showAllProducts();}
-            case StoreTypes.PierreGeneralStore -> {return FishShopProducts.showAllProducts();}
-            case StoreTypes.JojaMart -> {return JojaMarketProducts.showAllProducts();}
-            case StoreTypes.TheStarDropSaloon -> {return StarDropSaloonProducts.showAllProducts();}
-            default -> {
-                return null;
-            }
+        Ground ground = Game.getInstance().getCurrentPlayer().getLocation().getGround();
+        if(!(ground instanceof Store store)){
+            return new Result<>(false, "You are not in a store!!");
         }
+
+        int currentHour = Game.getInstance().getDate().getCurrentHour();
+        if (currentHour < store.getStoreTypes().getOpeningTime() || currentHour > store.getStoreTypes().getClosingTime())
+            return new Result<>(false, "Store is closed in this time!!");
+
+        StringBuilder response = new StringBuilder();
+        for(AbstractMap.SimpleEntry<String, Item> product : store.getAllProducts()){
+            response.append(product.getKey()).append(" ").append(product.getValue().getSellPrice()).append(" coin\n");
+        }
+        return new Result<>(true, response.toString());
     }
     public Result<String> showAvailableProducts() {
-        // TODO give a true value to storeType based on the store we are there.
-        StoreTypes storeType = StoreTypes.MarnieRanch;
-        switch (storeType) {
-            case StoreTypes.Blacksmith -> {return BlackSmithsProducts.showAvailableProducts();}
-            case StoreTypes.MarnieRanch -> {return MarnieRanchProducts.showAvailableProducts();}
-            case StoreTypes.CarpenterShop -> {return CarpenterShopProducts.showAvailableProducts();}
-            case StoreTypes.FishShop -> {return FishShopProducts.showAvailableProducts();}
-            case StoreTypes.PierreGeneralStore -> {return FishShopProducts.showAvailableProducts();}
-            case StoreTypes.JojaMart -> {return JojaMarketProducts.showAvailableProducts();}
-            case StoreTypes.TheStarDropSaloon -> {return StarDropSaloonProducts.showAvailableProducts();}
-            default -> {
-                return null;
-            }
+        Ground ground = Game.getInstance().getCurrentPlayer().getLocation().getGround();
+        if(!(ground instanceof Store store)){
+            return new Result<>(false, "You are not in a store!!");
         }
+        int currentHour = Game.getInstance().getDate().getCurrentHour();
+        if (currentHour < store.getStoreTypes().getOpeningTime() || currentHour > store.getStoreTypes().getClosingTime())
+            return new Result<>(false, "Store is closed in this time!!");
+
+        StringBuilder response = new StringBuilder();
+        for(AbstractMap.SimpleEntry<String, Item> product : store.getAvailableProducts()){
+            response.append(product.getKey()).append(" ").append(product.getValue().getSellPrice()).append(" coin\n");
+        }
+        return new Result<>(true, response.toString());
     }
     public Result<String> showAllAvailableTools() {
-        String response = "";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getAxe().toString()+"\n";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getBackpack().toString()+"\n";
-        if(Game.getInstance().getCurrentPlayer().getToolManager().getFishingPole()!=null)
-            response += Game.getInstance().getCurrentPlayer().getToolManager().getFishingPole().toString()+"\n";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getHoe().toString()+"\n";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getMilkPail().toString()+"\n";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getPickaxe().toString()+"\n";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getScythe().toString()+"\n";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getShear().toString()+"\n";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getTrashCan().toString()+"\n";
-        response += Game.getInstance().getCurrentPlayer().getToolManager().getWateringCan().toString()+"\n";
-        return new Result<>(true, response);
-    }
-    public Result<String> purchase(String productName, String amountString) {
-        // TODO give a true value to storeType based on the store we are there.
-        StoreTypes storeType = StoreTypes.Blacksmith;
-        switch (storeType) {
-            case StoreTypes.Blacksmith -> {return BlackSmithsProducts.purchase(productName, amountString);}
-            case StoreTypes.CarpenterShop -> {return CarpenterShopProducts.purchase(productName, amountString);}
-            case StoreTypes.MarnieRanch -> {return MarnieRanchProducts.purchase(productName, amountString);}
-            case StoreTypes.FishShop -> {return FishShopProducts.purchase(productName, amountString);}
-            case StoreTypes.PierreGeneralStore -> {return FishShopProducts.purchase(productName, amountString);}
-            case StoreTypes.JojaMart -> {return JojaMarketProducts.purchase(productName, amountString);}
-            case StoreTypes.TheStarDropSaloon -> {return StarDropSaloonProducts.purchase(productName, amountString);}
-            default -> {
-                return null;
+        StringBuilder builder = new StringBuilder();
+        for(ItemStack item : Game.getInstance().getCurrentPlayer().getInventoryManager().getAllItems()){
+            if(item.getItem() instanceof Tool){
+                builder.append(item.getItem().getName()+"\n");
             }
         }
+        return new Result<>(true, builder.toString());
+    }
+    public Result<String> purchase(String productName, String amountString) {
+        int amount;
+        if(amountString == null || amountString.isEmpty())
+            amount = 1;
+        else
+            amount = Integer.parseInt(amountString);
+
+        Ground ground = Game.getInstance().getCurrentPlayer().getLocation().getGround();
+
+        if(!(ground instanceof Store store)){
+            return new Result<>(false, "You are not in a store!!");
+        }
+        int currentHour = Game.getInstance().getDate().getCurrentHour();
+        if (currentHour < store.getStoreTypes().getOpeningTime() || currentHour > store.getStoreTypes().getClosingTime())
+            return new Result<>(false, "Store is closed in this time!!");
+
+        boolean productExists = false;
+        for(AbstractMap.SimpleEntry<String, Item> item : store.getAllProducts())
+            if(item.getKey().equalsIgnoreCase(productName))
+                productExists = true;
+
+        if(!productExists)
+            return new Result<>(false, "Product does not exist!");
+
+        ArrayList<Item> toBuy = new ArrayList<>();
+
+        int totalMoney = 0;
+        for(AbstractMap.SimpleEntry<String, Item> product : store.getAvailableProducts()){
+            if(product.getKey().equalsIgnoreCase(productName) && toBuy.size() != amount) {
+                toBuy.add(product.getValue());
+                totalMoney += product.getValue().getSellPrice();
+            }
+        }
+        if(toBuy.size() != amount || amount == 0)
+            return new Result<>(false, "This item is not available in the Store with this amount!!");
+
+        if(totalMoney > Game.getInstance().getCurrentPlayer().getGold())
+            return new Result<>(false, "You don't have enough fucking money.");
+
+        for(Item buy : toBuy) {
+            store.buy(buy);
+            Game.getInstance().getCurrentPlayer().setGold(
+                    Game.getInstance().getCurrentPlayer().getGold() - buy.getSellPrice());
+
+            if(store.getStoreTypes() == StoreTypes.FishShop){
+                FishShopProducts product = FishShopProducts.fromString(productName);
+                if(Game.getInstance().getCurrentPlayer().getAbilityLevel(AbilityType.Fishing) < product.getFishingSkill())
+                    return new Result<>(false, "For buying this item your fishing skill must be at least "
+                            + product.getFishingSkill());
+            }
+        }
+        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getFirst(), amount));
+        return new Result<>(true, amount + " " + productName + " bought!");
     }
     public Result<String> cheatAddGold(String amount) {
         Game.getInstance().getCurrentPlayer().setGold(Integer.parseInt(amount));

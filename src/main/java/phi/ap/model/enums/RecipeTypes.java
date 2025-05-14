@@ -57,7 +57,7 @@ public enum RecipeTypes {
     RedPlate("RedPlate"),
     SalmonDinner("SalmonDinner"),
     VegetableMedley("VegetableMedley"),
-    FarmersLunch("FFarmersLunch"),
+    FarmersLunch("FarmersLunch"),
     SurvivalBurger("SurvivalBurger"),
     DishOTheSea("DishOTheSea"),
     SeafoamPudding("SeafoamPudding"),

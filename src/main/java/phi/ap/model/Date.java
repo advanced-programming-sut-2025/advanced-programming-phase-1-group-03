@@ -28,6 +28,9 @@ public class Date {
         return WeekDays.values()[(getRawDay()-1)%7];
     }
 
+    public int getCurrentHour(){
+        return hour%24;
+    }
     public int getHour() {
         return hour;
     }
@@ -46,8 +49,8 @@ public class Date {
     //return if it's sleeping time or not
     public int advanceHour(){
         this.hour += 1;
-        if(this.hour == SLEEP_HOUR)
-            return START_HOUR - SLEEP_HOUR + 24;
+        if(getCurrentHour() == SLEEP_HOUR)
+            return SLEEP_TIME;
         return 0;
     }
 

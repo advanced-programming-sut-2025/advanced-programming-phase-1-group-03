@@ -244,5 +244,8 @@ public class GameService {
         */
         generateForaging(20);
         Game.getInstance().whenMapLoaded();
+        for (Player player : game.getPlayers()) {
+            player.InitializePlayer();
+        }
     }
 }
