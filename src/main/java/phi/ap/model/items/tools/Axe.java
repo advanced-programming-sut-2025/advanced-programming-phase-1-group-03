@@ -4,6 +4,7 @@ import phi.ap.model.*;
 import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.LevelName;
 import phi.ap.model.items.*;
+import phi.ap.model.items.products.Crop;
 import phi.ap.model.items.products.Fruit;
 import phi.ap.model.items.products.Tree;
 import phi.ap.model.items.products.Wood;
@@ -35,6 +36,12 @@ public class Axe extends Tool{
                     response.append(cnt + "amount of " + drop.getItem().getName() + " gained!\n");
                 }
                 tree.getFather().removeItem(tree);
+            } case Crop crop -> {
+                for (ItemStack drop : crop.getDrops()) {
+                    int cnt = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(drop);
+                    response.append(cnt + "amount of " + drop.getItem().getName() + " gained!\n");
+                }
+                crop.getFather().removeItem(crop);
             }
             case null, default -> {
                 return new Result<>(false, "This item is not tree or wood! you just wasted your energy! -_-");

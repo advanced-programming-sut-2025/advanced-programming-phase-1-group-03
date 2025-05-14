@@ -15,6 +15,8 @@ public abstract class Plant extends Product {
     private Giant giant = null;
     private ArrayList<Tile> shapeAtStage;
     private Tile deadShapeColor = new Tile(" ", Colors.fg(87), "");
+    private Date lastFertilizeSpeedGro;
+    private Date lastFertilizeDeluxeRetaining;
 
     public Plant(int height, int width, String sourceName, ArrayList<Integer> stages, boolean canBecomeGiant, Date plantingDate) {
         super(height, width);
@@ -166,9 +168,11 @@ public abstract class Plant extends Product {
         switch (soilType) {
             case DeluxeRetaining:
                 watering();
+                setLastFertilizeDeluxeRetaining(Game.getInstance().getDate());
                 break;
             case SpeedGro:
                 plantingDate.advanceHourRaw(-24);
+                setLastFertilizeSpeedGro(Game.getInstance().getDate());
                 break;
         }
     }
@@ -179,5 +183,45 @@ public abstract class Plant extends Product {
 
     public void setDeadShapeColor(Tile deadShapeColor) {
         this.deadShapeColor = deadShapeColor;
+    }
+
+    public Date getLastFertilizeSpeedGro() {
+        return lastFertilizeSpeedGro;
+    }
+
+    public Date getLastFertilizeDeluxeRetaining() {
+        return lastFertilizeDeluxeRetaining;
+    }
+
+    public void setLastFertilizeSpeedGro(Date lastFertilizeSpeedGro) {
+        this.lastFertilizeSpeedGro = lastFertilizeSpeedGro != null ? new Date(lastFertilizeSpeedGro.getHour()) : null;
+    }
+
+    public void setLastFertilizeDeluxeRetaining(Date lastFertilizeDeluxeRetaining) {
+        this.lastFertilizeDeluxeRetaining = lastFertilizeDeluxeRetaining != null ? new Date(lastFertilizeDeluxeRetaining.getHour()) : null;
+    }
+
+    public String showPlant() {
+        StringBuilder res = new StringBuilder();
+        res.append("Name: ").append(getName()).append("\n");
+        res.append("Alive: ").append(isAlive()).append("\n");
+        res.append("Finished stages: ").append(getFinishedStages()).append("\n");
+        res.append("Remaining growing time: ").
+                append(Math.max(0, totalHarvestTime()
+                        - (Game.getInstance().getDate().getRawDay() - plantingDate.getRawDay()))).append(" day\n");
+        res.append("don't need water today: ").append(isWateredToday()).append("\n");
+        res.append("Fertilizers: ");
+        ArrayList<String> fertList = new ArrayList<>();
+        if (lastFertilizeDeluxeRetaining != null) {
+            fertList.add("last Deluxe Retaining " +
+                    (Game.getInstance().getDate().getRawDay() - lastFertilizeDeluxeRetaining.getRawDay()) + "days ago");
+        }
+        if (lastFertilizeSpeedGro != null) {
+            fertList.add("last SpeedGro " +
+                    (Game.getInstance().getDate().getRawDay() - lastFertilizeSpeedGro.getRawDay()) + "days ago");
+        }
+        if (fertList.isEmpty()) res.append("none\n");
+        else res.append(fertList + "\n");
+        return res.toString();
     }
 }

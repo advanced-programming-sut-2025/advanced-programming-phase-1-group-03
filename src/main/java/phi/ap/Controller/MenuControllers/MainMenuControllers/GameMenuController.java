@@ -552,8 +552,121 @@ public class GameMenuController {
 
     }
 
+    public Result<String> plant(String sourceName, String directionSt) {
+        //TODO : giant, season careless in greenhouse
+        int direction;
+        try {
+            direction = Integer.parseInt(directionSt);
+        } catch (Exception e) {
+            return new Result<>(false, "invalid direction");
+        }
+        if (direction < 0 || direction > 7) return new Result<>(false, "direction must be between 0 and 7");
+        Coordinate d = new Coordinate(Misc.getDiffFromDirection(direction));
+        Player player = Game.getInstance().getCurrentPlayer();
+        Location loc = player.getLocation();
+        Item item;
+        if (!((item = loc.getGround().getTopItem(loc.getY() + d.getY(), loc.getX() + d.getX())) instanceof Dirt)) {
+            return new Result<>(false, "You cant plant something there!");
+        }
+        Dirt dirt = (Dirt) item;
+        if (!dirt.isPlowed()) {
+            return new Result<>(false, "dirt is not plowed");
+        }
+        sourceName = sourceName.replaceAll("\\s+", "").toLowerCase();
+        SeedTypes seedType = SeedTypes.find(sourceName);
+        SaplingTypes saplingType = SaplingTypes.find(sourceName);
+
+        if (seedType != null) {
+            Seed seed = new Seed(1, 1, seedType);
+            if (player.getInventoryManager().getItem(seed).getAmount() == 0) {
+                return new Result<>(false, "Ypu don't have enough seeds");
+            }
+            CropsTypes cropType = seedType.findCropType();
+            TreeTypes treeTypes = TreeTypes.findBySeed(seedType);
+            if (cropType != null) {
+                Crop crop = new Crop(1, 1, cropType);
+                crop.setCoordinate(new Coordinate(0, 0));
+                dirt.unPlow();
+                dirt.addItem(crop);
+                player.getInventoryManager().removeItem(seed, 1);
+                return new Result<>(true, cropType + "planted successfully");
+            } else if (treeTypes != null) {
+                Tree tree = new Tree(1, 1, treeTypes, false);
+                tree.setCoordinate(new Coordinate(0, 0));
+                dirt.unPlow();
+                dirt.addItem(tree);
+                player.getInventoryManager().removeItem(seed, 1);
+                return new Result<>(true, treeTypes + "planted successfully");
+            } else {
+                return new Result<>(false, "wierd happened!");
+            }
+        } else if (saplingType != null) {
+            Sapling sapling = new Sapling(1, 1, saplingType);
+            if (player.getInventoryManager().getItem(sapling).getAmount() == 0) {
+                return new Result<>(false, "Ypu don't have enough saplings");
+            }
+            TreeTypes treeTypes = TreeTypes.findBySapling(saplingType);
+            if (treeTypes != null) {
+                Tree tree = new Tree(1, 1, treeTypes, false);
+                tree.setCoordinate(new Coordinate(0, 0));
+                dirt.unPlow();
+                dirt.addItem(tree);
+                player.getInventoryManager().removeItem(sapling, 1);
+                return new Result<>(true, treeTypes + "planted successfully");
+            } else {
+                return new Result<>(false, "wierd happened!");
+            }
+        } else {
+            return new Result<>(false, "Nothing found");
+        }
 
 
+    }
+
+    public Result<String> showPlant(String ySt, String xSt) {
+        int y, x;
+        try {
+            y = Integer.parseInt(ySt);
+            x = Integer.parseInt(xSt);
+        } catch (Exception e) {
+            return new Result<>(false, "invalid coordinate");
+        }
+        Item item = Game.getInstance().getMap().getTopItem(y, x);
+        if (!(item instanceof Plant)) {
+            return new Result<>(false, "there is no plant there");
+        }
+        Plant plant = (Plant) item;
+        return new Result<>(true, plant.showPlant());
+    }
+
+    public Result<String> fertilizePlant(String fertilizerSt, String directionSt) {
+        int direction;
+        try {
+            direction = Integer.parseInt(directionSt);
+        } catch (Exception e) {
+            return new Result<>(false, "invalid direction");
+        }
+        if (direction < 0 || direction > 7) return new Result<>(false, "direction must be between 0 and 7");
+        Coordinate d = new Coordinate(Misc.getDiffFromDirection(direction));
+        Player player = Game.getInstance().getCurrentPlayer();
+        Location loc = player.getLocation();
+        Item item;
+        if (!((item = loc.getGround().getTopItem(loc.getY() + d.getY(), loc.getX() + d.getX())) instanceof Plant)) {
+            return new Result<>(false, "there is no plant there!");
+        }
+        SoilTypes soilType = SoilTypes.find(fertilizerSt.replaceAll("\\s+", "").toLowerCase());
+        if (soilType == null) {
+            return new Result<>(false, "Soil not found!");
+        }
+        Plant plant = (Plant) item;
+        return switch (soilType) {
+            case BasicRetaining, QualityRetaining, GrassStarter -> new Result<>(false, "Unknown soil type");
+            default -> {
+                plant.fertilize(soilType);
+                yield new Result<>(true, "Plant fertilized");
+            }
+        };
+    }
 
 
 

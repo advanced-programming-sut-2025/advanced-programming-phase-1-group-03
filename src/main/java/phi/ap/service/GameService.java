@@ -69,6 +69,7 @@ public class GameService {
                 case 4:
                     SeedTypes seedType = SeedTypes.getRandomFromSeason(Game.getInstance().getDate().getSeason());
                     Seed seed = new Seed(1, 1, seedType);
+                    seed.makeRemovableByPickaxe();
                     item = seed;
                     break;
                 case 5:

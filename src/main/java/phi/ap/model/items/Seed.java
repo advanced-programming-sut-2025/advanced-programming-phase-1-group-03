@@ -27,4 +27,11 @@ public class Seed extends Item {
     public void setSeedType(SeedTypes seedType) {
         this.seedType = seedType;
     }
+    public boolean canStackWith(Item item) {
+        if (!super.canStackWith(item)) return false;
+        if (item instanceof Seed seed) {
+            return seedType == seed.seedType;
+        }
+        return false;
+    }
 }

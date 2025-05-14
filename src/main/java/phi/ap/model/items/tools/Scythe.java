@@ -25,8 +25,8 @@ public class Scythe extends Tool{
         switch (item) {
             case Plant plant -> {
                 for(ItemStack itemStack : plant.getProducts()){
-                    Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(itemStack);
-                    response.append(itemStack.getAmount()).append(" of ").append(itemStack.getItem().getName()).append(" gained!\n");
+                    int cnt = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(itemStack);
+                    response.append(cnt).append(" of ").append(itemStack.getItem().getName()).append(" gained!\n");
                 }
                 if(plant instanceof Tree && ((Tree)plant).isThundered()){
                     plant.getFather().removeItem(plant);
@@ -35,8 +35,11 @@ public class Scythe extends Tool{
             }case Product grass -> {
                 if(grass.canStackWith(ProductNames.Grass.getInstance())){
                     grass.getFather().removeItem(grass);
-                    return new Result<>(true, "Grass destroyed!");
-                    //TODO : getFiber;
+                    for (ItemStack itemStack : grass.getDrops()) {
+                        int cnt = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(itemStack);
+                        response.append(cnt).append(" of ").append(itemStack.getItem().getName()).append(" gained!\n");
+                    }
+                    return new Result<>(true, response.toString() + "Grass destroyed!");
                 }
             }
             case null, default -> {}

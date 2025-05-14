@@ -64,10 +64,7 @@ public class Crop extends Plant {
             setLevelsForArrayList(products);
             return products;
         }
-        if (lastHarvestDate != null && oneTime) {
-            setLevelsForArrayList(products);
-            return products;
-        }
+
         if (lastHarvestDate == null || Game.getInstance().getDate().getRawDay() - lastHarvestDate.getRawDay() > regrowthTime) {
             Crop instance;
             int amount = 1;
@@ -81,6 +78,9 @@ public class Crop extends Plant {
             }
             products.add(new ItemStack(instance, amount));
             lastHarvestDate = new Date(Game.getInstance().getDate().getHour());
+            if (oneTime) {
+                getFather().removeItem(this);
+            }
         }
         setLevelsForArrayList(products);
         return products;

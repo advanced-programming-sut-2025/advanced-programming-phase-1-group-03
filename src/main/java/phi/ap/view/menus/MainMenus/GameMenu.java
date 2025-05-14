@@ -108,11 +108,18 @@ public class GameMenu extends AppMenu {
         } else if ((matcher = GameMenuCommands.CraftInfo.getMatcher(input)) != null) {
             System.out.println(controller.craftInfo(matcher.group("name")));
         } else if ((matcher = GameMenuCommands.UseArtisan.getMatcher(input)) != null) {
-            System.out.println(controller.useArtisan(matcher.group("name"), matcher.group("itemName"), matcher.group("ingredientName")));
+            System.out.println(controller.useArtisan(matcher.group("name"),
+                    matcher.group("itemName"), matcher.group("ingredientName")));
         } else if ((matcher = GameMenuCommands.GetArtisan.getMatcher(input)) != null) {
             System.out.println(controller.getArtisan(matcher.group("name")));
         } else if ((matcher = GameMenuCommands.CheatAddItem.getMatcher(input)) != null) {
             System.out.println(controller.cheatAddItem(matcher.group("name"), matcher.group("amount")));
+        } else if ((matcher = GameMenuCommands.Plant.getMatcher(input)) != null) {
+            System.out.println(controller.plant(matcher.group("source"), matcher.group("direction")));
+        } else if ((matcher = GameMenuCommands.ShowPlant.getMatcher(input)) != null) {
+            System.out.println(controller.showPlant(matcher.group("y"), matcher.group("x")));
+        } else if((matcher = GameMenuCommands.Fertilize.getMatcher(input)) != null) {
+            System.out.println(controller.fertilizePlant(matcher.group("name"), matcher.group("direction")));
         }
         else {
             super.check(input);

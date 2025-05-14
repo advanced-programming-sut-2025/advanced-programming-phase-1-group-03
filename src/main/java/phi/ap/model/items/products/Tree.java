@@ -23,7 +23,7 @@ public class Tree extends Plant {
         super(height, width, null, type.getStages(), false,
                 Game.getInstance() != null ? Game.getInstance().getDate() : null);
         if (isForaging) {
-//            getPlantingDate().advanceHourRaw(-1 * totalHarvestTime() * 24);
+            getPlantingDate().advanceHourRaw(-1 * totalHarvestTime() * 24);
         }
         this.isForaging = isForaging;
         String sourceName = null;
@@ -172,5 +172,8 @@ public class Tree extends Plant {
         return isForaging;
     }
 
+    public String showPlant() {
+    return super.showPlant() + "Is thundered: " + isThundered + "\n" + "Fruit name: " + fruit + "\n";
+    }
 
 }
