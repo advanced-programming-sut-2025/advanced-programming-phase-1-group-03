@@ -3,7 +3,7 @@ package phi.ap.model.items.products;
 import phi.ap.model.*;
 import phi.ap.model.enums.Colors;
 import phi.ap.model.enums.SoilTypes;
-import phi.ap.model.items.Item;
+import phi.ap.model.items.buildings.Greenhouse;
 
 import java.util.ArrayList;
 
@@ -18,7 +18,6 @@ public abstract class Plant extends Product {
     private Tile deadShapeColor = new Tile(" ", Colors.fg(87), "");
     private Date lastFertilizeSpeedGro;
     private Date lastFertilizeDeluxeRetaining;
-    private boolean inGreenHouse;
 
     public Plant(int height, int width, String sourceName, ArrayList<Integer> stages, boolean canBecomeGiant, Date plantingDate) {
         super(height, width);
@@ -237,10 +236,6 @@ public abstract class Plant extends Product {
     }
 
     public boolean isInGreenHouse() {
-        return inGreenHouse;
-    }
-
-    public void setInGreenHouse(boolean inGreenHouse) {
-        this.inGreenHouse = inGreenHouse;
+        return isInGroundClass(Greenhouse.class);
     }
 }

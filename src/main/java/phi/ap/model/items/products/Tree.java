@@ -164,6 +164,9 @@ public class Tree extends Plant {
     public int getRemainingHarvestCycles() {
         return remainingHarvestCycles;
     }
+    public void setRemainingHarvestCycles(int remainingHarvestCycles) {
+        this.remainingHarvestCycles = remainingHarvestCycles;
+    }
 
     public int getHarvestRegrowthTime() {
         return HarvestRegrowthTime;

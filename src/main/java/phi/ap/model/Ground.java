@@ -3,6 +3,7 @@ package phi.ap.model;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.Portal;
+import phi.ap.model.items.buildings.Greenhouse;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,7 @@ public abstract class Ground {
         tiles[y][x].set(new Tile(tile.getSymbol(), tiles[y][x].getFgColor() + tile.getFgColor(),
                 tiles[y][x].getBgColor() + tile.getBgColor(), tile.isWalkable()));
     }
+
     public void fillTile(Tile tile) {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
@@ -236,5 +238,24 @@ public abstract class Ground {
         if (items[y][x] == null) return null;
         if (items[y][x] instanceof Portal) return (Portal) items[y][x];
         return null;
+    }
+
+    public boolean isInGroundRec(Ground ground) {
+        if (ground == null) return false;
+        Ground f = getFather();
+        while (f != null) {
+            if (f == ground) return true;
+            f = f.getFather();
+        }
+        return false;
+    }
+
+    public boolean isInGroundClass(Class <?> cls) {
+        Ground f = getFather();
+        while (f != null) {
+            if (cls.isInstance(f)) return true;
+            f = f.getFather();
+        }
+        return false;
     }
 }

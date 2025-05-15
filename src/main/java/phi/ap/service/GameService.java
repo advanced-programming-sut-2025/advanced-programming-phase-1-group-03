@@ -7,6 +7,8 @@ import phi.ap.model.items.Item;
 import phi.ap.model.items.Portal;
 import phi.ap.model.items.buildings.*;
 import phi.ap.model.items.Seed;
+import phi.ap.model.items.machines.craftingMachines.Scarecrow;
+import phi.ap.model.items.machines.craftingMachines.Sprinkler;
 import phi.ap.model.items.products.*;
 
 public class GameService {
@@ -198,6 +200,76 @@ public class GameService {
         }
         return new Result<>(true, "⚡⚡");
 
+    }
+
+    public boolean isScarecrowGuard(int y, int x) {
+        for (int i = y - Scarecrow.maxProtectingEdge; i <= y + Scarecrow.maxProtectingEdge; i++) {
+            for (int j = x - Scarecrow.maxProtectingEdge; j <= x + Scarecrow.maxProtectingEdge; j++) {
+                Item item = game.getMap().getTopItem(i, j);
+                if (item instanceof Scarecrow scarecrow) {
+                    int e = scarecrow.getProtectingEdge();
+                    if (y <= i + e && y >= i - e && x <= j + e && x >= j - e) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public void crowAttackTile(int y, int x) {
+        if (isScarecrowGuard(y, x)) return;
+        Item item = game.getMap().getTopItem(y, x);
+        if (App.getInstance().getRandomNumber(1, 64) != 1) return;
+        switch (item) {
+            case Plant plant:
+                if (plant.isInGreenHouse()) return;
+                switch (plant) {
+                    case Crop crop :
+                        crop.setLastWateredDate(Game.getInstance().getDate());
+                        if (crop.isOneTime()) {
+                            crop.delete();
+                        }
+                        break;
+                    case Tree tree :
+                        if (( tree.getLastHarvestDate() == null ||
+                                tree.getHarvestRegrowthTime() <=
+                                Game.getInstance().getDate().getRawDay() - tree.getLastHarvestDate().getRawDay()) &&
+                                tree.getRemainingHarvestCycles() > 0) {
+                            tree.setLastWateredDate(Game.getInstance().getDate());
+                            tree.setRemainingHarvestCycles(tree.getRemainingHarvestCycles() - 1);
+                        }
+                        break;
+                    default:
+                        return;
+                }
+                break;
+            case Seed seed:
+                seed.getFather().removeItem(seed);
+                break;
+            case null, default:
+                return;
+        }
+        return;
+    }
+
+    public void doCrowAttack() {
+        for (int i = 1; i < game.getMap().getHeight() - 1; i++) {
+            for (int j = 1; j < game.getMap().getWidth() - 1; j++) {
+                crowAttackTile(i, j);
+            }
+        }
+    }
+
+    public void turnOnSprinklers() {
+        for (int i = 1; i < game.getMap().getHeight() - 1; i++) {
+            for (int j = 1; j < game.getMap().getWidth() - 1; j++) {
+                Item item = game.getMap().getTopItem(i, j);
+                if (item instanceof Sprinkler sprinkler) {
+                    sprinkler.turnOn();
+                }
+            }
+        }
     }
 
     public void initializeGame() {

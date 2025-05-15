@@ -142,6 +142,8 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.greenHouseBuild());
         } else if ((matcher = GameMenuCommands.CheatThor.getMatcher(input)) != null) {
             System.out.println(controller.cheatThor(matcher.group("y"), matcher.group("x")));
+        } else if ((matcher = GameMenuCommands.WalkWASD.getMatcher(input)) != null) {
+            System.out.println(controller.walkWASD(matcher.group("direction")));
         }
         else {
             super.check(input);

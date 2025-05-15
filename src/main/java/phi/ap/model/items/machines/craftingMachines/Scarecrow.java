@@ -4,12 +4,29 @@ import phi.ap.model.enums.CraftingTypes;
 import phi.ap.model.items.machines.Machine;
 
 public class Scarecrow extends Machine {
+    public static int maxProtectingEdge = 0;
+    int protectingEdge = 0;
     public Scarecrow(int height, int width, CraftingTypes craftingType) {
         super(height, width, craftingType);
     }
     public Scarecrow(int height, int width, String machineName, Integer price) {
         super(height, width, machineName, price);
+        switch (machineName) {
+            case "Scarecrow":
+                protectingEdge = 8;
+                maxProtectingEdge = Math.max(maxProtectingEdge, protectingEdge);
+                break;
+            case "DeluxeScarecrow":
+                protectingEdge = 12;
+                maxProtectingEdge = Math.max(maxProtectingEdge, protectingEdge);
+                break;
+        }
     }
+
+    public int getProtectingEdge() {
+        return protectingEdge;
+    }
+
     @Override
     public void doTask() {
 

@@ -33,6 +33,7 @@ public enum TileType {
     PierreGeneralStore(" ", "" ,Colors.bg(230), true),
     FishShop(" ", "" ,Colors.bg(52), true),
     ShippingBin("S", "" ,Colors.bg(120), false),
+    GiantBackGround(" ", "" ,Colors.bg(124), false),
     A("A", "", Colors.bg(65), true),
     B("B", "", Colors.bg(65), true),
     C("C", "", Colors.bg(65), true),

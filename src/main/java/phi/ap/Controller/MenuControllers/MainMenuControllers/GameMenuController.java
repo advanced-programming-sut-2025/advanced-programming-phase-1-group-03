@@ -180,6 +180,8 @@ public class GameMenuController {
         Game.getInstance().getWeatherManager().setWeathersInMorning();
         App.getInstance().getGameService().generateForaging(1);
         App.getInstance().getGameService().doWeatherTasks();
+        App.getInstance().getGameService().turnOnSprinklers();
+        App.getInstance().getGameService().doCrowAttack();
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
@@ -255,6 +257,33 @@ public class GameMenuController {
 
     public Result<String> buildGreenhouse() {
         return null;
+    }
+
+    public Result<String> walkWASD(String dir) {
+        String ydiff;
+        String xdiff = switch (dir) {
+            case "w" -> {
+                ydiff = "-1";
+                yield "0";
+            }
+            case "a" -> {
+                ydiff = "0";
+                yield "-1";
+            }
+            case "s" -> {
+                ydiff = "1";
+                yield "0";
+            }
+            case "d" -> {
+                ydiff = "0";
+                yield "1";
+            }
+            default -> {
+                ydiff = "@";
+                yield "@";
+            }
+        };
+        return walkOne(ydiff, xdiff);
     }
 
     public Result<String> walkOne(String yDiffSt, String xDiffSt) {
@@ -585,8 +614,59 @@ public class GameMenuController {
 
     }
 
+    public boolean giantChecker(int y, int x) {
+        int sy, sx;
+        int[][] dir = {{y - 1, x - 1}, {y - 1, x}, {y, x - 1}, {y, x}};
+        int[][] dir2 = {{0, 0}, {1, 0}, {0, 1}, {1, 1}};
+        for (int[] d1 : dir) {
+            sy = d1[0];
+            sx = d1[1];
+            //greenhouse checker:
+            boolean inGreenhouse = false;
+            for (int[] d2 : dir2) {
+                y = sy + d2[0];
+                x = sx + d2[1];
+                Location loc = App.getInstance().getMapService().getLocationOnMap(y, x);
+                if (loc.getGround() instanceof Greenhouse) inGreenhouse = true;
+            }
+            if (inGreenhouse) continue;
+            Item item = Game.getInstance().getMap().getTopItem(sy, sx);
+            if (!(item instanceof Plant)) continue;
+            Plant plant = (Plant) item;
+            boolean same = true;
+            if (plant.getGiant() != null) same = false;
+            if (!plant.isCanBecomeGiant()) same = false;
+            ArrayList<Plant> members = new ArrayList<>();
+            for (int[] d2 : dir2) {
+                y = sy + d2[0];
+                x = sx + d2[1];
+                Item item2 = Game.getInstance().getMap().getTopItem(y, x);
+                if (!(item2 instanceof Plant)) same = false;
+                else {
+                    Plant plant2 = (Plant) item2;
+                    if (!plant.canStackWith(plant2)) same = false;
+                    else if (plant2.getGiant() != null) same = false;
+                    else if (!plant2.isCanBecomeGiant()) same = false;
+                    else {
+                        members.add(plant2);
+                    }
+                }
+            }
+            if (!same) continue;
+            Giant giant = new Giant(members);
+            for (int[] d2 : dir2) {
+                y = sy + d2[0];
+                x = sx + d2[1];
+                Item item2 = Game.getInstance().getMap().getTopItem(y, x);
+                Plant plant2 = (Plant) item2;
+                plant2.setGiant(giant);
+            }
+            return true;
+        }
+        return false;
+    }
+
     public Result<String> plant(String sourceName, String directionSt) {
-        //TODO : giant;
         int direction;
         try {
             direction = Integer.parseInt(directionSt);
@@ -599,6 +679,8 @@ public class GameMenuController {
         Location loc = player.getLocation();
         Item item;
         boolean inGreenhouse = loc.getGround() instanceof Greenhouse;
+        int y = loc.getY() + d.getY() + loc.getGround().getCoordinateBaseMap().getY();
+        int x = loc.getX() + d.getX() + loc.getGround().getCoordinateBaseMap().getX();
         if (!((item = loc.getGround().getTopItem(loc.getY() + d.getY(), loc.getX() + d.getX())) instanceof Dirt)) {
             return new Result<>(false, "You cant plant something there!");
         }
@@ -620,19 +702,19 @@ public class GameMenuController {
             if (cropType != null) {
                 Crop crop = new Crop(1, 1, cropType);
                 crop.setCoordinate(new Coordinate(0, 0));
-                crop.setInGreenHouse(inGreenhouse);
                 dirt.unPlow();
                 dirt.addItem(crop);
                 player.getInventoryManager().removeItem(seed, 1);
-                return new Result<>(true, cropType + "planted successfully");
+                if (giantChecker(y, x)) return new Result<>(true, cropType + " planted successfully and you just made giant plant!" );
+                else return new Result<>(true, cropType + " planted successfully");
             } else if (treeTypes != null) {
                 Tree tree = new Tree(1, 1, treeTypes, false);
                 tree.setCoordinate(new Coordinate(0, 0));
-                tree.setInGreenHouse(inGreenhouse);
                 dirt.unPlow();
                 dirt.addItem(tree);
                 player.getInventoryManager().removeItem(seed, 1);
-                return new Result<>(true, treeTypes + "planted successfully");
+                if (giantChecker(y, x)) return new Result<>(true, treeTypes + " planted successfully and you just made giant plant!" );
+                else return new Result<>(true, treeTypes + " planted successfully");
             } else {
                 return new Result<>(false, "wierd happened!");
             }
@@ -645,11 +727,11 @@ public class GameMenuController {
             if (treeTypes != null) {
                 Tree tree = new Tree(1, 1, treeTypes, false);
                 tree.setCoordinate(new Coordinate(0, 0));
-                tree.setInGreenHouse(inGreenhouse);
                 dirt.unPlow();
                 dirt.addItem(tree);
                 player.getInventoryManager().removeItem(sapling, 1);
-                return new Result<>(true, treeTypes + "planted successfully");
+                if (giantChecker(y, x)) return new Result<>(true, treeTypes + " planted successfully and you just made giant plant!" );
+                else return new Result<>(true, treeTypes + " planted successfully");
             } else {
                 return new Result<>(false, "wierd happened!");
             }

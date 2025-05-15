@@ -1,5 +1,6 @@
 package phi.ap.model;
 
+import phi.ap.model.enums.TileType;
 import phi.ap.model.items.products.Plant;
 
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class Giant {
         }
         for (Plant member : members) {
             member.copy(earliest);
+        }
+        for (Plant member : members) {
+            member.fillTile(TileType.GiantBackGround.getTile());
         }
     }
 
