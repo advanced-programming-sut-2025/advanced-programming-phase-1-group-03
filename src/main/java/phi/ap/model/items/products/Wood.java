@@ -10,6 +10,7 @@ public class Wood extends Product {
         super(height, width);
         fillTile(TileType.Wood.getTile());
         setName("Wood");
+        makeSellable();
         setSellPrice(CarpenterShopProducts.Wood.getPrice());
     }
 

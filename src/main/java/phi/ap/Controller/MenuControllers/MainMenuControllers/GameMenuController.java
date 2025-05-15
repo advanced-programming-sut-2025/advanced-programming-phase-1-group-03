@@ -9,6 +9,7 @@ import phi.ap.model.items.buildings.AnimalHouse;
 import phi.ap.model.items.buildings.Building;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.buildings.Greenhouse;
+import phi.ap.model.items.buildings.ShippingBin;
 import phi.ap.model.items.buildings.stores.Store;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
@@ -181,6 +182,7 @@ public class GameMenuController {
         //TODO
         doAnimalSystemTasks();
         doStoreTasks();
+        doShippingBinTasks();
         Game.getInstance().getWeatherManager().setWeathersInMorning();
         App.getInstance().getGameService().generateForaging(1);
         App.getInstance().getGameService().doWeatherTasks();
@@ -189,6 +191,12 @@ public class GameMenuController {
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
+    private void doShippingBinTasks(){
+        for(ShippingBin shippingBin : Game.getInstance().getShippingBins()){
+            Game.getInstance().getCurrentPlayer().setGold(
+                    shippingBin.sellAll() + Game.getInstance().getCurrentPlayer().getGold());
+        }
+    }
     private void doStoreTasks() {
         Game.getInstance().getStoreManager().refreshItems();
     }
@@ -462,8 +470,20 @@ public class GameMenuController {
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
 
-    public Result<String> inventoryTrash(String itemName, String amount) {
-        return null;
+    public Result<String> inventoryTrash(String itemName, String amountSt) {
+        ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItemByName(itemName);
+        if(itemStack == null) {
+            return new Result<>(false, "Item doesn't exists!!");
+        }
+        int amount;
+        if(amountSt == null)
+            amount = itemStack.getAmount();
+        else
+            amount = Integer.parseInt(amountSt);
+        TrashCan trashCan = Game.getInstance().getCurrentPlayer().getToolManager().getTrashCan();
+        int money = trashCan.trash(new ItemStack(itemStack.getItem(), amount));
+        Game.getInstance().getCurrentPlayer().setGold(money + Game.getInstance().getCurrentPlayer().getGold());
+        return new Result<>(true, "Ok ok trashcan produces " + money + "$ for you");
     }
 
     public Result<String> toolEquip(String toolName) {
@@ -1103,7 +1123,8 @@ public class GameMenuController {
 
         if(house instanceof AnimalHouse)
             Game.getInstance().getCurrentPlayer().getOwnedAnimalHouse().add((AnimalHouse) house);
-
+        else if(house instanceof ShippingBin)
+            Game.getInstance().addShippingBin((ShippingBin) house);
         return new Result<>(true, "Building added successfully.");
     }
     public Result<String> buyAnimal(String animalType, String animalName) {
@@ -1351,6 +1372,7 @@ public class GameMenuController {
                 if(toBuy.getKey().getItem() instanceof Building)
                     return new Result<>(false, "If you want to build an animal house, use build command");
 
+
                 Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
             }
             case TheStarDropSaloon -> {
@@ -1396,8 +1418,28 @@ public class GameMenuController {
         return new Result<>(true, amount + "dollars added, your currency: " +
                 Game.getInstance().getCurrentPlayer().getGold() + "$");
     }
-    public Result<String> sellProduct(String productName, String amount) {
-        return null;
+    public Result<String> sellProduct(String productName, String amountString) {
+        if(amountString == null) amountString = "1";
+        int amount = Integer.parseInt(amountString);
+        ShippingBin ship = null;
+        for(int d = 0; d < 8; d++){
+            Coordinate cord = Misc.getDiffFromDirection(d);
+            Item itemOnTop = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(cord.getY(), cord.getX());
+            if(itemOnTop instanceof ShippingBin)
+                ship = (ShippingBin) itemOnTop;
+        }
+        if(ship == null)
+            return new Result<>(false, "You are not close to a shipping bin!");
+        ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItemByName(productName);
+        if(itemStack == null)
+            return new Result<>(false, "We don't have this item");
+        if(itemStack.getAmount() < amount)
+            return new Result<>(false, "We don't have " + amount + " of this item");
+        if(!itemStack.getItem().isSellable())
+            return new Result<>(false, "This Item is not sellable");
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), amount);
+        ship.addItem(new ItemStack(itemStack.getItem(), amount));
+        return new Result<>(true, "Items put in shipping bin, interest from selling them will be paid tomorrow");
     }
     public Result<String> showFriendShip() {
         ArrayList<Friendship> friendships = Friendship.getFriends(Game.getInstance().getCurrentPlayer());

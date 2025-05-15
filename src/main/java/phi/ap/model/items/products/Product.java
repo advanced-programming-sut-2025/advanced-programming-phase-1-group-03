@@ -141,6 +141,23 @@ public class Product extends Item {
         products = new ArrayList<>(product.getProducts());
     }
 
+    public int calculateRealPrice(){
+         switch (getLevels().getCurrentLevel()){
+            case 0 -> { //regular
+                return getSellPrice();
+            }
+            case 1 -> { //silver
+                return getSellPrice() * 5 / 4;
+            }
+            case 2 -> { //gold
+                return getSellPrice() * 3 / 2;
+            }
+            case 3 -> { //iridium
+                return getSellPrice() * 2;
+            }
+        }
+        return -1;
+    }
     public int getSellPrice() {
         if (levels == null) return super.getSellPrice();
         return (int) (super.getSellPrice() * levels.getCurrentLevelName().getSellPrinceCoefficient());

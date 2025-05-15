@@ -144,6 +144,10 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.cheatThor(matcher.group("y"), matcher.group("x")));
         } else if ((matcher = GameMenuCommands.WalkWASD.getMatcher(input)) != null) {
             System.out.println(controller.walkWASD(matcher.group("direction")));
+        } else if((matcher = GameMenuCommands.SellProduct.getMatcher(input)) != null) {
+            System.out.println(controller.sellProduct(matcher.group("productName").trim(), matcher.group("amount")));
+        }else if((matcher = GameMenuCommands.TrashItem.getMatcher(input)) != null) {
+            System.out.println(controller.inventoryTrash(matcher.group("itemName").trim(), matcher.group("amount")));
         }
         else {
             super.check(input);

@@ -7,7 +7,6 @@ import phi.ap.model.items.tools.*;
 import java.util.ArrayList;
 
 public class ToolManager {
-
     private Backpack backpack;
     private TrashCan trashCan;
 
@@ -40,9 +39,6 @@ public class ToolManager {
         inventoryManager.addItem(new Pickaxe(), 1);
         inventoryManager.addItem(new Axe(), 1);
         inventoryManager.addItem(new WateringCan(), 1);
-        inventoryManager.addItem(new Scythe(), 1);
-        inventoryManager.addItem(new MilkPail(), 1);
-        inventoryManager.addItem(new Shear(), 1);
     }
 
     public TrashCan getTrashCan() {

@@ -13,6 +13,7 @@ public class Stone extends Product {
         this.type = type;
         setName(type.name());
         fillTile(type.getTile());
+        makeSellable();
         setSellPrice(CarpenterShopProducts.Stone.getPrice());
     }
 

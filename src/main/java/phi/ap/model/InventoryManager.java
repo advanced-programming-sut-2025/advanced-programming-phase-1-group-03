@@ -108,14 +108,18 @@ public class InventoryManager {
         return stack;
     }
 
-    //return item must be unique
-    //if there are two items with the given name this function won't work
+
     public ItemStack getItemByName(String name) {
+        ItemStack result = new ItemStack(null, 0);
         for (ItemStack stack : storage.getStacks()) {
-            if(stack.getItem().getName().equalsIgnoreCase(name))
-                return stack;
+            if(stack.getItem().getName().equalsIgnoreCase(name)) {
+                result.setItem(stack.getItem());
+                result.setAmount(stack.getAmount() + result.getAmount());
+            }
         }
-        return null;
+        if(result.getItem() == null)
+            return null;
+        return result;
     }
     public Food getFood(FoodTypes foodType) {
         Food food = null;
