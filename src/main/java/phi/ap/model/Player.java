@@ -38,6 +38,16 @@ public class Player extends Human {
     private FarmTypes farmType = null;
     private Farm farm = null;
     private Location location;
+    private Player partner = null;
+
+    public Player getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Player partner) {
+        this.partner = partner;
+    }
+
 
     public ArrayList<Product> getArtisanItems() {
         return artisanItems;
@@ -77,11 +87,18 @@ public class Player extends Human {
     }
 
     public int getGold() {
-        return gold;
+        if(partner == null)
+            return this.gold;
+        else
+            return this.gold + partner.getGold();
     }
 
     public void setGold(int gold) {
         this.gold = gold;
+        if(this.gold < 0) {
+            partner.setGold(partner.getGold() + this.gold);
+            this.gold = 0;
+        }
     }
     public Location getLocation() {
         return location;
