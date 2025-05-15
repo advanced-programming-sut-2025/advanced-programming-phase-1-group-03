@@ -1553,7 +1553,7 @@ public class GameMenuController {
         Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(new Product(ProductNames.Bouquet), 1);
         Game.getInstance().getPlayerByUserName(username).getInventoryManager().addItem(new Product(ProductNames.Bouquet), 1);
         friendship.giveFlower();
-        return null;
+        return new Result<>(true, "flower sent.");
     }
     public Result<String> askMarriage(String username, String ringName) {
         Player partner = Game.getInstance().getPlayerByUserName(username);
@@ -1567,7 +1567,8 @@ public class GameMenuController {
             return new Result<>(false, "You must have at least friendShip with level 3.");
         if(itemStack.getAmount() == 0)
             return new Result<>(false, "You don't have WeddingRing.");
-        return null;
+        friendship.askMarriage(Game.getInstance().getCurrentPlayer(), partner, new Product(ProductNames.WeddingRing));
+        return new Result<>(true, "Your request have been sent.");
     }
     public Result<String> respondToMarriageRequest(String answer, String username) {
         return null;
