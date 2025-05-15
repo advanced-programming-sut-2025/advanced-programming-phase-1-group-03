@@ -1,9 +1,11 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.Weather;
+import phi.ap.model.enums.npcStuff.NPCTypes;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.buildings.ShippingBin;
 import phi.ap.model.items.relations.Friendship;
+import phi.ap.model.npcStuff.NPC;
 
 import java.util.ArrayList;
 
@@ -41,6 +43,7 @@ public class Game {
     private Player currentPlayer;
     private StoreManager storeManager;
     private ArrayList<ShippingBin> shippingBins = new ArrayList<>();
+    private ArrayList<NPC> npcs;
 
     public void addShippingBin(ShippingBin ship){
         shippingBins.add(ship);
@@ -48,6 +51,13 @@ public class Game {
 
     public ArrayList<ShippingBin> getShippingBins() {
         return shippingBins;
+    }
+
+    public NPC getNPC(NPCTypes npc) {
+        for (NPC npc1 : npcs) {
+            if (npc1.getType() == npc) return npc1;
+        }
+        return null;
     }
 
     public Map getMap() {
@@ -134,5 +144,9 @@ public class Game {
         if(diffx > 1 || diffx < -1 || diffy > 1 || diffy < -1)
             return false;
         return true;
+    }
+
+    public ArrayList<NPC> getNpcs() {
+        return npcs;
     }
 }

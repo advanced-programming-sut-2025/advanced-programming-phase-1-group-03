@@ -1,11 +1,9 @@
 package phi.ap.model.enums;
 
-import phi.ap.model.NPC;
-import phi.ap.model.enums.StoreProducts.BlackSmithsProducts;
+import phi.ap.model.enums.npcStuff.NPCTypes;
 import phi.ap.model.items.Item;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public enum StoreTypes {
     Blacksmith("Blacksmith", NPCTypes.Clint, 9, 16, TileType.BlackSmithStore),
@@ -21,14 +19,13 @@ public enum StoreTypes {
     private int openingTime;
     private int closingTime;
     private TileType tileType;
-    private ArrayList<Item> products;
     private String name;
     StoreTypes(String name, NPCTypes npcTypes, int openingTime, int closingTime, TileType tileType) {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
-        this.products = products;
         this.name = name;
         this.tileType = tileType;
+        this.storeManager = npcTypes;
     }
 
     public NPCTypes getStoreManager() {
@@ -41,10 +38,6 @@ public enum StoreTypes {
 
     public int getClosingTime() {
         return closingTime;
-    }
-
-    public ArrayList<Item> getProducts() {
-        return products;
     }
 
     public String getName() {

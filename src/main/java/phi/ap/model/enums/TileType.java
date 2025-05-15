@@ -30,7 +30,7 @@ public enum TileType {
     StarDropSaloon(" ", "" ,Colors.bg(69), true),
     CarpenterShop(" ", "" ,Colors.bg(85), true),
     JojaMart(" ", "" ,Colors.bg(155), true),
-    PierreGeneralStore(" ", "" ,Colors.bg(230), true),
+    PierreGeneralStore(" ", "" ,Colors.bg(254), true),
     FishShop(" ", "" ,Colors.bg(52), true),
     ShippingBin("S", "" ,Colors.bg(120), false),
     GiantBackGround(" ", "" ,Colors.bg(124), false),

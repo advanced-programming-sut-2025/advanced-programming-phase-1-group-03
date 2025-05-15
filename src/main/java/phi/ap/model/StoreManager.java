@@ -7,6 +7,7 @@ import phi.ap.model.enums.TileType;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.Portal;
 import phi.ap.model.items.buildings.stores.*;
+import phi.ap.model.npcStuff.NPC;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
@@ -64,6 +65,35 @@ public class StoreManager {
         Game.getInstance().getMap().getNPCVillage().addItem(starDrop);
         Game.getInstance().getMap().getNPCVillage().addItem(jojaMart);
         Game.getInstance().getMap().getNPCVillage().addItem(carpenter);
+
+        NPC npc;
+        npc = new NPC(blacksmith.getStoreTypes().getStoreManager());
+        npc.setCoordinate(new Coordinate(blacksmith.getHeight() / 2 - 1, blacksmith.getWidth() / 2));
+        blacksmith.addItem(npc);
+
+        npc = new NPC(fish.getStoreTypes().getStoreManager());
+        npc.setCoordinate(new Coordinate(1, 1));
+        fish.addItem(npc);
+
+        npc = new NPC(marnieRanch.getStoreTypes().getStoreManager());
+        npc.setCoordinate(new Coordinate(marnieRanch.getHeight() / 2 - 1, marnieRanch.getWidth() / 2));
+        marnieRanch.addItem(npc);
+
+        npc = new NPC(pierre.getStoreTypes().getStoreManager());
+        npc.setCoordinate(new Coordinate(pierre.getHeight() / 2 + 1, pierre.getWidth() / 2));
+        pierre.addItem(npc);
+
+        npc = new NPC(starDrop.getStoreTypes().getStoreManager());
+        npc.setCoordinate(new Coordinate(starDrop.getHeight() / 2 + 1, starDrop.getWidth() / 2));
+        starDrop.addItem(npc);
+
+        npc = new NPC(jojaMart.getStoreTypes().getStoreManager());
+        npc.setCoordinate(new Coordinate(jojaMart.getHeight() / 2 + 1, jojaMart.getWidth() / 2));
+        jojaMart.addItem(npc);
+
+        npc = new NPC(carpenter.getStoreTypes().getStoreManager());
+        npc.setCoordinate(new Coordinate(1, 1));
+        carpenter.addItem(npc);
 
         Portal.makeMiddleDoor(carpenter, Game.getInstance().getMap().getNPCVillage(), TileType.Door.getTile(), FaceWay.Up);
         Portal.makeMiddleDoor(pierre, Game.getInstance().getMap().getNPCVillage(), TileType.Door.getTile(), FaceWay.Up);
