@@ -21,6 +21,9 @@ public abstract class Item extends Ground {
         setName("Item");
     }
 
+    public void makeSellable(){
+        this.isSellable = true;
+    }
     public abstract void doTask();
 
     public String getName() {

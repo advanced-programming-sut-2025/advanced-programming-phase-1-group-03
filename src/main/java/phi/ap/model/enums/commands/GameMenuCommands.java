@@ -60,7 +60,8 @@ public enum GameMenuCommands implements Command{
     GreenHouseBuild("\\s*green\\s*house\\s+build\\s*"),
     CheatAddDollar("\\s*cheat\\s*add\\s+(?<count>-?\\d+)\\s+dollars\\s*"),
     CheatThor("\\s*cheat\\s+(thor|Thor)\\s+-l\\s+(?<x>-?\\d+)(\\s+|\\s*,\\s*)(?<y>-?\\d+)\\s*"),
-    WalkWASD("\\s*(?<direction>(w|a|s|d))\\s*");
+    WalkWASD("\\s*(?<direction>(w|a|s|d))\\s*"),
+    SellProduct("\\s*sell\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

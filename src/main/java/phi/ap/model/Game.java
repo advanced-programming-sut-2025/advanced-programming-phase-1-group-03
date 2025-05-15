@@ -2,6 +2,7 @@ package phi.ap.model;
 
 import phi.ap.model.enums.Weather;
 import phi.ap.model.items.Item;
+import phi.ap.model.items.buildings.ShippingBin;
 import phi.ap.model.items.relations.Friendship;
 
 import java.util.ArrayList;
@@ -39,6 +40,15 @@ public class Game {
     private Date date = new Date(Date.START_HOUR); // zaman aghaz bazi 9 sobhe
     private Player currentPlayer;
     private StoreManager storeManager;
+    private ArrayList<ShippingBin> shippingBins = new ArrayList<>();
+
+    public void addShippingBin(ShippingBin ship){
+        shippingBins.add(ship);
+    }
+
+    public ArrayList<ShippingBin> getShippingBins() {
+        return shippingBins;
+    }
 
     public Map getMap() {
         return map;
