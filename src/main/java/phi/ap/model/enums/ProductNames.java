@@ -13,6 +13,8 @@ public enum ProductNames {
     Grass("Grass", new LevelProcess(), new Tile("#", Colors.fg(28), "", false)),
     Fiber("Fiber", new LevelProcess(), new Tile("#", Colors.fg(28), "", false)),
     TroutSoup("TroutSoup", new LevelProcess(), new Tile("#", Colors.fg(28), "", false)),
+    WeddingRing("WeddingRing", new LevelProcess(), new Tile("#", Colors.fg(28), ""), true, 10000, null),
+    Bouquet("Bouquet", new LevelProcess(), new Tile("#", Colors.fg(28), ""), true, 1000, null),
     ;
     private String name;
     private LevelProcess levels;

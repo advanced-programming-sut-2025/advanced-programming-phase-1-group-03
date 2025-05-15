@@ -3,10 +3,7 @@ package phi.ap.model.enums;
 import phi.ap.model.ItemStack;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.craftingMachines.*;
-import phi.ap.model.items.products.Mineral;
-import phi.ap.model.items.products.Recipe;
-import phi.ap.model.items.products.Stone;
-import phi.ap.model.items.products.Wood;
+import phi.ap.model.items.products.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,11 +51,13 @@ public enum CraftingTypes {
 
     Scarecrow("Scarecrow", new ArrayList<>(Arrays.asList(
             new ItemStack(new Wood(1, 1), 50),
+            new ItemStack(new Product(ProductNames.Fiber), 20),
             new ItemStack(new Mineral(1, 1, ForagingMineralTypes.Coal), 1))),
             null, null, null, new Scarecrow(1, 1, "Scarecrow", null)),
 
     DeluxeScarecrow("DeluxeScarecrow", new ArrayList<>(Arrays.asList(
             new ItemStack(new Wood(1, 1), 50),
+            new ItemStack(new Product(ProductNames.Fiber), 20),
             new ItemStack(new Mineral(1, 1, ForagingMineralTypes.Coal), 1),
             new ItemStack(new Mineral(1, 1, ForagingMineralTypes.Iridium), 1))),
             AbilityType.Farming, 2, null, new Scarecrow(1, 1, "DeluxeScarecrow", null)),
@@ -82,6 +81,7 @@ public enum CraftingTypes {
             AbilityType.Farming, 3, null, new CraftedProducer(1, 1, "Keg", null)),
 
     Loom("Loom", new ArrayList<>(Arrays.asList(
+            new ItemStack(new Product(ProductNames.Fiber), 30),
             new ItemStack(new Wood(1, 1), 60))),
             AbilityType.Farming, 3, null, new CraftedProducer(1, 1, "Loom", null)),
 
@@ -105,6 +105,7 @@ public enum CraftingTypes {
 
     Dehydrator("Dehydrator", new ArrayList<>(Arrays.asList(
             new ItemStack(new Wood(1, 1), 30),
+            new ItemStack(new Product(ProductNames.Fiber), 30),
             new ItemStack(new Stone(1, 1, StoneTypes.RegularStone), 20))),
             null, null, null, new CraftedProducer(1, 1, "Dehydrator", null)),
     GrassStarter("GrassStarter", new ArrayList<>(Arrays.asList(

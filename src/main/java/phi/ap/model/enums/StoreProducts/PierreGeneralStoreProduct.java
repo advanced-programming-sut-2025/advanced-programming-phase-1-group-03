@@ -8,6 +8,7 @@ import phi.ap.model.items.Item;
 import phi.ap.model.items.Sapling;
 import phi.ap.model.items.Seed;
 import phi.ap.model.items.products.Food;
+import phi.ap.model.items.products.Product;
 import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.products.Soil;
 
@@ -21,9 +22,8 @@ public enum PierreGeneralStoreProduct implements StoreItemProducer {
     WheatFlour("Wheat Flour", "A common cooking ingredient made from crushed wheat seeds.", 100,
             null, Integer.MAX_VALUE, new Food(1, 1, FoodTypes.WheatFlour), null),
 
-    // TODO Bouquet and weddingRing
-    // Bouquet("Bouquet", "A gift that shows your romantic interest.", 1000,null, 2,),
-    // WeddingRing("Wedding Ring", "It's used to ask for another farmer's hand in marriage.", 10000,null, 2),
+    Bouquet("Bouquet", "A gift that shows your romantic interest.", 1000,null, 2, new Product(ProductNames.Bouquet), null),
+    WeddingRing("Wedding Ring", "It's used to ask for another farmer's hand in marriage.", 10000,null, 2, new Product(ProductNames.WeddingRing), null),
 
     DehydratorRecipe("Dehydrator Recipe", "A recipe to make Dehydrator", 10000, null,
             1, new Recipe(null, null, RecipeTypes.Dehydrator), null),

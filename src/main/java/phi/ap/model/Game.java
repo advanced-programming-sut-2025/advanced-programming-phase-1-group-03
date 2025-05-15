@@ -75,6 +75,14 @@ public class Game {
         this.gameLoader = gameLoader;
     }
 
+    public Player getPlayerByUserName(String userName) {
+        for(Player player : this.players) {
+            if(player.getUser().getUsername().equals(userName))
+                return player;
+        }
+        return null;
+    }
+
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
@@ -116,5 +124,15 @@ public class Game {
 
     public void whenMapLoaded() {
         this.storeManager = new StoreManager();
+    }
+
+    public Boolean isNear(Player player1, Player player2) {
+        int diffx = player1.getLocation().getX() -
+                player2.getLocation().getX();
+        int diffy = player1.getLocation().getY() -
+                player2.getLocation().getY();
+        if(diffx > 1 || diffx < -1 || diffy > 1 || diffy < -1)
+            return false;
+        return true;
     }
 }
