@@ -9,7 +9,7 @@ public class Text extends Item {
         setName("Text");
         setCoordinate(coordinate);
         for(int i = 0; i < text.length(); i++) {
-            setTile(0, i, TileType.valueOf( String.valueOf(text.charAt(i)) ).getTile());
+            setTile(0, i, TileType.valueOf( String.valueOf(text.charAt(i))).getTile());
         }
     }
     @Override

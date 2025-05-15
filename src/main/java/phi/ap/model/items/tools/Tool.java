@@ -11,7 +11,7 @@ public abstract class Tool extends Item {
     private AbilityType contactedAbility;
     private LevelProcess levelProcess;
     private ArrayList<Integer> energyConsumptionPerLevel;
-
+    private int upgradeDay;
     public abstract Result<String> useTool(Coordinate direction);
 
     //TODO : use energy base weather
@@ -22,6 +22,11 @@ public abstract class Tool extends Item {
         this.energyConsumptionPerLevel = energyConsumptionPerLevel;
 
         this.setMaxStackSize(1);
+    }
+
+    public void upgrade(int day){
+        getLevelProcess().upgrade();
+        setUpgradeDay(day);
     }
     @Override
     public String toString() {
@@ -55,5 +60,13 @@ public abstract class Tool extends Item {
             return false;
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseUnit(-energy);
         return true;
+    }
+
+    public int getUpgradeDay() {
+        return upgradeDay;
+    }
+
+    public void setUpgradeDay(int upgradeDay) {
+        this.upgradeDay = upgradeDay;
     }
 }

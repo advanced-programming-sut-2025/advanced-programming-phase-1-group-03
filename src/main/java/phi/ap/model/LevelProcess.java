@@ -25,6 +25,7 @@ public class LevelProcess {
     }
 
     public void upgrade(){
+
         currentLevel = (currentLevel + 1) % levelNames.size();
     }
     public boolean levelNamesEqual(ArrayList<LevelName> levelNames) {
@@ -56,6 +57,9 @@ public class LevelProcess {
         return levelNames.get(currentLevel);
     }
 
+    public boolean isMax(){
+        return currentLevel == levelNames.size() - 1;
+    }
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
     }

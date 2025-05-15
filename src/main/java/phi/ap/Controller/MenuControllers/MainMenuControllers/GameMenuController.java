@@ -499,10 +499,30 @@ public class GameMenuController {
         if (currentHour < store.getStoreTypes().getOpeningTime() || currentHour > store.getStoreTypes().getClosingTime())
             return new Result<>(false, "Store is closed in this time!!");
 
-        if(tool instanceof TrashCan){
+        if(tool.getLevelProcess().isMax())
+            return new Result<>(false, "Your tool is at maximum level!! you can't upgrade it anymore");
 
-        }
-        return null;
+        LevelName level = tool.getLevelProcess().getCurrentLevelName();
+        BlackSmithsProducts productNextLevel;
+        if(tool instanceof TrashCan)
+            productNextLevel = BlackSmithsProducts.getNextLevelTrashcan(level);
+        else
+            productNextLevel = BlackSmithsProducts.getNextLevelTool(level);
+        if(productNextLevel.getPrice() > Game.getInstance().getCurrentPlayer().getGold())
+            return new Result<>(false, "You don't have enough money!!");
+
+        if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckExistence(productNextLevel.getIngredient()))
+            return new Result<>(false, "You don't have enough "+productNextLevel.getIngredient().getItem().getName());
+
+        if(tool.getUpgradeDay() == Game.getInstance().getDate().getRawDay())
+            return new Result<>(false, "You already updated your tool this day!!");
+
+        tool.upgrade(Game.getInstance().getDate().getRawDay());
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(
+                productNextLevel.getIngredient().getItem(), productNextLevel.getIngredient().getAmount());
+        Game.getInstance().getCurrentPlayer().setGold(
+                Game.getInstance().getCurrentPlayer().getGold() - productNextLevel.getPrice());
+        return new Result<>(true, "tool upgraded successfully, current Level is : " + tool.getLevelProcess().getCurrentLevelName().toString());
     }
 
     public Result<String> useTool(String direction) {
@@ -908,6 +928,8 @@ public class GameMenuController {
             return new Stone(1, 1, StoneTypes.getType(name));
         if(SoilTypes.find(name) != null)
             return new Soil(1, 1, SoilTypes.find(name));
+        if(ForagingMineralTypes.find(name) != null)
+            return ForagingMineralTypes.find(name).getItem();
         return null;
     }
     public Result<String> cheatAddItem(String itemName, String amountString) {
@@ -1231,6 +1253,8 @@ public class GameMenuController {
         for(Object p : store.getAllProducts()){
             AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
 
+            if(product.getKey().getItem() == null)
+                continue;
             String amount = String.valueOf(product.getValue());
             if(product.getValue() == Integer.MAX_VALUE) amount = " unlimited";
             response.append(product.getKey().getNameInStore()).append(" ").append(product.getKey().getItem().getSellPrice()).append(" coin")
@@ -1250,7 +1274,8 @@ public class GameMenuController {
         StringBuilder response = new StringBuilder();
         for(Object p : store.getAvailableProducts()){
             AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
-
+            if(product.getKey().getItem() == null)
+                continue;
             String amount = String.valueOf(product.getValue());
             if(product.getValue() == Integer.MAX_VALUE) amount = " unlimited";
             response.append(product.getKey().getNameInStore()).append(" ").append(product.getKey().getItem().getSellPrice()).append(" coin")

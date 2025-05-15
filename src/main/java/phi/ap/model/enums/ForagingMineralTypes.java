@@ -3,6 +3,8 @@ package phi.ap.model.enums;
 import phi.ap.model.App;
 import phi.ap.model.Tile;
 import phi.ap.model.enums.Time.Seasons;
+import phi.ap.model.items.Item;
+import phi.ap.model.items.products.Mineral;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,7 @@ public enum ForagingMineralTypes {
     private Tile tile;
     private LevelName levelNeedToMine;
     private int probabilityPercent;
+    private Item item;
     ForagingMineralTypes(String symbol, String fgColor, String bgColor, String name, LevelName levelNeedToMine,
                          String Description, int sellPrice, int probabilityPercent) {
         this.sellPrice = sellPrice;
@@ -42,6 +45,7 @@ public enum ForagingMineralTypes {
         this.levelNeedToMine = levelNeedToMine;
         this.tile = new Tile(symbol, fgColor, bgColor);
         this.probabilityPercent = probabilityPercent;
+        this.item = new Mineral(1, 1, this);
     }
     public String getDescription() {
         return this.description;
@@ -84,5 +88,18 @@ public enum ForagingMineralTypes {
             return null;
         }
         return foragingMineralType;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+    public static ForagingMineralTypes find(String input) {
+        input = input.replaceAll("\\s+", "").toLowerCase();
+        for (ForagingMineralTypes min : ForagingMineralTypes.values()) {
+            if (min.toString().toLowerCase().equals(input)) {
+                return min;
+            }
+        }
+        return null;
     }
 }
