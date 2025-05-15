@@ -25,8 +25,7 @@ public class LevelProcess {
     }
 
     public void upgrade(){
-
-        currentLevel = (currentLevel + 1) % levelNames.size();
+        currentLevel = Math.min((currentLevel + 1),levelNames.size() - 1);
     }
     public boolean levelNamesEqual(ArrayList<LevelName> levelNames) {
         if (levelNames == null) return false;

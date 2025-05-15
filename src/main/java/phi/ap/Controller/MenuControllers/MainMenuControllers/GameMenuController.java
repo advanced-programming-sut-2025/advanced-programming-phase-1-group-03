@@ -470,8 +470,20 @@ public class GameMenuController {
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
 
-    public Result<String> inventoryTrash(String itemName, String amount) {
-        return null;
+    public Result<String> inventoryTrash(String itemName, String amountSt) {
+        ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItemByName(itemName);
+        if(itemStack == null) {
+            return new Result<>(false, "Item doesn't exists!!");
+        }
+        int amount;
+        if(amountSt == null)
+            amount = itemStack.getAmount();
+        else
+            amount = Integer.parseInt(amountSt);
+        TrashCan trashCan = Game.getInstance().getCurrentPlayer().getToolManager().getTrashCan();
+        int money = trashCan.trash(new ItemStack(itemStack.getItem(), amount));
+        Game.getInstance().getCurrentPlayer().setGold(money + Game.getInstance().getCurrentPlayer().getGold());
+        return new Result<>(true, "Ok ok trashcan produces " + money + "$ for you");
     }
 
     public Result<String> toolEquip(String toolName) {
@@ -1541,6 +1553,7 @@ public class GameMenuController {
         Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(new Product(ProductNames.Bouquet), 1);
         Game.getInstance().getPlayerByUserName(username).getInventoryManager().addItem(new Product(ProductNames.Bouquet), 1);
         friendship.giveFlower();
+        return null;
     }
     public Result<String> askMarriage(String username, String ringName) {
         Player partner = Game.getInstance().getPlayerByUserName(username);
@@ -1554,7 +1567,7 @@ public class GameMenuController {
             return new Result<>(false, "You must have at least friendShip with level 3.");
         if(itemStack.getAmount() == 0)
             return new Result<>(false, "You don't have WeddingRing.");
-
+        return null;
     }
     public Result<String> respondToMarriageRequest(String answer, String username) {
         return null;
