@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Gift {
 
-    private static ArrayList<Gift> gifts;
+    private static ArrayList<Gift> gifts = new ArrayList<>();
     private static Integer allId = 0;
     private Integer id;
     private Integer rate = null;
@@ -23,7 +23,8 @@ public class Gift {
         this.sender = sender;
         this.getter = getter;
         this.haveSeen = false;
-        this.id = allId++;
+        allId = allId  + 1;
+        this.id = allId;
     }
 
     public static ArrayList<Gift> getReceivedGifts(Player player) {
@@ -47,13 +48,13 @@ public class Gift {
     public String printGift() {
         StringBuilder stringBuilder = new StringBuilder();
         if(rate == null)
-            stringBuilder.append("Sender: " + sender.getUser().getUsername() + " Item: " + itemStack.getItem().getName() + " Amount: " + itemStack.getAmount() + " Rate: Don't have rate.");
+            stringBuilder.append("Id: " + id +  " Sender: " + sender.getUser().getUsername() + " Item: " + itemStack.getItem().getName() + " Amount: " + itemStack.getAmount() + " Rate: Don't have rate.");
         else
             stringBuilder.append("Sender: " + sender.getUser().getUsername() + " Item: " + itemStack.getItem().getName() + " Amount: " + itemStack.getAmount() + " Rate: " + rate);
         return stringBuilder.toString();
     }
 
-    public int getRate() {
+    public Integer getRate() {
         return rate;
     }
 

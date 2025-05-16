@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class TradeRequest {
 
-    private static ArrayList<TradeRequest> trades;
+    private static ArrayList<TradeRequest> trades = new ArrayList<>();
     private Player sender;
     private Player getter;
     private static int lastId = 0;
@@ -50,8 +50,8 @@ public class TradeRequest {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Not answered trade list: \n");
         for(TradeRequest tradeRequest : trades) {
-            if(tradeRequest.getGetter().equals(player)) {
-                stringBuilder.append(printTrade(tradeRequest) + "Answer: " + tradeRequest.getAnswer());
+            if(tradeRequest.getGetter().equals(player) || tradeRequest.getSender().equals(player)) {
+                stringBuilder.append(printTrade(tradeRequest) + " Answer: " + tradeRequest.getAnswer());
             }
         }
         return stringBuilder.toString();
@@ -74,16 +74,16 @@ public class TradeRequest {
         StringBuilder stringBuilder = new StringBuilder();
         if(tradeRequest.getPrice() == null)
             stringBuilder.append("Trade id: " + tradeRequest.getId() + " From: " + tradeRequest.getSender() +
-                    "\n" + tradeRequest.getType() + "s Item :" +
+                    "\n" + tradeRequest.getType() + "s Item: " +
                     tradeRequest.getItem().getItem().getName() + " Amount: " +
-                    tradeRequest.getItem().getAmount() + "\n for Item: " +
-                    tradeRequest.getTargetItem().getItem().getName() +
+                    tradeRequest.getItem().getAmount() + "\nfor Item: " +
+                    tradeRequest.getTargetItem().getItem().getName() + " " +
                     tradeRequest.getTargetItem().getAmount());
         else
             stringBuilder.append("Trade id: " + tradeRequest.getId() + " From: " + tradeRequest.getSender() +
                     "\n" + tradeRequest.getType() + "s Item :" +
                     tradeRequest.getItem().getItem().getName() + " Amount: " +
-                    tradeRequest.getItem().getAmount() + "\n for " + tradeRequest.getPrice());
+                    tradeRequest.getItem().getAmount() + "\nfor " + tradeRequest.getPrice() + " gold");
         return stringBuilder.toString();
     }
 

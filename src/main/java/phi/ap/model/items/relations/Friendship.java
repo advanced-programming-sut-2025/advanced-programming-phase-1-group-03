@@ -7,10 +7,10 @@ import phi.ap.model.items.products.Product;
 import java.util.ArrayList;
 
 public class Friendship {
-    private static ArrayList<Friendship> friendships;
-    private ArrayList<Talk> talks;
-    private ArrayList<Gift> player1Gift;
-    private ArrayList<Gift> player2Gift;
+    private static ArrayList<Friendship> friendships = new ArrayList<>();
+    private ArrayList<Talk> talks = new ArrayList<>();
+    private ArrayList<Gift> player1Gift = new ArrayList<>();
+    private ArrayList<Gift> player2Gift = new ArrayList<>();
     private final Player player1;
     private final Player player2;
     private int xp;
@@ -19,8 +19,12 @@ public class Friendship {
 
     private MarriageRequest marriageRequest = null;
     Boolean isHugged = false;
+
+
     Boolean haveTalked = false;
     Boolean flower = false;
+
+
     Boolean married = false;
 
     public Friendship(Player player1, Player player2, int xp) {
@@ -28,6 +32,10 @@ public class Friendship {
         this.player2 = player2;
         this.xp = xp;
         friendships.add(this);
+    }
+
+    public Boolean getMarried() {
+        return married;
     }
 
     public void askMarriage(Player applicant, Player respondent, Product ring) {
@@ -75,6 +83,18 @@ public class Friendship {
         return player2Gift;
     }
 
+    public void setHaveTalked(Boolean haveTalked) {
+        this.haveTalked = haveTalked;
+    }
+
+    public void setFlower(Boolean flower) {
+        this.flower = flower;
+    }
+
+    public void setHugged(Boolean hugged) {
+        isHugged = hugged;
+    }
+
     public void setPlayer2Gift(ArrayList<Gift> player2Gift) {
         this.player2Gift = player2Gift;
     }
@@ -93,7 +113,7 @@ public class Friendship {
             return null;
         for(Friendship friendship : friendships) {
             if((friendship.getPlayer1().equals(firstPlayer) || friendship.getPlayer1().equals(secondPlayer))
-            && (friendship.getPlayer2().equals(firstPlayer) || friendship.getPlayer2().equals(firstPlayer))) {
+            && (friendship.getPlayer2().equals(firstPlayer) || friendship.getPlayer2().equals(secondPlayer))) {
                 return friendship;
             }
         }
@@ -105,11 +125,15 @@ public class Friendship {
         if(friendship == null)
             return;
         String notification = "You have received " + itemStack.getItem().getName() + " with amount " + itemStack.getAmount() + " from " + senderPlayer.getUser().getUsername();
+        Gift gift = new Gift(itemStack, notification, senderPlayer, getterPlayer);
         if(friendship.getPlayer1().equals(getterPlayer))
-            player1Gift.add(new Gift(itemStack, notification, senderPlayer, getterPlayer));
+            player1Gift.add(gift);
         if(friendship.getPlayer2().equals(getterPlayer))
-            player2Gift.add(new Gift(itemStack, notification, senderPlayer, getterPlayer));
+            player2Gift.add(gift);
+        //System.out.println("!!!");
+        Gift.getGifts().add(gift);
         getterPlayer.getInventoryManager().addItem(itemStack);
+        senderPlayer.getInventoryManager().removeItem(itemStack.getItem(), itemStack.getAmount());
     }
 
     public static void AddXp(Player firstPlayer, Player secondPlayer, int amount) {
@@ -121,7 +145,7 @@ public class Friendship {
         friendship.friendShipAddXp(amount);
     }
 
-    private void friendShipAddXp(int amount) {
+    public void friendShipAddXp(int amount) {
         this.xp += amount;
         if(xp < 0) {
             level = Math.min(0, level - 1);

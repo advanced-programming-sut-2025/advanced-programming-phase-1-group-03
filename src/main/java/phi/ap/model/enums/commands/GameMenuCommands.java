@@ -64,8 +64,8 @@ public enum GameMenuCommands implements Command{
     SellProduct("\\s*sell\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*"),
     TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*"),
     Fishing("\\s*fishing\\s*-p\\s+(?<fishingPole>.*)"),
-    Talk("\\s*talk\\s+-u\\s+(?<username>\\w+)\\s+-m\\s+\"(?<message>.+)\""),
-    TalkHistory("\\s*talk\\s+history\\s+-u\\s+(?<username>\\w+)\\s*"),
+    Talk("\\s*talk\\s+-u\\s+(?<username>.*)\\s+-m\\s+(?<message>.+)"),
+    TalkHistory("\\s*talk\\s+history\\s+-u\\s+(?<username>.*)\\s*"),
 
     // Friendship Commands
     Friendships("\\s*friendships\\s*"),

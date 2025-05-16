@@ -4,9 +4,9 @@ import phi.ap.model.items.Item;
 
 public class ItemStack {
     private Item item;
-    private int amount;
+    private Integer amount;
 
-    public ItemStack(Item item, int amount) {
+    public ItemStack(Item item, Integer amount) {
         this.item = item;
         this.amount = amount;
     }

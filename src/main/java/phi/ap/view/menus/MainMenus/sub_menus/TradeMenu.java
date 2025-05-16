@@ -1,6 +1,8 @@
 package phi.ap.view.menus.MainMenus.sub_menus;
 
 import phi.ap.Controller.TradeMenuController;
+import phi.ap.model.App;
+import phi.ap.model.enums.Menus.Menu;
 import phi.ap.model.enums.commands.DialogueAnswerCommands;
 import phi.ap.model.enums.commands.TradeMenuCommands;
 import phi.ap.view.AppMenu;
@@ -23,6 +25,8 @@ public class TradeMenu extends AppMenu {
             System.out.println(controller.tradeResponse(matcher.group("condition"), matcher.group("id")));
         }  else if ((matcher = TradeMenuCommands.TradeHistory.getMatcher(input)) != null) {
             System.out.println(controller.showTradeHistory());
+        }  else if ((matcher = TradeMenuCommands.exit.getMatcher(input)) != null) {
+            App.getInstance().changeMenu(Menu.GameMenu);
         }
         else {
             System.out.println("invalid input");

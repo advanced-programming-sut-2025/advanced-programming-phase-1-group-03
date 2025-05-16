@@ -92,17 +92,24 @@ public class Player {
         return ownedAnimalHouse;
     }
 
+    public int getSelfGold() {
+        return this.gold;
+    }
     public int getGold() {
         if(partner == null)
             return this.gold;
         else
-            return this.gold + partner.getGold();
+            return this.gold + partner.getSelfGold();
+    }
+
+    public void setSelfGold(int gold) {
+        this.gold = gold;
     }
 
     public void setGold(int gold) {
         this.gold = gold;
         if(this.gold < 0) {
-            partner.setGold(partner.getGold() + this.gold);
+            partner.setSelfGold(partner.getSelfGold() + this.gold);
             this.gold = 0;
         }
     }

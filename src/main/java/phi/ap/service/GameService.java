@@ -442,6 +442,7 @@ public class GameService {
                 house.addItem(npc);
             }
         }
+        Game.getInstance().LoadFriends();
     }
 
     public void doNPCStuffAtNight() {

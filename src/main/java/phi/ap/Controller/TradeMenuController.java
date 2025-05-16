@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 public class TradeMenuController {
     public Result<String> startMenu() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Game players: ");
+        stringBuilder.append("Game players: \n");
         for(Player player : Game.getInstance().getPlayers())
             stringBuilder.append(player.getUser().getUsername() + "\n");
         stringBuilder.append(TradeRequest.getUnSeenTradeList(Game.getInstance().getCurrentPlayer()));

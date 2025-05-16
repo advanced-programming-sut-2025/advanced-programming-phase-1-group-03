@@ -33,6 +33,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
+
+import static java.util.Collections.swap;
+
 public class GameMenuController {
     public Result<String> test(String input) {
         System.out.println(Game.getInstance().getCurrentPlayer().getGold());
@@ -119,6 +122,22 @@ public class GameMenuController {
         return null; //TODO
     }
 
+    public String giftNotification() {
+        StringBuilder stringBuilder = new StringBuilder();
+        Boolean ok = false;
+        stringBuilder.append("Gift notofications: \n");
+        ArrayList<Gift> gifts = Gift.getReceivedGifts(Game.getInstance().getCurrentPlayer());
+        for(Gift gift : gifts) {
+            if(!gift.getHaveSeen()) {
+                stringBuilder.append(gift.getNotification() + "\n");
+                gift.setHaveSeen(true);
+                ok = true;
+            }
+        }
+        if(!ok)
+            return null;
+        return stringBuilder.toString();
+    }
     //TODO : election
     public Result<String> nextTurn() {
         Game.getInstance().goNextPlayer();
@@ -131,7 +150,9 @@ public class GameMenuController {
             advanceHour();
             message = "one hour passed...";
         }
-
+        String giftNotification = giftNotification();
+        if(giftNotification != null)
+            message += "\n" + giftNotification;
         return new Result<>(true, message);
     }
 
@@ -190,6 +211,13 @@ public class GameMenuController {
             }
             animal.setFeeded(false);
             animal.setBeenPet(false);
+        }
+    }
+    private void doFriendShipTask() {
+        for(Friendship friendship : Friendship.getFriendships()) {
+            friendship.setHaveTalked(false);
+            friendship.setFlower(false);
+            friendship.setHugged(false);
         }
     }
     private void doNightTasks() {
@@ -1504,13 +1532,17 @@ public class GameMenuController {
                 stringBuilder.append(friendship.getPlayer1().getUser().getUsername());
             if(!friendship.getPlayer2().equals(Game.getInstance().getCurrentPlayer()))
                 stringBuilder.append(friendship.getPlayer2().getUser().getUsername());
-            stringBuilder.append("Level Of friendShip: " + friendship.getLevel() + " Xp: " + friendship.getXp());
+            stringBuilder.append(" Level Of friendShip: " + friendship.getLevel() + " Xp: " + friendship.getXp() + "\n");
         }
         return new Result<>(true, stringBuilder.toString());
     }
     public Result<String> talk(String userName, String message) {
         Friendship friendship = Friendship.getFriendShip(Game.getInstance().getCurrentPlayer(), Game.getInstance().getPlayerByUserName(userName));
+        if(friendship == null)
+            return new Result<>(false, "username invalid.");
         friendship.addTalk(Game.getInstance().getCurrentPlayer(), friendship, message);
+        if(friendship.getMarried())
+            friendship.friendShipAddXp(50);
         return new Result<>(true, "Your message have been sent.");
     }
     public Result<String> showTalkHistory(String userName) {
@@ -1520,7 +1552,7 @@ public class GameMenuController {
             return new Result<>(false, "There is not a player with this userName.");
         ArrayList<Talk> talks = friendship.getTalk();
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Talk History: ");
+        stringBuilder.append("Talk History: \n");
         for(Talk talk : talks) {
             stringBuilder.append("Sender: " + talk.getSender().getUser().getUsername() + " Message: " +
                     talk.getMessage());
@@ -1533,15 +1565,21 @@ public class GameMenuController {
     public Result<String> sendGift(String username, String itemName, String amountString) {
         int amount = Integer.parseInt(amountString);
         Friendship friendship = Friendship.getFriendShip(Game.getInstance().getCurrentPlayer(),
-                Game.getInstance().getPlayerByUserName(itemName));
+                Game.getInstance().getPlayerByUserName(username));
         if(friendship == null)
             return new Result<>(false, "There is no Player with this userName.");
+        if(friendship.getLevel() < 1)
+            return new Result<>(false, "You should reach at leat friendship level 1 with " + username);
         Item item = App.getInstance().getGameService().getItem(itemName);
         if(item == null)
             return new Result<>(false, "There is no item with this name.");
         if(!Game.getInstance().isNear(Game.getInstance().getCurrentPlayer(), Game.getInstance().getPlayerByUserName(username)))
             return new Result<>(false, "You must be near " + username);
+        if(Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(item).getAmount() < amount)
+            return new Result<>(false, "You don't have enough amount of " + itemName);
         friendship.GiftPlayer(Game.getInstance().getCurrentPlayer(), Game.getInstance().getPlayerByUserName(username), new ItemStack(item, amount));
+        if(friendship.getMarried())
+            friendship.friendShipAddXp(50);
         return new Result<>(true, "Your Gift have been sent.");
     }
     public Result<String> showListOfGifts() {
@@ -1558,7 +1596,9 @@ public class GameMenuController {
         int rateNumber  = Integer.parseInt(rate);
         Gift gift = Gift.getGiftById(giftNumber);
         if(gift == null)
-            return new Result<>(false, "There is no gift with this name.");
+            return new Result<>(false, "There is no gift with this id.");
+        if(gift.getRate() != null)
+            return new Result<>(false, "You have rate this gift before.");
         if(rateNumber < 1 || rateNumber > 5)
             return new Result<>(false, "Rate must be between 1 to 5");
         gift.setRate(rateNumber);
@@ -1570,10 +1610,14 @@ public class GameMenuController {
             return new Result<>(false, "There is no player with this name.");
         ArrayList<Gift> receivedGifts = friendship.getPlayer1Gift();
         ArrayList<Gift> sentGifts = friendship.getPlayer2Gift();
+        if(friendship.getPlayer2().equals(Game.getInstance().getCurrentPlayer())) {
+            receivedGifts = friendship.getPlayer2Gift();
+            sentGifts = friendship.getPlayer1Gift();
+        }
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Received Gifts: \n");
         for(Gift gift : receivedGifts) {
-            stringBuilder.append(gift.printGift());
+            stringBuilder.append(gift.printGift() + "\n");
         }
         stringBuilder.append("Sent Gifts: \n");
         for(Gift gift : sentGifts) {
@@ -1584,12 +1628,16 @@ public class GameMenuController {
     public Result<String> hug(String username) {
         if(Game.getInstance().getPlayerByUserName(username) == null)
             return new Result<>(false, "invalid userName.");
+        Friendship friendship = Friendship.getFriendShip(Game.getInstance().getCurrentPlayer(),
+                Game.getInstance().getPlayerByUserName(username));
+        if(friendship.getLevel() < 2)
+            return new Result<>(false, "You should reach at least friendship level 2 with " + username);
         if(!Game.getInstance().isNear(Game.getInstance().getCurrentPlayer(),
                 Game.getInstance().getPlayerByUserName(username)))
             return new Result<>(false, "You must be near " + username);
-        Friendship friendship = Friendship.getFriendShip(Game.getInstance().getCurrentPlayer(),
-                Game.getInstance().getPlayerByUserName(username));
         friendship.hug();
+        if(friendship.getMarried())
+            friendship.friendShipAddXp(50);
         return new Result<>(true, "players hugged each other.");
     }
     public Result<String> flower(String username) {
@@ -1600,30 +1648,40 @@ public class GameMenuController {
             return new Result<>(false, "You must be near " + username);
         Friendship friendship = Friendship.getFriendShip(Game.getInstance().getCurrentPlayer(),
                 Game.getInstance().getPlayerByUserName(username));
+        if(friendship.getLevel() < 2)
+            return new Result<>(false, "You should reach at least friendship level 2 with " + username);
+        if(friendship.getXp() < (friendship.getLevel() + 1) * 100)
+            return new Result<>(false, "xp must be " + (friendship.getLevel() + 1) * 100);
         ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(new Product(ProductNames.Bouquet));
         if(itemStack.getAmount() == 0)
             return new Result<>(false, "You don't have Bouquet in your inventoryManger.");
         Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(new Product(ProductNames.Bouquet), 1);
         Game.getInstance().getPlayerByUserName(username).getInventoryManager().addItem(new Product(ProductNames.Bouquet), 1);
         friendship.giveFlower();
+        if(friendship.getMarried())
+            friendship.friendShipAddXp(50);
         return new Result<>(true, "flower sent.");
     }
     public Result<String> askMarriage(String username, String ringName) {
+        if(Game.getInstance().getCurrentPlayer().getUser().getGender().equals(Gender.Female))
+            return new Result<>(false, "only male can ask marriage.");
         Player partner = Game.getInstance().getPlayerByUserName(username);
         if(partner == null)
             return new Result<>(false, "There is no player with this userName.");
         if(partner.getUser().getGender().equals(Game.getInstance().getCurrentPlayer().getUser().getGender()))
             return new Result<>(false, "The player Gender is the Same! Shame on you!");
-        ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(new Product(ProductNames.WeddingRing));
+       ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(new Product(ProductNames.WeddingRing));
         Friendship friendship = Friendship.getFriendShip(Game.getInstance().getCurrentPlayer(), partner);
-        if(friendship.getLevel() <= 2)
+        if(friendship.getLevel() < 3)
             return new Result<>(false, "You must have at least friendShip with level 3.");
+        if(friendship.getXp() < (friendship.getLevel() + 1) * 100)
+            return new Result<>(false, "xp must be " + (friendship.getLevel() + 1) * 100);
         if(itemStack.getAmount() == 0)
             return new Result<>(false, "You don't have WeddingRing.");
         friendship.askMarriage(Game.getInstance().getCurrentPlayer(), partner, new Product(ProductNames.WeddingRing));
         return new Result<>(true, "Your request have been sent.");
     }
-    public Result<String> respondToMarriageRequest(String answer, String username) {
+    public Result<String> respondToMarriageRequest(String username, String answer) {
         Friendship friendship = Friendship.getFriendShip(Game.getInstance().getCurrentPlayer(), Game.getInstance().getPlayerByUserName(username));
         if(friendship == null)
             return new Result<>(false, "userName is not valid.");
@@ -1635,6 +1693,7 @@ public class GameMenuController {
             friendship.respondMarriage(Game.getInstance().getPlayerByUserName(username), Game.getInstance().getCurrentPlayer(), true);
         else
             friendship.respondMarriage(Game.getInstance().getPlayerByUserName(username), Game.getInstance().getCurrentPlayer(), false);
+        System.out.println(Game.getInstance().getCurrentPlayer().getPartner().getUser().getUsername());
         return new Result<>(true, "Your answer have been sent.");
     }
     public Result<String> startTrade() {
