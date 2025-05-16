@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Fix scythe bug in tools">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="place and pick items up">
+      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/ProfileManuCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/MilkPail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/MilkPail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Shear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Shear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/LoginMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/LoginMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/ProfileMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/ProfileMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/ProfileMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +177,7 @@
       <workItem from="1747333239997" duration="6965000" />
       <workItem from="1747340475314" duration="57000" />
       <workItem from="1747387871752" duration="4782000" />
-      <workItem from="1747397283498" duration="1591000" />
+      <workItem from="1747397283498" duration="4154000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -309,7 +308,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۱۹" />
       <updated>1747392632985</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL‎−۰۰۰۲۰" summary="place and pick items up">
+      <option name="closed" value="true" />
+      <created>1747399139392</created>
+      <option name="number" value="LOCAL‎−۰۰۰۲۰" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۲۰" />
+      <updated>1747399139392</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -347,7 +353,8 @@
     <MESSAGE value="Trash can system implemented" />
     <MESSAGE value="Fishing completed" />
     <MESSAGE value="Fix scythe bug in tools" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix scythe bug in tools" />
+    <MESSAGE value="place and pick items up" />
+    <option name="LAST_COMMIT_MESSAGE" value="place and pick items up" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
