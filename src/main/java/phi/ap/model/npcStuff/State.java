@@ -15,7 +15,10 @@ public class State { //this class store state between player and NPC, each npc h
     private Player player;
     private NPCTypes npc;
     private NPCFriendshipManager friendShipManager;
+    private int friendshipXp;
     private Date lastMeet = null;
+    private Date lastGiftReceived = null;
+    private Date lastGiftSent = null;
     private String lastAnswer = "";
     private DialogueNode lastConversation = null;
 
@@ -50,10 +53,10 @@ public class State { //this class store state between player and NPC, each npc h
     }
 
     public boolean isQuestActive(Quests quest) {
-        return player.getActiveQuests().contains(quest);
+        return player.isQuestActive(quest);
     }
     public boolean isQuestDone(Quests quest) {
-        return player.getDoneQuests().contains(quest);
+        return player.isQuestDone(quest);
     }
     public boolean isQuestActivatedSoFar(Quests quest) {
         return isQuestActive(quest) || isQuestDone(quest);
@@ -97,5 +100,35 @@ public class State { //this class store state between player and NPC, each npc h
 
     public void setLastConversation(DialogueNode lastConversation) {
         this.lastConversation = lastConversation;
+    }
+
+    public int getFriendshipXp() {
+        return friendshipXp;
+    }
+
+    public void advanceFriendshipXp(int amount) {
+        friendshipXp += amount;
+        friendshipXp = Math.max(NPCFriendshipManager.maxXp, friendshipXp);
+        while (NPCFriendshipManager.getNPCFriendshipManagerByXp(friendshipXp) != friendShipManager) {
+            if (NPCFriendshipManager.getNPCFriendshipManager(friendShipManager.getLevelID() + 1) != null) {
+                setFriendShipManager(NPCFriendshipManager.getNPCFriendshipManager(friendShipManager.getLevelID() + 1));
+            } else break;
+        }
+    }
+
+    public Date getLastGiftReceived() {
+        return lastGiftReceived;
+    }
+
+    public void setLastGiftReceived(Date lastGiftReceived) {
+        this.lastGiftReceived = lastGiftReceived;
+    }
+
+    public Date getLastGiftSent() {
+        return lastGiftSent;
+    }
+
+    public void setLastGiftSent(Date lastGiftSent) {
+        this.lastGiftSent = new Date(lastGiftSent);
     }
 }

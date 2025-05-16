@@ -1,9 +1,10 @@
 package phi.ap.model.enums.npcStuff;
 
+import phi.ap.model.App;
 import phi.ap.model.ItemStack;
 import phi.ap.model.Tile;
-import phi.ap.model.enums.Colors;
-import phi.ap.model.enums.StoreTypes;
+import phi.ap.model.enums.*;
+import phi.ap.model.enums.StoreProducts.BlackSmithsProducts;
 import phi.ap.model.items.Item;
 import phi.ap.model.npcStuff.dialogueStuff.ConditionTypes;
 import phi.ap.model.npcStuff.dialogueStuff.DialogueNode;
@@ -15,7 +16,7 @@ public enum NPCTypes {
     Clint("Clint",
             StoreTypes.Blacksmith,
             null,
-            "Villager",
+            "Blacksmith",
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
@@ -23,7 +24,7 @@ public enum NPCTypes {
     Morris("Morris",
             StoreTypes.JojaMart,
             null,
-            "Villager",
+            "JojaMart manager",
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
@@ -31,7 +32,7 @@ public enum NPCTypes {
     Pierre("Pierre",
             StoreTypes.PierreGeneralStore,
             null,
-            "Villager",
+            "GeneralStore manager",
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
@@ -39,7 +40,7 @@ public enum NPCTypes {
     Robin("Robin",
             StoreTypes.CarpenterShop,
             null,
-            "Villager",
+            "Carpenter",
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
@@ -47,7 +48,7 @@ public enum NPCTypes {
     Willy("Willy",
             StoreTypes.FishShop,
             null,
-            "Villager",
+            "Fisher",
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
@@ -55,7 +56,7 @@ public enum NPCTypes {
     Marnie("Marnie",
             StoreTypes.MarnieRanch,
             null,
-            "Villager",
+            "Rancher",
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
@@ -63,48 +64,58 @@ public enum NPCTypes {
     Gus("Gus",
             StoreTypes.TheStarDropSaloon,
             null,
-            "Villager",
+            "Saloon manager",
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new Tile("⍢", Colors.fg(17), "")),
-    NPC1("NPC1",
+    Sebastian("Sebastian",
             null,
             NPCHouseTypes.House1,
             "Villager",
-            new ArrayList<>(List.of()),
+            new ArrayList<>(List.of(App.getInstance().getGameService().getItem(AnimalProductTypes.Wool.toString()),
+                    App.getInstance().getGameService().getItem(FoodTypes.PumpkinPie.toString()),
+                    App.getInstance().getGameService().getItem(FoodTypes.Pizza.toString()))),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new Tile("⍢", Colors.fg(17), "")),
-    NPC2("NPC2",
+    Abigail("Abigail",
             null,
             NPCHouseTypes.House2,
             "Villager",
-            new ArrayList<>(List.of()),
+            new ArrayList<>(List.of(App.getInstance().getGameService().getItem(StoneTypes.RegularStone.toString()),
+                    App.getInstance().getGameService().getItem(ForagingMineralTypes.Iron.toString()),
+                    App.getInstance().getGameService().getItem(FoodTypes.Coffee.toString()))),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new Tile("⍢", Colors.fg(17), "")),
-    NPC3("NPC3",
+    Harvey("Harvey",
             null,
             NPCHouseTypes.House3,
             "Villager",
-            new ArrayList<>(List.of()),
+            new ArrayList<>(List.of(App.getInstance().getGameService().getItem(FoodTypes.Coffee.toString()),
+                    App.getInstance().getGameService().getItem(FoodTypes.Pickles.toString()),
+                    App.getInstance().getGameService().getItem(FoodTypes.Wine.toString()))),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new Tile("⍢", Colors.fg(17), "")),
-    NPC4("NPC4",
+    Lia("Lia",
             null,
             NPCHouseTypes.House4,
             "Villager",
-            new ArrayList<>(List.of()),
+            new ArrayList<>(List.of(App.getInstance().getGameService().getItem(FoodTypes.Salad.toString()),
+                    App.getInstance().getGameService().getItem(CropsTypes.Grape.toString()),
+                    App.getInstance().getGameService().getItem(FoodTypes.Wine.toString()))),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new Tile("⍢", Colors.fg(17), "")),
-    NPC5("NPC5",
+    RobinJr("RobinJr",
             null,
             NPCHouseTypes.House5,
             "Villager",
-            new ArrayList<>(List.of()),
+            new ArrayList<>(List.of(App.getInstance().getGameService().getItem(FoodTypes.Spaghetti.toString()),
+                    App.getInstance().getGameService().getItem("Wood"),
+                    App.getInstance().getGameService().getItem(ForagingMineralTypes.IronBar.toString()))),
             new ArrayList<>(List.of()),
             new ArrayList<>(List.of()),
             new Tile("⍢", Colors.fg(17), "")),
@@ -120,7 +131,7 @@ public enum NPCTypes {
     private Tile tile;
 
     NPCTypes(String npcName,
-             StoreTypes workPlace,
+             StoreTypes wp,
              NPCHouseTypes house,
              String job,
              ArrayList<Item> favorites,
@@ -128,7 +139,7 @@ public enum NPCTypes {
              ArrayList<Quests> quests,
              Tile tile) {
         this.npcName = npcName;
-        this.workPlace = workPlace;
+        this.workPlace = wp;
         this.house = house;
         this.job = job;
         this.favorites = favorites;
@@ -143,6 +154,15 @@ public enum NPCTypes {
         DialogueNode Greeting = new DialogueNode("Hi there", ConditionTypes.lastMeetDiffMore(24), false, "greeting");
         root.addChild(Greeting);
         dialogueTreeNode = root;
+    }
+
+    public static NPCTypes findByName(String npcName) {
+        npcName = npcName.replaceAll("\\s+", "");
+        for (NPCTypes type : NPCTypes.values()) {
+            if (type.toString().equalsIgnoreCase(npcName))
+                return type;
+        }
+        return null;
     }
 
     public String getNpcName() {

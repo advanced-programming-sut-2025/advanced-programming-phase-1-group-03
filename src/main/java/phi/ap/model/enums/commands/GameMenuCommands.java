@@ -62,7 +62,9 @@ public enum GameMenuCommands implements Command{
     CheatThor("\\s*cheat\\s+(thor|Thor)\\s+-l\\s+(?<x>-?\\d+)(\\s+|\\s*,\\s*)(?<y>-?\\d+)\\s*"),
     WalkWASD("\\s*(?<direction>(w|a|s|d))\\s*"),
     SellProduct("\\s*sell\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*"),
-    TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*")
+    TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*"),
+    MeetNPC("\\s*(?i)meet\\s+npc\\s+(?<name>.*)\\s*"),
+    ShowNPCList("\\s*show\\s+npc\\s+list\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

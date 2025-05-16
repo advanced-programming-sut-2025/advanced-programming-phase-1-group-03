@@ -264,4 +264,17 @@ public class Player {
         }
         return false;
     }
+
+    public boolean isQuestActive(Quests quest) {
+        return activeQuests.contains(quest);
+    }
+    public boolean isQuestDone(Quests quest) {
+        return doneQuests.contains(quest);
+    }
+    public boolean isQuestActivatedSoFar(Quests quest) {
+        return isQuestActive(quest) || isQuestDone(quest);
+    }
+    public void activateQuest(Quests quest) {
+        activeQuests.add(quest);
+    }
 }

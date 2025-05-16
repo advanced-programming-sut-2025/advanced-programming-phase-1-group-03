@@ -37,6 +37,9 @@ public class Date {
     public Date(int hour) {
         this.hour = hour;
     }
+    public Date(Date date) {
+        this.hour = date.getHour();
+    }
 
     public void setHour(int hour) {
         this.hour = hour;

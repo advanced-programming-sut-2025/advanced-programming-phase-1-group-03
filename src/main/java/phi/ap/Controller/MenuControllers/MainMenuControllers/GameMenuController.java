@@ -4,6 +4,8 @@ import jdk.jfr.Frequency;
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
 import phi.ap.model.enums.StoreProducts.*;
+import phi.ap.model.enums.npcStuff.NPCTypes;
+import phi.ap.model.enums.npcStuff.Quests;
 import phi.ap.model.items.*;
 import phi.ap.model.items.buildings.AnimalHouse;
 import phi.ap.model.items.buildings.Building;
@@ -22,6 +24,7 @@ import phi.ap.model.items.relations.Talk;
 import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
+import phi.ap.model.npcStuff.NPC;
 import phi.ap.utils.Misc;
 
 import java.util.AbstractMap;
@@ -102,16 +105,13 @@ public class GameMenuController {
         return new Result<>(true, "");
     }
 
-    public Result<String> chooseMap(String mapNumber) {
-        return null;
-    }
 
     public Result<String> loadGame() {
-        return null;
+        return null; //TODO
     }
 
     public Result<String> exitGame() {
-        return null;
+        return null; //TODO
     }
 
     //TODO : election
@@ -139,6 +139,16 @@ public class GameMenuController {
 
     private void doHourTask() {
         doArtisanTask();
+        //Quests:
+        for (Player player : Game.getInstance().getPlayers()) {
+            for (Quests quest : Quests.values()) {
+                if (player.isQuestActivatedSoFar(quest)) continue;
+                if (quest.activeCheck(Game.getInstance().getNPC(
+                        NPCTypes.findByName(quest.getOwner())).getState(player))) {
+                    player.activateQuest(quest);
+                }
+            }
+        }
     }
 
     private boolean advanceHour(){
@@ -188,6 +198,7 @@ public class GameMenuController {
         App.getInstance().getGameService().doWeatherTasks();
         App.getInstance().getGameService().turnOnSprinklers();
         App.getInstance().getGameService().doCrowAttack();
+        App.getInstance().getGameService().doNPCStuffAtNight();
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
@@ -265,10 +276,6 @@ public class GameMenuController {
         if (weather == null) return new Result<>(false, weatherName + "doesn't exist");
         Game.getInstance().getWeatherManager().setTomorrowWeather(weather);
         return new Result<>(true, "Tomorrow weather is " + weather + " now");
-    }
-
-    public Result<String> buildGreenhouse() {
-        return null;
     }
 
     public Result<String> walkWASD(String dir) {
@@ -394,7 +401,6 @@ public class GameMenuController {
             res.append("Zzzz...");
         }
         return new Result<>(true, res.toString());
-        //TODO : in case of opening menu or market manage it;
 
     }
 
@@ -439,10 +445,10 @@ public class GameMenuController {
         return new Result<>(true, res.toString());
     }
     public Result<String> printMap(String startX, String startY, String size) {
-        return null;
+        return null; //TODO
     }
     public Result<String> helpReadingMap() {
-        return null;
+        return null; //TODO
     }
 
     public Result<String> showEnergy() {
@@ -503,9 +509,6 @@ public class GameMenuController {
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getToolManager().getCurrentTool().getName());
     }
 
-    public Result<String> showAvailableTools() {
-        return null;
-    }
 
     public Result<String> upgradeTool(String toolName) {
         ItemStack stack = Game.getInstance().getCurrentPlayer().getInventoryManager()
@@ -919,46 +922,12 @@ public class GameMenuController {
         return new Result<>(true, "item crafted successfully.");
     }
     public Result<String> placeItem(String itemName, String direction) {
-        return null;
+        return null; //TODO
     }
-    public Item getItem(String name) {
-        if(name.equals("Wood"))
-            return new Wood(1, 1);
-        if(name.equals("Stone"))
-            return new Stone(1, 1, StoneTypes.RegularStone);
-        if(AnimalProductTypes.getType(name) != null)
-            return new AnimalProduct(1, 1, AnimalProductTypes.getType(name));
-        if(AnimalTypes.getType(name) != null)
-            return new Animal(AnimalTypes.getType(name), 1, 1);
-        if(CropsTypes.find(name) != null)
-            return new Crop(1, 1 , CropsTypes.find(name));
-        if(CraftingTypes.getType(name) != null)
-            return CraftingTypes.getType(name).getRecipe().getResult().getItem();
-        if(FishTypes.getType(name) != null)
-            return new Fish(1, 1, FishTypes.getType(name));
-        if(FoodTypes.getType(name) != null)
-            return new Food(1, 1, FoodTypes.getType(name));
-        if(ForagingCropsTypes.find(name) != null)
-            return new Crop(1, 1, ForagingCropsTypes.find(name));
-        if(ForagingMineralTypes.getType(name) != null)
-            return new Mineral(1, 1, ForagingMineralTypes.getType(name));
-        if(TreeTypes.find(name) != null)
-            return new Tree(1, 1, TreeTypes.find(name), false);
-        if(SeedTypes.find(name) != null)
-            return new Seed(1, 1, SeedTypes.find(name));
-        if(SaplingTypes.find(name) != null)
-            return new Sapling(1, 1, SaplingTypes.find(name));
-        if(StoneTypes.getType(name) != null)
-            return new Stone(1, 1, StoneTypes.getType(name));
-        if(SoilTypes.find(name) != null)
-            return new Soil(1, 1, SoilTypes.find(name));
-        if(ForagingMineralTypes.find(name) != null)
-            return ForagingMineralTypes.find(name).getItem();
-        return null;
-    }
+
     public Result<String> cheatAddItem(String itemName, String amountString) {
         int amount = Integer.parseInt(amountString);
-        Item item = getItem(itemName);
+        Item item = App.getInstance().getGameService().getItem(itemName);
         if(item == null)
             return new Result<>(false, "There is no item with this name.");
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, amount);
@@ -1157,7 +1126,7 @@ public class GameMenuController {
         return new Result<>(true, stringBuilder.toString());
     }
     public Result<String> shepherdAnimal(String animalName, String x, String y) {
-        return null;
+        return null; // TODO
     }
     public Result<String> feedAnimal(String animalName) {
         Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(animalName);
@@ -1222,7 +1191,7 @@ public class GameMenuController {
         return new Result<>(true, "animal selled successfully");
     }
     public Result<String> fishing(String fishingPole) {
-        return null;
+        return null; // TODO
     }
     public Result<String> useArtisan(String artisanName, String itemName, String ingredient) {
         CraftingTypes craftingType;
@@ -1247,7 +1216,7 @@ public class GameMenuController {
             case "Dehydrator" : return ((CraftedProducer)machine).produceDehydrator(itemName, ingredient);
             case "FishSmoker" : return ((CraftedProducer)machine).produceFishSmoker(itemName, ingredient);
         }
-        return null;
+        return null; //TODO : proper error
     }
     public Result<String> getArtisan(String artisanName) {
         ArrayList<Product> removeProducts = new ArrayList<>();
@@ -1483,7 +1452,7 @@ public class GameMenuController {
                 Game.getInstance().getPlayerByUserName(itemName));
         if(friendship == null)
             return new Result<>(false, "There is no Player with this userName.");
-        Item item = getItem(itemName);
+        Item item = App.getInstance().getGameService().getItem(itemName);
         if(item == null)
             return new Result<>(false, "There is no item with this name.");
         if(!Game.getInstance().isNear(Game.getInstance().getCurrentPlayer(), Game.getInstance().getPlayerByUserName(username)))
@@ -1576,8 +1545,34 @@ public class GameMenuController {
     public Result<String> startTrade() {
         return null;
     }
+    public Result<String> showNPCList() {
+        StringBuilder res = new StringBuilder();
+        for (NPCTypes value : NPCTypes.values()) {
+            res.append("Name: " + value.getNpcName() + "\n");
+            res.append("Job: " + value.getJob() + "\n");
+            res.append("WorkPlace: " + value.getWorkPlace() + "\n");
+//            else res.append("Home: " + value.getHouse() + "\n");
+            res.append("Favorites: " + value.getFavorites() + "\n");
+            res.append("Possible gifts: " + value.getPossibleGiftsToSend() + "\n");
+            res.append("All Quests: " + value.getQuests() + "\n");
+            res.append(Colors.RED + "-----------------------------" + Colors.RESET + "\n");
+        }
+        return new Result<>(true, res.toString());
+    }
     public Result<String> meetNPC(String npcName) {
-        return null;
+        NPCTypes type = NPCTypes.findByName(npcName);
+        if (type == null) {
+            return new Result<>(false, "There is no NPC with this name.");
+        }
+        NPC npc = Game.getInstance().getNPC(type);
+        Coordinate npcCoord = npc.getCoordinateBaseMap();
+        Location npcLoc = App.getInstance().getMapService().getLocationOnMap(npcCoord.getY(), npcCoord.getX());
+        Location pLoc = Game.getInstance().getCurrentPlayer().getLocation();
+        Coordinate pCoord = pLoc.getGround().getTileCoordinateBaseMap(pLoc.getY(), pLoc.getX());
+        if (!(Math.abs(npcCoord.getY() - pCoord.getY()) <= 1 &&  Math.abs(npcCoord.getX() - pCoord.getX()) <= 1)) {
+            return new Result<>(false, "You are so far.");
+        }
+        return npc.getType().getDialogueTreeNode().runDialogue(npc.getState(Game.getInstance().getCurrentPlayer()));
     }
     public Result<String> giftNPC(String npcName, String ItemName) {
         return null;

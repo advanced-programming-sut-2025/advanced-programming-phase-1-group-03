@@ -8,6 +8,16 @@ public class Scarecrow extends Machine {
     int protectingEdge = 0;
     public Scarecrow(int height, int width, CraftingTypes craftingType) {
         super(height, width, craftingType);
+        switch (craftingType) {
+            case CraftingTypes.Scarecrow:
+                protectingEdge = 8;
+                maxProtectingEdge = Math.max(maxProtectingEdge, protectingEdge);
+                break;
+            case CraftingTypes.DeluxeScarecrow:
+                protectingEdge = 12;
+                maxProtectingEdge = Math.max(maxProtectingEdge, protectingEdge);
+                break;
+        }
     }
     public Scarecrow(int height, int width, String machineName, Integer price) {
         super(height, width, machineName, price);

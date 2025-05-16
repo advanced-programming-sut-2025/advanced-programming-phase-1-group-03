@@ -29,6 +29,21 @@ public abstract class Plant extends Product {
         this.lastWateredDate = Game.getInstance() != null ? new Date(Game.getInstance().getDate().getHour()) : null;
     }
 
+    public Plant(Plant plant) {
+        super(plant.getSuper());
+        sourceName = plant.getSourceName();
+        stages = new ArrayList<>(plant.getStages());
+        canBecomeGiant = plant.canBecomeGiant;
+        plantingDate = plant.getPlantingDate() != null ? new Date(plant.getPlantingDate()) : null;
+        lastWateredDate = plant.lastWateredDate != null ? new Date(plant.lastWateredDate) : null;
+        giant = null;
+        shapeAtStage = new ArrayList<>(plant.shapeAtStage);
+        deadShapeColor = new Tile(plant.deadShapeColor);
+        lastFertilizeSpeedGro = plant.lastFertilizeSpeedGro != null ? new Date(plant.lastFertilizeSpeedGro) : null;
+        lastFertilizeDeluxeRetaining = plant.lastFertilizeDeluxeRetaining != null ? new Date(plant.lastFertilizeDeluxeRetaining) : null;
+
+    }
+
     public void setShapeAtStage(ArrayList<Tile> shapeAtStage) {
         this.shapeAtStage = shapeAtStage;
     }
@@ -237,5 +252,12 @@ public abstract class Plant extends Product {
 
     public boolean isInGreenHouse() {
         return isInGroundClass(Greenhouse.class);
+    }
+
+    public Plant getThis() {
+        return this;
+    }
+    public Product getSuper() {
+        return super.getThis();
     }
 }

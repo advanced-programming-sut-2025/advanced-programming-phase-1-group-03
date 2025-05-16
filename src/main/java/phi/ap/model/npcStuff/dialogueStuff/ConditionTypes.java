@@ -2,11 +2,13 @@ package phi.ap.model.npcStuff.dialogueStuff;
 
 import phi.ap.model.enums.Time.Seasons;
 import phi.ap.model.enums.npcStuff.Quests;
+import phi.ap.model.items.Item;
 
 public class ConditionTypes {
     public static Condition always() {
         return state -> true;
     }
+    public static Condition never() { return state -> false; }
     public static Condition season(Seasons season) {
         return state -> state.getCurrentDate().getSeason() == season;
     }
@@ -39,13 +41,13 @@ public class ConditionTypes {
     }
     public static Condition lastMeetDiffLess(int hour) {
         return state -> {
-            if (state.getLastMeet() == null) return true;
+            if (state.getLastMeet() == null) return false;
             return state.getCurrentDate().getHour() - state.getLastMeet().getHour() <= hour;
         };
     }
     public static Condition lastMeetDiffMore(int hour) {
         return state -> {
-            if (state.getLastMeet() == null) return false;
+            if (state.getLastMeet() == null) return true;
             return state.getCurrentDate().getHour() - state.getLastMeet().getHour() >= hour;
         };
     }
@@ -54,6 +56,10 @@ public class ConditionTypes {
             if (state.getLastConversation() == null) return topic.isEmpty();
             return state.getLastConversation().getTopic().equals(topic);
         };
+    }
+
+    public static Condition HasItemAtLeast(Item item, int amount) {
+        return state -> state.getPlayer().getInventoryManager().getItem(item).getAmount() >= amount;
     }
 
     public static Condition ans(Condition... conditions) {

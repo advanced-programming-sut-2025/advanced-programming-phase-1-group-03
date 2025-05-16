@@ -43,7 +43,7 @@ public class Game {
     private Player currentPlayer;
     private StoreManager storeManager;
     private ArrayList<ShippingBin> shippingBins = new ArrayList<>();
-    private ArrayList<NPC> npcs;
+    private ArrayList<NPC> npcs = new ArrayList<>();
 
     public void addShippingBin(ShippingBin ship){
         shippingBins.add(ship);

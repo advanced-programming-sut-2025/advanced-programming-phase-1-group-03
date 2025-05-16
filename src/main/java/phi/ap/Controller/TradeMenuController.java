@@ -1,10 +1,7 @@
 package phi.ap.Controller;
 
 import phi.ap.Controller.MenuControllers.MainMenuControllers.GameMenuController;
-import phi.ap.model.Game;
-import phi.ap.model.ItemStack;
-import phi.ap.model.Player;
-import phi.ap.model.Result;
+import phi.ap.model.*;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.relations.Friendship;
 import phi.ap.model.items.relations.TradeRequest;
@@ -26,7 +23,7 @@ public class TradeMenuController {
         if(target == null)
             return new Result<>(false, "There is no player with this userName.");
         GameMenuController gameMenuController = new GameMenuController();
-        Item item = gameMenuController.getItem(ItemName);
+        Item item = App.getInstance().getGameService().getItem(ItemName);
         if(item == null)
             return new Result<>(false, "There is no item with this name.");
         Integer amount;
@@ -49,7 +46,7 @@ public class TradeMenuController {
             }
         }
         else {
-            targetItem = gameMenuController.getItem(targetItemString);
+            targetItem = App.getInstance().getGameService().getItem(targetItemString);
             if(targetItem == null)
                 return new Result<>(false, "targetItem invalid.");
             try {
