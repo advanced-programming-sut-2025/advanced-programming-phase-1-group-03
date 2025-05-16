@@ -24,6 +24,7 @@ public class EnergyManager {
         amount += diff;
         amount = Math.min(amount, getMaxAmount());
         amount = Math.max(0, amount);
+        if (amount == 0) Game.getInstance().getCurrentPlayer().feint();
     }
 
     public int getMaxAmount() {
@@ -35,6 +36,9 @@ public class EnergyManager {
 
     public int getAmount() {
         return Math.min(amount, getMaxAmount());
+    }
+    public int getAmountBaseUnit() {
+        return Math.ceilDiv(getAmount(), unit);
     }
 
     public void setAmount(int amount) {
