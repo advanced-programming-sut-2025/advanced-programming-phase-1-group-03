@@ -39,6 +39,7 @@ public class ToolManager {
         inventoryManager.addItem(new Pickaxe(), 1);
         inventoryManager.addItem(new Axe(), 1);
         inventoryManager.addItem(new WateringCan(), 1);
+        inventoryManager.addItem(new Scythe(), 1);
     }
 
     public TrashCan getTrashCan() {
