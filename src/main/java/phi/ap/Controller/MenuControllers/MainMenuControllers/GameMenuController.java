@@ -922,8 +922,22 @@ public class GameMenuController {
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-2);
         return new Result<>(true, "item crafted successfully.");
     }
-    public Result<String> placeItem(String itemName, String direction) {
-        return null; //TODO
+    public Result<String> placeItem(String itemName, String directionString) {
+        int direction = Integer.parseInt(directionString);
+        if(direction < 0 || direction > 7)
+            return new Result<>(false, "invalid direction");
+        ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItemByName(itemName);
+        if(itemStack == null)
+            return new Result<>(false, "There is not item with the given name in inventory");
+
+        Coordinate cord = Misc.getDiffFromDirection(direction);
+        Tile topTile = Game.getInstance().getCurrentPlayer().getLocation().getTopTileDiff(cord.getY(), cord.getX());
+        Item topItem = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(cord.getY(), cord.getX());
+        if(!topTile.isWalkable())
+            return new Result<>(false, "You can't place item in this place");
+        topItem.addItem(itemStack.getItem());
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), 1);
+        return new Result<>(false, itemStack.getItem().getName() + " placed successfully.");
     }
 
     public Result<String> cheatAddItem(String itemName, String amountString) {
@@ -1154,7 +1168,8 @@ public class GameMenuController {
         }
         return new Result<>(true, stringBuilder.toString());
     }
-    public Result<String> collectProduce(String name, Tool tool) {
+    public Result<String> collectProduce(String name) {
+        Tool tool = Game.getInstance().getCurrentPlayer().getToolManager().getCurrentTool();
         Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(name);
         if(animal == null)
             return new Result<>(false, "There is not any animal with this name.");

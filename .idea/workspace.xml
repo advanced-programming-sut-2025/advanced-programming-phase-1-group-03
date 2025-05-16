@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Trash can system implemented">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Fix scythe bug in tools">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FishTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/FishTypes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/Water.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/Water.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Lake.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/Lake.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/ShippingBin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/buildings/ShippingBin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Fish.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Fish.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/FishingPole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/FishingPole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/WateringCan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/WateringCan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/MilkPail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/MilkPail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Shear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Shear.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -184,7 +177,8 @@
       <workItem from="1747248379035" duration="3047000" />
       <workItem from="1747333239997" duration="6965000" />
       <workItem from="1747340475314" duration="57000" />
-      <workItem from="1747387871752" duration="4259000" />
+      <workItem from="1747387871752" duration="4782000" />
+      <workItem from="1747397283498" duration="1591000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -301,7 +295,21 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۱۷" />
       <updated>1747340509146</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL‎−۰۰۰۱۸" summary="Fishing completed">
+      <option name="closed" value="true" />
+      <created>1747392326122</created>
+      <option name="number" value="LOCAL‎−۰۰۰۱۸" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۱۸" />
+      <updated>1747392326122</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۱۹" summary="Fix scythe bug in tools">
+      <option name="closed" value="true" />
+      <created>1747392632985</created>
+      <option name="number" value="LOCAL‎−۰۰۰۱۹" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۱۹" />
+      <updated>1747392632985</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -337,7 +345,9 @@
     <MESSAGE value="Upgrading tool system finished" />
     <MESSAGE value="Shipping bin completed" />
     <MESSAGE value="Trash can system implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Trash can system implemented" />
+    <MESSAGE value="Fishing completed" />
+    <MESSAGE value="Fix scythe bug in tools" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix scythe bug in tools" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -349,17 +359,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java</url>
-          <line>121</line>
+          <line>120</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java</url>
-          <line>125</line>
+          <line>124</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java</url>
-          <line>107</line>
+          <line>106</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -377,22 +387,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>673</line>
+          <line>676</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>631</line>
+          <line>634</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>647</line>
+          <line>650</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>646</line>
+          <line>649</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">

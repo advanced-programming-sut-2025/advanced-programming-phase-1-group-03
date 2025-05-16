@@ -82,7 +82,8 @@ public enum GameMenuCommands implements Command{
 
     // Marriage Commands
     AskMarriage("\\s*ask\\s+marriage\\s+-u\\s+(?<username>.*)\\s+-r\\s+(?<ring>.*)\\s*"),
-    Respond("\\s*respond\\s+-(?<condition>accept|reject)\\s+-u\\s+(?<username>.*)\\s*")
+    Respond("\\s*respond\\s+-(?<condition>accept|reject)\\s+-u\\s+(?<username>.*)\\s*"),
+    PlaceItem("\\s*place\\s+item\\s+-n (?<itemName>.*) -d\\s+(?<direction>\\d)\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {
