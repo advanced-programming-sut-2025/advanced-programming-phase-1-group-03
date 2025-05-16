@@ -148,13 +148,13 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.sellProduct(matcher.group("productName").trim(), matcher.group("amount")));
         }else if((matcher = GameMenuCommands.TrashItem.getMatcher(input)) != null) {
             System.out.println(controller.inventoryTrash(matcher.group("itemName").trim(), matcher.group("amount")));
-        } else if ((matcher = GameMenuCommands.TalkHistory.getMatcher(input)).matches()) {
+        } else if ((matcher = GameMenuCommands.TalkHistory.getMatcher(input)) != null) {
             System.out.println(controller.showTalkHistory(matcher.group("username")));
-        } else if ((matcher = GameMenuCommands.Friendships.getMatcher(input)).matches()) {
+        } else if ((matcher = GameMenuCommands.Friendships.getMatcher(input)) != null) {
             System.out.println(controller.showFriendShip());
-        } else if ((matcher = GameMenuCommands.GiftRate.getMatcher(input)).matches()) {
+        } else if ((matcher = GameMenuCommands.GiftRate.getMatcher(input)) != null) {
             System.out.println(controller.rateGift((matcher.group("giftNumber")), (matcher.group("rate"))));
-        } else if ((matcher = GameMenuCommands.GiftHistory.getMatcher(input)).matches()) {
+        } else if ((matcher = GameMenuCommands.GiftHistory.getMatcher(input)) != null) {
             System.out.println(controller.giftHistory(matcher.group("username")));
         } else if ((matcher = GameMenuCommands.Flower.getMatcher(input)) != null) {
             System.out.println(controller.flower(matcher.group("username")));

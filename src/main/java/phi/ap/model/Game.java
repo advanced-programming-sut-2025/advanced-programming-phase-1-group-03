@@ -1,5 +1,6 @@
 package phi.ap.model;
 
+import jdk.jfr.Frequency;
 import phi.ap.model.enums.Weather;
 import phi.ap.model.enums.npcStuff.NPCTypes;
 import phi.ap.model.items.Item;
@@ -44,6 +45,14 @@ public class Game {
     private StoreManager storeManager;
     private ArrayList<ShippingBin> shippingBins = new ArrayList<>();
     private ArrayList<NPC> npcs = new ArrayList<>();
+
+    public void LoadFriends() {
+        for(int i = 0; i < players.size(); i++) {
+            for(int j = i + 1; j < players.size(); j++) {
+                new Friendship(players.get(i), players.get(j), 0);
+            }
+        }
+    }
 
     public void addShippingBin(ShippingBin ship){
         shippingBins.add(ship);

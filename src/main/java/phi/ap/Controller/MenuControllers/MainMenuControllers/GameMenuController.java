@@ -1540,7 +1540,18 @@ public class GameMenuController {
         return new Result<>(true, "Your request have been sent.");
     }
     public Result<String> respondToMarriageRequest(String answer, String username) {
-        return null;
+        Friendship friendship = Friendship.getFriendShip(Game.getInstance().getCurrentPlayer(), Game.getInstance().getPlayerByUserName(username));
+        if(friendship == null)
+            return new Result<>(false, "userName is not valid.");
+        if(friendship.getMarriageRequest() == null)
+            return new Result<>(false, "You don't have any marriage request from " + username);
+        if(!answer.equals("accept") && !answer.equals("reject"))
+            return new Result<>(false, "answer invalid");
+        if(answer.equals("accept"))
+            friendship.respondMarriage(Game.getInstance().getPlayerByUserName(username), Game.getInstance().getCurrentPlayer(), true);
+        else
+            friendship.respondMarriage(Game.getInstance().getPlayerByUserName(username), Game.getInstance().getCurrentPlayer(), false);
+        return new Result<>(true, "Your answer have been sent.");
     }
     public Result<String> startTrade() {
         return null;
