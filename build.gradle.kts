@@ -19,7 +19,6 @@ dependencies {
 application {
     mainClass.set("phi.ap.Main")
 }
-
 tasks.test {
     useJUnitPlatform()
 }
