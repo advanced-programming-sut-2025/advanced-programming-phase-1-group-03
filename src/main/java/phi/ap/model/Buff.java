@@ -3,24 +3,24 @@ package phi.ap.model;
 import phi.ap.model.enums.AbilityType;
 
 public class Buff {
-    private int hour = 0;
+    private Integer hour = 0;
     private Date startTime = null;
     private AbilityType abilityType = null;
     private Integer maxEnergyEffect = null;
-    private int day = 0;
+    private Integer day = 0;
     private Double dailyEnergyEffect = null;
 
-    public Buff(int hour, AbilityType abilityType) {
+    public Buff(Integer hour, AbilityType abilityType) {
         this.hour = hour;
         this.abilityType = abilityType;
     }
 
-    public Buff(int hour, Integer maxEnergyEffect) {
+    public Buff(Integer hour, Integer maxEnergyEffect) {
         this.hour = hour;
         this.maxEnergyEffect = maxEnergyEffect;
     }
 
-    public Buff(int day, Double dailyEnergyEffect) {
+    public Buff(Integer day, Double dailyEnergyEffect) {
         this.day = day;
         this.dailyEnergyEffect = dailyEnergyEffect;
     }

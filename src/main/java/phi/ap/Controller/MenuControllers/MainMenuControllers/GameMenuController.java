@@ -993,8 +993,10 @@ public class GameMenuController {
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(recipe))
             return new Result<>(false, "You don't have enough ingredients.");
 
-        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(2))
+        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(2)) {
+            Game.getInstance().getCurrentPlayer().getFeintBuff().activate();
             return new Result<>(false, "You don't have enough energy");
+        }
 
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(recipe.getResult().getItem(), 1);
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-2);
@@ -1113,12 +1115,14 @@ public class GameMenuController {
         Recipe recipe = Game.getInstance().getCurrentPlayer().getRecipe(recipeName);
         if(recipe == null)
             return new Result<>(false, "You don't have the recipe.");
-        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(3))
-            return new Result<>(false, "You don't have enough energy.");
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().canAdd())
             return new Result<>(false, "Inventory is full.");
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(recipe))
                 return new Result<>(false, "You don't have enough ingredients in your inventory. you can add it from refrigerator");
+        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(3)) {
+            Game.getInstance().getCurrentPlayer().getFeintBuff().activate();
+            return new Result<>(false, "You don't have enough energy.");
+        }
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(recipe.getResult().getItem(), recipe.getResult().getAmount());
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-3);
         return new Result<>(true, recipe.getResult().getItem().getName() + " created and added to Inventory.");
@@ -1129,6 +1133,8 @@ public class GameMenuController {
             return new Result<>(false, "There is not any food with this name.");
         Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(food, 1);
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getEatable().getEnergy());
+        Game.getInstance().getCurrentPlayer().setFoodBuff(food.getFoodType().getFoddBuff());
+        Game.getInstance().getCurrentPlayer().getLastFoodBuff().activate();
         return new Result<>(true, food.getName() + " eated. " + "You earned " + food.getFoodType().getEatable().getEnergy() + " amount of energy.");
     }
     public Result<String> buildBuilding(String buildingName, String sx, String sy) {
@@ -1226,6 +1232,19 @@ public class GameMenuController {
     }
     public Result<String> shepherdAnimal(String animalName, String x, String y) {
         return null; // TODO
+    }
+    public Result<String> cheatSetFriendshipAnimal(String userName, String amountString) {
+        Integer amount;
+        try  {
+            amount = Integer.parseInt(amountString);
+        } catch (Exception e) {
+            return new Result<>(false, "amount is invalid.");
+        }
+        Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(userName);
+        if(animal  == null)
+            return new Result<>(false, "There is no animal with this name.");
+        animal.setFriendShipAmount(amount);
+        return new Result<>(true, animal.getName() + " friendship set to " + amount);
     }
     public Result<String> feedAnimal(String animalName) {
         Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(animalName);

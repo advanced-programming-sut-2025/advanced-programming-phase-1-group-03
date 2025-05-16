@@ -1,5 +1,6 @@
 package phi.ap.model.enums;
 
+import phi.ap.model.Buff;
 import phi.ap.model.Eatable;
 import phi.ap.model.ItemStack;
 import phi.ap.model.items.products.Crop;
@@ -144,7 +145,7 @@ public enum FoodTypes {
 
     TripleShotEspresso("TripleShotEspresso", new ArrayList<>(Arrays.asList(
             new ItemStack(new Food(1, 1, "Coffee", 150, new Eatable(5)), 3))),
-            new Eatable(200), 450, null, null),
+            new Eatable(200), 450, new Buff(5, 100), null),
 
     Cookie("Cookie", new ArrayList<>(Arrays.asList(
             new ItemStack(new Food(1, 1, "WheatFlour", 10, new Eatable(5)), 1),
@@ -155,12 +156,12 @@ public enum FoodTypes {
     HashBrowns("HashBrowns", new ArrayList<>(Arrays.asList(
             new ItemStack(new Crop(1, 1, CropsTypes.Potato), 1),
             new ItemStack(new Food(1, 1, "Oil", 10, new Eatable(5)), 1))),
-            new Eatable(90), 120, null, null),
+            new Eatable(90), 120, new Buff(5, AbilityType.Farming), null),
 
     Pancakes("Pancakes", new ArrayList<>(Arrays.asList(
             new ItemStack(new Food(1, 1, "WheatFlour", 10, new Eatable(5)), 1),
             new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.ChickenEgg), 1))),
-            new Eatable(90), 80, null, null),
+            new Eatable(90), 80, new Buff(11, AbilityType.Foraging), null),
     FruitSalad("FruitSalad", new ArrayList<>(Arrays.asList(
             new ItemStack(new Crop(1, 1, CropsTypes.Blueberry), 1),
             new ItemStack(new Fruit(1, 1, FruitTypes.Apricot), 1))),
@@ -169,7 +170,7 @@ public enum FoodTypes {
     RedPlate("RedPlate", new ArrayList<>(Arrays.asList(
             new ItemStack(new Crop(1, 1, CropsTypes.RedCabbage), 1),
             new ItemStack(new Crop(1, 1, CropsTypes.Radish), 1))),
-            new Eatable(240), 400, null, null),
+            new Eatable(240), 400,  new Buff(3, 50), null),
 
     Bread("Bread", new ArrayList<>(Arrays.asList(
             new ItemStack(new Food(1, 1, "WheatFlour", 10, new Eatable(5)), 1))),
@@ -184,33 +185,33 @@ public enum FoodTypes {
     VegetableMedley("VegetableMedley", new ArrayList<>(Arrays.asList(
             new ItemStack(new Crop(1, 1, CropsTypes.Tomato), 1),
             new ItemStack(new Crop(1, 1, CropsTypes.Beet), 1))),
-            new Eatable(165), 120, AbilityType.Farming, null, 2),
+            new Eatable(165), 120, null, 2),
 
     FarmersLunch("FarmersLunch", new ArrayList<>(Arrays.asList(
             new ItemStack(new Food(1, 1, "Omelet", 125, new Eatable(100)), 1),
             new ItemStack(new Crop(1, 1, CropsTypes.Parsnip), 1))),
-            new Eatable(200), 150, AbilityType.Farming, null, 1),
+            new Eatable(200), 150, new Buff(5, AbilityType.Farming), 1),
 
     SurvivalBurger("SurvivalBurger", new ArrayList<>(Arrays.asList(
             new ItemStack(new Food(1, 1, "Bread", 60, new Eatable(50)), 1),
             new ItemStack(new Crop(1, 1, CropsTypes.Carrot), 1),
             new ItemStack(new Crop(1, 1, CropsTypes.Eggplant), 1))),
-            new Eatable(125), 180, AbilityType.Farming, 3),
+            new Eatable(125), 180, new Buff(5, AbilityType.Foraging), 5),
 
     DishOTheSea("DishOTheSea", new ArrayList<>(Arrays.asList(
             new ItemStack(new Fish(1, 1, FishTypes.Sardine), 2),
             new ItemStack(new Food(1, 1, "HashBrowns", 120, new Eatable(90)), 1))),
-            new Eatable(150), 220, AbilityType.Farming, 6, 2),
+            new Eatable(150), 220, new Buff(5, AbilityType.Fishing), 2),
     SeafoamPudding("SeafoamPudding", new ArrayList<>(Arrays.asList(
             new ItemStack(new Fish(1, 1, FishTypes.Flounder), 1),
             new ItemStack(new Fish(1, 1, FishTypes.MidnightCarp), 1))),
-            new Eatable(175), 300, AbilityType.Farming, null, 3),
+            new Eatable(175), 300, new Buff(10, AbilityType.Fishing), 3),
 
     MinersTreat("MinersTreat", new ArrayList<>(Arrays.asList(
             new ItemStack(new Crop(1, 1, CropsTypes.Carrot), 2),
             new ItemStack(new Food(1, 1, "Sugar", 10, new Eatable(5)), 1),
             new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Milk), 1))),
-            new Eatable(125), 200, AbilityType.Extraction, null, 1);
+            new Eatable(125), 200, new Buff(5, AbilityType.Extraction), 1);
     // making foods.
     private ArrayList<ItemStack> ingredients;
     private Recipe recipe;
@@ -218,30 +219,27 @@ public enum FoodTypes {
     private Eatable eatable;
     private int sellPrice;
     private AbilityType abilityType;
-
-
     private Integer level = null;
     private Integer Buffhour;
+    private Buff foodBuff = null;
     private Integer ProcessingTime;
 
-    private FoodTypes(String name, ArrayList<ItemStack> ingredients, Eatable eatable, int sellPrice, AbilityType abilityType, Integer hour, Integer level) {
+    private FoodTypes(String name, ArrayList<ItemStack> ingredients, Eatable eatable, int sellPrice, Buff foodBuff, Integer level) {
         this.ingredients = ingredients;
         recipe = new Recipe(ingredients, new ItemStack(new Food(1, 1, name, sellPrice, eatable), 1), RecipeTypes.valueOf(name));
         this.eatable = eatable;
         this.sellPrice = sellPrice;
         this.name = name;
-        this.abilityType = abilityType;
-        this.Buffhour = hour;
+        this.foodBuff = foodBuff;
         this.level = level;
     }
-    private FoodTypes(String name, ArrayList<ItemStack> ingredients, Eatable eatable, int sellPrice, AbilityType abilityType, Integer hour) {
+    private FoodTypes(String name, ArrayList<ItemStack> ingredients, Eatable eatable, int sellPrice, Buff foddBuff) {
         this.ingredients = ingredients;
         recipe = new Recipe(ingredients, new ItemStack(new Food(1, 1, name, sellPrice, eatable), 1), RecipeTypes.valueOf(name));
         this.eatable = eatable;
         this.sellPrice = sellPrice;
         this.name = name;
-        this.abilityType = abilityType;
-        this.Buffhour = hour;
+        this.foodBuff = foddBuff;
     }
     private FoodTypes(String name, ArrayList<ItemStack> ingredients, Eatable eatable, int sellPrice) {
         this.ingredients = ingredients;
@@ -292,6 +290,14 @@ public enum FoodTypes {
 
     public Integer getHour() {
         return Buffhour;
+    }
+
+    public void setFoodBuff(Buff foddBuff) {
+        this.foodBuff = foddBuff;
+    }
+
+    public Buff getFoddBuff() {
+        return this.foodBuff;
     }
 
     public static FoodTypes getType(String name) {

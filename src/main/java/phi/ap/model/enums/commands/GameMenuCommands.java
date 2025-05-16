@@ -61,6 +61,7 @@ public enum GameMenuCommands implements Command{
     GreenHouseBuild("\\s*green\\s*house\\s+build\\s*"),
     CheatAddDollar("\\s*cheat\\s*add\\s+(?<count>-?\\d+)\\s+dollars\\s*"),
     CheatThor("\\s*cheat\\s+(thor|Thor)\\s+-l\\s+(?<x>-?\\d+)(\\s+|\\s*,\\s*)(?<y>-?\\d+)\\s*"),
+    CheatSetAnimalFriendShip("\\s*cheat\\s+set\\s+friendship\\s+-n\\s+(?<name>.*)\\s+-c\\s+(?<amount>.*)\\s*"),
     WalkWASD("\\s*(?<direction>(w|a|s|d))\\s*"),
     SellProduct("\\s*sell\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*"),
     TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*"),
