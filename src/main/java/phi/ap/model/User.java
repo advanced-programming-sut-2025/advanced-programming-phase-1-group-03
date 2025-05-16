@@ -100,7 +100,9 @@ public class  User {
             return new Result<>(false, "password must contain at least one digit");
         if(!password.matches(".*[A-Z].*"))
             return new Result<>(false, "password must contain at least one uppercase letter");
-        if(!password.matches(".*[a-zA-Z0-9?><,\"';:\\\\\\/|\\]\\[}\\{+=\\)\\(*&^%$#!].*"))
+        if(!password.matches(".*[a-z].*"))
+            return new Result<>(false, "password must contain at least one lowercase letter");
+        if(!password.matches(".*[?><,\"';:\\\\/|}{+=)(*&^%@$#!].*"))
             return new Result<>(false, "password must contain at least one special character");
         return new Result<>(true, "");
     }

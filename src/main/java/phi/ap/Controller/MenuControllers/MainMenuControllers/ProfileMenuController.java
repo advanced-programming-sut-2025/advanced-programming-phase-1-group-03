@@ -25,7 +25,7 @@ public class ProfileMenuController {
     public Result<String> changeEmail(String email) {
         User user = App.getInstance().getLoggedInUser();
         if(user.getEmail().equals(email))
-            return new Result<>(false, "Provided nickname is same as the previous one");
+            return new Result<>(false, "Provided email is same as the previous one");
         if(!user.setEmail(email))
             return new Result<>(false, "Invalid email");
         return new Result<>(true, "Email successfully changed");

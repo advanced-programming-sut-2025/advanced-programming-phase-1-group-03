@@ -10,7 +10,7 @@ public class App {
     private static App instance = null;
     private User loggedInUser;
     private Random rand = new Random(123);
-    private ArrayList<User> users;
+    private ArrayList<User> users = new ArrayList<>();
     private Menu menu = Menu.LoginMenu;
     private boolean saveUser;
 

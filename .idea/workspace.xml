@@ -4,10 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Profile Menu Completed">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Bug Fix : Place Item">
+      <change afterPath="$PROJECT_DIR$/src/test/java/phi/ap/Controller/MenuControllers/LoginMenuControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/phi/ap/Controller/MenuControllers/MainMenuControllers/MainMenuControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/phi/ap/Controller/MenuControllers/MainMenuControllers/ProfileMenuControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/phi/ap/model/UserTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Pickaxe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Pickaxe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/LoginMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/LoginMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,8 +56,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -76,63 +84,188 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Gradle.LoginMenuControllerTest.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenForgetPasswordWhenInvalidUserThenLoginSuccess.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenLoginThenLoginSuccess.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenLoginWhenInvalidPasswordThenReturnError.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenLoginWhenInvalidUsernameThenReturnError.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenPickQuestionWhenAnswerAndConfirmAnswerIsNotSameThenError.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenPickQuestionWhenEveryThingOkThenSuccess.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenPickQuestionWhenInvalidUserNameThenError.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenRegisterWhenDuplicateThenReturnError.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenRegisterWhenGenderIsNotValidThenReturnError.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidEmailThenReturnError.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenRegisterWhenPasswordAndPasswordConfirmAreNotSameThenReturnError.executor": "Run",
+    "Gradle.ProfileMenuControllerTest.givenChangeNicknameWhenEveryThingOkThenOk.executor": "Run",
+    "Gradle.ProfileMenuControllerTest.givenChangeNicknameWhenSameUsernameThenReturnError.executor": "Run",
+    "Gradle.ProfileMenuControllerTest.givenChangePasswordWhenEveryThingOkThenOk.executor": "Run",
+    "Gradle.ProfileMenuControllerTest.givenChangePasswordWhenNewPassSameOldPassThenReturnError.executor": "Run",
+    "Gradle.ProfileMenuControllerTest.givenChangePasswordWhenOldPasswordIsIncorrectThenReturnError.executor": "Run",
+    "Gradle.ProfileMenuControllerTest.givenChangeUsernameWhenEveryThingOkThenOk.executor": "Run",
+    "Gradle.ProfileMenuControllerTest.givenChangeUsernameWhenInvalidUsernameThenReturnError.executor": "Run",
+    "Gradle.ProfileMenuControllerTest.givenChangeUsernameWhenSameUsernameThenReturnError.executor": "Run",
+    "Gradle.StardewValley [run].executor": "Run",
+    "Gradle.UserTest.executor": "Run",
+    "Gradle.UserTest.givenEmailAfterAtSignContainDotThenInvalid.executor": "Debug",
+    "Gradle.UserTest.givenEmailBeforeAtSignContainInvalidCharacterThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenEmailWhenAfterAtSignContainInvalidCharactersThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenEmailWhenAfterAtSignDoesntStartWithNumberOfLetterThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenEmailWhenBeforeAtSignInvalidStartAndEndThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenEmailWhenContainsInvalidCharactersThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenEmailWhenDomainFewerThanTwoCharactersThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenEmailWhenTwoAtSignThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenEmailWhenTwoConsecutiveDotThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenPasswordWhenDoesntHaveDigitThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenPasswordWhenDoesntHaveSpecialCharsThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenPasswordWhenHasFewerThan8CharactersThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenPasswordWhenOnlyHasBigLettersThenInvalid.executor": "Run",
+    "Gradle.UserTest.givenPasswordWhenOnlyHasSmallLettersThenInvalid.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last.edited.regexp": "testParsa",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="phi.ap.Main" />
-      <module name="StardewValley.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="phi.ap.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StardewValley [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+}]]></component>
+  <component name="RunManager" selected="Gradle.LoginMenuControllerTest.givenLogoutThenSuccess">
+    <configuration name="LoginMenuControllerTest.givenLogoutThenSuccess" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
-            <option value="run" />
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;phi.ap.Controller.MenuControllers.LoginMenuControllerTest.givenLogoutThenSuccess&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProfileMenuControllerTest.givenChangeEmailWhenInvalidEmailThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;phi.ap.Controller.MenuControllers.MainMenuControllers.ProfileMenuControllerTest.givenChangeEmailWhenInvalidEmailThenReturnError&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProfileMenuControllerTest.givenChangeEmailWhenSameEmailThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;phi.ap.Controller.MenuControllers.MainMenuControllers.ProfileMenuControllerTest.givenChangeEmailWhenSameEmailThenReturnError&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProfileMenuControllerTest.givenChangePasswordWhenEveryThingOkThenOk" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;phi.ap.Controller.MenuControllers.MainMenuControllers.ProfileMenuControllerTest.givenChangePasswordWhenEveryThingOkThenOk&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="ProfileMenuControllerTest.givenEmailUsernameWhenEveryThingOkThenOk" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;phi.ap.Controller.MenuControllers.MainMenuControllers.ProfileMenuControllerTest.givenEmailUsernameWhenEveryThingOkThenOk&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Gradle.StardewValley [run]" />
+        <item itemvalue="Gradle.LoginMenuControllerTest.givenLogoutThenSuccess" />
+        <item itemvalue="Gradle.ProfileMenuControllerTest.givenEmailUsernameWhenEveryThingOkThenOk" />
+        <item itemvalue="Gradle.ProfileMenuControllerTest.givenChangeEmailWhenInvalidEmailThenReturnError" />
+        <item itemvalue="Gradle.ProfileMenuControllerTest.givenChangeEmailWhenSameEmailThenReturnError" />
+        <item itemvalue="Gradle.ProfileMenuControllerTest.givenChangePasswordWhenEveryThingOkThenOk" />
       </list>
     </recent_temporary>
   </component>
@@ -175,7 +308,8 @@
       <workItem from="1747333239997" duration="6965000" />
       <workItem from="1747340475314" duration="57000" />
       <workItem from="1747387871752" duration="4782000" />
-      <workItem from="1747397283498" duration="5804000" />
+      <workItem from="1747397283498" duration="5942000" />
+      <workItem from="1747431850846" duration="6107000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -320,7 +454,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۲۱" />
       <updated>1747402610418</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL‎−۰۰۰۲۲" summary="Bug Fix : Place Item">
+      <option name="closed" value="true" />
+      <created>1747404151545</created>
+      <option name="number" value="LOCAL‎−۰۰۰۲۲" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۲۲" />
+      <updated>1747404151545</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,7 +501,8 @@
     <MESSAGE value="Fix scythe bug in tools" />
     <MESSAGE value="place and pick items up" />
     <MESSAGE value="Profile Menu Completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Profile Menu Completed" />
+    <MESSAGE value="Bug Fix : Place Item" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug Fix : Place Item" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -372,17 +514,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java</url>
-          <line>120</line>
+          <line>121</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java</url>
-          <line>124</line>
+          <line>125</line>
           <option name="timeStamp" value="54" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java</url>
-          <line>106</line>
+          <line>107</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -400,22 +542,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>679</line>
+          <line>680</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>637</line>
+          <line>638</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>653</line>
+          <line>654</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>652</line>
+          <line>653</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">

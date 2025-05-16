@@ -66,7 +66,6 @@ public class LoginMenuController {
         if(!answer.equals(answerConfirm))
             return new Result<>(false, "answer and confirm answer do not match...");
         User user = App.getInstance().getUserService().getUserByUsername(username);
-
         if(user == null)
             throw new RuntimeException();
         user.setSecurityQuestion(new SecurityQuestion(questionText, answer));
