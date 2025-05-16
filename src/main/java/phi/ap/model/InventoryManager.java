@@ -1,6 +1,7 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.FoodTypes;
+import phi.ap.model.enums.ProductNames;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Food;
 import phi.ap.model.items.products.Recipe;

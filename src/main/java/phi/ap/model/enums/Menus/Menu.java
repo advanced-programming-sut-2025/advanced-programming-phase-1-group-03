@@ -8,6 +8,7 @@ import phi.ap.view.menus.MainMenus.MainMenu;
 import phi.ap.view.menus.MainMenus.ProfileMenu;
 import phi.ap.view.menus.MainMenus.ExitMenu;
 import phi.ap.view.menus.MainMenus.sub_menus.ChoosingMapMenu;
+import phi.ap.view.menus.MainMenus.sub_menus.DialogueAnswerMenu;
 import phi.ap.view.menus.MainMenus.sub_menus.TradeMenu;
 
 public enum Menu {
@@ -18,7 +19,8 @@ public enum Menu {
     GameMenu(new GameMenu()),
     TradeMenu(new TradeMenu()),
     ExitMenu(new ExitMenu()),
-    ChoosingMapMenu(new ChoosingMapMenu())
+    ChoosingMapMenu(new ChoosingMapMenu()),
+    DialogueAnwerMenu(new DialogueAnswerMenu()),
     ;
 
     private AppMenu menu;

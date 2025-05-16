@@ -1,15 +1,14 @@
 package phi.ap.service;
 
+import phi.ap.Controller.MenuControllers.MainMenuControllers.GameMenuController;
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
-import phi.ap.model.items.Dirt;
-import phi.ap.model.items.Item;
-import phi.ap.model.items.Portal;
+import phi.ap.model.items.*;
 import phi.ap.model.items.buildings.*;
-import phi.ap.model.items.Seed;
 import phi.ap.model.items.machines.craftingMachines.Scarecrow;
 import phi.ap.model.items.machines.craftingMachines.Sprinkler;
 import phi.ap.model.items.products.*;
+import phi.ap.model.npcStuff.NPC;
 
 public class GameService {
     private Game game;
@@ -431,4 +430,63 @@ public class GameService {
             player.InitializePlayer();
         }
     }
+
+    public void doNPCStuffAtNight() {
+        for (Player player : game.getPlayers()) {
+            for (NPC npc : game.getNpcs()) {
+                if (npc.getState(player).getFriendshipLevel() >= 3) {
+                    if (App.getInstance().getRandomNumber(1, 2) == 1) {
+                        if (npc.getType().getPossibleGiftsToSend().isEmpty()) continue;
+                        int ind = App.getInstance().getRandomNumber(0,
+                                npc.getType().getPossibleGiftsToSend().size() - 1);
+                        ItemStack stack = npc.getType().getPossibleGiftsToSend().get(ind);
+                        player.getInventoryManager().addItem(new ItemStack(
+                                getItem(stack.getItem().getName()), stack.getAmount()));
+                        System.out.println(npc.getType().getNpcName() + " sent " + stack.getAmount() + " " + stack.getItem().getName() + "last night!");
+                        break;
+                        //TODO fix it some how :(
+                    }
+                }
+            }
+        }
+    }
+    public Item getItem(String name) {
+        if(name.equals("Wood"))
+            return new Wood(1, 1);
+        if(name.equals("Stone") || StoneTypes.getType(name) != null)
+            return new Stone(1, 1, StoneTypes.RegularStone);
+        if(AnimalProductTypes.getType(name) != null)
+            return new AnimalProduct(1, 1, AnimalProductTypes.getType(name));
+        if(AnimalTypes.getType(name) != null)
+            return new Animal(AnimalTypes.getType(name), 1, 1);
+        if(CropsTypes.find(name) != null)
+            return new Crop(1, 1 , CropsTypes.find(name));
+        if(CraftingTypes.getType(name) != null)
+            return CraftingTypes.getType(name).getRecipe().getResult().getItem();
+        if(FishTypes.getType(name) != null)
+            return new Fish(1, 1, FishTypes.getType(name));
+        if(FoodTypes.getType(name) != null)
+            return new Food(1, 1, FoodTypes.getType(name));
+        if(ForagingCropsTypes.find(name) != null)
+            return new Crop(1, 1, ForagingCropsTypes.find(name));
+        if(ForagingMineralTypes.getType(name) != null)
+            return new Mineral(1, 1, ForagingMineralTypes.getType(name));
+        if(TreeTypes.find(name) != null)
+            return new Tree(1, 1, TreeTypes.find(name), false);
+        if(SeedTypes.find(name) != null)
+            return new Seed(1, 1, SeedTypes.find(name));
+        if(SaplingTypes.find(name) != null)
+            return new Sapling(1, 1, SaplingTypes.find(name));
+        if(StoneTypes.getType(name) != null)
+            return new Stone(1, 1, StoneTypes.getType(name));
+        if(SoilTypes.find(name) != null)
+            return new Soil(1, 1, SoilTypes.find(name));
+        if(ForagingMineralTypes.find(name) != null)
+            return ForagingMineralTypes.find(name).getItem();
+        if(ProductNames.find(name) != null) {
+            return new Product(ProductNames.find(name));
+        }
+        return null;
+    }
+
 }

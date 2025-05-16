@@ -11,6 +11,16 @@ public abstract class Item extends Ground {
     private boolean isSellable = false;
     private Eatable eatable = null;
 
+    public Item(Item item) {
+        super(item.getHeight(), item.getWidth());
+        this.name = item.name;
+        this.maxStackSize = item.maxStackSize;
+        this.isRemovableByPickaxe = item.isRemovableByPickaxe;
+        this.sellPrice = item.sellPrice;
+        this.isSellable = item.isSellable;
+        this.eatable = new Eatable(item.eatable);
+    }
+
     public Item(int height, int width) {
         super(height, width);
         setName("Item");
@@ -75,6 +85,14 @@ public abstract class Item extends Ground {
 
     public void setEatable(Eatable eatable) {
         this.eatable = eatable;
+    }
+
+    public String toString() {
+        return getName();
+    }
+
+    public Item getThis() {
+        return this;
     }
 }
 

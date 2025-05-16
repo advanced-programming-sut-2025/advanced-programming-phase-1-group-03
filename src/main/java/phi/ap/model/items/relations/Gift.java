@@ -59,6 +59,7 @@ public class Gift {
 
     public void setRate(int rate) {
         this.rate = rate;
+        haveSeen = true;
         Friendship.AddXp(sender, getter, (rate - 3) * 30 + 15);
     }
 

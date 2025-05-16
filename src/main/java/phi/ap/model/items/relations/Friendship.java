@@ -1,14 +1,10 @@
 package phi.ap.model.items.relations;
 
-import jdk.jfr.Frequency;
 import phi.ap.model.*;
-import phi.ap.model.Human;
 import phi.ap.model.enums.ProductNames;
-import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Product;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
 
 public class Friendship {
     private static ArrayList<Friendship> friendships;

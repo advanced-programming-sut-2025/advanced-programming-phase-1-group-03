@@ -43,7 +43,7 @@ public class Product extends Item {
     }
 
     public Product(Product product) {
-        super(product.getHeight(), product.getWidth());
+        super(product.getSuper());
         levels = new LevelProcess(new ArrayList<>(List.of(LevelName.normal)), 0);
         if (product.getLevels() != null) this.levels = new LevelProcess(product.getLevels());
         if (product.getEatable() != null) setEatable(new Eatable(product.getEatable()));
@@ -58,6 +58,7 @@ public class Product extends Item {
         setSellPrice(product.getSellPrice());
         drops = new ArrayList<>(product.getDrops());
         products = new ArrayList<>(product.getProducts());
+        waitingTime = product.waitingTime;
     }
 
     public Product(ProductNames type) {
@@ -146,5 +147,13 @@ public class Product extends Item {
     public int getSellPrice() {
         if (levels == null) return super.getSellPrice();
         return (int) (super.getSellPrice() * levels.getCurrentLevelName().getSellPrinceCoefficient());
+    }
+
+    public Product getThis() {
+        return this;
+    }
+
+    public Item getSuper() {
+        return super.getThis();
     }
 }

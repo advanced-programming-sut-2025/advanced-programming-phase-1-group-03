@@ -12,9 +12,9 @@ import java.util.List;
 public enum ProductNames {
     Grass("Grass", new LevelProcess(), new Tile("#", Colors.fg(28), "", false)),
     Fiber("Fiber", new LevelProcess(), new Tile("#", Colors.fg(28), "", false)),
-    TroutSoup("TroutSoup", new LevelProcess(), new Tile("#", Colors.fg(28), "", false)),
-    WeddingRing("WeddingRing", new LevelProcess(), new Tile("#", Colors.fg(28), ""), true, 10000, null),
-    Bouquet("Bouquet", new LevelProcess(), new Tile("#", Colors.fg(28), ""), true, 1000, null),
+    TroutSoup("TroutSoup", new LevelProcess(), new Tile("&", Colors.fg(28), "", false)),
+    WeddingRing("WeddingRing", new LevelProcess(), new Tile("o", Colors.fg(28), ""), true, 10000, null),
+    Bouquet("Bouquet", new LevelProcess(), new Tile("U", Colors.fg(28), ""), true, 1000, null)
     ;
     private String name;
     private LevelProcess levels;
@@ -123,5 +123,13 @@ public enum ProductNames {
 
     public ArrayList<ItemStack> getProducts() {
         return products;
+    }
+
+    public static ProductNames find(String name) {
+        name = name.toLowerCase().replaceAll("\\s+", "");
+        for (ProductNames value : values()) {
+            if (value.toString().toLowerCase().equals(name)) return value;
+        }
+        return null;
     }
 }

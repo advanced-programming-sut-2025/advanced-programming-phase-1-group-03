@@ -3,22 +3,19 @@ package phi.ap.model;
 import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.enums.FoodTypes;
-import phi.ap.model.enums.RecipeTypes;
-import phi.ap.model.items.Item;
+import phi.ap.model.enums.npcStuff.Quests;
 import phi.ap.model.items.buildings.AnimalHouse;
 import phi.ap.model.items.buildings.Farm;
 import phi.ap.model.items.Animal;
 import phi.ap.model.items.products.Product;
 import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.relations.MarriageRequest;
-import phi.ap.model.items.relations.Quest;
 import phi.ap.model.items.relations.TradeRequest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class Player extends Human {
+public class Player {
     private User user;
     private int gold = 0;
     private final EnergyManager energy = new EnergyManager();
@@ -34,11 +31,20 @@ public class Player extends Human {
     private ArrayList<Gift> giftsReceived;
     private ArrayList<MarriageRequest> marriageRequests;
     private ArrayList<TradeRequest> tradeRequests;
-    private ArrayList<Quest> activatedQuests;
     private FarmTypes farmType = null;
     private Farm farm = null;
     private Location location;
     private Player partner = null;
+    private final ArrayList<Quests> activeQuests = new ArrayList<>();
+    private final ArrayList<Quests> doneQuests = new ArrayList<>();
+
+    public ArrayList<Quests> getActiveQuests() {
+        return activeQuests;
+    }
+
+    public ArrayList<Quests> getDoneQuests() {
+        return doneQuests;
+    }
 
     public Player getPartner() {
         return partner;
@@ -153,9 +159,7 @@ public class Player extends Human {
         return tradeRequests;
     }
 
-    public ArrayList<Quest> getActivatedQuests() {
-        return activatedQuests;
-    }
+
 
     public void setUser(User user) {
         this.user = user;
@@ -184,9 +188,6 @@ public class Player extends Human {
         this.tradeRequests = tradeRequests;
     }
 
-    public void setActivatedQuests(ArrayList<Quest> activatedQuests) {
-        this.activatedQuests = activatedQuests;
-    }
 
     public void feint() {
         //TODO feint
@@ -262,5 +263,18 @@ public class Player extends Human {
                 return true;
         }
         return false;
+    }
+
+    public boolean isQuestActive(Quests quest) {
+        return activeQuests.contains(quest);
+    }
+    public boolean isQuestDone(Quests quest) {
+        return doneQuests.contains(quest);
+    }
+    public boolean isQuestActivatedSoFar(Quests quest) {
+        return isQuestActive(quest) || isQuestDone(quest);
+    }
+    public void activateQuest(Quests quest) {
+        activeQuests.add(quest);
     }
 }

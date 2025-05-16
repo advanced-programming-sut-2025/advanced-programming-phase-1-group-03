@@ -46,4 +46,8 @@ public class ItemStack {
     public void advanceAmount(int amount) {
         this.amount += amount;
     }
+
+    public String toString() {
+        return "(" + item.getName() + ", " + amount + ")";
+    }
 }

@@ -14,6 +14,32 @@ public class Sprinkler extends Machine {
     private ArrayList<Coordinate> protects = new ArrayList<>();
     public Sprinkler(int height, int width, CraftingTypes craftingType) {
         super(height, width, craftingType);
+        //TODO : shape
+        switch (craftingType) {
+            case CraftingTypes.Sprinkler:
+                this.protects = new ArrayList<>(List.of(
+                        new Coordinate(-1, 0),
+                        new Coordinate(1, 0),
+                        new Coordinate(0, 1),
+                        new Coordinate(0, -1)));
+                break;
+            case CraftingTypes.QualitySprinkler:
+                for (int i = -1; i <= 1; i++) {
+                    for (int j = -1; j <= 1; j++) {
+                        if (i == 0 && j == 0) continue;
+                        protects.add(new Coordinate(i, j));
+                    }
+                }
+                break;
+            case CraftingTypes.IridiumSprinkler:
+                for (int i = -2; i <= 2; i++) {
+                    for (int j = -2; j <= 2; j++) {
+                        if (i == 0 && j == 0) continue;
+                        protects.add(new Coordinate(i, j));
+                    }
+                }
+                break;
+        }
     }
     public Sprinkler(int height, int width, String machineName, Integer price) {
         super(height, width, machineName, price);
