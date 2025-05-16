@@ -27,6 +27,7 @@ import phi.ap.utils.Misc;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class GameMenuController {
     public Result<String> test(String input) {
@@ -1222,7 +1223,65 @@ public class GameMenuController {
         return new Result<>(true, "animal selled successfully");
     }
     public Result<String> fishing(String fishingPole) {
-        return null;
+        ItemStack it = Game.getInstance().getCurrentPlayer().getInventoryManager().getItemByName(fishingPole);
+        if(it == null)
+            return new Result<>(false, "You don't have this fishing pole");
+        FishingPole pole = (FishingPole) it.getItem();
+        boolean seaIsNear = false;
+        for(int d = 0; d < 8; d++){
+            Coordinate coord = Misc.getDiffFromDirection(d);
+            Item nearItem = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(coord.getY(), coord.getX());
+            if((nearItem instanceof Water) && ((Water)nearItem).isHasFish()){
+                seaIsNear = true;
+            }
+        }
+        if(!seaIsNear)
+            return new Result<>(false, "You are not close to the lake");
+        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(pole.getEnergyNeed()))
+            return new Result<>(false, "You don't have enough energy");
+
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseUnit(-pole.getEnergyNeed());
+
+        double R = Math.random();
+        double M = switch (Game.getInstance().getWeatherManager().getCurrentWeather()){
+            case Sunny -> 1.5;
+            case Rain -> 1.2;
+            case Storm -> 0.5;
+            default -> 1;
+        };
+        double skill = Game.getInstance().getCurrentPlayer().getAbilityLevel(AbilityType.Fishing);
+        double poleCoef = pole.getCoef();
+
+        int fishCount = Math.min((int) Math.ceil(R * M * (skill + 2)), 6);
+
+
+        ArrayList<FishTypes> possibleFishTypes = new ArrayList<>();
+        for(FishTypes fishType : FishTypes.values()){
+            if(!Game.getInstance().getDate().getSeason().equals(fishType.getSeason()))
+                continue;
+            if(fishType.isFishingAbilityMustBeMax() && !Game.getInstance().getCurrentPlayer().isAbilityMax(AbilityType.Fishing))
+                continue;
+            possibleFishTypes.add(fishType);
+        }
+
+        StringBuilder response = new StringBuilder();
+        for(int i = 0; i < fishCount; i++){
+            Fish fish = new Fish(1, 1, possibleFishTypes.get(new Random().nextInt(possibleFishTypes.size())) );
+            R = Math.random();
+            double qualityCoef = (R * (skill + 2) * poleCoef) / (7.0 - M);
+            if(qualityCoef < 0.5)
+                fish.getLevels().setCurrentLevel(0);
+            else if(qualityCoef < 0.7)
+                fish.getLevels().setCurrentLevel(1);
+            else if(qualityCoef < 0.9)
+                fish.getLevels().setCurrentLevel(2);
+            else
+                fish.getLevels().setCurrentLevel(3);
+            Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(fish, 1);
+            response.append(fish.getName() + " caught! " + fish.getLevels().getCurrentLevelName() + "\n");
+        }
+
+        return new Result<>(true, response.toString());
     }
     public Result<String> useArtisan(String artisanName, String itemName, String ingredient) {
         CraftingTypes craftingType;

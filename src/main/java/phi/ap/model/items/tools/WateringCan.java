@@ -35,9 +35,11 @@ public class WateringCan extends Tool{
                 water.reduceCapacity(occupiedCapacity);
                 return new Result<>(true, "now your watering can has " + occupiedCapacity + " unit of water");
             case Plant plant:
-                if(occupiedCapacity == 0)
-                    return new Result<>(false, "Your watering can is empty!");
-                occupiedCapacity -= 1; //TODO check if it's giant
+                int needWater = 1;
+                if(plant.getGiant() != null) needWater = 4;
+                if(occupiedCapacity < needWater)
+                    return new Result<>(false, "Watering can doesn't have enough water");
+                occupiedCapacity -= needWater;
                 plant.watering();
                 return new Result<>(true, "plant watered... now your watering can has "
                         + occupiedCapacity + " unit of water");

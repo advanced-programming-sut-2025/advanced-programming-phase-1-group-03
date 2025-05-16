@@ -79,10 +79,12 @@ public class Product extends Item {
         products = new ArrayList<>(product.getProducts());
     }
 
-    public final static  LevelProcess levelProcessSample = new LevelProcess(new ArrayList<>(
-            List.of(LevelName.normal, LevelName.silver, LevelName.golden, LevelName.iridium)), 0);
+    public static LevelProcess getBasicLevels(){
+        return  new LevelProcess(new ArrayList<>(
+                List.of(LevelName.normal, LevelName.silver, LevelName.golden, LevelName.iridium)), 0);
+    }
     public static LevelProcess getRandomLevelProcessSample() {
-        LevelProcess levelsSample = new LevelProcess(new LevelProcess(Product.levelProcessSample));
+        LevelProcess levelsSample = new LevelProcess(new LevelProcess(Product.getBasicLevels()));
         int rand = App.getInstance().getRandomNumber(1, 100);
         if (rand <= 50) levelsSample.setCurrentLevel(0);
         else if (rand <= 70) levelsSample.setCurrentLevel(1);
@@ -141,23 +143,6 @@ public class Product extends Item {
         products = new ArrayList<>(product.getProducts());
     }
 
-    public int calculateRealPrice(){
-         switch (getLevels().getCurrentLevel()){
-            case 0 -> { //regular
-                return getSellPrice();
-            }
-            case 1 -> { //silver
-                return getSellPrice() * 5 / 4;
-            }
-            case 2 -> { //gold
-                return getSellPrice() * 3 / 2;
-            }
-            case 3 -> { //iridium
-                return getSellPrice() * 2;
-            }
-        }
-        return -1;
-    }
     public int getSellPrice() {
         if (levels == null) return super.getSellPrice();
         return (int) (super.getSellPrice() * levels.getCurrentLevelName().getSellPrinceCoefficient());

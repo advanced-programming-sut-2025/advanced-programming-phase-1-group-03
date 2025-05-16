@@ -148,6 +148,8 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.sellProduct(matcher.group("productName").trim(), matcher.group("amount")));
         }else if((matcher = GameMenuCommands.TrashItem.getMatcher(input)) != null) {
             System.out.println(controller.inventoryTrash(matcher.group("itemName").trim(), matcher.group("amount")));
+        }else if((matcher = GameMenuCommands.Fishing.getMatcher(input)) != null) {
+            System.out.println(controller.fishing(matcher.group("fishingPole").trim()));
         }
         else {
             super.check(input);

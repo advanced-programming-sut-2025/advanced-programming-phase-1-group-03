@@ -31,7 +31,7 @@ public class ShippingBin extends Building {
         for(ItemStack itemSt : items){
             Item item = itemSt.getItem();
             if(item instanceof Product){
-                totalMoney += ((Product)item).calculateRealPrice() * itemSt.getAmount();
+                totalMoney += ((Product)item).getSellPrice() * itemSt.getAmount();
             }else{
                 totalMoney += item.getSellPrice() * itemSt.getAmount();
             }

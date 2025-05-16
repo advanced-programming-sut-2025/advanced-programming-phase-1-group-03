@@ -20,6 +20,7 @@ public class Lake extends Building {
                 Water water = new Water();
                 water.setCoordinate(new Coordinate(i, j));
                 water.fillTile(TileType.Water.getTile());
+                water.makeHasFish();
                 addItem(water);
             }
     }

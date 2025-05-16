@@ -52,6 +52,7 @@ public class Ability {
         checkingCraftingRecipes();
         checkingCookingRecipes();
     }
+
     public void advanceXP(int gained){
         while(gained > 0){
             int need = Math.min(gained, xpNeedToNextLevel());
