@@ -16,7 +16,7 @@ public class Shear extends Tool {
     }
     @Override
     public Result<String> useTool(Coordinate direction) {
-        return null;
+        return new Result<>(false, "Use collect produce -n name command to use this tool");
     }
 
     @Override

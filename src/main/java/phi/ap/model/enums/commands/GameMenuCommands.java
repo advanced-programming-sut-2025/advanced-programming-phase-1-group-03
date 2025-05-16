@@ -63,6 +63,7 @@ public enum GameMenuCommands implements Command{
     WalkWASD("\\s*(?<direction>(w|a|s|d))\\s*"),
     SellProduct("\\s*sell\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*"),
     TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*"),
+    Fishing("\\s*fishing\\s*-p\\s+(?<fishingPole>.*)"),
     Talk("\\s*talk\\s+-u\\s+(?<username>\\w+)\\s+-m\\s+\"(?<message>.+)\""),
     TalkHistory("\\s*talk\\s+history\\s+-u\\s+(?<username>\\w+)\\s*"),
 
@@ -90,6 +91,9 @@ public enum GameMenuCommands implements Command{
     QuestFinish("\\s*quests\\s+finish\\s+-i\\s+(?<index>\\d+)\\s*"),
     AllQuestsList("\\s*(?i)show\\s+all\\s+quests\\s*"),
     CheatAddNPCFriendshipXP("\\s*cheat\\s+(npc|NPC)\\s+add\\s+friendship\\s+-n\\s+(?<name>\\S+)\\s+-c\\s+(?<count>\\d+)\\s*"),
+
+
+    PlaceItem("\\s*place\\s+item\\s+-n (?<itemName>.*) -d\\s+(?<direction>\\d)\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

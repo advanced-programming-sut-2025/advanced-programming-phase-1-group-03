@@ -18,15 +18,24 @@ public class FishingPole extends Tool {
 
     @Override
     public String getName() {
-        return "Fishing Pole level : " + getLevelProcess().toString();
+        return "Fishing Pole " + getLevelProcess().toString();
     }
     @Override
     public Result<String> useTool(Coordinate direction) {
-        return null;
+        return new Result<>(true, "If you want to use fishing pole, use fishing -p <fishing pole> command");
     }
 
     @Override
     public void doTask() {
+    }
 
+    public double getCoef(){
+        return switch (getLevelProcess().getCurrentLevelName()){
+            case training -> 0.1;
+            case bamboo -> 0.5;
+            case fiberGlass -> 0.9;
+            case iridium -> 1.2;
+            default -> 0;
+        };
     }
 }

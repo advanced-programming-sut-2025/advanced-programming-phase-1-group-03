@@ -48,13 +48,6 @@ public class Farm extends Building {
         for (BuildingStructure lakeInfos : farmType.getLakes()) {
             Lake lake = new Lake(lakeInfos.getHeight(), lakeInfos.getWidth(), lakeInfos.getCoordinate());
             lakes.add(lake);
-            //Adding water item to the lakes
-            for(int i = 0; i < lakeInfos.getHeight(); i++)
-                for(int j = 0; j < lakeInfos.getWidth(); j++){
-                    Water water = new Water();
-                    water.setCoordinate(new Coordinate(i, j));
-                    lake.addItem(water);
-                }
         }
         for (Lake lake : lakes) {
             addItem(lake);

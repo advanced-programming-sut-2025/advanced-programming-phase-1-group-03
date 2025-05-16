@@ -125,7 +125,7 @@ public class GameMenu extends AppMenu {
         }  else if ((matcher = GameMenuCommands.Produces.getMatcher(input)) != null) {
             System.out.println(controller.produces());
         }  else if ((matcher = GameMenuCommands.CollectProduce.getMatcher(input)) != null) {
-            System.out.println(controller.collectProduce(matcher.group("name"), Game.getInstance().getCurrentPlayer().getToolManager().getCurrentTool()));
+            System.out.println(controller.collectProduce(matcher.group("name")));
         }  else if ((matcher = GameMenuCommands.SellAnimal.getMatcher(input)) != null) {
             System.out.println(controller.sellAnimal(matcher.group("name")));
         } else if ((matcher = GameMenuCommands.Plant.getMatcher(input)) != null) {
@@ -186,6 +186,11 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.showAllQuests());
         } else if ((matcher = GameMenuCommands.CheatAddNPCFriendshipXP.getMatcher(input)) != null) {
             System.out.println(controller.cheatAddNPCFriendshipXP(matcher.group("name"), matcher.group("count")));
+        }else if((matcher = GameMenuCommands.Fishing.getMatcher(input)) != null) {
+            System.out.println(controller.fishing(matcher.group("fishingPole").trim()));
+        }else if((matcher = GameMenuCommands.PlaceItem.getMatcher(input)) != null) {
+            System.out.println(controller.placeItem(
+                    matcher.group("itemName").trim(), matcher.group("direction")));
         }
         else {
             super.check(input);

@@ -107,7 +107,7 @@ public class LoginMenuController {
         if(!User.passwordValidity(newPass).success)
             return new Result<>(false, User.passwordValidity(newPass).data);
         user.setPassword(Crypto.hash(newPass));
-        return new Result<>(true, "Password changed to " + newPass + "\nnow try to login...");
+        return new Result<>(true, "Password changed to " + newPass);
     }
 
     private User getUser(String username){

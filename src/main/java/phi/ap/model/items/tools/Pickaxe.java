@@ -57,7 +57,14 @@ public class Pickaxe extends Tool{
                 if(item != null && item.isRemovableByPickaxe()){
                     if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
                     if (item instanceof Plant) ((Plant) item).delete();
-                    else item.getFather().removeItem(item);
+                    else {
+                        item.getFather().removeItem(item);
+                        if(item.isRemovableByPickaxe()) {
+                            int amount = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, 1);
+                            if(amount > 0)
+                                return new Result<>(true, item.getName() + " Picked up");
+                        }
+                    }
                     return new Result<>(true, "Item removed");
                 }
                 if(!reduceFailedEnergy()) return new Result<>(false, "You don't have enough energy!");

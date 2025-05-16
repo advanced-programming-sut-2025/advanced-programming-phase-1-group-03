@@ -4,6 +4,7 @@ import phi.ap.model.enums.TileType;
 
 public class Water extends Item {
     private int capacity = Integer.MAX_VALUE;
+    private boolean hasFish = false;
 
     public Water(){
         super();
@@ -25,4 +26,11 @@ public class Water extends Item {
             getFather().removeItem(this);
     }
 
+    public void makeHasFish() {
+        this.hasFish = true;
+    }
+
+    public boolean isHasFish() {
+        return hasFish;
+    }
 }

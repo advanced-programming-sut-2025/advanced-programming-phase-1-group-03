@@ -31,6 +31,7 @@ import phi.ap.utils.Misc;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class GameMenuController {
     public Result<String> test(String input) {
@@ -43,6 +44,9 @@ public class GameMenuController {
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
     public Result<String> test1(String input) {
+        Item it = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(1,0);
+        if(it != null)
+            System.out.println(it.getName());
         //get info in coordinate;
         Farm farm = Game.getInstance().getCurrentPlayer().getFarm();
         Map map = Game.getInstance().getMap();
@@ -922,8 +926,28 @@ public class GameMenuController {
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-2);
         return new Result<>(true, "item crafted successfully.");
     }
-    public Result<String> placeItem(String itemName, String direction) {
-        return null; //TODO : importantttt;
+    public Result<String> placeItem(String itemName, String directionString) {
+        int direction = Integer.parseInt(directionString);
+        if(direction < 0 || direction > 7)
+            return new Result<>(false, "invalid direction");
+        ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItemByName(itemName);
+        if(itemStack == null)
+            return new Result<>(false, "There is not item with the given name in inventory");
+
+        Coordinate cord = Misc.getDiffFromDirection(direction);
+        Item topItem = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(cord.getY(), cord.getX());
+        if(topItem == null || topItem instanceof Dirt){
+            Coordinate coordinateB = new Coordinate(cord.getY() + Game.getInstance().getCurrentPlayer().getLocation().getY(),
+                    cord.getX() + Game.getInstance().getCurrentPlayer().getLocation().getX());
+            Item item = itemStack.getItem();
+            item.setCoordinate(coordinateB);
+                Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
+            Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
+            Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), 1);
+            return new Result<>(true, itemStack.getItem().getName() + " placed successfully.");
+
+        }else
+            return new Result<>(false, "You can't place item in this place");
     }
 
     public Result<String> cheatAddItem(String itemName, String amountString) {
@@ -1154,7 +1178,8 @@ public class GameMenuController {
         }
         return new Result<>(true, stringBuilder.toString());
     }
-    public Result<String> collectProduce(String name, Tool tool) {
+    public Result<String> collectProduce(String name) {
+        Tool tool = Game.getInstance().getCurrentPlayer().getToolManager().getCurrentTool();
         Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(name);
         if(animal == null)
             return new Result<>(false, "There is not any animal with this name.");
@@ -1192,7 +1217,65 @@ public class GameMenuController {
         return new Result<>(true, "animal selled successfully");
     }
     public Result<String> fishing(String fishingPole) {
-        return null; // TODO
+        ItemStack it = Game.getInstance().getCurrentPlayer().getInventoryManager().getItemByName(fishingPole);
+        if(it == null)
+            return new Result<>(false, "You don't have this fishing pole");
+        FishingPole pole = (FishingPole) it.getItem();
+        boolean seaIsNear = false;
+        for(int d = 0; d < 8; d++){
+            Coordinate coord = Misc.getDiffFromDirection(d);
+            Item nearItem = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(coord.getY(), coord.getX());
+            if((nearItem instanceof Water) && ((Water)nearItem).isHasFish()){
+                seaIsNear = true;
+            }
+        }
+        if(!seaIsNear)
+            return new Result<>(false, "You are not close to the lake");
+        if(!Game.getInstance().getCurrentPlayer().getEnergy().hasEnergy(pole.getEnergyNeed()))
+            return new Result<>(false, "You don't have enough energy");
+
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseUnit(-pole.getEnergyNeed());
+
+        double R = Math.random();
+        double M = switch (Game.getInstance().getWeatherManager().getCurrentWeather()){
+            case Sunny -> 1.5;
+            case Rain -> 1.2;
+            case Storm -> 0.5;
+            default -> 1;
+        };
+        double skill = Game.getInstance().getCurrentPlayer().getAbilityLevel(AbilityType.Fishing);
+        double poleCoef = pole.getCoef();
+
+        int fishCount = Math.min((int) Math.ceil(R * M * (skill + 2)), 6);
+
+
+        ArrayList<FishTypes> possibleFishTypes = new ArrayList<>();
+        for(FishTypes fishType : FishTypes.values()){
+            if(!Game.getInstance().getDate().getSeason().equals(fishType.getSeason()))
+                continue;
+            if(fishType.isFishingAbilityMustBeMax() && !Game.getInstance().getCurrentPlayer().isAbilityMax(AbilityType.Fishing))
+                continue;
+            possibleFishTypes.add(fishType);
+        }
+
+        StringBuilder response = new StringBuilder();
+        for(int i = 0; i < fishCount; i++){
+            Fish fish = new Fish(1, 1, possibleFishTypes.get(new Random().nextInt(possibleFishTypes.size())) );
+            R = Math.random();
+            double qualityCoef = (R * (skill + 2) * poleCoef) / (7.0 - M);
+            if(qualityCoef < 0.5)
+                fish.getLevels().setCurrentLevel(0);
+            else if(qualityCoef < 0.7)
+                fish.getLevels().setCurrentLevel(1);
+            else if(qualityCoef < 0.9)
+                fish.getLevels().setCurrentLevel(2);
+            else
+                fish.getLevels().setCurrentLevel(3);
+            Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(fish, 1);
+            response.append(fish.getName() + " caught! " + fish.getLevels().getCurrentLevelName() + "\n");
+        }
+
+        return new Result<>(true, response.toString());
     }
     public Result<String> useArtisan(String artisanName, String itemName, String ingredient) {
         CraftingTypes craftingType;
