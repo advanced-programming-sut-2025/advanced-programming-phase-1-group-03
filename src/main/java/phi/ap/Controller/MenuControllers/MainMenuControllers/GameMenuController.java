@@ -43,6 +43,9 @@ public class GameMenuController {
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
     public Result<String> test1(String input) {
+        Item it = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(1,0);
+        if(it != null)
+            System.out.println(it.getName());
         //get info in coordinate;
         Farm farm = Game.getInstance().getCurrentPlayer().getFarm();
         Map map = Game.getInstance().getMap();
@@ -931,13 +934,19 @@ public class GameMenuController {
             return new Result<>(false, "There is not item with the given name in inventory");
 
         Coordinate cord = Misc.getDiffFromDirection(direction);
-        Tile topTile = Game.getInstance().getCurrentPlayer().getLocation().getTopTileDiff(cord.getY(), cord.getX());
         Item topItem = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(cord.getY(), cord.getX());
-        if(!topTile.isWalkable())
+        if(topItem == null || topItem instanceof Dirt){
+            Coordinate coordinateB = new Coordinate(cord.getY() + Game.getInstance().getCurrentPlayer().getLocation().getY(),
+                    cord.getX() + Game.getInstance().getCurrentPlayer().getLocation().getX());
+            Item item = itemStack.getItem();
+            item.setCoordinate(coordinateB);
+                Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
+            Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
+            Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), 1);
+            return new Result<>(true, itemStack.getItem().getName() + " placed successfully.");
+
+        }else
             return new Result<>(false, "You can't place item in this place");
-        topItem.addItem(itemStack.getItem());
-        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), 1);
-        return new Result<>(false, itemStack.getItem().getName() + " placed successfully.");
     }
 
     public Result<String> cheatAddItem(String itemName, String amountString) {

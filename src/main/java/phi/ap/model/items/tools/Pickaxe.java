@@ -59,8 +59,11 @@ public class Pickaxe extends Tool{
                     if (item instanceof Plant) ((Plant) item).delete();
                     else {
                         item.getFather().removeItem(item);
-                        if(item.isRemovableByPickaxe())
-                            Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, 1);
+                        if(item.isRemovableByPickaxe()) {
+                            int amount = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, 1);
+                            if(amount > 0)
+                                return new Result<>(true, item.getName() + " Picked up");
+                        }
                     }
                     return new Result<>(true, "Item removed");
                 }
