@@ -62,7 +62,24 @@ public enum GameMenuCommands implements Command{
     CheatThor("\\s*cheat\\s+(thor|Thor)\\s+-l\\s+(?<x>-?\\d+)(\\s+|\\s*,\\s*)(?<y>-?\\d+)\\s*"),
     WalkWASD("\\s*(?<direction>(w|a|s|d))\\s*"),
     SellProduct("\\s*sell\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*"),
-    TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*")
+    TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*"),
+    Talk("\\s*talk\\s+-u\\s+(?<username>\\w+)\\s+-m\\s+\"(?<message>.+)\""),
+    TalkHistory("\\s*talk\\s+history\\s+-u\\s+(?<username>\\w+)\\s*"),
+
+    // Friendship Commands
+    Friendships("\\s*friendships\\s*"),
+    Hug("\\s*hug\\s+-u\\s+(?<username>.*)\\s*"),
+    Flower("\\s*flower\\s+-u\\s+(?<username>.*)\\s*"),
+
+    // Gift Commands
+    Gift("\\s*gift\\s+-u\\s+(?<username>.*)\\s+-i\\s+(?<item>.*)\\s+-a\\s+(?<amount>\\d+)\\s*"),
+    GiftList("\\s*gift\\s+list\\s*"),
+    GiftRate("\\s*gift\\s+rate\\s+-i\\s+(?<giftNumber>\\d+)\\s+-r\\s+(?<rate>\\d+)\\s*"),
+    GiftHistory("\\s*gift\\s+history\\s+-u\\s+(?<username>.*)\\s*"),
+
+    // Marriage Commands
+    AskMarriage("\\s*ask\\s+marriage\\s+-u\\s+(?<username>.*)\\s+-r\\s+(?<ring>.*)\\s*"),
+    Respond("\\s*respond\\s+-(?<condition>accept|reject)\\s+-u\\s+(?<username>.*)\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

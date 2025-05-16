@@ -20,7 +20,7 @@ public enum Menu {
     TradeMenu(new TradeMenu()),
     ExitMenu(new ExitMenu()),
     ChoosingMapMenu(new ChoosingMapMenu()),
-    DialogueAnwerMenu(new DialogueAnswerMenu())
+    DialogueAnwerMenu(new DialogueAnswerMenu()),
     ;
 
     private AppMenu menu;

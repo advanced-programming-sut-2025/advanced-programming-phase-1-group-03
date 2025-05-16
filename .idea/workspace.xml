@@ -5,32 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Shipping bin completed">
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/subMenus/DialogueAnswerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/DialogueAnswerCommands.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/npcStuff/NPCFriendshipManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/npcStuff/NPCHouseTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/npcStuff/NPCTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/npcStuff/Quests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/npcStuff/NPC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/npcStuff/State.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/npcStuff/dialogueStuff/Condition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/npcStuff/dialogueStuff/ConditionTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/npcStuff/dialogueStuff/DialogueNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/sub_menus/DialogueAnswerMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/TradeMenuCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Human.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/NPC.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/StoreManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/Menus/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/Menus/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/NPCTypes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/TileType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/relations/Dialogue.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/relations/Friendship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/relations/Friendship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/relations/Quest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/relations/Relation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/sub_menus/TradeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/sub_menus/TradeMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,12 +65,12 @@
     &quot;assignee&quot;: &quot;amirshs84&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03&quot;,
-    &quot;accountId&quot;: &quot;6133d43e-cf49-4604-a08f-5a59247ce4ac&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03",
+    "accountId": "bd815952-788d-4ae5-9325-4fb06a9e8e68"
   }
-}</component>
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -158,14 +138,6 @@
         <item itemvalue="Gradle.StardewValley [run]" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
-        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
