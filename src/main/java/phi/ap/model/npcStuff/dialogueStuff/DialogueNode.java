@@ -1,6 +1,8 @@
 package phi.ap.model.npcStuff.dialogueStuff;
 
 import phi.ap.Controller.MenuControllers.MainMenuControllers.subMenus.DialogueAnswerController;
+import phi.ap.model.Date;
+import phi.ap.model.Game;
 import phi.ap.model.Result;
 import phi.ap.model.npcStuff.State;
 

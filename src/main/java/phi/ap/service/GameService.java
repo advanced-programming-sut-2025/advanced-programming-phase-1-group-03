@@ -3,6 +3,7 @@ package phi.ap.service;
 import phi.ap.Controller.MenuControllers.MainMenuControllers.GameMenuController;
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
+import phi.ap.model.enums.npcStuff.NPCTypes;
 import phi.ap.model.items.*;
 import phi.ap.model.items.buildings.*;
 import phi.ap.model.items.machines.craftingMachines.Scarecrow;
@@ -428,6 +429,18 @@ public class GameService {
         Game.getInstance().whenMapLoaded();
         for (Player player : game.getPlayers()) {
             player.InitializePlayer();
+        }
+        for (NPCTypes value : NPCTypes.values()) {
+            if (value.getHouse() != null) {
+                NPC npc = new NPC(value);
+                Game.getInstance().getNpcs().add(npc);
+                NPCHouse house = new NPCHouse(value.getHouse());
+                NPCVillage village = game.getMap().getNPCVillage();
+                village.addItem(house);
+                Portal.makeMiddleDoor(house, village, TileType.Door.getTile());
+                npc.setCoordinate(value.getHouse().getNpcCoordinate());
+                house.addItem(npc);
+            }
         }
     }
 

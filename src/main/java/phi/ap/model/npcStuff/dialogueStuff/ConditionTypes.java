@@ -1,6 +1,8 @@
 package phi.ap.model.npcStuff.dialogueStuff;
 
+import phi.ap.model.Game;
 import phi.ap.model.enums.Time.Seasons;
+import phi.ap.model.enums.Weather;
 import phi.ap.model.enums.npcStuff.Quests;
 import phi.ap.model.items.Item;
 
@@ -22,13 +24,13 @@ public class ConditionTypes {
         return state -> state.getFriendshipLevel() == level;
     }
     public static Condition currentDayMore(int day) {
-        return state -> state.getCurrentDate().getDay() >= day;
+        return state -> state.getCurrentDate().getRawDay() >= day;
     }
     public static Condition currentDayLess(int day) {
-        return state -> state.getCurrentDate().getDay() <= day;
+        return state -> state.getCurrentDate().getRawDay() <= day;
     }
     public static Condition currentDayEqual(int day) {
-        return state -> state.getCurrentDate().getDay() == day;
+        return state -> state.getCurrentDate().getRawDay() == day;
     }
     public static Condition QuestDone(Quests quest) {
         return state -> state.isQuestDone(quest);
@@ -51,6 +53,12 @@ public class ConditionTypes {
             return state.getCurrentDate().getHour() - state.getLastMeet().getHour() >= hour;
         };
     }
+    public static Condition firstMeet() {
+        return state -> state.getLastMeet() == null;
+    }
+    public static Condition weather(Weather weather) {
+        return state -> Game.getInstance().getWeatherManager().getCurrentWeather() == weather;
+    }
     public static Condition lastConversationTopicEqual(String topic) {
         return state -> {
             if (state.getLastConversation() == null) return topic.isEmpty();
@@ -62,7 +70,7 @@ public class ConditionTypes {
         return state -> state.getPlayer().getInventoryManager().getItem(item).getAmount() >= amount;
     }
 
-    public static Condition ans(Condition... conditions) {
+    public static Condition and(Condition... conditions) {
         return state -> {
             for (Condition condition : conditions) {
                 if (!condition.matches(state))

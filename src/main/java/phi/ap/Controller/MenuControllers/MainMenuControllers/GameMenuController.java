@@ -25,6 +25,7 @@ import phi.ap.model.items.tools.MilkPail;
 import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
 import phi.ap.model.npcStuff.NPC;
+import phi.ap.model.npcStuff.State;
 import phi.ap.utils.Misc;
 
 import java.util.AbstractMap;
@@ -922,7 +923,7 @@ public class GameMenuController {
         return new Result<>(true, "item crafted successfully.");
     }
     public Result<String> placeItem(String itemName, String direction) {
-        return null; //TODO
+        return null; //TODO : importantttt;
     }
 
     public Result<String> cheatAddItem(String itemName, String amountString) {
@@ -1556,6 +1557,8 @@ public class GameMenuController {
     public Result<String> startTrade() {
         return null;
     }
+
+    //NPC:
     public Result<String> showNPCList() {
         StringBuilder res = new StringBuilder();
         for (NPCTypes value : NPCTypes.values()) {
@@ -1586,16 +1589,107 @@ public class GameMenuController {
         return npc.getType().getDialogueTreeNode().runDialogue(npc.getState(Game.getInstance().getCurrentPlayer()));
     }
     public Result<String> giftNPC(String npcName, String ItemName) {
-        return null;
+        NPC npc = Game.getInstance().getNPC(NPCTypes.findByName(npcName));
+        Item item = App.getInstance().getGameService().getItem(ItemName.replaceAll("\\s+", ""));
+        if (npc == null) {
+            return new Result<>(false, "There is no NPC with this name.");
+        }
+        if (item == null || item instanceof Tool) {
+            return new Result<>(false, "Item not found.");
+        }
+        State state = npc.getState(Game.getInstance().getCurrentPlayer());
+        boolean notSameDay = true;
+        if (state.getLastGiftReceived() != null) {
+            notSameDay = (state.getCurrentDate().getRawDay() - state.getLastGiftReceived().getRawDay()) > 0;
+        }
+        boolean isFav = false;
+        for (Item favorite : npc.getType().getFavorites()) {
+            if (favorite.canStackWith(item)) {
+                isFav = true;
+                break;
+            }
+        }
+        int xpGained = 0;
+        if (notSameDay) {
+            if (isFav) state.advanceFriendshipXp(xpGained = 200);
+            else state.advanceFriendshipXp(xpGained = 50);
+        }
+        state.setLastGiftReceived(Game.getInstance().getDate());
+        state.getGiftReceived().addItem(item, 1);
+        state.getPlayer().getInventoryManager().removeItem(item, 1);
+        StringBuilder res = new StringBuilder();
+        res.append(npc.getType().getNpcName() + "recieved your gift.\n");
+        if(isFav) res.append("It was his favorite!\n");
+        res.append("You gained " + xpGained + " friendship xp with " + npc.getType().getNpcName() + "\n");
+        return new Result<>(true, res.toString());
     }
     public Result<String> showFriendshipNPCList() {
-        return null;
+        StringBuilder res = new StringBuilder();
+        for (NPC npc : Game.getInstance().getNpcs()) {
+            State state = npc.getState(Game.getInstance().getCurrentPlayer());
+            res.append(npc.getType().getNpcName() + ": level = " + state.getFriendshipLevel() + " xp = " + state.getFriendshipXp() + "\n");
+            res.append(Colors.RED.toString() + "--------------------------------------------" + Colors.RESET + "\n");
+        }
+        return new Result<>(true, res.toString());
     }
     public Result<String> showQuestList () {
-        return null;
+        StringBuilder res = new StringBuilder();
+        res.append(Colors.YELLOW + "Active quests:" + Colors.RESET + "\n");
+        ArrayList<Quests> activeQuests = Game.getInstance().getCurrentPlayer().getActiveQuests();
+        for (int i = 0; i < activeQuests.size(); i++) {
+            Quests quest = activeQuests.get(i);
+            res.append("Index: " + i + "\n");
+            res.append(quest.details());
+            res.append(Colors.RED + "------------------------------------------------" + Colors.RESET + "\n");
+        }
+        res.append((Colors.GREEN + "Completed quests:" + Colors.RESET + "\n"));
+        for (Quests quest : Game.getInstance().getCurrentPlayer().getDoneQuests()) {
+            res.append(quest.details());
+            res.append(Colors.RED + "------------------------------------------------" + Colors.RESET + "\n");
+        }
+        return new Result<>(true, res.toString());
+    }
+    public Result<String> showAllQuests() {
+        StringBuilder res = new StringBuilder();
+        for (Quests value : Quests.values()) {
+            res.append(value.details());
+            res.append(Colors.RED + "------------------------------------------------" + Colors.RESET + "\n");
+        }
+        return new Result<>(true, res.toString());
     }
     public Result<String> finishQuest(String questIndex) {
-        return null;
+        int ind;
+        try {
+            ind = Integer.parseInt(questIndex);
+        } catch (Exception e) {
+            return new Result<>(false, "Invalid quest index.");
+        }
+        Player player = Game.getInstance().getCurrentPlayer();
+        if (ind < 0 || ind >= player.getActiveQuests().size()) {
+            return new Result<>(false, "Quest not found.");
+        }
+        Quests quest = player.getActiveQuests().get(ind);
+        NPC npc = Game.getInstance().getNPC(NPCTypes.findByName(quest.getOwner()));
+        if (!quest.reqCheck(npc.getState(player))) {
+            return new Result<>(false, "You don't have required items.");
+        }
+        quest.doQuest(npc.getState(player));
+        quest.addRewards(npc.getState(player));
+        return new Result<>(true, "Quest completed, your rewards have been added.");
+    }
+    public Result<String> cheatAddNPCFriendshipXP(String npcName, String xpAmount) {
+        NPC npc = Game.getInstance().getNPC(NPCTypes.findByName(npcName));
+        if (npc == null) {
+            return new Result<>(false, "NPC not found.");
+        }
+        int xp;
+        try {
+            xp = Integer.parseInt(xpAmount);
+        } catch (Exception e) {
+            return new Result<>(false, "Invalid xp amount.");
+        }
+        npc.getState(Game.getInstance().getCurrentPlayer()).advanceFriendshipXp(xp);
+        return new Result<>(true, "NPC friendship xp has been added.");
     }
 
 }

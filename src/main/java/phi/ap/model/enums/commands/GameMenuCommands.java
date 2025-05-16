@@ -63,8 +63,6 @@ public enum GameMenuCommands implements Command{
     WalkWASD("\\s*(?<direction>(w|a|s|d))\\s*"),
     SellProduct("\\s*sell\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*"),
     TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*"),
-    MeetNPC("\\s*(?i)meet\\s+npc\\s+(?<name>.*)\\s*"),
-    ShowNPCList("\\s*show\\s+npc\\s+list\\s*"),
     Talk("\\s*talk\\s+-u\\s+(?<username>\\w+)\\s+-m\\s+\"(?<message>.+)\""),
     TalkHistory("\\s*talk\\s+history\\s+-u\\s+(?<username>\\w+)\\s*"),
 
@@ -81,7 +79,17 @@ public enum GameMenuCommands implements Command{
 
     // Marriage Commands
     AskMarriage("\\s*ask\\s+marriage\\s+-u\\s+(?<username>.*)\\s+-r\\s+(?<ring>.*)\\s*"),
-    Respond("\\s*respond\\s+-(?<condition>accept|reject)\\s+-u\\s+(?<username>.*)\\s*")
+    Respond("\\s*respond\\s+-(?<condition>accept|reject)\\s+-u\\s+(?<username>.*)\\s*"),
+
+    //NPC commands
+    MeetNPC("\\s*(?i)meet\\s+npc\\s+(?<name>.*)\\s*"),
+    ShowNPCList("(?i)\\s*show\\s+npc\\s+list\\s*"),
+    GiftNPC("\\s*gift\\s+(NPC|npc)\\s+(?<npcName>\\S+)\\s+-i\\s+(<item>.*)\\s*"),
+    NPCFriendshipList("(?i)\\s*friendship\\s+npc\\s+list\\s*"),
+    QuestsList("\\s*(?i)quests\\s+list\\s*"),
+    QuestFinish("\\s*quests\\s+finish\\s+-i\\s+(?<index>\\d+)\\s*"),
+    AllQuestsList("\\s*(?i)show\\s+all\\s+quests\\s*"),
+    CheatAddNPCFriendshipXP("\\s*cheat\\s+(npc|NPC)\\s+add\\s+friendship\\s+-n\\s+(?<name>\\S+)\\s+-c\\s+(?<count>\\d+)\\s*"),
     ;
     private final String command;
     GameMenuCommands(String command) {

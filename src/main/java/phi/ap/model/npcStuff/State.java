@@ -108,7 +108,7 @@ public class State { //this class store state between player and NPC, each npc h
 
     public void advanceFriendshipXp(int amount) {
         friendshipXp += amount;
-        friendshipXp = Math.max(NPCFriendshipManager.maxXp, friendshipXp);
+        friendshipXp = Math.min(NPCFriendshipManager.maxXp, friendshipXp);
         while (NPCFriendshipManager.getNPCFriendshipManagerByXp(friendshipXp) != friendShipManager) {
             if (NPCFriendshipManager.getNPCFriendshipManager(friendShipManager.getLevelID() + 1) != null) {
                 setFriendShipManager(NPCFriendshipManager.getNPCFriendshipManager(friendShipManager.getLevelID() + 1));
@@ -121,7 +121,7 @@ public class State { //this class store state between player and NPC, each npc h
     }
 
     public void setLastGiftReceived(Date lastGiftReceived) {
-        this.lastGiftReceived = lastGiftReceived;
+        this.lastGiftReceived = new Date(lastGiftReceived);
     }
 
     public Date getLastGiftSent() {

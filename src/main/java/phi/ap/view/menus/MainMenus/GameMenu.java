@@ -174,6 +174,18 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.meetNPC(matcher.group("name")));
         } else if ((matcher = GameMenuCommands.ShowNPCList.getMatcher(input)) != null) {
             System.out.println(controller.showNPCList());
+        } else if ((matcher = GameMenuCommands.GiftNPC.getMatcher(input)) != null) {
+            System.out.println(controller.giftNPC(matcher.group("npcName"), matcher.group("item")));
+        } else if ((matcher = GameMenuCommands.NPCFriendshipList.getMatcher(input)) != null) {
+            System.out.println(controller.showFriendshipNPCList());
+        } else if ((matcher = GameMenuCommands.QuestsList.getMatcher(input)) != null) {
+            System.out.println(controller.showQuestList());
+        } else if ((matcher = GameMenuCommands.QuestFinish.getMatcher(input)) != null) {
+            System.out.println(controller.finishQuest(matcher.group("index")));
+        } else if ((matcher = GameMenuCommands.AllQuestsList.getMatcher(input)) != null) {
+            System.out.println(controller.showAllQuests());
+        } else if ((matcher = GameMenuCommands.CheatAddNPCFriendshipXP.getMatcher(input)) != null) {
+            System.out.println(controller.cheatAddNPCFriendshipXP(matcher.group("name"), matcher.group("count")));
         }
         else {
             super.check(input);

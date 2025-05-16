@@ -1,6 +1,8 @@
 package phi.ap.Controller.MenuControllers.MainMenuControllers.subMenus;
 
 import phi.ap.model.App;
+import phi.ap.model.Date;
+import phi.ap.model.Game;
 import phi.ap.model.Result;
 import phi.ap.model.enums.Menus.Menu;
 import phi.ap.model.npcStuff.State;
@@ -23,7 +25,6 @@ public class DialogueAnswerController {
         this.dialogue = dialogue;
         this.state = state;
         App.getInstance().changeMenu(Menu.DialogueAnwerMenu);
-        state.setLastConversation(dialogue);
         return new Result<>(true, state.getNpc().getNpcName() + ": " + dialogue.getText());
     }
 
@@ -35,6 +36,8 @@ public class DialogueAnswerController {
             }
         }
         App.getInstance().changeMenu(Menu.GameMenu);
+        state.setLastConversation(dialogue);
+        state.setLastMeet(new Date(Game.getInstance().getDate()));
         return new Result<>(true, "Meeting done!");
     }
 
