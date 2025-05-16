@@ -65,7 +65,6 @@ public enum GameMenuCommands implements Command{
     TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*"),
     MeetNPC("\\s*(?i)meet\\s+npc\\s+(?<name>.*)\\s*"),
     ShowNPCList("\\s*show\\s+npc\\s+list\\s*"),
-    TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*"),
     Talk("\\s*talk\\s+-u\\s+(?<username>\\w+)\\s+-m\\s+\"(?<message>.+)\""),
     TalkHistory("\\s*talk\\s+history\\s+-u\\s+(?<username>\\w+)\\s*"),
 
