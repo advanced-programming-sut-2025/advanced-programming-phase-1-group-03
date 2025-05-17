@@ -105,7 +105,9 @@ public enum GameMenuCommands implements Command{
     //energy
     EnergyShow("\\s*energy\\s*show\\s*"),
     CheatEnergySet("\\s*cheat\\s+energy\\s+set\\s+-v\\s+(?<value>\\d+)\\s*"),
-    CheatEnergyUnlimited("\\s*cheat\\s+energy\\s+unlimited\\s*")
+    CheatEnergyUnlimited("\\s*cheat\\s+energy\\s+unlimited\\s*"),
+    ShowAbility("\\s*ability\\s*show (?<name>.*)"),
+    CheatAbility("\\s*cheat\\s*ability (?<name>.*)")
     ;
     private final String command;
     GameMenuCommands(String command) {
