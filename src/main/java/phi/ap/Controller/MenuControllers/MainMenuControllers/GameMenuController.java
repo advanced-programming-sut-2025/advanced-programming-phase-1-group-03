@@ -1499,6 +1499,8 @@ public class GameMenuController {
         return new Result<>(true, response.toString());
     }
     public Result<String> useArtisan(String artisanName, String itemName, String ingredient) {
+        if(!CraftedProducer.checkNear(artisanName))
+            return new Result<>(false, "You are not near a " + artisanName + " machine.");
         CraftingTypes craftingType;
         try {
             craftingType = CraftingTypes.valueOf(artisanName);

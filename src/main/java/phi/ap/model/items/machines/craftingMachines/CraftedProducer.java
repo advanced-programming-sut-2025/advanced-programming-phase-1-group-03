@@ -23,8 +23,9 @@ public class CraftedProducer extends Machine {
             for(int diffy = -1; diffy <= 1; diffy++) {
                 int x = Game.getInstance().getCurrentPlayer().getLocation().getX() + diffx;
                 int y = Game.getInstance().getCurrentPlayer().getLocation().getY() + diffy;
-                if(Game.getInstance().getCurrentPlayer().getLocation().getGround().getTopItem(y, x).getName().equals(name))
-                    ok = true;
+                if(Game.getInstance().getCurrentPlayer().getLocation().getGround().getTopItem(y, x) != null)
+                    if(Game.getInstance().getCurrentPlayer().getLocation().getGround().getTopItem(y, x).getName().equals(name))
+                        ok = true;
             }
         }
         return ok;
