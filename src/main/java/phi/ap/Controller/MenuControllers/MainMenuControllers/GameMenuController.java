@@ -1277,7 +1277,10 @@ public class GameMenuController {
         return new Result<>(true, recipe.getResult().getItem().getName() + " created and added to Inventory.");
     }
     public Result<String> eatFood(String foodName) {
-        Food food = Game.getInstance().getCurrentPlayer().getInventoryManager().getFood(FoodTypes.valueOf(foodName));
+        FoodTypes foodType = null;
+        if(FoodTypes.getType(foodName) != null)
+            foodType = FoodTypes.getType(foodName);
+        Food food = Game.getInstance().getCurrentPlayer().getInventoryManager().getFood(foodType);
         if(food == null)
             return new Result<>(false, "There is not any food with this name.");
         Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(food, 1);

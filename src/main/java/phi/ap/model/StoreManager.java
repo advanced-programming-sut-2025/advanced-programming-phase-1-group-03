@@ -170,6 +170,8 @@ public class StoreManager {
         pierre.clearProducts();
         ArrayList<Pair<PierreGeneralStoreProduct>> allProducts = new ArrayList<>();
         for(PierreGeneralStoreProduct product : PierreGeneralStoreProduct.values()){
+            if(product.getSeason() != Game.getInstance().getDate().getSeason())
+                continue;
             allProducts.add(new Pair<PierreGeneralStoreProduct>(product, product.getDailyLimit()));
             pierre.addProduct(new Pair<PierreGeneralStoreProduct>(product, product.getDailyLimit()));
         }

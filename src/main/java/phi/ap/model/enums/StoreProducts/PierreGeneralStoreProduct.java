@@ -203,7 +203,10 @@ public enum PierreGeneralStoreProduct implements StoreItemProducer {
 
     @Override
     public Item getItem() {
-        item.setSellPrice(getPrice());
+        if(Game.getInstance().getDate().getSeason() == season)
+            item.setSellPrice(getPriceOutOfSeason());
+        else
+            item.setSellPrice(getPrice());
         item.setSellable(true);
         return item;
     }
