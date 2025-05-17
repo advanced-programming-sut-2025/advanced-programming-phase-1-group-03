@@ -43,11 +43,14 @@ public class GameMenuController {
 //            }
 //        }
 //        return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
-        for (int i = 0; i < Game.getInstance().getMap().getHeight(); i++) {
-            for (int j = 0; j < Game.getInstance().getMap().getWidth(); j++) {
-                cheatThor(String.valueOf(i), String.valueOf(j));
-            }
-        }
+
+        //**thunder
+//        for (int i = 0; i < Game.getInstance().getMap().getHeight(); i++) {
+//            for (int j = 0; j < Game.getInstance().getMap().getWidth(); j++) {
+//                cheatThor(String.valueOf(i), String.valueOf(j));
+//            }
+//        }
+
         return null;
     }
     public Result<String> test1(String input) {
@@ -262,6 +265,16 @@ public class GameMenuController {
             player.getEnergy().reset();
         }
     }
+    private void doTransportTasks() {
+        for (int i = 0; i < Game.getInstance().getPlayers().size(); i++) {
+            if (!Game.getInstance().getCurrentPlayer().getFeintBuff().isActive()) {
+                Cottage cot = Game.getInstance().getCurrentPlayer().getFarm().getCottage();
+                Coordinate coord = cot.getTileCoordinateBaseMap(1, 1);
+                walk(String.valueOf(coord.getY()), String.valueOf(coord.getX()));
+            }
+            Game.getInstance().goNextPlayer();
+        }
+    }
     private void doNightTasks() {
         System.out.println("zzz... sleeping");
         //TODO
@@ -276,6 +289,7 @@ public class GameMenuController {
         App.getInstance().getGameService().doCrowAttack();
         App.getInstance().getGameService().doNPCStuffAtNight();
         doEnergyTask();
+        doTransportTasks();
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
@@ -631,6 +645,7 @@ public class GameMenuController {
 
     public Result<String> cheatSetEnergyUnlimited() {
         Game.getInstance().getCurrentPlayer().getEnergy().setMaxAmount(Integer.MAX_VALUE / 2);
+        if (Game.getInstance().getCurrentPlayer().getEnergy().getAmount() == 0) Game.getInstance().getCurrentPlayer().feint();
         return cheatSetEnergy(Integer.MAX_VALUE / 2);
     }
 
