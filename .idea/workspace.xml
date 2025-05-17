@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Bug in showing of plowed dit">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Tool and ability cheat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/MainMenuController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/MarnieRanchProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/MarnieRanchProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Tool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/phi/ap/Controller/MenuControllers/MainMenuControllers/MainMenuControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/StoreManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/PierreGeneralStoreProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/PierreGeneralStoreProduct.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +79,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Debug",
+    "Application.Main.executor": "Run",
     "Gradle.StardewValley [run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -142,6 +137,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="refrigerator completed">
@@ -174,6 +177,7 @@
       <workItem from="1747340475314" duration="57000" />
       <workItem from="1747387871752" duration="4782000" />
       <workItem from="1747397283498" duration="5804000" />
+      <workItem from="1747500574763" duration="1803000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -381,7 +385,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۲۹" />
       <updated>1747493684831</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL‎−۰۰۰۳۰" summary="Tool and ability cheat">
+      <option name="closed" value="true" />
+      <created>1747499366211</created>
+      <option name="number" value="LOCAL‎−۰۰۰۳۰" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۳۰" />
+      <updated>1747499366211</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -409,7 +420,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Mineral enum fixed." />
     <MESSAGE value="getType of enums added." />
     <MESSAGE value="cheat add item implemented." />
     <MESSAGE value="food enum bug fixed." />
@@ -434,7 +444,8 @@
     <MESSAGE value="player transport at night added" />
     <MESSAGE value="bug fixed" />
     <MESSAGE value="Bug in showing of plowed dit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug in showing of plowed dit" />
+    <MESSAGE value="Tool and ability cheat" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tool and ability cheat" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -466,12 +477,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>199</line>
+          <line>221</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>200</line>
+          <line>222</line>
           <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
