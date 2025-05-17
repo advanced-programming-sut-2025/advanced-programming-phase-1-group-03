@@ -166,6 +166,9 @@ public class GameService {
             case null :
                 game.getMap().getThunderedTiles().add(new Coordinate(y, x));
                 break;
+//            case Dirt dirt :
+//                game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+//                break;
             case Tree tree :
                 tree.setThundered(true);
                 game.getMap().getThunderedTiles().add(new Coordinate(y, x));
@@ -192,6 +195,12 @@ public class GameService {
                     game.getMap().getThunderedTiles().add(new Coordinate(y, x));
                 } else {
                     stone.getFather().removeItem(stone);
+                    game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+                }
+                break;
+            case Product product :
+                if (product.getName().equals("Grass")) {
+                    product.getFather().removeItem(product);
                     game.getMap().getThunderedTiles().add(new Coordinate(y, x));
                 }
                 break;

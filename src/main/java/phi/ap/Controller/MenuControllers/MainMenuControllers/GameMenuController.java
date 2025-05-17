@@ -37,12 +37,18 @@ import static java.util.Collections.swap;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        for(int i = 0; i < 40; i++) {
-            for(int j = 0; j < 40; j++) {
-                System.out.println(shepherdAnimal(null, Integer.toString(i), Integer.toString(j)));
+//        for(int i = 0; i < 40; i++) {
+//            for(int j = 0; j < 40; j++) {
+//                System.out.println(shepherdAnimal(null, Integer.toString(i), Integer.toString(j)));
+//            }
+//        }
+//        return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+        for (int i = 0; i < Game.getInstance().getMap().getHeight(); i++) {
+            for (int j = 0; j < Game.getInstance().getMap().getWidth(); j++) {
+                cheatThor(String.valueOf(i), String.valueOf(j));
             }
         }
-        return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+        return null;
     }
     public Result<String> test1(String input) {
         Item it = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(1,0);
