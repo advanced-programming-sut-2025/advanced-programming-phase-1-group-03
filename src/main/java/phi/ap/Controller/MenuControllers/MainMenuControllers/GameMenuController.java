@@ -708,6 +708,8 @@ public class GameMenuController {
         if(!(ground instanceof Store store)){
             return new Result<>(false, "You are not in a store!!");
         }
+        if(!((Store)ground).getStoreTypes().equals(StoreTypes.Blacksmith))
+            return new Result<>(false, "You are not in BlackSmith Shop");
         int currentHour = Game.getInstance().getDate().getCurrentHour();
         if (currentHour < store.getStoreTypes().getOpeningTime() || currentHour > store.getStoreTypes().getClosingTime())
             return new Result<>(false, "Store is closed in this time!!");

@@ -6,7 +6,7 @@ public enum TileType {
     Pillar("●", Colors.fg(195), ""),
     GreenhouseMargin(" ", "", Colors.bg(94), true),
     Farm(".", "" ,Colors.bg(77), true),
-    Dirt(".", "" ,Colors.bg(172), true),
+    Dirt(".", Colors.fg(230) ,Colors.bg(172), true),
     PlowedDirt(".", Colors.fg(172) ,Colors.bg(3), true),
     NPCVillage(".", "" ,Colors.bg(65), true),
     Lake("#", "", Colors.bg(11)),

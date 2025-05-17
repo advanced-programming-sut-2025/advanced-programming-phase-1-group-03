@@ -10,22 +10,22 @@ import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Mineral;
 
 public enum BlackSmithsProducts implements StoreItemProducer{
-    CopperOre("Copper Ore", "A common ore that can be smelted into bars.", 75,
+    Copper("Copper Ore", "A common ore that can be smelted into bars.", 75,
             Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.Copper), null, LevelName.copper),
-    IronOre("Iron Ore", "A fairly common ore that can be smelted into bars.", 75,
+    Iron("Iron Ore", "A fairly common ore that can be smelted into bars.", 75,
             Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.Iron),null,  LevelName.iron),
     Coal("Coal", "A combustible rock that is useful for crafting and smelting.", 150,
             Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.Coal),null,  null),
-    GoldOre("Gold Ore", "A precious ore that can be smelted into bars.", 400,
+    Gold("Gold Ore", "A precious ore that can be smelted into bars.", 400,
             Integer.MAX_VALUE, new Mineral(1, 1, ForagingMineralTypes.Gold),null,  LevelName.golden),
-    CopperTool("Copper Tool", "", 2000, 1,null,  new ItemStack(ForagingMineralTypes.Copper.getItem(), 5), LevelName.copper),
-    SteelTool("Steel Tool", "", 5000, 1,null,  new ItemStack(ForagingMineralTypes.Iron.getItem(), 5), LevelName.iron),
-    GoldTool("Gold Tool", "", 10000, 1,null,  new ItemStack(ForagingMineralTypes.Gold.getItem(), 5), LevelName.golden),
-    IridiumTool("Iridium Tool", "", 25000, 1,null,  new ItemStack(ForagingMineralTypes.Iridium.getItem(), 5), LevelName.iridium),
-    CopperTrashcan("Copper Trashcan", "", 1000, 1,null,  new ItemStack(ForagingMineralTypes.Copper.getItem(), 5), LevelName.copper),
-    SteelTrashcan("Steel Trashcan", "", 2500, 1,null,  new ItemStack(ForagingMineralTypes.Iron.getItem(), 5), LevelName.iron),
-    GoldTrashcan("Gold Trashcan", "", 5000, 1,null,  new ItemStack(ForagingMineralTypes.Gold.getItem(), 5), LevelName.golden),
-    IridiumTrashcan("Iridium Trashcan", "", 12500,1,null,  new ItemStack(ForagingMineralTypes.Iridium.getItem(), 5), LevelName.iridium);
+    CopperTool("Copper Tool", "", 2000, 1,null,  new ItemStack(ForagingMineralTypes.CopperBar.getItem(), 5), LevelName.copper),
+    SteelTool("Steel Tool", "", 5000, 1,null,  new ItemStack(ForagingMineralTypes.IronBar.getItem(), 5), LevelName.iron),
+    GoldTool("Gold Tool", "", 10000, 1,null,  new ItemStack(ForagingMineralTypes.GoldBar.getItem(), 5), LevelName.golden),
+    IridiumTool("Iridium Tool", "", 25000, 1,null,  new ItemStack(ForagingMineralTypes.IridiumBar.getItem(), 5), LevelName.iridium),
+    CopperTrashcan("Copper Trashcan", "", 1000, 1,null,  new ItemStack(ForagingMineralTypes.CopperBar.getItem(), 5), LevelName.copper),
+    SteelTrashcan("Steel Trashcan", "", 2500, 1,null,  new ItemStack(ForagingMineralTypes.IronBar.getItem(), 5), LevelName.iron),
+    GoldTrashcan("Gold Trashcan", "", 5000, 1,null,  new ItemStack(ForagingMineralTypes.GoldBar.getItem(), 5), LevelName.golden),
+    IridiumTrashcan("Iridium Trashcan", "", 12500,1,null,  new ItemStack(ForagingMineralTypes.IridiumBar.getItem(), 5), LevelName.iridium);
     private final String name;
     private final String description;
     private final Integer price;
