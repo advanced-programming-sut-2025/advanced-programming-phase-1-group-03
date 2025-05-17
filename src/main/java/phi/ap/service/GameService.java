@@ -25,7 +25,7 @@ public class GameService {
                     .equals(new Coordinate(y, x))) return;
         }
         Location loc = App.getInstance().getMapService().getLocationOnMap(y, x);
-        if (loc == null) return; // TODO : || get.ground() == null
+        if (loc == null) return;
         Item topItem = loc.getGround().getTopItem(loc.getY(), loc.getX());
         if (!loc.getGround().getTopTile(loc.getY(), loc.getX()).isWalkable()) return;
         if (loc.getGround().getClass().getSimpleName().equals(Farm.class.getSimpleName())) {

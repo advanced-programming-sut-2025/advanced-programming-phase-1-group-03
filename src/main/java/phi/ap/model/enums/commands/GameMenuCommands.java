@@ -8,6 +8,7 @@ public enum GameMenuCommands implements Command{
             "(?<usernames>.*)\\s*"),
     GameMap("\\s*game\\s+map\\s+(?<mapNumber>\\d+)\\s*"),
     PrintMap("\\s*print\\s+map\\s+-l\\s+(?<x>\\d+)\\s*,\\s*(?<y>\\d+)\\s+-s\\s+(?<size>\\d+)\\s*"),
+    PrintFarm("(\\s*print\\s+farm\\s*|\\s*pf\\s*)"),
     PrintMapComplete("(\\s*print\\s+map\\s+complete\\s*|pmc)"),
     Walk("\\s*walk\\s+-l\\s+(?<x>-?\\d+)(\\s+|\\s*,\\s*)(?<y>-?\\d+)\\s*"),
     WalkDiff("\\s*walk\\s+-diff\\s+(?<x>-?\\d+)(\\s+|\\s*,\\s*)(?<y>-?\\d+)\\s*"),

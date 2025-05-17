@@ -437,11 +437,8 @@ public class GameMenuController {
 
     }
 
-    public Result<String> showMap() {
+    public Tile[][] makeMap() {
         Game game = Game.getInstance();
-        if (game == null) {
-            return new Result<>(false, "there is no running game");
-        }
         Map map = game.getMap();
         Tile[][] tiles = new Tile[map.getHeight()][map.getWidth()];
 
@@ -466,6 +463,16 @@ public class GameMenuController {
             int x = thunderedTile.getX();
             tiles[y][x].setBgColor(tiles[y][x].getBgColor() + Colors.bg(236));
         }
+        return tiles;
+    }
+
+    public Result<String> showMap() {
+        Game game = Game.getInstance();
+        if (game == null) {
+            return new Result<>(false, "there is no running game");
+        }
+        Tile[][] tiles = makeMap();
+        Map map = Game.getInstance().getMap();
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < map.getHeight(); i++) {
             StringBuilder temp = new StringBuilder();
@@ -477,8 +484,47 @@ public class GameMenuController {
         }
         return new Result<>(true, res.toString());
     }
-    public Result<String> printMap(String startX, String startY, String size) {
-        return null; //TODO
+    public Result<String> printMap(String startY, String startX, String size) {
+        Game game = Game.getInstance();
+        if (game == null) {
+            return new Result<>(false, "there is no running game");
+        }
+        int sy, sx, len;
+        try {
+            sy = Integer.parseInt(startY);
+            sx = Integer.parseInt(startX);
+            len = Integer.parseInt(size);
+        } catch (Exception e) {
+            return new Result<>(false, "Invalid coordinate Or length");
+        }
+        Map map = Game.getInstance().getMap();
+        int ey = sy + len - 1;
+        int ex = sx + len - 1;
+        if (!map.isCoordinateValid(sy, sy) || !map.isCoordinateValid(ey, ey) || len <= 0) {
+            return new Result<>(false, "Can't print that, It's wrong!");
+        }
+        Tile[][] tiles = makeMap();
+        StringBuilder res = new StringBuilder();
+        for (int i = sy; i <= ey; i++) {
+            StringBuilder temp = new StringBuilder();
+            for (int j = sx; j <= ex; j++) {
+                temp.append(tiles[i][j].toString(true));
+            }
+            temp.append("\n");
+            res.append(temp);
+        }
+        return new Result<>(true, res.toString());
+    }
+    public Result<String> printFarm() {
+        Game game = Game.getInstance();
+        if (game == null) {
+            return new Result<>(false, "there is no running game");
+        }
+        Player player = Game.getInstance().getCurrentPlayer();
+        int len = Math.max(player.getFarm().getHeight(), player.getFarm().getWidth());
+        int y = player.getFarm().getCoordinateBaseMap().getY();
+        int x = player.getFarm().getCoordinateBaseMap().getX();
+        return printMap(String.valueOf(y), String.valueOf(x), String.valueOf(len));
     }
     public Result<String> helpReadingMap() {
         return null; //TODO
@@ -501,7 +547,7 @@ public class GameMenuController {
     }
 
     public Result<String> cheatSetEnergyUnlimited() {
-        Game.getInstance().getCurrentPlayer().getEnergy().setMaxAmount(Integer.MAX_VALUE);
+        Game.getInstance().getCurrentPlayer().getEnergy().setMaxAmount(Integer.MAX_VALUE / 2);
         return cheatSetEnergy(Integer.MAX_VALUE);
     }
 

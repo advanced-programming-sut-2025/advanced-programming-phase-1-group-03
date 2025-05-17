@@ -18,7 +18,7 @@ import java.util.List;
 public class Player {
     private User user;
     private int gold = 0;
-    private final EnergyManager energy = new EnergyManager();
+    private final EnergyManager energy = new EnergyManager(this);
     private ToolManager toolManager = new ToolManager();
     private String color = "";
 
@@ -37,6 +37,25 @@ public class Player {
     private Player partner = null;
     private final ArrayList<Quests> activeQuests = new ArrayList<>();
     private final ArrayList<Quests> doneQuests = new ArrayList<>();
+    private final Buff lastFoodBuff = new Buff(0, 0);
+    private final Buff feintBuff = new Buff(1, 0.75);
+    private final Buff marrageBuff = new Buff(7, 0.5);
+
+    public void setFoodBuff(Buff buff) {
+        lastFoodBuff.copy(buff);
+    }
+
+    public Buff getLastFoodBuff() {
+        return lastFoodBuff;
+    }
+
+    public Buff getFeintBuff() {
+        return feintBuff;
+    }
+
+    public Buff getMarrageBuff() {
+        return marrageBuff;
+    }
 
     public ArrayList<Quests> getActiveQuests() {
         return activeQuests;
@@ -197,7 +216,8 @@ public class Player {
 
 
     public void feint() {
-        //TODO feint
+        feintBuff.activate();
+        //TODO
     }
 
     public FarmTypes getFarmType() {
