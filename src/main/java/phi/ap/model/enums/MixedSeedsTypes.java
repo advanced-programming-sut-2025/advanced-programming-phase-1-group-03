@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum MixedSeedsTypes {
-    SpringMixedSeeds(Seasons.Spring, new ArrayList<>(Arrays.asList(SeedTypes.CauliflowerSeeds, SeedTypes.ParsnipSeeds, SeedTypes.PotatoSeeds, SeedTypes.JazzSeeds, SeedTypes.TulipBulb))),
-    SummerMixedSeeds(Seasons.Summer, new ArrayList<>(Arrays.asList(SeedTypes.CornSeeds,	SeedTypes.PepperSeeds,	SeedTypes.RadishSeeds,	SeedTypes.WheatSeeds,	SeedTypes.PoppySeeds,	SeedTypes.SunflowerSeeds, SeedTypes.SpangleSeeds))),
-    FallMixedSeeds(Seasons.Fall, new ArrayList<>(Arrays.asList(SeedTypes.ArtichokeSeeds, SeedTypes.CornSeeds, SeedTypes.EggplantSeeds, SeedTypes.PumpkinSeeds, SeedTypes.SunflowerSeeds, SeedTypes.FairySeeds))),
-    WinterMixedSeeds(Seasons.Winter, new ArrayList<>(Arrays.asList(SeedTypes.PowdermelonSeeds)));
+    SpringMixedSeeds(Seasons.Spring, new ArrayList<>(List.of(SeedTypes.CauliflowerSeeds, SeedTypes.ParsnipSeeds, SeedTypes.PotatoSeeds, SeedTypes.JazzSeeds, SeedTypes.TulipBulb))),
+    SummerMixedSeeds(Seasons.Summer, new ArrayList<>(List.of(SeedTypes.CornSeeds,	SeedTypes.PepperSeeds,	SeedTypes.RadishSeeds,	SeedTypes.WheatSeeds,	SeedTypes.PoppySeeds,	SeedTypes.SunflowerSeeds, SeedTypes.SpangleSeeds))),
+    FallMixedSeeds(Seasons.Fall, new ArrayList<>(List.of(SeedTypes.ArtichokeSeeds, SeedTypes.CornSeeds, SeedTypes.EggplantSeeds, SeedTypes.PumpkinSeeds, SeedTypes.SunflowerSeeds, SeedTypes.FairySeeds))),
+    WinterMixedSeeds(Seasons.Winter, new ArrayList<>(List.of(SeedTypes.PowdermelonSeeds)));
     private final ArrayList<SeedTypes> seedTypesIncluded;
     private final Seasons season;
     MixedSeedsTypes(Seasons season, ArrayList<SeedTypes> cropsFeatures) {

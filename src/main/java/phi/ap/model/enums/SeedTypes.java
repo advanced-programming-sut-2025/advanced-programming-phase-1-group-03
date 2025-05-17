@@ -91,13 +91,23 @@ public enum SeedTypes {
 
     public CropsTypes findCropType() {
         if (this == SeedTypes.MixedSeeds) {
-            ArrayList<SeedTypes> seeds = switch (Game.getInstance().getDate().getSeason()) {
-                case Seasons.Special -> new ArrayList<>(MixedSeedsTypes.SpringMixedSeeds.getMixedSeeds());
-                case Seasons.Summer -> new ArrayList<>(MixedSeedsTypes.SummerMixedSeeds.getMixedSeeds());
-                case Seasons.Fall -> new ArrayList<>(MixedSeedsTypes.FallMixedSeeds.getMixedSeeds());
-                case Seasons.Winter -> new ArrayList<>(MixedSeedsTypes.WinterMixedSeeds.getMixedSeeds());
-                default -> null;
-            };
+            ArrayList<SeedTypes> seeds;
+            switch (Game.getInstance().getDate().getSeason()) {
+                case Seasons.Spring:
+                    seeds = new ArrayList<>(MixedSeedsTypes.SpringMixedSeeds.getMixedSeeds());
+                    break;
+                case Seasons.Summer:
+                    seeds = new ArrayList<>(MixedSeedsTypes.SummerMixedSeeds.getMixedSeeds());
+                    break;
+                case Seasons.Fall:
+                    seeds = new ArrayList<>(MixedSeedsTypes.FallMixedSeeds.getMixedSeeds());
+                    break;
+                case Seasons.Winter:
+                    seeds = new ArrayList<>(MixedSeedsTypes.WinterMixedSeeds.getMixedSeeds());
+                    break;
+                default:
+                    seeds = null;
+            }
             if (seeds == null) return null;
             int rand = App.getInstance().getRandomNumber(0, seeds.size() - 1);
             return seeds.get(rand).findCropType();
