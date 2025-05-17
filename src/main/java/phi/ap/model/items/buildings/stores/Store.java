@@ -1,5 +1,6 @@
 package phi.ap.model.items.buildings.stores;
 
+import phi.ap.model.Pair;
 import phi.ap.model.ProductInStore;
 import phi.ap.model.enums.StoreProducts.StoreItemProducer;
 import phi.ap.model.enums.StoreTypes;
@@ -11,8 +12,8 @@ import java.util.ArrayList;
 
 public class Store<T extends StoreItemProducer> extends Building {
     private StoreTypes storeTypes;
-    private ArrayList<AbstractMap.SimpleEntry<T, Integer>> availableProducts = new ArrayList<>();
-    private ArrayList<AbstractMap.SimpleEntry<T, Integer>> allProducts;
+    private ArrayList<Pair<T>> availableProducts = new ArrayList<>();
+    private ArrayList<Pair<T>> allProducts;
 
     public Store(int height, int width, StoreTypes storeType) {
         super(height, width);
@@ -23,7 +24,7 @@ public class Store<T extends StoreItemProducer> extends Building {
     }
 
 
-    public void addProduct(AbstractMap.SimpleEntry<T, Integer> item){
+    public void addProduct(Pair<T> item){
         availableProducts.add(item);
     }
     public void clearProducts(){
@@ -38,18 +39,18 @@ public class Store<T extends StoreItemProducer> extends Building {
         return storeTypes;
     }
 
-    public ArrayList<AbstractMap.SimpleEntry<T, Integer>> getAvailableProducts(){
+    public ArrayList<Pair<T>> getAvailableProducts(){
         return availableProducts;
     }
-    public ArrayList<AbstractMap.SimpleEntry<T, Integer>> getAllProducts(){
+    public ArrayList<Pair<T>> getAllProducts(){
         return allProducts;
     }
 
-    public void setAllProducts(ArrayList<AbstractMap.SimpleEntry<T, Integer>> allProducts) {
+    public void setAllProducts(ArrayList<Pair<T>> allProducts) {
         this.allProducts = allProducts;
     }
     public void buy(Item it){
-        for(AbstractMap.SimpleEntry<T, Integer> item : availableProducts){
+        for(Pair<T> item : availableProducts){
             if(item.getKey().getItem().canStackWith(it)){
                 item.setValue(item.getValue() - 1);
                 System.out.println(item.getKey().getNameInStore());

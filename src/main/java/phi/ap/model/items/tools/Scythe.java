@@ -1,6 +1,7 @@
 package phi.ap.model.items.tools;
 
 import phi.ap.model.*;
+import phi.ap.model.enums.AbilityType;
 import phi.ap.model.enums.LevelName;
 import phi.ap.model.enums.ProductNames;
 import phi.ap.model.items.Dirt;
@@ -24,8 +25,14 @@ public class Scythe extends Tool{
         StringBuilder response = new StringBuilder();
         switch (item) {
             case Plant plant -> {
+                if((plant instanceof Crop) && ((Crop)plant).getForagingType() != null)
+                    Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Foraging).advanceXP(5);
+                if((plant instanceof Tree) && ((Tree)plant).isForaging())
+                    Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Foraging).advanceXP(5);
+
                 for(ItemStack itemStack : plant.getProducts()){
                     int cnt = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(itemStack);
+                    Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Farming).advanceXP(5);
                     response.append(cnt).append(" of ").append(itemStack.getItem().getName()).append(" gained!\n");
                 }
                 if(plant instanceof Tree && ((Tree)plant).isThundered()){
@@ -36,6 +43,7 @@ public class Scythe extends Tool{
                 if(grass.canStackWith(ProductNames.Grass.getInstance())){
                     grass.getFather().removeItem(grass);
                     for (ItemStack itemStack : grass.getDrops()) {
+                        Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Farming).advanceXP(5);
                         int cnt = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(itemStack);
                         response.append(cnt).append(" of ").append(itemStack.getItem().getName()).append(" gained!\n");
                     }

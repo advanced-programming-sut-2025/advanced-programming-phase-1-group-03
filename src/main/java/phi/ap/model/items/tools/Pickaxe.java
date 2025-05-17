@@ -26,6 +26,9 @@ public class Pickaxe extends Tool{
     @Override
     public Result<String> useTool(Coordinate direction) {
         Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(direction.getY(), direction.getX());
+        int getCount = 1;
+        if(Game.getInstance().getCurrentPlayer().getAbilityLevel(AbilityType.Extraction) >= 2)
+            getCount = 2;
 
         switch (item) {
             case Dirt dirt -> {
@@ -40,18 +43,24 @@ public class Pickaxe extends Tool{
             }
             case Stone stone -> {
                 if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
-                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(stone, 1);
+                Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Extraction).advanceXP(10);
+                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(stone, getCount);
                 stone.getFather().removeItem(stone);
-                return new Result<>(true, "You gained one stone!");
+                return new Result<>(true, "You gained "+getCount+" stone!");
             }
             case Mineral mineral -> {
                 if(!reduceEnergy()) return new Result<>(false, "You don't have enough energy!");
                 if(!canIMineThisLevel(mineral.getForagingType().getLevelNeedToMine()))
                     return new Result<>(false,
                             "Your pickaxe must be at least " + mineral.getForagingType().getLevelNeedToMine().toString());
-                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(mineral, 1);
+
+                if(mineral.getForagingType() != null)
+                    Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Foraging).advanceXP(5);
+
+                Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Extraction).advanceXP(10);
+                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(mineral, getCount);
                 mineral.getFather().removeItem(mineral);
-                return new Result<>(true, "You gained one " + mineral.getName() +"!");
+                return new Result<>(true, "You gained "+getCount+" " + mineral.getName() +"!");
             }
             case null, default -> {
                 if(item != null && item.isRemovableByPickaxe()){

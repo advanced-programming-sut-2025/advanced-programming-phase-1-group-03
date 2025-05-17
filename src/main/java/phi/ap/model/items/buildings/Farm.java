@@ -17,6 +17,7 @@ public class Farm extends Building {
     private ArrayList<Quarry>quarries;
     private FarmTypes farmType;
     private ArrayList<Player> availablePlayers = new ArrayList<>();
+
     public Farm(FarmTypes farmType) {
         super(30, 30);
         setName("Farm");

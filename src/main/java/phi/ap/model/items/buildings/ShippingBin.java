@@ -8,7 +8,7 @@ import phi.ap.model.items.products.Product;
 import java.util.ArrayList;
 
 public class ShippingBin extends Building {
-    private ArrayList<ItemStack> items = new ArrayList<>();
+    private ArrayList<ItemStack> itemStacks = new ArrayList<>();
 
     public ShippingBin(int height, int width) {
         super(height, width);
@@ -21,14 +21,14 @@ public class ShippingBin extends Building {
     }
 
     public void addItem(ItemStack item) {
-        items.add(item);
+        itemStacks.add(item);
     }
     /*
     this functions returns total interest from selling products
      */
     public int sellAll(){
         int totalMoney = 0;
-        for(ItemStack itemSt : items){
+        for(ItemStack itemSt : itemStacks){
             Item item = itemSt.getItem();
             if(item instanceof Product){
                 totalMoney += ((Product)item).getSellPrice() * itemSt.getAmount();

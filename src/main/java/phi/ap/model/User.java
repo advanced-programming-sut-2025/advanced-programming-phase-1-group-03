@@ -10,10 +10,14 @@ public class  User {
     private String nickname;
     private String email;
     private Gender gender;
-    private int gamePlayed;
-    private int maxGold;
+    private int gamePlayed = 0;
+    private int maxGold = 0;
     private SecurityQuestion securityQuestion;
     private Integer gameJoinedId = null;
+
+    public void setGamePlayed(int gamePlayed) {
+        this.gamePlayed = gamePlayed;
+    }
 
     public String getUsername() {
         return username;
