@@ -38,6 +38,7 @@ public class DialogueAnswerController {
         App.getInstance().changeMenu(Menu.GameMenu);
         state.setLastConversation(dialogue);
         state.setLastMeet(new Date(Game.getInstance().getDate()));
+        state.advanceFriendshipXp(10);
         return new Result<>(true, "Meeting done!");
     }
 
