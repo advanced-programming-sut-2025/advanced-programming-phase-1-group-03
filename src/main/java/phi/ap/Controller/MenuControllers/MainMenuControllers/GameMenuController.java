@@ -272,14 +272,14 @@ public class GameMenuController {
         }
     }
     private void doTransportTasks() {
-        for (int i = 0; i < Game.getInstance().getPlayers().size(); i++) {
-            if (!Game.getInstance().getCurrentPlayer().getFeintBuff().isActive()) {
-                Cottage cot = Game.getInstance().getCurrentPlayer().getFarm().getCottage();
-                Coordinate coord = cot.getTileCoordinateBaseMap(1, 1);
-                walk(String.valueOf(coord.getY()), String.valueOf(coord.getX()));
-            }
-            Game.getInstance().goNextPlayer();
-        }
+//        for (int i = 0; i < Game.getInstance().getPlayers().size(); i++) {
+//            if (!Game.getInstance().getCurrentPlayer().getFeintBuff().isActive()) {
+//                Cottage cot = Game.getInstance().getCurrentPlayer().getFarm().getCottage();
+//                Coordinate coord = cot.getTileCoordinateBaseMap(1, 1);
+//                walk(String.valueOf(coord.getY()), String.valueOf(coord.getX()));
+//            }
+//            Game.getInstance().goNextPlayer();
+//        }
     }
     private void doNightTasks() {
         System.out.println("zzz... sleeping");

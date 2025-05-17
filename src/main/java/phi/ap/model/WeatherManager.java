@@ -39,7 +39,7 @@ public class WeatherManager {
             setCurrentWeather(getRandomWeather(Game.getInstance().getDate().getSeason()));
         }
         setTomorrowWeather(getRandomWeather(Game.getInstance().getDate().getTomorrowSeason()));
-//        currentWeather = Weather.Rain;
+        currentWeather = Weather.Rain;
 //        currentWeather = Weather.Storm;
     }
 }

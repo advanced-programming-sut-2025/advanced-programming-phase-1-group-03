@@ -111,9 +111,9 @@ public class Tree extends Plant {
             drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
             if (seedType != null) {
                 drops.add(new ItemStack(new Seed(1, 1, seedType),
-                        App.getInstance().getRandomNumber(0, 2)));
+                        App.getInstance().getRandomNumber(1, 2)));
             } else if (saplingType != null) {
-                drops.add(new ItemStack(new Sapling(1, 1, saplingType), App.getInstance().getRandomNumber(0, 2)));
+                drops.add(new ItemStack(new Sapling(1, 1, saplingType), App.getInstance().getRandomNumber(1, 2)));
             }
         } else {
             drops.add(new ItemStack(new Wood(1, 1), App.getInstance().getRandomNumber(2, 3)));
@@ -123,9 +123,9 @@ public class Tree extends Plant {
             }
             if (seedType != null) {
                 drops.add(new ItemStack(new Seed(1, 1, seedType),
-                        App.getInstance().getRandomNumber(0, 2)));
+                        App.getInstance().getRandomNumber(1, 2)));
             } else if (saplingType != null) {
-                drops.add(new ItemStack(new Sapling(1, 1, saplingType), App.getInstance().getRandomNumber(0, 2)));
+                drops.add(new ItemStack(new Sapling(1, 1, saplingType), App.getInstance().getRandomNumber(1, 2)));
             }
         }
         setLevelsForArrayList(drops);
