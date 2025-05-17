@@ -40,7 +40,7 @@ public enum FoodTypes {
     SmokedFish("SmokedFish", null,
             null, 0, 1),
 
-    Beer("Bear", new ArrayList<ItemStack>(Arrays.asList(
+    Beer("Beer", new ArrayList<ItemStack>(Arrays.asList(
             new ItemStack(new Crop(1, 1, CropsTypes.Wheat), 1))),
             new Eatable(50), 200, 24),
 
@@ -48,7 +48,7 @@ public enum FoodTypes {
             new ItemStack(new Food(1, 1, "Rice", 10, new Eatable(5)), 1))),
             new Eatable(13), 100, 10),
 
-    Coffee("Coffe", new ArrayList<ItemStack>(Arrays.asList(
+    Coffee("Coffee", new ArrayList<ItemStack>(Arrays.asList(
             new ItemStack(new Crop(1, 1, CropsTypes.CoffeeBean), 5))),
             new Eatable(75), 150, 2),
 
