@@ -5,7 +5,7 @@ import phi.ap.model.Player;
 public class Talk {
     private final String message;
     private Friendship friendship;
-    private Boolean haveSeen;
+    private boolean haveSeen;
     private Player sender;
 
     Talk(String message, Friendship friendship, Player player) {
@@ -19,7 +19,7 @@ public class Talk {
         return haveSeen;
     }
 
-    public void setHaveSeen(Boolean haveSeen) {
+    public void setHaveSeen(boolean haveSeen) {
         this.haveSeen = haveSeen;
     }
 

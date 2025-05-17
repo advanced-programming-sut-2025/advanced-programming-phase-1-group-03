@@ -3,14 +3,13 @@ package phi.ap.model.items;
 import phi.ap.model.ItemStack;
 import phi.ap.model.enums.AnimalTypes;
 import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.TileType;
 import phi.ap.model.items.products.AnimalProduct;
 
 import java.util.ArrayList;
 
 public class Animal extends Item {
     private AnimalTypes type;
-
-
     private int friendShipAmount = 0;
     private int remainingDayToProduce;
     private boolean beenPet = false;
@@ -26,6 +25,7 @@ public class Animal extends Item {
         this.remainingDayToProduce = this.type.getDayToProduce();
         setName(animalType.name());
         setSellable(true);
+        fillTile(TileType.A.getTile());
         setSellPrice(animalType.getPrice());
     }
 

@@ -68,11 +68,13 @@ public enum GameMenuCommands implements Command{
     Fishing("\\s*fishing\\s*-p\\s+(?<fishingPole>.*)"),
     Talk("\\s*talk\\s+-u\\s+(?<username>.*)\\s+-m\\s+(?<message>.+)"),
     TalkHistory("\\s*talk\\s+history\\s+-u\\s+(?<username>.*)\\s*"),
+    ShepherdAnimal("\\s*shepherd\\s+animals\\s+-n\\s+(?<name>.*)\\s+-l\\s+(?<x>\\S+)\\s+(?<y>\\S+)\\s*"),
 
     // Friendship Commands
     Friendships("\\s*friendships\\s*"),
     Hug("\\s*hug\\s+-u\\s+(?<username>.*)\\s*"),
     Flower("\\s*flower\\s+-u\\s+(?<username>.*)\\s*"),
+    CheatAddFriendShip("\\s*cheat\\s+add\\s+friendship\\s+(?<name1>\\S+)\\s+(?<name2>\\S+)\\s+(?<amount>\\d+)\\s*"),
 
     // Gift Commands
     Gift("\\s*gift\\s+-u\\s+(?<username>.*)\\s+-i\\s+(?<item>.*)\\s+-a\\s+(?<amount>\\d+)\\s*"),
