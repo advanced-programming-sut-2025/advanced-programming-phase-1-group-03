@@ -15,6 +15,7 @@ public class Stone extends Product {
         fillTile(type.getTile());
         makeSellable();
         setSellPrice(CarpenterShopProducts.Stone.getPrice());
+        makeRemovableByPickaxe();
     }
 
     @Override

@@ -12,6 +12,7 @@ public class Wood extends Product {
         setName("Wood");
         makeSellable();
         setSellPrice(CarpenterShopProducts.Wood.getPrice());
+        makeRemovableByPickaxe();
     }
 
     public void doTask() {

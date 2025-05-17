@@ -27,7 +27,6 @@ public abstract class Plant extends Product {
         this.canBecomeGiant = canBecomeGiant;
         this.plantingDate = plantingDate != null ? new Date(plantingDate.getHour()) : null;
         this.lastWateredDate = Game.getInstance() != null ? new Date(Game.getInstance().getDate().getHour()) : null;
-        setRemovableByPickaxe(false);
     }
 
     public Plant(Plant plant) {
@@ -260,5 +259,9 @@ public abstract class Plant extends Product {
     }
     public Product getSuper() {
         return super.getThis();
+    }
+
+    public ArrayList<Tile> getShapeAtStage() {
+        return shapeAtStage;
     }
 }

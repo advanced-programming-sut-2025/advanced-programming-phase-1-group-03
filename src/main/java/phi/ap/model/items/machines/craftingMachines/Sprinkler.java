@@ -2,6 +2,8 @@ package phi.ap.model.items.machines.craftingMachines;
 
 import phi.ap.model.Coordinate;
 import phi.ap.model.Game;
+import phi.ap.model.Tile;
+import phi.ap.model.enums.Colors;
 import phi.ap.model.enums.CraftingTypes;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.machines.Machine;
@@ -14,7 +16,7 @@ public class Sprinkler extends Machine {
     private ArrayList<Coordinate> protects = new ArrayList<>();
     public Sprinkler(int height, int width, CraftingTypes craftingType) {
         super(height, width, craftingType);
-        //TODO : shape
+        fillTile(new Tile("*", Colors.fg(18), Colors.bg(21)));
         switch (craftingType) {
             case CraftingTypes.Sprinkler:
                 this.protects = new ArrayList<>(List.of(
@@ -22,6 +24,7 @@ public class Sprinkler extends Machine {
                         new Coordinate(1, 0),
                         new Coordinate(0, 1),
                         new Coordinate(0, -1)));
+                fillTile(new Tile("*", Colors.fg(18), Colors.bg(21)));
                 break;
             case CraftingTypes.QualitySprinkler:
                 for (int i = -1; i <= 1; i++) {
@@ -30,6 +33,7 @@ public class Sprinkler extends Machine {
                         protects.add(new Coordinate(i, j));
                     }
                 }
+                fillTile(new Tile("*", Colors.fg(118), Colors.bg(21)));
                 break;
             case CraftingTypes.IridiumSprinkler:
                 for (int i = -2; i <= 2; i++) {
@@ -38,11 +42,13 @@ public class Sprinkler extends Machine {
                         protects.add(new Coordinate(i, j));
                     }
                 }
+                fillTile(new Tile("*", Colors.fg(232), Colors.bg(21)));
                 break;
         }
     }
     public Sprinkler(int height, int width, String machineName, Integer price) {
         super(height, width, machineName, price);
+        fillTile(new Tile("*", Colors.fg(18), Colors.bg(21)));
         switch (machineName) {
             case "Sprinkler":
                 this.protects = new ArrayList<>(List.of(
@@ -50,6 +56,7 @@ public class Sprinkler extends Machine {
                         new Coordinate(1, 0),
                         new Coordinate(0, 1),
                         new Coordinate(0, -1)));
+                fillTile(new Tile("*", Colors.fg(18), Colors.bg(21)));
                 break;
             case "QualitySprinkler":
                 for (int i = -1; i <= 1; i++) {
@@ -58,6 +65,7 @@ public class Sprinkler extends Machine {
                         protects.add(new Coordinate(i, j));
                     }
                 }
+                fillTile(new Tile("*", Colors.fg(118), Colors.bg(21)));
                 break;
             case "IridiumSprinkler":
                 for (int i = -2; i <= 2; i++) {
@@ -66,6 +74,7 @@ public class Sprinkler extends Machine {
                         protects.add(new Coordinate(i, j));
                     }
                 }
+                fillTile(new Tile("*", Colors.fg(232), Colors.bg(21)));
                 break;
         }
     }

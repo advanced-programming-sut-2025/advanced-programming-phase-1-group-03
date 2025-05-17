@@ -95,7 +95,9 @@ public enum GameMenuCommands implements Command{
     CheatAddNPCFriendshipXP("\\s*cheat\\s+(npc|NPC)\\s+add\\s+friendship\\s+-n\\s+(?<name>\\S+)\\s+-c\\s+(?<count>\\d+)\\s*"),
 
 
-    PlaceItem("\\s*place\\s+item\\s+-n (?<itemName>.*) -d\\s+(?<direction>\\d)\\s*")
+    PlaceItem("\\s*place\\s+item\\s+-n (?<itemName>.*) -d\\s+(?<direction>\\d)\\s*"),
+    HelpReadingMap("(?i)\\s*help\\s*reading\\s*map\\s*"),
+    ExitGame("(?i)\\s*exit\\s*game\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

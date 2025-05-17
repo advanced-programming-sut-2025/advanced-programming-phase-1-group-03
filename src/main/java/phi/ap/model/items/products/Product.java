@@ -40,7 +40,6 @@ public class Product extends Item {
     public Product(int height, int width) {
         super(height, width);
         levels = new LevelProcess(new ArrayList<>(List.of(LevelName.normal)), 0);
-        makeRemovableByPickaxe();
     }
 
     public Product(Product product) {
@@ -60,7 +59,6 @@ public class Product extends Item {
         drops = new ArrayList<>(product.getDrops());
         products = new ArrayList<>(product.getProducts());
         waitingTime = product.waitingTime;
-        setRemovableByPickaxe(product.isRemovableByPickaxe());
     }
 
     public Product(ProductNames type) {
@@ -80,7 +78,6 @@ public class Product extends Item {
         setSellPrice(product.getSellPrice());
         drops = new ArrayList<>(product.getDrops());
         products = new ArrayList<>(product.getProducts());
-        makeRemovableByPickaxe();
     }
 
     public static LevelProcess getBasicLevels(){

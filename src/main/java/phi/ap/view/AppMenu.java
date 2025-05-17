@@ -19,8 +19,6 @@ public abstract class AppMenu {
             System.out.println(App.getInstance().getMenu().toString());
         } else if((matcher = CommonCommands.MenuExit.getMatcher(input)) != null){
             App.getInstance().changeMenu(Menu.LoginMenu);
-        } else if((matcher = CommonCommands.MenuEnter.getMatcher(input)) != null) {
-            App.getInstance().changeMenu(Menu.TradeMenu);
         }
         else{
             System.out.println("invalid command");

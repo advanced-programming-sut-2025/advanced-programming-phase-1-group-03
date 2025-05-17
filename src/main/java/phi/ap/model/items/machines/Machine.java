@@ -1,5 +1,7 @@
 package phi.ap.model.items.machines;
 
+import phi.ap.model.Tile;
+import phi.ap.model.enums.Colors;
 import phi.ap.model.enums.CraftingTypes;
 import phi.ap.model.items.Item;
 
@@ -18,6 +20,9 @@ public abstract class Machine extends Item {
             setSellable(true);
             setSellPrice(craftingType.getSellPrice());
         }
+        setRemovableByPickaxe(false);
+        makeRemovableByPickaxe();
+        fillTile(new Tile("M", Colors.fg(0), ""));
     }
     protected Machine(int height, int width, String machineName, Integer price) {
         super(height, width);
@@ -30,6 +35,9 @@ public abstract class Machine extends Item {
             setSellable(true);
             setSellPrice(price);
         }
+        setRemovableByPickaxe(false);
+        makeRemovableByPickaxe();
+        fillTile(new Tile("M", Colors.fg(0), ""));
     }
     public void setCraftingType(String name) {
         this.craftingType = CraftingTypes.valueOf(name);

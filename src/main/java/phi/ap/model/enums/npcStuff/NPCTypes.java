@@ -130,7 +130,7 @@ public enum NPCTypes {
             root.addChild(friendship0);
             DialogueNode friendship1 = new DialogueNode("I have no business with you!", ConditionTypes.friendshipLess(1), false, "friendshipLess");
             root.addChild(friendship1);
-            DialogueNode friendship2 = new DialogueNode("Hello friend", ConditionTypes.friendshipLess(0), false, "friendshipLess");
+            DialogueNode friendship2 = new DialogueNode("Hello friend", ConditionTypes.friendshipLess(2), false, "friendshipLess");
             root.addChild(friendship2);
             DialogueNode friendShip3 = new DialogueNode("wanna stay:)?", ConditionTypes.friendshipMore(3), false, "friendship");
             root.addChild(friendShip3);

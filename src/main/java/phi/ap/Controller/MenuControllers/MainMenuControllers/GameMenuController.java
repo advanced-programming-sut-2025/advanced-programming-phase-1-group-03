@@ -3,6 +3,7 @@ package phi.ap.Controller.MenuControllers.MainMenuControllers;
 import jdk.jfr.Frequency;
 import phi.ap.model.*;
 import phi.ap.model.enums.*;
+import phi.ap.model.enums.Menus.Menu;
 import phi.ap.model.enums.StoreProducts.*;
 import phi.ap.model.enums.npcStuff.NPCTypes;
 import phi.ap.model.enums.npcStuff.Quests;
@@ -119,7 +120,13 @@ public class GameMenuController {
     }
 
     public Result<String> exitGame() {
-        return null; //TODO
+        if (Game.getInstance().getCurrentPlayer() != Game.getInstance().getPlayers().get(0)) {
+            return new Result<>(false, "You are not game loader");
+        }
+
+        //TODO : saves
+        App.getInstance().changeMenu(Menu.MainMenu);
+        return new Result<>(true, "game closed successfully");
     }
 
     public String giftNotification() {
@@ -141,14 +148,14 @@ public class GameMenuController {
     //TODO : election
     public Result<String> nextTurn() {
 
-
-        String message = "Ok now is the "+Game.getInstance().getCurrentPlayer()+"'s turn";
+        Game.getInstance().goNextPlayer();
+        String message = "Ok now is the "+Game.getInstance().getCurrentPlayer()+"'s turn\n";
 
         // age ye door tamoom shod
         if(Game.getInstance().getCurrentPlayer().equals(Game.getInstance().getPlayers().getFirst()))
         {
             advanceHour();
-            message = "one hour passed...";
+            message += "one hour passed...\n";
 
         }
         String giftNotification = giftNotification();
@@ -533,7 +540,45 @@ public class GameMenuController {
         return printMap(String.valueOf(y), String.valueOf(x), String.valueOf(len));
     }
     public Result<String> helpReadingMap() {
-        return null;
+        StringBuilder res = new StringBuilder();
+        res.append(Colors.RED.toString() + "------------------------------------" + Colors.RESET + "\n");
+
+        for (TileType value : TileType.values()) {
+            res.append(value.toString() + ": " + value.getTile() + Colors.RESET + "\n");
+        }
+
+        res.append(Colors.BLACK.toString() + "------------------------------------" + Colors.RESET + "\n");
+
+        for (ForagingMineralTypes value : ForagingMineralTypes.values()) {
+            res.append(value.toString() + ": " + value.getTile() + Colors.RESET + "\n");
+        }
+
+        res.append(Colors.BLACK.toString() + "------------------------------------" + Colors.RESET + "\n");
+
+        for (CropsTypes value : CropsTypes.values()) {
+            res.append("Crop " + value.toString() + ": " + value.getShapeAtStages() + Colors.RESET + "\n");
+        }
+
+        res.append(Colors.BLACK.toString() + "------------------------------------" + Colors.RESET + "\n");
+
+        for (TreeTypes value : TreeTypes.values()) {
+            res.append("Tree " + value.toString() + ": " + value.getShapeAtStages() + Colors.RESET + "\n");
+        }
+
+        res.append(Colors.BLACK.toString() + "------------------------------------" + Colors.RESET + "\n");
+
+        for (StoneTypes value : StoneTypes.values()) {
+            res.append(value.toString() + ": " + value.getTile() + Colors.RESET + "\n");
+        }
+
+        res.append(Colors.BLACK.toString() + "------------------------------------" + Colors.RESET + "\n");
+
+        for (ProductNames value : ProductNames.values()) {
+            res.append(value.toString() + ": " + value.getTile() + Colors.RESET + "\n");
+        }
+
+        res.append(Colors.RED.toString() + "------------------------------------" + Colors.RESET + "\n");
+        return new Result<>(true, res.toString());
     }
 
     public Result<String> showEnergy() {
