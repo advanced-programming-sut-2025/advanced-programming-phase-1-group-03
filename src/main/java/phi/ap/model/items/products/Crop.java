@@ -49,6 +49,15 @@ public class Crop extends Plant {
         setShapeForCurrentStage();
     }
 
+    public String showCrop() {
+        String res = "";
+        if (!oneTime) res += "Regrowth time: " + String.valueOf(regrowthTime) + "\n";
+        res += "Last harvest date: ";
+        if (lastHarvestDate != null) res += (Game.getInstance().getDate().getRawDay() - lastHarvestDate.getRawDay()) + " day ago\n";
+        else res += "none\n";
+        return res;
+    }
+
     @Override
     public ArrayList<ItemStack> getProducts() {
         ArrayList<ItemStack> products = new ArrayList<>();
@@ -129,6 +138,10 @@ public class Crop extends Plant {
 
     public Date getLastHarvestDate() {
         return lastHarvestDate;
+    }
+
+    public void setLastHarvestDate(Date lastHarvestDate) {
+        this.lastHarvestDate = new Date(lastHarvestDate);
     }
 
     @Override

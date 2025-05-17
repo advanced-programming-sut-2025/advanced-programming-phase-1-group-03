@@ -988,7 +988,9 @@ public class GameMenuController {
             return new Result<>(false, "there is no plant there");
         }
         Plant plant = (Plant) item;
-        return new Result<>(true, plant.showPlant());
+        if (plant instanceof Crop crop) return new Result<>(true, plant.showPlant() + crop.showCrop());
+        else if (plant instanceof Tree tree) return new Result<>(true, plant.showPlant() + tree.showTree());
+        else return new Result<>(true, plant.showPlant());
     }
 
     public Result<String> showPlantDiff(String ySt, String xSt) {

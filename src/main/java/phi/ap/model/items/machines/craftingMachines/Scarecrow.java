@@ -28,12 +28,12 @@ public class Scarecrow extends Machine {
             case "Scarecrow":
                 protectingEdge = 8;
                 maxProtectingEdge = Math.max(maxProtectingEdge, protectingEdge);
-                fillTile(new Tile("☥", Colors.fg(88), ""));
+                fillTile(new Tile("☦", Colors.fg(88), ""));
                 break;
             case "DeluxeScarecrow":
                 protectingEdge = 12;
                 maxProtectingEdge = Math.max(maxProtectingEdge, protectingEdge);
-                fillTile(new Tile("☥", Colors.fg(232), ""));
+                fillTile(new Tile("☦", Colors.fg(232), ""));
                 break;
         }
     }
