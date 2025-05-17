@@ -116,7 +116,7 @@ public class  User {
     }
 
     public void setGameJoinedId(Integer gameJoinedId) {
-        this.gameJoinedId = gameJoinedId;
+//        this.gameJoinedId = gameJoinedId;
     }
 
     @Override
