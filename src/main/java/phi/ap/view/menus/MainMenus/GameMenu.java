@@ -150,8 +150,10 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.walkWASD(matcher.group("direction")));
         } else if((matcher = GameMenuCommands.SellProduct.getMatcher(input)) != null) {
             System.out.println(controller.sellProduct(matcher.group("productName").trim(), matcher.group("amount")));
-        }else if((matcher = GameMenuCommands.TrashItem.getMatcher(input)) != null) {
+        } else if((matcher = GameMenuCommands.TrashItem.getMatcher(input)) != null) {
             System.out.println(controller.inventoryTrash(matcher.group("itemName").trim(), matcher.group("amount")));
+        } else if((matcher = GameMenuCommands.InventoryShow.getMatcher(input)) != null) {
+            System.out.println(controller.showInventory());
         } else if ((matcher = GameMenuCommands.TalkHistory.getMatcher(input)) != null) {
             System.out.println(controller.showTalkHistory(matcher.group("username")));
         } else if ((matcher = GameMenuCommands.Friendships.getMatcher(input)) != null) {
@@ -201,6 +203,12 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.helpReadingMap());
         } else if ((matcher = GameMenuCommands.ExitGame.getMatcher(input)) != null) {
             System.out.println(controller.exitGame());
+        } else if ((matcher = GameMenuCommands.EnergyShow.getMatcher(input)) != null) {
+            System.out.println(controller.showEnergy());
+        } else if ((matcher = GameMenuCommands.CheatEnergySet.getMatcher(input)) != null) {
+            System.out.println(controller.cheatSetEnergy(matcher.group("value")));
+        } else if ((matcher = GameMenuCommands.CheatEnergyUnlimited.getMatcher(input)) != null) {
+            System.out.println(controller.cheatSetEnergyUnlimited());
         } else if ((matcher = GameMenuCommands.ShepherdAnimal.getMatcher(input)) != null) {
             System.out.println(controller.shepherdAnimal(matcher.group("name"), matcher.group("x"), matcher.group("y")));
         } else if ((matcher = GameMenuCommands.CheatAddFriendShip.getMatcher(input)) != null) {

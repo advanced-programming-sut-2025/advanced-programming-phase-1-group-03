@@ -65,6 +65,7 @@ public enum GameMenuCommands implements Command{
     WalkWASD("\\s*(?<direction>(w|a|s|d))\\s*"),
     SellProduct("\\s*sell\\s+(?<productName>.*)\\s+(-n\\s+(?<amount>\\d+))?\\s*"),
     TrashItem("\\s*inventory\\s+trash\\s+-i\\s+(?<itemName>.*)\\s+(-n\\s+(?<amount>.*))?\\s*"),
+    InventoryShow("\\s*(?i)inventory\\s+show\\s*"),
     Fishing("\\s*fishing\\s*-p\\s+(?<fishingPole>.*)"),
     Talk("\\s*talk\\s+-u\\s+(?<username>.*)\\s+-m\\s+(?<message>.+)"),
     TalkHistory("\\s*talk\\s+history\\s+-u\\s+(?<username>.*)\\s*"),
@@ -99,7 +100,12 @@ public enum GameMenuCommands implements Command{
 
     PlaceItem("\\s*place\\s+item\\s+-n (?<itemName>.*) -d\\s+(?<direction>\\d)\\s*"),
     HelpReadingMap("(?i)\\s*help\\s*reading\\s*map\\s*"),
-    ExitGame("(?i)\\s*exit\\s*game\\s*")
+    ExitGame("(?i)\\s*exit\\s*game\\s*"),
+
+    //energy
+    EnergyShow("\\s*energy\\s*show\\s*"),
+    CheatEnergySet("\\s*cheat\\s+energy\\s+set\\s+-v\\s+(?<value>\\d+)\\s*"),
+    CheatEnergyUnlimited("\\s*cheat\\s+energy\\s+unlimited\\s*")
     ;
     private final String command;
     GameMenuCommands(String command) {

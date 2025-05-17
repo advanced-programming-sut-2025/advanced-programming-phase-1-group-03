@@ -13,9 +13,9 @@ public class EnergyManager {
         this.player = player;
     }
     public void advanceBaseUnit(int diff) { // amount += diff * unit;
-        amount = Math.min(amount, maxAmount);
+        amount = Math.min(amount, getMaxAmount());
         amount += diff * unit;
-        amount = Math.min(amount, maxAmount);
+        amount = Math.min(amount, getMaxAmount());
         amount = Math.max(0, amount);
         if (amount == 0) Game.getInstance().getCurrentPlayer().feint();
     }
@@ -29,8 +29,9 @@ public class EnergyManager {
 
     public int getMaxAmount() {
         if (player.getLastFoodBuff() != null && player.getLastFoodBuff().isActive() && player.getLastFoodBuff().getMaxEnergyEffect() != null) {
-            return Math.max(maxAmount + player.getLastFoodBuff().getMaxEnergyEffect(), Integer.MAX_VALUE);
+            return Math.min(maxAmount + player.getLastFoodBuff().getMaxEnergyEffect(), Integer.MAX_VALUE);
         }
+        if (player.getFeintBuff().isActive()) return (int) (maxAmount * player.getFeintBuff().getDailyEnergyEffect());
         return maxAmount;
     }
 
@@ -51,5 +52,9 @@ public class EnergyManager {
 
     public boolean hasEnergy(int amount){
         return this.amount >= amount*unit;
+    }
+
+    public void reset() {
+        amount = getMaxAmount();
     }
 }

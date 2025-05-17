@@ -182,8 +182,8 @@ public class GameMenuController {
         if(TalkNotification != null)
             message += "\n" + TalkNotification;
         if (Game.getInstance().getCurrentPlayer().isPlayerFeinted()) {
-            message += "player " + Game.getInstance().getCurrentPlayer().getUser().getUsername() + "has feinted!\n";
-            message += nextTurn();
+            message += "\nplayer " + Game.getInstance().getCurrentPlayer().getUser().getUsername() + " has feinted!\n";
+            message += "\n" + nextTurn();
         }
         return new Result<>(true, message);
     }
@@ -250,6 +250,11 @@ public class GameMenuController {
             friendship.setHugged(false);
         }
     }
+    private void doEnergyTask() {
+        for (Player player : Game.getInstance().getPlayers()) {
+            player.getEnergy().reset();
+        }
+    }
     private void doNightTasks() {
         System.out.println("zzz... sleeping");
         //TODO
@@ -263,6 +268,7 @@ public class GameMenuController {
         App.getInstance().getGameService().turnOnSprinklers();
         App.getInstance().getGameService().doCrowAttack();
         App.getInstance().getGameService().doNPCStuffAtNight();
+        doEnergyTask();
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
@@ -608,17 +614,17 @@ public class GameMenuController {
         energy *= EnergyManager.unit;
         int dif = energy - Game.getInstance().getCurrentPlayer().getEnergy().getAmount();
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(dif);
-        return new Result<>(true, "energy has been set to " + energy);
+        return new Result<>(true, "energy has been set to " + Game.getInstance().getCurrentPlayer().getEnergy().getAmountBaseUnit());
     }
     public Result<String> cheatSetEnergy(int energy) {
         int dif = energy - Game.getInstance().getCurrentPlayer().getEnergy().getAmount();
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(dif);
-        return new Result<>(true, "energy has been set to " + energy);
+        return new Result<>(true, "energy has been set to " + Game.getInstance().getCurrentPlayer().getEnergy().getAmountBaseUnit());
     }
 
     public Result<String> cheatSetEnergyUnlimited() {
         Game.getInstance().getCurrentPlayer().getEnergy().setMaxAmount(Integer.MAX_VALUE / 2);
-        return cheatSetEnergy(Integer.MAX_VALUE);
+        return cheatSetEnergy(Integer.MAX_VALUE / 2);
     }
 
     public Result<String> showInventory() {

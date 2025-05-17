@@ -261,7 +261,5 @@ public abstract class Plant extends Product {
         return super.getThis();
     }
 
-    public ArrayList<Tile> getShapeAtStage() {
-        return shapeAtStage;
-    }
+
 }
