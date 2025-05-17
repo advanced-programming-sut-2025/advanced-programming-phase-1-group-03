@@ -18,7 +18,7 @@ public class AnimalProduct extends Product {
         this.productNum = productNum;
         this.animal = animal;
         setName(animalProductType.getName());
-        setSellPrice(animalProductType.getPrice());
+        setSellPrice((int)(animalProductType.getPrice() * productNum));
         setSellable(true);
     }
     public AnimalProduct(int height, int width, AnimalProductTypes animalProductType) {

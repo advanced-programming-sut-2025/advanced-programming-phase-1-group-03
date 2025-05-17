@@ -17,7 +17,21 @@ public class CraftedProducer extends Machine {
         super(height, width, machineName, price);
     }
 
+    public static Boolean checkNear(String name) {
+        Boolean ok = false;
+        for(int diffx = -1; diffx <= 1; diffx++) {
+            for(int diffy = -1; diffy <= 1; diffy++) {
+                int x = Game.getInstance().getCurrentPlayer().getLocation().getX() + diffx;
+                int y = Game.getInstance().getCurrentPlayer().getLocation().getY() + diffy;
+                if(Game.getInstance().getCurrentPlayer().getLocation().getGround().getTopItem(y, x).getName().equals(name))
+                    ok = true;
+            }
+        }
+        return ok;
+    }
     public Result<String> produceHoney(String foodName) {
+        if(!checkNear(CraftingTypes.BeeHouse.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.BeeHouse.getName() + " machine.");
         if(!foodName.equals("Honey"))
             return new Result<>(false, "This machine can't produce " + foodName);
         Food artisanFood = new Food(1, 1, FoodTypes.Honey);
@@ -25,6 +39,8 @@ public class CraftedProducer extends Machine {
     }
 
     public Result<String> produceCheese(String foodName) {
+        if(!checkNear(CraftingTypes.CheesePress.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.CheesePress.getName() + " machine.");
         if(!foodName.equals("Cheese") && !foodName.equals("GoatCheese"))
             return new Result<>(false, "This machine can't produce " + foodName);
         Food artisanFood = null;
@@ -53,6 +69,8 @@ public class CraftedProducer extends Machine {
         return addArtisan(artisanFood);
     }
     public Result<String> produceKeg(String foodName, String ingredientName) {
+        if(!checkNear(CraftingTypes.Keg.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.Keg.getName() + " machine.");
         Food artisanFood = null;
         if(foodName.equals("Juice")) {
             CropsTypes cropsType;
@@ -95,6 +113,8 @@ public class CraftedProducer extends Machine {
             return addArtisan(artisanFood);
     }
     public Result<String> produceDehydrator(String foodName, String ingredientName) {
+        if(!checkNear(CraftingTypes.Dehydrator.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.Dehydrator.getName() + " machine.");
         Food artisanFood = null;
         if(foodName.equals("DriedMushrooms")) {
             ForagingCropsTypes foragingCropsType = null;
@@ -137,6 +157,8 @@ public class CraftedProducer extends Machine {
             return addArtisan(artisanFood);
     }
     public Result<String> produceCoal() {
+        if(!checkNear(CraftingTypes.CharcoalKiln.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.CharcoalKiln.getName() + " machine.");
         Mineral mineral = new Mineral(1, 1, ForagingMineralTypes.Coal);
         mineral.setSellPrice(50);
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(new ItemStack(new Wood(1, 1), 10 )))
@@ -145,6 +167,8 @@ public class CraftedProducer extends Machine {
         return new Result<>(true, "Coal created successfully.");
     }
     public Result<String> produceLoom() {
+        if(!checkNear(CraftingTypes.Loom.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.Loom.getName() + " machine.");
         Product product = new Product(1, 1);
         product.setName("Cloth");
         product.setSellPrice(470);
@@ -155,6 +179,8 @@ public class CraftedProducer extends Machine {
         return new Result<>(true, "cloth added successfully.");
     }
     public Result<String> produceMayonnaiseMachine(String foodName, String ingredientName) {
+        if(!checkNear(CraftingTypes.MayonnaiseMachine.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.MayonnaiseMachine.getName() + " machine.");
         Food food = null;
         if(foodName.equals("Mayonnaise")) {
             if(!ingredientName.equals("LargeChickenEgg") && Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.ChickenEgg), 1))) {
@@ -188,6 +214,8 @@ public class CraftedProducer extends Machine {
             return addArtisan(food);
     }
     public Result<String>  produceOilMaker(String foodName, String ingredientName) {
+        if(!checkNear(CraftingTypes.OilMaker.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.OilMaker.getName() + " machine.");
         Food food = null;
         if(foodName.equals("Oil")) {
             if(ingredientName.equals("Corn")) {
@@ -229,6 +257,8 @@ public class CraftedProducer extends Machine {
         return addArtisan(food);
     }
     public Result<String> producePreservesJar(String foodName, String ingredientName) {
+        if(!checkNear(CraftingTypes.PreservesJar.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.PreservesJar.getName() + " machine.");
         Food food = null;
         if(foodName.equals("Jelly")) {
             FruitTypes fruitType;
@@ -264,6 +294,8 @@ public class CraftedProducer extends Machine {
         return addArtisan(food);
     }
     public Result<String> produceFishSmoker(String foodName, String ingredientName) {
+        if(!checkNear(CraftingTypes.FishSmoker.getName()))
+            return new Result<>(false, "You must be near a " + CraftingTypes.FishSmoker.getName() + " machine.");
         Food food = null;
         if(foodName.equals("Jelly")) {
             FishTypes fishType;
@@ -286,6 +318,8 @@ public class CraftedProducer extends Machine {
         return addArtisan(food);
     }
     public Result<String> produceFurnace(String metalName) {
+//        if(!checkNear(CraftingTypes.Furnace.getName()))
+//            return new Result<>(false, "You must be near a " + CraftingTypes.Furnace.getName() + " machine.");
         Mineral mineral = null;
         if(metalName.equals("CopperBar")) {
             if(Game.getInstance().getCurrentPlayer().getInventoryManager().CheckExistence(

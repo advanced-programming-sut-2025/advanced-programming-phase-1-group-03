@@ -8,11 +8,7 @@ import phi.ap.model.enums.StoreProducts.*;
 import phi.ap.model.enums.npcStuff.NPCTypes;
 import phi.ap.model.enums.npcStuff.Quests;
 import phi.ap.model.items.*;
-import phi.ap.model.items.buildings.AnimalHouse;
-import phi.ap.model.items.buildings.Building;
-import phi.ap.model.items.buildings.Farm;
-import phi.ap.model.items.buildings.Greenhouse;
-import phi.ap.model.items.buildings.ShippingBin;
+import phi.ap.model.items.buildings.*;
 import phi.ap.model.items.buildings.stores.Store;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
@@ -40,7 +36,8 @@ import static java.util.Collections.swap;
 public class GameMenuController {
     public Result<String> test(String input) {
         System.out.println(Game.getInstance().getCurrentPlayer().getGold());
-
+        for(Recipe recipe : Game.getInstance().getCurrentPlayer().getCraftingRecipes())
+            System.out.println(recipe.getName());
         Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(0,0);
         if(item instanceof Store){
             System.out.println("kooni");
@@ -129,6 +126,26 @@ public class GameMenuController {
         return new Result<>(true, "game closed successfully");
     }
 
+
+    public String TalkNotification() {
+        StringBuilder stringBuilder = new StringBuilder();
+        Boolean ok = false;
+        stringBuilder.append("Talk notofications: \n");
+        ArrayList<Friendship> friendships = Friendship.getFriends(Game.getInstance().getCurrentPlayer());
+        for(Friendship friendship : friendships) {
+            ArrayList<Talk> talks = friendship.getTalk();
+            for(Talk talk : talks) {
+                if(!talk.getHaveSeen() && !talk.getSender().equals(Game.getInstance().getCurrentPlayer())) {
+                    stringBuilder.append("Message from " + talk.getSender().getUser().getUsername() + ": " + talk.getMessage() + "\n");
+                    ok = true;
+                }
+            }
+        }
+        if(!ok)
+            return null;
+        return stringBuilder.toString();
+    }
+
     public String giftNotification() {
         StringBuilder stringBuilder = new StringBuilder();
         Boolean ok = false;
@@ -161,7 +178,8 @@ public class GameMenuController {
         String giftNotification = giftNotification();
         if(giftNotification != null)
             message += "\n" + giftNotification;
-
+        if(TalkNotification() != null)
+            message += "\n" + TalkNotification();
         if (Game.getInstance().getCurrentPlayer().isPlayerFeinted()) {
             message += "player " + Game.getInstance().getCurrentPlayer().getUser().getUsername() + "has feinted!\n";
             message += nextTurn();
@@ -211,9 +229,7 @@ public class GameMenuController {
                 animal.addFriendShip(-10);
             if(!animal.getIsInHome())
                 animal.addFriendShip(-20);
-            System.out.println("!! " + animal.getRemainingDayToProduce());
             animal.reduceRemainingDayToProduce();
-            System.out.println("!! " + animal.getRemainingDayToProduce());
             if(animal.getIsFeeded() && animal.getRemainingDayToProduce() == 0) {
                 AnimalProduct animalProduct = animal.produceProduct();
                 if(animalProduct != null) {
@@ -239,6 +255,7 @@ public class GameMenuController {
         doAnimalSystemTasks();
         doStoreTasks();
         doShippingBinTasks();
+        doFriendShipTask();
         Game.getInstance().getWeatherManager().setWeathersInMorning();
         App.getInstance().getGameService().generateForaging(1);
         App.getInstance().getGameService().doWeatherTasks();
@@ -1038,6 +1055,8 @@ public class GameMenuController {
             if(recipe1.getRecipeType().getName().equals(itemName))
                 recipe = recipe1;
         }
+//        if(!(Game.getInstance().getCurrentPlayer().getLocation().getGround() instanceof Cottage))
+//            return new Result<>(false, "You should be in Cottage for crafting..");
         if(recipe == null)
             return new Result<>(false, "You don't have it's recipe.");
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().canAdd())
@@ -1083,6 +1102,8 @@ public class GameMenuController {
         Item item = App.getInstance().getGameService().getItem(itemName);
         if(item == null)
             return new Result<>(false, "There is no item with this name.");
+        if(!Game.getInstance().getCurrentPlayer().getInventoryManager().canAdd())
+            return new Result<>(false, "Inventory is full.");
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, amount);
         return new Result<>(true, item.getName() + " with amount " + amount + " has been added to inventoryManger.");
     }
@@ -1146,10 +1167,12 @@ public class GameMenuController {
             pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new Fruit(1, 1, fruitType), amount));
         }
         CropsTypes cropsType = CropsTypes.getType(name);
-        if(fruitType != null) {
+        if(cropsType != null) {
             isFood = true;
             pickAmount = Refrigerator.getInstance().pickItem(new ItemStack(new Crop(1, 1, cropsType), amount));
         }
+        if(pickAmount == 0)
+            return new Result<>(false, "inventory is full");
         if(isFood)
             return new Result<>(true, pickAmount + " Items picked from refrigerator successfully.");
         else
@@ -1307,6 +1330,7 @@ public class GameMenuController {
         if(food == null)
             return new Result<>(false, "You don't have any Hay to feed " + animalName);
         animal.setFeeded(true);
+        animal.addFriendShip(20);
         return new Result<>(true, "Animal fed successfully.");
     }
     public Result<String> produces() {
@@ -1338,7 +1362,6 @@ public class GameMenuController {
             if(!(tool instanceof Shear))
                 return new Result<>(false, "You don't have Shear.");
         for(AnimalProduct animalProduct : animalProducts) {
-            // TODO set currect amount
             Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(animalProduct, 1);
         }
         animalProducts.clear();
@@ -1447,7 +1470,13 @@ public class GameMenuController {
         }
         return null; //TODO : proper error
     }
-    public Result<String> getArtisan(String artisanName) {
+    public Result<String> getArtisan(String artisanName, String machineName) {
+        if(CraftingTypes.getType(machineName) == null)
+            return new Result<>(false, "There is no machine with this name.");
+        if(!CraftedProducer.checkNear(machineName))
+            return new Result<>(false, "You are not near a " + machineName + " machine.");
+        if(Game.getInstance().getCurrentPlayer().getArtisanItems().isEmpty())
+            return new Result<>(false, "There is no item to collect.");
         ArrayList<Product> removeProducts = new ArrayList<>();
         for(Product product : Game.getInstance().getCurrentPlayer().getArtisanItems()) {
             if(product.getName().equals(artisanName) && product.getWaitingTime() == 0) {

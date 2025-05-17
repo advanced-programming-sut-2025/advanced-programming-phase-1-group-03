@@ -1,6 +1,7 @@
 package phi.ap.model;
 
 import phi.ap.model.enums.AbilityType;
+import phi.ap.model.enums.CraftingTypes;
 import phi.ap.model.enums.FarmTypes;
 import phi.ap.model.enums.FoodTypes;
 import phi.ap.model.enums.npcStuff.Quests;
@@ -153,6 +154,9 @@ public class Player {
         cookingRecipes.add(FoodTypes.FriedEgg.getRecipe());
         cookingRecipes.add(FoodTypes.Salad.getRecipe());
         cookingRecipes.add(FoodTypes.BakedFish.getRecipe());
+        craftingRecipes.add(CraftingTypes.Furnace.getRecipe());
+        craftingRecipes.add(CraftingTypes.Scarecrow.getRecipe());
+        craftingRecipes.add(CraftingTypes.MayonnaiseMachine.getRecipe());
     }
 
     public User getUser() {

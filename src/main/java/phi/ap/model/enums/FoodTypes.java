@@ -26,6 +26,7 @@ public enum FoodTypes {
     Oil("Oil", new ArrayList<ItemStack>(Arrays.asList(
             new ItemStack(new Crop(1, 1, CropsTypes.Corn), 1))),
             new Eatable(13), 100, 6),
+
     TruffleOil("TruffleOil", new ArrayList<ItemStack>(Arrays.asList(
             new ItemStack(new AnimalProduct(1, 1, AnimalProductTypes.Truffle), 1))),
             new Eatable(38), 1065, 6),
