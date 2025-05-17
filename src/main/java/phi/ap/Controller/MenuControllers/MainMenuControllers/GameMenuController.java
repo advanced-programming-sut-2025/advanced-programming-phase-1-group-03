@@ -1120,6 +1120,9 @@ public class GameMenuController {
             return new Result<>(false, "There is not item with the given name in inventory");
         if(!itemStack.getItem().isRemovableByPickaxe())
             return new Result<>(false, "You cannot put this item on the ground");
+        if (!(itemStack.getItem() instanceof Animal)) {
+            return new Result<>(false, "You cannot put animal item on the ground");
+        }
 
         Coordinate cord = Misc.getDiffFromDirection(direction);
         Item topItem = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(cord.getY(), cord.getX());
@@ -1130,7 +1133,7 @@ public class GameMenuController {
             item.setCoordinate(coordinateB);
                 Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
             Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
-            Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), 1);
+            if (!(item instanceof Machine)) Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), 1);
             StringBuilder resss = new StringBuilder();
             resss.append(itemStack.getItem().getName() + " placed successfully.");
             if (item instanceof Bomber bomber) {
