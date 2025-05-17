@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="show plant got better">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Bug in showing of plowed dit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/WeatherManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/WeatherManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Tree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/MainMenuController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Ability.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/MarnieRanchProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/MarnieRanchProducts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Tool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/phi/ap/Controller/MenuControllers/MainMenuControllers/MainMenuControllerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,12 +68,12 @@
     &quot;assignee&quot;: &quot;amirshs84&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03/",
-    "accountId": "5cf5475d-255d-4e13-a9f6-6a3ae5b39cf4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03&quot;,
+    &quot;accountId&quot;: &quot;6133d43e-cf49-4604-a08f-5a59247ce4ac&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -77,23 +82,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Debug",
+    "Gradle.StardewValley [run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="phi.ap.Main" />
@@ -137,14 +142,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="refrigerator completed">
@@ -177,7 +174,6 @@
       <workItem from="1747340475314" duration="57000" />
       <workItem from="1747387871752" duration="4782000" />
       <workItem from="1747397283498" duration="5804000" />
-      <workItem from="1747501557699" duration="2230000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -378,23 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1747488800105</updated>
     </task>
-    <task id="LOCAL-00029" summary="mixed seeds bug fixed">
+    <task id="LOCAL‎−۰۰۰۲۹" summary="Bug in showing of plowed dit">
       <option name="closed" value="true" />
-      <created>1747497154710</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1747497154710</updated>
+      <created>1747493684831</created>
+      <option name="number" value="LOCAL‎−۰۰۰۲۹" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۲۹" />
+      <updated>1747493684831</updated>
     </task>
-    <task id="LOCAL-00030" summary="show plant got better">
-      <option name="closed" value="true" />
-      <created>1747498268255</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1747498268255</updated>
-    </task>
-    <option name="localTasksCounter" value="31" />
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -422,6 +409,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Mineral enum fixed." />
+    <MESSAGE value="getType of enums added." />
     <MESSAGE value="cheat add item implemented." />
     <MESSAGE value="food enum bug fixed." />
     <MESSAGE value="bug fixed." />
@@ -444,10 +433,8 @@
     <MESSAGE value="thunder fixed" />
     <MESSAGE value="player transport at night added" />
     <MESSAGE value="bug fixed" />
-    <MESSAGE value="giant bug fixed" />
-    <MESSAGE value="mixed seeds bug fixed" />
-    <MESSAGE value="show plant got better" />
-    <option name="LAST_COMMIT_MESSAGE" value="show plant got better" />
+    <MESSAGE value="Bug in showing of plowed dit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug in showing of plowed dit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -478,6 +465,16 @@
           <option name="timeStamp" value="76" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
+          <line>199</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
+          <line>200</line>
+          <option name="timeStamp" value="81" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java</url>
           <line>45</line>
           <option name="timeStamp" value="82" />
@@ -486,6 +483,14 @@
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java</url>
           <line>46</line>
           <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/phi/ap/model/Buff.java</url>
+          <line>66</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />

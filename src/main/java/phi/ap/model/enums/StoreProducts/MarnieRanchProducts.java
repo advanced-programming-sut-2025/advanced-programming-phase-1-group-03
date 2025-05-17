@@ -126,6 +126,7 @@ public enum MarnieRanchProducts  implements StoreItemProducer{
 
     @Override
     public Item getItem() {
+        item.setSellPrice(getPrice());
         return item;
     }
 

@@ -34,6 +34,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 
+import static java.util.Collections.frequency;
 import static java.util.Collections.swap;
 
 public class GameMenuController {
@@ -178,6 +179,24 @@ public class GameMenuController {
             return null;
         return stringBuilder.toString();
     }
+
+    private String marriageNotification() {
+        if(Game.getInstance().getCurrentPlayer().getUser().getGender().equals(Gender.Male))
+            return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        Boolean ok = false;
+        stringBuilder.append("Marriage notofications: \n");
+        ArrayList<Friendship> friendships = Friendship.getFriends(Game.getInstance().getCurrentPlayer());
+        for(Friendship friendship : friendships) {
+            if(friendship.getMarriageRequest() != null) {
+                stringBuilder.append("You have a marriage request from " + friendship.getMarriageRequest().getApplicant());
+                ok = true;
+            }
+        }
+        if(!ok)
+            return null;
+        return stringBuilder.toString();
+    }
     //TODO : election
     public Result<String> nextTurn() {
 
@@ -197,6 +216,9 @@ public class GameMenuController {
         String TalkNotification = TalkNotification();
         if(TalkNotification != null)
             message += "\n" + TalkNotification;
+        String marriageNotification = marriageNotification();
+        if(marriageNotification != null)
+            message += "\n" + marriageNotification;
         if (Game.getInstance().getCurrentPlayer().isPlayerFeinted()) {
             message += "\nplayer " + Game.getInstance().getCurrentPlayer().getUser().getUsername() + " has feinted!\n";
             message += "\n" + nextTurn();
@@ -207,7 +229,6 @@ public class GameMenuController {
     private void doArtisanTask() {
         for(Product product : Game.getInstance().getCurrentPlayer().getArtisanItems()) {
             product.reduceWaitingTime(-1);
-            System.out.println(product.getWaitingTime());
         }
     }
 
@@ -1255,15 +1276,38 @@ public class GameMenuController {
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-3 * EnergyManager.unit);
         return new Result<>(true, recipe.getResult().getItem().getName() + " created and added to Inventory.");
     }
+    public Result<String> addFoodEnergy(Item item) {
+        if(item.getEatable() == null)
+            return new Result<>(false, "this item is not eatable.");
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(item, 1);
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(item.getEatable().getEnergy() * EnergyManager.unit);
+        return new Result<>(true, item.getName() + " eated. " + "You earned " + item.getEatable().getEnergy() + " amount of energy.");
+    }
     public Result<String> eatFood(String foodName) {
-        Food food = Game.getInstance().getCurrentPlayer().getInventoryManager().getFood(FoodTypes.valueOf(foodName));
-        if(food == null)
-            return new Result<>(false, "There is not any food with this name.");
-        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(food, 1);
-        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getEatable().getEnergy() * EnergyManager.unit);
-        Game.getInstance().getCurrentPlayer().setFoodBuff(food.getFoodType().getFoddBuff());
-        Game.getInstance().getCurrentPlayer().getLastFoodBuff().activate();
-        return new Result<>(true, food.getName() + " eated. " + "You earned " + food.getFoodType().getEatable().getEnergy() + " amount of energy.");
+        if(FoodTypes.getType(foodName) != null) {
+            FoodTypes foodType = null;
+            foodType = FoodTypes.getType(foodName);
+            Food food = Game.getInstance().getCurrentPlayer().getInventoryManager().getFood(foodType);
+            Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(food, 1);
+            Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getEatable().getEnergy() * EnergyManager.unit);
+            Game.getInstance().getCurrentPlayer().setFoodBuff(food.getFoodType().getFoddBuff());
+            Game.getInstance().getCurrentPlayer().getLastFoodBuff().activate();
+            return new Result<>(true, food.getName() + " eated. " + "You earned " + food.getFoodType().getEatable().getEnergy() + " amount of energy.");
+        } else if(CropsTypes.getType(foodName) != null) {
+            CropsTypes cropsType = CropsTypes.getType(foodName);
+            return addFoodEnergy(new Crop(1, 1, cropsType));
+        } else if(FishTypes.getType(foodName) != null) {
+            FishTypes fishTypes = FishTypes.getType(foodName);
+            return addFoodEnergy(new Fish(1, 1, fishTypes));
+        } else if(FruitTypes.getType(foodName) != null) {
+            FruitTypes fruitTypes = FruitTypes.getType(foodName);
+            return addFoodEnergy(new Fruit(1, 1, fruitTypes));
+        } else if(AnimalProductTypes.getType(foodName) != null) {
+            AnimalProductTypes animalProductTypes = AnimalProductTypes.getType(foodName);
+            return addFoodEnergy(new AnimalProduct(1, 1, animalProductTypes));
+        }
+        else
+            return new Result<>(false, "foodName is not valid.");
     }
     public Result<String> buildBuilding(String buildingName, String sx, String sy) {
         int x = Integer.parseInt(sx);
@@ -1633,6 +1677,8 @@ public class GameMenuController {
             Pair<StoreItemProducer> product = (Pair<StoreItemProducer>) p;
             if(product.getKey().getItem() == null)
                 continue;
+            if(product.getValue() == 0)
+                continue;
             String amount = String.valueOf(product.getValue());
             if(product.getValue() == Integer.MAX_VALUE) amount = " unlimited";
             response.append(product.getKey().getNameInStore()).append(" ").append(product.getKey().getItem().getSellPrice()).append(" coin")
@@ -1841,6 +1887,9 @@ public class GameMenuController {
         friendship.GiftPlayer(Game.getInstance().getCurrentPlayer(), Game.getInstance().getPlayerByUserName(username), new ItemStack(item, amount));
         if(friendship.getMarried())
             friendship.friendShipAddXp(50);
+        if(itemName.equals("Bouquet")) {
+
+        }
         return new Result<>(true, "Your Gift have been sent.");
     }
     public Result<String> showListOfGifts() {
@@ -2095,4 +2144,17 @@ public class GameMenuController {
         return new Result<>(true, "NPC friendship xp has been added.");
     }
 
+    public Result<String> showAbility(String name) {
+        Ability ability = Game.getInstance().getCurrentPlayer().getAbility(AbilityType.valueOf(name));
+        StringBuilder builder = new StringBuilder();
+        builder.append(ability.getAbilityType().toString() + " level " + ability.getLevel() + "\n");
+        builder.append(ability.getXp() + "\n");
+
+        return new Result<>(true, builder.toString());
+    }
+
+    public Result<String> cheatAbility(String name){
+        Game.getInstance().getCurrentPlayer().getAbility(AbilityType.valueOf(name)).advanceLevel();
+        return showAbility(name);
+    }
 }

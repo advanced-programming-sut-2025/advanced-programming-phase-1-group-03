@@ -79,4 +79,12 @@ public abstract class Tool extends Item {
     public void setUpgradeDay(int upgradeDay) {
         this.upgradeDay = upgradeDay;
     }
+
+    @Override
+    public boolean canStackWith(Item item){
+        if(!(item instanceof Tool tool))
+            return false;
+        return item.getName().equals(this.getName())
+                && tool.getLevelProcess().getCurrentLevel() == levelProcess.getCurrentLevel();
+    }
 }
