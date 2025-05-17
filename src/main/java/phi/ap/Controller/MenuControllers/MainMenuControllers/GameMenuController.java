@@ -34,6 +34,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 
+import static java.util.Collections.frequency;
 import static java.util.Collections.swap;
 
 public class GameMenuController {
@@ -178,6 +179,24 @@ public class GameMenuController {
             return null;
         return stringBuilder.toString();
     }
+
+    private String marriageNotification() {
+        if(Game.getInstance().getCurrentPlayer().getUser().getGender().equals(Gender.Male))
+            return null;
+        StringBuilder stringBuilder = new StringBuilder();
+        Boolean ok = false;
+        stringBuilder.append("Marriage notofications: \n");
+        ArrayList<Friendship> friendships = Friendship.getFriends(Game.getInstance().getCurrentPlayer());
+        for(Friendship friendship : friendships) {
+            if(friendship.getMarriageRequest() != null) {
+                stringBuilder.append("You have a marriage request from " + friendship.getMarriageRequest().getApplicant());
+                ok = true;
+            }
+        }
+        if(!ok)
+            return null;
+        return stringBuilder.toString();
+    }
     //TODO : election
     public Result<String> nextTurn() {
 
@@ -197,6 +216,9 @@ public class GameMenuController {
         String TalkNotification = TalkNotification();
         if(TalkNotification != null)
             message += "\n" + TalkNotification;
+        String marriageNotification = marriageNotification();
+        if(marriageNotification != null)
+            message += "\n" + marriageNotification;
         if (Game.getInstance().getCurrentPlayer().isPlayerFeinted()) {
             message += "\nplayer " + Game.getInstance().getCurrentPlayer().getUser().getUsername() + " has feinted!\n";
             message += "\n" + nextTurn();
@@ -207,7 +229,6 @@ public class GameMenuController {
     private void doArtisanTask() {
         for(Product product : Game.getInstance().getCurrentPlayer().getArtisanItems()) {
             product.reduceWaitingTime(-1);
-            System.out.println(product.getWaitingTime());
         }
     }
 
@@ -1837,6 +1858,9 @@ public class GameMenuController {
         friendship.GiftPlayer(Game.getInstance().getCurrentPlayer(), Game.getInstance().getPlayerByUserName(username), new ItemStack(item, amount));
         if(friendship.getMarried())
             friendship.friendShipAddXp(50);
+        if(itemName.equals("Bouquet")) {
+
+        }
         return new Result<>(true, "Your Gift have been sent.");
     }
     public Result<String> showListOfGifts() {

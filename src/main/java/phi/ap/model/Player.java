@@ -134,10 +134,7 @@ public class Player {
 
     public void setGold(int gold) {
         this.gold = gold;
-        if(this.gold < 0) {
-            partner.setSelfGold(partner.getSelfGold() + this.gold);
-            this.gold = 0;
-        }
+        partner.setSelfGold(0);
     }
     public Location getLocation() {
         return location;

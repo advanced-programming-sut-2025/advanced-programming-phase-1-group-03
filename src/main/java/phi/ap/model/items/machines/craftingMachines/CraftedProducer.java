@@ -298,7 +298,7 @@ public class CraftedProducer extends Machine {
         if(!checkNear(CraftingTypes.FishSmoker.getName()))
             return new Result<>(false, "You must be near a " + CraftingTypes.FishSmoker.getName() + " machine.");
         Food food = null;
-        if(foodName.equals("Jelly")) {
+        if(foodName.equals("SmokedFish")) {
             FishTypes fishType;
             try {
                 fishType = FishTypes.valueOf(ingredientName);

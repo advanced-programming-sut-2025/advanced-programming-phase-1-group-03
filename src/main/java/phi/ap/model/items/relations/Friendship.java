@@ -136,7 +136,6 @@ public class Friendship {
             player1Gift.add(gift);
         if(friendship.getPlayer2().equals(getterPlayer))
             player2Gift.add(gift);
-        //System.out.println("!!!");
         Gift.getGifts().add(gift);
         getterPlayer.getInventoryManager().addItem(itemStack);
         senderPlayer.getInventoryManager().removeItem(itemStack.getItem(), itemStack.getAmount());
@@ -168,12 +167,16 @@ public class Friendship {
 
     private void checkLevel() {
         if(level == 3) {
-            if(xp >= (level + 1) * 100 && married)
+            if(xp >= (level + 1) * 100 && married) {
+                xp -= (level + 1) * 100;
                 level++;
+            }
         }
         else if(level == 2) {
-            if(xp >= (level + 1) * 100 && flower)
+            if(xp >= (level + 1) * 100 && flower) {
+                xp -= (level + 1) * 100;
                 level++;
+            }
         }
         else if(xp >= (level + 1) * 100) {
             xp -= (level + 1) * 100;
