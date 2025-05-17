@@ -15,6 +15,9 @@ public class Ability {
     private int level = 0;
     private int xp = 0;
 
+    public int getXp(){
+        return xp;
+    }
     public Ability(AbilityType abilityType) {
         this.abilityType = abilityType;
     }

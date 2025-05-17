@@ -1631,6 +1631,8 @@ public class GameMenuController {
             Pair<StoreItemProducer> product = (Pair<StoreItemProducer>) p;
             if(product.getKey().getItem() == null)
                 continue;
+            if(product.getValue() == 0)
+                continue;
             String amount = String.valueOf(product.getValue());
             if(product.getValue() == Integer.MAX_VALUE) amount = " unlimited";
             response.append(product.getKey().getNameInStore()).append(" ").append(product.getKey().getItem().getSellPrice()).append(" coin")
@@ -2093,4 +2095,17 @@ public class GameMenuController {
         return new Result<>(true, "NPC friendship xp has been added.");
     }
 
+    public Result<String> showAbility(String name) {
+        Ability ability = Game.getInstance().getCurrentPlayer().getAbility(AbilityType.valueOf(name));
+        StringBuilder builder = new StringBuilder();
+        builder.append(ability.getAbilityType().toString() + " level " + ability.getLevel() + "\n");
+        builder.append(ability.getXp() + "\n");
+
+        return new Result<>(true, builder.toString());
+    }
+
+    public Result<String> cheatAbility(String name){
+        Game.getInstance().getCurrentPlayer().getAbility(AbilityType.valueOf(name)).advanceLevel();
+        return showAbility(name);
+    }
 }
