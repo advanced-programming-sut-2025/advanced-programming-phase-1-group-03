@@ -10,11 +10,11 @@ public class AppView {
     public static void runProgram() {
         while(App.getInstance().getMenu() != Menu.ExitMenu) {
             String input = scanner.nextLine();
-//            try {
+            try {
                 App.getInstance().getMenu().checkCommand(input);
-//            }catch (Exception e) {
-//                System.out.println("Error:\n"+e.getMessage());
-//            }
+            }catch (Exception e) {
+                System.out.println("Error:\n"+e.getMessage());
+            }
         }
     }
 }

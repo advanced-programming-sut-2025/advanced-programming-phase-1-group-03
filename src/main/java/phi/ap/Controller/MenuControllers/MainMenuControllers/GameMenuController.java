@@ -1120,7 +1120,7 @@ public class GameMenuController {
             return new Result<>(false, "There is not item with the given name in inventory");
         if(!itemStack.getItem().isRemovableByPickaxe())
             return new Result<>(false, "You cannot put this item on the ground");
-        if (!(itemStack.getItem() instanceof Animal)) {
+        if (itemStack.getItem() instanceof Animal) {
             return new Result<>(false, "You cannot put animal item on the ground");
         }
 
