@@ -223,7 +223,6 @@ public class Player {
 
     public void feint() {
         feintBuff.activate();
-        //TODO
     }
 
     public FarmTypes getFarmType() {

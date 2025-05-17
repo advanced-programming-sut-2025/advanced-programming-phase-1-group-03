@@ -195,6 +195,8 @@ public class GameMenu extends AppMenu {
         }else if((matcher = GameMenuCommands.PlaceItem.getMatcher(input)) != null) {
             System.out.println(controller.placeItem(
                     matcher.group("itemName").trim(), matcher.group("direction")));
+        } else if((matcher = GameMenuCommands.CheatSetAnimalFriendShip.getMatcher(input)) != null) {
+            System.out.println(controller.cheatSetFriendshipAnimal(matcher.group("name"), matcher.group("amount")));
         }
         else {
             super.check(input);

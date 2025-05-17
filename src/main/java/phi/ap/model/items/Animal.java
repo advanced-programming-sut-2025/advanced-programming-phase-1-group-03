@@ -9,10 +9,9 @@ import java.util.ArrayList;
 
 public class Animal extends Item {
     private AnimalTypes type;
+
+
     private int friendShipAmount = 0;
-
-
-
     private int remainingDayToProduce;
     private boolean beenPet = false;
     private boolean inHome = true;
@@ -64,6 +63,10 @@ public class Animal extends Item {
 
     public boolean getIsBeenPet() {
         return beenPet;
+    }
+
+    public void setFriendShipAmount(int friendShipAmount) {
+        this.friendShipAmount = friendShipAmount;
     }
 
     public void setFeeded(boolean feeded) {

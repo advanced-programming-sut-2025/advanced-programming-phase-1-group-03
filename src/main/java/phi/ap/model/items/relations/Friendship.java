@@ -1,6 +1,7 @@
 package phi.ap.model.items.relations;
 
 import phi.ap.model.*;
+import phi.ap.model.enums.Gender;
 import phi.ap.model.enums.ProductNames;
 import phi.ap.model.items.products.Product;
 
@@ -58,7 +59,10 @@ public class Friendship {
         else {
             setLevel(0);
             setXp(0);
-            // TODO energy pesar baraye 7 rooz nesf she.
+            if(applicant.getUser().getGender().equals(Gender.Male))
+                applicant.getMarrageBuff().activate();
+            if(respondent.getUser().getGender().equals(Gender.Male))
+                respondent.getMarrageBuff().activate();
         }
         marriageRequest = null;
     }
