@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Profile Menu Completed">
-      <change afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Buff.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Buff added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Eatable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Eatable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/EnergyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/EnergyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/service/GameService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Hoe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Hoe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,7 +313,15 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۲۱" />
       <updated>1747402610418</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Buff added">
+      <option name="closed" value="true" />
+      <created>1747461323433</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747461323433</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,7 +361,8 @@
     <MESSAGE value="Fix scythe bug in tools" />
     <MESSAGE value="place and pick items up" />
     <MESSAGE value="Profile Menu Completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Profile Menu Completed" />
+    <MESSAGE value="Buff added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buff added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -398,22 +402,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>786</line>
+          <line>787</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>744</line>
+          <line>745</line>
           <option name="timeStamp" value="60" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>760</line>
+          <line>761</line>
           <option name="timeStamp" value="67" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java</url>
-          <line>759</line>
+          <line>760</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">

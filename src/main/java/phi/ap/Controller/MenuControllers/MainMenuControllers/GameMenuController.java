@@ -431,7 +431,7 @@ public class GameMenuController {
 
 
         if (player.getEnergy().getAmount() == 0) {
-            res.append("Zzzz...");
+            res.append("Zzzz..., you just feinted!");
         }
         return new Result<>(true, res.toString());
 
@@ -531,19 +531,20 @@ public class GameMenuController {
     }
 
     public Result<String> showEnergy() {
-        return new Result<>(true, "Energy: " + Game.getInstance().getCurrentPlayer().getEnergy().getAmount());
+        return new Result<>(true, "Energy: " + Game.getInstance().getCurrentPlayer().getEnergy().getAmountBaseUnit());
     }
 
     public Result<String> cheatSetEnergy(String energyString) {
         int energy = Integer.parseInt(energyString);
+        energy *= EnergyManager.unit;
         int dif = energy - Game.getInstance().getCurrentPlayer().getEnergy().getAmount();
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(dif);
-        return new Result<>(true, "energ has been set to " + energy);
+        return new Result<>(true, "energy has been set to " + energy);
     }
     public Result<String> cheatSetEnergy(int energy) {
         int dif = energy - Game.getInstance().getCurrentPlayer().getEnergy().getAmount();
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(dif);
-        return new Result<>(true, "energ has been set to " + energy);
+        return new Result<>(true, "energy has been set to " + energy);
     }
 
     public Result<String> cheatSetEnergyUnlimited() {
@@ -997,7 +998,7 @@ public class GameMenuController {
             return new Result<>(false, "You don't have enough energy");
 
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(recipe.getResult().getItem(), 1);
-        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-2);
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-2 * EnergyManager.unit);
         return new Result<>(true, "item crafted successfully.");
     }
     public Result<String> placeItem(String itemName, String directionString) {
@@ -1120,7 +1121,7 @@ public class GameMenuController {
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().CheckCanBuild(recipe))
                 return new Result<>(false, "You don't have enough ingredients in your inventory. you can add it from refrigerator");
         Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(recipe.getResult().getItem(), recipe.getResult().getAmount());
-        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-3);
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-3 * EnergyManager.unit);
         return new Result<>(true, recipe.getResult().getItem().getName() + " created and added to Inventory.");
     }
     public Result<String> eatFood(String foodName) {
@@ -1128,7 +1129,7 @@ public class GameMenuController {
         if(food == null)
             return new Result<>(false, "There is not any food with this name.");
         Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(food, 1);
-        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getEatable().getEnergy());
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getEatable().getEnergy() * EnergyManager.unit);
         return new Result<>(true, food.getName() + " eated. " + "You earned " + food.getFoodType().getEatable().getEnergy() + " amount of energy.");
     }
     public Result<String> buildBuilding(String buildingName, String sx, String sy) {
