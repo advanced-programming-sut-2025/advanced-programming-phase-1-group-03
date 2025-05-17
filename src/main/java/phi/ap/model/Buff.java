@@ -66,12 +66,15 @@ public class Buff {
     public boolean isActive() {
         if (startTime == null) return false;
         if (dailyEnergyEffect != null) {
-            return (Game.getInstance().getDate().getRawDay() - startTime.getRawDay() <= day) && (Game.getInstance().getDate().getRawDay() - startTime.getRawDay() > 0);
+            return (Game.getInstance().getDate().getRawDay() - startTime.getRawDay() <= day);
         }
         return Game.getInstance().getDate().getHour() - startTime.getHour() < hour;
     }
 
     public void activate() {
         startTime = new Date(Game.getInstance().getDate());
+        if (maxEnergyEffect != null) {
+            Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseUnit(maxEnergyEffect);
+        }
     }
 }
