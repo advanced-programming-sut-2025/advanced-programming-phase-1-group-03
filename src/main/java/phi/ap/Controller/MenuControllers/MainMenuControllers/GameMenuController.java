@@ -1276,18 +1276,38 @@ public class GameMenuController {
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(-3 * EnergyManager.unit);
         return new Result<>(true, recipe.getResult().getItem().getName() + " created and added to Inventory.");
     }
+    public Result<String> addFoodEnergy(Item item) {
+        if(item.getEatable() == null)
+            return new Result<>(false, "this item is not eatable.");
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(item, 1);
+        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(item.getEatable().getEnergy() * EnergyManager.unit);
+        return new Result<>(true, item.getName() + " eated. " + "You earned " + item.getEatable().getEnergy() + " amount of energy.");
+    }
     public Result<String> eatFood(String foodName) {
-        FoodTypes foodType = null;
-        if(FoodTypes.getType(foodName) != null)
+        if(FoodTypes.getType(foodName) != null) {
+            FoodTypes foodType = null;
             foodType = FoodTypes.getType(foodName);
-        Food food = Game.getInstance().getCurrentPlayer().getInventoryManager().getFood(foodType);
-        if(food == null)
-            return new Result<>(false, "There is not any food with this name.");
-        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(food, 1);
-        Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getEatable().getEnergy() * EnergyManager.unit);
-        Game.getInstance().getCurrentPlayer().setFoodBuff(food.getFoodType().getFoddBuff());
-        Game.getInstance().getCurrentPlayer().getLastFoodBuff().activate();
-        return new Result<>(true, food.getName() + " eated. " + "You earned " + food.getFoodType().getEatable().getEnergy() + " amount of energy.");
+            Food food = Game.getInstance().getCurrentPlayer().getInventoryManager().getFood(foodType);
+            Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(food, 1);
+            Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseInt(food.getEatable().getEnergy() * EnergyManager.unit);
+            Game.getInstance().getCurrentPlayer().setFoodBuff(food.getFoodType().getFoddBuff());
+            Game.getInstance().getCurrentPlayer().getLastFoodBuff().activate();
+            return new Result<>(true, food.getName() + " eated. " + "You earned " + food.getFoodType().getEatable().getEnergy() + " amount of energy.");
+        } else if(CropsTypes.getType(foodName) != null) {
+            CropsTypes cropsType = CropsTypes.getType(foodName);
+            return addFoodEnergy(new Crop(1, 1, cropsType));
+        } else if(FishTypes.getType(foodName) != null) {
+            FishTypes fishTypes = FishTypes.getType(foodName);
+            return addFoodEnergy(new Fish(1, 1, fishTypes));
+        } else if(FruitTypes.getType(foodName) != null) {
+            FruitTypes fruitTypes = FruitTypes.getType(foodName);
+            return addFoodEnergy(new Fruit(1, 1, fruitTypes));
+        } else if(AnimalProductTypes.getType(foodName) != null) {
+            AnimalProductTypes animalProductTypes = AnimalProductTypes.getType(foodName);
+            return addFoodEnergy(new AnimalProduct(1, 1, animalProductTypes));
+        }
+        else
+            return new Result<>(false, "foodName is not valid.");
     }
     public Result<String> buildBuilding(String buildingName, String sx, String sy) {
         int x = Integer.parseInt(sx);
