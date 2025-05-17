@@ -729,6 +729,8 @@ public class GameMenuController {
         if(!(ground instanceof Store store)){
             return new Result<>(false, "You are not in a store!!");
         }
+        if(!((Store)ground).getStoreTypes().equals(StoreTypes.Blacksmith))
+            return new Result<>(false, "You are not in BlackSmith Shop");
         int currentHour = Game.getInstance().getDate().getCurrentHour();
         if (currentHour < store.getStoreTypes().getOpeningTime() || currentHour > store.getStoreTypes().getClosingTime())
             return new Result<>(false, "Store is closed in this time!!");
@@ -1009,7 +1011,9 @@ public class GameMenuController {
             return new Result<>(false, "there is no plant there");
         }
         Plant plant = (Plant) item;
-        return new Result<>(true, plant.showPlant());
+        if (plant instanceof Crop crop) return new Result<>(true, plant.showPlant() + crop.showCrop());
+        else if (plant instanceof Tree tree) return new Result<>(true, plant.showPlant() + tree.showTree());
+        else return new Result<>(true, plant.showPlant());
     }
 
     public Result<String> showPlantDiff(String ySt, String xSt) {
@@ -1141,7 +1145,7 @@ public class GameMenuController {
             return new Result<>(false, "There is not item with the given name in inventory");
         if(!itemStack.getItem().isRemovableByPickaxe())
             return new Result<>(false, "You cannot put this item on the ground");
-        if (!(itemStack.getItem() instanceof Animal)) {
+        if (itemStack.getItem() instanceof Animal) {
             return new Result<>(false, "You cannot put animal item on the ground");
         }
 

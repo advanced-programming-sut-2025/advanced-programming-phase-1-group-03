@@ -36,6 +36,7 @@ public class ShippingBin extends Building {
                 totalMoney += item.getSellPrice() * itemSt.getAmount();
             }
         }
+        itemStacks.clear();
         return totalMoney;
     }
 }

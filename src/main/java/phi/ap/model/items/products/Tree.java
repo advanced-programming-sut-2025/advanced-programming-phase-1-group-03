@@ -45,6 +45,14 @@ public class Tree extends Plant {
         setShapeForCurrentStage();
     }
 
+    public String showTree() {
+        String res = "";
+        res += "Remaining harvest cycles: " + remainingHarvestCycles + "\n";
+        res += "Harvest regrowth time: " + HarvestRegrowthTime + "\n";
+        if (lastHarvestDate != null) res += (Game.getInstance().getDate().getRawDay() - lastHarvestDate.getRawDay()) + "\n";
+        else res += "none\n";
+        return res;
+    }
 
     public TreeTypes getType() {
         return type;
@@ -196,5 +204,9 @@ public class Tree extends Plant {
 
     public String showPlant() {
     return super.showPlant() + "Is thundered: " + isThundered + "\n" + "Fruit name: " + fruit + "\n";
+    }
+
+    public void setLastHarvestDate(Date lastHarvestDate) {
+        this.lastHarvestDate = new Date(lastHarvestDate);
     }
 }

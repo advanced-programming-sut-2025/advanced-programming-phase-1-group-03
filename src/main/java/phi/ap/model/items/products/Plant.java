@@ -238,6 +238,7 @@ public abstract class Plant extends Product {
         }
         if (fertList.isEmpty()) res.append("none\n");
         else res.append(fertList + "\n");
+        res.append("Giant: " + (giant != null) + "\n");
         return res.toString();
     }
 
@@ -245,7 +246,7 @@ public abstract class Plant extends Product {
         if (giant == null) getFather().removeItem(this);
         else {
             for (Plant member : giant.getMembers()) {
-                member.getFather().removeItem(this);
+                member.getFather().removeItem(member);
             }
         }
     }

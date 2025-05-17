@@ -234,8 +234,9 @@ public class GameService {
                 if (plant.isInGreenHouse()) return;
                 switch (plant) {
                     case Crop crop :
-                        crop.setLastWateredDate(Game.getInstance().getDate());
-                        if (crop.isOneTime()) {
+//                        if (crop.getGiant() != null) break;
+                        crop.setLastHarvestDate(Game.getInstance().getDate());
+                        if (crop.isOneTime() && crop.getGiant() == null) {
                             crop.delete();
                         }
                         break;
