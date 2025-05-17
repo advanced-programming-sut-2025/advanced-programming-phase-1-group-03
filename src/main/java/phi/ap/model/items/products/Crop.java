@@ -55,6 +55,7 @@ public class Crop extends Plant {
         res += "Last harvest date: ";
         if (lastHarvestDate != null) res += (Game.getInstance().getDate().getRawDay() - lastHarvestDate.getRawDay()) + " day ago\n";
         else res += "none\n";
+        res += "OneTime: " + oneTime + "\n";
         return res;
     }
 
