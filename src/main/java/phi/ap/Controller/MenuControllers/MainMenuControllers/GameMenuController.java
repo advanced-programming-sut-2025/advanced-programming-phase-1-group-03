@@ -12,6 +12,7 @@ import phi.ap.model.items.buildings.*;
 import phi.ap.model.items.buildings.stores.Store;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
+import phi.ap.model.items.machines.craftingMachines.Bomber;
 import phi.ap.model.items.machines.craftingMachines.CraftedProducer;
 import phi.ap.model.items.products.*;
 import phi.ap.model.items.relations.Gift;
@@ -1097,7 +1098,13 @@ public class GameMenuController {
                 Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
             Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
             Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), 1);
-            return new Result<>(true, itemStack.getItem().getName() + " placed successfully.");
+            StringBuilder resss = new StringBuilder();
+            resss.append(itemStack.getItem().getName() + " placed successfully.");
+            if (item instanceof Bomber bomber) {
+                resss.append("\n...Booooom!");
+                bomber.active();
+            }
+            return new Result<>(true, resss.toString());
 
         }else
             return new Result<>(false, "You can't place item in this place");
