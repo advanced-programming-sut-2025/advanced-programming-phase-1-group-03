@@ -140,7 +140,7 @@ public class GameMenuController {
     }
     //TODO : election
     public Result<String> nextTurn() {
-        Game.getInstance().goNextPlayer();
+
 
         String message = "Ok now is the "+Game.getInstance().getCurrentPlayer()+"'s turn";
 
@@ -149,10 +149,16 @@ public class GameMenuController {
         {
             advanceHour();
             message = "one hour passed...";
+
         }
         String giftNotification = giftNotification();
         if(giftNotification != null)
             message += "\n" + giftNotification;
+
+        if (Game.getInstance().getCurrentPlayer().isPlayerFeinted()) {
+            message += "player " + Game.getInstance().getCurrentPlayer().getUser().getUsername() + "has feinted!\n";
+            message += nextTurn();
+        }
         return new Result<>(true, message);
     }
 
@@ -527,7 +533,7 @@ public class GameMenuController {
         return printMap(String.valueOf(y), String.valueOf(x), String.valueOf(len));
     }
     public Result<String> helpReadingMap() {
-        return null; //TODO
+        return null;
     }
 
     public Result<String> showEnergy() {

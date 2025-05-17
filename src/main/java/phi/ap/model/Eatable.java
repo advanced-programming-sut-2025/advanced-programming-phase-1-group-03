@@ -9,13 +9,14 @@ public class Eatable {
     }
 
     public Eatable(Buff buff, int energy) {
-        this.buff = new Buff(buff);
+        if (buff != null) this.buff = new Buff(buff);
         this.energy = energy;
     }
 
     public Eatable(Eatable eatable) {
         this.energy = eatable.getEnergy();
-        this.buff = new Buff(eatable.buff);
+        if (eatable.buff != null)this.buff = new Buff(eatable.buff);
+        else buff = null;
     }
 
     public int getEnergy() {

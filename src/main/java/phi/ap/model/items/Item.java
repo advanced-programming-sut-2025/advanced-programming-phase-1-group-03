@@ -63,6 +63,10 @@ public abstract class Item extends Ground {
         isRemovableByPickaxe = true;
     }
 
+    public void setRemovableByPickaxe(boolean removableByPickaxe) {
+        isRemovableByPickaxe = removableByPickaxe;
+    }
+
     public void setSellPrice(int sellPrice) {
         this.sellPrice = sellPrice;
     }

@@ -41,6 +41,12 @@ public class Player {
     private final Buff feintBuff = new Buff(1, 0.75);
     private final Buff marrageBuff = new Buff(7, 0.5);
 
+    public boolean isPlayerFeinted() {
+        return Game.getInstance().getCurrentPlayer().getFeintBuff().isActive() &&
+                Game.getInstance().getCurrentPlayer().getFeintBuff().getStartTime().getRawDay() ==
+                        Game.getInstance().getDate().getRawDay();
+    }
+
     public void setFoodBuff(Buff buff) {
         lastFoodBuff.copy(buff);
     }
