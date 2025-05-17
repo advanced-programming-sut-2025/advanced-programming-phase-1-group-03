@@ -15,6 +15,7 @@ public enum FishShopProducts implements StoreItemProducer {
         @Override
         public Item getItem() {
             Item p = CraftingTypes.FishSmoker.getRecipe();
+            p.setSellable(true);
             p.setSellPrice(getPrice());
             return p;
         }
@@ -28,6 +29,7 @@ public enum FishShopProducts implements StoreItemProducer {
         @Override
         public Item getItem() {
             Item p =  new Product(ProductNames.TroutSoup);
+            p.setSellable(true);
             p.setSellPrice(getPrice());
             return p;
         }
@@ -40,6 +42,7 @@ public enum FishShopProducts implements StoreItemProducer {
         @Override
         public Item getItem() {
             Item p = getFishingPole();
+            p.setSellable(true);
             p.setSellPrice(getPrice());
             return p;
         }
@@ -52,6 +55,7 @@ public enum FishShopProducts implements StoreItemProducer {
         @Override
         public Item getItem() {
             Item p = getFishingPole();
+            p.setSellable(true);
             p.setSellPrice(getPrice());
             return p;
         }
@@ -64,6 +68,7 @@ public enum FishShopProducts implements StoreItemProducer {
         @Override
         public Item getItem() {
             Item p = getFishingPole();
+            p.setSellable(true);
             p.setSellPrice(getPrice());
             return p;
         }

@@ -33,7 +33,6 @@ public class GameService {
             if (!(topItem instanceof Dirt dirt)) return;
             if (dirt.isPlowed()) {
                 return;
-                //TODO : add foraging seed random after planting system completed;
             }
 
             int rand = App.getInstance().getRandomNumber(1, 100);
@@ -166,6 +165,9 @@ public class GameService {
             case null :
                 game.getMap().getThunderedTiles().add(new Coordinate(y, x));
                 break;
+//            case Dirt dirt :
+//                game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+//                break;
             case Tree tree :
                 tree.setThundered(true);
                 game.getMap().getThunderedTiles().add(new Coordinate(y, x));
@@ -192,6 +194,12 @@ public class GameService {
                     game.getMap().getThunderedTiles().add(new Coordinate(y, x));
                 } else {
                     stone.getFather().removeItem(stone);
+                    game.getMap().getThunderedTiles().add(new Coordinate(y, x));
+                }
+                break;
+            case Product product :
+                if (product.getName().equals("Grass")) {
+                    product.getFather().removeItem(product);
                     game.getMap().getThunderedTiles().add(new Coordinate(y, x));
                 }
                 break;
@@ -425,6 +433,7 @@ public class GameService {
             }
         }
         */
+
         generateForaging(20);
         Game.getInstance().whenMapLoaded();
         for (Player player : game.getPlayers()) {

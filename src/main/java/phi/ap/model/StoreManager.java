@@ -114,64 +114,64 @@ public class StoreManager {
 
     private void refreshFishShop(){
         fish.clearProducts();
-        ArrayList<AbstractMap.SimpleEntry<FishShopProducts, Integer>> allProducts = new ArrayList<>();
+        ArrayList<Pair<FishShopProducts>> allProducts = new ArrayList<>();
         for(FishShopProducts product : FishShopProducts.values()){
-            allProducts.add(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
-            fish.addProduct(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+            allProducts.add(new Pair<FishShopProducts>(product, product.getDailyLimit()));
+            fish.addProduct(new Pair<FishShopProducts>(product, product.getDailyLimit()));
         }
         fish.setAllProducts(allProducts);
     }
     private void refreshJojaMart(){
         jojaMart.clearProducts();
-        ArrayList<AbstractMap.SimpleEntry<JojaMarketProducts, Integer>> allProducts = new ArrayList<>();
+        ArrayList<Pair<JojaMarketProducts>> allProducts = new ArrayList<>();
         for(JojaMarketProducts product : JojaMarketProducts.values()){
-            allProducts.add(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
-            jojaMart.addProduct(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+            allProducts.add(new Pair<JojaMarketProducts>(product, product.getDailyLimit()));
+            jojaMart.addProduct(new Pair<JojaMarketProducts>(product, product.getDailyLimit()));
         }
         jojaMart.setAllProducts(allProducts);
     }
     private void refreshBlackSmith(){
         blacksmith.clearProducts();
-        ArrayList<AbstractMap.SimpleEntry<BlackSmithsProducts, Integer>> allProducts = new ArrayList<>();
+        ArrayList<Pair<BlackSmithsProducts>> allProducts = new ArrayList<>();
         for(BlackSmithsProducts product : BlackSmithsProducts.values()){
-            allProducts.add(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
-            blacksmith.addProduct(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+            allProducts.add(new Pair<BlackSmithsProducts>(product, product.getDailyLimit()));
+            blacksmith.addProduct(new Pair<BlackSmithsProducts>(product, product.getDailyLimit()));
         }
         blacksmith.setAllProducts(allProducts);
     }
     private void refreshCarpenter(){
         carpenter.clearProducts();
-        ArrayList<AbstractMap.SimpleEntry<CarpenterShopProducts, Integer>> allProducts = new ArrayList<>();
+        ArrayList<Pair<CarpenterShopProducts>> allProducts = new ArrayList<>();
         for(CarpenterShopProducts product : CarpenterShopProducts.values()){
-            allProducts.add(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
-            carpenter.addProduct(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+            allProducts.add(new Pair<CarpenterShopProducts>(product, product.getDailyLimit()));
+            carpenter.addProduct(new Pair<CarpenterShopProducts>(product, product.getDailyLimit()));
         }
         carpenter.setAllProducts(allProducts);
     }
     private void refreshMarnieRench(){
         marnieRanch.clearProducts();
-        ArrayList<AbstractMap.SimpleEntry<MarnieRanchProducts, Integer>> allProducts = new ArrayList<>();
+        ArrayList<Pair<MarnieRanchProducts>> allProducts = new ArrayList<>();
         for(MarnieRanchProducts product : MarnieRanchProducts.values()){
-            allProducts.add(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
-            marnieRanch.addProduct(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+            allProducts.add(new Pair<MarnieRanchProducts>(product, product.getDailyLimit()));
+            marnieRanch.addProduct(new Pair<MarnieRanchProducts>(product, product.getDailyLimit()));
         }
         marnieRanch.setAllProducts(allProducts);
     }
     private void refreshStarDrop(){
         starDrop.clearProducts();
-        ArrayList<AbstractMap.SimpleEntry<StarDropSaloonProducts, Integer>> allProducts = new ArrayList<>();
+        ArrayList<Pair<StarDropSaloonProducts>> allProducts = new ArrayList<>();
         for(StarDropSaloonProducts product : StarDropSaloonProducts.values()){
-            allProducts.add(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
-            starDrop.addProduct(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+            allProducts.add(new Pair<StarDropSaloonProducts>(product, product.getDailyLimit()));
+            starDrop.addProduct(new Pair<StarDropSaloonProducts>(product, product.getDailyLimit()));
         }
         starDrop.setAllProducts(allProducts);
     }
     private void refreshPierreStore(){
         pierre.clearProducts();
-        ArrayList<AbstractMap.SimpleEntry<PierreGeneralStoreProduct, Integer>> allProducts = new ArrayList<>();
+        ArrayList<Pair<PierreGeneralStoreProduct>> allProducts = new ArrayList<>();
         for(PierreGeneralStoreProduct product : PierreGeneralStoreProduct.values()){
-            allProducts.add(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
-            pierre.addProduct(new AbstractMap.SimpleEntry<>(product, product.getDailyLimit()));
+            allProducts.add(new Pair<PierreGeneralStoreProduct>(product, product.getDailyLimit()));
+            pierre.addProduct(new Pair<PierreGeneralStoreProduct>(product, product.getDailyLimit()));
         }
         pierre.setAllProducts(allProducts);
     }

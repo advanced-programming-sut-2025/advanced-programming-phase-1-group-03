@@ -11,10 +11,13 @@ import phi.ap.model.items.products.Food;
 import phi.ap.model.items.products.Product;
 import phi.ap.model.items.products.Recipe;
 import phi.ap.model.items.products.Soil;
+import phi.ap.model.items.tools.Backpack;
 
 public enum PierreGeneralStoreProduct implements StoreItemProducer {
-    // TODO backpack types
-
+    LargePack("Large Pack", "Unlocks the 2nd row of inventory (12 more slots, total 24).", 2000,
+            null, 1, new Backpack(1), null),
+    DeluxPack("Delux Pack", "Unlocks the 3rd row of inventory (infinite slots).", 10000,
+            null, 1, new Backpack(2), null),
     // All Season Products
 
     Rice("Rice", "A basic grain often served under vegetables.", 200, null,
@@ -200,6 +203,8 @@ public enum PierreGeneralStoreProduct implements StoreItemProducer {
 
     @Override
     public Item getItem() {
+        item.setSellPrice(getPrice());
+        item.setSellable(true);
         return item;
     }
 

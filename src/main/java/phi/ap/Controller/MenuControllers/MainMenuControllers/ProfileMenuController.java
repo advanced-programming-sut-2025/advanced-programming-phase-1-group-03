@@ -46,6 +46,8 @@ public class ProfileMenuController {
         builder.append("Nickname: ").append(user.getNickname()).append("\n");
         builder.append("Hashed Password: ").append(user.getPassword()).append("\n");
         builder.append("Email: ").append(user.getEmail()).append("\n");
+        builder.append("Max Gold: ").append(user.getMaxGold()).append("\n");
+        builder.append("Number Of Game Played: ").append(user.getGamePlayed()).append("\n");
 
         //TODO highest money in a game
         //TODO number of games played

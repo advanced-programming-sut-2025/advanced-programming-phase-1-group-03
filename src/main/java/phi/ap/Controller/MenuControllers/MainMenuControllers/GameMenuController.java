@@ -12,6 +12,7 @@ import phi.ap.model.items.buildings.*;
 import phi.ap.model.items.buildings.stores.Store;
 import phi.ap.model.items.machines.Machine;
 import phi.ap.model.items.machines.Refrigerator;
+import phi.ap.model.items.machines.craftingMachines.Bomber;
 import phi.ap.model.items.machines.craftingMachines.CraftedProducer;
 import phi.ap.model.items.products.*;
 import phi.ap.model.items.relations.Gift;
@@ -24,6 +25,7 @@ import phi.ap.model.items.tools.Tool;
 import phi.ap.model.npcStuff.NPC;
 import phi.ap.model.npcStuff.State;
 import phi.ap.service.MapService;
+import phi.ap.utils.FileManager;
 import phi.ap.utils.Misc;
 
 import java.util.AbstractMap;
@@ -36,12 +38,21 @@ import static java.util.Collections.swap;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        for(int i = 0; i < 40; i++) {
-            for(int j = 0; j < 40; j++) {
-                System.out.println(shepherdAnimal(null, Integer.toString(i), Integer.toString(j)));
-            }
-        }
-        return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+//        for(int i = 0; i < 40; i++) {
+//            for(int j = 0; j < 40; j++) {
+//                System.out.println(shepherdAnimal(null, Integer.toString(i), Integer.toString(j)));
+//            }
+//        }
+//        return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
+
+        //**thunder
+//        for (int i = 0; i < Game.getInstance().getMap().getHeight(); i++) {
+//            for (int j = 0; j < Game.getInstance().getMap().getWidth(); j++) {
+//                cheatThor(String.valueOf(i), String.valueOf(j));
+//            }
+//        }
+
+        return null;
     }
     public Result<String> test1(String input) {
         Item it = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(1,0);
@@ -120,7 +131,12 @@ public class GameMenuController {
             return new Result<>(false, "You are not game loader");
         }
 
-        //TODO : saves
+        for(Player player : Game.getInstance().getPlayers()){
+            User user = player.getUser();
+            user.setMaxGold(Math.max(user.getMaxGold(), player.getGold()));
+            user.setGamePlayed(user.getGamePlayed() + 1);
+        }
+        new FileManager().writeAppData();
         App.getInstance().changeMenu(Menu.MainMenu);
         return new Result<>(true, "game closed successfully");
     }
@@ -255,6 +271,16 @@ public class GameMenuController {
             player.getEnergy().reset();
         }
     }
+    private void doTransportTasks() {
+        for (int i = 0; i < Game.getInstance().getPlayers().size(); i++) {
+            if (!Game.getInstance().getCurrentPlayer().getFeintBuff().isActive()) {
+                Cottage cot = Game.getInstance().getCurrentPlayer().getFarm().getCottage();
+                Coordinate coord = cot.getTileCoordinateBaseMap(1, 1);
+                walk(String.valueOf(coord.getY()), String.valueOf(coord.getX()));
+            }
+            Game.getInstance().goNextPlayer();
+        }
+    }
     private void doNightTasks() {
         System.out.println("zzz... sleeping");
         //TODO
@@ -269,6 +295,7 @@ public class GameMenuController {
         App.getInstance().getGameService().doCrowAttack();
         App.getInstance().getGameService().doNPCStuffAtNight();
         doEnergyTask();
+        doTransportTasks();
         //anjam kar haiee ke bayad too shab anjam beshan
     }
 
@@ -624,6 +651,7 @@ public class GameMenuController {
 
     public Result<String> cheatSetEnergyUnlimited() {
         Game.getInstance().getCurrentPlayer().getEnergy().setMaxAmount(Integer.MAX_VALUE / 2);
+        if (Game.getInstance().getCurrentPlayer().getEnergy().getAmount() == 0) Game.getInstance().getCurrentPlayer().feint();
         return cheatSetEnergy(Integer.MAX_VALUE / 2);
     }
 
@@ -641,9 +669,12 @@ public class GameMenuController {
             amount = itemStack.getAmount();
         else
             amount = Integer.parseInt(amountSt);
+        if(amount > itemStack.getAmount())
+            return new Result<>(false, "We don't have this amount");
         TrashCan trashCan = Game.getInstance().getCurrentPlayer().getToolManager().getTrashCan();
         int money = trashCan.trash(new ItemStack(itemStack.getItem(), amount));
         Game.getInstance().getCurrentPlayer().setGold(money + Game.getInstance().getCurrentPlayer().getGold());
+        Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), amount);
         return new Result<>(true, "Ok ok trashcan produces " + money + "$ for you");
     }
 
@@ -1087,6 +1118,11 @@ public class GameMenuController {
         ItemStack itemStack = Game.getInstance().getCurrentPlayer().getInventoryManager().getItemByName(itemName);
         if(itemStack == null)
             return new Result<>(false, "There is not item with the given name in inventory");
+        if(!itemStack.getItem().isRemovableByPickaxe())
+            return new Result<>(false, "You cannot put this item on the ground");
+        if (!(itemStack.getItem() instanceof Animal)) {
+            return new Result<>(false, "You cannot put animal item on the ground");
+        }
 
         Coordinate cord = Misc.getDiffFromDirection(direction);
         Item topItem = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(cord.getY(), cord.getX());
@@ -1097,8 +1133,14 @@ public class GameMenuController {
             item.setCoordinate(coordinateB);
                 Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
             Game.getInstance().getCurrentPlayer().getLocation().getGround().addItem(item);
-            Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), 1);
-            return new Result<>(true, itemStack.getItem().getName() + " placed successfully.");
+            if (!(item instanceof Machine)) Game.getInstance().getCurrentPlayer().getInventoryManager().removeItem(itemStack.getItem(), 1);
+            StringBuilder resss = new StringBuilder();
+            resss.append(itemStack.getItem().getName() + " placed successfully.");
+            if (item instanceof Bomber bomber) {
+                resss.append("\n...Booooom!");
+                bomber.active();
+            }
+            return new Result<>(true, resss.toString());
 
         }else
             return new Result<>(false, "You can't place item in this place");
@@ -1111,8 +1153,8 @@ public class GameMenuController {
             return new Result<>(false, "There is no item with this name.");
         if(!Game.getInstance().getCurrentPlayer().getInventoryManager().canAdd())
             return new Result<>(false, "Inventory is full.");
-        Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, amount);
-        return new Result<>(true, item.getName() + " with amount " + amount + " has been added to inventoryManger.");
+        int added = Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(item, amount);
+        return new Result<>(true, item.getName() + " with amount " + added + " has been added to inventoryManger.");
     }
     public Result<String> putItemToRefrigerator(String name, String amountString) {
         Item item;
@@ -1232,9 +1274,9 @@ public class GameMenuController {
         if (currentHour < store.getStoreTypes().getOpeningTime() || currentHour > store.getStoreTypes().getClosingTime())
             return new Result<>(false, "Store is closed in this time!!");
 
-        AbstractMap.SimpleEntry<StoreItemProducer, Integer> toBuy = null;
+        Pair<StoreItemProducer> toBuy = null;
         for(Object p : store.getAvailableProducts()){
-            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+            Pair<StoreItemProducer> product = (Pair<StoreItemProducer>) p;
             if(product.getKey().getNameInStore().equalsIgnoreCase(buildingName)) {
                 toBuy = product;
             }
@@ -1415,6 +1457,7 @@ public class GameMenuController {
             if(!(tool instanceof Shear))
                 return new Result<>(false, "You don't have Shear.");
         for(AnimalProduct animalProduct : animalProducts) {
+            Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Farming).advanceXP(5);
             Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(animalProduct, 1);
         }
         animalProducts.clear();
@@ -1457,7 +1500,7 @@ public class GameMenuController {
 
         Game.getInstance().getCurrentPlayer().getEnergy().advanceBaseUnit(-pole.getEnergyNeed());
 
-        double R = Math.random();
+        double R = (double)App.getInstance().getRandomNumber(1, 100) / 100.0;
         double M = switch (Game.getInstance().getWeatherManager().getCurrentWeather()){
             case Sunny -> 1.5;
             case Rain -> 1.2;
@@ -1480,9 +1523,12 @@ public class GameMenuController {
         }
 
         StringBuilder response = new StringBuilder();
+
+        Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Fishing).advanceXP(5);
+        response.append("5 fishing xp gained\n");
         for(int i = 0; i < fishCount; i++){
             Fish fish = new Fish(1, 1, possibleFishTypes.get(new Random().nextInt(possibleFishTypes.size())) );
-            R = Math.random();
+            R = (double)App.getInstance().getRandomNumber(1, 100) / 100.0;
             double qualityCoef = (R * (skill + 2) * poleCoef) / (7.0 - M);
             if(qualityCoef < 0.5)
                 fish.getLevels().setCurrentLevel(0);
@@ -1558,7 +1604,7 @@ public class GameMenuController {
 
         StringBuilder response = new StringBuilder();
         for(Object p : store.getAllProducts()){
-            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+            Pair<StoreItemProducer> product = (Pair<StoreItemProducer>) p;
 
             if(product.getKey().getItem() == null)
                 continue;
@@ -1580,7 +1626,7 @@ public class GameMenuController {
 
         StringBuilder response = new StringBuilder();
         for(Object p : store.getAvailableProducts()){
-            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+            Pair<StoreItemProducer> product = (Pair<StoreItemProducer>) p;
             if(product.getKey().getItem() == null)
                 continue;
             String amount = String.valueOf(product.getValue());
@@ -1594,7 +1640,10 @@ public class GameMenuController {
         StringBuilder builder = new StringBuilder();
         for(ItemStack item : Game.getInstance().getCurrentPlayer().getInventoryManager().getAllItems()){
             if(item.getItem() instanceof Tool){
-                builder.append(item.getItem().getName()+"\n");
+                builder.append(item.getItem().getName());
+                if(item.getItem() instanceof Backpack)
+                    builder.append("With the size of " + ((Backpack)item.getItem()).getSize());
+                builder.append("\n");
             }
         }
         return new Result<>(true, builder.toString());
@@ -1617,7 +1666,7 @@ public class GameMenuController {
 
         boolean productExists = false;
         for(Object p : store.getAllProducts()){
-            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+            Pair<StoreItemProducer> product = (Pair<StoreItemProducer>) p;
             if(product.getKey().getNameInStore().equalsIgnoreCase(productName)) {
                 productExists = true;
             }
@@ -1627,9 +1676,9 @@ public class GameMenuController {
             return new Result<>(false, "Product does not exist!");
 
 
-        AbstractMap.SimpleEntry<StoreItemProducer, Integer> toBuy = null;
+        Pair<StoreItemProducer> toBuy = null;
         for(Object p : store.getAvailableProducts()){
-            AbstractMap.SimpleEntry<StoreItemProducer, Integer> product = (AbstractMap.SimpleEntry<StoreItemProducer, Integer>) p;
+            Pair<StoreItemProducer> product = (Pair<StoreItemProducer>) p;
             if(product.getKey().getNameInStore().equalsIgnoreCase(productName)) {
                 toBuy = product;
             }
@@ -1637,6 +1686,9 @@ public class GameMenuController {
 
         if(toBuy.getValue() < amount || amount == 0)
             return new Result<>(false, "This item is not available in the Store with this amount!!");
+        int totalMoney = amount * toBuy.getKey().getItem().getSellPrice();
+        if(totalMoney > Game.getInstance().getCurrentPlayer().getGold())
+            return new Result<>(false, "You don't have enough fucking money.");
 
         switch (store.getStoreTypes()){
             case StoreTypes.FishShop -> {
@@ -1672,15 +1724,19 @@ public class GameMenuController {
             } case MarnieRanch -> {
                 Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
             } case PierreGeneralStore -> {
-                Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
+                if(toBuy.getKey().getItem() instanceof Backpack){
+                    int expected = (((Backpack)toBuy.getKey().getItem()).getLevelProcess().getCurrentLevel());
+                    if(expected == Game.getInstance().getCurrentPlayer().getToolManager().getBackpack().getLevelProcess().getCurrentLevel() + 1)
+                        Game.getInstance().getCurrentPlayer().getToolManager().getBackpack().upgrade(-1);
+                    else
+                        return new Result<>(false, "You can't buy this backpack!");
+                }else
+                    Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
             } case JojaMart -> {
                 Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(new ItemStack(toBuy.getKey().getItem(), amount));
             }
         }
 
-        int totalMoney = amount * toBuy.getKey().getItem().getSellPrice();
-        if(totalMoney > Game.getInstance().getCurrentPlayer().getGold())
-            return new Result<>(false, "You don't have enough fucking money.");
 
         Game.getInstance().getCurrentPlayer().setGold(
                 Game.getInstance().getCurrentPlayer().getGold() - totalMoney);
