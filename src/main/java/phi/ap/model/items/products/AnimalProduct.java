@@ -5,7 +5,6 @@ import phi.ap.model.enums.LevelName;
 import phi.ap.model.items.Animal;
 
 public class AnimalProduct extends Product {
-
     AnimalProductTypes animalProductType;
     LevelName levelName;
     double productNum;

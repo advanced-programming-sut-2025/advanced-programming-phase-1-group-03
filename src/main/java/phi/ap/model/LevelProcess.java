@@ -47,7 +47,7 @@ public class LevelProcess {
         return levelNames;
     }
 
-    public int getCurrentLevel() {
+    public int  getCurrentLevel() {
         return currentLevel;
     }
 

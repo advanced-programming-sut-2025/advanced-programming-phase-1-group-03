@@ -2,6 +2,7 @@ package phi.ap.model.items.tools;
 
 import phi.ap.model.*;
 import phi.ap.model.enums.AbilityType;
+import phi.ap.model.enums.Weather;
 import phi.ap.model.items.Item;
 
 import java.util.ArrayList;
@@ -49,6 +50,15 @@ public abstract class Tool extends Item {
     }
     public int getEnergyNeed() {
         int energy = energyConsumptionPerLevel.get(levelProcess.getCurrentLevel());
+        if(Game.getInstance().getWeatherManager().getCurrentWeather() == Weather.Snow)
+            energy *= 2;
+        else if(Game.getInstance().getWeatherManager().getCurrentWeather() == Weather.Rain)
+            energy = energy * 3 / 2;
+        if(Game.getInstance().getCurrentPlayer().getLastFoodBuff().isActive()){
+            Buff buff = Game.getInstance().getCurrentPlayer().getLastFoodBuff();
+            if(buff.getAbilityType() == contactedAbility)
+                energy -= 1;
+        }
         if(contactedAbility != null && Game.getInstance().getCurrentPlayer().isAbilityMax(contactedAbility))
             energy -= 1;
         if(energy < 0) energy = 0;

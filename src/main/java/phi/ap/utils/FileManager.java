@@ -1,7 +1,9 @@
 package phi.ap.utils;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import phi.ap.model.App;
+import phi.ap.model.Game;
 import phi.ap.model.User;
 import phi.ap.model.data.AppData;
 import phi.ap.model.data.LoggedInUser;
@@ -9,6 +11,7 @@ import phi.ap.model.data.LoggedInUser;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Modifier;
 
 public class FileManager {
     private final String path = System.getProperty("user.home") + "/.stardewValley/";

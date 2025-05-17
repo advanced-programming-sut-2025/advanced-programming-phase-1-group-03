@@ -35,7 +35,6 @@ public class Game {
 
     private final Integer gameID;
     private Map map;
-    private ArrayList<Item> items;
     private WeatherManager weatherManager = new WeatherManager();
     private final ArrayList<Player> players = new ArrayList<>();
     private final ArrayList<Friendship> friendships = new ArrayList<>();

@@ -58,7 +58,7 @@ public class LoginMenuController {
         user.setNickname(nickname);
         App.getInstance().getUserService().add(user);
         new FileManager().writeAppData();
-        return new Result<>(true, "Registration was successful...");
+        return new Result<>(true, "User with username " + username + " Registered successfully...");
     }
 
     public Result<String> pickQuestion(String username, String questionText,

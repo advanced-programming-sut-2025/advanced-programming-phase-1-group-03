@@ -33,7 +33,6 @@ public class GameService {
             if (!(topItem instanceof Dirt dirt)) return;
             if (dirt.isPlowed()) {
                 return;
-                //TODO : add foraging seed random after planting system completed;
             }
 
             int rand = App.getInstance().getRandomNumber(1, 100);
@@ -434,6 +433,7 @@ public class GameService {
             }
         }
         */
+
         generateForaging(20);
         Game.getInstance().whenMapLoaded();
         for (Player player : game.getPlayers()) {

@@ -52,6 +52,8 @@ public enum StarDropSaloonProducts implements StoreItemProducer{
 
     @Override
     public Item getItem() {
+        item.setSellable(true);
+        item.setSellPrice(getPrice());
         return item;
     }
 
@@ -66,33 +68,6 @@ public enum StarDropSaloonProducts implements StoreItemProducer{
         this.dailyLimit = dailyLimit;
         this.item = item;
         this.storeType = storeType;
-    }
-
-    public static Result<String> purchase(String productName, String amountString) {
-        int amount = Integer.parseInt(amountString);
-        StarDropSaloonProducts starDropSaloonProducts;
-        try {
-            starDropSaloonProducts = StarDropSaloonProducts.valueOf(productName);
-        }
-        catch (IllegalArgumentException e) {
-            return new Result<>(false, "There is no product with this name.");
-        }
-        if(amount > starDropSaloonProducts.availableAmount) {
-            return new Result<>(false, "There is not enough amount of this product.");
-        }
-        else if(amount > starDropSaloonProducts.dailyLimit) {
-            return new Result<>(false, "You can't purchase this amount of product on this day.");
-        }
-        else if(amount * starDropSaloonProducts.price > Game.getInstance().getCurrentPlayer().getGold()) {
-            return new Result<>(false, "You don't have enough money.");
-        }
-        starDropSaloonProducts.availableAmount -= amount;
-        starDropSaloonProducts.dailyLimit -= amount;
-        Game.getInstance().getCurrentPlayer().setGold(Game.getInstance().getCurrentPlayer().getGold() -
-                amount * starDropSaloonProducts.price);
-        ArrayList<Recipe> recipe = Game.getInstance().getCurrentPlayer().getCookingRecipes();
-        recipe.add(new Recipe(null, null, ((Recipe)starDropSaloonProducts.item).getRecipeType()));
-        return new Result<>(true, "Item purchased successfully");
     }
 
     public String getName() {
