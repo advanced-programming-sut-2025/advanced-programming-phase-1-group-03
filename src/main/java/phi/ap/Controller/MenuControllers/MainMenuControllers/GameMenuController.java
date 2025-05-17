@@ -24,6 +24,7 @@ import phi.ap.model.items.tools.Shear;
 import phi.ap.model.items.tools.Tool;
 import phi.ap.model.npcStuff.NPC;
 import phi.ap.model.npcStuff.State;
+import phi.ap.service.MapService;
 import phi.ap.utils.Misc;
 
 import java.util.AbstractMap;
@@ -36,12 +37,10 @@ import static java.util.Collections.swap;
 
 public class GameMenuController {
     public Result<String> test(String input) {
-        System.out.println(Game.getInstance().getCurrentPlayer().getGold());
-        for(Recipe recipe : Game.getInstance().getCurrentPlayer().getCraftingRecipes())
-            System.out.println(recipe.getName());
-        Item item = Game.getInstance().getCurrentPlayer().getLocation().getTopItemDiff(0,0);
-        if(item instanceof Store){
-            System.out.println("kooni");
+        for(int i = 0; i < 40; i++) {
+            for(int j = 0; j < 40; j++) {
+                System.out.println(shepherdAnimal(null, Integer.toString(i), Integer.toString(j)));
+            }
         }
         return new Result<>(true, Game.getInstance().getCurrentPlayer().getInventoryManager().showStorage());
     }
@@ -130,8 +129,8 @@ public class GameMenuController {
 
     public String TalkNotification() {
         StringBuilder stringBuilder = new StringBuilder();
-        Boolean ok = false;
-        stringBuilder.append("Talk notofications: \n");
+        boolean ok = false;
+        stringBuilder.append("Talk notifications: \n");
         ArrayList<Friendship> friendships = Friendship.getFriends(Game.getInstance().getCurrentPlayer());
         for(Friendship friendship : friendships) {
             ArrayList<Talk> talks = friendship.getTalk();
@@ -139,6 +138,7 @@ public class GameMenuController {
                 if(!talk.getHaveSeen() && !talk.getSender().equals(Game.getInstance().getCurrentPlayer())) {
                     stringBuilder.append("Message from " + talk.getSender().getUser().getUsername() + ": " + talk.getMessage() + "\n");
                     ok = true;
+                    talk.setHaveSeen(true);
                 }
             }
         }
@@ -179,8 +179,9 @@ public class GameMenuController {
         String giftNotification = giftNotification();
         if(giftNotification != null)
             message += "\n" + giftNotification;
-        if(TalkNotification() != null)
-            message += "\n" + TalkNotification();
+        String TalkNotification = TalkNotification();
+        if(TalkNotification != null)
+            message += "\n" + TalkNotification;
         if (Game.getInstance().getCurrentPlayer().isPlayerFeinted()) {
             message += "\nplayer " + Game.getInstance().getCurrentPlayer().getUser().getUsername() + " has feinted!\n";
             message += "\n" + nextTurn();
@@ -1318,8 +1319,54 @@ public class GameMenuController {
         }
         return new Result<>(true, stringBuilder.toString());
     }
-    public Result<String> shepherdAnimal(String animalName, String x, String y) {
-        return null; // TODO
+
+    public Result<String> CheatAddFriendship(String player1String, String player2String, String amountString) {
+        Player player1 = Game.getInstance().getPlayerByUserName(player1String);
+        Player player2 = Game.getInstance().getPlayerByUserName(player2String);
+        if(player1 == null || player2 == null)
+            return new Result<>(false, "username invalid");
+        int amount = Integer.parseInt(amountString);
+        Friendship friendship = Friendship.getFriendShip(player1, player2);
+        Friendship.AddXp(player1, player2, amount);
+        return new Result<>(true, "friendship set to Level: " + friendship.getLevel() + " Xp: " + friendship.getXp());
+    }
+    public Result<String> shepherdAnimal(String animalName, String xString, String yString) {
+        Animal animal = Game.getInstance().getCurrentPlayer().getAnimalByName(animalName);
+        if(animal == null)
+            return new Result<>(false, "animal name invalid.");
+        if(!Game.getInstance().getWeatherManager().getCurrentWeather().equals(Weather.Sunny))
+            return new Result<>(false, "Weather must be Sunny.");
+        Integer x;
+        Integer y;
+        try {
+            x = Integer.parseInt(xString);
+        } catch (Exception e) {
+            return new Result<>(false, "x invalid");
+        }
+        try {
+            y = Integer.parseInt(yString);
+        } catch (Exception e) {
+            return new Result<>(false, "y invalid");
+        }
+        Location location = App.getInstance().getMapService().getLocationOnMap(x, y);
+        Item item = location.getGround().getTopItem(location.getY(), location.getX());
+        if(item == null)
+            return new Result<>(false, "location invalid. doesn't exist.");
+        if(location.getGround() instanceof AnimalHouse) {
+            animal.getFather().removeItem(animal);
+            return new Result<>(true, "animal sent to its house.");
+        }
+        if(!item.getName().equals("Grass"))
+            return new Result<>(false, "this location doesn't have Grass to feed.");
+        animal.setFeeded(true);
+        animal.setInHome(false);
+        if(item.getFather() instanceof Dirt) {
+           Dirt dirt =  (Dirt)item.getFather();
+           dirt.removeItem(item);
+           animal.setCoordinate(new Coordinate(0, 0));
+           dirt.addItem(animal);
+        }
+        return new Result<>(true, "Animal shpherd successfully");
     }
     public Result<String> cheatSetFriendshipAnimal(String userName, String amountString) {
         Integer amount;

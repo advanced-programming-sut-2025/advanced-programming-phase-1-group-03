@@ -55,6 +55,8 @@ public class Friendship {
             respondent.getInventoryManager().addItem(new Product(ProductNames.WeddingRing), 1);
             married = true;
             checkLevel();
+            applicant.getFarm().getAvailablePlayers().add(respondent);
+            respondent.getFarm().getAvailablePlayers().add(applicant);
         }
         else {
             setLevel(0);
@@ -155,6 +157,12 @@ public class Friendship {
             level = Math.min(0, level - 1);
             xp = (level + 1)*100 + xp;
         }
+        checkLevel();
+        checkLevel();
+        checkLevel();
+        checkLevel();
+        checkLevel();
+        checkLevel();
         checkLevel();
     }
 

@@ -209,6 +209,10 @@ public class GameMenu extends AppMenu {
             System.out.println(controller.cheatSetEnergy(matcher.group("value")));
         } else if ((matcher = GameMenuCommands.CheatEnergyUnlimited.getMatcher(input)) != null) {
             System.out.println(controller.cheatSetEnergyUnlimited());
+        } else if ((matcher = GameMenuCommands.ShepherdAnimal.getMatcher(input)) != null) {
+            System.out.println(controller.shepherdAnimal(matcher.group("name"), matcher.group("x"), matcher.group("y")));
+        } else if ((matcher = GameMenuCommands.CheatAddFriendShip.getMatcher(input)) != null) {
+            System.out.println(controller.CheatAddFriendship(matcher.group("name1"), matcher.group("name2"), matcher.group("amount")));
         }
         else {
             super.check(input);
