@@ -90,7 +90,7 @@ public enum GameMenuCommands implements Command{
     //NPC commands
     MeetNPC("\\s*(?i)meet\\s+npc\\s+(?<name>.*)\\s*"),
     ShowNPCList("(?i)\\s*show\\s+npc\\s+list\\s*"),
-    GiftNPC("\\s*gift\\s+(NPC|npc)\\s+(?<npcName>\\S+)\\s+-i\\s+(<item>.*)\\s*"),
+    GiftNPC("\\s*gift\\s+(NPC|npc)\\s+(?<npcName>\\S+)\\s+-i\\s+(?<item>.*)\\s*"),
     NPCFriendshipList("(?i)\\s*friendship\\s+npc\\s+list\\s*"),
     QuestsList("\\s*(?i)quests\\s+list\\s*"),
     QuestFinish("\\s*quests\\s+finish\\s+-i\\s+(?<index>\\d+)\\s*"),

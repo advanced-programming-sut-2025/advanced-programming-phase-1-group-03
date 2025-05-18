@@ -3,6 +3,7 @@ package phi.ap.model;
 import jdk.jfr.Frequency;
 import phi.ap.model.enums.Weather;
 import phi.ap.model.enums.npcStuff.NPCTypes;
+import phi.ap.model.enums.npcStuff.Quests;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.buildings.ShippingBin;
 import phi.ap.model.items.relations.Friendship;
@@ -44,6 +45,7 @@ public class Game {
     private StoreManager storeManager;
     private ArrayList<ShippingBin> shippingBins = new ArrayList<>();
     private ArrayList<NPC> npcs = new ArrayList<>();
+    private ArrayList<Quests> finishedQuestTillNow = new ArrayList<>();
 
     public void LoadFriends() {
         for(int i = 0; i < players.size(); i++) {
@@ -156,5 +158,13 @@ public class Game {
 
     public ArrayList<NPC> getNpcs() {
         return npcs;
+    }
+
+    public ArrayList<Quests> getFinishedQuestTillNow() {
+        return finishedQuestTillNow;
+    }
+
+    public void setFinishedQuestTillNow(ArrayList<Quests> finishedQuestTillNow) {
+        this.finishedQuestTillNow = finishedQuestTillNow;
     }
 }

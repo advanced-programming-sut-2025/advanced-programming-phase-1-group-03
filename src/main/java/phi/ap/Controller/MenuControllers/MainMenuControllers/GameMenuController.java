@@ -293,14 +293,14 @@ public class GameMenuController {
         }
     }
     private void doTransportTasks() {
-//        for (int i = 0; i < Game.getInstance().getPlayers().size(); i++) {
-//            if (!Game.getInstance().getCurrentPlayer().getFeintBuff().isActive()) {
-//                Cottage cot = Game.getInstance().getCurrentPlayer().getFarm().getCottage();
-//                Coordinate coord = cot.getTileCoordinateBaseMap(1, 1);
-//                walk(String.valueOf(coord.getY()), String.valueOf(coord.getX()));
-//            }
-//            Game.getInstance().goNextPlayer();
-//        }
+        for (int i = 0; i < Game.getInstance().getPlayers().size(); i++) {
+            if (!Game.getInstance().getCurrentPlayer().getFeintBuff().isActive()) {
+                Cottage cot = Game.getInstance().getCurrentPlayer().getFarm().getCottage();
+                Coordinate coord = cot.getTileCoordinateBaseMap(1, 1);
+                walk(String.valueOf(coord.getY()), String.valueOf(coord.getX()));
+            }
+            Game.getInstance().goNextPlayer();
+        }
     }
     private void doNightTasks() {
         System.out.println("zzz... sleeping");
@@ -2049,6 +2049,19 @@ public class GameMenuController {
         if (item == null || item instanceof Tool) {
             return new Result<>(false, "Item not found.");
         }
+        if (item instanceof Tool) {
+            return new Result<>(false, "You can't gift tools.");
+        }
+        if (Game.getInstance().getCurrentPlayer().getInventoryManager().getItem(item).getAmount() <= 0) {
+            return new Result<>(false, "You don't have item");
+        }
+        Coordinate npcCoord = npc.getCoordinateBaseMap();
+        Location npcLoc = App.getInstance().getMapService().getLocationOnMap(npcCoord.getY(), npcCoord.getX());
+        Location pLoc = Game.getInstance().getCurrentPlayer().getLocation();
+        Coordinate pCoord = pLoc.getGround().getTileCoordinateBaseMap(pLoc.getY(), pLoc.getX());
+        if (!(Math.abs(npcCoord.getY() - pCoord.getY()) <= 1 &&  Math.abs(npcCoord.getX() - pCoord.getX()) <= 1)) {
+            return new Result<>(false, "You are so far.");
+        }
         State state = npc.getState(Game.getInstance().getCurrentPlayer());
         boolean notSameDay = true;
         if (state.getLastGiftReceived() != null) {
@@ -2090,6 +2103,9 @@ public class GameMenuController {
         ArrayList<Quests> activeQuests = Game.getInstance().getCurrentPlayer().getActiveQuests();
         for (int i = 0; i < activeQuests.size(); i++) {
             Quests quest = activeQuests.get(i);
+            if (Game.getInstance().getFinishedQuestTillNow().contains(quest)) {
+                continue;
+            }
             res.append("Index: " + i + "\n");
             res.append(quest.details());
             res.append(Colors.RED + "------------------------------------------------" + Colors.RESET + "\n");
@@ -2122,11 +2138,14 @@ public class GameMenuController {
         }
         Quests quest = player.getActiveQuests().get(ind);
         NPC npc = Game.getInstance().getNPC(NPCTypes.findByName(quest.getOwner()));
+        if (Game.getInstance().getFinishedQuestTillNow().contains(quest)) return new Result<>(false, "You're lat, it has done before!");
         if (!quest.reqCheck(npc.getState(player))) {
             return new Result<>(false, "You don't have required items.");
         }
         quest.doQuest(npc.getState(player));
         quest.addRewards(npc.getState(player));
+
+        Game.getInstance().getFinishedQuestTillNow().add(quest);
         return new Result<>(true, "Quest completed, your rewards have been added.");
     }
     public Result<String> cheatAddNPCFriendshipXP(String npcName, String xpAmount) {
