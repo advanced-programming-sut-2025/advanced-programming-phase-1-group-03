@@ -12,7 +12,6 @@ public enum Weather {
     Snow(new ArrayList<>(Seasons.buildList(Seasons.Winter)))
     ;
 
-
     Weather(ArrayList<Seasons> seasonList) {
         this.seasonList = seasonList;
     }

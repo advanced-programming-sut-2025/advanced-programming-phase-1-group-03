@@ -15,9 +15,10 @@ import phi.ap.model.items.tools.Backpack;
 
 public enum PierreGeneralStoreProduct implements StoreItemProducer {
     LargePack("Large Pack", "Unlocks the 2nd row of inventory (12 more slots, total 24).", 2000,
-            null, 1, new Backpack(1), null),
+            2000, 1, new Backpack(1), Seasons.Spring),
     DeluxPack("Delux Pack", "Unlocks the 3rd row of inventory (infinite slots).", 10000,
-            null, 1, new Backpack(2), null),
+            10000
+            , 1, new Backpack(2), Seasons.Spring),
     // All Season Products
 
     Rice("Rice", "A basic grain often served under vegetables.", 200, null,

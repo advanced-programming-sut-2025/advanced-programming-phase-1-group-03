@@ -510,6 +510,9 @@ public class GameService {
         if(ProductNames.find(name) != null) {
             return new Product(ProductNames.find(name));
         }
+        if(FishTypes.find(name) != null){
+            return new Fish(1, 1, FishTypes.find(name));
+        }
         return null;
     }
 

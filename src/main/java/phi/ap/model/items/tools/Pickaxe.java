@@ -58,6 +58,7 @@ public class Pickaxe extends Tool{
                     Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Foraging).advanceXP(5);
 
                 Game.getInstance().getCurrentPlayer().getAbility(AbilityType.Extraction).advanceXP(10);
+
                 Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(mineral, getCount);
                 mineral.getFather().removeItem(mineral);
                 return new Result<>(true, "You gained "+getCount+" " + mineral.getName() +"!");

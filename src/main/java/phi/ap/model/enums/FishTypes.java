@@ -56,4 +56,11 @@ public enum FishTypes {
     public boolean isFishingAbilityMustBeMax() {
         return fishingAbilityMustBeMax;
     }
+    public static FishTypes find(String name) {
+        name = name.toLowerCase().replaceAll("\\s+", "");
+        for (FishTypes value : values()) {
+            if (value.toString().toLowerCase().equals(name)) return value;
+        }
+        return null;
+    }
 }

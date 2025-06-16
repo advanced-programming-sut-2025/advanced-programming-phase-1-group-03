@@ -20,13 +20,11 @@ public enum AnimalTypes {
     Dinosaur(new Tile("A", Colors.fg(196), ""),"Dinosaur", 8000,3, new ArrayList<>(Arrays.asList(AnimalProductTypes.DinosaurEgg))),
     Pig(new Tile("A", Colors.fg(196), ""),"Pig", 16000, Integer.MAX_VALUE, new ArrayList<>(Arrays.asList(AnimalProductTypes.Truffle)));
 
-
     private final String name;
     private final int price;
     private final int dayToProduce;
     ArrayList<AnimalProductTypes> animalProductTypes;
     private Tile tile;
-
     AnimalTypes(Tile tile, String name, int price, int dayToProduce, ArrayList<AnimalProductTypes> animalProductTypes) {
         this.price = price;
         this.name = name;

@@ -13,7 +13,7 @@ public class  User {
     private int gamePlayed = 0;
     private int maxGold = 0;
     private SecurityQuestion securityQuestion;
-    private Integer gameJoinedId = null;
+    private transient Integer gameJoinedId = null;
 
     public void setGamePlayed(int gamePlayed) {
         this.gamePlayed = gamePlayed;
