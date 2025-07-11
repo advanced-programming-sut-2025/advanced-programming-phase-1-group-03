@@ -1,0 +1,4 @@
+skins/Stardew_Valley.ttf
+skins/skin.atlas
+skins/skin.json
+skins/skin.png

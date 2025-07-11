@@ -1,0 +1,296 @@
+
+skin.png
+size: 1024, 1024
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+btn
+  rotate: false
+  xy: 339, 392
+  size: 60, 39
+  split: 23, 24, 14, 20
+  pad: 7, 7, 7, 7
+  orig: 60, 39
+  offset: 0, 0
+  index: -1
+btn_hover
+  rotate: false
+  xy: 869, 926
+  size: 60, 39
+  split: 23, 24, 13, 19
+  pad: 6, 7, 7, 6
+  orig: 60, 39
+  offset: 0, 0
+  index: -1
+button
+  rotate: false
+  xy: 643, 783
+  size: 102, 114
+  split: 33, 33, 33, 45
+  pad: 28, 28, 22, 33
+  orig: 102, 114
+  offset: 0, 0
+  index: -1
+button-pressed
+  rotate: false
+  xy: 1, 145
+  size: 102, 114
+  split: 33, 33, 42, 36
+  pad: 28, 28, 30, 24
+  orig: 102, 114
+  offset: 0, 0
+  index: -1
+checkbox-off
+  rotate: false
+  xy: 105, 157
+  size: 50, 42
+  orig: 50, 42
+  offset: 0, 0
+  index: -1
+checkbox-on
+  rotate: false
+  xy: 567, 457
+  size: 50, 42
+  orig: 50, 42
+  offset: 0, 0
+  index: -1
+list
+  rotate: false
+  xy: 1, 261
+  size: 114, 114
+  split: 48, 48, 42, 48
+  pad: 48, 48, 9, 9
+  orig: 114, 114
+  offset: 0, 0
+  index: -1
+progress-bar-health-knob
+  rotate: false
+  xy: 643, 967
+  size: 336, 54
+  orig: 336, 54
+  offset: 0, 0
+  index: -1
+progress-bar-horizontal
+  rotate: false
+  xy: 719, 736
+  size: 9, 45
+  split: 3, 3, 3, 3
+  orig: 9, 45
+  offset: 0, 0
+  index: -1
+progress-bar-horizontal-knob
+  rotate: false
+  xy: 77, 104
+  size: 1, 39
+  orig: 1, 39
+  offset: 0, 0
+  index: -1
+progress-bar-mana-knob
+  rotate: false
+  xy: 1, 377
+  size: 336, 54
+  orig: 336, 54
+  offset: 0, 0
+  index: -1
+progress-bar-vertical
+  rotate: false
+  xy: 403, 446
+  size: 45, 9
+  split: 3, 3, 3, 3
+  orig: 45, 9
+  offset: 0, 0
+  index: -1
+progress-bar-vertical-knob
+  rotate: false
+  xy: 1, 22
+  size: 39, 1
+  orig: 39, 1
+  offset: 0, 0
+  index: -1
+scrollbar-horizontal
+  rotate: false
+  xy: 747, 854
+  size: 21, 43
+  split: 9, 9, 17, 17
+  pad: 0, 0, 0, 0
+  orig: 21, 43
+  offset: 0, 0
+  index: -1
+scrollbar-horizontal-knob
+  rotate: false
+  xy: 774, 923
+  size: 93, 42
+  split: 24, 24, 0, 0
+  pad: 0, 0, 0, 0
+  orig: 93, 42
+  offset: 0, 0
+  index: -1
+scrollbar-vertical
+  rotate: false
+  xy: 774, 900
+  size: 43, 21
+  split: 17, 17, 9, 9
+  pad: 0, 0, 0, 0
+  orig: 43, 21
+  offset: 0, 0
+  index: -1
+scrollbar-vertical-knob
+  rotate: false
+  xy: 981, 928
+  size: 42, 93
+  split: 0, 0, 24, 24
+  pad: 0, 0, 0, 0
+  orig: 42, 93
+  offset: 0, 0
+  index: -1
+select-box
+  rotate: false
+  xy: 643, 899
+  size: 129, 66
+  split: 9, 69, 9, 30
+  pad: 16, 76, 13, 12
+  orig: 129, 66
+  offset: 0, 0
+  index: -1
+slider-horizontal
+  rotate: false
+  xy: 117, 321
+  size: 84, 54
+  split: 36, 36, 15, 15
+  pad: 0, 0, 0, 0
+  orig: 84, 54
+  offset: 0, 0
+  index: -1
+slider-knob
+  rotate: false
+  xy: 203, 321
+  size: 54, 54
+  orig: 54, 54
+  offset: 0, 0
+  index: -1
+slider-vertical
+  rotate: false
+  xy: 193, 235
+  size: 54, 84
+  split: 15, 15, 36, 36
+  pad: 0, 0, 0, 0
+  orig: 54, 84
+  offset: 0, 0
+  index: -1
+textfield
+  rotate: false
+  xy: 643, 586
+  size: 69, 75
+  split: 21, 21, 21, 21
+  pad: 28, 28, 23, 23
+  orig: 69, 75
+  offset: 0, 0
+  index: -1
+touchpad
+  rotate: false
+  xy: 403, 457
+  size: 162, 162
+  orig: 162, 162
+  offset: 0, 0
+  index: -1
+touchpad-knob
+  rotate: false
+  xy: 259, 324
+  size: 48, 51
+  orig: 48, 51
+  offset: 0, 0
+  index: -1
+white
+  rotate: false
+  xy: 714, 660
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1
+window
+  rotate: false
+  xy: 309, 348
+  size: 27, 27
+  split: 9, 9, 9, 9
+  orig: 27, 27
+  offset: 0, 0
+  index: -1
+window-round
+  rotate: false
+  xy: 643, 509
+  size: 60, 75
+  split: 18, 30, 18, 30
+  pad: 6, 6, 18, 30
+  orig: 60, 75
+  offset: 0, 0
+  index: -1
+CoOpButton
+  rotate: false
+  xy: 567, 561
+  size: 74, 58
+  orig: 74, 58
+  offset: 0, 0
+  index: -1
+CoOpButtonHover
+  rotate: false
+  xy: 105, 201
+  size: 74, 58
+  orig: 74, 58
+  offset: 0, 0
+  index: -1
+ExitButton
+  rotate: false
+  xy: 643, 723
+  size: 74, 58
+  orig: 74, 58
+  offset: 0, 0
+  index: -1
+ExitButtonHover
+  rotate: false
+  xy: 567, 501
+  size: 74, 58
+  orig: 74, 58
+  offset: 0, 0
+  index: -1
+LoadButton
+  rotate: false
+  xy: 1, 85
+  size: 74, 58
+  orig: 74, 58
+  offset: 0, 0
+  index: -1
+LoadButtonHover
+  rotate: false
+  xy: 643, 663
+  size: 74, 58
+  orig: 74, 58
+  offset: 0, 0
+  index: -1
+Logo
+  rotate: false
+  xy: 1, 433
+  size: 400, 186
+  orig: 400, 186
+  offset: 0, 0
+  index: -1
+NewButton
+  rotate: false
+  xy: 117, 261
+  size: 74, 58
+  orig: 74, 58
+  offset: 0, 0
+  index: -1
+NewButtonHover
+  rotate: false
+  xy: 1, 25
+  size: 74, 58
+  orig: 74, 58
+  offset: 0, 0
+  index: -1
+Panorama
+  rotate: false
+  xy: 1, 621
+  size: 640, 400
+  orig: 640, 400
+  offset: 0, 0
+  index: -1

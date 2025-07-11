@@ -1,0 +1,2 @@
+font/font.ttf
+libgdx.png
