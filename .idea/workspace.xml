@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="h bug fixed">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding render system">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/WeatherManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/WeatherManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/commands/GameMenuCommands.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
   </component>
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
@@ -27,18 +28,7 @@
             <expand>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="StardewValley" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="StardewValley" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="StardewValley" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="application" type="c8890929:TasksNode$1" />
+                <item name="StarehdewValley" type="f1a62948:ProjectNode" />
               </path>
             </expand>
             <select />
@@ -50,6 +40,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
       </list>
@@ -81,33 +72,59 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Run.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor&quot;: &quot;Run&quot;,
     &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Desktop/LearnLibgdx&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="phi.ap.Main" />
-      <module name="StardewValley.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="phi.ap.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\StarehdewValley\assets\map\tileset" />
+      <recent name="D:\StarehdewValley\assets\skins" />
+      <recent name="D:\StarehdewValley\assets\audio" />
+      <recent name="D:\StarehdewValley" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Run">
+    <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;phi.ap.Controller.MenuControllers.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
     <configuration name="StardewValley [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -131,9 +148,14 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Run" />
+      <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
+      <item itemvalue="Gradle.StardewValley [run]" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
         <item itemvalue="Gradle.StardewValley [run]" />
       </list>
     </recent_temporary>
@@ -179,6 +201,15 @@
       <workItem from="1747387871752" duration="4782000" />
       <workItem from="1747397283498" duration="5804000" />
       <workItem from="1747500574763" duration="1803000" />
+      <workItem from="1751979921086" duration="7895000" />
+      <workItem from="1752043048905" duration="4290000" />
+      <workItem from="1752091507588" duration="5554000" />
+      <workItem from="1752141292516" duration="787000" />
+      <workItem from="1752164966814" duration="5000000" />
+      <workItem from="1752211562944" duration="3803000" />
+      <workItem from="1752230430091" duration="3268000" />
+      <workItem from="1752254117011" duration="8005000" />
+      <workItem from="1752296315203" duration="13754000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -417,11 +448,42 @@
       <option name="project" value="LOCAL" />
       <updated>1747505701474</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL‎−۰۰۰۳۴" summary="Setting up graphical project">
+      <option name="closed" value="true" />
+      <created>1752256239043</created>
+      <option name="number" value="LOCAL‎−۰۰۰۳۴" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۳۴" />
+      <updated>1752256239043</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۳۵" summary="Adding buttons to main menu &amp; Adding audio service">
+      <option name="closed" value="true" />
+      <created>1752296975238</created>
+      <option name="number" value="LOCAL‎−۰۰۰۳۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۳۵" />
+      <updated>1752296975238</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۳۶" summary="Changing gamma values of fonts">
+      <option name="closed" value="true" />
+      <created>1752301194769</created>
+      <option name="number" value="LOCAL‎−۰۰۰۳۶" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۳۶" />
+      <updated>1752301194769</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۳۷" summary="Adding render system">
+      <option name="closed" value="true" />
+      <created>1752315589821</created>
+      <option name="number" value="LOCAL‎−۰۰۰۳۷" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۳۷" />
+      <updated>1752315589821</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.atlas" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="OPEN_GENERIC_TABS">
@@ -445,10 +507,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="food enum bug fixed." />
-    <MESSAGE value="bug fixed." />
-    <MESSAGE value="show dead plants added" />
-    <MESSAGE value="Food system crafting artisan bug fixed." />
     <MESSAGE value="bug in direction fixed" />
     <MESSAGE value="Stores fixed" />
     <MESSAGE value="Stores completed except tools upgrade" />
@@ -470,7 +528,11 @@
     <MESSAGE value="Tool and ability cheat" />
     <MESSAGE value="gamejoined id bug fixed" />
     <MESSAGE value="h bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="h bug fixed" />
+    <MESSAGE value="Setting up graphical project" />
+    <MESSAGE value="Adding buttons to main menu &amp; Adding audio service" />
+    <MESSAGE value="Changing gamma values of fonts" />
+    <MESSAGE value="Adding render system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding render system" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
