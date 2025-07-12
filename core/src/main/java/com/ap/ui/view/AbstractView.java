@@ -73,6 +73,14 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
             }
         });
     }
+    public static <T extends Actor> void OnExit(T actor, OnActorEvent<T> consumer) {
+        actor.addListener(new InputListener() {
+            @Override
+            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                consumer.onEvent(actor);
+            }
+        });
+    }
     @FunctionalInterface
     public interface OnActorEvent<T extends Actor> {
         void onEvent(T actor);

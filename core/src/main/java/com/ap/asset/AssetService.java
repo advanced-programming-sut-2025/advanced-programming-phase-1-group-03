@@ -30,6 +30,11 @@ public class AssetService implements Disposable {
         return assetManager.get(asset.getAssetDescriptor());
     }
 
+    public <T> void unload(Asset<T> asset) {
+        // Unload asset
+        assetManager.unload(asset.getAssetDescriptor().fileName);
+    }
+
     public <T> T get(Asset<T> asset) {
         if(!assetManager.isLoaded(asset.getAssetDescriptor())) {
             return load(asset);

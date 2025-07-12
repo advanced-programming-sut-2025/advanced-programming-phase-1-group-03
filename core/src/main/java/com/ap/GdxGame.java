@@ -1,6 +1,7 @@
 package com.ap;
 
 import com.ap.asset.AssetService;
+import com.ap.audio.AudioService;
 import com.ap.screen.LoadingScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -28,6 +29,10 @@ public class GdxGame extends Game {
     // Asset service is a singleton class
     private AssetService assetService;
 
+    // Audio manger
+    private AudioService audioService;
+
+
     private final Map<Class<? extends Screen>, Screen> screenCache = new HashMap<>();
 
     @Override
@@ -38,6 +43,8 @@ public class GdxGame extends Game {
         assetService = new AssetService(new InternalFileHandleResolver());
 
         batch = new SpriteBatch();
+
+        audioService = new AudioService(assetService);
 
         addScreen(new LoadingScreen(this));
         setScreen(LoadingScreen.class);
@@ -98,5 +105,9 @@ public class GdxGame extends Game {
 
     public Batch getBatch() {
         return batch;
+    }
+
+    public AudioService getAudioService() {
+        return audioService;
     }
 }

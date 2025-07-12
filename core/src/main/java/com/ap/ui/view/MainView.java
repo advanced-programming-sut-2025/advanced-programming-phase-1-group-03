@@ -1,5 +1,8 @@
 package com.ap.ui.view;
 
+import com.ap.asset.SoundAsset;
+import com.ap.audio.AudioService;
+import com.ap.ui.model.LoadingViewModel;
 import com.ap.ui.model.MainViewModel;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -8,8 +11,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Scaling;
 
 public class MainView extends AbstractView<MainViewModel>{
-    public MainView(Stage stage, Skin skin, MainViewModel viewModel) {
+
+    private final AudioService audioService;
+    public MainView(Stage stage, Skin skin, MainViewModel viewModel, AudioService audioService) {
         super(stage, skin, viewModel);
+        this.audioService = audioService;
     }
 
     @Override
@@ -17,47 +23,52 @@ public class MainView extends AbstractView<MainViewModel>{
         setFillParent(true);
         setBackground(skin.getDrawable("Panorama"));
 
+        add(new Label("Welcome", skin)).row();
+
         Image logo = new Image(skin.getDrawable("Logo"));
         logo.setScaling(Scaling.fit);
-
         add(logo).padTop(20).colspan(4).fillX().top().row();
 
+        // Adding empty space
         add().colspan(4).pad(150).row();
 
-        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
-
-        style.down =  skin.getDrawable("NewButton");
-        style.up = skin.getDrawable("NewButton");
-        style.over = skin.getDrawable("NewButtonHover");
-        ImageButton newButton = new ImageButton(style);
-
-        style = new ImageButton.ImageButtonStyle();
-        style.down =  skin.getDrawable("LoadButton");
-        style.up = skin.getDrawable("LoadButton");
-        style.over = skin.getDrawable("LoadButtonHover");
-        ImageButton loadButton = new ImageButton(style);
-
-        style = new ImageButton.ImageButtonStyle();
-        style.down =  skin.getDrawable("CoOpButton");
-        style.up = skin.getDrawable("CoOpButton");
-        style.over = skin.getDrawable("CoOpButtonHover");
-        ImageButton coOpButton = new ImageButton(style);
-
-        style = new ImageButton.ImageButtonStyle();
-        style.down =  skin.getDrawable("ExitButton");
-        style.up = skin.getDrawable("ExitButton");
-        style.over = skin.getDrawable("ExitButtonHover");
-        ImageButton exitButton = new ImageButton(style);
+        drawButtons();
 
 
+        // Arrange everything from top to bottom
+        top();
+    }
+
+    private void drawButtons() {
+        ImageButton newButton = createImageButton(
+                skin.getDrawable("NewButton"), skin.getDrawable("NewButtonHover"));
+        ImageButton loadButton = createImageButton(
+                skin.getDrawable("LoadButton"), skin.getDrawable("LoadButtonHover"));
+        ImageButton coOpButton = createImageButton(
+                skin.getDrawable("CoOpButton"), skin.getDrawable("CoOpButtonHover"));
+        ImageButton exitButton = createImageButton(
+                skin.getDrawable("ExitButton"), skin.getDrawable("ExitButtonHover"));
         add(newButton).pad(50);
         add(loadButton).pad(50);
         add(coOpButton).pad(50);
         add(exitButton).pad(50);
+    }
 
-        OnEnter(newButton, bnt -> {
+    private ImageButton createImageButton(Drawable drawable, Drawable hoverDrawable) {
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+        style.down =  drawable;
+        style.up = drawable;
+        style.over = hoverDrawable;
+        ImageButton newButton = new ImageButton(style);
+        newButton.setTransform(true);
+        newButton.setOrigin(newButton.getWidth() / 2, newButton.getHeight() / 2);
+        OnEnter(newButton, (ImageButton btn) -> {
+            audioService.playSound(SoundAsset.HoverButton);
+            btn.addAction(Actions.scaleTo(1.3f, 1.3f, 0.2f));
         });
-        // Arrange everything from top to bottom
-        top();
+        OnExit(newButton, (ImageButton btn) -> {
+            btn.addAction(Actions.scaleTo(1f, 1f, 0.2f));
+        });
+        return newButton;
     }
 }

@@ -1,10 +1,7 @@
 package com.ap.screen;
 
 import com.ap.GdxGame;
-import com.ap.asset.Asset;
-import com.ap.asset.AssetService;
-import com.ap.asset.AtlasAsset;
-import com.ap.asset.SkinAsset;
+import com.ap.asset.*;
 import com.ap.ui.model.LoadingViewModel;
 import com.ap.ui.view.LoadingView;
 import com.badlogic.ashley.core.Engine;
@@ -39,6 +36,9 @@ public class LoadingScreen extends AbstractScreen {
         // .
         for(AtlasAsset asset : AtlasAsset.values()) {
             assetService.queue(asset);
+        }
+        for(SoundAsset sound : SoundAsset.values()) {
+            assetService.queue(sound);
         }
     }
     @Override
