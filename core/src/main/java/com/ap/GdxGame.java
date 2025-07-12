@@ -37,8 +37,9 @@ public class GdxGame extends Game {
 
     @Override
     public void create() {
-        viewport = new FitViewport(Constraints.WORLD_WIDTH, Constraints.WORLD_HEIGHT);
         camera = new OrthographicCamera();
+
+        viewport = new FitViewport(Constraints.WORLD_WIDTH, Constraints.WORLD_HEIGHT, camera);
 
         assetService = new AssetService(new InternalFileHandleResolver());
 
@@ -109,5 +110,9 @@ public class GdxGame extends Game {
 
     public AudioService getAudioService() {
         return audioService;
+    }
+
+    public OrthographicCamera getCamera() {
+        return camera;
     }
 }
