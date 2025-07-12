@@ -66,5 +66,7 @@ public class LoadingScreen extends AbstractScreen {
      */
     private void createScreens() {
         game.addScreen(new MainMenuScreen(game));
+        game.addScreen(new SignupScreen(game));
+        game.addScreen(new GameScreen(game));
     }
 }

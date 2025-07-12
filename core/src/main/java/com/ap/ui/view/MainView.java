@@ -23,20 +23,29 @@ public class MainView extends AbstractView<MainViewModel>{
         setFillParent(true);
         setBackground(skin.getDrawable("Panorama"));
 
-        add(new Label("Welcome", skin)).row();
+        drawHeader();
+
+        // Adding empty space
+        add().colspan(4).pad(120).row();
+
+        drawButtons();
+
+        // Arrange everything from top to bottom
+        top();
+    }
+
+    private void drawHeader() {
+        add(new Label("Welcome", skin)).colspan(1).pad(10);
+        TextButton playButton = new TextButton("Signup/Login", skin);
+        add().colspan(2).expandX().fillX();
+        add(playButton).colspan(1).pad(10).row();
 
         Image logo = new Image(skin.getDrawable("Logo"));
         logo.setScaling(Scaling.fit);
         add(logo).padTop(20).colspan(4).fillX().top().row();
 
-        // Adding empty space
-        add().colspan(4).pad(150).row();
-
-        drawButtons();
-
-
-        // Arrange everything from top to bottom
-        top();
+        // Setup events
+        OnClick(playButton, viewModel::clickSignupButton);
     }
 
     private void drawButtons() {
@@ -48,10 +57,15 @@ public class MainView extends AbstractView<MainViewModel>{
                 skin.getDrawable("CoOpButton"), skin.getDrawable("CoOpButtonHover"));
         ImageButton exitButton = createImageButton(
                 skin.getDrawable("ExitButton"), skin.getDrawable("ExitButtonHover"));
-        add(newButton).pad(50);
-        add(loadButton).pad(50);
-        add(coOpButton).pad(50);
-        add(exitButton).pad(50);
+        Table buttonsTable = new Table();
+        buttonsTable.add(newButton).pad(20);
+        buttonsTable.add(loadButton).pad(20);
+        buttonsTable.add(coOpButton).pad(20);
+        buttonsTable.add(exitButton).pad(20);
+        add(buttonsTable).colspan(4);
+
+        // Setup events
+        OnClick(newButton, viewModel::clickNewGameButton);
     }
 
     private ImageButton createImageButton(Drawable drawable, Drawable hoverDrawable) {
