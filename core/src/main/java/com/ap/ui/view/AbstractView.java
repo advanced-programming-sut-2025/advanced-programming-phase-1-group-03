@@ -42,6 +42,7 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
     }
     public void onCancel() {
     }
+
     @Override
     public boolean handle(Event event) {
         if(event instanceof UIEvent uiEvent) {

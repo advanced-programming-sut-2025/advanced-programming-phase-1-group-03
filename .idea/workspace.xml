@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding render system">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Add missing assets">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/ControllerState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/GameControllerState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/KeyboardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/UICommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/UIControllerState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/UIEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/UIEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/AbstractView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/AbstractView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,8 +49,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -210,6 +219,7 @@
       <workItem from="1752230430091" duration="3268000" />
       <workItem from="1752254117011" duration="8005000" />
       <workItem from="1752296315203" duration="13754000" />
+      <workItem from="1752328060666" duration="2464000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -476,7 +486,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۳۷" />
       <updated>1752315589821</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL‎−۰۰۰۳۸" summary="Add missing assets">
+      <option name="closed" value="true" />
+      <created>1752328107727</created>
+      <option name="number" value="LOCAL‎−۰۰۰۳۸" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۳۸" />
+      <updated>1752328107727</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +524,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="bug in direction fixed" />
     <MESSAGE value="Stores fixed" />
     <MESSAGE value="Stores completed except tools upgrade" />
     <MESSAGE value="Upgrading tool system finished" />
@@ -532,7 +548,8 @@
     <MESSAGE value="Adding buttons to main menu &amp; Adding audio service" />
     <MESSAGE value="Changing gamma values of fonts" />
     <MESSAGE value="Adding render system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding render system" />
+    <MESSAGE value="Add missing assets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add missing assets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

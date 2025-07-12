@@ -3,9 +3,7 @@ package com.ap;
 import com.ap.asset.AssetService;
 import com.ap.audio.AudioService;
 import com.ap.screen.LoadingScreen;
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -32,6 +30,8 @@ public class GdxGame extends Game {
     // Audio manger
     private AudioService audioService;
 
+    // For handling inputs
+    private InputMultiplexer inputMultiplexer;
 
     private final Map<Class<? extends Screen>, Screen> screenCache = new HashMap<>();
 
@@ -46,6 +46,9 @@ public class GdxGame extends Game {
         batch = new SpriteBatch();
 
         audioService = new AudioService(assetService);
+
+        inputMultiplexer = new InputMultiplexer();
+        Gdx.input.setInputProcessor(inputMultiplexer);
 
         addScreen(new LoadingScreen(this));
         setScreen(LoadingScreen.class);
@@ -114,5 +117,12 @@ public class GdxGame extends Game {
 
     public OrthographicCamera getCamera() {
         return camera;
+    }
+
+    public void setInputProcessors(InputProcessor... inputs) {
+        inputMultiplexer.clear();
+        for(InputProcessor inputProcessor : inputs) {
+            inputMultiplexer.addProcessor(inputProcessor);
+        }
     }
 }

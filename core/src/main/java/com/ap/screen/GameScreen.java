@@ -4,6 +4,8 @@ import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.audio.AudioService;
+import com.ap.input.GameControllerState;
+import com.ap.input.KeyboardController;
 import com.ap.system.RenderSystem;
 import com.ap.tiled.TiledService;
 import com.badlogic.ashley.core.Engine;
@@ -16,12 +18,15 @@ public class GameScreen extends AbstractScreen {
     private AudioService audioService;
     private Engine engine;
     private TiledService tiledService;
+    private KeyboardController keyboardController;
 
     public GameScreen(GdxGame game) {
         super(game);
 
         engine = new Engine();
         engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
+
+        keyboardController = new KeyboardController(GameControllerState.class, engine, stage);
 
         assetService = game.getAssetService();
         audioService = game.getAudioService();
@@ -32,6 +37,8 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void show() {
         super.show();
+
+        game.setInputProcessors(stage, keyboardController);
 
         Consumer<TiledMap> renderConsumer = engine.getSystem(RenderSystem.class)::setMap;
 
