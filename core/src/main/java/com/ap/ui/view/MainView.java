@@ -2,7 +2,6 @@ package com.ap.ui.view;
 
 import com.ap.asset.SoundAsset;
 import com.ap.audio.AudioService;
-import com.ap.ui.model.LoadingViewModel;
 import com.ap.ui.model.MainViewModel;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -36,16 +35,19 @@ public class MainView extends AbstractView<MainViewModel>{
 
     private void drawHeader() {
         add(new Label("Welcome", skin)).colspan(1).pad(10);
-        TextButton playButton = new TextButton("Signup/Login", skin);
+        TextButton loginButton = new TextButton("Signup/Login", skin);
         add().colspan(2).expandX().fillX();
-        add(playButton).colspan(1).pad(10).row();
+        add(loginButton).colspan(1).pad(10).row();
 
         Image logo = new Image(skin.getDrawable("Logo"));
         logo.setScaling(Scaling.fit);
         add(logo).padTop(20).colspan(4).fillX().top().row();
 
         // Setup events
-        OnClick(playButton, viewModel::clickSignupButton);
+        OnClick(loginButton, viewModel::clickSignupButton);
+        OnEnter(loginButton, (TextButton btn) -> {
+            audioService.playSound(SoundAsset.HoverButton);
+        });
     }
 
     private void drawButtons() {

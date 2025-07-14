@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.Comparator;
 
-public class RenderSystem extends IteratingSystem {
+public class RenderSystem extends SortedIteratingSystem {
     private TiledMap currentMap;
     private BatchTiledMapRenderer renderer;
     private Batch batch;
@@ -25,7 +25,9 @@ public class RenderSystem extends IteratingSystem {
     private OrthographicCamera camera;
 
     public RenderSystem(Batch batch, Viewport viewport, OrthographicCamera camera) {
-        super(Family.all(Transform.class, Graphic.class).get());
+        super(Family.all(Transform.class, Graphic.class).get(),
+                Comparator.comparing(Transform.mapper::get));
+
         renderer = new OrthogonalTiledMapRenderer(null, Constraints.UNIT_SCALE, batch);
         this.batch = batch;
         this.viewport = viewport;
@@ -39,12 +41,33 @@ public class RenderSystem extends IteratingSystem {
 
         renderer.render();
 
+        forceSort();
+
+        batch.begin();
         super.update(deltaTime);
+        batch.end();
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
+        Transform transform = Transform.mapper.get(entity);
+        Graphic graphic = Graphic.mapper.get(entity);
+        if(graphic.getTexture() == null)
+            return;
 
+        var position = transform.getPosition();
+        var size = transform.getSize();
+        var scaling = transform.getScaling();
+
+        batch.setColor(graphic.getColor());
+        batch.draw(
+                graphic.getTexture(),
+                position.x, position.y,
+                size.x * 0.5f, size.y * 0.5f,
+                size.x, size.y,
+                scaling.x, scaling.y,
+                transform.getRotationDeg()
+        );
     }
 
     public void setMap(TiledMap tiledMap) {

@@ -4,7 +4,8 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.audio.Music;
 
 public enum MusicAsset implements Asset<Music> {
-    Default("Overture.mp3")
+    Default("Overture.mp3"),
+    GameMusicDefault("Game1.mp3")
     ;
 
     private final AssetDescriptor<Music> descriptor;
