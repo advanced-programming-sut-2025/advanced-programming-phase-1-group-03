@@ -1,4 +1,19 @@
+audio/Game1.mp3
+audio/Overture.mp3
+audio/hover-sound.wav
+graphics/player.atlas
+graphics/player.png
+map/Farm1.tmx
+map/objects/Objects.tsx
+map/objects/player.png
+map/tileset/paths.png
+map/tileset/spring_outdoorTileSheet_extra.png
+map/tileset/spring_outdoorsTileSheet.png
+map/tileset/spring_outdoorsTileSheet2.png
+skins/Stardew Valley ALL CAPS.ttf
+skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
+skins/Stardew_Valley2.ttf
 skins/skin.atlas
 skins/skin.json
 skins/skin.png

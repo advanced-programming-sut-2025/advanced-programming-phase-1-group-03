@@ -58,6 +58,8 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL));
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new FacingSystem());
+        engine.addSystem(new FsmUpdateSystem());
+        engine.addSystem(new AnimationSystem(assetService));
     }
 
     @Override

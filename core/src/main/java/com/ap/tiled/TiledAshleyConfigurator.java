@@ -1,11 +1,13 @@
 package com.ap.tiled;
 
 import com.ap.Constraints;
+import com.ap.asset.AtlasAsset;
 import com.ap.component.*;
 import com.ap.component.Transform;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
@@ -54,8 +56,22 @@ public class TiledAshleyConfigurator {
         addEntityCameraFollow(tileObject, entity);
         addEntityGraphic(entity, textureRegion);
         addEntityFacing(entity);
-
+        addEntityAnimation(tile, entity);
         engine.addEntity(entity);
+    }
+
+    private void addEntityAnimation(TiledMapTile tile, Entity entity) {
+        String defaultAnimation = tile.getProperties().get("animation", "", String.class);
+        if(defaultAnimation.isBlank()) {
+            return;
+        }
+        var type = Animation2D.AnimationType.valueOf(defaultAnimation);
+
+        String atlasKey = tile.getProperties().get("atlasKey", String.class);
+        String atlasAssetStr = tile.getProperties().get("atlas", String.class);
+        float speed = tile.getProperties().get("animationSpeed", Float.class);
+
+        entity.add(new Animation2D(AtlasAsset.valueOf(atlasAssetStr), atlasKey, type, Animation.PlayMode.LOOP, speed));
     }
 
     private static void addEntityFacing(Entity entity) {

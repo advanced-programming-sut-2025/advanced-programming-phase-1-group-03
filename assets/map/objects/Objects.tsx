@@ -3,8 +3,12 @@
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="2" type="Object">
   <properties>
+   <property name="animation" value="Idle"/>
+   <property name="animationSpeed" type="float" value="1"/>
+   <property name="atlas" value="Player"/>
+   <property name="atlasKey" value="player"/>
    <property name="controller" type="bool" value="true"/>
-   <property name="speed" type="float" value="3"/>
+   <property name="speed" type="float" value="2"/>
   </properties>
   <image source="player.png" width="32" height="32"/>
   <objectgroup draworder="index" id="2">
