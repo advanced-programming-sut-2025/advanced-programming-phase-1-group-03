@@ -2003,6 +2003,7 @@
  <objectgroup id="13" name="objects">
   <object id="88" name="Player" gid="3162" x="90.1667" y="837.334" width="32" height="32">
    <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
     <property name="speed" type="float" value="1"/>
    </properties>
   </object>

@@ -10,4 +10,5 @@ public class Constraints {
 
     // We update physic system with 30FPS to prevent huge load on CPU
     public static final float PHYSIC_STEP_INTERVAL = 1 / 30f;
+    public static final float CAMERA_SMOOTHING_FACTOR = 4;
 }

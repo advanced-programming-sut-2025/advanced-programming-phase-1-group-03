@@ -51,10 +51,28 @@ public class TiledAshleyConfigurator {
                 entity);
         addEntityMove(tile, entity);
         addEntityController(tile, entity);
-
-        entity.add(new Graphic(textureRegion, Color.WHITE.cpy()));
+        addEntityCameraFollow(tileObject, entity);
+        addEntityGraphic(entity, textureRegion);
+        addEntityFacing(entity);
 
         engine.addEntity(entity);
+    }
+
+    private static void addEntityFacing(Entity entity) {
+        // Every object has face direction even if it's static
+        entity.add(new Facing(Facing.FacingDirection.Down));
+    }
+
+    private static void addEntityGraphic(Entity entity, TextureRegion textureRegion) {
+        entity.add(new Graphic(textureRegion, Color.WHITE.cpy()));
+    }
+
+    private void addEntityCameraFollow(TiledMapTileMapObject tile, Entity entity) {
+        boolean cameraFollow = tile.getProperties().get("cameraFollow", false, Boolean.class);
+        if(!cameraFollow) {
+            return;
+        }
+        entity.add(new CameraFollow());
     }
 
     // Add "controller" boolean to the tile of object to control it via keyboard

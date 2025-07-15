@@ -6,6 +6,7 @@ import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
+import com.ap.component.Facing;
 import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
 import com.ap.system.*;
@@ -55,6 +56,8 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new PhysicMoveSystem());
         engine.addSystem(new PhysicDebugRenderSystem(camera, world));
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL));
+        engine.addSystem(new CameraSystem(camera));
+        engine.addSystem(new FacingSystem());
     }
 
     @Override
@@ -68,8 +71,9 @@ public class GameScreen extends AbstractScreen {
 
         // Setup consumers
         Consumer<TiledMap> renderConsumer = engine.getSystem(RenderSystem.class)::setMap;
+        Consumer<TiledMap> cameraConsumer = engine.getSystem(CameraSystem.class)::setMap;
+        tiledService.setMapChangeConsumer(renderConsumer.andThen(cameraConsumer));
 
-        tiledService.setMapChangeConsumer(renderConsumer);
         tiledService.setLoadTileConsumer(tileConfigurator::onLoadTile);
         tiledService.setLoadObjectConsumer(tileConfigurator::onLoadObject);
 
