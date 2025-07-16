@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding animation system">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/UIUtils.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Login screen view">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/effect/TransitionManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/common/BackButtonLayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/skins/skin.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/skins/skin.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/skins/skin.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/skins/skin.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/skins/skin.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/skins/skin.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/SignupScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/SignupScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/SignupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/SignupViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/MainView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/SignupView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,8 +52,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Enum" />
         <option value="Kotlin Class" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -89,7 +94,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/StarehdewValley/assets/graphics&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/StarehdewValley&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -158,9 +163,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Run" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
+      <item itemvalue="Application.Run" />
     </list>
     <recent_temporary>
       <list>
@@ -225,7 +230,8 @@
       <workItem from="1752467089543" duration="17611000" />
       <workItem from="1752561800935" duration="27000" />
       <workItem from="1752562276558" duration="9984000" />
-      <workItem from="1752609324680" duration="6849000" />
+      <workItem from="1752609324680" duration="6910000" />
+      <workItem from="1752658341662" duration="7303000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -527,7 +533,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۴۲" />
       <updated>1752592350714</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL‎−۰۰۰۴۳" summary="Login screen view">
+      <option name="closed" value="true" />
+      <created>1752617406309</created>
+      <option name="number" value="LOCAL‎−۰۰۰۴۳" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۴۳" />
+      <updated>1752617406309</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -558,7 +571,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fishing completed" />
     <MESSAGE value="Fix scythe bug in tools" />
     <MESSAGE value="place and pick items up" />
     <MESSAGE value="Profile Menu Completed" />
@@ -583,7 +595,8 @@
     <MESSAGE value="Static graphic added" />
     <MESSAGE value="Add facing and camera follow system" />
     <MESSAGE value="Adding animation system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding animation system" />
+    <MESSAGE value="Login screen view" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login screen view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

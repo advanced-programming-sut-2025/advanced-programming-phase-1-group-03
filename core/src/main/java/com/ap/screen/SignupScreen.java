@@ -5,6 +5,7 @@ import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
 import com.ap.input.KeyboardController;
 import com.ap.input.UIControllerState;
+import com.ap.ui.common.BackButtonLayer;
 import com.ap.ui.model.MainViewModel;
 import com.ap.ui.model.SignupViewModel;
 import com.ap.ui.view.MainView;
@@ -24,6 +25,7 @@ public class SignupScreen extends AbstractScreen{
     @Override
     public void show() {
         this.stage.addActor(new SignupView(stage, skin, new SignupViewModel(game), audioService));
+        this.stage.addActor(new BackButtonLayer(game, skin, MainMenuScreen.class));
         game.setInputProcessors(stage, controller);
     }
 

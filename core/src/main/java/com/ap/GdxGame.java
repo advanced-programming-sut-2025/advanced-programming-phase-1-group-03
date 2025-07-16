@@ -2,6 +2,7 @@ package com.ap;
 
 import com.ap.asset.AssetService;
 import com.ap.audio.AudioService;
+import com.ap.effect.TransitionManager;
 import com.ap.screen.LoadingScreen;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
@@ -33,6 +34,9 @@ public class GdxGame extends Game {
     // For handling inputs
     private InputMultiplexer inputMultiplexer;
 
+    // Transition for changing screens
+    private TransitionManager transitionManager;
+
     private final Map<Class<? extends Screen>, Screen> screenCache = new HashMap<>();
 
     @Override
@@ -50,9 +54,10 @@ public class GdxGame extends Game {
         inputMultiplexer = new InputMultiplexer();
         Gdx.input.setInputProcessor(inputMultiplexer);
 
-        addScreen(new LoadingScreen(this));
-        setScreen(LoadingScreen.class);
+        transitionManager = new TransitionManager(this);
 
+        addScreen(new LoadingScreen(this));
+        changeScreen(LoadingScreen.class);
     }
 
     @Override
@@ -68,8 +73,8 @@ public class GdxGame extends Game {
     @Override
     public void render() {
         ScreenUtils.clear(0, 0, 0, 0);
-        Gdx.gl.glDisable(GL20.GL_BLEND);
         super.render();
+        transitionManager.render(Gdx.graphics.getDeltaTime());
     }
 
     @Override
@@ -91,12 +96,22 @@ public class GdxGame extends Game {
         screenCache.remove(screen.getClass());
     }
 
-    public void setScreen(Class<? extends Screen> screen) {
+    public void changeScreen(Class<? extends Screen> screen) {
         Screen screenInstance = screenCache.get(screen);
         if(screenInstance == null) {
             throw new IllegalArgumentException("Screen does not exists");
         }
         setScreen(screenInstance);
+    }
+
+    public void setScreen(Class<? extends Screen> screen) {
+        if(transitionManager.isTransitioning())
+            return;
+        Screen screenInstance = screenCache.get(screen);
+        if(screenInstance == null) {
+            throw new IllegalArgumentException("Screen does not exists");
+        }
+        transitionManager.initTransition(screen);
     }
 
     public FitViewport getViewport() {

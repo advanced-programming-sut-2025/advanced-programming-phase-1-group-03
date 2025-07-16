@@ -62,12 +62,28 @@ public class SignupView extends AbstractView<SignupViewModel> {
         window.row();
 
         window.add(new Label("Gender: ", skin));
-        ImageButton maleButton = new ImageButton(skin.getDrawable("male"));
-        ImageButton femaleButton = new ImageButton(skin.getDrawable("female"));
+        var maleStyle = new CheckBox.CheckBoxStyle();
+
+        var femaleStyle = new CheckBox.CheckBoxStyle();
+
+
+        maleStyle.checkboxOn = skin.getDrawable("maleSelected");
+        maleStyle.checkboxOff = skin.getDrawable("male");
+        maleStyle.font = skin.getFont("font24");
+
+
+        femaleStyle.checkboxOn = skin.getDrawable("femaleSelected");
+        femaleStyle.checkboxOff = skin.getDrawable("female");
+        femaleStyle.font = skin.getFont("font24");
+
+        CheckBox maleButton = new CheckBox("", maleStyle);
+        CheckBox femaleButton = new CheckBox("", femaleStyle);
+
         maleButton.setTransform(true);
         maleButton.setScale(0.75f);
         femaleButton.setTransform(true);
         femaleButton.setScale(0.75f);
+
         Table genderButtonTable = new Table();
         genderButtonTable.add(maleButton).pad(2);
         genderButtonTable.add(femaleButton).pad(2);
@@ -78,5 +94,22 @@ public class SignupView extends AbstractView<SignupViewModel> {
         TextButton submit = new TextButton("ok", skin, "font36");
         window.add(submit).colspan(2).pad(20);
         add(window);
+
+        // Setup events
+        OnClick(submit, () -> {
+            viewModel.submit(usernameField.getText(),
+                    emailField.getText(),
+                    passwordField.getText(),
+                    confirmPasswordField.getText(),
+                    nicknameField.getText());
+        });
+        OnClick(maleButton, () -> {
+            viewModel.maleButtonClicked();
+            femaleButton.setChecked(false);
+        });
+        OnClick(femaleButton, () -> {
+            viewModel.femaleButtonClicked();
+            maleButton.setChecked(false);
+        });
     }
 }

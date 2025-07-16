@@ -48,7 +48,6 @@ public class LoadingScreen extends AbstractScreen {
         stage.act(delta);
         stage.draw();
         if(assetService.update()) {
-            Gdx.app.log("LoadingScreen", "Finished loading assets");
             createScreens();
 
             // Remove the loading screen, we don't need it anymore :)

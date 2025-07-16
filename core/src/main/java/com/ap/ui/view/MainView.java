@@ -80,10 +80,10 @@ public class MainView extends AbstractView<MainViewModel>{
         newButton.setOrigin(newButton.getWidth() / 2, newButton.getHeight() / 2);
         OnEnter(newButton, (ImageButton btn) -> {
             audioService.playSound(SoundAsset.HoverButton);
-            btn.addAction(Actions.scaleTo(1.3f, 1.3f, 0.2f));
+            btn.addAction(Actions.scaleTo(2f, 2f, 0.3f));
         });
         OnExit(newButton, (ImageButton btn) -> {
-            btn.addAction(Actions.scaleTo(1f, 1f, 0.2f));
+            btn.addAction(Actions.scaleTo(1f, 1f, 0.3f));
         });
         return newButton;
     }
