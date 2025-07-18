@@ -74,8 +74,7 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
         actor.addListener(new InputListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                if(pointer == -1)
-                    consumer.onEvent(actor);
+                consumer.onEvent(actor);
             }
         });
     }
@@ -83,8 +82,7 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
         actor.addListener(new InputListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                if(pointer == -1)
-                    consumer.onEvent(actor);
+                consumer.onEvent(actor);
             }
         });
     }

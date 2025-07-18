@@ -31,35 +31,37 @@ public class SignupView extends AbstractView<SignupViewModel> {
         usernameField.getStyle().cursor = UIUtils.getBlinkTextField(skin);
 
         window.add(new Label("Username: ", skin));
-        window.add(usernameField).pad(8);
+        window.add(usernameField).pad(6);
 
         window.row();
 
         window.add(new Label("Email: ", skin));
         TextField emailField = new TextField("", skin);
-        window.add(emailField).pad(8);
-
-        window.row();
-
-        window.add(new Label("Password: ", skin));
-        TextField passwordField = new TextField("", skin);
-        passwordField.setPasswordMode(true);
-        passwordField.setPasswordCharacter('*');
-        window.add(passwordField).pad(8);
-
-        window.row();
-
-        window.add(new Label("Confirm Password: ", skin));
-        TextField confirmPasswordField = new TextField("", skin);
-        confirmPasswordField.setPasswordMode(true);
-        confirmPasswordField.setPasswordCharacter('*');
-        window.add(confirmPasswordField).pad(8);
+        window.add(emailField).pad(6);
 
         window.row();
 
         window.add(new Label("Nickname: ", skin));
         TextField nicknameField = new TextField("", skin);
-        window.add(nicknameField).pad(8);
+        window.add(nicknameField).pad(6);
+
+        window.row();
+
+        window.add(new Label("Password: ", skin));
+        TextField passwordField = new TextField("", skin);
+        window.add(passwordField).pad(6);
+
+        window.row();
+
+        window.add(new Label("Confirm Password: ", skin));
+        TextField confirmPasswordField = new TextField("", skin);
+        window.add(confirmPasswordField).pad(6);
+
+        window.row();
+
+        TextButton genPasswordButton = new TextButton("Generate Random Password", skin);
+
+        window.add(genPasswordButton).colspan(2);
 
         window.row();
 
@@ -93,7 +95,7 @@ public class SignupView extends AbstractView<SignupViewModel> {
 
         window.row();
 
-        window.add(new Label("What is name of you first school?", skin, "font20"));
+        window.add(new Label(viewModel.getSecQuestion(), skin, "font20"));
         TextField securityQuestion = new TextField("", skin);
         window.add(securityQuestion).pad(8);
 
@@ -119,6 +121,15 @@ public class SignupView extends AbstractView<SignupViewModel> {
             });
             dialog.show(stage);
         });
+        OnClick(genPasswordButton, () -> {
+            // Without thread the program will crash if you click generate password button multiple time
+            // Because computation behind generatePassword is kinda hard
+            new Thread(() -> {
+                String password = viewModel.generatePassword();
+                passwordField.setText(password);
+                confirmPasswordField.setText(password);
+            }).start();
+        });
         OnClick(maleButton, () -> {
             viewModel.maleButtonClicked(maleButton.isChecked());
             femaleButton.setChecked(false);
@@ -136,11 +147,10 @@ public class SignupView extends AbstractView<SignupViewModel> {
 
     private void setupLoginPage() {
         row();
-        add(new Label("Do you have an account?", skin));
+        add(new Label("Do you have an account?", skin)).colspan(2);
         row();
-        var loginPageButton =new TextButton("Login page", skin);
+        var loginPageButton = new TextButton("Login page", skin);
         add(loginPageButton);
-        AddHoverScale(loginPageButton, audioService);
         OnClick(loginPageButton, viewModel::openLoginPage);
     }
 }

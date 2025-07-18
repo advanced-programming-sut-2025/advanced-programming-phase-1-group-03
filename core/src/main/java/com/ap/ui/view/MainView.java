@@ -35,7 +35,7 @@ public class MainView extends AbstractView<MainViewModel>{
     }
 
     private void drawHeader() {
-        add(new Label("Welcome  " + viewModel.getLoggedInUsername(), skin)).colspan(1).pad(10);
+        add(new Label("Welcome  " + viewModel.getLoggedInUserNickname(), skin)).colspan(1).pad(10);
         TextButton loginButton = new TextButton("Signup/Login", skin);
         add().colspan(2).expandX().fillX();
         add(loginButton).colspan(1).pad(10).row();
@@ -47,9 +47,6 @@ public class MainView extends AbstractView<MainViewModel>{
         // Setup events
         OnClick(loginButton, viewModel::clickSignupButton);
 
-        OnEnter(loginButton, (TextButton btn) -> {
-            audioService.playSound(SoundAsset.HoverButton);
-        });
     }
 
     private void drawButtons() {

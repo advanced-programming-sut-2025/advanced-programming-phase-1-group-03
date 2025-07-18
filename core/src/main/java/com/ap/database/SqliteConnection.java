@@ -28,6 +28,7 @@ public class SqliteConnection {
                     email VARCHAR(20) NOT NULL,
                     gender VARCHAR(10) NOT NULL,
                     nickname TEXT NOT NULL,
+                    securityQuestionId INTERGER,
                     securityQuestion TEXT
                 );
                 """;
@@ -40,7 +41,8 @@ public class SqliteConnection {
     }
 
     public ResultSet runSql(final String sql, PreparedStatementConsumer prepareStatementConsumer) {
-        try(var statement = connection.prepareStatement(sql)) {
+        try {
+            var statement = connection.prepareStatement(sql);
             prepareStatementConsumer.accept(statement);
             return statement.executeQuery();
         } catch (Exception e) {

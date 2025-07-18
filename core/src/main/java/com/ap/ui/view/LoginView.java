@@ -8,6 +8,8 @@ import com.ap.utils.UIUtils;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 
+import static com.ap.Constraints.secQuestions;
+
 public class LoginView extends AbstractView<LoginViewModel> {
     private final AudioService audioService;
     public LoginView(Stage stage, Skin skin, LoginViewModel viewModel, AudioService audioService) {
@@ -60,17 +62,53 @@ public class LoginView extends AbstractView<LoginViewModel> {
             });
             dialog.show(stage);
         });
-        add(window);
-        setupRegisterPage();
+        add(window).colspan(2);
+        setupBottomButtons(usernameField);
     }
 
-    private void setupRegisterPage() {
+    private void setupBottomButtons(TextField usernameField) {
         row();
-        add(new Label("You don't have an account?", skin));
+        add(new Label("You don't have an account?", skin)).colspan(2).padTop(10);
         row();
         var registerButton =new TextButton("registration page", skin);
         add(registerButton);
-        AddHoverScale(registerButton, audioService);
+        var forgetPassButton = new TextButton("Forget Password", skin);
+        add(forgetPassButton);
         OnClick(registerButton, viewModel::openRegisterPage);
+        OnClick(forgetPassButton, () -> {
+            openSecQuestionDialog(usernameField.getText());
+        });
+    }
+
+    private void openSecQuestionDialog(String username) {
+        int secId = viewModel.getSecurityQuestion(username);
+        if(secId == -1) {
+            new SimpleDialog("", "User not found", skin).show(stage);
+            return;
+        }
+        SimpleDialog dialog = new SimpleDialog("", secQuestions[secId], skin);
+        TextField questionField = new TextField("", skin);
+        dialog.addToContent(questionField);
+        dialog.setupEvent(() -> {
+            boolean isSecQuestionPassed = viewModel.isSecurityQuestionValid(questionField.getText(), username);
+            if(!isSecQuestionPassed) {
+                new SimpleDialog("", "Security question didn't passed", skin).show(stage);
+                return;
+            }
+            openNewPasswordDialog(username);
+        });
+        dialog.show(stage);
+
+    }
+
+    private void openNewPasswordDialog(String username) {
+        SimpleDialog dialog = new SimpleDialog("", "Enter your new password:", skin);
+        TextField passwordField = new TextField("", skin);
+        dialog.addToContent(passwordField);
+        dialog.setupEvent(() -> {
+            var result = viewModel.changePassword(username, passwordField.getText());
+            new SimpleDialog("", result.getData(), skin).show(stage);
+        });
+        dialog.show(stage);
     }
 }

@@ -29,20 +29,28 @@ public class SimpleDialog extends Dialog {
         return style;
     }
 
+    /**
+     * ُThis method run an event when user clicked the ok button, it should be called before show method
+     * @param event event to run
+     */
     public void setupEvent(AbstractView.OnEventConsumer event) {
         this.event = event;
     }
+
+    public void addToContent(Actor actor) {
+        super.getContentTable().add(actor);
+        super.getContentTable().row();
+    }
+
     private void setupUI() {
         Label label = new Label(content, skin);
         label.setColor(skin.getColor("Text"));
         text(label);
-
         var okButtonStyle = new ImageButton.ImageButtonStyle();
         okButtonStyle.down = skin.getDrawable("ok_button");
         okButtonStyle.up = skin.getDrawable("ok_button");
         okButtonStyle.over = skin.getDrawable("ok_button_hover");
         ImageButton okButton = new ImageButton(okButtonStyle);
-        AbstractView.AddHoverScale(okButton, 0.8f, 1.2f, 1f);
         okButton.setTransform(true);
         okButton.setScale(0.8f);
 

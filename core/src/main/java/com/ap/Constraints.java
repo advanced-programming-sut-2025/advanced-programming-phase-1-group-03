@@ -12,4 +12,10 @@ public class Constraints {
     public static final float PHYSIC_STEP_INTERVAL = 1 / 30f;
     public static final float CAMERA_SMOOTHING_FACTOR = 4;
     public static final float PLAYER_ANIMATION_FRAME_DURATION =  1/ 8f;
+
+    public static String[] secQuestions = {
+            "What is your dad's name?",
+            "What is name of your first school?",
+            "What is month of your birthday?"
+    };
 }
