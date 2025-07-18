@@ -2,8 +2,10 @@ package com.ap.ui.model;
 
 import com.ap.GdxGame;
 import com.ap.database.SqliteConnection;
+import com.ap.model.GameData;
 import com.ap.model.Gender;
 import com.ap.model.Result;
+import com.ap.screen.LoginScreen;
 import com.ap.screen.MainMenuScreen;
 import com.ap.utils.Crypto;
 import com.ap.utils.RegistrationValidator;
@@ -50,16 +52,12 @@ public class SignupViewModel extends ViewModel {
                 INSERT INTO users(username, password, email, gender, nickname, securityQuestion) VALUES (?, ?, ?, ?, ?, ?)
                 """;
         sqlite.runSqlWithoutResult(sql, (PreparedStatement stm) -> {
-            try {
-                stm.setString(1, username);
-                stm.setString(2, Crypto.hash(password));
-                stm.setString(3, email);
-                stm.setString(4, gender.name());
-                stm.setString(5, nickname);
-                stm.setString(6, securityQuestion);
-            } catch (SQLException e) {
-                throw new GdxRuntimeException(e);
-            }
+            stm.setString(1, username);
+            stm.setString(2, Crypto.hash(password));
+            stm.setString(3, email);
+            stm.setString(4, gender.name());
+            stm.setString(5, nickname);
+            stm.setString(6, securityQuestion);
         });
         return new Result<>(true, "Registration was successful");
     }
@@ -83,7 +81,13 @@ public class SignupViewModel extends ViewModel {
     /**
      * This method called when registration was successfully
      */
-    public void registerSuccessful() {
+    public void registerSuccessful(String username) {
+        GameData.getInstance().setLoggedUserUsername(username);
+        game.getPreferencesManager().removeRememberUser();
         game.setScreen(MainMenuScreen.class);
+    }
+
+    public void openLoginPage() {
+        game.setScreen(LoginScreen.class);
     }
 }

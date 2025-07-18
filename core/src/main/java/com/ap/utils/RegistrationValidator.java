@@ -35,6 +35,24 @@ public class RegistrationValidator {
         return false;
     }
 
+    public boolean checkLogin(String username, String password) {
+        var sql = """
+                SELECT COUNT(*) FROM users WHERE username = ? AND password = ?;
+                """;
+        try (var statement = sqlite.getConnection().prepareStatement(sql)) {
+            statement.setString(1, username);
+            statement.setString(2, password);
+            var rs = statement.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (Exception e) {
+            throw new GdxRuntimeException(e.getMessage());
+        }
+        return false;
+    }
+
     /**
      * This method check that is username valid
      * @param username Given username

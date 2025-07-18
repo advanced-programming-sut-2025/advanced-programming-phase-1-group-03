@@ -29,7 +29,6 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
         // Now we can receive events from stage
         stage.addListener(this);
 
-        setupUI();
     }
 
     abstract protected void setupUI();
@@ -75,7 +74,8 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
         actor.addListener(new InputListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                consumer.onEvent(actor);
+                if(pointer == -1)
+                    consumer.onEvent(actor);
             }
         });
     }
@@ -83,7 +83,8 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
         actor.addListener(new InputListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                consumer.onEvent(actor);
+                if(pointer == -1)
+                    consumer.onEvent(actor);
             }
         });
     }
@@ -101,7 +102,7 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
             btn.addAction(Actions.scaleTo(from, from, duration));
         });
     }
-    public static void AddHoverScale(ImageButton button, AudioService audioService) {
+    public static void AddHoverScale(Button button, AudioService audioService) {
         OnEnter(button, (Button btn) -> {
             audioService.playSound(SoundAsset.HoverButton);
             btn.addAction(Actions.scaleTo(2f, 2f, 0.3f));

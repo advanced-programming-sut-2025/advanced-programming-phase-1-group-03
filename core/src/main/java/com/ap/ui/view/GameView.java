@@ -12,6 +12,7 @@ public class GameView extends AbstractView<GameViewModel> {
     public GameView(Stage stage, Skin skin, GameViewModel viewModel, AudioService audioService) {
         super(stage, skin, viewModel);
         this.audioService = audioService;
+        setupUI();
     }
 
     @Override

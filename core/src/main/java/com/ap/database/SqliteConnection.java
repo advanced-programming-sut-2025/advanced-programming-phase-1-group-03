@@ -2,10 +2,7 @@ package com.ap.database;
 
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 
@@ -26,9 +23,9 @@ public class SqliteConnection {
         String sql = """
                 CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    username VARCHAR(20) NOT NULL UNIQUE,
-                    password VARCHAR(20) NOT NULL,
-                    email VARCHAR(20) NOT NULL UNIQUE,
+                    username TEXT NOT NULL UNIQUE,
+                    password VARCHAR(25) NOT NULL,
+                    email VARCHAR(20) NOT NULL,
                     gender VARCHAR(10) NOT NULL,
                     nickname TEXT NOT NULL,
                     securityQuestion TEXT
@@ -42,7 +39,7 @@ public class SqliteConnection {
         }
     }
 
-    public ResultSet runSql(final String sql, Consumer<PreparedStatement> prepareStatementConsumer) {
+    public ResultSet runSql(final String sql, PreparedStatementConsumer prepareStatementConsumer) {
         try(var statement = connection.prepareStatement(sql)) {
             prepareStatementConsumer.accept(statement);
             return statement.executeQuery();
@@ -50,7 +47,7 @@ public class SqliteConnection {
             throw new GdxRuntimeException(e.getMessage());
         }
     }
-    public void runSqlWithoutResult(final String sql, Consumer<PreparedStatement> prepareStatementConsumer) {
+    public void runSqlWithoutResult(final String sql, PreparedStatementConsumer prepareStatementConsumer) {
         try(var statement = connection.prepareStatement(sql)) {
             prepareStatementConsumer.accept(statement);
             statement.execute();
@@ -60,5 +57,10 @@ public class SqliteConnection {
     }
     public Connection getConnection() {
         return connection;
+    }
+
+    @FunctionalInterface
+    public interface PreparedStatementConsumer {
+        void accept(PreparedStatement preparedStatement) throws SQLException;
     }
 }

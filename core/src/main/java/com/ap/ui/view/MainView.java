@@ -15,6 +15,7 @@ public class MainView extends AbstractView<MainViewModel>{
     public MainView(Stage stage, Skin skin, MainViewModel viewModel, AudioService audioService) {
         super(stage, skin, viewModel);
         this.audioService = audioService;
+        setupUI();
     }
 
     @Override
@@ -34,7 +35,7 @@ public class MainView extends AbstractView<MainViewModel>{
     }
 
     private void drawHeader() {
-        add(new Label("Welcome", skin)).colspan(1).pad(10);
+        add(new Label("Welcome  " + viewModel.getLoggedInUsername(), skin)).colspan(1).pad(10);
         TextButton loginButton = new TextButton("Signup/Login", skin);
         add().colspan(2).expandX().fillX();
         add(loginButton).colspan(1).pad(10).row();
@@ -45,6 +46,7 @@ public class MainView extends AbstractView<MainViewModel>{
 
         // Setup events
         OnClick(loginButton, viewModel::clickSignupButton);
+
         OnEnter(loginButton, (TextButton btn) -> {
             audioService.playSound(SoundAsset.HoverButton);
         });
@@ -68,6 +70,7 @@ public class MainView extends AbstractView<MainViewModel>{
 
         // Setup events
         OnClick(newButton, viewModel::clickNewGameButton);
+        OnClick(exitButton, viewModel::exitGame);
     }
 
     private ImageButton createImageButton(Drawable drawable, Drawable hoverDrawable) {

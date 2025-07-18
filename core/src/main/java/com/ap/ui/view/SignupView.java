@@ -17,6 +17,7 @@ public class SignupView extends AbstractView<SignupViewModel> {
     public SignupView(Stage stage, Skin skin, SignupViewModel viewModel, AudioService audioService) {
         super(stage, skin, viewModel);
         this.audioService = audioService;
+        setupUI();
     }
 
 
@@ -30,13 +31,13 @@ public class SignupView extends AbstractView<SignupViewModel> {
         usernameField.getStyle().cursor = UIUtils.getBlinkTextField(skin);
 
         window.add(new Label("Username: ", skin));
-        window.add(usernameField).pad(10);
+        window.add(usernameField).pad(8);
 
         window.row();
 
         window.add(new Label("Email: ", skin));
         TextField emailField = new TextField("", skin);
-        window.add(emailField).pad(10);
+        window.add(emailField).pad(8);
 
         window.row();
 
@@ -44,7 +45,7 @@ public class SignupView extends AbstractView<SignupViewModel> {
         TextField passwordField = new TextField("", skin);
         passwordField.setPasswordMode(true);
         passwordField.setPasswordCharacter('*');
-        window.add(passwordField).pad(10);
+        window.add(passwordField).pad(8);
 
         window.row();
 
@@ -52,13 +53,13 @@ public class SignupView extends AbstractView<SignupViewModel> {
         TextField confirmPasswordField = new TextField("", skin);
         confirmPasswordField.setPasswordMode(true);
         confirmPasswordField.setPasswordCharacter('*');
-        window.add(confirmPasswordField).pad(10);
+        window.add(confirmPasswordField).pad(8);
 
         window.row();
 
         window.add(new Label("Nickname: ", skin));
         TextField nicknameField = new TextField("", skin);
-        window.add(nicknameField).pad(10);
+        window.add(nicknameField).pad(8);
 
         window.row();
 
@@ -92,15 +93,15 @@ public class SignupView extends AbstractView<SignupViewModel> {
 
         window.row();
 
-        window.add(new Label("What is name of you first school?", skin, "font24"));
+        window.add(new Label("What is name of you first school?", skin, "font20"));
         TextField securityQuestion = new TextField("", skin);
-        window.add(securityQuestion).pad(10);
+        window.add(securityQuestion).pad(8);
 
         window.row();
 
         TextButton submit = new TextButton("ok", skin, "font36");
-        window.add(submit).colspan(2).pad(20);
-        add(window);
+        AddHoverScale(submit, audioService);
+        window.add(submit).colspan(2).pad(8);
 
         // Setup events
         OnClick(submit, () -> {
@@ -113,7 +114,7 @@ public class SignupView extends AbstractView<SignupViewModel> {
             SimpleDialog dialog = new SimpleDialog("Message", result.getData(), skin);
             dialog.setupEvent(() -> {
                 if(result.isSuccess()) {
-                    viewModel.registerSuccessful();
+                    viewModel.registerSuccessful(usernameField.getText());
                 }
             });
             dialog.show(stage);
@@ -126,5 +127,20 @@ public class SignupView extends AbstractView<SignupViewModel> {
             viewModel.femaleButtonClicked(femaleButton.isChecked());
             maleButton.setChecked(false);
         });
+
+        add(window);
+
+        setupLoginPage();
+
+    }
+
+    private void setupLoginPage() {
+        row();
+        add(new Label("Do you have an account?", skin));
+        row();
+        var loginPageButton =new TextButton("Login page", skin);
+        add(loginPageButton);
+        AddHoverScale(loginPageButton, audioService);
+        OnClick(loginPageButton, viewModel::openLoginPage);
     }
 }

@@ -5,28 +5,18 @@ import com.ap.asset.*;
 import com.ap.database.SqliteConnection;
 import com.ap.ui.model.LoadingViewModel;
 import com.ap.ui.view.LoadingView;
-import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.systems.IteratingSystem;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.ap.utils.PreferencesManager;
 import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class LoadingScreen extends AbstractScreen {
     private final AssetService assetService;
     private final SqliteConnection sqlite;
+    private final PreferencesManager preferencesManager;
 
     public LoadingScreen(GdxGame game) {
         super(game);
         assetService = game.getAssetService();
+        preferencesManager = game.getPreferencesManager();
         sqlite = game.getSqlite();
     }
 
@@ -40,6 +30,8 @@ public class LoadingScreen extends AbstractScreen {
             throw new GdxRuntimeException("Failed to establish a connection with database");
         sqlite.createTables();
 
+        // Load preferences
+        preferencesManager.load();
         // Loading all the assets
         // .
         // .
@@ -76,5 +68,6 @@ public class LoadingScreen extends AbstractScreen {
         game.addScreen(new MainMenuScreen(game));
         game.addScreen(new SignupScreen(game));
         game.addScreen(new GameScreen(game));
+        game.addScreen(new LoginScreen(game));
     }
 }
