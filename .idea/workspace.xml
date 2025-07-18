@@ -4,19 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Login screen view">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/effect/TransitionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Gender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/common/BackButtonLayer.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding transition effects">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/database/SqliteConnection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Result.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/actor/SimpleDialog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/Crypto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/RegistrationValidator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/skins/skin.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/skins/skin.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/skins/skin.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/skins/skin.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/skins/skin.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/skins/skin.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/LoadingScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/LoadingScreen.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/SignupScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/SignupScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/SignupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/SignupViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/MainView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/AbstractView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/AbstractView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/SignupView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +114,11 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -163,9 +178,9 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.Run" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
-      <item itemvalue="Application.Run" />
     </list>
     <recent_temporary>
       <list>
@@ -232,6 +247,12 @@
       <workItem from="1752562276558" duration="9984000" />
       <workItem from="1752609324680" duration="6910000" />
       <workItem from="1752658341662" duration="7303000" />
+      <workItem from="1752672454845" duration="86000" />
+      <workItem from="1752685029035" duration="3247000" />
+      <workItem from="1752700841826" duration="3524000" />
+      <workItem from="1752741565535" duration="4549000" />
+      <workItem from="1752762421299" duration="1888000" />
+      <workItem from="1752790635382" duration="5293000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -540,7 +561,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۴۳" />
       <updated>1752617406309</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL‎−۰۰۰۴۴" summary="Adding transition effects">
+      <option name="closed" value="true" />
+      <created>1752672476094</created>
+      <option name="number" value="LOCAL‎−۰۰۰۴۴" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۴۴" />
+      <updated>1752672476094</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,7 +599,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix scythe bug in tools" />
     <MESSAGE value="place and pick items up" />
     <MESSAGE value="Profile Menu Completed" />
     <MESSAGE value="Buff added" />
@@ -596,7 +623,8 @@
     <MESSAGE value="Add facing and camera follow system" />
     <MESSAGE value="Adding animation system" />
     <MESSAGE value="Login screen view" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login screen view" />
+    <MESSAGE value="Adding transition effects" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding transition effects" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

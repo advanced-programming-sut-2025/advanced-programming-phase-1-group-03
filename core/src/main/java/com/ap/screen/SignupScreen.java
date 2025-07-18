@@ -24,7 +24,7 @@ public class SignupScreen extends AbstractScreen{
 
     @Override
     public void show() {
-        this.stage.addActor(new SignupView(stage, skin, new SignupViewModel(game), audioService));
+        this.stage.addActor(new SignupView(stage, skin, new SignupViewModel(game, game.getSqlite()), audioService));
         this.stage.addActor(new BackButtonLayer(game, skin, MainMenuScreen.class));
         game.setInputProcessors(stage, controller);
     }

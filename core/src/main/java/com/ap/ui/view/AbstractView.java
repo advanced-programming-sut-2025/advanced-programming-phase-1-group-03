@@ -1,8 +1,13 @@
 package com.ap.ui.view;
 
+import com.ap.asset.SoundAsset;
+import com.ap.audio.AudioService;
 import com.ap.input.UIEvent;
 import com.ap.ui.model.ViewModel;
 import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Button;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -87,6 +92,24 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
         void onEvent(T actor);
     }
 
+    public static void AddHoverScale(Button button, float from, float to, float duration) {
+        button.setOrigin(button.getWidth() / 2, button.getHeight() / 2);
+        OnEnter(button, (Button btn) -> {
+            btn.addAction(Actions.scaleTo(to, to, duration));
+        });
+        OnExit(button, (Button btn) -> {
+            btn.addAction(Actions.scaleTo(from, from, duration));
+        });
+    }
+    public static void AddHoverScale(ImageButton button, AudioService audioService) {
+        OnEnter(button, (Button btn) -> {
+            audioService.playSound(SoundAsset.HoverButton);
+            btn.addAction(Actions.scaleTo(2f, 2f, 0.3f));
+        });
+        OnExit(button, (Button btn) -> {
+            btn.addAction(Actions.scaleTo(1f, 1f, 0.3f));
+        });
+    }
     @FunctionalInterface
     public interface OnEventConsumer {
         void onEvent();

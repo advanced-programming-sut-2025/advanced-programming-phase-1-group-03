@@ -1,6 +1,7 @@
 package com.ap.ui.view;
 
 import com.ap.audio.AudioService;
+import com.ap.ui.actor.SimpleDialog;
 import com.ap.ui.model.MainViewModel;
 import com.ap.ui.model.SignupViewModel;
 import com.ap.utils.UIUtils;
@@ -91,24 +92,38 @@ public class SignupView extends AbstractView<SignupViewModel> {
 
         window.row();
 
+        window.add(new Label("What is name of you first school?", skin, "font24"));
+        TextField securityQuestion = new TextField("", skin);
+        window.add(securityQuestion).pad(10);
+
+        window.row();
+
         TextButton submit = new TextButton("ok", skin, "font36");
         window.add(submit).colspan(2).pad(20);
         add(window);
 
         // Setup events
         OnClick(submit, () -> {
-            viewModel.submit(usernameField.getText(),
+            var result = viewModel.submit(usernameField.getText(),
                     emailField.getText(),
                     passwordField.getText(),
                     confirmPasswordField.getText(),
-                    nicknameField.getText());
+                    nicknameField.getText(),
+                    securityQuestion.getText());
+            SimpleDialog dialog = new SimpleDialog("Message", result.getData(), skin);
+            dialog.setupEvent(() -> {
+                if(result.isSuccess()) {
+                    viewModel.registerSuccessful();
+                }
+            });
+            dialog.show(stage);
         });
         OnClick(maleButton, () -> {
-            viewModel.maleButtonClicked();
+            viewModel.maleButtonClicked(maleButton.isChecked());
             femaleButton.setChecked(false);
         });
         OnClick(femaleButton, () -> {
-            viewModel.femaleButtonClicked();
+            viewModel.femaleButtonClicked(femaleButton.isChecked());
             maleButton.setChecked(false);
         });
     }

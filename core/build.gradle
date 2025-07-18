@@ -9,6 +9,7 @@ dependencies {
   api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
   api "com.badlogicgames.gdx:gdx:$gdxVersion"
   api "com.github.tommyettinger:freetypist:$freeTypistVersion"
+  api "org.xerial:sqlite-jdbc:$sqliteJDBCVersion"
 
   if(enableGraalNative == 'true') {
     implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"

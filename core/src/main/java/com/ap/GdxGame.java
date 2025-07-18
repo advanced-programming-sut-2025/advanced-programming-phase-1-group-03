@@ -2,6 +2,7 @@ package com.ap;
 
 import com.ap.asset.AssetService;
 import com.ap.audio.AudioService;
+import com.ap.database.SqliteConnection;
 import com.ap.effect.TransitionManager;
 import com.ap.screen.LoadingScreen;
 import com.badlogic.gdx.*;
@@ -37,6 +38,9 @@ public class GdxGame extends Game {
     // Transition for changing screens
     private TransitionManager transitionManager;
 
+    // Database
+    private SqliteConnection sqlite;
+
     private final Map<Class<? extends Screen>, Screen> screenCache = new HashMap<>();
 
     @Override
@@ -55,6 +59,8 @@ public class GdxGame extends Game {
         Gdx.input.setInputProcessor(inputMultiplexer);
 
         transitionManager = new TransitionManager(this);
+
+        sqlite = new SqliteConnection();
 
         addScreen(new LoadingScreen(this));
         changeScreen(LoadingScreen.class);
@@ -139,5 +145,9 @@ public class GdxGame extends Game {
         for(InputProcessor inputProcessor : inputs) {
             inputMultiplexer.addProcessor(inputProcessor);
         }
+    }
+
+    public SqliteConnection getSqlite() {
+        return sqlite;
     }
 }

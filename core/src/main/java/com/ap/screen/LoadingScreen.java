@@ -2,6 +2,7 @@ package com.ap.screen;
 
 import com.ap.GdxGame;
 import com.ap.asset.*;
+import com.ap.database.SqliteConnection;
 import com.ap.ui.model.LoadingViewModel;
 import com.ap.ui.view.LoadingView;
 import com.badlogic.ashley.core.Engine;
@@ -16,20 +17,28 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
+import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class LoadingScreen extends AbstractScreen {
     private final AssetService assetService;
+    private final SqliteConnection sqlite;
 
     public LoadingScreen(GdxGame game) {
         super(game);
         assetService = game.getAssetService();
+        sqlite = game.getSqlite();
     }
 
     @Override
     public void show() {
         // Loading the view
         stage.addActor(new LoadingView(stage, skin, new LoadingViewModel(game)));
+
+        // Connect to database
+        if(! sqlite.connect())
+            throw new GdxRuntimeException("Failed to establish a connection with database");
+        sqlite.createTables();
 
         // Loading all the assets
         // .
