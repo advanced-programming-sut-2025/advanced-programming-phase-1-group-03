@@ -29,7 +29,10 @@ public class SqliteConnection {
                     gender VARCHAR(10) NOT NULL,
                     nickname TEXT NOT NULL,
                     securityQuestionId INTERGER,
-                    securityQuestion TEXT
+                    securityQuestion TEXT,
+                    gamesCount INTEGER DEFAULT 0,
+                    maximumCoin INTEGER DEFAULT 0,
+                    avatarIndex INTEGER DEFAULT 0
                 );
                 """;
         try {

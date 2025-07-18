@@ -91,21 +91,21 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
         void onEvent(T actor);
     }
 
-    public static void AddHoverScale(Button button, float from, float to, float duration) {
+    public static void AddHoverScale(Actor button, float from, float to, float duration) {
         button.setOrigin(button.getWidth() / 2, button.getHeight() / 2);
-        OnEnter(button, (Button btn) -> {
+        OnEnter(button, (Actor btn) -> {
             btn.addAction(Actions.scaleTo(to, to, duration));
         });
-        OnExit(button, (Button btn) -> {
+        OnExit(button, (Actor btn) -> {
             btn.addAction(Actions.scaleTo(from, from, duration));
         });
     }
-    public static void AddHoverScale(Button button, AudioService audioService) {
-        OnEnter(button, (Button btn) -> {
+    public static void AddHoverScale(Actor button, AudioService audioService) {
+        OnEnter(button, (Actor btn) -> {
             audioService.playSound(SoundAsset.HoverButton);
             btn.addAction(Actions.scaleTo(2f, 2f, 0.3f));
         });
-        OnExit(button, (Button btn) -> {
+        OnExit(button, (Actor btn) -> {
             btn.addAction(Actions.scaleTo(1f, 1f, 0.3f));
         });
     }

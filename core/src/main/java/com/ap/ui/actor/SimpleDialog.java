@@ -33,8 +33,9 @@ public class SimpleDialog extends Dialog {
      * ُThis method run an event when user clicked the ok button, it should be called before show method
      * @param event event to run
      */
-    public void setupEvent(AbstractView.OnEventConsumer event) {
+    public SimpleDialog setupEvent(AbstractView.OnEventConsumer event) {
         this.event = event;
+        return this;
     }
 
     public void addToContent(Actor actor) {

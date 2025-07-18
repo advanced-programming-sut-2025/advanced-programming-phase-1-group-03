@@ -35,10 +35,17 @@ public class MainView extends AbstractView<MainViewModel>{
     }
 
     private void drawHeader() {
-        add(new Label("Welcome  " + viewModel.getLoggedInUserNickname(), skin)).colspan(1).pad(10);
+        add(new Label("Welcome  " + viewModel.getLoggedInUserNickname(), skin)).colspan(1).padLeft(10).padTop(10);
         TextButton loginButton = new TextButton("Signup/Login", skin);
         add().colspan(2).expandX().fillX();
-        add(loginButton).colspan(1).pad(10).row();
+        add(loginButton).colspan(1).padTop(10).padRight(10).row();
+
+        if(!viewModel.getLoggedInUserNickname().equals("Guest")) {
+            TextButton profileButton = new TextButton("Profile", skin);
+            add(profileButton).row();
+            OnClick(profileButton, viewModel::openProfilePage);
+        }
+
 
         Image logo = new Image(skin.getDrawable("Logo"));
         logo.setScaling(Scaling.fit);
@@ -46,7 +53,6 @@ public class MainView extends AbstractView<MainViewModel>{
 
         // Setup events
         OnClick(loginButton, viewModel::clickSignupButton);
-
     }
 
     private void drawButtons() {

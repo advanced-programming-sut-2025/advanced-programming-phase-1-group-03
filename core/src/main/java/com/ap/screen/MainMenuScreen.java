@@ -27,7 +27,7 @@ public class MainMenuScreen extends AbstractScreen {
     @Override
     public void show() {
         this.stage.addActor(new MainView(stage, skin, new MainViewModel(game, sqlite), audioService));
-        audioService.playMusic(MusicAsset.Default);
+      //  audioService.playMusic(MusicAsset.Default);
 
         game.setInputProcessors(stage, controller);
     }

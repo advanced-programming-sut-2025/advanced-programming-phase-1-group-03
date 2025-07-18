@@ -4,21 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="stay logged in and login page completed">
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Register &amp; Login finished">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/avatars.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/avatars.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/database/UserLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/ProfileScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/ProfileViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/ProfileView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/skins/skin.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/skins/skin.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/LoadingScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/LoadingScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/MainMenuScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/MainMenuScreen.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/database/SqliteConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/database/SqliteConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/MainMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/MainMenuScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/actor/SimpleDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/actor/SimpleDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/LoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/LoginViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/MainViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/SignupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/SignupViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/AbstractView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/AbstractView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/LoginView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/SignupView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/Crypto.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/Crypto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,6 +92,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Application.Main.executor": "Run",
     "Application.Run.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
@@ -93,6 +101,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "extract.method.default.visibility": "private",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -246,7 +255,7 @@
       <workItem from="1752762421299" duration="1888000" />
       <workItem from="1752790635382" duration="5345000" />
       <workItem from="1752829470326" duration="7694000" />
-      <workItem from="1752856850569" duration="6151000" />
+      <workItem from="1752856850569" duration="16937000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -576,7 +585,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۴۶" />
       <updated>1752840705478</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL‎−۰۰۰۴۷" summary="Register &amp; Login finished">
+      <option name="closed" value="true" />
+      <created>1752863449143</created>
+      <option name="number" value="LOCAL‎−۰۰۰۴۷" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۴۷" />
+      <updated>1752863449143</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -607,7 +623,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Buff added" />
     <MESSAGE value="Energy corrected" />
     <MESSAGE value="buff bug fixed" />
     <MESSAGE value="bomber added" />
@@ -632,7 +647,8 @@
     <MESSAGE value="Adding transition effects" />
     <MESSAGE value="Registration System Completed" />
     <MESSAGE value="stay logged in and login page completed" />
-    <option name="LAST_COMMIT_MESSAGE" value="stay logged in and login page completed" />
+    <MESSAGE value="Register &amp; Login finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="Register &amp; Login finished" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

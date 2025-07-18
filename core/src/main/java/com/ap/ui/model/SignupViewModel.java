@@ -104,22 +104,6 @@ public class SignupViewModel extends ViewModel {
     }
 
     public String generatePassword() {
-        String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String specials = "?><,\"';:/|][}{+=)(*&^%$#!";
-        StringBuilder builder = new StringBuilder();
-
-        //adding two special characters
-        builder.append(specials.charAt(new Random().nextInt(specials.length())));
-        builder.append(new Random().nextInt( 10));
-        while(!validator.passwordValidity(builder.toString()).isSuccess()) {
-            builder.append(alphabet.charAt(new Random().nextInt(alphabet.length())));
-        }
-        Character[] chars = new Character[builder.toString().length()];
-        for(int i = 0; i < builder.toString().length(); i++)
-            chars[i] = builder.toString().charAt(i);
-        Collections.shuffle(Arrays.asList(chars));
-        StringBuilder shuffled = new StringBuilder();
-        for (Character aChar : chars) shuffled.append(aChar);
-        return shuffled.toString();
+        return Crypto.generatePassword(validator);
     }
 }
