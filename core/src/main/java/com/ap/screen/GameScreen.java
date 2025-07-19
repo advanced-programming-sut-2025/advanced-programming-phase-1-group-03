@@ -71,16 +71,17 @@ public class GameScreen extends AbstractScreen {
         rayHandler = new RayHandler(world);
 
         // Adding systems to the engine
-        engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
-        engine.addSystem(new ControllerSystem());
         engine.addSystem(new PhysicMoveSystem());
         engine.addSystem(new PhysicDebugRenderSystem(camera, world));
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL));
-        engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
         engine.addSystem(new TimeSystem(clock, rayHandler));
+        engine.addSystem(new CameraSystem(camera));
+        engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
+        engine.addSystem(new ControllerSystem());
+
     }
 
 
@@ -112,10 +113,13 @@ public class GameScreen extends AbstractScreen {
 
     @Override
     public void render(float delta) {
+        delta = Math.min(1 / 30f, delta);
         engine.update(delta);
+
+        super.render(delta);
+
         stage.act(delta);
         stage.draw();
-        super.render(delta);
 
         rayHandler.setCombinedMatrix(camera.combined);
         rayHandler.updateAndRender();

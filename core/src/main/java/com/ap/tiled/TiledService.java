@@ -2,13 +2,22 @@ package com.ap.tiled;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
+import com.ap.asset.TilesetAsset;
+import com.ap.model.Season;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
+import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
+import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
+import com.badlogic.gdx.utils.IntArray;
 
 import java.util.function.Consumer;
 
@@ -45,6 +54,8 @@ public class TiledService {
             // notify All
             mapChangeConsumer.accept(startMap);
         }
+
+        changeSeasonTileset(Season.Winter);
     }
 
     private void loadMapObjects(TiledMap startMap) {
@@ -78,6 +89,83 @@ public class TiledService {
                 loadTileConsumer.accept(cell.getTile(), x, y);
             }
         }
+    }
+
+    public void changeSeasonTileset(Season season) {
+        if(currentMap == null) {
+            return;
+        }
+
+        for(TiledMapTileSet tileset : currentMap.getTileSets()) {
+            boolean seasonal = tileset.getProperties().get("seasonal", false, Boolean.class);
+            if(!seasonal) {
+                continue;
+            }
+
+            String textureName = tileset.getName() + season.name();
+            Texture newTileSheet = assetService.get(TilesetAsset.valueOf(textureName));
+
+            if(newTileSheet == null) {
+                throw new GdxRuntimeException("Texture not found");
+            }
+            int offset = tileset.getProperties().get("firstgid", int.class);
+
+            for(int i = 0; i < tileset.size(); i++) {
+                int tileId = i+offset;
+
+                TiledMapTile tile = tileset.getTile(tileId);
+
+                if(tile == null)
+                    continue;
+
+                int tileWidth = tileset.getProperties().get("tilewidth", Integer.class);
+                int tileHeight = tileset.getProperties().get("tileheight", Integer.class);
+
+                if(tile instanceof AnimatedTiledMapTile animatedTile) {
+                    updateAnimatedTile(tileset, animatedTile, newTileSheet, tileWidth, tileHeight, offset);
+                    continue;
+                }
+
+                int regionX = (i % (newTileSheet.getWidth() / tileWidth)) * tileWidth;
+                int regionY = (i / (newTileSheet.getWidth() / tileWidth)) * tileHeight;
+
+                TextureRegion newRegion = new TextureRegion(newTileSheet, regionX, regionY, tileWidth, tileHeight);
+                tile.setTextureRegion(newRegion);
+            }
+        }
+    }
+
+    private void updateAnimatedTile(TiledMapTileSet tileset, AnimatedTiledMapTile animatedTile,
+                                    Texture newTileSheet, int tileWidth, int tileHeight, int offset) {
+        for(StaticTiledMapTile frame : animatedTile.getFrameTiles()) {
+            int regionX = ((frame.getId()-offset) % (newTileSheet.getWidth() / tileWidth)) * tileWidth;
+            int regionY = ((frame.getId()-offset) / (newTileSheet.getWidth() / tileWidth)) * tileHeight;
+            TextureRegion newRegion = new TextureRegion(newTileSheet, regionX, regionY, tileWidth, tileHeight);
+            frame.setTextureRegion(newRegion);
+        }
+//        // دریافت فریم‌های فعلی
+//        StaticTiledMapTile[] frameTiles = animatedTile.getFrameTiles();
+//        int[] frameDurations = animatedTile.getAnimationIntervals();
+//
+//        // ایجاد فریم‌های جدید
+//        Array<StaticTiledMapTile> newFrameTiles = new Array<>();
+//
+//        for (int i = 0; i < frameTiles.length; i++) {
+//            StaticTiledMapTile frame = frameTiles[i];
+//            int tileId = frame.getId();
+//            // محاسبه موقعیت فریم در تایل‌شیت جدید
+//            int regionX = (index % (newTileSheet.getWidth() / tileWidth)) * tileWidth;
+//            int regionY = (index / (newTileSheet.getWidth() / tileWidth)) * tileHeight;
+//            TextureRegion newRegion = new TextureRegion(newTileSheet, regionX, regionY, tileWidth, tileHeight);
+//            newFrameTiles.add(new StaticTiledMapTile(newRegion));
+//            newFrameTiles.get(i).setId(tileId); // حفظ tileId اصلی
+//        }
+//
+//        AnimatedTiledMapTile newAnimatedTile = new AnimatedTiledMapTile(IntArray.with(frameDurations),newFrameTiles);
+//        newAnimatedTile.getProperties().putAll(animatedTile.getProperties());
+//        newAnimatedTile.setId(animatedTile.getId());
+//
+//        tileset.putTile(animatedTile.getId(), newAnimatedTile);
     }
 
     public void setMapChangeConsumer(Consumer<TiledMap> mapChangeConsumer) {

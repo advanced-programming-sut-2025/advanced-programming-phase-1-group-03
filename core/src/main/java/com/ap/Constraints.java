@@ -9,8 +9,8 @@ public class Constraints {
     public final static int WORLD_HEIGHT_RESOLUTION = 675;
 
     // We update physic system with 30FPS to prevent huge load on CPU
-    public static final float PHYSIC_STEP_INTERVAL = 1 / 30f;
-    public static final float CAMERA_SMOOTHING_FACTOR = 4;
+    public static final float PHYSIC_STEP_INTERVAL = 1 / 60f;
+    public static final float CAMERA_SMOOTHING_FACTOR = 1;
     public static final float PLAYER_ANIMATION_FRAME_DURATION =  1/ 8f;
 
     // It means 1 second in the real world is equal to how many seconds in the game
