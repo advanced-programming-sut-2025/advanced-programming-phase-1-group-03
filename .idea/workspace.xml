@@ -4,28 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Add Clock">
-      <change afterPath="$PROJECT_DIR$/assets/map/tileset/fall_outdoorsTileSheet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/map/tileset/fall_outdoorsTileSheet2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/map/tileset/summer_outdoorsTileSheet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/map/tileset/summer_outdoorsTileSheet2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/map/tileset/winter_outdoorsTileSheet.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/map/tileset/winter_outdoorsTileSheet2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/skins/Stardew_Valley.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/TilesetAsset.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Season.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding seasons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Farm1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Farm1.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/tileset/paths.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/tileset/spring_outdoorTileSheet_extra.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/LoadingScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/LoadingScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/RenderSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/RenderSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/TimeSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/TimeSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -201,14 +181,6 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task id="LOCAL-00001" summary="refrigerator completed">
-      <option name="closed" value="true" />
-      <created>1746949899478</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1746949899478</updated>
-    </task>
     <task id="LOCAL-00002" summary="refrigerator bug fixed.">
       <option name="closed" value="true" />
       <created>1746950253976</created>
@@ -258,7 +230,7 @@
       <workItem from="1752829470326" duration="7694000" />
       <workItem from="1752856850569" duration="17884000" />
       <workItem from="1752916812195" duration="10340000" />
-      <workItem from="1752956828384" duration="10458000" />
+      <workItem from="1752956828384" duration="11233000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -609,7 +581,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۴۹" />
       <updated>1752932763049</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL‎−۰۰۰۵۰" summary="Adding seasons">
+      <option name="closed" value="true" />
+      <created>1752967381789</created>
+      <option name="number" value="LOCAL‎−۰۰۰۵۰" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۵۰" />
+      <updated>1752967381790</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -640,7 +619,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="bomber added" />
     <MESSAGE value="thunder fixed" />
     <MESSAGE value="player transport at night added" />
     <MESSAGE value="bug fixed" />
@@ -665,7 +643,8 @@
     <MESSAGE value="Register &amp; Login finished" />
     <MESSAGE value="Profile screen finished" />
     <MESSAGE value="Add Clock" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Clock" />
+    <MESSAGE value="Adding seasons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding seasons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

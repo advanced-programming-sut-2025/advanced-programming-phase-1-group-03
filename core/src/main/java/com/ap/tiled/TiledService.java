@@ -122,7 +122,7 @@ public class TiledService {
                 int tileHeight = tileset.getProperties().get("tileheight", Integer.class);
 
                 if(tile instanceof AnimatedTiledMapTile animatedTile) {
-                    updateAnimatedTile(tileset, animatedTile, newTileSheet, tileWidth, tileHeight, offset);
+                    updateAnimatedTile(animatedTile, newTileSheet, tileWidth, tileHeight, offset);
                     continue;
                 }
 
@@ -135,7 +135,7 @@ public class TiledService {
         }
     }
 
-    private void updateAnimatedTile(TiledMapTileSet tileset, AnimatedTiledMapTile animatedTile,
+    private void updateAnimatedTile(AnimatedTiledMapTile animatedTile,
                                     Texture newTileSheet, int tileWidth, int tileHeight, int offset) {
         for(StaticTiledMapTile frame : animatedTile.getFrameTiles()) {
             int regionX = ((frame.getId()-offset) % (newTileSheet.getWidth() / tileWidth)) * tileWidth;
@@ -143,29 +143,6 @@ public class TiledService {
             TextureRegion newRegion = new TextureRegion(newTileSheet, regionX, regionY, tileWidth, tileHeight);
             frame.setTextureRegion(newRegion);
         }
-//        // دریافت فریم‌های فعلی
-//        StaticTiledMapTile[] frameTiles = animatedTile.getFrameTiles();
-//        int[] frameDurations = animatedTile.getAnimationIntervals();
-//
-//        // ایجاد فریم‌های جدید
-//        Array<StaticTiledMapTile> newFrameTiles = new Array<>();
-//
-//        for (int i = 0; i < frameTiles.length; i++) {
-//            StaticTiledMapTile frame = frameTiles[i];
-//            int tileId = frame.getId();
-//            // محاسبه موقعیت فریم در تایل‌شیت جدید
-//            int regionX = (index % (newTileSheet.getWidth() / tileWidth)) * tileWidth;
-//            int regionY = (index / (newTileSheet.getWidth() / tileWidth)) * tileHeight;
-//            TextureRegion newRegion = new TextureRegion(newTileSheet, regionX, regionY, tileWidth, tileHeight);
-//            newFrameTiles.add(new StaticTiledMapTile(newRegion));
-//            newFrameTiles.get(i).setId(tileId); // حفظ tileId اصلی
-//        }
-//
-//        AnimatedTiledMapTile newAnimatedTile = new AnimatedTiledMapTile(IntArray.with(frameDurations),newFrameTiles);
-//        newAnimatedTile.getProperties().putAll(animatedTile.getProperties());
-//        newAnimatedTile.setId(animatedTile.getId());
-//
-//        tileset.putTile(animatedTile.getId(), newAnimatedTile);
     }
 
     public void setMapChangeConsumer(Consumer<TiledMap> mapChangeConsumer) {
