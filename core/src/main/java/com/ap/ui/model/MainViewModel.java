@@ -39,4 +39,8 @@ public class MainViewModel extends ViewModel{
     public void openProfilePage() {
         game.setScreen(ProfileScreen.class);
     }
+
+    public int getAvatarIndex() {
+        return UserLoader.getLoggedInUserAvatarIndex(sqlite);
+    }
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 public enum AtlasAsset implements Asset<TextureAtlas> {
     Player("player.atlas"),
     Avatars("avatars.atlas"),
+    UI("UI.atlas"),
     ;
 
     private final AssetDescriptor<TextureAtlas> descriptor;

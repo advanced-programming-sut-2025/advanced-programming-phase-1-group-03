@@ -1,0 +1,7 @@
+UI.png
+size:128,64
+repeat:none
+Clock
+bounds:2,2,72,59
+ClockArrow
+bounds:76,42,7,19

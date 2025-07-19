@@ -4,6 +4,7 @@ import com.ap.audio.AudioService;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.model.MainViewModel;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameView extends AbstractView<GameViewModel> {
@@ -17,6 +18,5 @@ public class GameView extends AbstractView<GameViewModel> {
 
     @Override
     protected void setupUI() {
-
     }
 }

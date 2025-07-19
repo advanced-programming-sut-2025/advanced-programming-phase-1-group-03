@@ -1,8 +1,11 @@
 package com.ap.ui.view;
 
+import com.ap.asset.AssetService;
+import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
 import com.ap.audio.AudioService;
 import com.ap.ui.model.MainViewModel;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -12,9 +15,12 @@ import com.badlogic.gdx.utils.Scaling;
 public class MainView extends AbstractView<MainViewModel>{
 
     private final AudioService audioService;
-    public MainView(Stage stage, Skin skin, MainViewModel viewModel, AudioService audioService) {
+    private final AssetService assetService;
+
+    public MainView(Stage stage, Skin skin, MainViewModel viewModel, AudioService audioService, AssetService assetService) {
         super(stage, skin, viewModel);
         this.audioService = audioService;
+        this.assetService = assetService;
         setupUI();
     }
 
@@ -35,14 +41,22 @@ public class MainView extends AbstractView<MainViewModel>{
     }
 
     private void drawHeader() {
+        boolean isLoggedIn = !viewModel.getLoggedInUserNickname().equals("Guest");
+
+        if(isLoggedIn) {
+            TextureAtlas avatarAtlas = assetService.get(AtlasAsset.Avatars);
+            Image avatar = new Image(avatarAtlas.findRegion("avatar" + viewModel.getAvatarIndex()));
+            add(avatar).maxWidth(40).maxHeight(40).pad(10);
+        }
         add(new Label("Welcome  " + viewModel.getLoggedInUserNickname(), skin)).colspan(1).padLeft(10).padTop(10);
+
         TextButton loginButton = new TextButton("Signup/Login", skin);
-        add().colspan(2).expandX().fillX();
+        add().colspan(isLoggedIn ? 1 : 2).expandX().fillX();
         add(loginButton).colspan(1).padTop(10).padRight(10).row();
 
-        if(!viewModel.getLoggedInUserNickname().equals("Guest")) {
+        if(isLoggedIn) {
             TextButton profileButton = new TextButton("Profile", skin);
-            add(profileButton).row();
+            add(profileButton).pad(5).row();
             OnClick(profileButton, viewModel::openProfilePage);
         }
 
