@@ -77,11 +77,12 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
-        engine.addSystem(new TimeSystem(clock, rayHandler));
+        engine.addSystem(new TimeSystem(clock));
+        engine.addSystem(new WeatherSystem(engine, clock, assetService, stage));
+        engine.addSystem(new ScreenBrightnessSystem(rayHandler, engine));
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
         engine.addSystem(new ControllerSystem());
-
     }
 
 
@@ -104,7 +105,7 @@ public class GameScreen extends AbstractScreen {
 
         tiledService.setLoadTileConsumer(tileConfigurator::onLoadTile);
         tiledService.setLoadObjectConsumer(tileConfigurator::onLoadObject);
-
+        tiledService.setLoadPolygonConsumer(tileConfigurator::onLoadBoundary);
         TiledMap startMap = tiledService.load(MapAsset.Farm1);
         tiledService.setMap(startMap);
 
@@ -115,14 +116,11 @@ public class GameScreen extends AbstractScreen {
     public void render(float delta) {
         delta = Math.min(1 / 30f, delta);
         engine.update(delta);
-
+        rayHandler.setCombinedMatrix(camera.combined);
+        rayHandler.updateAndRender();
         super.render(delta);
 
         stage.act(delta);
         stage.draw();
-
-        rayHandler.setCombinedMatrix(camera.combined);
-        rayHandler.updateAndRender();
-
     }
 }

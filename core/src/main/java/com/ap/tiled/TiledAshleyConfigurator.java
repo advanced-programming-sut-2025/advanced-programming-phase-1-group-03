@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector2;
@@ -27,6 +28,13 @@ public class TiledAshleyConfigurator {
 
     public void onLoadTile(TiledMapTile tile, int x, int y) {
     }
+
+    public void onLoadBoundary(PolygonMapObject object) {
+        MapObjects objects = new MapObjects();
+        objects.add(object);
+        createBody(objects, Vector2.Zero, new Vector2(1, 1), BodyDef.BodyType.StaticBody, Vector2.Zero, "");
+    }
+
     public void onLoadObject(TiledMapTileMapObject tileObject) {
         Entity entity = engine.createEntity();
 

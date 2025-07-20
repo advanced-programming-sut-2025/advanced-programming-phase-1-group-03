@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="80" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="89">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="80" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="94">
  <properties>
   <property name="AllowGrassSurviveInWinter" value="T"/>
   <property name="Outdoors" value="T"/>
@@ -1913,6 +1913,7 @@
   </tile>
  </tileset>
  <tileset firstgid="3096" source="objects/Objects.tsx"/>
+ <tileset firstgid="3099" source="objects/GameObjects.tsx"/>
  <layer id="1" name="Back" width="80" height="65">
   <data encoding="base64" compression="zlib">
    eJzNXEuPXEcVrnsZ8/CwNIlwFvyAyEBjTAwLlhnTMSNegqXteMIIgRTYJQOBHftYJo5ayk8wMBCyY8MuJPb0krch4yRjiR0OL4NDHXUd93e//k7d254x9khH91X31qmvvnNOnaqafq5J6bl7LC+l5cpfynIuy/E2pSbLJ7MczXIm3/tRlrNZxuV4Fq6XkYNqwwsPoJwt+G1nnb+dcfs84Od4PZnlWZAPZbl4D/GLMPR+ZH1Yt4eyPCyu+fzhgd9Q9/F8q+Bn4vg9A+/bc/v7aZrpf6GZPVcYnhXS14fjAc/921tFp6aZ6eNHJbVnSt6F89TM7zVQX2oWy6eC3xTwwzL+h/ZrGJ5puvYdYTiC82NQ7hPlWYQ7f9f+tqAtp9sHR5x/jxT8+Lnjh3x2jjqXx82ij/Rrx0rhdKzyDOXJgl26j9j9Ls0F7z+RZQT+j99z22lIkMdu08cq/BsDZoqbXAafu03cT54Zbrcbjd+NRuP3xSxfyvLpLCfF8Vf5vc/k46WC4RAfrJ5dBHtWnDxFdnv0PsiVZi543/DD+IGykeVElq9lmeQyu4T9U1m+3M584pHSxkuFKxfK9YtJ3//J+1K6nOXH5egxSfEvAf9cty+0s3HX2nvmYmMxH48dr4h63vS811C5x4oe3yz4/ZDKf6pgxJjtAo6G37famT07Ti6OJx7d9i8Tdoal8xd5dz7LRsGvabr9er7o85t8/7dmV01se+eDc5P14J1BNt3E3+Xv34Cyjp/zgn3jEGH++f2LgN/3mtn4z+tx7Fg312dSjtPU7WfW32Qk2rqTy7+S5edZ3srydpYrWf6T5b9pZotYH35zLL43IT1cP8QvFds0fqEdo836veeDZ27Tfu7xyPKgFwC/DcCM9TWdFCZ23/U+Qc+mgrOG3W2yJdP1pcMpbRaMVR2MJ+qCHG+Br6bXz7K8Lvwc18/3HNMXUxdz95HvFf7PdNoM7GOSuj4asWEfVBNvD+t7+fAi/gpLFtRjD3B2XVtR5+P5+UezfDzLWjn/GFyvlZhqOD1ezp9vurh+BPA7R/FX8cb7dSLaxPghNxwT547Z75tpsT9/eXjGGfYDkU4qbvhxmrrPd4CHhsfnKA7wuNDGw1vNvOx3AU/X+WSAH/ugCRwRu3XRBsY2snnmg9nPG6nL/YjTji/q42U3SRfDfK+UM39kf2cCzPCe4WFj72fg2VYzt+VLqTuPgfhtAg4jasuo7fo7jCfK/5mwH3V/YBi+nOUXWa5meS0txuq9AMMavhiPkZMt4Rfxz7lneLya5ff5/GYz6+8jEH9wPM72yzzaSXPc/Ij9r/yUY+p2F40/vM3Me9UPiAfycVfo4ffW27neCdodzQl5Lvhq6VPT+2no76vU779OXfwmpBti6vpNC3br7aINIT+VPxzCJ3wf+Wt90Vbe2QYd0M79mjFgLF4GTF5L8/q/k+WrWT4bHA2/cbNov+yPle5edi9oP/oqdZ/tjp9HfMRn/p2Wythz10vFFy/vHMa+V+0xLl6H81fK+bnCWeS74g5zS8VibuOOKO82HcVthQOfI3a1fsFrzgeWbc/pgt838vEr7Sw+r4n4gfbi31T50bRZbIPKE7wMckxhwm3YpvaYDtNGl90ljJCj22lu38u2h/vSxPNqj0WIn3GA44HiI3OHx23bhAnqjt+zupDjzM1oPNi22r53oB13cKm0h3PAqD2Oo5XzeR2FH9sTvufHdSqjxoHsz1TsXEZqftDHeaocYrWX+ttT87mKf2OBH2O5C34Mv405ieIW2gNyd5IWecx4sx9GbmF5xR0eo7Iey7SH2+L4Of98PWCN5FSz2NbTQmfGhutiHTkW8/ejvEzZEsu06fo7VS7KP7k9al7MfTv7P7U+dU74aZVfMM9UXOC5B+SIGhtG+KhvqHyO9a5h47q7Px3DM35P8a8Pv9rYl/Ormg1HfY9YqNiN76ONT6Eu5iiWcxy4D5UuKo/iOOzxg/nHOCL/uA/R57Ie7J+HYM+xTrVjyDw2+40x6OJ2ze2p8RT1QdtT/OP9I4gft4f1bNtF7qE9oa8fkg+otnA+gL5e5Yxsz5jH8bjRdcD6rI1/WEnpjyB/WpnhGPk/F8+j0X4jHf181HOt3lNjnGXzGz5yPOXxCb9bi3XvZLz+DvKPgqGKvyY4d9OHA/oT5Cf6c+avzxnuNx9ohR583hfreNzDfDc+XstYHTk0O/4ry82CYcQ/xk7xQOGj5qt5XNMZ31R4zL6I6+X3DMvrQmeWZWOd+c5HVlN6tODn8sbKov+LcpAnBKcdC+8/tI0d0Om6iIus737zgWlafJe5pOZ70b69vIr9j67O8PonCfNPxVtcy0ROe32KJ27rE+GPfax3UPlAFC/Y1w2JdXiP3ze8/lLs2M5V/tsQfrwOzPbnwnlw5O89F+PnKkdjPLmt7D+U7+iLdXyN5b1N2Hc+d67yDx7vOXZRTjUK6sc6XQ/m2STpcb3KBxhvngv3Z2h3Hm85f8G5ml3xTTXO4T7BuMPxF/HboHqxfZgveV24DqfG+RFnIyxRonwAuV4b89xtrOvgJnRQ8Zf9H/JKzT15ru6xj20Rz3lNfpl8YFyu1Ty2ek/1m9fnfED8VayL1rr9Wo3/ON/tW/OJYlrUlmXyAex39HPRnprrgPfQWIc6qbq8zAmwGecI+78xzFdttotjrVHbzcMVJ1Hvmp/ZTz7AfTCC70dzNi772QdW419kv9wOzBeYcyre8f0h+YDKw9jPqWcK77YdFuta0iPKtfBajf+OAv/U+1PQneOmt+vO+rDIxVh4r4+az4licfTtndSNddwGxL4W6zhWO8Y4fkH+2f/6HBfxg3mB9oJlhu4tWiYfqPX/XupiimPvg4p1ys/4teLf6cp8FfNB2VsfN7C9d2wmadv38RqOHdbbbg7btnWfhuuIyo65bJgj0nhN8U/lby5qDBXVe6NZ1LW2t0jFZK4rst1obQPtckisa0UbatxX/PN5K+dvX96PdhLtLYq4rHy5+z/XvW+NXHGE7SFaQ7JyfftolW1hnqPWfy/Q+A/Pud94vojHFJ5bcP+jv47WxSP+c1071Fc8NuC9dn37aJGH26nLhz7++f7KWjvsWwc1947fHbddfx7ZcM3GFYci/kexLtoHoNrT5/+8Tzg38G/Y/WXm3pVfjPwajmu8Dra39TbmFrahZo+sO7eRYx2W65v/q+0lO4i9OIwh50u8boPrN8+udjmDOi7kYXSNOClMh8a6iH8WO3j87OP4O7694vuUnqrPIw6eXJ1hx+s2Lh/Mz28dXsStNq7kcaKKdd6vQ2JdH/+iPXj8vdrc+4jahX2B+3rdF9i1+cG/ZmzenzH6wOp83cbkVlm/OZzvr67OuYh2iz4fda3FOu5LbosL29eQ/DeqA32jfy+ae3f/GY3z8Np459jhWs1OEcfxJq0lYr1qzMf+hZ9xPK7559r+F4VfbW+JwgH7DZ/faBa/x981m/0b4HQ1y5Use0XegjUw46avJbKvifjFOCsfoHyPywmwqxr/2P9F/ObYp+becX9x1K9+fq2sbdnx31nezvJ6lubQTG7n8/bQnJdeftTquSLODaMYskvlcDzo5cwHuAzln5rnNhzQJpeZe2c7Zk6O2jn37JgKbm8WDN9d6fpDP1f9rObZ1Pw2+kw1Tx+Jir9bhJfa/4Z9pube0X4ibLFd3EZcp/5wxuwoiN37M3D02srid4f4F8UPLue68zjG94uz1Ow3srn9zL13xrn0bSuL+yZugb2i+Pc4L+N5ULUeGY2lnRtsry44X4/7rnD8gv8HxGttBzn3zuu7vM8PMXRRdav/w+O6WVeOzfy/XhFno/9dqs1fKR6zDdTWO/y5j/VUnhfFTNy/zs+Rt8rXcd1YtoYRcs7t9RTMD6jfBWL+9a213M2+0wgzjCtsy86v2tiRxyHY1zUORhxB/M4M4JbJMvlv5DvuZt/pgy5D8bPfQHgqiC3/b+H/Szf9cO4yioH3Qvz/rCP8bK/L0wW/HxQMh/xumceejUD6fu9IyVhgp/Yiqv/fPUhRvzmG+PnckOWOXy8Y+u+wfT/4TvRbZtFvuvlz/32UoTIUv1rfHZR4O0eAH84NYf79P5LZ2rU=
@@ -1942,11 +1943,21 @@
   </data>
  </layer>
  <objectgroup id="13" name="objects">
-  <object id="88" name="Player" gid="3098" x="90.1667" y="837.334" width="32" height="32">
+  <object id="88" name="Player" gid="3098" x="1015.5" y="318.667" width="32" height="32">
    <properties>
     <property name="cameraFollow" type="bool" value="true"/>
     <property name="speed" type="float" value="1"/>
    </properties>
+  </object>
+  <object id="89" gid="3099" x="955.333" y="261.333" width="144" height="144"/>
+  <object id="91" name="Map Boundary" x="672.333" y="-0.333333">
+   <polygon points="0,0 -0.666667,127 64.3333,128 63.3333,111.333 205.667,109.667 205.667,159.667 281,159.667 431,159 431,123.667 493,123.667 493.667,158.333 575,157.667 575.667,233.667 575.667,241 606.333,240.333 606.333,288.333 557.667,288.333 558.333,607.667 559.667,883.667 491,886.333 491,932.333 439.667,933.667 419,935 418.333,982.333 1.66667,983.667 0.333333,1037.67 -35.6667,1037.67 -35.6667,978.333 -625,981 -624.333,575.667 -576.333,535.667 -563,543 -559.667,360.333 -623.667,358.333 -625.667,147 -592.333,123.667 -564.333,125 -563.667,143.667 -511.667,143 -513,129 -31.6667,126.333 -32.3333,-1"/>
+  </object>
+  <object id="92" name="Lake1Boundary" x="577" y="783.5">
+   <polygon points="0,0 94.5,0 110.5,8.5 121,20.5 126,27.5 126,33 146.5,33 158.5,44 159,51.5 166.5,53.5 172,60.5 172.5,64.5 169.5,68 171,98 159,112 126.5,144 113,135.5 93,145 79,161 54.5,152 28,160.5 -4.5,123.5 -17,128 -30,115 -29.5,95 -36.5,96 -47,79 -47.5,62 -3,17"/>
+  </object>
+  <object id="93" name="Lake2Boundary" x="1131.33" y="451.333">
+   <polygon points="0,0 53.3333,-1 65.6667,7.66667 65.3333,13.6667 77.3333,19 82.6667,26.3333 81.6667,63.3333 52.3333,90 19.3333,92.3333 -10,61.6667 -11,9.33333"/>
   </object>
  </objectgroup>
 </map>

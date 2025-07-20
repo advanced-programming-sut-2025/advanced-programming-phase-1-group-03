@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -29,6 +30,7 @@ public class TiledService {
     private Consumer<TiledMap> mapChangeConsumer;
     private LoadTileConsumer loadTileConsumer;
     private Consumer<TiledMapTileMapObject> loadObjectConsumer;
+    private Consumer<PolygonMapObject> loadPolygonConsumer;
 
     public TiledService(AssetService assetService) {
         this.assetService = assetService;
@@ -55,7 +57,6 @@ public class TiledService {
             mapChangeConsumer.accept(startMap);
         }
 
-        changeSeasonTileset(Season.Winter);
     }
 
     private void loadMapObjects(TiledMap startMap) {
@@ -74,6 +75,8 @@ public class TiledService {
         for(MapObject object : layer.getObjects()) {
             if(object instanceof TiledMapTileMapObject tiledMapObject) {
                 loadObjectConsumer.accept(tiledMapObject);
+            } else if(object instanceof PolygonMapObject polygon) {
+                loadPolygonConsumer.accept(polygon);
             } else {
                 throw new GdxRuntimeException("Unsupported map object: " + object.getClass().getName());
             }
@@ -155,6 +158,10 @@ public class TiledService {
 
     public void setLoadObjectConsumer(Consumer<TiledMapTileMapObject> loadObjectConsumer) {
         this.loadObjectConsumer = loadObjectConsumer;
+    }
+
+    public void setLoadPolygonConsumer(Consumer<PolygonMapObject> loadPolygonConsumer) {
+        this.loadPolygonConsumer = loadPolygonConsumer;
     }
 
     @FunctionalInterface

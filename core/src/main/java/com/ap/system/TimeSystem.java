@@ -2,6 +2,7 @@ package com.ap.system;
 
 import box2dLight.RayHandler;
 import com.ap.Constraints;
+import com.ap.model.Season;
 import com.ap.ui.widget.Clock;
 import com.badlogic.ashley.core.EntitySystem;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -11,21 +12,24 @@ public class TimeSystem extends EntitySystem {
     private static final int startHour = Constraints.START_HOUR;
     private static final int endHour = Constraints.END_HOUR;
     private static final float gameSpeed = Constraints.GAME_SPEED;
-    private static final int darknessBegin = Constraints.DARKNESS_BEGIN_HOUR;
-    private static final int darknessEnd = Constraints.DARKNESS_END_HOUR;
+    public static final int darknessBegin = Constraints.DARKNESS_BEGIN_HOUR;
+    public static final int darknessEnd = Constraints.DARKNESS_END_HOUR;
+    private static final int monthsDays = Constraints.MONTHS_DAYS;
 
     private float timer = 0f;
     private final Clock clock;
-    private final RayHandler rayHandler;
 
     private final String[] monthsShort = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
-    public TimeSystem(Clock clock, RayHandler rayHandler) {
+    public TimeSystem(Clock clock) {
         this.clock = clock;
-        this.rayHandler = rayHandler;
 
         // Make timer point to startHour
         timer = startHour * 3600;
+
+        clock.setTime(buildTime((int) timer));
+        clock.setDate(buildDate((int) timer));
+        clock.setSeason(getSeason());
     }
 
     @Override
@@ -38,8 +42,8 @@ public class TimeSystem extends EntitySystem {
             //TODO
         }
 
-        // When minute on clock is 0 or 30 it's time to notify view
-        if(calculateMinute(totalSeconds) % 30 == 0) {
+        // Every 10 minute notify the view
+        if(calculateMinute(totalSeconds) % 10 == 0) {
             clock.setTime(buildTime(totalSeconds));
         }
         clock.setDate(buildDate(totalSeconds));
@@ -47,14 +51,17 @@ public class TimeSystem extends EntitySystem {
         float progress = totalSecondsFrom(totalSeconds, startHour) / ((endHour - startHour) * 60 * 60f);
         clock.setArrowAngle((int) (180 - (progress) * 180));
 
-        float darknessProgress = MathUtils.clamp(totalSecondsFrom(totalSeconds, darknessBegin)
-                / ((darknessEnd - darknessBegin) * 60 * 60f), 0f, 1f);
-
-        float darkness = 1 - darknessProgress/2.5f;
-        rayHandler.setAmbientLight(darkness, darkness, darkness, 1f);
     }
 
-    private int totalSecondsFrom(int totalSeconds, int hour) {
+    /**
+     * This method will return the number of seconds passed from the beginning of the game
+     * @return Int value
+     */
+    public int getTotalSeconds() {
+        return (int) timer;
+    }
+
+    public int totalSecondsFrom(int totalSeconds, int hour) {
         return totalSeconds % (24 * 60 * 60) - hour * (60 * 60);
     }
     private String buildDate(int totalSeconds) {
@@ -92,4 +99,21 @@ public class TimeSystem extends EntitySystem {
         return hour + ":" + minute;
     }
 
+    public Season getSeason() {
+        int totalSeconds = (int) timer;
+        int monthsPassed = (totalSeconds / (24 * 60 * 60 * monthsDays));
+        monthsPassed %= 12;
+        if(monthsPassed <= 2) {
+            return Season.Spring;
+        }
+        else if(monthsPassed <= 5) {
+            return Season.Summer;
+        }
+        else if(monthsPassed <= 8) {
+            return Season.Fall;
+        }
+        else {
+            return Season.Winter;
+        }
+    }
 }

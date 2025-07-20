@@ -3,6 +3,8 @@ package com.ap.ui.widget;
 import com.ap.Constraints;
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
+import com.ap.model.Season;
+import com.ap.model.Weather;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -27,6 +29,8 @@ public class Clock extends Actor {
     private String time;
     private String date;
     private int arrowAngle;
+    private TextureRegion seasonImage;
+    private TextureRegion weatherImage;
 
     public Clock(AssetService assetService, Skin skin) {
         this.assetService = assetService;
@@ -47,6 +51,24 @@ public class Clock extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        float weatherImageXOffset = 72.7f;
+        float weatherImageYOffset = 87.7f;
+        batch.draw(weatherImage,
+                getX() + weatherImageXOffset, getY() + weatherImageYOffset,
+                0, 0,
+                weatherImage.getRegionWidth(), weatherImage.getRegionHeight(),
+                scale, scale,
+                0);
+
+        float seasonImageXOffset = 133f;
+        float seasonImageYOffset = 87.5f;
+        batch.draw(seasonImage,
+                getX() + seasonImageXOffset, getY() + seasonImageYOffset,
+                0, 0,
+                seasonImage.getRegionWidth(), seasonImage.getRegionHeight(),
+                scale, scale,
+                0);
+
         batch.draw(clockImage,
                 getX(), getY(), 0, 0
                 , clockImage.getRegionWidth(), clockImage.getRegionHeight(),
@@ -70,6 +92,7 @@ public class Clock extends Actor {
                 arrowImage.getRegionWidth(), arrowImage.getRegionHeight(),
                 scale, scale,
                 arrowAngle);
+
     }
 
 
@@ -83,5 +106,13 @@ public class Clock extends Actor {
 
     public void setArrowAngle(int arrowAngle) {
         this.arrowAngle = arrowAngle;
+    }
+
+    public void setWeather(Weather weather) {
+        this.weatherImage = atlas.findRegion(weather.name());
+    }
+
+    public void setSeason(Season season) {
+        this.seasonImage = atlas.findRegion(season.name());
     }
 }

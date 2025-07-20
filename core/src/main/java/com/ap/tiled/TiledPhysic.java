@@ -6,8 +6,10 @@ import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.PolylineMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
@@ -20,6 +22,10 @@ public class TiledPhysic {
         } else if(mapObject instanceof EllipseMapObject ellipseObject) {
             return ellipseFixtureDef(ellipseObject, relativeTo, scaling);
         } else if(mapObject instanceof PolygonMapObject polygonObject) {
+            Polygon polygon = polygonObject.getPolygon();
+            float offsetX = polygon.getX() * Constraints.UNIT_SCALE;
+            float offsetY = polygon.getY() * Constraints.UNIT_SCALE;
+            return polygonFixtureDef(polygonObject, polygon.getVertices(), offsetX, offsetY, scaling, relativeTo);
         } else if(mapObject instanceof PolylineMapObject polylineObject) {
 
         } else {
@@ -30,6 +36,33 @@ public class TiledPhysic {
 
     private static FixtureDef ellipseFixtureDef(EllipseMapObject mapObject, Vector2 relativeTo, Vector2 scaling) {
         return null;
+    }
+
+    private static FixtureDef polygonFixtureDef(
+            MapObject mapObject, // Could be PolygonMapObject or PolylineMapObject
+            float[] polyVertices,
+            float offsetX,
+            float offsetY,
+            Vector2 scaling,
+            Vector2 relativeTo
+    ) {
+        offsetX = (offsetX * scaling.x) - relativeTo.x;
+        offsetY = (offsetY * scaling.y) - relativeTo.y;
+        float[] vertices = new float[polyVertices.length];
+        for (int vertexIdx = 0; vertexIdx < polyVertices.length; vertexIdx += 2) {
+            // x-coordinate
+            vertices[vertexIdx] = offsetX + polyVertices[vertexIdx] * Constraints.UNIT_SCALE * scaling.x;
+            // y-coordinate
+            vertices[vertexIdx + 1] = offsetY + polyVertices[vertexIdx + 1] * Constraints.UNIT_SCALE * scaling.y;
+        }
+
+        ChainShape shape = new ChainShape();
+        if (mapObject instanceof PolygonMapObject) {
+            shape.createLoop(vertices);
+        } else { // PolylineMapObject
+            shape.createChain(vertices);
+        }
+        return fixtureOfObjectAndShape(mapObject, shape);
     }
 
     /**
@@ -60,7 +93,7 @@ public class TiledPhysic {
         return fixtureOfObjectAndShape(mapObject, shape);
     }
 
-    private static FixtureDef fixtureOfObjectAndShape(RectangleMapObject mapObject, Shape shape) {
+    private static FixtureDef fixtureOfObjectAndShape(MapObject mapObject, Shape shape) {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.friction = mapObject.getProperties().get("friction", 0f, Float.class);
         fixtureDef.restitution = mapObject.getProperties().get("restitution", 0f, Float.class);

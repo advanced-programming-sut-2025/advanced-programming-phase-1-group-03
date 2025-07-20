@@ -44,6 +44,9 @@ public class LoadingScreen extends AbstractScreen {
         for(TilesetAsset tileset : TilesetAsset.values()) {
             assetService.queue(tileset);
         }
+        for(TextureAsset texture : TextureAsset.values()) {
+            assetService.queue(texture);
+        }
     }
     @Override
     public void render(float delta) {

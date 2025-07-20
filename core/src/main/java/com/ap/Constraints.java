@@ -14,12 +14,14 @@ public class Constraints {
     public static final float PLAYER_ANIMATION_FRAME_DURATION =  1/ 8f;
 
     // It means 1 second in the real world is equal to how many seconds in the game
-    public static final float GAME_SPEED = 1800f;
+    public static final float GAME_SPEED = 2000f;
     // The game start at this hour
     public static final int START_HOUR = 8;
     public static final int END_HOUR = 22;
     public static final int DARKNESS_END_HOUR = 20;
     public static final int DARKNESS_BEGIN_HOUR = 17;
+
+    public static final int MONTHS_DAYS = 28;
 
     public static String[] secQuestions = {
             "What is your dad's name?",
