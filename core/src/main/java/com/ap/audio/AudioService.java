@@ -6,6 +6,10 @@ import com.ap.asset.SoundAsset;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.Array;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class AudioService {
     private final AssetService assetManager;
@@ -13,6 +17,8 @@ public class AudioService {
     private MusicAsset currentMusicAsset;
     private float musicVolume = 0.3f;
     private float soundVolume = 0.5f;
+
+    private Map<MusicAsset, Music> musicMap = new HashMap<>();
 
     public AudioService(AssetService assetManager) {
         this.assetManager = assetManager;
@@ -34,6 +40,30 @@ public class AudioService {
         currentMusic.setLooping(true);
         currentMusic.setVolume(musicVolume);
         currentMusic.play();
+    }
+
+    public void playMusicMeanwhile(MusicAsset musicAsset) {
+        if(currentMusic != null) {
+            currentMusic.setVolume(MathUtils.clamp(musicVolume - 0.1f, 0, 1));
+        }
+        if(musicMap.containsKey(musicAsset)) {
+            return;
+        }
+        Music music = assetManager.get(musicAsset);
+        musicMap.put(musicAsset, music);
+        music.setLooping(true);
+        music.setVolume(musicVolume);
+        music.play();
+    }
+
+    public void stopMusic(MusicAsset musicAsset) {
+        if(!musicMap.containsKey(musicAsset)) {
+            return;
+        }
+        Music music = musicMap.get(musicAsset);
+        music.stop();
+        assetManager.unload(musicAsset);
+        musicMap.remove(musicAsset);
     }
 
     public void playSound(SoundAsset soundAsset) {

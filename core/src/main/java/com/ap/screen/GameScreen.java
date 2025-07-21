@@ -69,7 +69,11 @@ public class GameScreen extends AbstractScreen {
 
         RayHandler.useDiffuseLight(true);
         rayHandler = new RayHandler(world);
+    }
 
+
+    @Override
+    public void show() {
         // Adding systems to the engine
         engine.addSystem(new PhysicMoveSystem());
         engine.addSystem(new PhysicDebugRenderSystem(camera, world));
@@ -78,23 +82,19 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
         engine.addSystem(new TimeSystem(clock));
-        engine.addSystem(new WeatherSystem(engine, clock, assetService, stage));
+        engine.addSystem(new WeatherSystem(engine, clock, assetService, stage, audioService));
         engine.addSystem(new ScreenBrightnessSystem(rayHandler, engine));
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
         engine.addSystem(new ControllerSystem());
-    }
 
-
-    @Override
-    public void show() {
         super.show();
 
         stage.addActor(new GameView(stage, skin, new GameViewModel(game), audioService));
         stage.addActor(clock);
 
         // Play background music
-        audioService.playMusic(MusicAsset.GameMusicDefault);
+        audioService.playMusic(MusicAsset.Spring);
 
         game.setInputProcessors(stage, keyboardController);
 

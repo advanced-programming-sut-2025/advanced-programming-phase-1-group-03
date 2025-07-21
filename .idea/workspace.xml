@@ -4,29 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding seasons">
-      <change afterPath="$PROJECT_DIR$/assets/graphics/Rain.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/map/objects/GameObjects.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/map/objects/House.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/TextureAsset.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Weather.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ScreenBrightnessSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/WeatherSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/effects/Rain.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding map boundary">
+      <change afterPath="$PROJECT_DIR$/assets/audio/Fall.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/audio/Rain.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/audio/Spring.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/audio/Summer.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/audio/Winter.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/UI.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/UI.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/UI.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/UI.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/map/Farm1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Farm1.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/LoadingScreen.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/screen/LoadingScreen.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Season.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Season.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/objects/GameObjects.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/objects/GameObjects.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/objects/Objects.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/objects/Objects.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/MusicAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/MusicAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/audio/AudioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/audio/AudioService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoadingScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/TimeSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/TimeSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledAshleyConfigurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledAshleyConfigurator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledPhysic.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledPhysic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/Clock.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/Clock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/WeatherSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/WeatherSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/effects/Rain.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/effects/Rain.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +98,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/StarehdewValley/assets/map/objects",
+    "last_opened_file_path": "D:/StarehdewValley/assets/audio",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -125,11 +117,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\StarehdewValley\assets\audio" />
       <recent name="D:\StarehdewValley\assets\map\objects" />
       <recent name="D:\StarehdewValley\assets\graphics" />
       <recent name="D:\StarehdewValley\assets\map\tileset" />
       <recent name="D:\StarehdewValley\assets\skins" />
-      <recent name="D:\StarehdewValley\assets\audio" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Run">
@@ -201,14 +193,6 @@
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task id="LOCAL-00002" summary="refrigerator bug fixed.">
-      <option name="closed" value="true" />
-      <created>1746950253976</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1746950253976</updated>
-    </task>
     <task active="true" id="Default" summary="Default task">
       <changelist id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="refrigerator bug fixed." />
       <created>1746950472838</created>
@@ -253,7 +237,8 @@
       <workItem from="1752956828384" duration="11233000" />
       <workItem from="1753006026291" duration="2030000" />
       <workItem from="1753014376747" duration="2140000" />
-      <workItem from="1753025964397" duration="10956000" />
+      <workItem from="1753025964397" duration="11036000" />
+      <workItem from="1753088136967" duration="2660000" />
     </task>
     <task id="LOCAL-00003" summary="animal fixed">
       <option name="closed" value="true" />
@@ -611,7 +596,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۵۰" />
       <updated>1752967381790</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL‎−۰۰۰۵۱" summary="Adding map boundary">
+      <option name="closed" value="true" />
+      <created>1753051598660</created>
+      <option name="number" value="LOCAL‎−۰۰۰۵۱" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۵۱" />
+      <updated>1753051598660</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -642,7 +634,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="thunder fixed" />
     <MESSAGE value="player transport at night added" />
     <MESSAGE value="bug fixed" />
     <MESSAGE value="Bug in showing of plowed dit" />
@@ -667,7 +658,8 @@
     <MESSAGE value="Profile screen finished" />
     <MESSAGE value="Add Clock" />
     <MESSAGE value="Adding seasons" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding seasons" />
+    <MESSAGE value="Adding map boundary" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding map boundary" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -721,6 +713,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java</url>
           <line>182</line>
           <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/system/ScreenBrightnessSystem.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="94" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />

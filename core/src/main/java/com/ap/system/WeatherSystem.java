@@ -1,6 +1,8 @@
 package com.ap.system;
 
 import com.ap.asset.AssetService;
+import com.ap.asset.MusicAsset;
+import com.ap.audio.AudioService;
 import com.ap.model.Season;
 import com.ap.model.Weather;
 import com.ap.ui.effects.Rain;
@@ -16,22 +18,22 @@ public class WeatherSystem extends EntitySystem {
     private final Clock clock;
     private final TimeSystem timeSystem;
     private final Stage stage;
-
+    private final AudioService audioService;
     private final Rain rainActor;
 
     public WeatherSystem(final Engine engine,
                          final Clock clock,
                          AssetService assetService,
-                         Stage stage) {
+                         Stage stage,
+                         AudioService audioService) {
 
         timeSystem = engine.getSystem(TimeSystem.class);
         this.clock = clock;
-
+        this.audioService = audioService;
         this.stage = stage;
         rainActor = new Rain(assetService);
         setWeatherRandomly();
         clock.setWeather(getCurrentWeather());
-
     }
 
     /**
@@ -50,6 +52,7 @@ public class WeatherSystem extends EntitySystem {
     }
 
     private void snowSetup() {
+        
     }
 
     private void stormSetup() {
@@ -57,7 +60,9 @@ public class WeatherSystem extends EntitySystem {
 
     public void rainSetup() {
         stage.addActor(rainActor);
+        audioService.playMusicMeanwhile(MusicAsset.Rain);
     }
+
     public void sunnySetup() {
         stage.getActors().removeValue(rainActor, true);
     }

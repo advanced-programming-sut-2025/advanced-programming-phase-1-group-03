@@ -9,14 +9,11 @@
    <property name="atlasKey" value="player"/>
    <property name="controller" type="bool" value="true"/>
    <property name="speed" type="float" value="2"/>
+   <property name="z" type="int" value="1"/>
   </properties>
   <image source="player.png" width="32" height="32"/>
   <objectgroup draworder="index" id="2">
-   <object id="6" x="11" y="6.5" width="9.5" height="16">
-    <properties>
-     <property name="speed" type="float" value="10"/>
-    </properties>
-   </object>
+   <object id="8" x="10.6907" y="16.0361" width="9.54527" height="6.8726"/>
   </objectgroup>
  </tile>
 </tileset>

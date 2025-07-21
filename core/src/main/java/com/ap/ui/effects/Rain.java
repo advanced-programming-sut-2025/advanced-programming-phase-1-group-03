@@ -22,7 +22,7 @@ public class Rain extends Actor {
     private float timer = 0f;
     private static final float speed = 30 * 60;
     private static final float animationSpeed = 1 / 10f;
-    private static  final float scale = 1.5f;
+    private static  final float scale = 0.8f;
 
     private final TextureRegion[][] rainTextures;
 
