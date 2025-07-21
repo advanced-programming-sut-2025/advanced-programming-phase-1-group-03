@@ -65,7 +65,12 @@ public class TiledAshleyConfigurator {
         addEntityGraphic(entity, textureRegion);
         addEntityFacing(entity);
         addEntityAnimation(tile, entity);
+        addEntityFsm(entity);
         engine.addEntity(entity);
+    }
+
+    private void addEntityFsm(Entity entity) {
+        entity.add(new Fsm(entity));
     }
 
     private void addEntityAnimation(TiledMapTile tile, Entity entity) {

@@ -16,6 +16,7 @@ import com.ap.tiled.TiledService;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
 import com.ap.ui.widget.Clock;
+import com.ap.ui.widget.ItemContainer;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -39,8 +40,9 @@ public class GameScreen extends AbstractScreen {
     private World world;
     private Camera camera;
 
-    // Clock UI Component
+    // UI Components
     private Clock clock;
+    private ItemContainer itemContainer;
 
     // Use to for night darkness
     private RayHandler rayHandler;
@@ -66,6 +68,7 @@ public class GameScreen extends AbstractScreen {
         tileConfigurator = new TiledAshleyConfigurator(engine, world);
 
         clock = new Clock(assetService, skin);
+        itemContainer = new ItemContainer(assetService, skin, stage);
 
         RayHandler.useDiffuseLight(true);
         rayHandler = new RayHandler(world);
@@ -76,7 +79,9 @@ public class GameScreen extends AbstractScreen {
     public void show() {
         // Adding systems to the engine
         engine.addSystem(new PhysicMoveSystem());
-        engine.addSystem(new PhysicDebugRenderSystem(camera, world));
+
+        //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
+
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL));
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
@@ -92,6 +97,7 @@ public class GameScreen extends AbstractScreen {
 
         stage.addActor(new GameView(stage, skin, new GameViewModel(game), audioService));
         stage.addActor(clock);
+        stage.addActor(itemContainer);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
@@ -116,11 +122,12 @@ public class GameScreen extends AbstractScreen {
     public void render(float delta) {
         delta = Math.min(1 / 30f, delta);
         engine.update(delta);
-        rayHandler.setCombinedMatrix(camera.combined);
-        rayHandler.updateAndRender();
+
         super.render(delta);
 
         stage.act(delta);
         stage.draw();
+        rayHandler.setCombinedMatrix(camera.combined);
+        rayHandler.updateAndRender();
     }
 }
