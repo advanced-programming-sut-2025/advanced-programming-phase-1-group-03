@@ -3,6 +3,8 @@ package com.ap.ui.widget;
 import com.ap.Constraints;
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
+import com.ap.items.Inventory;
+import com.ap.items.Item;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -19,17 +21,22 @@ public class ItemContainer extends Actor {
     private final TextureAtlas atlas;
     private final AssetService assetService;
     private final Skin skin;
+    private final Inventory inventory;
 
     private TextureRegion texture;
     private TextureRegion selectedItem;
 
-    private int size = 1;
+    // It shows the maximum amount of items can be shown on item container
+    private final static int maxSize = 12;
 
-    private float scale = 0.4f;
+    private final float scale = 0.25f * 2;
+    private final float itemScale = 1f * 2;
+
     public int selectedIndex = 0;
 
-    public ItemContainer(AssetService assetService, Skin skin, Stage stage) {
+    public ItemContainer(AssetService assetService, Skin skin, Stage stage, Inventory inventory) {
         this.assetService = assetService;
+        this.inventory = inventory;
         atlas = assetService.get(AtlasAsset.UI);
         this.skin = skin;
         setupUI();
@@ -42,7 +49,7 @@ public class ItemContainer extends Actor {
                 } else {
                     selectedIndex --;
                 }
-                selectedIndex = MathUtils.clamp(selectedIndex, 0, size - 1);
+                selectedIndex = MathUtils.clamp(selectedIndex, 0, Math.min(inventory.getSize(), maxSize) - 1);
                 return true;
             }
         });
@@ -66,11 +73,23 @@ public class ItemContainer extends Actor {
 
         final float borderOffset = 16f * scale;
         float widthEach = selectedItem.getRegionWidth() * scale;
+
+        for(int i = 0; i < Math.min(inventory.getSize(), maxSize); i++) {
+            Item item = inventory.getItems().get(i).getItem();
+            batch.draw(item.getIcon(),
+                    getX() + widthEach * i + borderOffset, getY() + borderOffset,
+                    0, 0,
+                    item.getIcon().getRegionWidth(), item.getIcon().getRegionHeight(),
+                    itemScale, itemScale,
+                    0);
+        }
+
         batch.draw(selectedItem,
                 getX() + widthEach * selectedIndex + borderOffset, getY() + borderOffset,
                 0, 0,
                 selectedItem.getRegionWidth(), selectedItem.getRegionHeight(),
                 scale, scale,
                 0);
+
     }
 }

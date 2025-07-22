@@ -10,6 +10,8 @@ import com.ap.audio.AudioService;
 import com.ap.component.Facing;
 import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
+import com.ap.items.Inventory;
+import com.ap.items.tools.Tool;
 import com.ap.system.*;
 import com.ap.tiled.TiledAshleyConfigurator;
 import com.ap.tiled.TiledService;
@@ -44,6 +46,8 @@ public class GameScreen extends AbstractScreen {
     private Clock clock;
     private ItemContainer itemContainer;
 
+    private Inventory inventory;
+
     // Use to for night darkness
     private RayHandler rayHandler;
 
@@ -67,8 +71,12 @@ public class GameScreen extends AbstractScreen {
         tiledService = new TiledService(assetService);
         tileConfigurator = new TiledAshleyConfigurator(engine, world);
 
+        // Setup inventory
+        inventory = new Inventory();
+        Tool.addBasicTools(inventory, assetService);
+
         clock = new Clock(assetService, skin);
-        itemContainer = new ItemContainer(assetService, skin, stage);
+        itemContainer = new ItemContainer(assetService, skin, stage, inventory);
 
         RayHandler.useDiffuseLight(true);
         rayHandler = new RayHandler(world);
