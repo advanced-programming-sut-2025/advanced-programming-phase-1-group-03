@@ -4,18 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Fix player animation">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/Inventory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Pickaxe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Abilities.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Add Tools atlas">
+      <change afterPath="$PROJECT_DIR$/assets/audio/coin.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/audio/hoeHit.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Hoe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/TileSelectionSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/Tools.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Tools.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/Tools.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Tools.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/UI.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/UI.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/UI.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/UI.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/Farm1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Farm1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/objects/Objects.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/objects/Objects.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/audio/AudioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/audio/AudioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/ControllerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/ControllerState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/GameControllerState.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/GameControllerState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/KeyboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/KeyboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledAshleyConfigurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledAshleyConfigurator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledPhysic.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledPhysic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/ItemContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/Lwjgl3Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/Lwjgl3Launcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/java/com/ap/lwjgl3/Lwjgl3Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/src/main/java/com/ap/lwjgl3/Lwjgl3Launcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +112,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/StarehdewValley",
+    "last_opened_file_path": "C:/Users/ASUS/Desktop/LearnLibgdx",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -238,22 +255,9 @@
       <workItem from="1753088136967" duration="4947000" />
       <workItem from="1753097510472" duration="6901000" />
       <workItem from="1753120224543" duration="1456000" />
-      <workItem from="1753174831226" duration="4221000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۰۵" summary="Adding one function to time">
-      <option name="closed" value="true" />
-      <created>1747038571763</created>
-      <option name="number" value="LOCAL‎−۰۰۰۰۵" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۰۵" />
-      <updated>1747038571776</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Mineral enum fixed.">
-      <option name="closed" value="true" />
-      <created>1747096150127</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1747096150127</updated>
+      <workItem from="1753174831226" duration="5489000" />
+      <workItem from="1753189199875" duration="572000" />
+      <workItem from="1753204394064" duration="20323000" />
     </task>
     <task id="LOCAL-00007" summary="getType of enums added.">
       <option name="closed" value="true" />
@@ -601,7 +605,21 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۵۳" />
       <updated>1753121083056</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL‎−۰۰۰۵۴" summary="Add basic items structure">
+      <option name="closed" value="true" />
+      <created>1753179092281</created>
+      <option name="number" value="LOCAL‎−۰۰۰۵۴" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۵۴" />
+      <updated>1753179092281</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۵۵" summary="Add Tools atlas">
+      <option name="closed" value="true" />
+      <created>1753179113977</created>
+      <option name="number" value="LOCAL‎−۰۰۰۵۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۵۵" />
+      <updated>1753179113977</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -632,8 +650,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Bug in showing of plowed dit" />
-    <MESSAGE value="Tool and ability cheat" />
     <MESSAGE value="gamejoined id bug fixed" />
     <MESSAGE value="h bug fixed" />
     <MESSAGE value="Setting up graphical project" />
@@ -657,7 +673,9 @@
     <MESSAGE value="Adding map boundary" />
     <MESSAGE value="Some improvements" />
     <MESSAGE value="Fix player animation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix player animation" />
+    <MESSAGE value="Add basic items structure" />
+    <MESSAGE value="Add Tools atlas" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Tools atlas" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -723,6 +741,7 @@
         <PinnedItemInfo parentTag="org.sqlite.jdbc4.JDBC4ResultSet" memberName="stmt" />
         <PinnedItemInfo parentTag="com.badlogic.gdx.utils.ObjectMap" memberName="keyTable" />
         <PinnedItemInfo parentTag="com.badlogic.gdx.maps.MapProperties" memberName="properties" />
+        <PinnedItemInfo parentTag="com.badlogic.gdx.physics.box2d.PolygonShape" memberName="addr" />
         <PinnedItemInfo parentTag="com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile" memberName="id" />
       </pinned-members>
     </pin-to-top-manager>

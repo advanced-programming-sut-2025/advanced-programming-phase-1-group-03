@@ -8,8 +8,9 @@
    <property name="atlas" value="Player"/>
    <property name="atlasKey" value="player"/>
    <property name="controller" type="bool" value="true"/>
-   <property name="speed" type="float" value="2"/>
-   <property name="z" type="int" value="1"/>
+   <property name="player" type="bool" value="true"/>
+   <property name="speed" type="float" value="3"/>
+   <property name="z" type="int" value="2"/>
   </properties>
   <image source="player.png" width="32" height="32"/>
   <objectgroup draworder="index" id="2">

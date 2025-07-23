@@ -19,7 +19,7 @@ import com.badlogic.gdx.physics.box2d.*;
 
 public class TiledAshleyConfigurator {
     private final Engine engine;
-    private World world;
+    private final World world;
 
     public TiledAshleyConfigurator(Engine engine, World world) {
         this.engine = engine;
@@ -27,7 +27,10 @@ public class TiledAshleyConfigurator {
     }
 
     public void onLoadTile(TiledMapTile tile, int x, int y) {
+        TiledPhysic.createBodyForTile(x, y, "environment", world);
     }
+
+
 
     public void onLoadBoundary(PolygonMapObject object) {
         MapObjects objects = new MapObjects();
@@ -66,7 +69,15 @@ public class TiledAshleyConfigurator {
         addEntityFacing(entity);
         addEntityAnimation(tile, entity);
         addEntityFsm(entity);
+        addEntityPlayer(entity, tile);
         engine.addEntity(entity);
+    }
+
+    private void addEntityPlayer(Entity entity, TiledMapTile tile) {
+        boolean isPlayer = tile.getProperties().get("player", false, Boolean.class);
+        if (isPlayer) {
+            entity.add(new Player());
+        }
     }
 
     private void addEntityFsm(Entity entity) {

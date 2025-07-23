@@ -1,6 +1,8 @@
 package com.ap.lwjgl3;
 
 import com.ap.Constraints;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.ap.GdxGame;
@@ -28,7 +30,7 @@ public class Lwjgl3Launcher {
         //// If you remove the above line and set Vsync to false, you can get unlimited FPS, which can be
         //// useful for testing performance, but can also be very stressful to some hardware.
         //// You may also need to configure GPU drivers to fully disable Vsync; this can cause screen tearing.
-
+       // configuration.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
         configuration.setWindowedMode(Constraints.WORLD_WIDTH_RESOLUTION, Constraints.WORLD_HEIGHT_RESOLUTION);
         //// You can change these files; they are in lwjgl3/src/main/resources/ .
         //// They can also be loaded from the root of assets/ .

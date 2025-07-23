@@ -15,11 +15,11 @@ public class ControllerSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         Controller controller = Controller.mapper.get(entity);
-        if(controller.getReleasedCommands().isEmpty() && controller.getPressedCommands().isEmpty()){
+        if (controller.getReleasedCommands().isEmpty() && controller.getPressedCommands().isEmpty()) {
             return;
         }
-        for(Command command : controller.getPressedCommands()){
-            switch(command){
+        for (Command command : controller.getPressedCommands()) {
+            switch (command) {
                 case Right -> {
                     moveEntity(entity, 1f, 0f);
                 }
@@ -38,8 +38,8 @@ public class ControllerSystem extends IteratingSystem {
         // We processed all the pressed commands
         controller.getPressedCommands().clear();
 
-        for(Command command : controller.getReleasedCommands()){
-            switch(command){
+        for (Command command : controller.getReleasedCommands()) {
+            switch (command) {
                 case Right -> {
                     moveEntity(entity, -1f, 0f);
                 }
@@ -52,13 +52,12 @@ public class ControllerSystem extends IteratingSystem {
                 case Up -> {
                     moveEntity(entity, 0f, -1f);
                 }
-
             }
         }
 
         controller.getReleasedCommands().clear();
-    }
 
+    }
     private void moveEntity(Entity entity, float dx, float dy) {
         Move move = Move.mapper.get(entity);
         if(move != null) {

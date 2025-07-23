@@ -6,4 +6,5 @@ public interface ControllerState {
     // Make keyUp optional
     default void keyUp(Command command) {
     }
+
 }

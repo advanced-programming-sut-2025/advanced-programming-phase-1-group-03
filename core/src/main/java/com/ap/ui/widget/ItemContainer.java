@@ -1,16 +1,20 @@
 package com.ap.ui.widget;
 
 import com.ap.Constraints;
+import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
+import com.ap.asset.SoundAsset;
+import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
-import com.badlogic.gdx.Gdx;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -22,6 +26,7 @@ public class ItemContainer extends Actor {
     private final AssetService assetService;
     private final Skin skin;
     private final Inventory inventory;
+    private final AudioService audioService;
 
     private TextureRegion texture;
     private TextureRegion selectedItem;
@@ -30,26 +35,31 @@ public class ItemContainer extends Actor {
     private final static int maxSize = 12;
 
     private final float scale = 0.25f * 2;
-    private final float itemScale = 1f * 2;
+    private final float itemScale = (1 / 3f) * 2;
 
     public int selectedIndex = 0;
 
-    public ItemContainer(AssetService assetService, Skin skin, Stage stage, Inventory inventory) {
+    public ItemContainer(AssetService assetService, Skin skin, Stage stage, Inventory inventory, AudioService audioService) {
         this.assetService = assetService;
         this.inventory = inventory;
         atlas = assetService.get(AtlasAsset.UI);
         this.skin = skin;
+        this.audioService = audioService;
         setupUI();
         stage.addListener(new InputListener() {
             @Override
             public boolean scrolled(InputEvent event, float x, float y, float amountX, float amountY) {
                 boolean up = amountY < 0;
+                int prev = selectedIndex;
                 if(up) {
                     selectedIndex ++;
                 } else {
                     selectedIndex --;
                 }
                 selectedIndex = MathUtils.clamp(selectedIndex, 0, Math.min(inventory.getSize(), maxSize) - 1);
+                if(selectedIndex != prev) {
+                    audioService.playSound(SoundAsset.Beep, 0.2f);
+                }
                 return true;
             }
         });
@@ -72,7 +82,7 @@ public class ItemContainer extends Actor {
                 0);
 
         final float borderOffset = 16f * scale;
-        float widthEach = selectedItem.getRegionWidth() * scale;
+        float widthEach = selectedItem.getRegionWidth() * itemScale * 3;
 
         for(int i = 0; i < Math.min(inventory.getSize(), maxSize); i++) {
             Item item = inventory.getItems().get(i).getItem();
@@ -88,8 +98,12 @@ public class ItemContainer extends Actor {
                 getX() + widthEach * selectedIndex + borderOffset, getY() + borderOffset,
                 0, 0,
                 selectedItem.getRegionWidth(), selectedItem.getRegionHeight(),
-                scale, scale,
+                itemScale * 3, itemScale * 3,
                 0);
 
+    }
+
+    public void useSelectedItem(Body body, Engine engine, GdxGame game, World world) {
+        inventory.getItems().get(selectedIndex).getItem().applyItem(body, engine, game, world);
     }
 }

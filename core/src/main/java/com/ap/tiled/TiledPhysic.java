@@ -9,10 +9,7 @@ import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.ChainShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.Shape;
+import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 public class TiledPhysic {
@@ -93,7 +90,7 @@ public class TiledPhysic {
         return fixtureOfObjectAndShape(mapObject, shape);
     }
 
-    private static FixtureDef fixtureOfObjectAndShape(MapObject mapObject, Shape shape) {
+    public static FixtureDef fixtureOfObjectAndShape(MapObject mapObject, Shape shape) {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.friction = mapObject.getProperties().get("friction", 0f, Float.class);
         fixtureDef.restitution = mapObject.getProperties().get("restitution", 0f, Float.class);
@@ -101,5 +98,23 @@ public class TiledPhysic {
         fixtureDef.isSensor = mapObject.getProperties().get("sensor", false, Boolean.class);
         fixtureDef.shape = shape;
         return fixtureDef;
+    }
+
+    public static Body createBodyForTile(int x, int y, Object userData, World world) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.position.set(new Vector2(x, y));
+        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.fixedRotation = true;
+
+        Body body = world.createBody(bodyDef);
+        body.setUserData(userData);
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(0.5f, 0.5f, new Vector2(0.5f, 0.5f), 0);
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;
+        fixtureDef.isSensor = true;
+        body.createFixture(fixtureDef);
+        return body;
     }
 }

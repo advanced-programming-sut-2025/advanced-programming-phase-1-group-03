@@ -76,7 +76,7 @@ public class GameScreen extends AbstractScreen {
         Tool.addBasicTools(inventory, assetService);
 
         clock = new Clock(assetService, skin);
-        itemContainer = new ItemContainer(assetService, skin, stage, inventory);
+        itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
 
         RayHandler.useDiffuseLight(true);
         rayHandler = new RayHandler(world);
@@ -88,7 +88,6 @@ public class GameScreen extends AbstractScreen {
         // Adding systems to the engine
         engine.addSystem(new PhysicMoveSystem());
 
-        //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL));
         engine.addSystem(new FacingSystem());
@@ -100,6 +99,8 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
         engine.addSystem(new ControllerSystem());
+        engine.addSystem(new TileSelectionSystem(game.getBatch(), itemContainer, stage, engine, world, game));
+        //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
         super.show();
 

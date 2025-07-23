@@ -13,6 +13,7 @@ public class Controller implements Component {
 
     private final List<Command> pressedCommands;
     private final List<Command> releasedCommands;
+    private boolean mouseDown;
 
     public Controller() {
         pressedCommands = new ArrayList<>();
@@ -26,5 +27,13 @@ public class Controller implements Component {
 
     public List<Command> getReleasedCommands() {
         return releasedCommands;
+    }
+
+    public boolean isMouseDown() {
+        return mouseDown;
+    }
+
+    public void setMouseDown(boolean mouseDown) {
+        this.mouseDown = mouseDown;
     }
 }

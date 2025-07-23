@@ -1947,7 +1947,7 @@
   <object id="88" name="Player" gid="3098" x="1015.5" y="318.667" width="32" height="32">
    <properties>
     <property name="cameraFollow" type="bool" value="true"/>
-    <property name="speed" type="float" value="1"/>
+    <property name="speed" type="float" value="3"/>
    </properties>
   </object>
   <object id="91" name="Map Boundary" x="672.333" y="-0.333333" rotation="90">

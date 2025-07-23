@@ -16,7 +16,7 @@ public class AudioService {
     private Music currentMusic;
     private MusicAsset currentMusicAsset;
     private float musicVolume = 0.3f;
-    private float soundVolume = 0.5f;
+    private float soundVolume = 0.3f;
 
     private Map<MusicAsset, Music> musicMap = new HashMap<>();
 
@@ -69,7 +69,9 @@ public class AudioService {
     public void playSound(SoundAsset soundAsset) {
         assetManager.get(soundAsset).play(soundVolume);
     }
-
+    public void playSound(SoundAsset soundAsset, float volume) {
+        assetManager.get(soundAsset).play(volume);
+    }
     public void setSoundVolume(float soundVolume) {
         this.soundVolume = MathUtils.clamp(soundVolume, 0, 1);
     }

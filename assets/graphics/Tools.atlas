@@ -1,7 +1,11 @@
 Tools.png
-size:64,32
+size:256,64
 repeat:none
 axe/normal
-bounds:2,2,16,16
+bounds:52,2,48,48
+dirt_hoed_spring
+bounds:152,34,16,16
+hoe/normal
+bounds:2,2,48,48
 pickaxe/normal
-bounds:20,2,16,16
+bounds:102,2,48,48

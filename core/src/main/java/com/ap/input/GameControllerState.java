@@ -8,7 +8,7 @@ import com.badlogic.ashley.utils.ImmutableArray;
 
 public class GameControllerState implements ControllerState{
 
-    private ImmutableArray<Entity> controllerEntities;
+    private final ImmutableArray<Entity> controllerEntities;
 
     public GameControllerState(Engine engine) {
         controllerEntities = engine.getEntitiesFor(Family.all(Controller.class).get());
@@ -27,4 +27,5 @@ public class GameControllerState implements ControllerState{
             Controller.mapper.get(entity).getReleasedCommands().add(command);
         }
     }
+
 }

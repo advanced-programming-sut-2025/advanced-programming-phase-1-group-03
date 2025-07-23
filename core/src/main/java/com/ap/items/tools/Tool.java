@@ -29,5 +29,7 @@ public abstract class Tool extends Item {
         TextureAtlas atlas = assetService.get(AtlasAsset.Tools);
         inventory.addItem(new Axe(atlas.findRegion("axe/normal")), 1);
         inventory.addItem(new Pickaxe(atlas.findRegion("pickaxe/normal")), 1);
+        inventory.addItem(new Hoe(atlas.findRegion("hoe/normal")), 1);
+
     }
 }
