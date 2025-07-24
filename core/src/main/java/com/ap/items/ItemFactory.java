@@ -40,9 +40,9 @@ public class ItemFactory {
         TextureRegion shadowTexture = assetService.get(AtlasAsset.Shadows).findRegion("shadow");
         Vector2 shadowSize = new Vector2(shadowTexture.getRegionWidth(), shadowTexture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
         Entity shadowEntity = new Entity();
-        shadowEntity.add(new Transform(new Vector2(position.x - shadowSize.x/2 +0.5f, position.y),
+        shadowEntity.add(new Transform(new Vector2(position.x - shadowSize.x/2 +0.5f, position.y -0.5F),
                 Constraints.TREE_STUMP_Z,
-                new Vector2(3, 3),
+                new Vector2(1, 1),
                 shadowSize,
                 0, -1));
         shadowEntity.add(new Graphic(shadowTexture));
