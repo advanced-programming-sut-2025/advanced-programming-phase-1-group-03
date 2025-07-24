@@ -18,6 +18,7 @@ import com.ap.tiled.TiledService;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
 import com.ap.ui.widget.Clock;
+import com.ap.ui.widget.EnergyBar;
 import com.ap.ui.widget.ItemContainer;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
@@ -45,6 +46,7 @@ public class GameScreen extends AbstractScreen {
     // UI Components
     private Clock clock;
     private ItemContainer itemContainer;
+    private EnergyBar energyBar;
 
     private Inventory inventory;
 
@@ -77,6 +79,7 @@ public class GameScreen extends AbstractScreen {
 
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
+        energyBar = new EnergyBar(assetService, skin);
 
         RayHandler.useDiffuseLight(true);
         rayHandler = new RayHandler(world);
@@ -98,6 +101,7 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new SeasonalGraphicSystem(assetService, engine));
         engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
         engine.addSystem(new ControllerSystem());
+        engine.addSystem(new EnergySystem(energyBar));
         engine.addSystem(new TileSelectionSystem(game.getBatch(), itemContainer, stage, engine, world, game));
        // engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
@@ -106,6 +110,7 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(new GameView(stage, skin, new GameViewModel(game), audioService));
         stage.addActor(clock);
         stage.addActor(itemContainer);
+        stage.addActor(energyBar);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);

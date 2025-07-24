@@ -9,6 +9,7 @@ audio/coin.wav
 audio/hoeHit.wav
 audio/hover-sound.wav
 data.db
+graphics/EnergyBar.png
 graphics/Rain.png
 graphics/SeasonalObjects.atlas
 graphics/SeasonalObjects.png
@@ -33,8 +34,6 @@ map/tileset/summer_outdoorsTileSheet.png
 map/tileset/summer_outdoorsTileSheet2.png
 map/tileset/winter_outdoorsTileSheet.png
 map/tileset/winter_outdoorsTileSheet2.png
-skins/Stardew Valley ALL CAPS.ttf
-skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas
