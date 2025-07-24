@@ -1,0 +1,105 @@
+trees.png
+size: 188, 127
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+pma: false
+oak/fall/seed
+  bounds: 150, 36, 16, 16
+oak/fall/stage
+  bounds: 150, 72, 10, 8
+  offsets: 4, 3, 16, 16
+  index: 1
+oak/fall/stage
+  bounds: 127, 114, 13, 11
+  offsets: 2, 3, 16, 16
+  rotate: 90
+  index: 2
+oak/fall/stage
+  bounds: 173, 0, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 3
+oak/fall/stage
+  bounds: 103, 82, 15, 30
+  index: 4
+oak/fall/stage
+  bounds: 0, 0, 48, 80
+  index: 5
+oak/fall/stump
+  bounds: 140, 108, 16, 21
+  offsets: 0, 0, 16, 32
+  rotate: 90
+oak/spring/seed
+  bounds: 150, 54, 16, 16
+oak/spring/stage
+  bounds: 162, 72, 10, 8
+  offsets: 4, 3, 16, 16
+  index: 1
+oak/spring/stage
+  bounds: 163, 100, 13, 11
+  offsets: 2, 3, 16, 16
+  index: 2
+oak/spring/stage
+  bounds: 173, 18, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 3
+oak/spring/stage
+  bounds: 85, 82, 16, 32
+  index: 4
+oak/spring/stage
+  bounds: 50, 0, 48, 80
+  index: 5
+oak/spring/stump
+  bounds: 150, 0, 16, 21
+  offsets: 0, 0, 16, 32
+  rotate: 90
+oak/summer/seed
+  bounds: 155, 82, 16, 16
+oak/summer/stage
+  bounds: 174, 72, 10, 8
+  offsets: 4, 3, 16, 16
+  index: 1
+oak/summer/stage
+  bounds: 173, 82, 13, 11
+  offsets: 2, 3, 16, 16
+  index: 2
+oak/summer/stage
+  bounds: 168, 54, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 3
+oak/summer/stage
+  bounds: 120, 82, 15, 30
+  index: 4
+oak/summer/stage
+  bounds: 100, 0, 48, 80
+  index: 5
+oak/summer/stump
+  bounds: 150, 18, 16, 21
+  offsets: 0, 0, 16, 32
+  rotate: 90
+oak/winter/seed
+  bounds: 168, 36, 16, 16
+oak/winter/stage
+  bounds: 178, 109, 10, 8
+  offsets: 4, 3, 16, 16
+  index: 1
+oak/winter/stage
+  bounds: 178, 95, 10, 12
+  offsets: 3, 2, 16, 16
+  index: 2
+oak/winter/stage
+  bounds: 110, 114, 13, 15
+  offsets: 2, 0, 16, 16
+  rotate: 90
+  index: 3
+oak/winter/stage
+  bounds: 85, 116, 11, 23
+  rotate: 90
+  index: 4
+oak/winter/stage
+  bounds: 0, 82, 45, 83
+  rotate: 90
+  index: 5
+oak/winter/stump
+  bounds: 137, 82, 16, 24
+  offsets: 0, 0, 16, 32

@@ -4,20 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Add Tools atlas">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/FishingPole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/MilkPail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Scythe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Shear.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/WateringCan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Run.xml" beforeDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Tools icon atlas added&#10;Tools class added">
+      <change afterPath="$PROJECT_DIR$/assets/graphics/trees/trees.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/trees/trees.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/Tools.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Tools.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/Tools.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Tools.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Abilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Abilities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/ItemContainer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +88,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ASUS/Desktop/LearnLibgdx",
+    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/StardewValley/assets/graphics/trees",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -244,14 +234,6 @@
       <workItem from="1753174831226" duration="5489000" />
       <workItem from="1753189199875" duration="572000" />
       <workItem from="1753204394064" duration="20323000" />
-    </task>
-    <task id="LOCAL-00007" summary="getType of enums added.">
-      <option name="closed" value="true" />
-      <created>1747132071672</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1747132071672</updated>
     </task>
     <task id="LOCAL-00008" summary="cheat add item implemented.">
       <option name="closed" value="true" />
@@ -605,7 +587,15 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۵۵" />
       <updated>1753179113977</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Tools icon atlas added&#10;Tools class added">
+      <option name="closed" value="true" />
+      <created>1753343611221</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1753343611221</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="gamejoined id bug fixed" />
     <MESSAGE value="h bug fixed" />
     <MESSAGE value="Setting up graphical project" />
     <MESSAGE value="Adding buttons to main menu &amp; Adding audio service" />
@@ -661,7 +650,8 @@
     <MESSAGE value="Fix player animation" />
     <MESSAGE value="Add basic items structure" />
     <MESSAGE value="Add Tools atlas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Tools atlas" />
+    <MESSAGE value="Tools icon atlas added&#10;Tools class added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tools icon atlas added&#10;Tools class added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
