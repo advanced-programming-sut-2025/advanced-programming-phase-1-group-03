@@ -12,12 +12,17 @@ public class SeasonalGraphic implements Component {
 
     private AtlasAsset atlas;
     private String atlasKey;
+    private Integer index = null;
 
     public SeasonalGraphic(AtlasAsset atlas, String atlasKey) {
         this.atlas = atlas;
         this.atlasKey = atlasKey;
     }
-
+    public SeasonalGraphic(AtlasAsset atlas, String atlasKey, int index) {
+        this.atlas = atlas;
+        this.atlasKey = atlasKey;
+        this.index = index;
+    }
     public AtlasAsset getAtlas() {
         return atlas;
     }
@@ -28,5 +33,9 @@ public class SeasonalGraphic implements Component {
 
     public void setAtlasKey(String atlasKey) {
         this.atlasKey = atlasKey;
+    }
+
+    public Integer getIndex() {
+        return index;
     }
 }

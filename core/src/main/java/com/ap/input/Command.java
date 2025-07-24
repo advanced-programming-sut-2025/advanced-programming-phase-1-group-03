@@ -7,6 +7,7 @@ public enum Command {
     Left(Input.Keys.LEFT, Input.Keys.A),
     Down(Input.Keys.DOWN, Input.Keys.S),
     Up(Input.Keys.UP, Input.Keys.W),
+    OpenInventory(Input.Keys.E)
     ;
 
     private final int[] correspondingKeys;

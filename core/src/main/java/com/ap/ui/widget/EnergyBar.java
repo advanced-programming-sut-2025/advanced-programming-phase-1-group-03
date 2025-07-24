@@ -33,7 +33,7 @@ public class EnergyBar extends Actor {
     }
 
     private void setupUI() {
-        energyBarTexture = new TextureRegion(new Texture(Gdx.files.internal("graphics/EnergyBar.png")));
+        energyBarTexture = assetService.get(AtlasAsset.UI).findRegion("EnergyBar");
         setX(Constraints.WORLD_WIDTH_RESOLUTION - energyBarTexture.getRegionWidth() * scale - 80);
         setY(Constraints.WORLD_HEIGHT_RESOLUTION - energyBarTexture.getRegionHeight() * scale - 645);
     }

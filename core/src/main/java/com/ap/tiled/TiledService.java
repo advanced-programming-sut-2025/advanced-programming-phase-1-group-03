@@ -31,6 +31,7 @@ public class TiledService {
     private LoadTileConsumer loadTileConsumer;
     private Consumer<TiledMapTileMapObject> loadObjectConsumer;
     private Consumer<PolygonMapObject> loadPolygonConsumer;
+    private Consumer<TiledMap> generateItemsConsumer;
 
     public TiledService(AssetService assetService) {
         this.assetService = assetService;
@@ -56,6 +57,13 @@ public class TiledService {
             // notify All
             mapChangeConsumer.accept(startMap);
         }
+
+
+        if(startMap.getProperties().get("generateItems", false, Boolean.class)) {
+            generateItemsConsumer.accept(startMap);
+        }
+
+        changeSeasonTileset(Season.Spring);
     }
 
     private void loadMapObjects(TiledMap startMap) {
@@ -161,6 +169,10 @@ public class TiledService {
 
     public void setLoadPolygonConsumer(Consumer<PolygonMapObject> loadPolygonConsumer) {
         this.loadPolygonConsumer = loadPolygonConsumer;
+    }
+
+    public void setGenerateItemsConsumer(Consumer<TiledMap> generateItemsConsumer) {
+        this.generateItemsConsumer = generateItemsConsumer;
     }
 
     @FunctionalInterface

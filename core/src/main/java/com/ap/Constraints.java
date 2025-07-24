@@ -31,4 +31,7 @@ public class Constraints {
     };
 
     public static int HOE_DIRT_Z = 1;
+    public static final int TREE_LEAF_Z = 3;
+    public static final int TREE_STUMP_Z = 1;
+
 }

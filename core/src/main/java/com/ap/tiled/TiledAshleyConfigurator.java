@@ -27,7 +27,7 @@ public class TiledAshleyConfigurator {
     }
 
     public void onLoadTile(TiledMapTile tile, int x, int y) {
-        TiledPhysic.createBodyForTile(x, y, tile, world);
+        TiledPhysic.createBodyForTile(x, y, tile, world, true);
     }
 
 

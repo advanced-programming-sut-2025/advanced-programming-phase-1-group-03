@@ -58,7 +58,6 @@ public class ItemContainer extends Actor {
                 }
                 int numberOfAvailableItems = Math.min(inventory.getSize(), maxSize);
                 selectedIndex = (selectedIndex + numberOfAvailableItems) % numberOfAvailableItems;
-//                selectedIndex = MathUtils.clamp(selectedIndex, 0, Math.min(inventory.getSize(), maxSize) - 1);
                 if(selectedIndex != prev) {
                     audioService.playSound(SoundAsset.Beep, 0.2f);
                 }
