@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="typo really fixed this time">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/environment.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/environment.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/environment.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/environment.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/environment.tps" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/environment.tps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/trees.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/trees.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/trees.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/trees.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/treesProject.tps" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/trees.tps" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="atlas rotation disabled;&#10;half tree fixed;">
+      <change afterPath="$PROJECT_DIR$/assets/graphics/shadow.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/shadow.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +87,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/StardewValley/assets/graphics/OnMap",
+    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/StardewValley/assets/graphics",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -111,11 +106,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\OnMap" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\trees" />
       <recent name="D:\StarehdewValley\assets\audio" />
       <recent name="D:\StarehdewValley\assets\map\objects" />
-      <recent name="D:\StarehdewValley\assets\graphics" />
     </key>
   </component>
   <component name="RunManager" selected="Application.RunGDX">
@@ -238,13 +233,6 @@
       <workItem from="1753174831226" duration="5489000" />
       <workItem from="1753189199875" duration="572000" />
       <workItem from="1753204394064" duration="20323000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۱۴" summary="Stores completed except tools upgrade">
-      <option name="closed" value="true" />
-      <created>1747248465491</created>
-      <option name="number" value="LOCAL‎−۰۰۰۱۴" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۱۴" />
-      <updated>1747248465491</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۱۵" summary="Upgrading tool system finished">
       <option name="closed" value="true" />
@@ -599,7 +587,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753391667313</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="atlas rotation disabled;&#10;half tree fixed;">
+      <option name="closed" value="true" />
+      <created>1753393895281</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1753393895283</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -630,7 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add missing assets" />
     <MESSAGE value="Setup input managing" />
     <MESSAGE value="Adding player movement system" />
     <MESSAGE value="Static graphic added" />
@@ -655,7 +650,8 @@
     <MESSAGE value="grass type{3}_color{10} added&#10;regular stone added&#10;wood added" />
     <MESSAGE value="typo fixed" />
     <MESSAGE value="typo really fixed this time" />
-    <option name="LAST_COMMIT_MESSAGE" value="typo really fixed this time" />
+    <MESSAGE value="atlas rotation disabled;&#10;half tree fixed;" />
+    <option name="LAST_COMMIT_MESSAGE" value="atlas rotation disabled;&#10;half tree fixed;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
