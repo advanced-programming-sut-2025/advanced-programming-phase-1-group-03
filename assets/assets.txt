@@ -9,7 +9,12 @@ audio/coin.wav
 audio/hoeHit.wav
 audio/hover-sound.wav
 data.db
-graphics/EnergyBar.png
+graphics/OnMap/environment.atlas
+graphics/OnMap/environment.png
+graphics/OnMap/environment.tps
+graphics/OnMap/trees.atlas
+graphics/OnMap/trees.png
+graphics/OnMap/trees.tps
 graphics/Rain.png
 graphics/SeasonalObjects.atlas
 graphics/SeasonalObjects.png
@@ -21,6 +26,8 @@ graphics/avatars.atlas
 graphics/avatars.png
 graphics/player.atlas
 graphics/player.png
+graphics/shadow.atlas
+graphics/shadow.png
 map/Farm1.tmx
 map/objects/GameObjects.tsx
 map/objects/House.png
@@ -34,6 +41,8 @@ map/tileset/summer_outdoorsTileSheet.png
 map/tileset/summer_outdoorsTileSheet2.png
 map/tileset/winter_outdoorsTileSheet.png
 map/tileset/winter_outdoorsTileSheet2.png
+skins/Stardew Valley ALL CAPS.ttf
+skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

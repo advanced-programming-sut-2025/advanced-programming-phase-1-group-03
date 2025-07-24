@@ -4,6 +4,7 @@
   <property name="AllowGrassSurviveInWinter" value="T"/>
   <property name="Outdoors" value="T"/>
   <property name="Warp" value="80 15 BusStop 11 23 80 18 BusStop 11 24 80 16 BusStop 11 23 80 17 BusStop 11 23 40 65 Forest 68 0 41 65 Forest 68 0 42 65 Forest 68 0 40 -1 Backwoods 14 39 41 -1 Backwoods 14 39 34 5 FarmCave 8 11"/>
+  <property name="generateItems" type="bool" value="true"/>
  </properties>
  <tileset firstgid="1" name="Outdoor" tilewidth="16" tileheight="16" tilecount="1975" columns="25">
   <properties>

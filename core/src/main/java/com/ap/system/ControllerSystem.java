@@ -3,13 +3,17 @@ package com.ap.system;
 import com.ap.component.Controller;
 import com.ap.component.Move;
 import com.ap.input.Command;
+import com.ap.ui.widget.InventoryMenu;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 
 public class ControllerSystem extends IteratingSystem {
-    public ControllerSystem() {
+    private InventoryMenu inventoryMenu;
+
+    public ControllerSystem(InventoryMenu inventoryMenu) {
         super(Family.all(Controller.class).get());
+        this.inventoryMenu = inventoryMenu;
     }
 
     @Override
@@ -31,6 +35,8 @@ public class ControllerSystem extends IteratingSystem {
                 }
                 case Up -> {
                     moveEntity(entity, 0f, 1f);
+                } case OpenInventory -> {
+                    inventoryMenu.toggle();
                 }
             }
         }

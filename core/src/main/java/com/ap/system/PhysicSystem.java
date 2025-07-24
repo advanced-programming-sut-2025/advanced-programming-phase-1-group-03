@@ -1,5 +1,6 @@
 package com.ap.system;
 
+import com.ap.component.Move;
 import com.ap.component.Physic;
 import com.ap.component.Transform;
 import com.badlogic.ashley.core.Entity;
@@ -45,7 +46,10 @@ public class PhysicSystem extends IteratingSystem {
 
         // We do this because we want smooth movement
         for(Entity entity : getEntities()) {
-            updateTransform(entity, alpha);
+            // If it has move component
+            if(Move.mapper.has(entity)) {
+                updateTransform(entity, alpha);
+            }
         }
     }
 

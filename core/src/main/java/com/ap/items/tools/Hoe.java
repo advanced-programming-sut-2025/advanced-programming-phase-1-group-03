@@ -6,6 +6,7 @@ import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
 import com.ap.component.*;
+import com.ap.items.ItemFactory;
 import com.ap.model.Abilities;
 import com.ap.tiled.TiledPhysic;
 import com.badlogic.ashley.core.Engine;
@@ -35,14 +36,11 @@ public class Hoe extends Tool{
             if(!tile.getProperties().get("Type", "", String.class).equals("Dirt")) {
                 return;
             }
-            Entity entity = new Entity();
-            entity.add(new Graphic(null));
-            entity.add(new SeasonalGraphic(AtlasAsset.SeasonalObjects, "dirt_hoed"));
-            entity.add(new Transform(body.getPosition(), Constraints.HOE_DIRT_Z
-                    , new Vector2(1, 1), new Vector2(1, 1), 0, 0));
-            entity.add(new Dirt(true));
+            Entity entity = ItemFactory.CreatePlowedDirt(body, world);
             game.getAudioService().playSound(SoundAsset.HoeHit, 0.2f);
             engine.addEntity(entity);
         }
     }
+
+
 }

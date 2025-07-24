@@ -14,11 +14,13 @@ import com.ap.items.Inventory;
 import com.ap.items.tools.Tool;
 import com.ap.system.*;
 import com.ap.tiled.TiledAshleyConfigurator;
+import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
 import com.ap.ui.widget.Clock;
 import com.ap.ui.widget.EnergyBar;
+import com.ap.ui.widget.InventoryMenu;
 import com.ap.ui.widget.ItemContainer;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
@@ -39,6 +41,7 @@ public class GameScreen extends AbstractScreen {
     private Engine engine;
     private TiledService tiledService;
     private TiledAshleyConfigurator tileConfigurator;
+    private TiledMapGenerator tiledMapGenerator;
     private KeyboardController keyboardController;
     private World world;
     private Camera camera;
@@ -47,6 +50,7 @@ public class GameScreen extends AbstractScreen {
     private Clock clock;
     private ItemContainer itemContainer;
     private EnergyBar energyBar;
+    private InventoryMenu inventoryMenu;
 
     private Inventory inventory;
 
@@ -72,6 +76,7 @@ public class GameScreen extends AbstractScreen {
 
         tiledService = new TiledService(assetService);
         tileConfigurator = new TiledAshleyConfigurator(engine, world);
+        tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
 
         // Setup inventory
         inventory = new Inventory();
@@ -80,6 +85,7 @@ public class GameScreen extends AbstractScreen {
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
+        inventoryMenu = new InventoryMenu(assetService, skin, stage, inventory, audioService);
 
         RayHandler.useDiffuseLight(true);
         rayHandler = new RayHandler(world);
@@ -100,8 +106,8 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new SeasonalGraphicSystem(assetService, engine));
         engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
-        engine.addSystem(new ControllerSystem());
         engine.addSystem(new EnergySystem(energyBar));
+        engine.addSystem(new ControllerSystem(inventoryMenu));
         engine.addSystem(new TileSelectionSystem(game.getBatch(), itemContainer, stage, engine, world, game));
        // engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
@@ -125,6 +131,8 @@ public class GameScreen extends AbstractScreen {
         tiledService.setLoadTileConsumer(tileConfigurator::onLoadTile);
         tiledService.setLoadObjectConsumer(tileConfigurator::onLoadObject);
         tiledService.setLoadPolygonConsumer(tileConfigurator::onLoadBoundary);
+        tiledService.setGenerateItemsConsumer(tiledMapGenerator::generate);
+
         TiledMap startMap = tiledService.load(MapAsset.Farm1);
         tiledService.setMap(startMap);
 

@@ -100,7 +100,7 @@ public class TiledPhysic {
         return fixtureDef;
     }
 
-    public static Body  createBodyForTile(int x, int y, Object userData, World world) {
+    public static Body createBodyForTile(int x, int y, Object userData, World world, boolean sensor) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(new Vector2(x, y));
         bodyDef.type = BodyDef.BodyType.StaticBody;
@@ -113,7 +113,7 @@ public class TiledPhysic {
         shape.setAsBox(0.5f, 0.5f, new Vector2(0.5f, 0.5f), 0);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
-        fixtureDef.isSensor = true;
+        fixtureDef.isSensor = sensor;
         body.createFixture(fixtureDef);
 
         return body;

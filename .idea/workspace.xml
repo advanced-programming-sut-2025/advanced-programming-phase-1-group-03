@@ -4,7 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="shadow added" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="atlas rotation disabled;&#10;half tree fixed;">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Container.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/InventoryMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/BodyEditorLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/EnergyBar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/UI.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/UI.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/UI.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/UI.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/Farm1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Farm1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/component/SeasonalGraphic.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/SeasonalGraphic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Hoe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Hoe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/PhysicSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/PhysicSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/SeasonalGraphicSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/SeasonalGraphicSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledAshleyConfigurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledAshleyConfigurator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledPhysic.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledPhysic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/EnergyBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/EnergyBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/ItemContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,7 +139,7 @@
       <recent name="D:\StarehdewValley\assets\map\objects" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RunGDX">
+  <component name="RunManager" selected="Gradle.StardewValley [run]">
     <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -158,14 +187,13 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.RunGDX" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
         <item itemvalue="Gradle.StardewValley [run]" />
+        <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       </list>
     </recent_temporary>
   </component>
@@ -230,6 +258,13 @@
       <workItem from="1753174831226" duration="5489000" />
       <workItem from="1753189199875" duration="572000" />
       <workItem from="1753204394064" duration="20323000" />
+    </task>
+    <task id="LOCAL‎−۰۰۰۱۵" summary="Upgrading tool system finished">
+      <option name="closed" value="true" />
+      <created>1747310459975</created>
+      <option name="number" value="LOCAL‎−۰۰۰۱۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۱۵" />
+      <updated>1747310459975</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۱۶" summary="Shipping bin completed">
       <option name="closed" value="true" />
@@ -585,15 +620,7 @@
       <option name="project" value="LOCAL" />
       <updated>1753393895283</updated>
     </task>
-    <task id="LOCAL-00064" summary="shadow added">
-      <option name="closed" value="true" />
-      <created>1753394735115</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1753394735115</updated>
-    </task>
-    <option name="localTasksCounter" value="65" />
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -624,6 +651,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="Setup input managing" />
     <MESSAGE value="Adding player movement system" />
     <MESSAGE value="Static graphic added" />
     <MESSAGE value="Add facing and camera follow system" />
@@ -648,8 +676,7 @@
     <MESSAGE value="typo fixed" />
     <MESSAGE value="typo really fixed this time" />
     <MESSAGE value="atlas rotation disabled;&#10;half tree fixed;" />
-    <MESSAGE value="shadow added" />
-    <option name="LAST_COMMIT_MESSAGE" value="shadow added" />
+    <option name="LAST_COMMIT_MESSAGE" value="atlas rotation disabled;&#10;half tree fixed;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -714,6 +741,7 @@
       <pinned-members>
         <PinnedItemInfo parentTag="org.sqlite.jdbc4.JDBC4ResultSet" memberName="stmt" />
         <PinnedItemInfo parentTag="com.badlogic.gdx.utils.ObjectMap" memberName="keyTable" />
+        <PinnedItemInfo parentTag="com.badlogic.gdx.physics.box2d.Body" memberName="fixtures" />
         <PinnedItemInfo parentTag="com.badlogic.gdx.maps.MapProperties" memberName="properties" />
         <PinnedItemInfo parentTag="com.badlogic.gdx.physics.box2d.PolygonShape" memberName="addr" />
         <PinnedItemInfo parentTag="com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile" memberName="id" />

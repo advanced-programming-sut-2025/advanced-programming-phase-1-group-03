@@ -9,6 +9,8 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     UI("UI.atlas"),
     Tools("Tools.atlas"),
     SeasonalObjects("SeasonalObjects.atlas"),
+    Trees("OnMap/trees.atlas"),
+    Shadows("shadow.atlas"),
     ;
 
     private final AssetDescriptor<TextureAtlas> descriptor;
