@@ -174,23 +174,11 @@
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">../sprites/enviornment/grass/Blue_Grass_Starter.png</key>
-            <key type="filename">../sprites/enviornment/grass/Grass_Starter.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>0.3125</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>12,12,24,24</rect>
-                <key>scale9Paddings</key>
-                <rect>12,12,24,24</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../sprites/enviornment/grass/type_0.png</key>
-            <key type="filename">../sprites/enviornment/grass/type_1.png</key>
+            <key type="filename">../sprites/enviornment/grass/Fiber.png</key>
+            <key type="filename">../sprites/enviornment/grass/grass_starter.png</key>
+            <key type="filename">../sprites/enviornment/stone/regular_0.png</key>
+            <key type="filename">../sprites/enviornment/stone/regular_1.png</key>
+            <key type="filename">../sprites/enviornment/stone/regular_icon.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -199,19 +187,66 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>4,5,7,10</rect>
+                <rect>12,12,24,24</rect>
                 <key>scale9Paddings</key>
-                <rect>4,5,7,10</rect>
+                <rect>12,12,24,24</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../sprites/enviornment/grass/type_2.png</key>
-            <key type="filename">../sprites/enviornment/grass/type_3.png</key>
-            <key type="filename">../sprites/enviornment/grass/type_4.png</key>
-            <key type="filename">../sprites/enviornment/grass/type_5.png</key>
-            <key type="filename">../sprites/enviornment/grass/type_6.png</key>
-            <key type="filename">../sprites/enviornment/grass/type_7.png</key>
-            <key type="filename">../sprites/enviornment/grass/type_9.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_0.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_1.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_2.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_3.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_4.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_5.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>3,4,7,9</rect>
+                <key>scale9Paddings</key>
+                <rect>3,4,7,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_6.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_7.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_8.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_0_color_9.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>3,4,6,9</rect>
+                <key>scale9Paddings</key>
+                <rect>3,4,6,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_0.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_1.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_2.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_3.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_4.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_5.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_6.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_7.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_9.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_2.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_3.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_4.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_5.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_6.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_7.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_9.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -226,7 +261,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">../sprites/enviornment/grass/type_8.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_1_color_8.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_8.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -238,6 +274,37 @@
                 <rect>3,5,7,9</rect>
                 <key>scale9Paddings</key>
                 <rect>3,5,7,9</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_0.png</key>
+            <key type="filename">../sprites/enviornment/grass/type_2_color_1.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,5,7,10</rect>
+                <key>scale9Paddings</key>
+                <rect>4,5,7,10</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sprites/enviornment/wood/regular.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>6,6,12,12</rect>
+                <key>scale9Paddings</key>
+                <rect>6,6,12,12</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
