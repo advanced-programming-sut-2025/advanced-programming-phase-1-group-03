@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Tools icon atlas added&#10;Tools class added">
-      <change afterPath="$PROJECT_DIR$/assets/graphics/trees/trees.atlas" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/graphics/trees/trees.png" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Trees atlas added&#10;Oak tree added">
+      <change afterPath="$PROJECT_DIR$/assets/graphics/OnMap/enviornment.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/OnMap/enviornment.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/OnMap/enviornment.tps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/trees/trees.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/trees.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/trees/trees.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/trees.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/trees/treesProject.tps" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/treesProject.tps" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +92,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/StardewValley/assets/graphics/trees",
+    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/StardewValley/assets/graphics/OnMap",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -107,11 +111,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\OnMap" />
+      <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\trees" />
       <recent name="D:\StarehdewValley\assets\audio" />
       <recent name="D:\StarehdewValley\assets\map\objects" />
       <recent name="D:\StarehdewValley\assets\graphics" />
-      <recent name="D:\StarehdewValley\assets\map\tileset" />
-      <recent name="D:\StarehdewValley\assets\skins" />
     </key>
   </component>
   <component name="RunManager" selected="Application.RunGDX">
@@ -234,22 +238,6 @@
       <workItem from="1753174831226" duration="5489000" />
       <workItem from="1753189199875" duration="572000" />
       <workItem from="1753204394064" duration="20323000" />
-    </task>
-    <task id="LOCAL-00008" summary="cheat add item implemented.">
-      <option name="closed" value="true" />
-      <created>1747133180774</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1747133180774</updated>
-    </task>
-    <task id="LOCAL-00009" summary="food enum bug fixed.">
-      <option name="closed" value="true" />
-      <created>1747137833458</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1747137833458</updated>
     </task>
     <task id="LOCAL-00010" summary="bug fixed.">
       <option name="closed" value="true" />
@@ -595,7 +583,23 @@
       <option name="project" value="LOCAL" />
       <updated>1753343611221</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Tools icon atlas added&#10;Tools class added">
+      <option name="closed" value="true" />
+      <created>1753386018655</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1753386018655</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Trees atlas added&#10;Oak tree added">
+      <option name="closed" value="true" />
+      <created>1753386885761</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1753386885761</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +630,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="h bug fixed" />
     <MESSAGE value="Setting up graphical project" />
     <MESSAGE value="Adding buttons to main menu &amp; Adding audio service" />
     <MESSAGE value="Changing gamma values of fonts" />
@@ -651,7 +654,8 @@
     <MESSAGE value="Add basic items structure" />
     <MESSAGE value="Add Tools atlas" />
     <MESSAGE value="Tools icon atlas added&#10;Tools class added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tools icon atlas added&#10;Tools class added" />
+    <MESSAGE value="Trees atlas added&#10;Oak tree added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Trees atlas added&#10;Oak tree added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

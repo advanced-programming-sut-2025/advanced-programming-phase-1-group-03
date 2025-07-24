@@ -1,0 +1,40 @@
+enviornment.png
+size: 15, 225
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+pma: false
+grass/Blue_Grass_Starter
+  bounds: 0, 175, 15, 15
+grass/Grass_Starter
+  bounds: 0, 191, 15, 15
+grass/type
+  bounds: 0, 0, 15, 20
+  index: 0
+grass/type
+  bounds: 0, 21, 15, 20
+  index: 1
+grass/type
+  bounds: 0, 42, 15, 18
+  index: 2
+grass/type
+  bounds: 0, 61, 15, 18
+  index: 3
+grass/type
+  bounds: 0, 80, 15, 18
+  index: 4
+grass/type
+  bounds: 0, 99, 15, 18
+  index: 5
+grass/type
+  bounds: 0, 118, 15, 18
+  index: 6
+grass/type
+  bounds: 0, 137, 15, 18
+  index: 7
+grass/type
+  bounds: 0, 207, 13, 18
+  index: 8
+grass/type
+  bounds: 0, 156, 15, 18
+  index: 9
