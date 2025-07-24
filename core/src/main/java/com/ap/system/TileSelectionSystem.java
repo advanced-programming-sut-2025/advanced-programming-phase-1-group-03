@@ -18,6 +18,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -98,13 +99,13 @@ public class TileSelectionSystem extends IteratingSystem {
                             topBody[0] = fixture.getBody();
                         }
                     }
-                } else {
-                    // It's ground
-                    if(highestZIndex[0] == -1) {
-                        topBody[0] = fixture.getBody();
+                } else if(fixture.getBody().getUserData() instanceof TiledMapTile tile) {
+                    if(highestZIndex[0] != -1) {
+                        return true;
                     }
+                    highestZIndex[0] = 0;
+                    topBody[0] = fixture.getBody();
                 }
-
                 return true;
             }
         }, tilePos.x - 0.01f, tilePos.y - 0.01f, tilePos.x + 0.01f, tilePos.y + 0.01f);

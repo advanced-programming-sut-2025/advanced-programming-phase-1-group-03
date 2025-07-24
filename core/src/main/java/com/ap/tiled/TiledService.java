@@ -56,7 +56,6 @@ public class TiledService {
             // notify All
             mapChangeConsumer.accept(startMap);
         }
-
     }
 
     private void loadMapObjects(TiledMap startMap) {

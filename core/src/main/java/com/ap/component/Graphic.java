@@ -15,7 +15,10 @@ public class Graphic implements Component {
         this.texture = texture;
         this.color = color;
     }
-
+    public Graphic(TextureRegion texture) {
+        this.texture = texture;
+        this.color = Color.WHITE.cpy();
+    }
     public Color getColor() {
         return color;
     }
