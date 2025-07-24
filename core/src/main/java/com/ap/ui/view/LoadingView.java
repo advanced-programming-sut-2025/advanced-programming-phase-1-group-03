@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class LoadingView extends AbstractView<LoadingViewModel> {
     public LoadingView(Stage stage, Skin skin, LoadingViewModel viewModel) {
         super(stage, skin, viewModel);
+        setupUI();
     }
 
     @Override

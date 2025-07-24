@@ -10,7 +10,7 @@ public class Transform implements Component, Comparable<Transform> {
     // Position of the bottom left corner of sprite
     private final Vector2 position;
 
-    private final int z;
+    private int z;
     private final Vector2 scaling;
     private final float rotationDeg;
     private final Vector2 size;
@@ -58,5 +58,9 @@ public class Transform implements Component, Comparable<Transform> {
 
     public Vector2 getSize() {
         return size;
+    }
+
+    public void setZ(int z) {
+        this.z = z;
     }
 }

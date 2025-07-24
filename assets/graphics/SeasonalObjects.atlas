@@ -1,0 +1,11 @@
+SeasonalObjects.png
+size:64,32
+repeat:none
+dirt_hoed/spring
+bounds:2,2,16,16
+dirt_hoed/summer
+bounds:2,2,16,16
+dirt_hoed/fall
+bounds:2,2,16,16
+dirt_hoed/winter
+bounds:20,2,16,16

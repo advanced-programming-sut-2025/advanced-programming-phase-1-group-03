@@ -35,6 +35,7 @@
   <tile id="153">
    <properties>
     <property name="Diggable" value="T"/>
+    <property name="Type" value="Dirt"/>
    </properties>
   </tile>
   <tile id="156">
@@ -207,6 +208,7 @@
   <tile id="226">
    <properties>
     <property name="Diggable" value="T"/>
+    <property name="Type" value="Dirt"/>
    </properties>
   </tile>
   <tile id="227">

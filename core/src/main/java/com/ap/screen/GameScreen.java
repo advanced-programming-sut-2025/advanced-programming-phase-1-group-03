@@ -87,8 +87,6 @@ public class GameScreen extends AbstractScreen {
     public void show() {
         // Adding systems to the engine
         engine.addSystem(new PhysicMoveSystem());
-
-
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL));
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
@@ -97,10 +95,11 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new WeatherSystem(engine, clock, assetService, stage, audioService));
         engine.addSystem(new ScreenBrightnessSystem(rayHandler, engine));
         engine.addSystem(new CameraSystem(camera));
+        engine.addSystem(new SeasonalGraphicSystem(assetService, engine));
         engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
         engine.addSystem(new ControllerSystem());
         engine.addSystem(new TileSelectionSystem(game.getBatch(), itemContainer, stage, engine, world, game));
-        //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
+       // engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
         super.show();
 

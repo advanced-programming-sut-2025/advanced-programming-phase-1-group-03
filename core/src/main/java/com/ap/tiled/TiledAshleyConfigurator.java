@@ -27,15 +27,24 @@ public class TiledAshleyConfigurator {
     }
 
     public void onLoadTile(TiledMapTile tile, int x, int y) {
-        TiledPhysic.createBodyForTile(x, y, "environment", world);
+        TiledPhysic.createBodyForTile(x, y, tile, world);
     }
 
 
+    private static void addDirtComponent(TiledMapTile tile, Entity entity) {
+        if(tile.getProperties().get("Type", "", String.class).equals("Dirt")) {
+            entity.add(new Dirt(false));
+        }
+    }
 
     public void onLoadBoundary(PolygonMapObject object) {
         MapObjects objects = new MapObjects();
         objects.add(object);
-        createBody(objects, Vector2.Zero, new Vector2(1, 1), BodyDef.BodyType.StaticBody, Vector2.Zero, "");
+        createBody(objects,
+                Vector2.Zero,
+                new Vector2(1, 1),
+                BodyDef.BodyType.StaticBody,
+                Vector2.Zero, "");
     }
 
     public void onLoadObject(TiledMapTileMapObject tileObject) {
