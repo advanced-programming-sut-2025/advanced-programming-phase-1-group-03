@@ -56,7 +56,9 @@ public class ItemContainer extends Actor {
                 } else {
                     selectedIndex --;
                 }
-                selectedIndex = MathUtils.clamp(selectedIndex, 0, Math.min(inventory.getSize(), maxSize) - 1);
+                int numberOfAvailableItems = Math.min(inventory.getSize(), maxSize);
+                selectedIndex = (selectedIndex + numberOfAvailableItems) % numberOfAvailableItems;
+//                selectedIndex = MathUtils.clamp(selectedIndex, 0, Math.min(inventory.getSize(), maxSize) - 1);
                 if(selectedIndex != prev) {
                     audioService.playSound(SoundAsset.Beep, 0.2f);
                 }
@@ -104,6 +106,12 @@ public class ItemContainer extends Actor {
     }
 
     public void useSelectedItem(Body body, Engine engine, GdxGame game, World world) {
+        if (isSelectedEmpty()) return;
         inventory.getItems().get(selectedIndex).getItem().applyItem(body, engine, game, world);
+    }
+
+    public boolean isSelectedEmpty() {
+        if (selectedIndex > inventory.getSize()) return true;
+        return (inventory.getItems().get(selectedIndex) == null);
     }
 }

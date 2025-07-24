@@ -30,6 +30,10 @@ public abstract class Tool extends Item {
         inventory.addItem(new Axe(atlas.findRegion("axe/normal")), 1);
         inventory.addItem(new Pickaxe(atlas.findRegion("pickaxe/normal")), 1);
         inventory.addItem(new Hoe(atlas.findRegion("hoe/normal")), 1);
-
+        inventory.addItem(new FishingPole(atlas.findRegion("fishing_pole/training")), 1);
+        inventory.addItem(new MilkPail(atlas.findRegion("milk_pail/normal")), 1);
+        inventory.addItem(new Scythe(atlas.findRegion("scythe/normal")), 1);
+        inventory.addItem(new Shear(atlas.findRegion("shear/normal")), 1);
+        inventory.addItem(new WateringCan(atlas.findRegion("watering_can/normal")), 1);
     }
 }
