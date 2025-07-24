@@ -26,7 +26,7 @@
             </struct>
         </array>
         <key>allowRotation</key>
-        <true/>
+        <false/>
         <key>shapeDebug</key>
         <false/>
         <key>dpi</key>
@@ -58,9 +58,9 @@
             <key>filtering</key>
             <struct type="LibGDXFiltering">
                 <key>x</key>
-                <enum type="LibGDXFiltering::Filtering">Linear</enum>
+                <enum type="LibGDXFiltering::Filtering">Nearest</enum>
                 <key>y</key>
-                <enum type="LibGDXFiltering::Filtering">Linear</enum>
+                <enum type="LibGDXFiltering::Filtering">Nearest</enum>
             </struct>
         </struct>
         <key>shapePadding</key>
@@ -124,7 +124,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../Atalsed/trees.atlas</filename>
+                <filename>trees.atlas</filename>
             </struct>
         </map>
         <key>multiPackMode</key>
@@ -173,22 +173,22 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">oak/fall/seed.png</key>
-            <key type="filename">oak/fall/stage_0.png</key>
-            <key type="filename">oak/fall/stage_1.png</key>
-            <key type="filename">oak/fall/stage_2.png</key>
-            <key type="filename">oak/spring/seed.png</key>
-            <key type="filename">oak/spring/stage_0.png</key>
-            <key type="filename">oak/spring/stage_1.png</key>
-            <key type="filename">oak/spring/stage_2.png</key>
-            <key type="filename">oak/summer/seed.png</key>
-            <key type="filename">oak/summer/stage_0.png</key>
-            <key type="filename">oak/summer/stage_1.png</key>
-            <key type="filename">oak/summer/stage_2.png</key>
-            <key type="filename">oak/winter/seed.png</key>
-            <key type="filename">oak/winter/stage_0.png</key>
-            <key type="filename">oak/winter/stage_1.png</key>
-            <key type="filename">oak/winter/stage_2.png</key>
+            <key type="filename">../sprites/trees/oak/fall/seed.png</key>
+            <key type="filename">../sprites/trees/oak/fall/stage_0.png</key>
+            <key type="filename">../sprites/trees/oak/fall/stage_1.png</key>
+            <key type="filename">../sprites/trees/oak/fall/stage_2.png</key>
+            <key type="filename">../sprites/trees/oak/spring/seed.png</key>
+            <key type="filename">../sprites/trees/oak/spring/stage_0.png</key>
+            <key type="filename">../sprites/trees/oak/spring/stage_1.png</key>
+            <key type="filename">../sprites/trees/oak/spring/stage_2.png</key>
+            <key type="filename">../sprites/trees/oak/summer/seed.png</key>
+            <key type="filename">../sprites/trees/oak/summer/stage_0.png</key>
+            <key type="filename">../sprites/trees/oak/summer/stage_1.png</key>
+            <key type="filename">../sprites/trees/oak/summer/stage_2.png</key>
+            <key type="filename">../sprites/trees/oak/winter/seed.png</key>
+            <key type="filename">../sprites/trees/oak/winter/stage_0.png</key>
+            <key type="filename">../sprites/trees/oak/winter/stage_1.png</key>
+            <key type="filename">../sprites/trees/oak/winter/stage_2.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -203,8 +203,8 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">oak/fall/stage_3.png</key>
-            <key type="filename">oak/summer/stage_3.png</key>
+            <key type="filename">../sprites/trees/oak/fall/stage_3.png</key>
+            <key type="filename">../sprites/trees/oak/summer/stage_3.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -219,9 +219,9 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">oak/fall/stage_4.png</key>
-            <key type="filename">oak/spring/stage_4.png</key>
-            <key type="filename">oak/summer/stage_4.png</key>
+            <key type="filename">../sprites/trees/oak/fall/stage_4.png</key>
+            <key type="filename">../sprites/trees/oak/spring/stage_4.png</key>
+            <key type="filename">../sprites/trees/oak/summer/stage_4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -236,11 +236,11 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">oak/fall/stump.png</key>
-            <key type="filename">oak/spring/stage_3.png</key>
-            <key type="filename">oak/spring/stump.png</key>
-            <key type="filename">oak/summer/stump.png</key>
-            <key type="filename">oak/winter/stump.png</key>
+            <key type="filename">../sprites/trees/oak/fall/stump.png</key>
+            <key type="filename">../sprites/trees/oak/spring/stage_3.png</key>
+            <key type="filename">../sprites/trees/oak/spring/stump.png</key>
+            <key type="filename">../sprites/trees/oak/summer/stump.png</key>
+            <key type="filename">../sprites/trees/oak/winter/stump.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -255,7 +255,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">oak/winter/stage_3.png</key>
+            <key type="filename">../sprites/trees/oak/winter/stage_3.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -270,7 +270,7 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
-            <key type="filename">oak/winter/stage_4.png</key>
+            <key type="filename">../sprites/trees/oak/winter/stage_4.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -292,7 +292,7 @@
             <struct type="SpriteSheet">
                 <key>files</key>
                 <array>
-                    <filename>.</filename>
+                    <filename>../sprites/trees</filename>
                 </array>
             </struct>
         </map>
