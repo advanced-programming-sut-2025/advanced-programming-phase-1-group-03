@@ -100,6 +100,8 @@ public class TimeSystem extends EntitySystem {
     }
 
     public Season getSeason() {
+
+
         int totalSeconds = (int) timer;
         int monthsPassed = (totalSeconds / (24 * 60 * 60 * monthsDays));
         monthsPassed %= 12;
@@ -115,5 +117,6 @@ public class TimeSystem extends EntitySystem {
         else {
             return Season.Winter;
         }
+//        return Season.Winter;
     }
 }

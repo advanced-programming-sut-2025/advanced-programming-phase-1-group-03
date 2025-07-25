@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Tree random generation">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="better shadow added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/TimeSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/TimeSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +113,7 @@
       <recent name="D:\StarehdewValley\assets\map\objects" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.StardewValley [run]">
+  <component name="RunManager" selected="Application.RunGDX">
     <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -162,6 +161,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.RunGDX" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>

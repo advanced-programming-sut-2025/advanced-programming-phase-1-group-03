@@ -1,5 +1,5 @@
 environment.png
-size: 62, 356
+size: 64, 367
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
@@ -12,94 +12,94 @@ grass/Fiber
 grass/grass_starter
   bounds: 0, 49, 48, 48
 grass/type_0_color
-  bounds: 49, 38, 13, 17
+  bounds: 51, 289, 13, 17
   index: 0
 grass/type_0_color
-  bounds: 49, 56, 13, 17
+  bounds: 51, 307, 13, 17
   index: 1
 grass/type_0_color
-  bounds: 49, 74, 13, 17
+  bounds: 51, 325, 13, 17
   index: 2
 grass/type_0_color
-  bounds: 49, 92, 13, 17
+  bounds: 15, 314, 13, 17
   index: 3
 grass/type_0_color
-  bounds: 49, 110, 13, 17
+  bounds: 29, 327, 13, 17
   index: 4
 grass/type_0_color
-  bounds: 49, 128, 13, 17
+  bounds: 15, 332, 13, 17
   index: 5
 grass/type_0_color
-  bounds: 49, 146, 12, 17
+  bounds: 0, 333, 12, 17
   index: 6
 grass/type_0_color
-  bounds: 30, 339, 12, 17
+  bounds: 43, 343, 12, 17
   index: 7
 grass/type_0_color
-  bounds: 43, 339, 12, 17
+  bounds: 29, 345, 12, 17
   index: 8
 grass/type_0_color
-  bounds: 45, 320, 12, 17
+  bounds: 13, 350, 12, 17
   index: 9
 grass/type_1_color
-  bounds: 48, 164, 14, 18
+  bounds: 48, 175, 14, 18
   index: 0
 grass/type_1_color
-  bounds: 48, 183, 14, 18
+  bounds: 48, 194, 14, 18
   index: 1
 grass/type_1_color
-  bounds: 48, 282, 14, 18
+  bounds: 47, 213, 14, 18
   index: 2
 grass/type_1_color
-  bounds: 48, 301, 14, 18
+  bounds: 47, 232, 14, 18
   index: 3
 grass/type_1_color
-  bounds: 0, 319, 14, 18
+  bounds: 36, 251, 14, 18
   index: 4
 grass/type_1_color
-  bounds: 15, 319, 14, 18
+  bounds: 36, 270, 14, 18
   index: 5
 grass/type_1_color
-  bounds: 0, 338, 14, 18
+  bounds: 36, 289, 14, 18
   index: 6
 grass/type_1_color
-  bounds: 15, 338, 14, 18
+  bounds: 36, 308, 14, 18
   index: 7
 grass/type_1_color
-  bounds: 49, 0, 13, 18
+  bounds: 51, 251, 13, 18
   index: 8
 grass/type_1_color
-  bounds: 30, 320, 14, 18
+  bounds: 0, 314, 14, 18
   index: 9
 grass/type_2_color
-  bounds: 47, 202, 15, 20
+  bounds: 49, 0, 15, 20
   index: 0
 grass/type_2_color
-  bounds: 47, 223, 15, 20
+  bounds: 49, 21, 15, 20
   index: 1
 grass/type_2_color
-  bounds: 47, 244, 15, 18
+  bounds: 49, 42, 15, 18
   index: 2
 grass/type_2_color
-  bounds: 0, 281, 15, 18
+  bounds: 49, 61, 15, 18
   index: 3
 grass/type_2_color
-  bounds: 16, 281, 15, 18
+  bounds: 49, 80, 15, 18
   index: 4
 grass/type_2_color
-  bounds: 32, 282, 15, 18
+  bounds: 49, 99, 15, 18
   index: 5
 grass/type_2_color
-  bounds: 0, 300, 15, 18
+  bounds: 49, 118, 15, 18
   index: 6
 grass/type_2_color
-  bounds: 16, 300, 15, 18
+  bounds: 49, 137, 15, 18
   index: 7
 grass/type_2_color
-  bounds: 49, 19, 13, 18
+  bounds: 51, 270, 13, 18
   index: 8
 grass/type_2_color
-  bounds: 32, 301, 15, 18
+  bounds: 48, 156, 15, 18
   index: 9
 stone/regular
   bounds: 0, 98, 48, 48
@@ -112,5 +112,5 @@ stone/regular_icon
   bounds: 0, 245, 35, 35
   offsets: 5, 5, 48, 48
 wood/regular
-  bounds: 36, 263, 20, 18
-  offsets: 1, 3, 24, 24
+  bounds: 0, 281, 35, 32
+  offsets: 5, 8, 48, 48
