@@ -35,7 +35,9 @@ public class EntityFactory {
                 Constraints.TREE_LEAF_Z,
                 new Vector2(1, 1),
                 fullTreeSize,
-                0, 0));
+                0, 0,
+                new Vector2(fullTreeSize.x/2, 0.3f)));
+
         stumpEntity.add(new Graphic(fullTreeTexture));
         stumpEntity.add(new SeasonalGraphic(AtlasAsset.Trees, name+"/{season}/stage", 4));
 
@@ -63,6 +65,7 @@ public class EntityFactory {
         var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, false);
         entity.add(new Physic(body, position));
         entity.add(new Container(stumpEntity, shadowEntity));
+        entity.add(new ItemHolder(ItemFactory.CreateTree()));
         return entity;
     }
 

@@ -19,6 +19,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.renderers.BatchTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
@@ -95,12 +96,16 @@ public class RenderSystem extends SortedIteratingSystem {
         var position = transform.getPosition();
         var size = transform.getSize();
         var scaling = transform.getScaling();
+        var origin = transform.getOrigin();
+        if(origin == null) {
+            origin = new Vector2(size.x * 0.5f, size.y * 0.5f);
+        }
 
         batch.setColor(graphic.getColor());
         batch.draw(
                 graphic.getTexture(),
                 position.x, position.y,
-                size.x * 0.5f, size.y * 0.5f,
+                origin.x, origin.y,
                 size.x, size.y,
                 scaling.x, scaling.y,
                 transform.getRotationDeg()

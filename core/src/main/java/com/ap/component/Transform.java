@@ -12,8 +12,9 @@ public class Transform implements Component, Comparable<Transform> {
 
     private int z;
     private final Vector2 scaling;
-    private final float rotationDeg;
+    private float rotationDeg;
     private final Vector2 size;
+    private Vector2 origin = null;
 
     // We use this parameter to adjust rendering order
     private final float sortOffsetY;
@@ -25,6 +26,10 @@ public class Transform implements Component, Comparable<Transform> {
         this.size = size;
         this.rotationDeg = rotationDeg;
         this.sortOffsetY = sortOffsetY;
+    }
+    public Transform(Vector2 position, int z, Vector2 scaling, Vector2 size, float rotationDeg, float sortOffsetY, Vector2 origin) {
+        this(position, z, scaling, size, rotationDeg, sortOffsetY);
+        this.origin = origin;
     }
 
     @Override
@@ -62,5 +67,13 @@ public class Transform implements Component, Comparable<Transform> {
 
     public void setZ(int z) {
         this.z = z;
+    }
+
+    public Vector2 getOrigin() {
+        return origin;
+    }
+
+    public void setRotationDeg(float rotationDeg) {
+        this.rotationDeg = rotationDeg;
     }
 }

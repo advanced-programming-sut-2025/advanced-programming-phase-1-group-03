@@ -3,5 +3,5 @@ package com.ap.items;
 public enum ItemNames {
     Grass,
     Fiber,
-    Wood, Stone
+    Wood, Tree, Stump, Stone
 }

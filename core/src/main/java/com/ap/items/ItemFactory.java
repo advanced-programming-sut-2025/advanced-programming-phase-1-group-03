@@ -2,6 +2,7 @@ package com.ap.items;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
+import com.ap.items.plant.Tree;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class ItemFactory {
@@ -21,4 +22,9 @@ public class ItemFactory {
         TextureRegion icon = assetService.get(AtlasAsset.Environment).findRegions("wood/regular").get(0);
         return new Item(ItemNames.Wood.name(), 64, icon);
     }
+
+    public static Item CreateTree() {
+        return new Tree(ItemNames.Tree.name(), true);
+    }
+
 }
