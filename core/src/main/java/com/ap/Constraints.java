@@ -15,7 +15,7 @@ public class Constraints {
     public static final float PLAYER_ANIMATION_FRAME_DURATION =  1/ 8f;
 
     // It means 1 second in the real world is equal to how many seconds in the game
-    public static final float GAME_SPEED = 80f;
+    public static final float GAME_SPEED = 800f;
     // The game start at this hour
     public static final int START_HOUR = 8;
     public static final int END_HOUR = 22;
@@ -29,9 +29,12 @@ public class Constraints {
             "What is name of your first school?",
             "What is month of your birthday?"
     };
+    public static final int STONE_Z = 1;
 
     public static int HOE_DIRT_Z = 1;
     public static final int TREE_LEAF_Z = 3;
     public static final int TREE_STUMP_Z = 1;
-
+    public static final int GRASS_Z = 1;
+    public static final int WOOD_Z = 1;
+    // PLAYER_Z = 2, it was set from tile
 }
