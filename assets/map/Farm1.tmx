@@ -54,6 +54,7 @@
   <tile id="176">
    <properties>
     <property name="Diggable" value="T"/>
+    <property name="Type" value="Dirt"/>
    </properties>
   </tile>
   <tile id="177">
@@ -61,7 +62,6 @@
     <property name="Buildable" type="bool" value="true"/>
     <property name="CanPlantTrees" value="T"/>
     <property name="NoSpawn" value="T"/>
-    <property name="Type" value="Dirt"/>
    </properties>
   </tile>
   <tile id="178">
@@ -135,7 +135,6 @@
     <property name="Buildable" type="bool" value="true"/>
     <property name="CanPlantTrees" value="T"/>
     <property name="NoSpawn" value="T"/>
-    <property name="Type" value="Dirt"/>
    </properties>
   </tile>
   <tile id="203">
@@ -203,7 +202,6 @@
     <property name="Buildable" type="bool" value="true"/>
     <property name="CanPlantTrees" value="T"/>
     <property name="NoSpawn" value="T"/>
-    <property name="Type" value="Dirt"/>
    </properties>
   </tile>
   <tile id="226">
@@ -223,7 +221,6 @@
     <property name="Buildable" type="bool" value="true"/>
     <property name="CanPlantTrees" value="T"/>
     <property name="NoSpawn" value="T"/>
-    <property name="Type" value="Dirt"/>
    </properties>
   </tile>
   <tile id="229">
@@ -262,7 +259,6 @@
   <tile id="251">
    <properties>
     <property name="Buildable" type="bool" value="true"/>
-    <property name="Type" value="Dirt"/>
    </properties>
   </tile>
   <tile id="252">

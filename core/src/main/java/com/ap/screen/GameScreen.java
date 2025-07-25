@@ -105,6 +105,7 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new ScreenBrightnessSystem(rayHandler, engine));
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new SeasonalGraphicSystem(assetService, engine));
+        engine.addSystem(new AdjustAlphaSystem(engine));
         engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
         engine.addSystem(new EnergySystem(energyBar));
         engine.addSystem(new ControllerSystem(inventoryMenu));

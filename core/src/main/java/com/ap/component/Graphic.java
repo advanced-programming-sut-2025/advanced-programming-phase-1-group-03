@@ -30,4 +30,8 @@ public class Graphic implements Component {
     public void setTexture(TextureRegion texture) {
         this.texture = texture;
     }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 }

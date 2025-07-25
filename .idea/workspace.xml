@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="better shadow added">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Shadow bug fixed">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Shadow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/AdjustAlphaSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/TimeSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/TimeSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/Farm1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Farm1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Graphic.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Graphic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ScreenBrightnessSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ScreenBrightnessSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +125,7 @@
       <recent name="D:\StarehdewValley\assets\map\objects" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RunGDX">
+  <component name="RunManager" selected="Gradle.StardewValley [run]">
     <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -161,7 +173,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.RunGDX" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>
@@ -233,13 +244,7 @@
       <workItem from="1753174831226" duration="5489000" />
       <workItem from="1753189199875" duration="572000" />
       <workItem from="1753204394064" duration="20323000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۱۶" summary="Shipping bin completed">
-      <option name="closed" value="true" />
-      <created>1747337889922</created>
-      <option name="number" value="LOCAL‎−۰۰۰۱۶" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۱۶" />
-      <updated>1747337889922</updated>
+      <workItem from="1753417337081" duration="3850000" />
     </task>
     <task id="LOCAL‎−۰۰۰۱۷" summary="Trash can system implemented">
       <option name="closed" value="true" />
@@ -595,7 +600,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۶۴" />
       <updated>1753396686382</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL‎−۰۰۰۶۵" summary="Shadow bug fixed">
+      <option name="closed" value="true" />
+      <created>1753397795484</created>
+      <option name="number" value="LOCAL‎−۰۰۰۶۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۶۵" />
+      <updated>1753397795484</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +638,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adding player movement system" />
     <MESSAGE value="Static graphic added" />
     <MESSAGE value="Add facing and camera follow system" />
     <MESSAGE value="Adding animation system" />
@@ -651,7 +662,8 @@
     <MESSAGE value="typo really fixed this time" />
     <MESSAGE value="atlas rotation disabled;&#10;half tree fixed;" />
     <MESSAGE value="Tree random generation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tree random generation" />
+    <MESSAGE value="Shadow bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Shadow bug fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
