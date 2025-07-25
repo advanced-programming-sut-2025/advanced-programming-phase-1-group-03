@@ -25,112 +25,112 @@ oak_tree/oak_tree
   orig: 41, 63
   offset: 0, 0
   index: -1
-player/attack_down
+player/work_down
   rotate: false
   xy: 86, 221
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 0
-player/attack_down
+player/work_down
   rotate: false
   xy: 2, 38
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 1
-player/attack_down
+player/work_down
   rotate: false
   xy: 47, 105
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 2
-player/attack_down
+player/work_down
   rotate: false
   xy: 86, 185
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 3
-player/attack_left
+player/work_left
   rotate: false
   xy: 122, 221
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 0
-player/attack_left
+player/work_left
   rotate: false
   xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 1
-player/attack_left
+player/work_left
   rotate: false
   xy: 86, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 2
-player/attack_left
+player/work_left
   rotate: false
   xy: 122, 185
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 3
-player/attack_right
+player/work_right
   rotate: false
   xy: 158, 221
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 0
-player/attack_right
+player/work_right
   rotate: false
   xy: 122, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 1
-player/attack_right
+player/work_right
   rotate: false
   xy: 158, 185
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 2
-player/attack_right
+player/work_right
   rotate: false
   xy: 194, 221
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 3
-player/attack_up
+player/work_up
   rotate: false
   xy: 158, 149
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 0
-player/attack_up
+player/work_up
   rotate: false
   xy: 194, 185
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 1
-player/attack_up
+player/work_up
   rotate: false
   xy: 230, 221
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: 2
-player/attack_up
+player/work_up
   rotate: false
   xy: 194, 149
   size: 32, 32

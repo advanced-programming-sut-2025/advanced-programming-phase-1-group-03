@@ -40,11 +40,11 @@ public class AdjustAlphaSystem extends IteratingSystem {
             return;
         }
         Graphic graphic = Graphic.mapper.get(entity);
-        float progress = deltaTime * 2;
+        float progress = deltaTime * 3;
         float alpha;
 
         if(entityRect.overlaps(playerRect)) {
-            alpha = MathUtils.lerp(graphic.getColor().a, 0.5f, progress);
+            alpha = MathUtils.lerp(graphic.getColor().a, 0.4f, progress);
         } else {
             alpha = MathUtils.lerp(graphic.getColor().a, 1f, progress * 2);
         }

@@ -79,7 +79,7 @@ public class GameScreen extends AbstractScreen {
         tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
 
         // Setup inventory
-        inventory = new Inventory();
+        inventory = game.getInventory();
         Tool.addBasicTools(inventory, assetService);
 
         clock = new Clock(assetService, skin);
@@ -100,6 +100,7 @@ public class GameScreen extends AbstractScreen {
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
+        engine.addSystem(new PlayerAudioSystem(assetService));
         engine.addSystem(new TimeSystem(clock));
         engine.addSystem(new WeatherSystem(engine, clock, assetService, stage, audioService));
         engine.addSystem(new ScreenBrightnessSystem(rayHandler, engine));

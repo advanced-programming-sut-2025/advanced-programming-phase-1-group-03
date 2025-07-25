@@ -28,14 +28,14 @@ public class ScreenBrightnessSystem extends EntitySystem {
 
     @Override
     public void update(float deltaTime) {
-        final float darkness;
         float darknessProgress = MathUtils.clamp(timeSystem.totalSecondsFrom(timeSystem.getTotalSeconds(), darknessBegin)
                 / ((darknessEnd - darknessBegin) * 60 * 60f), 0f, 1f);
 
+        float darkness = 1 - darknessProgress / 2f;
+
         if(weatherSystem.getCurrentWeather() == Weather.Sunny) {
-            darkness = 1 - darknessProgress / 2.5f;
         }else if(weatherSystem.getCurrentWeather() == Weather.Rain) {
-            darkness = 0.7f;
+            darkness = Math.min(1 - darknessProgress / 2f, 0.7f);
         } else {
             darkness = 0.8f;
         }

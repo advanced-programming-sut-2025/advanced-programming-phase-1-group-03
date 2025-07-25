@@ -5,6 +5,7 @@ import com.ap.asset.MusicAsset;
 import com.ap.asset.SoundAsset;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 
@@ -19,7 +20,7 @@ public class AudioService {
     private float soundVolume = 0.3f;
 
     private Map<MusicAsset, Music> musicMap = new HashMap<>();
-
+    private Map<SoundAsset, Sound> soundCache =new HashMap<>();
     public AudioService(AssetService assetManager) {
         this.assetManager = assetManager;
     }
@@ -66,12 +67,13 @@ public class AudioService {
         musicMap.remove(musicAsset);
     }
 
-    public void playSound(SoundAsset soundAsset) {
-        assetManager.get(soundAsset).play(soundVolume);
+    public long playSound(SoundAsset soundAsset) {
+        return assetManager.get(soundAsset).play(soundVolume);
     }
-    public void playSound(SoundAsset soundAsset, float volume) {
-        assetManager.get(soundAsset).play(volume);
+    public long playSound(SoundAsset soundAsset, float volume) {
+        return assetManager.get(soundAsset).play(volume);
     }
+
     public void setSoundVolume(float soundVolume) {
         this.soundVolume = MathUtils.clamp(soundVolume, 0, 1);
     }

@@ -5,9 +5,13 @@ audio/Rain.mp3
 audio/Spring.mp3
 audio/Summer.mp3
 audio/Winter.mp3
+audio/axe.wav
 audio/coin.wav
+audio/cut.wav
 audio/hoeHit.wav
 audio/hover-sound.wav
+audio/pickaxe.wav
+audio/walk.wav
 data.db
 graphics/OnMap/environment.atlas
 graphics/OnMap/environment.png

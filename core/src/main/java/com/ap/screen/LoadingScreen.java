@@ -12,6 +12,7 @@ public class LoadingScreen extends AbstractScreen {
     private final AssetService assetService;
     private final SqliteConnection sqlite;
     private final PreferencesManager preferencesManager;
+    private boolean loaded = false;
 
     public LoadingScreen(GdxGame game) {
         super(game);
@@ -54,7 +55,9 @@ public class LoadingScreen extends AbstractScreen {
 
         stage.act(delta);
         stage.draw();
-        if(assetService.update()) {
+        if(assetService.update() && !loaded) {
+            loaded = true;
+
             createScreens();
 
             // Remove the loading screen, we don't need it anymore :)

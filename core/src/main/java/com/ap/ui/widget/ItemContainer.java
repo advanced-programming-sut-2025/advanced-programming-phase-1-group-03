@@ -9,6 +9,7 @@ import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -85,8 +86,12 @@ public class ItemContainer extends Actor {
         final float borderOffset = 16f * scale;
         float widthEach = selectedItem.getRegionWidth() * itemScale * 3;
 
+        var font = skin.getFont("font20");
+        font.setColor(Color.RED);
+
         for(int i = 0; i < Math.min(inventory.getSize(), maxSize); i++) {
-            Item item = inventory.getItems().get(i).getItem();
+            var itemStack = inventory.getItems().get(i);
+            Item item = itemStack.getItem();
             batch.draw(item.getIcon(),
                     getX() + widthEach * i + borderOffset, getY() + borderOffset,
                     0, 0,
@@ -102,6 +107,14 @@ public class ItemContainer extends Actor {
                 itemScale * 3, itemScale * 3,
                 0);
 
+        for(int i = 0; i < Math.min(inventory.getSize(), maxSize); i++) {
+            var itemStack = inventory.getItems().get(i);
+            if(itemStack.getAmount() <= 1) {
+                continue;
+            }
+            font.draw(batch, String.valueOf(itemStack.getAmount()),
+                    getX() + widthEach * i + borderOffset + widthEach/2-5, getY() + borderOffset + 10);
+        }
     }
 
     public void useSelectedItem(Body body, Engine engine, GdxGame game, World world) {

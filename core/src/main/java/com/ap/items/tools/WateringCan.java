@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class WateringCan extends Tool{
     public WateringCan(TextureRegion icon) {
-        super("WateringCan", icon, Abilities.None);
+        super("WateringCan", icon, null);
     }
 
     @Override

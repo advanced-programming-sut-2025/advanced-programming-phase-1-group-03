@@ -1,13 +1,10 @@
 package com.ap.tiled;
 
-import com.ap.Constraints;
 import com.ap.asset.AssetService;
-import com.ap.asset.AtlasAsset;
 import com.ap.component.*;
-import com.ap.items.ItemFactory;
+import com.ap.items.EntityFactory;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -58,7 +55,7 @@ public class TiledMapGenerator {
             }
         }
         for(Vector2 position : positions) {
-            Entity entity = ItemFactory.CreateWoodEntity(position, assetService, world);
+            Entity entity = EntityFactory.CreateWoodEntity(position, assetService, world);
             engine.addEntity(entity);
         }
     }
@@ -79,7 +76,7 @@ public class TiledMapGenerator {
         }
         for(Vector2 position : positions) {
             int type = new Random().nextInt(3);
-            Entity entity = ItemFactory.CreateGrassEntity(position, type, assetService, world);
+            Entity entity = EntityFactory.CreateGrassEntity(position, type, assetService, world);
             engine.addEntity(entity);
         }
     }
@@ -116,7 +113,7 @@ public class TiledMapGenerator {
         }
         for(Vector2 position : positions) {
             int type = new Random().nextInt(2);
-            Entity entity = ItemFactory.CreateStoneEntity(position, type, assetService, world);
+            Entity entity = EntityFactory.CreateStoneEntity(position, type, assetService, world);
             engine.addEntity(entity);
         }
     }
@@ -185,7 +182,7 @@ public class TiledMapGenerator {
 
         for(Vector2 position : positions) {
             String name = Trees.values()[new Random().nextInt(Trees.values().length)].name();
-            Entity entity = ItemFactory.CreateTreeEntity(position, name, assetService, world);
+            Entity entity = EntityFactory.CreateTreeEntity(position, name, assetService, world);
             engine.addEntity(entity);
             for(Entity child : Container.mapper.get(entity).getChildren()) {
                 engine.addEntity(child);

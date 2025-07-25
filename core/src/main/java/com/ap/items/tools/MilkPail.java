@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class MilkPail extends Tool{
     public MilkPail(TextureRegion icon) {
-        super("MailPale",icon, Abilities.None);
+        super("MailPale",icon, null);
     }
 
     @Override

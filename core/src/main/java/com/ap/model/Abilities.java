@@ -5,6 +5,5 @@ public enum Abilities {
     Mining,
     Foraging,
     Fishing,
-    None
     ;
 }

@@ -6,7 +6,11 @@ import com.badlogic.gdx.audio.Sound;
 public enum SoundAsset implements Asset<Sound> {
     HoverButton("hover-sound.wav"),
     Beep("coin.wav"),
-    HoeHit("hoeHit.wav")
+    HoeHit("hoeHit.wav"),
+    Scythe("cut.wav"),
+    Axe("axe.wav"),
+    Pickaxe("pickaxe.wav"),
+    Walk("walk.wav")
     ;
 
     private final AssetDescriptor<Sound> descriptor;

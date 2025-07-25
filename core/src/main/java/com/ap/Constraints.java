@@ -29,8 +29,11 @@ public class Constraints {
             "What is name of your first school?",
             "What is month of your birthday?"
     };
-    public static final int STONE_Z = 1;
 
+    // in 10 probabilities
+    public static final int PROB_OF_GRASS_GIVE_FIBBER = 1;
+
+    public static final int STONE_Z = 1;
     public static int HOE_DIRT_Z = 1;
     public static final int TREE_LEAF_Z = 3;
     public static final int TREE_STUMP_Z = 1;

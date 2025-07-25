@@ -9,7 +9,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Shear extends Tool{
     public Shear(TextureRegion icon) {
-        super("Shear", icon, Abilities.None);
+        super("Shear", icon, null);
     }
 
     @Override

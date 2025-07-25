@@ -1,20 +1,13 @@
 package com.ap.items.tools;
 
-import com.ap.Constraints;
 import com.ap.GdxGame;
-import com.ap.asset.AssetService;
-import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
-import com.ap.component.*;
-import com.ap.items.ItemFactory;
+import com.ap.items.EntityFactory;
 import com.ap.model.Abilities;
-import com.ap.tiled.TiledPhysic;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -36,7 +29,7 @@ public class Hoe extends Tool{
             if(!tile.getProperties().get("Type", "", String.class).equals("Dirt")) {
                 return;
             }
-            Entity entity = ItemFactory.CreatePlowedDirt(body, world);
+            Entity entity = EntityFactory.CreatePlowedDirt(body, world);
             game.getAudioService().playSound(SoundAsset.HoeHit, 0.2f);
             engine.addEntity(entity);
         }
