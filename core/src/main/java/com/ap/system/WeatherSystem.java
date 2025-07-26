@@ -46,7 +46,7 @@ public class WeatherSystem extends EntitySystem {
         Season season = timeSystem.getSeason();
         int length = season.getPossibleWeathers().size();
         currentWeather = season.getPossibleWeathers().get(new Random().nextInt(length));
-        currentWeather = Weather.Snow;
+//        currentWeather = Weather.Rain;
         switch (currentWeather) {
             case Sunny -> sunnySetup();
             case Rain -> rainSetup();

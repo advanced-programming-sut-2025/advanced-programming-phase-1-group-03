@@ -1,0 +1,30 @@
+toggles.png
+size: 213, 20
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+pma: false
+animals
+  bounds: 2, 2, 16, 16
+blank
+  bounds: 20, 2, 16, 16
+blank_bg
+  bounds: 38, 2, 16, 16
+collections
+  bounds: 56, 2, 16, 16
+crafting
+  bounds: 74, 2, 16, 16
+cross_icon
+  bounds: 200, 2, 11, 11
+exit
+  bounds: 92, 2, 16, 16
+inventory
+  bounds: 110, 2, 16, 16
+map
+  bounds: 128, 2, 16, 16
+options
+  bounds: 146, 2, 16, 16
+social
+  bounds: 164, 2, 16, 16
+specials
+  bounds: 182, 2, 16, 16
