@@ -67,7 +67,6 @@ public class LoadingScreen extends AbstractScreen {
             // Change screen to MainMenu
             game.setScreen(MainMenuScreen.class);
         }
-
     }
 
     /**

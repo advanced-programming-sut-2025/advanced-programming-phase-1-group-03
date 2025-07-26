@@ -13,21 +13,30 @@ audio/hover-sound.wav
 audio/pickaxe.wav
 audio/walk.wav
 data.db
+graphics/Animals/Fish.atlas
+graphics/Animals/Fish.png
+graphics/Animals/Fishing-2.png
+graphics/FishingMiniGame.png
 graphics/OnMap/environment.atlas
 graphics/OnMap/environment.png
 graphics/OnMap/environment.tps
+graphics/OnMap/snowfall.atlas
+graphics/OnMap/snowfall.png
 graphics/OnMap/trees.atlas
 graphics/OnMap/trees.png
 graphics/OnMap/trees.tps
 graphics/Rain.png
 graphics/SeasonalObjects.atlas
 graphics/SeasonalObjects.png
+graphics/Tabs/socialBackground.png
+graphics/Tabs/socialtoggle.png
 graphics/Tools.atlas
 graphics/Tools.png
 graphics/UI.atlas
 graphics/UI.png
 graphics/avatars.atlas
 graphics/avatars.png
+graphics/greenBar.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
@@ -45,8 +54,6 @@ map/tileset/summer_outdoorsTileSheet.png
 map/tileset/summer_outdoorsTileSheet2.png
 map/tileset/winter_outdoorsTileSheet.png
 map/tileset/winter_outdoorsTileSheet2.png
-skins/Stardew Valley ALL CAPS.ttf
-skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

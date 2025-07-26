@@ -7,7 +7,8 @@ import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
 import com.ap.items.ItemStack;
-import com.ap.system.ControllerSystem;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -18,11 +19,16 @@ public class InventoryMenu extends Actor {
     private final TextureRegion background;
     private final Stage stage;
     private boolean isShowing = false;
+    TabBar tabBar;
 
     private final AssetService assetService;
     private final Skin skin;
     private final Inventory inventory;
     private final AudioService audioService;
+
+    // Social textures
+    private final TextureRegion socialBackground;
+    private final TextureRegion socialBar;
 
     private InventoryMenu instance;
 
@@ -35,16 +41,29 @@ public class InventoryMenu extends Actor {
         this.stage = stage;
         this.inventory = inventory;
         this.audioService = audioService;
+        tabBar = TabBar.Inventory;
+        // load social
+        socialBackground = new TextureRegion(new Texture(Gdx.files.internal("graphics/Tabs/socialBackground.png")));
+        socialBar = new TextureRegion(new Texture(Gdx.files.internal("graphics/Tabs/socialtoggle.png")));
+
 
         background = assetService.get(AtlasAsset.UI).findRegion("inventory");
         setX((Constraints.WORLD_WIDTH_RESOLUTION - background.getRegionWidth()) / 2f);
         setY((Constraints.WORLD_HEIGHT_RESOLUTION - background.getRegionHeight()) / 2f);
+
+        System.out.println(background.getRegionWidth() + " " + background.getRegionHeight());
+        System.out.println(socialBackground.getRegionWidth() + " " + socialBackground.getRegionHeight());
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(background, getX(), getY());
-        drawItems(batch);
+        //batch.draw(socialBar, )
+        switch (tabBar) {
+            case Inventory -> {
+                drawItems(batch);
+            }
+        }
     }
 
     private void drawItems(Batch batch) {

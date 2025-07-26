@@ -18,10 +18,7 @@ import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
-import com.ap.ui.widget.Clock;
-import com.ap.ui.widget.EnergyBar;
-import com.ap.ui.widget.InventoryMenu;
-import com.ap.ui.widget.ItemContainer;
+import com.ap.ui.widget.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
@@ -32,6 +29,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import java.util.function.Consumer;
 
@@ -51,6 +49,7 @@ public class GameScreen extends AbstractScreen {
     private ItemContainer itemContainer;
     private EnergyBar energyBar;
     private InventoryMenu inventoryMenu;
+    private FishingMiniGame fishingMiniGame;
 
     private Inventory inventory;
 
@@ -86,7 +85,7 @@ public class GameScreen extends AbstractScreen {
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
         inventoryMenu = new InventoryMenu(assetService, skin, stage, inventory, audioService);
-
+        fishingMiniGame = new FishingMiniGame(assetService, skin, 150 , 150, stage);
         RayHandler.useDiffuseLight(true);
         rayHandler = new RayHandler(world);
     }
@@ -119,6 +118,7 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(clock);
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
+        stage.addActor(fishingMiniGame);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);

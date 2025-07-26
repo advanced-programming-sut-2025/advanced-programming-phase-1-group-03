@@ -1,0 +1,232 @@
+Fish.png
+size: 64, 382
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+pma: false
+Fishing-0
+  bounds: 1, 225, 15, 16
+Fishing-1
+  bounds: 49, 103, 14, 13
+Fishing-2
+  bounds: 1, 1, 16, 16
+Fishing-3
+  bounds: 49, 116, 14, 13
+Fishing-4
+  bounds: 48, 241, 15, 15
+Fishing-5
+  bounds: 1, 17, 16, 16
+Fishing-6
+  bounds: 49, 47, 14, 14
+Fishing-7
+  bounds: 17, 209, 15, 16
+Fishing-8
+  bounds: 33, 193, 15, 16
+Fishing-9
+  bounds: 17, 1, 16, 16
+Fishing-10
+  bounds: 1, 33, 16, 16
+Fishing-11
+  bounds: 17, 17, 16, 16
+Fishing-12
+  bounds: 33, 1, 16, 16
+Fishing-13
+  bounds: 16, 225, 16, 15
+Fishing-14
+  bounds: 48, 193, 15, 16
+Fishing-15
+  bounds: 1, 332, 15, 14
+Fishing-16
+  bounds: 1, 257, 15, 15
+Fishing-17
+  bounds: 48, 256, 15, 15
+Fishing-18
+  bounds: 1, 49, 16, 16
+Fishing-19
+  bounds: 17, 33, 16, 16
+Fishing-20
+  bounds: 33, 17, 16, 16
+Fishing-21
+  bounds: 1, 65, 16, 16
+Fishing-22
+  bounds: 1, 272, 15, 15
+Fishing-23
+  bounds: 17, 49, 16, 16
+Fishing-24
+  bounds: 33, 33, 16, 16
+Fishing-25
+  bounds: 1, 81, 16, 16
+Fishing-26
+  bounds: 17, 65, 16, 16
+Fishing-27
+  bounds: 48, 271, 15, 15
+Fishing-28
+  bounds: 1, 287, 15, 15
+Fishing-29
+  bounds: 49, 61, 14, 14
+Fishing-30
+  bounds: 33, 49, 16, 16
+Fishing-31
+  bounds: 33, 65, 16, 16
+Fishing-32
+  bounds: 31, 309, 12, 12
+Fishing-33
+  bounds: 1, 97, 16, 16
+Fishing-34
+  bounds: 17, 81, 16, 16
+Fishing-35
+  bounds: 33, 81, 16, 16
+Fishing-36
+  bounds: 16, 285, 15, 15
+Fishing-37
+  bounds: 1, 113, 16, 16
+Fishing-38
+  bounds: 32, 209, 16, 15
+Fishing-39
+  bounds: 17, 358, 16, 13
+Fishing-40
+  bounds: 17, 97, 16, 16
+Fishing-41
+  bounds: 32, 284, 16, 12
+Fishing-42
+  bounds: 1, 302, 15, 15
+Fishing-43
+  bounds: 33, 97, 16, 16
+Fishing-44
+  bounds: 1, 129, 16, 16
+Fishing-45
+  bounds: 49, 75, 14, 14
+Fishing-46
+  bounds: 17, 113, 16, 16
+Fishing-47
+  bounds: 33, 113, 16, 16
+Fishing-48
+  bounds: 16, 300, 15, 15
+Fishing-49
+  bounds: 1, 145, 16, 16
+Fishing-50
+  bounds: 16, 330, 16, 14
+Fishing-51
+  bounds: 1, 346, 16, 14
+Fishing-52
+  bounds: 32, 224, 16, 15
+Fishing-53
+  bounds: 17, 129, 16, 16
+Fishing-54
+  bounds: 31, 296, 16, 13
+Fishing-55
+  bounds: 1, 161, 16, 16
+Fishing-56
+  bounds: 16, 240, 16, 15
+Fishing-57
+  bounds: 17, 145, 16, 16
+Fishing-58
+  bounds: 33, 129, 16, 16
+Fishing-59
+  bounds: 1, 177, 16, 16
+Fishing-60
+  bounds: 1, 360, 16, 14
+Fishing-61
+  bounds: 32, 239, 16, 15
+Fishing-62
+  bounds: 49, 89, 14, 14
+Fishing-63
+  bounds: 17, 371, 12, 10
+Fishing-64
+  bounds: 33, 358, 10, 12
+Fishing-65
+  bounds: 53, 322, 10, 11
+Fishing-66
+  bounds: 17, 161, 16, 16
+Fishing-67
+  bounds: 33, 145, 16, 16
+Fishing-68
+  bounds: 1, 193, 16, 16
+Fishing-69
+  bounds: 49, 156, 12, 13
+Fishing-70
+  bounds: 31, 321, 8, 8
+Fishing-71
+  bounds: 47, 297, 12, 12
+Fishing-72
+  bounds: 49, 169, 10, 15
+Fishing-73
+  bounds: 16, 255, 16, 15
+Fishing-74
+  bounds: 48, 209, 15, 16
+Fishing-75
+  bounds: 17, 177, 16, 16
+Fishing-76
+  bounds: 32, 254, 16, 15
+Fishing-77
+  bounds: 49, 129, 14, 13
+Fishing-78
+  bounds: 49, 142, 13, 14
+Fishing-79
+  bounds: 49, 1, 14, 16
+Fishing-80
+  bounds: 49, 17, 14, 15
+Fishing-81
+  bounds: 49, 32, 14, 15
+Fishing-82
+  bounds: 43, 309, 12, 12
+Fishing-83
+  bounds: 41, 321, 12, 12
+Fishing-84
+  bounds: 48, 225, 15, 16
+Fishing-85
+  bounds: 33, 161, 16, 16
+Fishing-86
+  bounds: 32, 329, 9, 15
+Fishing-87
+  bounds: 39, 344, 8, 8
+Fishing-88
+  bounds: 49, 184, 7, 9
+Fishing-89
+  bounds: 43, 359, 8, 8
+Fishing-90
+  bounds: 56, 184, 6, 9
+Fishing-91
+  bounds: 41, 333, 11, 11
+Fishing-92
+  bounds: 1, 209, 16, 16
+Fishing-93
+  bounds: 32, 344, 7, 14
+Fishing-94
+  bounds: 17, 193, 16, 16
+Fishing-95
+  bounds: 33, 177, 16, 16
+Fishing-96
+  bounds: 1, 241, 15, 16
+Fishing-97
+  bounds: 16, 270, 16, 15
+Fishing-98
+  bounds: 1, 317, 15, 15
+Fishing-99
+  bounds: 48, 286, 13, 11
+Fishing-100
+  bounds: 56, 344, 5, 5
+Fishing-101
+  bounds: 56, 349, 6, 4
+Fishing-102
+  bounds: 16, 315, 15, 15
+Fishing-103
+  bounds: 29, 371, 12, 10
+Fishing-104
+  bounds: 47, 344, 9, 15
+Fishing-105
+  bounds: 1, 374, 14, 7
+Fishing-106
+  bounds: 41, 370, 12, 11
+Fishing-107
+  bounds: 17, 344, 15, 14
+Fishing-108
+  bounds: 55, 309, 8, 13
+Fishing-109
+  bounds: 52, 333, 11, 11
+Fishing-110
+  bounds: 32, 269, 16, 15
+Fishing-111
+  bounds: 51, 359, 5, 5
+Fishing-112
+  bounds: 39, 352, 5, 6
