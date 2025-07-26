@@ -63,7 +63,7 @@ public class TiledService {
             generateItemsConsumer.accept(startMap);
         }
 
-        changeSeasonTileset(Season.Spring);
+        changeSeasonTileset(Season.Winter);
     }
 
     private void loadMapObjects(TiledMap startMap) {

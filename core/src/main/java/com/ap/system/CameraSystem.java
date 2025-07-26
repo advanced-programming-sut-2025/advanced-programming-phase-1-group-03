@@ -17,10 +17,12 @@ public class CameraSystem extends IteratingSystem {
 
     private final float smoothingFactor = Constraints.CAMERA_SMOOTHING_FACTOR;
     private float mapW, mapH;
+    private Vector2 movingVelocity;
 
     public CameraSystem(Camera camera) {
         super(Family.all(Transform.class, CameraFollow.class).get());
         this.camera = camera;
+        movingVelocity = new Vector2();
     }
 
     @Override
@@ -32,6 +34,7 @@ public class CameraSystem extends IteratingSystem {
 
         float smoothedX = MathUtils.lerp(camera.position.x, targetPosition.x, progress);
         float smoothedY = MathUtils.lerp(camera.position.y, targetPosition.y, progress);
+        movingVelocity.set(targetPosition.x - camera.position.x, targetPosition.y - camera.position.y);
         camera.position.set(smoothedX, smoothedY, camera.position.z);
     }
 
@@ -77,5 +80,9 @@ public class CameraSystem extends IteratingSystem {
         calculateTargetPosition(playerTransform.getPosition());
 
         camera.position.set(targetPosition, camera.position.z);
+    }
+
+    public Vector2 getMovingVelocity() {
+        return movingVelocity;
     }
 }

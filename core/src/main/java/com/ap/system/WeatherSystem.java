@@ -6,6 +6,7 @@ import com.ap.audio.AudioService;
 import com.ap.model.Season;
 import com.ap.model.Weather;
 import com.ap.ui.effects.Rain;
+import com.ap.ui.effects.Snowfall;
 import com.ap.ui.widget.Clock;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.EntitySystem;
@@ -20,6 +21,7 @@ public class WeatherSystem extends EntitySystem {
     private final Stage stage;
     private final AudioService audioService;
     private final Rain rainActor;
+    private final Snowfall snowActor;
 
     public WeatherSystem(final Engine engine,
                          final Clock clock,
@@ -32,6 +34,7 @@ public class WeatherSystem extends EntitySystem {
         this.audioService = audioService;
         this.stage = stage;
         rainActor = new Rain(assetService);
+        snowActor = new Snowfall(assetService, engine);
         setWeatherRandomly();
         clock.setWeather(getCurrentWeather());
     }
@@ -43,6 +46,7 @@ public class WeatherSystem extends EntitySystem {
         Season season = timeSystem.getSeason();
         int length = season.getPossibleWeathers().size();
         currentWeather = season.getPossibleWeathers().get(new Random().nextInt(length));
+        currentWeather = Weather.Snow;
         switch (currentWeather) {
             case Sunny -> sunnySetup();
             case Rain -> rainSetup();
@@ -52,7 +56,7 @@ public class WeatherSystem extends EntitySystem {
     }
 
     private void snowSetup() {
-        
+        stage.addActor(snowActor);
     }
 
     private void stormSetup() {

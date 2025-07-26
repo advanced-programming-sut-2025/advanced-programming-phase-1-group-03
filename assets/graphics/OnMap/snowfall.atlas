@@ -1,0 +1,54 @@
+snowfall.png
+size: 286, 16
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+pma: false
+snow
+  bounds: 0, 0, 16, 16
+  index: 0
+snow
+  bounds: 18, 0, 16, 16
+  index: 1
+snow
+  bounds: 36, 0, 16, 16
+  index: 2
+snow
+  bounds: 54, 0, 16, 16
+  index: 3
+snow
+  bounds: 72, 0, 16, 16
+  index: 4
+snow
+  bounds: 90, 0, 16, 16
+  index: 5
+snow
+  bounds: 108, 0, 16, 16
+  index: 6
+snow
+  bounds: 126, 0, 16, 16
+  index: 7
+snow
+  bounds: 144, 0, 16, 16
+  index: 8
+snow
+  bounds: 162, 0, 16, 16
+  index: 9
+snow
+  bounds: 180, 0, 16, 16
+  index: 10
+snow
+  bounds: 198, 0, 16, 16
+  index: 11
+snow
+  bounds: 216, 0, 16, 16
+  index: 12
+snow
+  bounds: 234, 0, 16, 16
+  index: 13
+snow
+  bounds: 252, 0, 16, 16
+  index: 14
+snow
+  bounds: 270, 0, 16, 16
+  index: 15

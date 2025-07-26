@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Axe and Pickaxe">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/plant/Plant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/plant/Tree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/OnMap/snowfall.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/OnMap/snowfall.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/effects/Snowfall.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Transform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/EntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/RenderSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/RenderSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/CameraSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/CameraSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/WeatherSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/WeatherSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +120,7 @@
       <recent name="D:\StarehdewValley\assets\map\objects" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.StardewValley [run]">
+  <component name="RunManager" selected="Application.RunGDX">
     <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -173,6 +168,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.RunGDX" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>
