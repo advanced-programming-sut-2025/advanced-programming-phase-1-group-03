@@ -2,6 +2,8 @@ package com.ap.effect;
 
 import com.ap.Constraints;
 import com.ap.GdxGame;
+import com.ap.asset.MapAsset;
+import com.ap.managers.MapManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -14,7 +16,9 @@ public class TransitionManager {
     private float transitionDuration = 0.5f;
 
     private Class<? extends Screen> newScreen;
+    private MapAsset newMap;
     private final GdxGame game;
+    private MapManager mapManager = null;
     private final FitViewport viewport;
     private boolean isTransitioning = false;
     private boolean expanding;
@@ -26,6 +30,12 @@ public class TransitionManager {
         this.viewport = game.getViewport();
         shapeRenderer = new ShapeRenderer();
     }
+    public TransitionManager(GdxGame game, MapManager mapManager) {
+        this.game = game;
+        this.mapManager = mapManager;
+        this.viewport = game.getViewport();
+        shapeRenderer = new ShapeRenderer();
+    }
 
     public void initTransition(Class<? extends Screen> newScreen) {
         this.newScreen = newScreen;
@@ -33,6 +43,13 @@ public class TransitionManager {
         expanding = true;
         timer = 0f;
     }
+    public void initTransition(MapAsset newMap) {
+        this.newMap = newMap;
+        this.isTransitioning = true;
+        expanding = true;
+        timer = 0f;
+    }
+
     public void render(float deltaTime) {
         if(!isTransitioning)
             return;
@@ -56,7 +73,11 @@ public class TransitionManager {
             if(progress >= 1) {
                 expanding = false;
                 timer = 0f;
-                game.changeScreen(newScreen);
+                if(mapManager != null) {
+                    mapManager.setMap(newMap);
+                } else {
+                    game.changeScreen(newScreen);
+                }
             }
         } else {
             shapeRenderer.circle(screenWidth / 2f, screenHeight / 2f,

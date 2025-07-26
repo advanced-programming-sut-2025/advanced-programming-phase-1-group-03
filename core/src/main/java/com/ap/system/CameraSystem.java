@@ -49,6 +49,7 @@ public class CameraSystem extends IteratingSystem {
 
             // prevent camera to show outside the map
             targetX = MathUtils.clamp(targetX, min, max);
+
         }
 
         float camHalfH = camera.viewportHeight * 0.5f;
@@ -58,6 +59,7 @@ public class CameraSystem extends IteratingSystem {
 
             // prevent camera to show outside the map
             targetY = MathUtils.clamp(targetY, min, max);
+
         }
         targetPosition.set(targetX, targetY);
     }

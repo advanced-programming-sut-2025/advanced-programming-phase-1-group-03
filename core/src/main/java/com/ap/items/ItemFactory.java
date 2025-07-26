@@ -24,7 +24,7 @@ public class ItemFactory {
     }
 
     public static Item CreateTree() {
-        return new Tree(ItemNames.Tree.name(), true);
+        return new Tree(ItemNames.Tree.name());
     }
 
 }

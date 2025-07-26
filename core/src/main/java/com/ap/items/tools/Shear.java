@@ -2,6 +2,7 @@ package com.ap.items.tools;
 
 import com.ap.GdxGame;
 import com.ap.model.Abilities;
+import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -18,7 +19,7 @@ public class Shear extends Tool{
     }
 
     @Override
-    public void applyItem(Body body, Engine engine, GdxGame game, World world) {
+    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
         super.applyItem(body, engine, game, world);
     }
 }

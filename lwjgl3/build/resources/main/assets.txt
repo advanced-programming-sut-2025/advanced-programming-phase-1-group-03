@@ -30,6 +30,8 @@ graphics/SeasonalObjects.atlas
 graphics/SeasonalObjects.png
 graphics/Tabs/socialBackground.png
 graphics/Tabs/socialtoggle.png
+graphics/Tabs/toggles.atlas
+graphics/Tabs/toggles.png
 graphics/Tools.atlas
 graphics/Tools.png
 graphics/UI.atlas
@@ -42,18 +44,29 @@ graphics/player.png
 graphics/shadow.atlas
 graphics/shadow.png
 map/Farm1.tmx
+map/Forest.tmx
 map/objects/GameObjects.tsx
 map/objects/House.png
 map/objects/Objects.tsx
 map/objects/player.png
+map/tileset/fall_Shadows.png
+map/tileset/fall_Waterfalls.png
 map/tileset/fall_outdoorsTileSheet.png
 map/tileset/fall_outdoorsTileSheet2.png
+map/tileset/spring_Shadows.png
+map/tileset/spring_Waterfalls.png
 map/tileset/spring_outdoorsTileSheet.png
 map/tileset/spring_outdoorsTileSheet2.png
+map/tileset/summer_Shadows.png
+map/tileset/summer_Waterfalls.png
 map/tileset/summer_outdoorsTileSheet.png
 map/tileset/summer_outdoorsTileSheet2.png
+map/tileset/winter_Shadows.png
+map/tileset/winter_Waterfalls.png
 map/tileset/winter_outdoorsTileSheet.png
 map/tileset/winter_outdoorsTileSheet2.png
+skins/Stardew Valley ALL CAPS.ttf
+skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

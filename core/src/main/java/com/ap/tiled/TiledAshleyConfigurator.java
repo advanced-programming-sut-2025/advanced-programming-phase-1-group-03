@@ -31,13 +31,16 @@ public class TiledAshleyConfigurator {
     }
 
 
-    private static void addDirtComponent(TiledMapTile tile, Entity entity) {
-        if(tile.getProperties().get("Type", "", String.class).equals("Dirt")) {
-            entity.add(new Dirt(false));
-        }
+    public void onLoadSpawner(MapObject object) {
+        MapObjects objects = new MapObjects();
+        objects.add(object);
+        createBody(objects,
+                Vector2.Zero,
+                new Vector2(1, 1),
+                BodyDef.BodyType.StaticBody,
+                Vector2.Zero, object.getProperties().get("spawner", String.class));
     }
-
-    public void onLoadBoundary(PolygonMapObject object) {
+    public void onLoadBoundary(MapObject object) {
         MapObjects objects = new MapObjects();
         objects.add(object);
         createBody(objects,

@@ -3,15 +3,13 @@ package com.ap.items.tools;
 import com.ap.Constraints;
 import com.ap.GdxGame;
 import com.ap.asset.SoundAsset;
-import com.ap.component.Container;
-import com.ap.component.Graphic;
-import com.ap.component.ItemHolder;
-import com.ap.component.Transform;
+import com.ap.component.*;
 import com.ap.items.Item;
 import com.ap.items.ItemFactory;
 import com.ap.items.ItemNames;
 import com.ap.items.plant.Tree;
 import com.ap.model.Abilities;
+import com.ap.screen.GameScreen;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -35,7 +33,7 @@ public class Axe extends Tool {
     }
 
     @Override
-    public void applyItem(Body body, Engine engine, GdxGame game, World world) {
+    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
         if(!(body.getUserData() instanceof Entity entity)) {
             return;
         }
@@ -50,13 +48,20 @@ public class Axe extends Tool {
             Helper.removeEntity(entity, engine, world);
             game.getInventory().addItem(wood, 1);
         } else if(item instanceof Tree tree) {
-            if(!tree.hasLeaf()) {
+            var treeComp = TreeComponent.mapper.get(entity);
+
+            if(!treeComp.hasLeaf()) {
                 game.getInventory().addItem(wood, Constraints.STUMP_GIVEN_WOOD);
                 Helper.removeEntity(entity, engine, world);
                 return;
             }
 
-            tree.setHasLeaf(false);
+            if(treeComp.getNumberOfAxeNeededToCut() > 0) {
+                treeComp.setNumberOfAxeNeededToCut(treeComp.getNumberOfAxeNeededToCut() - 1);
+                return;
+            }
+            treeComp.setHasLeaf(false);
+
             var leafEntity = Container.mapper.get(entity).getChildren().first();
             Transform transform = Transform.mapper.get(leafEntity);
 

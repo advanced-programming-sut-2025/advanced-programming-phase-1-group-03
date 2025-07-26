@@ -6,7 +6,9 @@ import com.ap.database.SqliteConnection;
 import com.ap.effect.TransitionManager;
 import com.ap.items.Inventory;
 import com.ap.screen.LoadingScreen;
+import com.ap.system.universal.TimeSystem;
 import com.ap.utils.PreferencesManager;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.GL20;
@@ -46,9 +48,6 @@ public class GdxGame extends Game {
     // We use preferences to store small data
     private PreferencesManager preferencesManager;
 
-    // Inventory
-    private Inventory inventory;
-
     private final Map<Class<? extends Screen>, Screen> screenCache = new HashMap<>();
 
     @Override
@@ -71,8 +70,6 @@ public class GdxGame extends Game {
         sqlite = new SqliteConnection();
 
         preferencesManager = new PreferencesManager();
-
-        inventory = new Inventory();
 
         addScreen(new LoadingScreen(this));
         changeScreen(LoadingScreen.class);
@@ -168,7 +165,4 @@ public class GdxGame extends Game {
         return preferencesManager;
     }
 
-    public Inventory getInventory() {
-        return inventory;
-    }
 }

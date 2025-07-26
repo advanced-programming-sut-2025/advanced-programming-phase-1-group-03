@@ -7,6 +7,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.systems.SortedIteratingSystem;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -31,11 +32,11 @@ public class RenderSystem extends SortedIteratingSystem {
     private BatchTiledMapRenderer renderer;
     private Batch batch;
     private Viewport viewport;
-    private OrthographicCamera camera;
+    private Camera camera;
 
     private List<MapLayer> fgdLayers, bgdLayers;
 
-    public RenderSystem(Batch batch, Viewport viewport, OrthographicCamera camera) {
+    public RenderSystem(Batch batch, Viewport viewport, Camera camera) {
         super(Family.all(Transform.class, Graphic.class).get(),
                 Comparator.comparing(Transform.mapper::get));
 
@@ -55,7 +56,7 @@ public class RenderSystem extends SortedIteratingSystem {
 
         batch.begin();
         batch.setColor(Color.WHITE);
-        renderer.setView(camera);
+        renderer.setView((OrthographicCamera) camera);
 
         bgdLayers.forEach(this::renderMapLayer);
 

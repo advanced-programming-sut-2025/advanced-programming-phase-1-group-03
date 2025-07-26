@@ -1,5 +1,6 @@
 package com.ap.tiled;
 
+import com.ap.Constraints;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.asset.TilesetAsset;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -16,22 +18,28 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.maps.tiled.tiles.AnimatedTiledMapTile;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.IntArray;
 
+import java.util.HashMap;
 import java.util.function.Consumer;
 
 public class TiledService {
     private final AssetService assetService;
     private TiledMap currentMap = null;
 
+    private HashMap<String, Vector2> spawnPoints = new HashMap<>();
+
     // We use this consumer to notify other systems when map changes
     private Consumer<TiledMap> mapChangeConsumer;
     private LoadTileConsumer loadTileConsumer;
     private Consumer<TiledMapTileMapObject> loadObjectConsumer;
-    private Consumer<PolygonMapObject> loadPolygonConsumer;
+    private Consumer<MapObject> loadBoundaryConsumer;
     private Consumer<TiledMap> generateItemsConsumer;
+    private Consumer<MapObject> loadSpanwerConsumer;
 
     public TiledService(AssetService assetService) {
         this.assetService = assetService;
@@ -39,16 +47,10 @@ public class TiledService {
 
     public TiledMap load(MapAsset asset) {
         TiledMap map = assetService.load(asset);
-        // Add to map index to its properties, we use it to unload map in setMap function
-        map.getProperties().put("mapAsset", asset);
         return map;
     }
 
     public void setMap(TiledMap startMap) {
-        if(currentMap != null) {
-            // Unload the map, because we don't want store big data in out RAM
-            assetService.unload(startMap.getProperties().get("mapAsset", MapAsset.class));
-        }
         this.currentMap = startMap;
 
         loadMapObjects(startMap);
@@ -57,13 +59,11 @@ public class TiledService {
             // notify All
             mapChangeConsumer.accept(startMap);
         }
-
-
         if(startMap.getProperties().get("generateItems", false, Boolean.class)) {
             generateItemsConsumer.accept(startMap);
         }
 
-        changeSeasonTileset(Season.Spring);
+        changeSeasonTileset(Season.Fall);
     }
 
     private void loadMapObjects(TiledMap startMap) {
@@ -83,11 +83,32 @@ public class TiledService {
             if(object instanceof TiledMapTileMapObject tiledMapObject) {
                 loadObjectConsumer.accept(tiledMapObject);
             } else if(object instanceof PolygonMapObject polygon) {
-                loadPolygonConsumer.accept(polygon);
-            } else {
+                loadBoundaryConsumer.accept(polygon);
+            } else if(object instanceof RectangleMapObject point) {
+                setSpawnPoint(point);
+                setSpawner(point);
+            }else {
                 throw new GdxRuntimeException("Unsupported map object: " + object.getClass().getName());
             }
         }
+    }
+
+    private void setSpawner(RectangleMapObject point) {
+        String location = point.getProperties().get("spawner", "", String.class);
+        if(location.isBlank()) {
+            return;
+        }
+        loadSpanwerConsumer.accept(point);
+    }
+
+    private void setSpawnPoint(RectangleMapObject point) {
+        String location = point.getProperties().get("StartLocation", "", String.class);
+        if(location.isBlank()) {
+            return;
+        }
+        Vector2 pos = new Vector2(point.getRectangle().getX(), point.getRectangle().getY());
+        pos.scl(Constraints.UNIT_SCALE);
+        spawnPoints.put(location, pos);
     }
 
     private void loadTileLayer(TiledMapTileLayer tileLayer) {
@@ -167,12 +188,16 @@ public class TiledService {
         this.loadObjectConsumer = loadObjectConsumer;
     }
 
-    public void setLoadPolygonConsumer(Consumer<PolygonMapObject> loadPolygonConsumer) {
-        this.loadPolygonConsumer = loadPolygonConsumer;
+    public void setBoundaryConsumer(Consumer<MapObject> loadBoundaryConsumer) {
+        this.loadBoundaryConsumer = loadBoundaryConsumer;
     }
 
     public void setGenerateItemsConsumer(Consumer<TiledMap> generateItemsConsumer) {
         this.generateItemsConsumer = generateItemsConsumer;
+    }
+
+    public void setLoadSpanwerConsumer(Consumer<MapObject> loadSpanwerConsumer) {
+        this.loadSpanwerConsumer = loadSpanwerConsumer;
     }
 
     @FunctionalInterface

@@ -8,6 +8,7 @@ import com.ap.items.Item;
 import com.ap.items.ItemFactory;
 import com.ap.items.ItemNames;
 import com.ap.model.Abilities;
+import com.ap.screen.GameScreen;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -28,7 +29,7 @@ public class Pickaxe extends Tool {
     }
 
     @Override
-    public void applyItem(Body body, Engine engine, GdxGame game, World world) {
+    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
         if(!(body.getUserData() instanceof Entity entity)) {
             return;
         }

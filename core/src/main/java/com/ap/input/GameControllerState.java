@@ -8,11 +8,12 @@ import com.badlogic.ashley.utils.ImmutableArray;
 
 public class GameControllerState implements ControllerState{
 
-    private final ImmutableArray<Entity> controllerEntities;
+    private ImmutableArray<Entity> controllerEntities;
 
     public GameControllerState(Engine engine) {
         controllerEntities = engine.getEntitiesFor(Family.all(Controller.class).get());
     }
+
 
     @Override
     public void keyDown(Command command) {

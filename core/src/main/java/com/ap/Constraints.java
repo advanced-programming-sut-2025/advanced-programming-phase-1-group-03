@@ -26,6 +26,7 @@ public class Constraints {
     public static final int MINIMUM_WOOD_TREE_GIVE = 5;
     public static final int MAXIMUM_WOOD_TREE_GIVE = 8;
     public static final int STUMP_GIVEN_WOOD = 3;
+    public static final int NUMBER_OF_AXE_NEED_TO_CUT_DOWN_TREE = 4;
 
 
     public static String[] secQuestions = {

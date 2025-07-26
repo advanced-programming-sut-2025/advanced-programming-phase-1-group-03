@@ -55,4 +55,8 @@ public abstract class AbstractScreen implements Screen {
     public void dispose() {
         stage.dispose();
     }
+
+    public Stage getStage() {
+        return  stage;
+    }
 }

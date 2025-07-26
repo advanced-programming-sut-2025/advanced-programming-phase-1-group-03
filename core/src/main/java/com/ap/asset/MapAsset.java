@@ -4,7 +4,8 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
 public enum MapAsset implements Asset<TiledMap>{
-    Farm1("Farm1.tmx")
+    Farm1("Farm1.tmx"),
+    Forest("Forest.tmx"),
     ;
     private final AssetDescriptor<TiledMap> descriptor;
 

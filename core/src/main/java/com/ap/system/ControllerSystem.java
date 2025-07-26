@@ -4,15 +4,19 @@ import com.ap.component.Controller;
 import com.ap.component.Move;
 import com.ap.input.Command;
 import com.ap.ui.widget.InventoryMenu;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 
 public class ControllerSystem extends IteratingSystem {
     private InventoryMenu inventoryMenu;
+    private TileSelectionSystem tileSelectionSystem;
+    private int totalMovement = 0;
 
-    public ControllerSystem(InventoryMenu inventoryMenu) {
+    public ControllerSystem(InventoryMenu inventoryMenu, Engine engine) {
         super(Family.all(Controller.class).get());
+        this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
         this.inventoryMenu = inventoryMenu;
     }
 
@@ -23,6 +27,7 @@ public class ControllerSystem extends IteratingSystem {
             return;
         }
         for (Command command : controller.getPressedCommands()) {
+            totalMovement ++;
             switch (command) {
                 case Right -> {
                     moveEntity(entity, 1f, 0f);
@@ -37,6 +42,8 @@ public class ControllerSystem extends IteratingSystem {
                     moveEntity(entity, 0f, 1f);
                 } case OpenInventory -> {
                     inventoryMenu.toggle();
+                } case Click -> {
+                    clicked();
                 }
             }
         }
@@ -45,6 +52,10 @@ public class ControllerSystem extends IteratingSystem {
         controller.getPressedCommands().clear();
 
         for (Command command : controller.getReleasedCommands()) {
+            if(totalMovement <= 0) {
+                continue;
+            }
+            totalMovement --;
             switch (command) {
                 case Right -> {
                     moveEntity(entity, -1f, 0f);
@@ -64,6 +75,13 @@ public class ControllerSystem extends IteratingSystem {
         controller.getReleasedCommands().clear();
 
     }
+
+    private void clicked() {
+        if(tileSelectionSystem != null) {
+            tileSelectionSystem.click();
+        }
+    }
+
     private void moveEntity(Entity entity, float dx, float dy) {
         Move move = Move.mapper.get(entity);
         if(move != null) {

@@ -66,6 +66,7 @@ public class EntityFactory {
         entity.add(new Physic(body, position));
         entity.add(new Container(stumpEntity, shadowEntity));
         entity.add(new ItemHolder(ItemFactory.CreateTree()));
+        entity.add(new TreeComponent(true, Constraints.NUMBER_OF_AXE_NEED_TO_CUT_DOWN_TREE));
         return entity;
     }
 

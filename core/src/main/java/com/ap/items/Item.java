@@ -1,6 +1,7 @@
 package com.ap.items;
 
 import com.ap.GdxGame;
+import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -52,7 +53,7 @@ public class Item {
      * Items can override this method
      * When we want to apply item this method will be called
      */
-    public void applyItem(Body body, Engine engine, GdxGame game, World world) {
+    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
     }
 
     /**

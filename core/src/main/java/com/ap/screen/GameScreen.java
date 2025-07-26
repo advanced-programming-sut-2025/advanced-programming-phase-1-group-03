@@ -1,26 +1,22 @@
 package com.ap.screen;
 
-import box2dLight.RayHandler;
-import com.ap.Constraints;
 import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
-import com.ap.component.Facing;
-import com.ap.input.GameControllerState;
-import com.ap.input.KeyboardController;
 import com.ap.items.Inventory;
 import com.ap.items.tools.Tool;
+import com.ap.managers.ClockManager;
+import com.ap.managers.MapManager;
+import com.ap.screen.maps.Farm;
+import com.ap.screen.maps.IMap;
 import com.ap.system.*;
-import com.ap.tiled.TiledAshleyConfigurator;
-import com.ap.tiled.TiledMapGenerator;
-import com.ap.tiled.TiledService;
+import com.ap.system.universal.TimeSystem;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
 import com.ap.ui.widget.*;
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -36,12 +32,6 @@ import java.util.function.Consumer;
 public class GameScreen extends AbstractScreen {
     private AssetService assetService;
     private AudioService audioService;
-    private Engine engine;
-    private TiledService tiledService;
-    private TiledAshleyConfigurator tileConfigurator;
-    private TiledMapGenerator tiledMapGenerator;
-    private KeyboardController keyboardController;
-    private World world;
     private Camera camera;
 
     // UI Components
@@ -49,108 +39,122 @@ public class GameScreen extends AbstractScreen {
     private ItemContainer itemContainer;
     private EnergyBar energyBar;
     private InventoryMenu inventoryMenu;
-    private FishingMiniGame fishingMiniGame;
+
+    private ClockManager clockManager;
+    private MapManager mapManager;
 
     private Inventory inventory;
 
-    // Use to for night darkness
-    private RayHandler rayHandler;
+    private Engine universalEngine;
+
+    private TimeSystem timeSystem;
+    private WeatherSystem weatherSystem;
 
     public GameScreen(GdxGame game) {
         super(game);
 
+        universalEngine = new Engine();
+
         camera = game.getCamera();
-
-        engine = new Engine();
-
-        // Setup world with zero gravity
-        world = new World(Vector2.Zero, true);
-        // Set autoClearForces to false because we want to apply our customized timeStep
-        world.setAutoClearForces(false);
-
-        keyboardController = new KeyboardController(GameControllerState.class, engine, stage);
-
         assetService = game.getAssetService();
         audioService = game.getAudioService();
 
-        tiledService = new TiledService(assetService);
-        tileConfigurator = new TiledAshleyConfigurator(engine, world);
-        tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
-
         // Setup inventory
-        inventory = game.getInventory();
+        inventory = new Inventory();
         Tool.addBasicTools(inventory, assetService);
 
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
         inventoryMenu = new InventoryMenu(assetService, skin, stage, inventory, audioService);
-        fishingMiniGame = new FishingMiniGame(assetService, skin, 150 , 150, stage);
-        RayHandler.useDiffuseLight(true);
-        rayHandler = new RayHandler(world);
+
+        clockManager = new ClockManager(clock);
+        timeSystem = new TimeSystem();
+        weatherSystem = new WeatherSystem(clock, assetService, stage, audioService, timeSystem);
+        mapManager = new MapManager(game, this);
     }
 
 
     @Override
     public void show() {
-        // Adding systems to the engine
-        engine.addSystem(new PhysicMoveSystem());
-        engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL));
-        engine.addSystem(new FacingSystem());
-        engine.addSystem(new FsmUpdateSystem());
-        engine.addSystem(new AnimationSystem(assetService));
-        engine.addSystem(new PlayerAudioSystem(assetService));
-        engine.addSystem(new TimeSystem(clock));
-        engine.addSystem(new WeatherSystem(engine, clock, assetService, stage, audioService));
-        engine.addSystem(new ScreenBrightnessSystem(rayHandler, engine));
-        engine.addSystem(new CameraSystem(camera));
-        engine.addSystem(new SeasonalGraphicSystem(assetService, engine));
-        engine.addSystem(new AdjustAlphaSystem(engine));
-        engine.addSystem(new RenderSystem(game.getBatch(), game.getViewport(), game.getCamera()));
-        engine.addSystem(new EnergySystem(energyBar));
-        engine.addSystem(new ControllerSystem(inventoryMenu));
-        engine.addSystem(new TileSelectionSystem(game.getBatch(), itemContainer, stage, engine, world, game));
-       // engine.addSystem(new PhysicDebugRenderSystem(camera, world));
+        universalEngine.addSystem(timeSystem);
+        universalEngine.addSystem(weatherSystem);
+        universalEngine.addSystem(new EnergySystem(energyBar));
 
-        super.show();
+        // Play background music
+        audioService.playMusic(MusicAsset.Spring);
+
+        mapManager.setMap(MapAsset.Farm1);
+
+        timeSystem.setup();
+        weatherSystem.setup();
+
+        // Time consumers
+        Consumer<TimeSystem.Time> clockConsumer = clockManager::receive;
+        timeSystem.setTimeConsumer(clockConsumer);
 
         stage.addActor(new GameView(stage, skin, new GameViewModel(game), audioService));
         stage.addActor(clock);
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
-        stage.addActor(fishingMiniGame);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
-
-        game.setInputProcessors(stage, keyboardController);
-
-        // Setup consumers
-        Consumer<TiledMap> renderConsumer = engine.getSystem(RenderSystem.class)::setMap;
-        Consumer<TiledMap> cameraConsumer = engine.getSystem(CameraSystem.class)::setMap;
-        tiledService.setMapChangeConsumer(renderConsumer.andThen(cameraConsumer));
-
-        tiledService.setLoadTileConsumer(tileConfigurator::onLoadTile);
-        tiledService.setLoadObjectConsumer(tileConfigurator::onLoadObject);
-        tiledService.setLoadPolygonConsumer(tileConfigurator::onLoadBoundary);
-        tiledService.setGenerateItemsConsumer(tiledMapGenerator::generate);
-
-        TiledMap startMap = tiledService.load(MapAsset.Farm1);
-        tiledService.setMap(startMap);
-
-
     }
 
     @Override
     public void render(float delta) {
         delta = Math.min(1 / 30f, delta);
-        engine.update(delta);
+        universalEngine.update(delta);
 
         super.render(delta);
 
-        stage.act(delta);
-        stage.draw();
-        rayHandler.setCombinedMatrix(camera.combined);
-        rayHandler.updateAndRender();
+        if(mapManager != null) {
+            mapManager.update(delta);
+        }
+    }
+
+    public TimeSystem getTimeSystem() {
+        return timeSystem;
+    }
+
+    public WeatherSystem getWeatherSystem() {
+        return weatherSystem;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public Clock getClock() {
+        return clock;
+    }
+
+    public ItemContainer getItemContainer() {
+        return itemContainer;
+    }
+
+    public EnergyBar getEnergyBar() {
+        return energyBar;
+    }
+
+    public InventoryMenu getInventoryMenu() {
+        return inventoryMenu;
+    }
+
+    public AssetService getAssetService() {
+        return assetService;
+    }
+
+    public AudioService getAudioService() {
+        return audioService;
+    }
+
+    public Camera getCamera() {
+        return camera;
+    }
+
+    public MapManager getMapManger() {
+        return mapManager;
     }
 }

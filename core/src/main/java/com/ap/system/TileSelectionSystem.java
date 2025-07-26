@@ -8,6 +8,7 @@ import com.ap.component.Facing;
 import com.ap.component.Player;
 import com.ap.component.Transform;
 import com.ap.items.Inventory;
+import com.ap.screen.GameScreen;
 import com.ap.ui.widget.ItemContainer;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -32,35 +33,30 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 public class TileSelectionSystem extends IteratingSystem {
     private final Batch batch;
     private final TextureRegion selectedItemTexture;
-    private final Camera camera;
+    private Engine engine;
+    private GameScreen game;
     private final ItemContainer itemContainer;
-    private final Stage stage;
     private final World world;
 
     int tileX;
     int tileY;
 
     public TileSelectionSystem(Batch batch,
-                               ItemContainer itemContainer, Stage stage, Engine engine, World world, GdxGame game) {
+                               ItemContainer itemContainer, Stage stage, Engine engine, World world, GameScreen game) {
         super(Family.all(Player.class, Facing.class, Transform.class).get());
         this.batch = batch;
         this.world = world;
         this.itemContainer = itemContainer;
-        this.stage = stage;
-        this.camera = game.getCamera();
+        this.engine = engine;
+        this.game = game;
 
         AssetService assetService = game.getAssetService();
         selectedItemTexture = assetService.get(AtlasAsset.UI).findRegion("SelectedItem");
-
-        stage.addListener(new InputListener() {
-            @Override
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                itemContainer.useSelectedItem(getTopBodyAtPoint(new Vector2(tileX, tileY)), engine, game, world);
-                return true;
-            }
-        });
     }
 
+    public void click() {
+        itemContainer.useSelectedItem(getTopBodyAtPoint(new Vector2(tileX, tileY)), engine, game, world);
+    }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {

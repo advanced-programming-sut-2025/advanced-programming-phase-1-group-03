@@ -4,6 +4,7 @@ import com.ap.GdxGame;
 import com.ap.asset.SoundAsset;
 import com.ap.items.EntityFactory;
 import com.ap.model.Abilities;
+import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -22,7 +23,7 @@ public class Hoe extends Tool{
     }
 
     @Override
-    public void applyItem(Body body, Engine engine, GdxGame game, World world) {
+    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
         // It's a ground tile
         if(body.getUserData() instanceof TiledMapTile tile) {
             // It's not dirt

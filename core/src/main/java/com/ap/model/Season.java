@@ -22,8 +22,10 @@ public enum Season {
             case Fall:
                 for (int i = 0; i < 3; i++) res.add(Weather.Rain);
                 for (int i = 0; i < 2; i++) res.add(Weather.Storm);
+                break;
             case Winter:
-                for (int i = 0; i < 5; i++) res.add(Weather.Snow);
+                for (int i = 0; i < 3; i++) res.add(Weather.Sunny);
+                for (int i = 0; i < 2; i++) res.add(Weather.Snow);
                 break;
         }
         return res;

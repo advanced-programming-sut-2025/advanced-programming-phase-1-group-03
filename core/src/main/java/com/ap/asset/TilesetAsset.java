@@ -14,6 +14,16 @@ public enum TilesetAsset implements Asset<Texture> {
     Outdoor2Summer("summer_outdoorsTileSheet2.png"),
     Outdoor2Fall("fall_outdoorsTileSheet2.png"),
     Outdoor2Winter("winter_outdoorsTileSheet2.png"),
+
+    ShadowSpring("spring_Shadows.png"),
+    ShadowSummer("summer_Shadows.png"),
+    ShadowFall("fall_Shadows.png"),
+    ShadowWinter("winter_Shadows.png"),
+
+    WaterfallSpring("spring_Waterfalls.png"),
+    WaterfallSummer("summer_Waterfalls.png"),
+    WaterfallFall("fall_Waterfalls.png"),
+    WaterfallWinter("winter_Waterfalls.png"),
     ;
 
     private final AssetDescriptor<Texture> descriptor;
