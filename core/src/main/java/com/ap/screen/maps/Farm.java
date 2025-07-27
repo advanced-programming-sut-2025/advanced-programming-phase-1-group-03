@@ -128,7 +128,7 @@ public class Farm implements IMap {
         engine.addSystem(new AdjustAlphaSystem(engine));
         engine.addSystem(new RenderSystem(batch, viewport, camera));
         // Actually it would be better we create a class for forest, but because of simplicity just hardcode it
-        if(map == MapAsset.Farm1) {
+        if(map == MapAsset.Farm1 || map == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
         engine.addSystem(new ControllerSystem(inventoryMenu, engine));

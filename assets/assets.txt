@@ -47,6 +47,7 @@ graphics/shadow.atlas
 graphics/shadow.png
 map/Farm Buildings.tsx
 map/Farm1.tmx
+map/Farm2.tmx
 map/Forest.tmx
 map/House.tmx
 map/objects/GameObjects.tsx

@@ -1,11 +1,14 @@
 package com.ap.model;
 
+import com.ap.asset.MapAsset;
+
 /**
  * We use this class to store current game data
  */
 public class GameData {
     private static GameData instance;
 
+    private MapAsset startMap;
     private String loggedUserUsername = null;
     private int farmIndex = 1;
     public static GameData getInstance() {
@@ -29,5 +32,13 @@ public class GameData {
 
     public void setFarmIndex(int farmIndex) {
         this.farmIndex = farmIndex;
+    }
+
+    public MapAsset getStartMap() {
+        return startMap;
+    }
+
+    public void setStartMap(MapAsset startMap) {
+        this.startMap = startMap;
     }
 }

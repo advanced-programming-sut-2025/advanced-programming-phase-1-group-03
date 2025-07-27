@@ -10,6 +10,7 @@ import com.ap.items.tools.Tool;
 import com.ap.managers.ClockManager;
 import com.ap.managers.MapManager;
 import com.ap.managers.WeatherEffects;
+import com.ap.model.GameData;
 import com.ap.model.Season;
 import com.ap.system.*;
 import com.ap.system.universal.ITimeListener;
@@ -64,6 +65,7 @@ public class GameScreen extends AbstractScreen {
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock, timeSystem);
         mapManager = new MapManager(game, this);
+        mapManager.loadAllMaps();
     }
 
 
@@ -76,7 +78,7 @@ public class GameScreen extends AbstractScreen {
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
 
-        mapManager.setMap(MapAsset.Farm1);
+        mapManager.setMap(GameData.getInstance().getStartMap());
 
         // Time consumers
         timeSystem.addTimeListener(new TimeListener());

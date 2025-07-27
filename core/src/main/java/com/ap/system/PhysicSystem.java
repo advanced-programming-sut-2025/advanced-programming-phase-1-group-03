@@ -1,9 +1,7 @@
 package com.ap.system;
 
 import com.ap.asset.MapAsset;
-import com.ap.component.Move;
-import com.ap.component.Physic;
-import com.ap.component.Player;
+import com.ap.component.*;
 import com.ap.component.Transform;
 import com.ap.managers.MapManager;
 import com.ap.model.GameData;
@@ -116,6 +114,19 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         if(map != null) {
             mapManager.changeMap(map);
         }
+        if(isGreenhouse(userDataA, userDataB) || isGreenhouse(userDataB, userDataA)) {
+
+        }
+    }
+
+    private boolean isGreenhouse(Object userDataA, Object userDataB) {
+        if((!(userDataA instanceof Entity entityA)) || (!(userDataB instanceof Entity entityB))) {
+            return false;
+        }
+        if(Greenhouse.mapper.has(entityA) && Player.mapper.has(entityB)) {
+            return true;
+        }
+        return false;
     }
 
     private MapAsset isSpawner(Object userDataA, Object userDataB) {
@@ -142,6 +153,7 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         }
         return null;
     }
+
     @Override
     public void endContact(Contact contact) {
 

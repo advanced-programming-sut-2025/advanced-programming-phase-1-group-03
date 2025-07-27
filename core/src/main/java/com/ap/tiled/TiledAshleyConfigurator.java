@@ -82,7 +82,15 @@ public class TiledAshleyConfigurator {
         addEntityAnimation(tile, entity);
         addEntityFsm(entity);
         addEntityPlayer(entity, tile);
+        addEntityGreenhouse(entity, tile);
         engine.addEntity(entity);
+    }
+
+    private void addEntityGreenhouse(Entity entity, TiledMapTile tile) {
+        boolean isGreenhouse = tile.getProperties().get("greenhouse", false, Boolean.class);
+        if(isGreenhouse) {
+            entity.add(new Greenhouse());
+        }
     }
 
     private void addEntityPlayer(Entity entity, TiledMapTile tile) {

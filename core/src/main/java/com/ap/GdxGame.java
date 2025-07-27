@@ -1,6 +1,7 @@
 package com.ap;
 
 import com.ap.asset.AssetService;
+import com.ap.asset.MapAsset;
 import com.ap.audio.AudioService;
 import com.ap.database.SqliteConnection;
 import com.ap.managers.TransitionManager;

@@ -144,12 +144,12 @@ public class TiledMapGenerator {
                 var cell = tileLayer.getCell(x, y);
                 if(cell == null) continue;
                 var tile = cell.getTile();
-                if(tile.getProperties().get("Type", "", String.class).equals("Dirt")) {
-                    return true;
+                if(!tile.getProperties().get("Type", "", String.class).equals("Dirt")) {
+                    return false;
                 }
             }
         }
-        return false;
+        return true;
     }
     private static boolean isTileValidForGrass(TiledMap map, int x, int y) {
         for(MapLayer layer : map.getLayers()) {

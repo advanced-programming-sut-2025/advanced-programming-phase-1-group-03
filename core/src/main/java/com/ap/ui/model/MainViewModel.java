@@ -5,6 +5,7 @@ import com.ap.database.SqliteConnection;
 import com.ap.database.UserLoader;
 import com.ap.model.GameData;
 import com.ap.screen.GameScreen;
+import com.ap.screen.PreGameScreen;
 import com.ap.screen.ProfileScreen;
 import com.ap.screen.SignupScreen;
 import com.badlogic.gdx.Gdx;
@@ -24,7 +25,7 @@ public class MainViewModel extends ViewModel{
     }
 
     public void clickNewGameButton() {
-        game.setScreen(GameScreen.class);
+        game.setScreen(PreGameScreen.class);
     }
 
     public void exitGame() {

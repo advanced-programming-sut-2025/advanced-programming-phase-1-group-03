@@ -66,8 +66,8 @@ public class PreGameView extends AbstractView<PreGameViewModel> {
 
         Table mapsTable = new Table();
 
-        Image forestMap = createMapImage("graphics/ForestMap.png", "forest");
-        Image riverMap = createMapImage("graphics/RiverLandMap.png", "river");
+        Image forestMap = createMapImage("graphics/ForestMap.png", "Farm1");
+        Image riverMap = createMapImage("graphics/RiverLandMap.png", "Farm2");
 
         mapsTable.add(forestMap).size(200, 150).pad(10);
         mapsTable.add(riverMap).size(200, 150).pad(10);
@@ -86,10 +86,6 @@ public class PreGameView extends AbstractView<PreGameViewModel> {
         newGameButton.getLabel().setFontScale(1.5f);
         newGameButton.setSize(150, 60);
 
-        TextButton loadGameButton = new TextButton("Load Game", skin);
-        loadGameButton.getLabel().setFontScale(1.5f);
-        loadGameButton.setSize(150, 60);
-
         newGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -97,23 +93,11 @@ public class PreGameView extends AbstractView<PreGameViewModel> {
                     statusLabel.setText("Please select a map.");
                     return;
                 }
-                // TODO: Logic for starting a new game
-                System.out.println("Starting New Game on map: " + selectedMapName);
-                statusLabel.setText("Starting New Game...");
-            }
-        });
-
-        loadGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                // TODO: Logic for loading saved game
-                System.out.println("Loading Game...");
-                statusLabel.setText("Loading saved game...");
+                viewModel.startNewGame(selectedMapName, player1Field.getText(), player2Field.getText(), player3Field.getText());
             }
         });
 
         buttonRow.add(newGameButton).padRight(30).width(200).height(60);
-        buttonRow.add(loadGameButton).width(200).height(60);
 
         rootTable.add(buttonRow).colspan(2).padTop(40).center();
 
@@ -135,7 +119,7 @@ public class PreGameView extends AbstractView<PreGameViewModel> {
         image.addListener(new ClickListener() {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                image.setScale(1.05f); // افکت hover
+                image.setScale(1.05f);
             }
 
             @Override

@@ -23,6 +23,13 @@ public class MapManager {
         this.gameScreen = gameScreen;
         this.transitionManager = new TransitionManager(game, this);
     }
+    public void loadAllMaps() {
+        for(MapAsset mapAsset : MapAsset.values()) {
+            IMap map = createMap(mapAsset);
+            mapCache.put(mapAsset, map);
+            map.setup(mapAsset);
+        }
+    }
     public void changeMap(MapAsset mapAsset) {
         if(transitionManager.isTransitioning()) {
             return;
@@ -32,13 +39,13 @@ public class MapManager {
 
     private IMap createMap(MapAsset map) {
         switch (map) {
-            case Farm1, Forest -> {
+            case Farm1, Farm2, Forest -> {
                 return new Farm(game, gameScreen);
             } case House -> {
                 return new House(game, gameScreen);
             }
         }
-        return null;
+        throw new IllegalArgumentException("Map " + map.name() + " is not supported");
     }
 
     public void update(float delta) {
@@ -49,14 +56,8 @@ public class MapManager {
     }
 
     public void setMap(MapAsset mapAsset) {
-            if(currentMap != null) {
+        if(currentMap != null) {
             currentMap.leave();
-        }
-        if(!mapCache.containsKey(mapAsset)) {
-            IMap map = createMap(mapAsset);
-            mapCache.put(mapAsset, map);
-            map.setup(mapAsset);
-        } else {
         }
         currentMap = mapCache.get(mapAsset);
         currentMap.load();
