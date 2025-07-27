@@ -9,25 +9,16 @@ import com.ap.items.Inventory;
 import com.ap.items.tools.Tool;
 import com.ap.managers.ClockManager;
 import com.ap.managers.MapManager;
-import com.ap.screen.maps.Farm;
-import com.ap.screen.maps.IMap;
+import com.ap.managers.WeatherEffects;
+import com.ap.model.Season;
 import com.ap.system.*;
+import com.ap.system.universal.ITimeListener;
 import com.ap.system.universal.TimeSystem;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
 import com.ap.ui.widget.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Box2D;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-
-import java.util.function.Consumer;
 
 public class GameScreen extends AbstractScreen {
     private AssetService assetService;
@@ -49,6 +40,7 @@ public class GameScreen extends AbstractScreen {
 
     private TimeSystem timeSystem;
     private WeatherSystem weatherSystem;
+    private WeatherEffects weatherEffects;
 
     public GameScreen(GdxGame game) {
         super(game);
@@ -70,7 +62,7 @@ public class GameScreen extends AbstractScreen {
 
         clockManager = new ClockManager(clock);
         timeSystem = new TimeSystem();
-        weatherSystem = new WeatherSystem(clock, assetService, stage, audioService, timeSystem);
+        weatherSystem = new WeatherSystem(clock, timeSystem);
         mapManager = new MapManager(game, this);
     }
 
@@ -86,12 +78,8 @@ public class GameScreen extends AbstractScreen {
 
         mapManager.setMap(MapAsset.Farm1);
 
-        timeSystem.setup();
-        weatherSystem.setup();
-
         // Time consumers
-        Consumer<TimeSystem.Time> clockConsumer = clockManager::receive;
-        timeSystem.setTimeConsumer(clockConsumer);
+        timeSystem.addTimeListener(new TimeListener());
 
         stage.addActor(new GameView(stage, skin, new GameViewModel(game), audioService));
         stage.addActor(clock);
@@ -156,5 +144,36 @@ public class GameScreen extends AbstractScreen {
 
     public MapManager getMapManger() {
         return mapManager;
+    }
+
+    class TimeListener implements ITimeListener {
+
+        @Override
+        public void onSeasonChanged(Season season) {
+            switch (season) {
+                case Spring -> {
+                    audioService.playMusic(MusicAsset.Spring);
+                }
+                case Summer -> {
+                    audioService.playMusic(MusicAsset.Summer);
+                }
+                case Fall -> {
+                    audioService.playMusic(MusicAsset.Fall);
+                }
+                case Winter -> {
+                    audioService.playMusic(MusicAsset.Winter);
+                }
+            }
+        }
+
+        @Override
+        public void onDayChanged(int day) {
+            weatherSystem.setWeatherRandomly();
+        }
+
+        @Override
+        public void onFrameChanged(TimeSystem.Time newTime) {
+            clockManager.receive(newTime);
+        }
     }
 }

@@ -20,26 +20,15 @@ public class WeatherSystem extends EntitySystem {
     private Weather currentWeather = null;
     private final Clock clock;
     private final TimeSystem timeSystem;
-    private final Stage stage;
-    private final AudioService audioService;
     private Consumer<Weather> weatherConsumer;
 
     public WeatherSystem(final Clock clock,
-                         AssetService assetService,
-                         Stage stage,
-                         AudioService audioService,
                          TimeSystem timeSystem) {
 
         this.timeSystem = timeSystem;
         this.clock = clock;
-        this.audioService = audioService;
-        this.stage = stage;
     }
 
-    public void setup() {
-        setWeatherRandomly();
-        clock.setWeather(getCurrentWeather());
-    }
     /**
      * This method set the weather to one of possible weathers randomly
      */
@@ -47,8 +36,12 @@ public class WeatherSystem extends EntitySystem {
         Season season = timeSystem.getSeason();
         int length = season.getPossibleWeathers().size();
         currentWeather = season.getPossibleWeathers().get(new Random().nextInt(length));
-        weatherConsumer.accept(currentWeather);
 
+        if(weatherConsumer != null) {
+            weatherConsumer.accept(currentWeather);
+        }
+
+        clock.setWeather(getCurrentWeather());
     }
     @Override
     public void update(float deltaTime) {
@@ -61,5 +54,8 @@ public class WeatherSystem extends EntitySystem {
 
     public void setWeatherConsumer(Consumer<Weather> weatherConsumer) {
         this.weatherConsumer = weatherConsumer;
+        if(currentWeather != null && weatherConsumer != null) {
+            weatherConsumer.accept(currentWeather);
+        }
     }
 }

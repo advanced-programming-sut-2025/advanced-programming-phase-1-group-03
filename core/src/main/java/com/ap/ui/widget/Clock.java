@@ -15,6 +15,11 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.StringBuilder;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Clock extends Actor {
     private final TextureAtlas atlas;
@@ -31,6 +36,7 @@ public class Clock extends Actor {
     private int arrowAngle;
     private TextureRegion seasonImage;
     private TextureRegion weatherImage;
+    private int gold = 500;
 
     public Clock(AssetService assetService, Skin skin) {
         this.assetService = assetService;
@@ -93,6 +99,16 @@ public class Clock extends Actor {
                 scale, scale,
                 arrowAngle);
 
+        float goldOffsetY = 23f;
+        float goldOffsetX = 149f;
+        float widthEachFont = 15f;
+        String goldStr = new StringBuilder(String.valueOf(gold)).reverse().toString();
+        int counter = 0;
+        for(char c : goldStr.toCharArray()) {
+            font.draw(batch, String.valueOf(c),
+                    getX() + goldOffsetX - counter * widthEachFont, getY() + goldOffsetY);
+            counter ++;
+        }
     }
 
 
@@ -114,5 +130,9 @@ public class Clock extends Actor {
 
     public void setSeason(Season season) {
         this.seasonImage = atlas.findRegion(season.name());
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 }

@@ -4,6 +4,7 @@ import com.ap.GdxGame;
 import com.ap.asset.MapAsset;
 import com.ap.screen.GameScreen;
 import com.ap.screen.maps.Farm;
+import com.ap.screen.maps.House;
 import com.ap.screen.maps.IMap;
 import com.badlogic.gdx.Gdx;
 
@@ -33,6 +34,8 @@ public class MapManager {
         switch (map) {
             case Farm1, Forest -> {
                 return new Farm(game, gameScreen);
+            } case House -> {
+                return new House(game, gameScreen);
             }
         }
         return null;
@@ -46,7 +49,7 @@ public class MapManager {
     }
 
     public void setMap(MapAsset mapAsset) {
-        if(currentMap != null) {
+            if(currentMap != null) {
             currentMap.leave();
         }
         if(!mapCache.containsKey(mapAsset)) {

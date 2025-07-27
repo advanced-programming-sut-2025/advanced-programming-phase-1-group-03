@@ -4,21 +4,24 @@ import com.ap.asset.AssetService;
 import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
 import com.ap.model.Weather;
-import com.ap.system.WeatherSystem;
 import com.ap.ui.effects.Rain;
 import com.ap.ui.effects.Snowfall;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class WeatherManager {
-    private final Rain rainActor;
-    private final Snowfall snowActor;
+/*
+This class is used for showing effects of each weather
+ */
+public class WeatherEffects {
+    private Rain rainActor;
+    private Snowfall snowActor;
     private Stage stage;
     private AudioService audioService;
+    private AssetService assetService;
+    private Engine engine;
 
-    public WeatherManager(AssetService assetService, Engine engine, Stage stage, AudioService audioService) {
-        rainActor = new Rain(assetService);
-        snowActor = new Snowfall(assetService, engine);
+    public WeatherEffects(AssetService assetService, Engine engine, Stage stage, AudioService audioService) {
+        this.assetService = assetService;
         this.audioService = audioService;
         this.stage = stage;
     }
@@ -50,8 +53,11 @@ public class WeatherManager {
 
     }
 
-    private void removeActors() {
+    public void removeActors() {
         stage.getActors().removeValue(rainActor, true);
         stage.getActors().removeValue(snowActor, true);
+        rainActor = new Rain(assetService);
+        snowActor = new Snowfall(assetService, engine);
+        audioService.stopMusic(MusicAsset.Rain);
     }
 }

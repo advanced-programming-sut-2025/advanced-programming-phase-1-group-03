@@ -24,4 +24,12 @@ public class Helper {
     public static int random(int min, int max) {
         return new Random().nextInt(max - min + 1) + min;
     }
+    public static void addEntity(Entity entity, Engine engine) {
+        engine.addEntity(entity);
+        if(Container.mapper.has(entity)) {
+            for(Entity child : Container.mapper.get(entity).getChildren()) {
+                addEntity(child, engine);
+            }
+        }
+    }
 }

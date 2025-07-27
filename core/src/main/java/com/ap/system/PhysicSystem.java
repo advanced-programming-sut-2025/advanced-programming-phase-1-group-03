@@ -6,6 +6,7 @@ import com.ap.component.Physic;
 import com.ap.component.Player;
 import com.ap.component.Transform;
 import com.ap.managers.MapManager;
+import com.ap.model.GameData;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
@@ -111,11 +112,17 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         if(map != null) {
             mapManager.changeMap(map);
         }
-
+        map = isSpawner(userDataB, userDataA);
+        if(map != null) {
+            mapManager.changeMap(map);
+        }
     }
 
     private MapAsset isSpawner(Object userDataA, Object userDataB) {
         if(userDataA instanceof String str) {
+            if(str.equals("Farm")) {
+                str += String.valueOf(GameData.getInstance().getFarmIndex());
+            }
             MapAsset map;
             try {
                 map = MapAsset.valueOf(str);
@@ -129,24 +136,6 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
                 return null;
             }
             if(!Player.mapper.has(entityB)) {
-                return null;
-            }
-            return map;
-        }
-        if(userDataB instanceof String str) {
-            MapAsset map;
-            try {
-                map = MapAsset.valueOf(str);
-            } catch (IllegalArgumentException e) {
-                map = null;
-            }
-            if(map == null) {
-                return null;
-            }
-            if(!(userDataA instanceof Entity entityA)) {
-                return null;
-            }
-            if(!Player.mapper.has(entityA)) {
                 return null;
             }
             return map;

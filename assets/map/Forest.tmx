@@ -3483,7 +3483,7 @@
   <object id="46" x="1882.5" y="377" width="30.5" height="45.5">
    <properties>
     <property name="sensor" type="bool" value="true"/>
-    <property name="spawner" value="Farm1"/>
+    <property name="spawner" value="Farm"/>
    </properties>
   </object>
  </objectgroup>

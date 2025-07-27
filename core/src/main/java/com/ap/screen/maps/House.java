@@ -33,7 +33,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.function.Consumer;
 
-public class Farm implements IMap {
+public class House implements IMap{
     private AssetService assetService;
     private AudioService audioService;
     private Engine engine;
@@ -70,7 +70,7 @@ public class Farm implements IMap {
     private GameScreen gameScreen;
     private GdxGame game;
 
-    public Farm(GdxGame game, GameScreen gameScreen) {
+    public House(GdxGame game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
         this.game = game;
 
@@ -115,6 +115,7 @@ public class Farm implements IMap {
 
     @Override
     public void setup(MapAsset map) {
+
         // Adding systems to the engine
         engine.addSystem(new PhysicMoveSystem());
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager));
@@ -122,15 +123,8 @@ public class Farm implements IMap {
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
         engine.addSystem(new PlayerAudioSystem(assetService));
-        engine.addSystem(new ScreenBrightnessSystem(rayHandler, engine, timeSystem, weatherSystem));
         engine.addSystem(new CameraSystem(camera));
-        engine.addSystem(new SeasonalGraphicSystem(assetService, timeSystem));
-        engine.addSystem(new AdjustAlphaSystem(engine));
         engine.addSystem(new RenderSystem(batch, viewport, camera));
-        // Actually it would be better we create a class for forest, but because of simplicity just hardcode it
-        if(map == MapAsset.Farm1) {
-            engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
-        }
         engine.addSystem(new ControllerSystem(inventoryMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
         //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
@@ -150,13 +144,12 @@ public class Farm implements IMap {
         TiledMap startMap = tiledService.load(map);
         this.map = startMap;
         tiledService.setMap(startMap);
-
     }
 
     @Override
     public void load() {
         game.setInputProcessors(stage, keyboardController);
-        weatherSystem.setWeatherConsumer(weatherEffects::onWeatherChanged);
+        weatherSystem.setWeatherConsumer(null);
         engine.getSystem(CameraSystem.class).setMap(map);
     }
 
@@ -173,8 +166,6 @@ public class Farm implements IMap {
 
         stage.act(delta);
         stage.draw();
-        rayHandler.setCombinedMatrix(camera.combined);
-        rayHandler.updateAndRender();
     }
 
     class TimeListener implements ITimeListener {
@@ -183,6 +174,5 @@ public class Farm implements IMap {
         public void onSeasonChanged(Season season) {
             tiledService.changeSeasonTileset(season);
         }
-
     }
 }

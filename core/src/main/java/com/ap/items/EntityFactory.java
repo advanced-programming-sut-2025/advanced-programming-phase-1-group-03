@@ -106,11 +106,23 @@ public class EntityFactory {
     }
 
     public static Entity CreateWoodEntity(Vector2 position, AssetService assetService, World world) {
+        int deg = new Random().nextInt(90);
+
+        TextureRegion shadowTexture = assetService.get(AtlasAsset.Shadows).findRegion("shadow");
+        Vector2 shadowSize = new Vector2(shadowTexture.getRegionWidth(), shadowTexture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
+        Entity shadowEntity = new Entity();
+        shadowEntity.add(new Transform(new Vector2(position.x - shadowSize.x/2 +0.5f, position.y -0.5F),
+                Constraints.SHADOW_Z,
+                new Vector2(0.25f, 0.25f),
+                shadowSize,
+                -deg + 26, -1));
+        shadowEntity.add(new Shadow());
+        shadowEntity.add(new Graphic(shadowTexture));
+
         TextureRegion texture = assetService.get(AtlasAsset.Environment).findRegion("wood/regular");
         Vector2 size = new Vector2(1, 1);
         Entity entity = new Entity();
 
-        int deg = new Random().nextInt(90);
         entity.add(new Transform(new Vector2(position.x, position.y),
                 Constraints.WOOD_Z,
                 new Vector2(0.8f, 0.8f),
@@ -120,6 +132,7 @@ public class EntityFactory {
         var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, false);
         entity.add(new Physic(body, position));
         entity.add(new ItemHolder(ItemFactory.CreateWood(assetService)));
+        entity.add(new Container(shadowEntity));
         return entity;
     }
 }

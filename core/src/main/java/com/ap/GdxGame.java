@@ -70,9 +70,9 @@ public class GdxGame extends Game {
 
         preferencesManager = new PreferencesManager();
 
-        addScreen(new PreGameScreen(this));
-        //addScreen(new LoadingScreen(this));
-        changeScreen(PreGameScreen.class);
+        //addScreen(new PreGameScreen(this));
+        addScreen(new LoadingScreen(this));
+        changeScreen(LoadingScreen.class);
     }
 
     @Override

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="12" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="104">
+ <properties>
+  <property name="FloorIDs" value="Bedroom"/>
+  <property name="WallIDs" value="Bedroom"/>
+  <property name="Warp" value="3 12 Farm 64 15"/>
+ </properties>
+ <tileset firstgid="1" name="indoor" tilewidth="16" tileheight="16" tilecount="2176" columns="32">
+  <image source="tileset/townInterior.png" width="512" height="1088"/>
+ </tileset>
+ <tileset firstgid="2177" name="untitled tile sheet" tilewidth="16" tileheight="16" tilecount="264" columns="12">
+  <image source="tileset/farmhouse_tiles.png" width="192" height="352"/>
+ </tileset>
+ <tileset firstgid="2441" name="walls_and_floors" tilewidth="16" tileheight="16" tilecount="688" columns="16">
+  <image source="tileset/walls_and_floors.png" width="256" height="688"/>
+ </tileset>
+ <tileset firstgid="3129" source="objects/Objects.tsx"/>
+ <layer id="1" name="Back" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxr5GBgaCQRd3ISh2HqZ3ISh0Fq47kZGF5yMTC84iJMH4Sqvwlk3+IiTB8cNZ/q5gMANX1yfw==
+  </data>
+ </layer>
+ <layer id="3" name="Buildings" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxr5GBg4GYgDjcC1XIxEA9mANU7kqB+CVT9Sk7i8AYSzd9DovoTJKq/QqL6BySqf0Oi+h9A9T85iFfPwgmJ40YkeziRxLBhAJ+jGAk=
+  </data>
+ </layer>
+ <layer id="5" name="Front" width="12" height="12">
+  <data encoding="base64" compression="zlib">
+   eJzjYmBg4CYS8wCxIxBPZiUOu0LVEwtG1VNf/UIgXgTEi6FiS4B4GRa8HIhXAHEjBwQnQsWbkcSwYQBKDRid
+  </data>
+ </layer>
+ <objectgroup id="7" name="objects">
+  <object id="101" name="Player" gid="3131" x="40.222" y="165.895" width="32" height="32">
+   <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
+    <property name="speed" type="float" value="3"/>
+   </properties>
+  </object>
+  <object id="102" x="47.7703" y="168.666" width="16.5359" height="15.801">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="Farm"/>
+   </properties>
+  </object>
+  <object id="103" name="MapBoundary" x="16.2648" y="17.1684">
+   <polygon points="0,0 0,142.769 6.3252,149.696 32.2284,149.998 31.626,167.166 47.2884,166.564 48.192,149.395 152.708,149.998 160.238,144.275 159.636,-1.2048"/>
+  </object>
+ </objectgroup>
+</map>

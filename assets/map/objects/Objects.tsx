@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.11.2" name="Objects" tilewidth="32" tileheight="32" tilecount="1" columns="0">
+<tileset version="1.10" tiledversion="1.11.2" name="Objects" tilewidth="115" tileheight="161" tilecount="3" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="2" type="Object">
   <properties>
@@ -16,5 +16,11 @@
   <objectgroup draworder="index" id="2">
    <object id="8" x="10.6907" y="16.0361" width="9.54527" height="6.8726"/>
   </objectgroup>
+ </tile>
+ <tile id="3">
+  <image source="greenhosue_built.png" width="115" height="161"/>
+ </tile>
+ <tile id="4">
+  <image source="greenhouse_broken.png" width="115" height="129"/>
  </tile>
 </tileset>

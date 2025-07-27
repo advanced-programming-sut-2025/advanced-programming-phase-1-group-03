@@ -45,16 +45,21 @@ graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
 graphics/shadow.png
+map/Farm Buildings.tsx
 map/Farm1.tmx
 map/Forest.tmx
+map/House.tmx
 map/objects/GameObjects.tsx
 map/objects/House.png
 map/objects/Objects.tsx
+map/objects/greenhosue_built.png
+map/objects/greenhouse_broken.png
 map/objects/player.png
 map/tileset/fall_Shadows.png
 map/tileset/fall_Waterfalls.png
 map/tileset/fall_outdoorsTileSheet.png
 map/tileset/fall_outdoorsTileSheet2.png
+map/tileset/farmhouse_tiles.png
 map/tileset/spring_Shadows.png
 map/tileset/spring_Waterfalls.png
 map/tileset/spring_outdoorsTileSheet.png
@@ -63,10 +68,14 @@ map/tileset/summer_Shadows.png
 map/tileset/summer_Waterfalls.png
 map/tileset/summer_outdoorsTileSheet.png
 map/tileset/summer_outdoorsTileSheet2.png
+map/tileset/townInterior.png
+map/tileset/walls_and_floors.png
 map/tileset/winter_Shadows.png
 map/tileset/winter_Waterfalls.png
 map/tileset/winter_outdoorsTileSheet.png
 map/tileset/winter_outdoorsTileSheet2.png
+skins/Stardew Valley ALL CAPS.ttf
+skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

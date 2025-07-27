@@ -3,6 +3,7 @@ package com.ap.tiled;
 import com.ap.asset.AssetService;
 import com.ap.component.*;
 import com.ap.items.EntityFactory;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.maps.MapLayer;
@@ -56,7 +57,7 @@ public class TiledMapGenerator {
         }
         for(Vector2 position : positions) {
             Entity entity = EntityFactory.CreateWoodEntity(position, assetService, world);
-            engine.addEntity(entity);
+            Helper.addEntity(entity, engine);
         }
     }
 
