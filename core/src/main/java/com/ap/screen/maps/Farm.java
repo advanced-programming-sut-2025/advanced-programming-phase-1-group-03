@@ -156,6 +156,11 @@ public class Farm implements IMap {
     }
 
     @Override
+    public void leave() {
+        engine.getSystem(ControllerSystem.class).reset();
+    }
+
+    @Override
     public void update(float delta) {
         delta = Math.min(1 / 30f, delta);
         engine.update(delta);

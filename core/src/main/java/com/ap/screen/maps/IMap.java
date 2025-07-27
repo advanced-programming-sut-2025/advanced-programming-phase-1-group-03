@@ -6,4 +6,5 @@ public interface IMap {
     void update(float delta);
     void setup(MapAsset map);
     void load();
+    void leave();
 }

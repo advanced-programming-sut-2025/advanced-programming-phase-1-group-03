@@ -2,6 +2,7 @@ package com.ap.system;
 
 import com.ap.component.Controller;
 import com.ap.component.Move;
+import com.ap.component.Player;
 import com.ap.input.Command;
 import com.ap.ui.widget.InventoryMenu;
 import com.badlogic.ashley.core.Engine;
@@ -27,19 +28,22 @@ public class ControllerSystem extends IteratingSystem {
             return;
         }
         for (Command command : controller.getPressedCommands()) {
-            totalMovement ++;
             switch (command) {
                 case Right -> {
                     moveEntity(entity, 1f, 0f);
+                    totalMovement ++;
                 }
                 case Left -> {
                     moveEntity(entity, -1f, 0f);
+                    totalMovement ++;
                 }
                 case Down -> {
                     moveEntity(entity, 0f, -1f);
+                    totalMovement ++;
                 }
                 case Up -> {
                     moveEntity(entity, 0f, 1f);
+                    totalMovement ++;
                 } case OpenInventory -> {
                     inventoryMenu.toggle();
                 } case Click -> {
@@ -50,28 +54,29 @@ public class ControllerSystem extends IteratingSystem {
 
         // We processed all the pressed commands
         controller.getPressedCommands().clear();
-
         for (Command command : controller.getReleasedCommands()) {
             if(totalMovement <= 0) {
                 continue;
             }
-            totalMovement --;
             switch (command) {
                 case Right -> {
                     moveEntity(entity, -1f, 0f);
+                    totalMovement --;
                 }
                 case Left -> {
                     moveEntity(entity, 1f, 0f);
+                    totalMovement --;
                 }
                 case Down -> {
                     moveEntity(entity, 0f, 1f);
+                    totalMovement --;;
                 }
                 case Up -> {
                     moveEntity(entity, 0f, -1f);
+                    totalMovement --;
                 }
             }
         }
-
         controller.getReleasedCommands().clear();
 
     }
@@ -88,5 +93,16 @@ public class ControllerSystem extends IteratingSystem {
             move.getDirection().x += dx;
             move.getDirection().y += dy;
         }
+    }
+
+    public void reset() {
+        for(Entity entity :getEntities()) {
+            if(Player.mapper.has(entity)) {
+                Move move = Move.mapper.get(entity);
+                move.getDirection().x = 0;
+                move.getDirection().y = 0;
+            }
+        }
+        totalMovement = 0;
     }
 }

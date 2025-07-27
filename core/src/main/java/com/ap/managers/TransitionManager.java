@@ -1,9 +1,8 @@
-package com.ap.effect;
+package com.ap.managers;
 
 import com.ap.Constraints;
 import com.ap.GdxGame;
 import com.ap.asset.MapAsset;
-import com.ap.managers.MapManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;

@@ -2,7 +2,6 @@ package com.ap.managers;
 
 import com.ap.GdxGame;
 import com.ap.asset.MapAsset;
-import com.ap.effect.TransitionManager;
 import com.ap.screen.GameScreen;
 import com.ap.screen.maps.Farm;
 import com.ap.screen.maps.IMap;
@@ -47,6 +46,9 @@ public class MapManager {
     }
 
     public void setMap(MapAsset mapAsset) {
+        if(currentMap != null) {
+            currentMap.leave();
+        }
         if(!mapCache.containsKey(mapAsset)) {
             IMap map = createMap(mapAsset);
             mapCache.put(mapAsset, map);
