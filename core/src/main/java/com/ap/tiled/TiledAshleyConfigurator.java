@@ -4,6 +4,7 @@ import com.ap.Constraints;
 import com.ap.asset.AtlasAsset;
 import com.ap.component.*;
 import com.ap.component.Transform;
+import com.ap.items.environment.Greenhouse;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Color;
@@ -89,7 +90,7 @@ public class TiledAshleyConfigurator {
     private void addEntityGreenhouse(Entity entity, TiledMapTile tile) {
         boolean isGreenhouse = tile.getProperties().get("greenhouse", false, Boolean.class);
         if(isGreenhouse) {
-            entity.add(new Greenhouse());
+            entity.add(new ItemHolder(new Greenhouse()));
         }
     }
 

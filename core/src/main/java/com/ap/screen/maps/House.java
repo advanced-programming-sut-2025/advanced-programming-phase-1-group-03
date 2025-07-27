@@ -9,6 +9,7 @@ import com.ap.audio.AudioService;
 import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
 import com.ap.items.Inventory;
+import com.ap.managers.GameUIManager;
 import com.ap.managers.MapManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
@@ -47,16 +48,12 @@ public class House implements IMap{
     private Viewport viewport;
     private Batch batch;
 
-    private Inventory inventory;
 
     private TimeSystem timeSystem;
 
     private InventoryMenu inventoryMenu;
-    private ItemContainer itemContainer;
     private Clock clock;
 
-    // Use to for night darkness
-    private RayHandler rayHandler;
     private TiledMap map;
 
     // For handling UI
@@ -67,12 +64,12 @@ public class House implements IMap{
 
     private WeatherEffects weatherEffects;
 
-    private GameScreen gameScreen;
     private GdxGame game;
+    private GameScreen gameScreen;
 
     public House(GdxGame game, GameScreen gameScreen) {
-        this.gameScreen = gameScreen;
         this.game = game;
+        this.gameScreen = gameScreen;
 
         mapManager = gameScreen.getMapManger();
         stage = gameScreen.getStage();
@@ -99,8 +96,6 @@ public class House implements IMap{
         tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
 
         // Setup inventory
-        inventory = gameScreen.getInventory();
-        itemContainer = gameScreen.getItemContainer();
         inventoryMenu = gameScreen.getInventoryMenu();
         clock = gameScreen.getClock();
 
@@ -110,7 +105,6 @@ public class House implements IMap{
         weatherEffects = new WeatherEffects(assetService, engine, stage, audioService);
 
         RayHandler.useDiffuseLight(true);
-        rayHandler = new RayHandler(world);
     }
 
     @Override
@@ -118,11 +112,10 @@ public class House implements IMap{
 
         // Adding systems to the engine
         engine.addSystem(new PhysicMoveSystem());
-        engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager));
+        engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, gameScreen));
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
-        engine.addSystem(new PlayerAudioSystem(assetService));
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new RenderSystem(batch, viewport, camera));
         engine.addSystem(new ControllerSystem(inventoryMenu, engine));
@@ -151,6 +144,7 @@ public class House implements IMap{
         game.setInputProcessors(stage, keyboardController);
         weatherSystem.setWeatherConsumer(null);
         engine.getSystem(CameraSystem.class).setMap(map);
+        GameUIManager.instance.setEngine(engine);
     }
 
     @Override

@@ -42,7 +42,7 @@ public class Scythe extends Tool{
             Helper.removeEntity(entity, engine, world);
 
             if(new Random().nextInt(10) < Constraints.PROB_OF_GRASS_GIVE_FIBBER) {
-                Item fiber = ItemFactory.CreateFiber(game.getAssetService());
+                Item fiber = ItemFactory.instance.CreateFiber();
                 game.getInventory().addItem(fiber, 1);
             }
         }

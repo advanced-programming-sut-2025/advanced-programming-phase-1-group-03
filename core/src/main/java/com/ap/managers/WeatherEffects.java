@@ -23,6 +23,7 @@ public class WeatherEffects {
     public WeatherEffects(AssetService assetService, Engine engine, Stage stage, AudioService audioService) {
         this.assetService = assetService;
         this.audioService = audioService;
+        this.engine = engine;
         this.stage = stage;
     }
 

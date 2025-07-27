@@ -39,7 +39,32 @@ public class Inventory {
         return added;
     }
 
+    /**
+     * remove amount items from inventory, note that if we don't have enough items, it doesn't remove amount
+     */
+    public int removeItem(Item item, int amount) {
+        int removed = 0;
+        for (ItemStack stack : items) {
+            if (!stack.getItem().canStackWith(item)) {
+                continue;
+            }
+            int toRemove = Math.min(stack.getAmount(), amount);
+            amount -= toRemove;
+            stack.increaseAmount(-toRemove);
+            removed += toRemove;
+        }
+        items.removeIf(stack -> stack.getAmount() == 0);
+        return removed;
+    }
 
+    public boolean have(Item item, int amount) {
+        for(ItemStack stack : items) {
+            if(stack.getItem().canStackWith(item)) {
+                amount -= stack.getAmount();
+            }
+        }
+        return amount <= 0;
+    }
     public ArrayList<ItemStack> getItems() {
         return items;
     }

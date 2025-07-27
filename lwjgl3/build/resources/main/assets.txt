@@ -8,9 +8,11 @@ audio/Winter.mp3
 audio/axe.wav
 audio/coin.wav
 audio/cut.wav
+audio/gift.wav
 audio/hoeHit.wav
 audio/hover-sound.wav
 audio/pickaxe.wav
+audio/type.mp3
 audio/walk.wav
 data.db
 graphics/Animals/Fish.atlas
@@ -18,6 +20,7 @@ graphics/Animals/Fish.png
 graphics/Animals/Fishing-2.png
 graphics/FishingMiniGame.png
 graphics/ForestMap.png
+graphics/GreenHouse.png
 graphics/OnMap/environment.atlas
 graphics/OnMap/environment.png
 graphics/OnMap/environment.tps
@@ -41,6 +44,7 @@ graphics/UI.png
 graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
+graphics/img.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas

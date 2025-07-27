@@ -5,9 +5,12 @@ import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
+import com.ap.component.Player;
 import com.ap.items.Inventory;
+import com.ap.items.ItemFactory;
 import com.ap.items.tools.Tool;
 import com.ap.managers.ClockManager;
+import com.ap.managers.GameUIManager;
 import com.ap.managers.MapManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.GameData;
@@ -45,12 +48,14 @@ public class GameScreen extends AbstractScreen {
 
     public GameScreen(GdxGame game) {
         super(game);
-
         universalEngine = new Engine();
 
         camera = game.getCamera();
         assetService = game.getAssetService();
         audioService = game.getAudioService();
+
+        GameUIManager.instance.setup(stage, skin, audioService);
+        ItemFactory.instance.setAssetService(assetService);
 
         // Setup inventory
         inventory = new Inventory();
@@ -66,6 +71,7 @@ public class GameScreen extends AbstractScreen {
         weatherSystem = new WeatherSystem(clock, timeSystem);
         mapManager = new MapManager(game, this);
         mapManager.loadAllMaps();
+
     }
 
 

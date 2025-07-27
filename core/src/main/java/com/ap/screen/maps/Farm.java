@@ -9,6 +9,7 @@ import com.ap.audio.AudioService;
 import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
 import com.ap.items.Inventory;
+import com.ap.managers.GameUIManager;
 import com.ap.managers.MapManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
@@ -117,7 +118,7 @@ public class Farm implements IMap {
     public void setup(MapAsset map) {
         // Adding systems to the engine
         engine.addSystem(new PhysicMoveSystem());
-        engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager));
+        engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, gameScreen));
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
@@ -158,6 +159,7 @@ public class Farm implements IMap {
         game.setInputProcessors(stage, keyboardController);
         weatherSystem.setWeatherConsumer(weatherEffects::onWeatherChanged);
         engine.getSystem(CameraSystem.class).setMap(map);
+        GameUIManager.instance.setEngine(engine);
     }
 
     @Override

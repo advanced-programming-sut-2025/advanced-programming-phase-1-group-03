@@ -3,8 +3,10 @@ package com.ap.system;
 import com.ap.asset.MapAsset;
 import com.ap.component.*;
 import com.ap.component.Transform;
+import com.ap.items.Item;
 import com.ap.managers.MapManager;
 import com.ap.model.GameData;
+import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
@@ -17,11 +19,14 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
     private World world;
     private float interval;
     private float accumulator = 0;
+    private Engine engine;
+    private GameScreen gameScreen;
     private MapManager mapManager;
 
-    public PhysicSystem(World world, float interval, MapManager mapManager) {
+    public PhysicSystem(World world, float interval, MapManager mapManager, Engine engine, GameScreen gameScreen) {
         super(Family.all(Physic.class, Transform.class).get());
         this.world = world;
+        this.gameScreen = gameScreen;
         this.mapManager = mapManager;
         this.interval = interval;
         world.setContactListener(this);
@@ -114,19 +119,25 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         if(map != null) {
             mapManager.changeMap(map);
         }
-        if(isGreenhouse(userDataA, userDataB) || isGreenhouse(userDataB, userDataA)) {
-
+        Item item = isPlayerItemInteract(userDataA, userDataB);
+        if(item != null) {
+            item.interact(fixtureA.getBody(), engine, gameScreen);
         }
+        item = isPlayerItemInteract(userDataB, userDataA);
+        if (item != null) {
+            item.interact(fixtureB.getBody(), engine, gameScreen);
+        }
+
     }
 
-    private boolean isGreenhouse(Object userDataA, Object userDataB) {
+    private Item isPlayerItemInteract(Object userDataA, Object userDataB) {
         if((!(userDataA instanceof Entity entityA)) || (!(userDataB instanceof Entity entityB))) {
-            return false;
+            return null;
         }
-        if(Greenhouse.mapper.has(entityA) && Player.mapper.has(entityB)) {
-            return true;
+        if(ItemHolder.mapper.has(entityA) && Player.mapper.has(entityB)) {
+            return ItemHolder.mapper.get(entityA).getItem();
         }
-        return false;
+        return null;
     }
 
     private MapAsset isSpawner(Object userDataA, Object userDataB) {

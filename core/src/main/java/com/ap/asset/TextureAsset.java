@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 
 public enum TextureAsset implements Asset<Texture> {
     Rain("Rain.png"),
+    GreenHouse("GreenHouse.png"),
     ;
 
     private final AssetDescriptor<Texture> descriptor;

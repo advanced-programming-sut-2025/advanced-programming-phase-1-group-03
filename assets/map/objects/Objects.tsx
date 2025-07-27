@@ -20,7 +20,17 @@
  <tile id="3">
   <image source="greenhosue_built.png" width="115" height="161"/>
  </tile>
- <tile id="4">
+ <tile id="4" type="Prop">
+  <properties>
+   <property name="greenhouse" type="bool" value="true"/>
+  </properties>
   <image source="greenhouse_broken.png" width="115" height="129"/>
+  <objectgroup draworder="index" id="2">
+   <object id="7" x="0" y="-1" width="115" height="130.5">
+    <properties>
+     <property name="greenhouse" type="bool" value="true"/>
+    </properties>
+   </object>
+  </objectgroup>
  </tile>
 </tileset>

@@ -41,7 +41,7 @@ public class Pickaxe extends Tool {
             game.getAudioService().playSound(SoundAsset.Pickaxe);
             Helper.removeEntity(entity, engine, world);
 
-            Item stone = ItemFactory.CreateStone(game.getAssetService());
+            Item stone = ItemFactory.instance.CreateStone();
             game.getInventory().addItem(stone, 1);
         }
     }

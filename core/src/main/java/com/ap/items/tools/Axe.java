@@ -42,7 +42,7 @@ public class Axe extends Tool {
         }
         game.getAudioService().playSound(SoundAsset.Axe);
         Item item = ItemHolder.mapper.get(entity).getItem();
-        Item wood = ItemFactory.CreateWood(game.getAssetService());
+        Item wood = ItemFactory.instance.CreateWood();
 
         if(item.getName().equals(ItemNames.Wood.name())) {
             Helper.removeEntity(entity, engine, world);

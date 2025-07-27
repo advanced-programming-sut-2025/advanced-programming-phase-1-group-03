@@ -65,7 +65,7 @@ public class EntityFactory {
         var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, false);
         entity.add(new Physic(body, position));
         entity.add(new Container(stumpEntity, shadowEntity));
-        entity.add(new ItemHolder(ItemFactory.CreateTree()));
+        entity.add(new ItemHolder(ItemFactory.instance.CreateTree()));
         entity.add(new TreeComponent(true, Constraints.NUMBER_OF_AXE_NEED_TO_CUT_DOWN_TREE));
         return entity;
     }
@@ -82,7 +82,7 @@ public class EntityFactory {
         entity.add(new Graphic(texture));
         var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, false);
         entity.add(new Physic(body, position));
-        entity.add(new ItemHolder(ItemFactory.CreateStone(assetService)));
+        entity.add(new ItemHolder(ItemFactory.instance.CreateStone()));
         return entity;
     }
 
@@ -101,7 +101,7 @@ public class EntityFactory {
         var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, true);
         entity.add(new Physic(body, position));
 
-        entity.add(new ItemHolder(ItemFactory.CreateGrass()));
+        entity.add(new ItemHolder(ItemFactory.instance.CreateGrass()));
         return entity;
     }
 
@@ -131,7 +131,7 @@ public class EntityFactory {
         entity.add(new Graphic(texture));
         var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, false);
         entity.add(new Physic(body, position));
-        entity.add(new ItemHolder(ItemFactory.CreateWood(assetService)));
+        entity.add(new ItemHolder(ItemFactory.instance.CreateWood()));
         entity.add(new Container(shadowEntity));
         return entity;
     }

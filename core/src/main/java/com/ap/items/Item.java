@@ -1,6 +1,5 @@
 package com.ap.items;
 
-import com.ap.GdxGame;
 import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -81,4 +80,10 @@ public class Item {
         return other.getName().equals(this.getName());
     }
 
+    /**
+     * This method called when player is close to the item
+     */
+    public void interact(Body body, Engine engine, GameScreen game) {
+
+    }
 }

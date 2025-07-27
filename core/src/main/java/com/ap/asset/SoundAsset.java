@@ -10,7 +10,8 @@ public enum SoundAsset implements Asset<Sound> {
     Scythe("cut.wav"),
     Axe("axe.wav"),
     Pickaxe("pickaxe.wav"),
-    Walk("walk.wav")
+    Walk("walk.wav"),
+    Gift("gift.wav")
     ;
 
     private final AssetDescriptor<Sound> descriptor;

@@ -1975,23 +1975,15 @@
     <property name="spawner" value="Forest"/>
    </properties>
   </object>
-  <object id="98" name="greenhouse" gid="3100" x="232" y="279" width="115" height="129">
+  <object id="98" name="greenhouse" gid="3100" x="230" y="280" width="115" height="129">
    <properties>
     <property name="greenhouse" type="bool" value="true"/>
    </properties>
-  </object>
-  <object id="99" name="greenHouseBound" x="233.333" y="180">
-   <polygon points="0,0 0.666667,96.6667 112,95.3333 110,-2.66667"/>
   </object>
   <object id="100" name="houseSpawner" x="1036.5" y="216.75" width="14" height="16.5">
    <properties>
     <property name="sensor" type="bool" value="true"/>
     <property name="spawner" value="House"/>
-   </properties>
-  </object>
-  <object id="101" name="greenHouseColider" x="228" y="146" width="123.5" height="137.5">
-   <properties>
-    <property name="sensor" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
