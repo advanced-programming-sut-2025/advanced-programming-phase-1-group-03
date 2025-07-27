@@ -11,7 +11,7 @@ public class GameData {
 
     private MapAsset startMap;
     private String loggedUserUsername = null;
-    private int farmIndex = 1;
+    private int farmIndex;
     private boolean isGreenhouseBuilt = false;
     private int gold = Constraints.PLAYER_INITIAL_GOLD;
 

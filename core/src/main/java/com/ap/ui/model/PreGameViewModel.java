@@ -20,6 +20,11 @@ public class PreGameViewModel extends ViewModel{
         }catch(Exception e) {
             return;
         }
+        if(map == MapAsset.Farm1) {
+            GameData.getInstance().setFarmIndex(1);
+        } else if(map == MapAsset.Farm2) {
+            GameData.getInstance().setFarmIndex(2);
+        }
         GameData.getInstance().setStartMap(map);
         game.setScreen(GameScreen.class);
     }
