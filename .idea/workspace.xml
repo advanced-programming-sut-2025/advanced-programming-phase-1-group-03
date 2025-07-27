@@ -5,16 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Multiple map system fixed">
+      <change afterPath="$PROJECT_DIR$/assets/graphics/ForestMap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/RiverLandMap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/PreGameScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/model/PreGameViewModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/view/PreGameView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/GdxGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/effect/TransitionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/TransitionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/IMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/IMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +98,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/StarehdewValley",
+    "last_opened_file_path": "C:/Users/Surface/IdeaProjects/Stardev/assets/graphics",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -115,11 +117,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Surface\IdeaProjects\Stardev\assets\graphics" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\Tabs" />
       <recent name="D:\StarehdewValley\assets\audio" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\OnMap" />
-      <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\trees" />
     </key>
   </component>
   <component name="RunManager" selected="Gradle.StardewValley [run]">
@@ -716,6 +718,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java</url>
           <line>182</line>
           <option name="timeStamp" value="90" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoginScreen.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="91" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />
