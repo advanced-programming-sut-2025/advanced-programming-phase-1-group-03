@@ -17,7 +17,6 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     Journal("Journal.atlas"),
     UIElements("UI_elements.atlas"),
     Toggles("Tabs/Toggles.atlas"),
-    Journal("Journal.atlas"),
     Crops("Plants/crops.atlas"),
     Crafting("Crafting.atlas");
 

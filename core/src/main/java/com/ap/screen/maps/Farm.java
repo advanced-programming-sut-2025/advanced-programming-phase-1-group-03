@@ -136,8 +136,7 @@ public class Farm implements IMap {
         if(map == MapAsset.Farm1 || map == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
-        engine.addSystem(new ControllerSystem(inventoryMenu, craftingMenu, engine));
-        engine.addSystem(new ControllerSystem(tabManager, engine));
+        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
 
         timeSystem.addTimeListener(new TimeListener());

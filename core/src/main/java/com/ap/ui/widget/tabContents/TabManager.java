@@ -10,9 +10,11 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 public class TabManager {
@@ -83,6 +85,20 @@ public class TabManager {
                     setCurrentContent(idx);
                 }
             });
+            button.setTransform(true);
+            button.setOrigin(Align.center);
+
+            button.addListener(new InputListener() {
+                @Override
+                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                    button.addAction(Actions.scaleTo(1.2f, 1.2f, 0.1f));
+                }
+
+                @Override
+                public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                    button.addAction(Actions.scaleTo(1f, 1f, 0.1f));
+                }
+            });
             tabIcons.addActor(button);
             ++tabIndex;
         }
@@ -120,7 +136,7 @@ public class TabManager {
             }
         });
 
-        iconY = tabIcons.getChild(0).getY() - 2;
+        iconY = tabIcons.getChild(0).getY() - 26;
 
         currentTab = 0;
         ui.setVisible(false);
