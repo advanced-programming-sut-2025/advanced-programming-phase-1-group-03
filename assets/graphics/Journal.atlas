@@ -1,0 +1,17 @@
+Journal.png
+size: 830, 729
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+pma: false
+Exit
+  bounds: 786, 577, 38, 43
+  rotate: 90
+Journal
+  bounds: 786, 617, 42, 47
+JournalBackground
+  bounds: 1, 1, 828, 574
+JournalBox
+  bounds: 1, 577, 783, 77
+JournalHeader
+  bounds: 1, 656, 263, 72

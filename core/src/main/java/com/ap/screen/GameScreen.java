@@ -23,6 +23,7 @@ import com.ap.ui.view.GameView;
 import com.ap.ui.widget.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameScreen extends AbstractScreen {
     private AssetService assetService;
@@ -34,6 +35,7 @@ public class GameScreen extends AbstractScreen {
     private ItemContainer itemContainer;
     private EnergyBar energyBar;
     private InventoryMenu inventoryMenu;
+    private Journal journal;
 
     private ClockManager clockManager;
     private MapManager mapManager;
@@ -65,6 +67,7 @@ public class GameScreen extends AbstractScreen {
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
         inventoryMenu = new InventoryMenu(assetService, skin, stage, inventory, audioService);
+        journal = new Journal(assetService, skin, stage);
 
         clockManager = new ClockManager(clock);
         timeSystem = new TimeSystem();
@@ -93,6 +96,7 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(clock);
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
+        stage.addActor(journal);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
