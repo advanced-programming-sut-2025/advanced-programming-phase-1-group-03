@@ -65,10 +65,10 @@ public class CraftingMenu extends Actor {
                     if (item.isMouseOver(worldX, worldY)) {
                         Gdx.app.log("Crafting", "Clicked on: " + item.name);
 
-                        if (checkAvailable()) {
+                        if (!checkAvailable()) {
                             showErrorDialog("This craft item is not available!");
                         } else {
-                            // منطق کرفتینگ اینجا
+                            addItem();
                         }
                         break;
                     }
@@ -84,7 +84,6 @@ public class CraftingMenu extends Actor {
         Dialog dialog = new Dialog("خطا", skin) {
             @Override
             protected void result(Object object) {
-                // اینجا می‌تونی کاری بعد از بسته شدن دیالوگ انجام بدی، اگر لازم بود
             }
         };
 
@@ -262,13 +261,16 @@ public class CraftingMenu extends Actor {
 
             float drawScale = craftScale;
 
-            // اگر موس روی دستگاه بود، مقیاس رو بزرگتر کنیم (مثلاً 1.3 برابر)
             if (item.isMouseOver(mouseX, mouseY)) {
                 drawScale = 1.3f;
             }
-            batch.setColor(1f, 1f, 1f, 0.4f);
-            batch.draw(item.icon, drawX, drawY, item.width * drawScale, item.height * drawScale);
-            batch.setColor(1f, 1f, 1f, 1f);
+            if(checkAvailable()) {
+                batch.draw(item.icon, drawX, drawY, item.width * drawScale, item.height * drawScale);
+            } else {
+                batch.setColor(1f, 1f, 1f, 0.4f);
+                batch.draw(item.icon, drawX, drawY, item.width * drawScale, item.height * drawScale);
+                batch.setColor(1f, 1f, 1f, 1f);
+            }
             i++;
         }
     }
@@ -312,7 +314,7 @@ public class CraftingMenu extends Actor {
 
     private boolean checkAvailable() {
         //TODO : implement availability of the craft machine
-        return true;
+        return false;
     }
 
     private void addItem() {
