@@ -62,6 +62,8 @@ public class TiledService {
         if(startMap.getProperties().get("generateItems", false, Boolean.class)) {
             generateItemsConsumer.accept(startMap);
         }
+
+//        changeSeasonTileset(Season.Fall);
     }
 
     private void loadMapObjects(TiledMap startMap) {

@@ -1,0 +1,312 @@
+UI_elements.png
+size: 253, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+pma: false
+border/d_joint
+  bounds: 110, 74, 16, 14
+  offsets: 0, 2, 16, 16
+border/d_line
+  bounds: 162, 87, 16, 7
+  offsets: 0, 3, 16, 16
+border/dl
+  bounds: 180, 87, 13, 13
+  offsets: 3, 3, 16, 16
+border/dr
+  bounds: 236, 20, 13, 13
+  offsets: 0, 3, 16, 16
+border/filled/d_joint
+  bounds: 128, 56, 16, 14
+  offsets: 0, 2, 16, 16
+border/filled/d_line
+  bounds: 162, 54, 16, 13
+  offsets: 0, 3, 16, 16
+border/filled/dl
+  bounds: 195, 65, 13, 13
+  offsets: 3, 3, 16, 16
+border/filled/dr
+  bounds: 195, 80, 13, 13
+  offsets: 0, 3, 16, 16
+border/filled/h_line
+  bounds: 2, 2, 16, 16
+border/filled/h_thin_line
+  bounds: 2, 20, 16, 16
+border/filled/l_joint
+  bounds: 146, 38, 14, 16
+  offsets: 2, 0, 16, 16
+border/filled/l_line
+  bounds: 236, 2, 13, 16
+  offsets: 3, 0, 16, 16
+border/filled/r_joint
+  bounds: 164, 20, 14, 16
+  offsets: 0, 0, 16, 16
+border/filled/r_line
+  bounds: 162, 69, 13, 16
+  offsets: 0, 0, 16, 16
+border/filled/u_joint
+  bounds: 182, 2, 16, 14
+  offsets: 0, 0, 16, 16
+border/filled/u_line
+  bounds: 144, 74, 16, 13
+  offsets: 0, 0, 16, 16
+border/filled/ul
+  bounds: 196, 95, 13, 13
+  offsets: 3, 0, 16, 16
+border/filled/ur
+  bounds: 210, 69, 13, 13
+  offsets: 0, 0, 16, 16
+border/filled/v_line
+  bounds: 20, 2, 16, 16
+border/filled/v_thin_line
+  bounds: 2, 38, 16, 16
+border/h_line
+  bounds: 144, 89, 16, 8
+  offsets: 0, 4, 16, 16
+border/h_thin_line
+  bounds: 162, 96, 16, 4
+  offsets: 0, 6, 16, 16
+border/l_joint
+  bounds: 110, 90, 14, 16
+  offsets: 2, 0, 16, 16
+border/l_line
+  bounds: 177, 69, 7, 16
+  offsets: 3, 0, 16, 16
+border/r_joint
+  bounds: 128, 72, 14, 16
+  offsets: 0, 0, 16, 16
+border/r_line
+  bounds: 180, 20, 8, 16
+  offsets: 5, 0, 16, 16
+border/u_joint
+  bounds: 162, 38, 16, 14
+  offsets: 0, 0, 16, 16
+border/u_line
+  bounds: 208, 45, 16, 7
+  offsets: 0, 6, 16, 16
+border/ul
+  bounds: 229, 54, 13, 13
+  offsets: 3, 0, 16, 16
+border/ur
+  bounds: 225, 69, 13, 13
+  offsets: 0, 0, 16, 16
+border/v_line
+  bounds: 180, 38, 8, 16
+  offsets: 3, 0, 16, 16
+border/v_thin_line
+  bounds: 244, 52, 4, 16
+  offsets: 6, 0, 16, 16
+cell/blank
+  bounds: 20, 20, 16, 16
+cell/border
+  bounds: 38, 2, 16, 16
+  index: 0
+cell/border
+  bounds: 2, 56, 16, 16
+  index: 1
+cell/check_square-0
+  bounds: 178, 116, 10, 10
+  offsets: 0, 6, 16, 16
+cell/check_square-1
+  bounds: 190, 116, 10, 10
+  offsets: 0, 6, 16, 16
+cell/cross_icon
+  bounds: 180, 56, 11, 11
+cell/locked
+  bounds: 20, 38, 16, 16
+equipment/backpack_filled
+  bounds: 110, 108, 14, 16
+  offsets: 1, 0, 16, 16
+equipment/hat
+  bounds: 38, 20, 16, 16
+equipment/pant
+  bounds: 56, 2, 16, 16
+equipment/potion
+  bounds: 2, 74, 16, 16
+equipment/shirt
+  bounds: 20, 56, 16, 16
+equipment/shoe
+  bounds: 38, 38, 16, 16
+equipment/star
+  bounds: 56, 20, 16, 16
+equipment/unknown-0
+  bounds: 74, 2, 16, 16
+equipment/unknown-1
+  bounds: 2, 92, 16, 16
+equipment/unknown-2
+  bounds: 2, 110, 16, 16
+equipment/unknown-3
+  bounds: 20, 74, 16, 16
+everything/type-0
+  bounds: 211, 84, 13, 13
+  offsets: 3, 0, 16, 16
+everything/type-1
+  bounds: 200, 2, 16, 14
+  offsets: 0, 0, 16, 16
+everything/type-2
+  bounds: 193, 56, 16, 7
+  offsets: 0, 6, 16, 16
+everything/type-3
+  bounds: 226, 84, 13, 13
+  offsets: 0, 0, 16, 16
+everything/type-4
+  bounds: 126, 90, 14, 16
+  offsets: 2, 0, 16, 16
+everything/type-5
+  bounds: 226, 18, 8, 16
+  offsets: 3, 0, 16, 16
+everything/type-6
+  bounds: 190, 46, 16, 8
+  offsets: 0, 4, 16, 16
+everything/type-7
+  bounds: 126, 108, 14, 16
+  offsets: 0, 0, 16, 16
+everything/type-8
+  bounds: 186, 69, 7, 16
+  offsets: 3, 0, 16, 16
+everything/type-9
+  bounds: 38, 56, 16, 16
+everything/type-10
+  bounds: 56, 38, 16, 16
+everything/type-11
+  bounds: 226, 36, 8, 16
+  offsets: 5, 0, 16, 16
+everything/type-12
+  bounds: 212, 99, 13, 13
+  offsets: 3, 3, 16, 16
+everything/type-13
+  bounds: 218, 2, 16, 14
+  offsets: 0, 2, 16, 16
+everything/type-14
+  bounds: 211, 54, 16, 7
+  offsets: 0, 3, 16, 16
+everything/type-15
+  bounds: 227, 99, 13, 13
+  offsets: 0, 3, 16, 16
+everything/type-16
+  bounds: 74, 20, 16, 16
+everything/type-17
+  bounds: 92, 2, 16, 16
+everything/type-18
+  bounds: 20, 92, 16, 16
+everything/type-19
+  bounds: 20, 110, 16, 16
+everything/type-20
+  bounds: 38, 74, 16, 16
+everything/type-21
+  bounds: 56, 56, 16, 16
+everything/type-22
+  bounds: 74, 38, 16, 16
+everything/type-23
+  bounds: 92, 20, 16, 16
+everything/type-24
+  bounds: 110, 2, 16, 16
+everything/type-25
+  bounds: 211, 63, 16, 4
+  offsets: 0, 6, 16, 16
+everything/type-26
+  bounds: 247, 82, 4, 16
+  offsets: 6, 0, 16, 16
+everything/type-27
+  bounds: 38, 92, 16, 16
+everything/type-28
+  bounds: 38, 110, 16, 16
+everything/type-29
+  bounds: 56, 74, 16, 16
+everything/type-30
+  bounds: 74, 56, 16, 16
+everything/type-31
+  bounds: 92, 38, 16, 16
+everything/type-32
+  bounds: 110, 20, 16, 16
+everything/type-33
+  bounds: 128, 2, 16, 16
+everything/type-34
+  bounds: 56, 92, 16, 16
+everything/type-35
+  bounds: 56, 110, 16, 16
+everything/type-36
+  bounds: 74, 74, 16, 16
+everything/type-37
+  bounds: 146, 56, 14, 16
+  offsets: 1, 0, 16, 16
+everything/type-38
+  bounds: 142, 114, 16, 12
+  offsets: 0, 4, 16, 16
+everything/type-39
+  bounds: 92, 56, 16, 16
+everything/type-40
+  bounds: 110, 38, 16, 16
+everything/type-41
+  bounds: 128, 20, 16, 16
+everything/type-42
+  bounds: 146, 2, 16, 16
+everything/type-43
+  bounds: 142, 99, 16, 13
+  offsets: 0, 0, 16, 16
+everything/type-44
+  bounds: 178, 102, 16, 12
+  offsets: 0, 0, 16, 16
+everything/type-45
+  bounds: 190, 18, 16, 12
+  offsets: 0, 3, 16, 16
+everything/type-46
+  bounds: 208, 18, 16, 12
+  offsets: 0, 0, 16, 16
+everything/type-47
+  bounds: 212, 114, 12, 12
+  offsets: 2, 2, 16, 16
+everything/type-48
+  bounds: 160, 117, 8, 9
+  offsets: 0, 7, 16, 16
+everything/type-49
+  bounds: 226, 114, 10, 10
+  offsets: 0, 6, 16, 16
+everything/type-50
+  bounds: 240, 70, 10, 10
+  offsets: 0, 6, 16, 16
+everything/type-51
+  bounds: 241, 82, 4, 7
+  offsets: 0, 4, 16, 16
+everything/type-52
+  bounds: 242, 100, 4, 7
+  offsets: 12, 4, 16, 16
+everything/type-53
+  bounds: 170, 117, 4, 9
+  offsets: 0, 7, 16, 16
+everything/type-54
+  bounds: 238, 114, 4, 9
+  offsets: 0, 7, 16, 16
+everything/type-55
+  bounds: 74, 92, 16, 16
+everything/type-56
+  bounds: 74, 110, 16, 16
+everything/type-57
+  bounds: 236, 35, 12, 15
+  offsets: 0, 1, 16, 16
+everything/type-58
+  bounds: 190, 32, 16, 12
+  offsets: 0, 0, 16, 16
+everything/type-59
+  bounds: 208, 32, 16, 11
+  offsets: 0, 2, 16, 16
+everything/type-60
+  bounds: 160, 102, 16, 13
+  offsets: 0, 3, 16, 16
+everything/type-61
+  bounds: 202, 110, 8, 16
+  offsets: 3, 0, 16, 16
+everything/type-62
+  bounds: 92, 74, 16, 16
+everything/type-63
+  bounds: 110, 56, 16, 16
+everything/type-64
+  bounds: 128, 38, 16, 16
+everything/type-65
+  bounds: 146, 20, 16, 16
+everything/type-66
+  bounds: 164, 2, 16, 16
+everything/type-67
+  bounds: 92, 92, 16, 16
+everything/type-68
+  bounds: 92, 110, 16, 16

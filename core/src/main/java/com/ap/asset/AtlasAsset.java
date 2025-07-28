@@ -3,7 +3,7 @@ package com.ap.asset;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
-public enum AtlasAsset implements Asset<TextureAtlas> {
+public enum     AtlasAsset implements Asset<TextureAtlas> {
     Player("player.atlas"),
     Avatars("avatars.atlas"),
     UI("UI.atlas"),
@@ -14,7 +14,10 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     Environment("OnMap/environment.atlas"),
     Fish("Animals/Fish.atlas"),
     Snowfall("OnMap/snowfall.atlas"),
-    Journal("Journal.atlas");
+    Journal("Journal.atlas"),
+    UIElements("UI_elements.atlas"),
+    Toggles("Tabs/Toggles.atlas")
+    ;
 
     private final AssetDescriptor<TextureAtlas> descriptor;
     AtlasAsset(String name) {

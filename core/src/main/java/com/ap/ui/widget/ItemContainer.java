@@ -88,7 +88,7 @@ public class ItemContainer extends Actor {
         float widthEach = selectedItem.getRegionWidth() * itemScale * 3;
 
         var font = skin.getFont("font20");
-        font.setColor(Color.RED);
+        font.setColor(Color.WHITE);
 
         for(int i = 0; i < Math.min(inventory.getSize(), maxSize); i++) {
             var itemStack = inventory.getItems().get(i);

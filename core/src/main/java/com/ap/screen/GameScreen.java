@@ -21,6 +21,7 @@ import com.ap.system.universal.TimeSystem;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
 import com.ap.ui.widget.*;
+import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -34,7 +35,8 @@ public class GameScreen extends AbstractScreen {
     private Clock clock;
     private ItemContainer itemContainer;
     private EnergyBar energyBar;
-    private InventoryMenu inventoryMenu;
+//    private InventoryMenu inventoryMenu;
+    private TabManager tabManager;
     private Journal journal;
 
     private ClockManager clockManager;
@@ -66,7 +68,9 @@ public class GameScreen extends AbstractScreen {
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
-        inventoryMenu = new InventoryMenu(assetService, skin, stage, inventory, audioService);
+//        inventoryMenu = new InventoryMenu(assetService, skin, stage, inventory, audioService);
+        tabManager = new TabManager(stage, assetService, skin, audioService);
+
         journal = new Journal(assetService, skin, stage);
 
         clockManager = new ClockManager(clock);
@@ -138,9 +142,9 @@ public class GameScreen extends AbstractScreen {
         return energyBar;
     }
 
-    public InventoryMenu getInventoryMenu() {
-        return inventoryMenu;
-    }
+//    public InventoryMenu getInventoryMenu() {
+//        return inventoryMenu;
+//    }
 
     public AssetService getAssetService() {
         return assetService;
@@ -156,6 +160,10 @@ public class GameScreen extends AbstractScreen {
 
     public MapManager getMapManger() {
         return mapManager;
+    }
+
+    public TabManager getTabManager() {
+        return tabManager;
     }
 
     class TimeListener implements ITimeListener {

@@ -23,6 +23,7 @@ import com.ap.tiled.TiledService;
 import com.ap.ui.widget.Clock;
 import com.ap.ui.widget.InventoryMenu;
 import com.ap.ui.widget.ItemContainer;
+import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -53,6 +54,7 @@ public class Farm implements IMap {
     private TimeSystem timeSystem;
 
     private InventoryMenu inventoryMenu;
+    private TabManager tabManager;
     private ItemContainer itemContainer;
     private Clock clock;
 
@@ -102,7 +104,8 @@ public class Farm implements IMap {
         // Setup inventory
         inventory = gameScreen.getInventory();
         itemContainer = gameScreen.getItemContainer();
-        inventoryMenu = gameScreen.getInventoryMenu();
+//        inventoryMenu = gameScreen.getInventoryMenu();
+        tabManager = gameScreen.getTabManager();
         clock = gameScreen.getClock();
 
         timeSystem = gameScreen.getTimeSystem();
@@ -132,7 +135,7 @@ public class Farm implements IMap {
         if(map == MapAsset.Farm1 || map == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
-        engine.addSystem(new ControllerSystem(inventoryMenu, engine));
+        engine.addSystem(new ControllerSystem(tabManager, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
         //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 

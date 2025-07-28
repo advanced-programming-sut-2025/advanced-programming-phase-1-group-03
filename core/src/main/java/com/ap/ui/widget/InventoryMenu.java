@@ -19,7 +19,7 @@ public class InventoryMenu extends Actor {
     private final TextureRegion background;
     private final Stage stage;
     private boolean isShowing = false;
-    TabBar tabBar;
+//    TabBar tabBar;
 
     private final AssetService assetService;
     private final Skin skin;
@@ -41,7 +41,7 @@ public class InventoryMenu extends Actor {
         this.stage = stage;
         this.inventory = inventory;
         this.audioService = audioService;
-        tabBar = TabBar.Inventory;
+//        tabBar = TabBar.Inventory;
         // load social
         socialBackground = new TextureRegion(new Texture(Gdx.files.internal("graphics/Tabs/socialBackground.png")));
         socialBar = new TextureRegion(new Texture(Gdx.files.internal("graphics/Tabs/socialtoggle.png")));
@@ -59,11 +59,12 @@ public class InventoryMenu extends Actor {
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(background, getX(), getY());
         //batch.draw(socialBar, )
-        switch (tabBar) {
-            case Inventory -> {
-                drawItems(batch);
-            }
-        }
+//        switch (tabBar) {
+//            case Inventory -> {
+//                drawItems(batch);
+//            }
+//        }
+        drawItems(batch);
     }
 
     private void drawItems(Batch batch) {

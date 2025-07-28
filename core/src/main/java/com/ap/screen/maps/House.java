@@ -23,6 +23,7 @@ import com.ap.tiled.TiledService;
 import com.ap.ui.widget.Clock;
 import com.ap.ui.widget.InventoryMenu;
 import com.ap.ui.widget.ItemContainer;
+import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -52,6 +53,7 @@ public class House implements IMap{
     private TimeSystem timeSystem;
 
     private InventoryMenu inventoryMenu;
+    private TabManager tabManager;
     private Clock clock;
 
     private TiledMap map;
@@ -96,7 +98,8 @@ public class House implements IMap{
         tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
 
         // Setup inventory
-        inventoryMenu = gameScreen.getInventoryMenu();
+//        inventoryMenu = gameScreen.getInventoryMenu();
+        tabManager = gameScreen.getTabManager();
         clock = gameScreen.getClock();
 
         timeSystem = gameScreen.getTimeSystem();
@@ -118,7 +121,7 @@ public class House implements IMap{
         engine.addSystem(new AnimationSystem(assetService));
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new RenderSystem(batch, viewport, camera));
-        engine.addSystem(new ControllerSystem(inventoryMenu, engine));
+        engine.addSystem(new ControllerSystem(tabManager, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
         //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
