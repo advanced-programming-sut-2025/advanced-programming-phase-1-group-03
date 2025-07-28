@@ -4,6 +4,7 @@ import com.ap.component.Controller;
 import com.ap.component.Move;
 import com.ap.component.Player;
 import com.ap.input.Command;
+import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.InventoryMenu;
 import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
@@ -14,14 +15,14 @@ import com.badlogic.ashley.systems.IteratingSystem;
 public class ControllerSystem extends IteratingSystem {
     private InventoryMenu inventoryMenu;
     private TabManager tabManager;
+    private CraftingMenu craftingMenu;
     private TileSelectionSystem tileSelectionSystem;
     private int totalMovement = 0;
 
-
-    public ControllerSystem(TabManager tabManager, Engine engine) {
+    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu,  Engine engine) {
         super(Family.all(Controller.class).get());
         this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
-//        this.inventoryMenu = inventoryMenu;
+        this.craftingMenu = craftingMenu;
         this.tabManager = tabManager;
     }
 
@@ -49,10 +50,11 @@ public class ControllerSystem extends IteratingSystem {
                     moveEntity(entity, 0f, 1f);
                     totalMovement ++;
                 } case OpenInventory -> {
-//                    inventoryMenu.toggle();
                     tabManager.toggle();
                 } case Click -> {
                     clicked();
+                } case OpenCrafting -> {
+                    craftingMenu.toggle();
                 }
             }
         }

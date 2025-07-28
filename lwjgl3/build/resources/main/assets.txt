@@ -14,10 +14,14 @@ audio/hover-sound.wav
 audio/pickaxe.wav
 audio/type.mp3
 audio/walk.wav
+audio/watering.wav
+audio/wateringCanNo.wav
 data.db
 graphics/Animals/Fish.atlas
 graphics/Animals/Fish.png
 graphics/Animals/Fishing-2.png
+graphics/Crafting.atlas
+graphics/Crafting.png
 graphics/FishingMiniGame.png
 graphics/ForestMap.png
 graphics/GreenHouse.png
@@ -31,6 +35,8 @@ graphics/OnMap/snowfall.png
 graphics/OnMap/trees.atlas
 graphics/OnMap/trees.png
 graphics/OnMap/trees.tps
+graphics/Plants/crops.atlas
+graphics/Plants/crops.png
 graphics/Rain.png
 graphics/RiverLandMap.png
 graphics/SeasonalObjects.atlas
@@ -55,6 +61,7 @@ map/Farm Buildings.tsx
 map/Farm1.tmx
 map/Farm2.tmx
 map/Forest.tmx
+map/Greenhouse.tmx
 map/House.tmx
 map/objects/GameObjects.tsx
 map/objects/House.png

@@ -808,8 +808,8 @@ public class GameMenuController {
             if (v.getEatable() != null) {
                 res.append("Energy: " + v.getEatable().getEnergy() + "\n");
             }
-            if (cropsType != null) res.append("Seasons: " + cropsType.getSeasonsList().toString() + "\n");
-            else res.append("Seasons: " + foragingCropsType.getSeasonsList() + "\n");
+            if (cropsType != null) res.append(" Season: " + cropsType.get SeasonList().toString() + "\n");
+            else res.append(" Season: " + foragingCropsType.get SeasonList() + "\n");
             res.append("Giantable: " + v.isCanBecomeGiant() + "\n");
         } else if (foragingTreeType != null || treeType != null) {
             Tree v;
@@ -831,8 +831,8 @@ public class GameMenuController {
             if (v.getRemainingHarvestCycles() > 1) res.append("Fruit regrowth time: " + v.getHarvestRegrowthTime() + "\n");
             res.append("Growing stages: " + v.getStages().toString() + "\n");
             res.append("Fruit base sell price: " + v.getFruit().getBaseSellPrice() + "\n");
-            if (treeType != null) res.append("Seasons: " + treeType.getSeasonList() + "\n");
-            else res.append("Seasons: " + foragingType.getSeasonList() + "\n");
+            if (treeType != null) res.append(" Season: " + treeType.getSeasonList() + "\n");
+            else res.append(" Season: " + foragingType.getSeasonList() + "\n");
             res.append("Giantable: " + v.isCanBecomeGiant() + "\n");
         } else if (fruitType != null) {
             Fruit v = new Fruit(1, 1, fruitType);
@@ -845,7 +845,7 @@ public class GameMenuController {
             res.append("Harvest cycles: " + fruitType.getFruitHarvestCycle() + "\n");
             res.append("Fruit regrowth time: " + fruitType.getTreeType().getStages().getLast() + "\n");
             res.append("Base sell price: " + v.getSellPrice() + "\n");
-            res.append("Seasons: " + fruitType.getSeasonList() + "\n");
+            res.append(" Season: " + fruitType.getSeasonList() + "\n");
         } else if(mixedSeedsType != null) {
             res.append("Name: " + mixedSeedsType + "\n");
             res.append("Type: mixed seed\n");
@@ -856,13 +856,13 @@ public class GameMenuController {
             res.append("Type: seed\n");
             res.append("Product: ");
             res.append(seedType.findCropType() + "\n");
-            res.append("Seasons: " + seedType.getSeasonList() + "\n");
+            res.append(" Season: " + seedType.getSeasonList() + "\n");
         } else if (saplingType != null) {
             res.append("Name: " + saplingType + "\n");
             res.append("Type: sapling\n");
             res.append("Product: ");
             res.append(saplingType.getTreeType() + "\n");
-            res.append("Seasons: " + saplingType.getTreeType().getSeasonList() + "\n");
+            res.append(" Season: " + saplingType.getTreeType().getSeasonList() + "\n");
         } else {
             return new Result<>(false, "Nothing found");
         }

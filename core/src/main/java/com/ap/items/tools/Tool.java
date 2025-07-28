@@ -4,12 +4,15 @@ import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
+import com.ap.items.ItemFactory;
 import com.ap.model.Abilities;
+import com.ap.model.CropsType;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public abstract class Tool extends Item {
     protected final Abilities relatedAbility;
+    protected int currentLevel = 0;
 
     public Tool(String name, TextureRegion icon, Abilities relatedAbility) {
         super(name, 1, icon);
@@ -35,5 +38,6 @@ public abstract class Tool extends Item {
         inventory.addItem(new Scythe(atlas.findRegion("scythe/normal")), 1);
         inventory.addItem(new Shear(atlas.findRegion("shear/normal")), 1);
         inventory.addItem(new WateringCan(atlas.findRegion("watering_can/normal")), 1);
+        inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Carrot), 2);
     }
 }

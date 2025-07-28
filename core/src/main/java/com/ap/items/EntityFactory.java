@@ -4,6 +4,7 @@ import com.ap.Constraints;
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.component.*;
+import com.ap.model.CropsType;
 import com.ap.tiled.TiledPhysic;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -133,6 +134,22 @@ public class EntityFactory {
         entity.add(new Physic(body, position));
         entity.add(new ItemHolder(ItemFactory.instance.CreateWood()));
         entity.add(new Container(shadowEntity));
+        return entity;
+    }
+
+    public static Entity CreateCropEntity(Vector2 position, CropsType type, AssetService assetService, World world) {
+        Entity entity = new Entity();
+        entity.add(new Transform(new Vector2(position.x, position.y),
+                Constraints.CROPS_Z,
+                new Vector2(1, 1),
+                new Vector2(1, 1),
+                0, 1));
+
+        entity.add(new Graphic(null));
+        var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, true);
+        entity.add(new Physic(body, position));
+        entity.add(new ItemHolder(ItemFactory.instance.CreateCrop(type)));
+        entity.add(new Growable(type.getStage(), AtlasAsset.Crops, type.name()));
         return entity;
     }
 }

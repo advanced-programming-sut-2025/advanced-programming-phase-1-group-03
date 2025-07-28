@@ -8,8 +8,8 @@ import com.ap.asset.MapAsset;
 import com.ap.audio.AudioService;
 import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
-import com.ap.items.Inventory;
 import com.ap.managers.GameUIManager;
+import com.ap.system.GrowSystem;
 import com.ap.managers.MapManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
@@ -21,6 +21,7 @@ import com.ap.tiled.TiledAshleyConfigurator;
 import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
 import com.ap.ui.widget.Clock;
+import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.InventoryMenu;
 import com.ap.ui.widget.ItemContainer;
 import com.ap.ui.widget.tabContents.TabManager;
@@ -49,13 +50,11 @@ public class Farm implements IMap {
     private Viewport viewport;
     private Batch batch;
 
-    private Inventory inventory;
-
     private TimeSystem timeSystem;
 
-    private InventoryMenu inventoryMenu;
     private TabManager tabManager;
     private ItemContainer itemContainer;
+    private CraftingMenu craftingMenu;
     private Clock clock;
 
     // Use to for night darkness
@@ -72,6 +71,7 @@ public class Farm implements IMap {
 
     private GameScreen gameScreen;
     private GdxGame game;
+    private GrowSystem growSystem;
 
     public Farm(GdxGame game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -102,9 +102,8 @@ public class Farm implements IMap {
         tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
 
         // Setup inventory
-        inventory = gameScreen.getInventory();
         itemContainer = gameScreen.getItemContainer();
-//        inventoryMenu = gameScreen.getInventoryMenu();
+        craftingMenu = gameScreen.getCraftingMenu();
         tabManager = gameScreen.getTabManager();
         clock = gameScreen.getClock();
 
@@ -130,14 +129,16 @@ public class Farm implements IMap {
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new SeasonalGraphicSystem(assetService, timeSystem));
         engine.addSystem(new AdjustAlphaSystem(engine));
+        growSystem = new GrowSystem(assetService, weatherSystem);
+        engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
         // Actually it would be better we create a class for forest, but because of simplicity just hardcode it
         if(map == MapAsset.Farm1 || map == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
+        engine.addSystem(new ControllerSystem(inventoryMenu, craftingMenu, engine));
         engine.addSystem(new ControllerSystem(tabManager, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
-        //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
         timeSystem.addTimeListener(new TimeListener());
 
@@ -188,6 +189,9 @@ public class Farm implements IMap {
         public void onSeasonChanged(Season season) {
             tiledService.changeSeasonTileset(season);
         }
-
+        @Override
+        public void onDayChanged(int day) {
+            growSystem.dayPassed();
+        }
     }
 }

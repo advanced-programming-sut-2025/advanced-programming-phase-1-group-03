@@ -5,7 +5,7 @@ import phi.ap.model.enums.Weather;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public enum Seasons {
+public enum  Season {
     Spring("Spring"),
     Summer("Summer"),
     Fall("Fall"),
@@ -14,7 +14,7 @@ public enum Seasons {
     ;
 
     public String name;
-    Seasons(String name) {
+     Season(String name) {
         this.name = name;
     }
     public final static int days = 28;
@@ -23,7 +23,7 @@ public enum Seasons {
         ArrayList<Weather> res = new ArrayList<>();
         for (Weather weather : Weather.values()) {
             if (name.equals("Special")) {
-                if (weather.getSeasonList().size() == 4 || weather.getSeasonList().contains(Seasons.Special)) {
+                if (weather.getSeasonList().size() == 4 || weather.getSeasonList().contains( Season.Special)) {
                     res.add(weather);
                 }
             } else {
@@ -50,13 +50,13 @@ public enum Seasons {
         return res;
     }
 
-    public static ArrayList<Seasons> buildList(Seasons... seasons){
-        return new ArrayList<Seasons>(Arrays.asList(seasons));
+    public static ArrayList< Season> buildList( Season...  Season){
+        return new ArrayList< Season>(Arrays.asList( Season));
     }
-    public static ArrayList<Seasons> getAll(){
-        return new ArrayList<Seasons>(Arrays.asList(Seasons.values()));
+    public static ArrayList< Season> getAll(){
+        return new ArrayList< Season>(Arrays.asList( Season.values()));
     }
-    public boolean equals(Seasons season){
-        return (name().equals(season.name()) || name().equals("Special") || season == Seasons.Special);
+    public boolean equals( Season season){
+        return (name().equals(season.name()) || name().equals("Special") || season ==  Season.Special);
     }
 }

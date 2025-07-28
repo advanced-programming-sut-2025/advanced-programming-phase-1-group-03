@@ -41,7 +41,7 @@ public class MapManager {
         switch (map) {
             case Farm1, Farm2, Forest -> {
                 return new Farm(game, gameScreen);
-            } case House -> {
+            } case House,Greenhouse -> {
                 return new House(game, gameScreen);
             }
         }

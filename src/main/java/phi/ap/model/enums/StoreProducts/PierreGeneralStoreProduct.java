@@ -3,7 +3,7 @@ package phi.ap.model.enums.StoreProducts;
 import phi.ap.model.Game;
 import phi.ap.model.Result;
 import phi.ap.model.enums.*;
-import phi.ap.model.enums.Time.Seasons;
+import phi.ap.model.enums.Time. Season;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.Sapling;
 import phi.ap.model.items.Seed;
@@ -15,10 +15,10 @@ import phi.ap.model.items.tools.Backpack;
 
 public enum PierreGeneralStoreProduct implements StoreItemProducer {
     LargePack("Large Pack", "Unlocks the 2nd row of inventory (12 more slots, total 24).", 2000,
-            2000, 1, new Backpack(1), Seasons.Spring),
+            2000, 1, new Backpack(1),  Season.Spring),
     DeluxPack("Delux Pack", "Unlocks the 3rd row of inventory (infinite slots).", 10000,
             10000
-            , 1, new Backpack(2), Seasons.Spring),
+            , 1, new Backpack(2),  Season.Spring),
     // All Season Products
 
     Rice("Rice", "A basic grain often served under vegetables.", 200, null,
@@ -74,91 +74,91 @@ public enum PierreGeneralStoreProduct implements StoreItemProducer {
 
     // Spring products
     ParsnipSeeds("Parsnip Seeds", "Plant these in the spring. Takes 4 days to mature.", 20,
-            30, 5, new Seed(1, 1, SeedTypes.ParsnipSeeds), Seasons.Spring),
+            30, 5, new Seed(1, 1, SeedTypes.ParsnipSeeds),  Season.Spring),
     BeanStarter("Bean Starter", "Plant these in the spring. Takes 10 days to mature, but keeps producing " +
             "after that. Grows on a trellis.", 60, 90, 5, new Seed(1, 1,
-            SeedTypes.BeanStarter), Seasons.Spring),
+            SeedTypes.BeanStarter),  Season.Spring),
     CauliflowerSeeds("Cauliflower Seeds", "Plant these in the spring. Takes 12 days to produce a large " +
             "cauliflower.", 80, 120, 5, new Seed(1, 1,
-            SeedTypes.CauliflowerSeeds), Seasons.Spring),
+            SeedTypes.CauliflowerSeeds),  Season.Spring),
     PotatoSeeds("Potato Seeds", "Plant these in the spring. Takes 6 days to mature, and has a chance of" +
             " yielding multiple potatoes at harvest.", 50, 75, 5,
-            new Seed(1, 1, SeedTypes.PotatoSeeds), Seasons.Spring),
+            new Seed(1, 1, SeedTypes.PotatoSeeds),  Season.Spring),
     TulipBulb("Tulip Bulb", "Plant in spring. Takes 6 days to produce a colorful flower. Assorted " +
             "colors.", 20, 30, 5, new Seed(1, 1,
-            SeedTypes.TulipBulb), Seasons.Spring),
+            SeedTypes.TulipBulb),  Season.Spring),
     KaleSeeds("Kale Seeds", "Plant these in the spring. Takes 6 days to mature. Harvest with the " +
             "scythe.", 70, 105, 5, new Seed(1, 1,
-            SeedTypes.KaleSeeds), Seasons.Spring),
+            SeedTypes.KaleSeeds),  Season.Spring),
     JazzSeeds("Jazz Seeds", "Plant in spring. Takes 7 days to produce a blue puffball flower.",
-            30, 45, 5, new Seed(1, 1, SeedTypes.JazzSeeds), Seasons.Spring),
+            30, 45, 5, new Seed(1, 1, SeedTypes.JazzSeeds),  Season.Spring),
     GarlicSeeds("Garlic Seeds", "Plant these in the spring. Takes 4 days to mature.",
-            40, 60, 5, new Seed(1, 1, SeedTypes.GarlicSeeds), Seasons.Spring),
+            40, 60, 5, new Seed(1, 1, SeedTypes.GarlicSeeds),  Season.Spring),
     RiceShoot("Rice Shoot", "Plant these in the spring. Takes 8 days to mature. Grows faster if planted" +
             " near a body of water. Harvest with the scythe.", 40, 60, 5,
-            new Seed(1, 1, SeedTypes.RiceShoot), Seasons.Spring),
+            new Seed(1, 1, SeedTypes.RiceShoot),  Season.Spring),
 
     // Summer products
 
     MelonSeeds("Melon Seeds", "Plant these in the summer. Takes 12 days to mature.",
-            80, 120, 5, new Seed(1, 1, SeedTypes.MelonSeeds), Seasons.Summer),
+            80, 120, 5, new Seed(1, 1, SeedTypes.MelonSeeds),  Season.Summer),
     TomatoSeeds("Tomato Seeds", "Plant these in the summer. Takes 11 days to mature, and " +
             "continues to produce after first harvest.", 50, 75, 5,
-            new Seed(1, 1, SeedTypes.TomatoSeeds), Seasons.Summer),
+            new Seed(1, 1, SeedTypes.TomatoSeeds),  Season.Summer),
     BlueberrySeeds("Blueberry Seeds", "Plant these in the summer. Takes 13 days to mature, and " +
             "continues to produce after first harvest.", 80, 120, 5,
-            new Seed(1, 1, SeedTypes.BlueberrySeeds), Seasons.Summer),
+            new Seed(1, 1, SeedTypes.BlueberrySeeds),  Season.Summer),
     PepperSeeds("Pepper Seeds", "Plant these in the summer. Takes 5 days to mature, and continues " +
             "to produce after first harvest.", 40, 60, 5,
-            new Seed(1, 1, SeedTypes.PepperSeeds), Seasons.Summer),
+            new Seed(1, 1, SeedTypes.PepperSeeds),  Season.Summer),
     WheatSeeds("Wheat Seeds", "Plant these in the summer or fall. Takes 4 days to mature. Harvest with" +
             " the scythe.", 10, 15, 5, new Seed(1, 1,
-            SeedTypes.WheatSeeds), Seasons.Summer),
+            SeedTypes.WheatSeeds),  Season.Summer),
     RadishSeeds("Radish Seeds", "Plant these in the summer. Takes 6 days to mature.", 40,
-            60, 5, new Seed(1, 1, SeedTypes.RadishSeeds), Seasons.Summer),
+            60, 5, new Seed(1, 1, SeedTypes.RadishSeeds),  Season.Summer),
     PoppySeeds("Poppy Seeds", "Plant in summer. Produces a bright red flower in 7 days.", 100,
-            150, 5, new Seed(1, 1, SeedTypes.PoppySeeds), Seasons.Summer),
+            150, 5, new Seed(1, 1, SeedTypes.PoppySeeds),  Season.Summer),
     SpangleSeeds("Spangle Seeds", "Plant in summer. Takes 8 days to produce a vibrant tropical flower. " +
             "Assorted colors.", 50, 75, 5, new Seed(1, 1,
-            SeedTypes.SpangleSeeds), Seasons.Summer),
+            SeedTypes.SpangleSeeds),  Season.Summer),
     HopsStarter("Hops Starter", "Plant these in the summer. Takes 11 days to grow, but keeps producing " +
             "after that. Grows on a trellis.", 60, 90, 5, new Seed(1, 1,
-            SeedTypes.HopsStarter), Seasons.Summer),
+            SeedTypes.HopsStarter),  Season.Summer),
     CornSeeds("Corn Seeds", "Plant these in the summer or fall. Takes 14 days to mature, and continues " +
             "to produce after first harvest.", 150, 225, 5, new Seed(1, 1,
-            SeedTypes.CornSeeds), Seasons.Summer),
+            SeedTypes.CornSeeds),  Season.Summer),
     SunflowerSeeds("Sunflower Seeds", "Plant in summer or fall. Takes 8 days to produce a large " +
             "sunflower. Yields more seeds at harvest.", 200, 300, 5,
-            new Seed(1, 1, SeedTypes.SunflowerSeeds), Seasons.Summer),
+            new Seed(1, 1, SeedTypes.SunflowerSeeds),  Season.Summer),
     RedCabbageSeeds("Red Cabbage Seeds", "Plant these in the summer. Takes 9 days to mature.",
             100, 150, 5, new Seed(1, 1,
-            SeedTypes.RedCabbageSeeds), Seasons.Summer),
+            SeedTypes.RedCabbageSeeds),  Season.Summer),
 
     // Fall products
 
     EggplantSeeds("Eggplant Seeds", "Plant these in the fall. Takes 5 days to mature, and continues" +
             " to produce after first harvest.", 25, 25, 5,
-            new Seed(1, 1, SeedTypes.EggplantSeeds), Seasons.Fall),
+            new Seed(1, 1, SeedTypes.EggplantSeeds),  Season.Fall),
     PumpkinSeeds("Pumpkin Seeds", "Plant these in the fall. Takes 13 days to mature.", 125,
-            125, 5, new Seed(1, 1, SeedTypes.PumpkinSeeds), Seasons.Fall),
+            125, 5, new Seed(1, 1, SeedTypes.PumpkinSeeds),  Season.Fall),
     BokChoySeeds("Bok Choy Seeds", "Plant these in the fall. Takes 4 days to mature.",
-            50, 50, 5, new Seed(1, 1, SeedTypes.BokChoySeeds), Seasons.Fall),
+            50, 50, 5, new Seed(1, 1, SeedTypes.BokChoySeeds),  Season.Fall),
     YamSeeds("Yam Seeds", "Plant these in the fall. Takes 10 days to mature.", 75,
-            75, 5, new Seed(1, 1, SeedTypes.YamSeeds), Seasons.Fall),
+            75, 5, new Seed(1, 1, SeedTypes.YamSeeds),  Season.Fall),
     CranberrySeeds("Cranberry Seeds", "Plant these in the fall. Takes 7 days to mature, and " +
             "continues to produce after first harvest.", 300, 300, 5,
-            new Seed(1, 1, SeedTypes.CranberrySeeds), Seasons.Fall),
+            new Seed(1, 1, SeedTypes.CranberrySeeds),  Season.Fall),
     FairySeeds("Fairy Seeds", "Plant in fall. Takes 12 days to produce a mysterious flower. " +
             "Assorted Colors.", 250, 250, 5, new Seed(1, 1,
-            SeedTypes.FairySeeds), Seasons.Fall),
+            SeedTypes.FairySeeds),  Season.Fall),
     AmaranthSeeds("Amaranth Seeds", "Plant these in the fall. Takes 7 days to grow. Harvest with the" +
             " scythe.", 87, 87, 5, new Seed(1, 1,
-            SeedTypes.AmaranthSeeds), Seasons.Fall),
+            SeedTypes.AmaranthSeeds),  Season.Fall),
     GrapeStarter("Grape Starter", "Plant these in the fall. Takes 10 days to grow, but keeps producing" +
             " after that. Grows on a trellis.", 75, 75, 5,
-            new Seed(1, 1, SeedTypes.GrapeStarter), Seasons.Fall),
+            new Seed(1, 1, SeedTypes.GrapeStarter),  Season.Fall),
     ArtichokeSeeds("Artichoke Seeds", "Plant these in the fall. Takes 8 days to mature.", 30,
-            30, 5, new Seed(1, 1, SeedTypes.ArtichokeSeeds), Seasons.Fall);
+            30, 5, new Seed(1, 1, SeedTypes.ArtichokeSeeds),  Season.Fall);
 
     private final String name;
     private final String description;
@@ -166,10 +166,10 @@ public enum PierreGeneralStoreProduct implements StoreItemProducer {
     private Integer dailyLimit;
     private final Item item;
     private final Integer priceOutOfSeason;
-    private final Seasons season;
+    private final  Season season;
 
     PierreGeneralStoreProduct(String name, String description, Integer price, Integer priceOutOfSeason,
-                              Integer dailyLimit, Item item, Seasons season) {
+                              Integer dailyLimit, Item item,  Season season) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -195,7 +195,7 @@ public enum PierreGeneralStoreProduct implements StoreItemProducer {
     public Integer getDailyLimit() {
         return this.dailyLimit;
     }
-    public Seasons getSeason() {
+    public  Season getSeason() {
         return this.season;
     }
     public Integer getPriceOutOfSeason() {

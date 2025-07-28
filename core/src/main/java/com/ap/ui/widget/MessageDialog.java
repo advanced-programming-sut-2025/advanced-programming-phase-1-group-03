@@ -18,8 +18,6 @@ import com.badlogic.gdx.utils.Timer;
 
 public class MessageDialog extends Window {
     private Label questionLabel;
-    private Label yesLabel;
-    private Label noLabel;
     private String fullText;
     private StringBuilder displayedText;
     private int charIndex;
@@ -53,7 +51,8 @@ public class MessageDialog extends Window {
         stage.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 if(isTypingComplete) {
-                    MessageDialog.this.remove();
+                    stage.removeListener(this);
+                    remove();
                 }
             }
         });

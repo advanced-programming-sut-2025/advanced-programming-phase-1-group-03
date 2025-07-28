@@ -15,7 +15,7 @@ public class Constraints {
     public static final float PLAYER_ANIMATION_FRAME_DURATION =  1/ 8f;
 
     // It means 1 second in the real world is equal to how many seconds in the game
-    public static final float GAME_SPEED = 200f;
+    public static final float GAME_SPEED = 2000f;
     // The game start at this hour
     public static final int START_HOUR = 8;
     public static final int END_HOUR = 22;
@@ -28,8 +28,9 @@ public class Constraints {
     public static final int STUMP_GIVEN_WOOD = 3;
     public static final int NUMBER_OF_AXE_NEED_TO_CUT_DOWN_TREE = 4;
     public static final int PLAYER_INITIAL_GOLD = 500;
-    public static final int GREEN_HOUSE_WOOD_NEEDED = 100;
+    public static final int GREEN_HOUSE_WOOD_NEEDED = 10;
     public static final int GREEN_HOUSE_GOLD_NEEDED = 500;
+    public static final int CROPS_Z = 1;
 
 
     public static String[] secQuestions = {

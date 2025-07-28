@@ -4,31 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="some other assets added">
-      <change afterPath="$PROJECT_DIR$/assets/graphics/UI_elements.atlas" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/graphics/UI_elements.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/AbstractContent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/ExitTab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/InventoryTab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/MapTab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/OptionsTab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/SkillTab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/SocialTab.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/TabManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/Tabs.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Crafting Ui implemented.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/classes/java/main/com/ap/GdxGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/InventoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/InventoryMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/ItemContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/Journal.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/Journal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/TabBar.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/StartupHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/StartupHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CraftingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CraftingMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +59,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03/",
-    "accountId": "5cf5475d-255d-4e13-a9f6-6a3ae5b39cf4"
+    "url": "https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03",
+    "accountId": "9a5e195d-f7dd-4766-bce2-9098d13f6850"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -109,7 +87,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Acer/IdeaProjects/StardewValley/assets/graphics&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/StarehdewValley/assets/map/tileset&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -128,17 +106,18 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics" />
+      <recent name="D:\StarehdewValley\assets\map\tileset" />
       <recent name="D:\StarehdewValley\assets\audio" />
       <recent name="D:\StarehdewValley\assets\graphics" />
       <recent name="C:\Users\Surface\IdeaProjects\Stardev\assets\graphics" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\Tabs" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ap.screen.maps" />
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RunGDX">
+  <component name="RunManager" selected="Gradle.StardewValley [run]">
     <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -186,7 +165,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.RunGDX" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>
@@ -196,14 +174,6 @@
         <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -262,48 +232,10 @@
       <workItem from="1753443993767" duration="9855000" />
       <workItem from="1753595101991" duration="1122000" />
       <workItem from="1753636687477" duration="21000" />
-      <workItem from="1753640687635" duration="4248000" />
-      <workItem from="1753725199307" duration="11484000" />
-    </task>
-    <task id="LOCAL-00023" summary="Energy corrected">
-      <option name="closed" value="true" />
-      <created>1747463461234</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1747463461234</updated>
-    </task>
-    <task id="LOCAL-00024" summary="buff bug fixed">
-      <option name="closed" value="true" />
-      <created>1747479410473</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1747479410473</updated>
-    </task>
-    <task id="LOCAL-00025" summary="bomber added">
-      <option name="closed" value="true" />
-      <created>1747482542833</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1747482542833</updated>
-    </task>
-    <task id="LOCAL-00026" summary="thunder fixed">
-      <option name="closed" value="true" />
-      <created>1747484093978</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1747484093978</updated>
-    </task>
-    <task id="LOCAL-00027" summary="player transport at night added">
-      <option name="closed" value="true" />
-      <created>1747485847964</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1747485847964</updated>
+      <workItem from="1753640687635" duration="4387000" />
+      <workItem from="1753673756193" duration="2526000" />
+      <workItem from="1753680220408" duration="19980000" />
+      <workItem from="1753730034681" duration="2292000" />
     </task>
     <task id="LOCAL-00028" summary="bug fixed">
       <option name="closed" value="true" />
@@ -625,7 +557,43 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۷۱" />
       <updated>1753644723304</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL‎−۰۰۰۷۲" summary="Fix some bugs">
+      <option name="closed" value="true" />
+      <created>1753645098983</created>
+      <option name="number" value="LOCAL‎−۰۰۰۷۲" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۷۲" />
+      <updated>1753645098983</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۷۳" summary="Greenhouse bug fixed">
+      <option name="closed" value="true" />
+      <created>1753674646925</created>
+      <option name="number" value="LOCAL‎−۰۰۰۷۳" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۷۳" />
+      <updated>1753674646925</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۷۴" summary="greenhouse map completed">
+      <option name="closed" value="true" />
+      <created>1753689944675</created>
+      <option name="number" value="LOCAL‎−۰۰۰۷۴" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۷۴" />
+      <updated>1753689944675</updated>
+    </task>
+    <task id="LOCAL‎−۰۰۰۷۵" summary="Farming system">
+      <option name="closed" value="true" />
+      <created>1753704968075</created>
+      <option name="number" value="LOCAL‎−۰۰۰۷۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۷۵" />
+      <updated>1753704968075</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Crafting Ui implemented.">
+      <option name="closed" value="true" />
+      <created>1753738865806</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1753738865806</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,11 +624,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="stay logged in and login page completed" />
-    <MESSAGE value="Register &amp; Login finished" />
-    <MESSAGE value="Profile screen finished" />
-    <MESSAGE value="Add Clock" />
-    <MESSAGE value="Adding seasons" />
     <MESSAGE value="Adding map boundary" />
     <MESSAGE value="Some improvements" />
     <MESSAGE value="Fix player animation" />
@@ -681,7 +644,12 @@
     <MESSAGE value="Fixing weather system and house inside" />
     <MESSAGE value="Farm 2 added" />
     <MESSAGE value="Greenhouse done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Greenhouse done" />
+    <MESSAGE value="Fix some bugs" />
+    <MESSAGE value="Greenhouse bug fixed" />
+    <MESSAGE value="greenhouse map completed" />
+    <MESSAGE value="Farming system" />
+    <MESSAGE value="Crafting Ui implemented." />
+    <option name="LAST_COMMIT_MESSAGE" value="Crafting Ui implemented." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

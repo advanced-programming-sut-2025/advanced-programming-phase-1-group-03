@@ -77,6 +77,10 @@ public class ItemContainer extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        // Preventing selectedIndex exceed the inventory size
+        if(selectedIndex >= inventory.getSize()) {
+            selectedIndex = inventory.getSize() - 1;
+        }
         batch.draw(texture,
                 getX(), getY(),
                 0, 0,
@@ -88,15 +92,14 @@ public class ItemContainer extends Actor {
         float widthEach = selectedItem.getRegionWidth() * itemScale * 3;
 
         var font = skin.getFont("font20");
-        font.setColor(Color.WHITE);
-
+        font.setColor(Color.RED);
         for(int i = 0; i < Math.min(inventory.getSize(), maxSize); i++) {
             var itemStack = inventory.getItems().get(i);
             Item item = itemStack.getItem();
             batch.draw(item.getIcon(),
                     getX() + widthEach * i + borderOffset, getY() + borderOffset,
                     0, 0,
-                    item.getIcon().getRegionWidth(), item.getIcon().getRegionHeight(),
+                    48, 48,
                     itemScale, itemScale,
                     0);
         }

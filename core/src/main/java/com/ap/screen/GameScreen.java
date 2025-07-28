@@ -35,7 +35,7 @@ public class GameScreen extends AbstractScreen {
     private Clock clock;
     private ItemContainer itemContainer;
     private EnergyBar energyBar;
-//    private InventoryMenu inventoryMenu;
+    private CraftingMenu craftingMenu;
     private TabManager tabManager;
     private Journal journal;
 
@@ -68,10 +68,10 @@ public class GameScreen extends AbstractScreen {
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
-//        inventoryMenu = new InventoryMenu(assetService, skin, stage, inventory, audioService);
         tabManager = new TabManager(stage, assetService, skin, audioService);
 
         journal = new Journal(assetService, skin, stage);
+        craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
 
         clockManager = new ClockManager(clock);
         timeSystem = new TimeSystem();
@@ -101,6 +101,7 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
         stage.addActor(journal);
+        stage.addActor(craftingMenu);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
@@ -138,13 +139,15 @@ public class GameScreen extends AbstractScreen {
         return itemContainer;
     }
 
+    public CraftingMenu getCraftingMenu() {
+        return craftingMenu;
+    }
+
     public EnergyBar getEnergyBar() {
         return energyBar;
     }
 
-//    public InventoryMenu getInventoryMenu() {
-//        return inventoryMenu;
-//    }
+
 
     public AssetService getAssetService() {
         return assetService;

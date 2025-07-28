@@ -8,6 +8,7 @@ public enum MapAsset implements Asset<TiledMap>{
     Forest("Forest.tmx"),
     House("House.tmx"),
     Farm2("Farm2.tmx"),
+    Greenhouse("Greenhouse.tmx"),
     ;
     private final AssetDescriptor<TiledMap> descriptor;
 

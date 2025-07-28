@@ -8,6 +8,7 @@ public enum Command {
     Down(Input.Keys.DOWN, Input.Keys.S),
     Up(Input.Keys.UP, Input.Keys.W),
     OpenInventory(Input.Keys.E),
+    OpenCrafting(Input.Keys.B),
     Click()
     ;
 

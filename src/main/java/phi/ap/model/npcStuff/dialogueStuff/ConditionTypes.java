@@ -1,7 +1,7 @@
 package phi.ap.model.npcStuff.dialogueStuff;
 
 import phi.ap.model.Game;
-import phi.ap.model.enums.Time.Seasons;
+import phi.ap.model.enums.Time. Season;
 import phi.ap.model.enums.Weather;
 import phi.ap.model.enums.npcStuff.Quests;
 import phi.ap.model.items.Item;
@@ -11,7 +11,7 @@ public class ConditionTypes {
         return state -> true;
     }
     public static Condition never() { return state -> false; }
-    public static Condition season(Seasons season) {
+    public static Condition season( Season season) {
         return state -> state.getCurrentDate().getSeason() == season;
     }
     public static Condition friendshipLess(int level) {

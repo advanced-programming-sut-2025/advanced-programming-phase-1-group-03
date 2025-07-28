@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="20" height="24" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="6">
+ <properties>
+  <property name="AmbientLight" value="255 255 255"/>
+  <property name="AmbientNightLight" value="180 180 0"/>
+  <property name="Warp" value="10 24 Farm 28 16"/>
+ </properties>
+ <tileset firstgid="1" name="TownInterior" tilewidth="16" tileheight="16" tilecount="2176" columns="32">
+  <image source="tileset/townInterior.png" width="512" height="1088"/>
+  <tile id="1885">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="1887">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="1945">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="1946">
+   <properties>
+    <property name="Diggable" value="T"/>
+    <property name="Type" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="2046">
+   <animation>
+    <frame tileid="2046" duration="250"/>
+    <frame tileid="2046" duration="250"/>
+    <frame tileid="2046" duration="250"/>
+    <frame tileid="2046" duration="250"/>
+    <frame tileid="2009" duration="250"/>
+    <frame tileid="2009" duration="250"/>
+    <frame tileid="2009" duration="250"/>
+    <frame tileid="2009" duration="250"/>
+   </animation>
+  </tile>
+  <tile id="2047">
+   <animation>
+    <frame tileid="2047" duration="250"/>
+    <frame tileid="2047" duration="250"/>
+    <frame tileid="2047" duration="250"/>
+    <frame tileid="1977" duration="250"/>
+    <frame tileid="1977" duration="250"/>
+    <frame tileid="1977" duration="250"/>
+    <frame tileid="1977" duration="250"/>
+    <frame tileid="2047" duration="250"/>
+   </animation>
+  </tile>
+  <tile id="2075">
+   <properties>
+    <property name="Diggable" value="T"/>
+    <property name="Type" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="2076">
+   <properties>
+    <property name="Diggable" type="bool" value="true"/>
+    <property name="Type" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="2078">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="2079">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="2106">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="2107">
+   <properties>
+    <property name="Diggable" value="T"/>
+    <property name="Type" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="2108">
+   <properties>
+    <property name="Diggable" value="T"/>
+    <property name="Type" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="2109">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="2177" source="objects/Objects.tsx"/>
+ <layer id="1" name="Back" width="20" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYKQyphYYNY8+5v1hh2BizUtgJ4ztOAirgZkHUkspnoVmHogvD6Tj2EnD8njMswbSMiRgWQ6IHnzmzQbSNkg0OkYWtyXCPGxmUMM8dHci0zA2ue7DFQakmgdzCza3UeJfargPV/wiyxFjHj5zyDGPkFmk+BeUdxRIxPjyGzHlDK6yB908apYvxGCQHmLUAQDEKWUR
+  </data>
+ </layer>
+ <layer id="3" name="Buildings" width="20" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgYAJibgoxDwMEKELpPewMDHvZsdPIGJcaBqiZjlDz7gDF7rJjp5ExLjUg4Ipk3h+g2F927DQyxqUG2bzdePyB7Gd8avaxI8y7jccfyH7Gp+Yeknm/8fjjL9QvIIBPzT8k86Q5GBj2A/kHgLgeiBuQzHAAyv0H8TkYUIAEMJFFsCL0yXEgzEPWTy7YyIIwbxMj5eaBAHJ6GTVv1LxR8+hj3kYq5F9QGQAybyEQb2ZElDuNzKSZA9MHKqNWQMUYCeBEqLpmPGpgAAC6zXSi
+  </data>
+ </layer>
+ <layer id="5" name="Front" width="20" height="24">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAOYEFi72an3Lx9QDNUoezbVDDvHpIZv6lg3j8kM6Q5KDdPjgpm4APzge5dAMTxWPx+Hyj2AE38ByMDgwUrQl8hC6Y+SsBEKps3CkbBKBg+AFbuJDGTpw8ZLALiZXjwYqi6JXjULCfBDYlQPc1EqAUAtyQcXA==
+  </data>
+ </layer>
+ <objectgroup id="7" name="objects">
+  <object id="3" name="mapBoundary" x="17.1483" y="128">
+   <polygon points="15.9234,0.61244 79.0048,-0.61244 79.0048,-14.6986 111.464,-14.0861 110.852,-0.61244 162.909,-1.22488 162.297,-15.311 205.167,-15.9234 205.78,-1.83732 271.311,0 271.311,14.0861 285.397,14.0861 287.234,206.392 268.861,207.005 259.675,212.517 241.914,216.804 237.014,229.665 161.072,232.115 159.847,248.651 144.536,249.263 142.699,231.502 64.3062,232.115 56.3445,222.316 25.11,215.579 16.5359,224.766 15.311,207.005 -1.22488,208.842 -0.61244,30.622 15.9234,33.0718"/>
+  </object>
+  <object id="4" name="spawner" x="162.909" y="354.603" width="11.6364" height="20.823">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="Farm"/>
+   </properties>
+  </object>
+  <object id="5" name="Player" gid="2179" x="151.809" y="358.813" width="32" height="32">
+   <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
+    <property name="speed" type="float" value="3"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
