@@ -21,6 +21,7 @@ import com.ap.tiled.TiledAshleyConfigurator;
 import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
 import com.ap.ui.widget.Clock;
+import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.InventoryMenu;
 import com.ap.ui.widget.ItemContainer;
 import com.badlogic.ashley.core.Engine;
@@ -51,6 +52,7 @@ public class House implements IMap{
     private TimeSystem timeSystem;
 
     private InventoryMenu inventoryMenu;
+    private CraftingMenu craftingMenu;
     private Clock clock;
     private ItemContainer itemContainer;
 
@@ -80,6 +82,7 @@ public class House implements IMap{
         batch = game.getBatch();
 
         itemContainer = gameScreen.getItemContainer();
+        craftingMenu = gameScreen.getCraftingMenu();
 
         engine = new Engine();
 
@@ -123,7 +126,7 @@ public class House implements IMap{
         growSystem = new GrowSystem(assetService, weatherSystem);
         engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
-        engine.addSystem(new ControllerSystem(inventoryMenu, engine));
+        engine.addSystem(new ControllerSystem(inventoryMenu, craftingMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
 
         // It'd be better we create separate class for green house, but we hard code it :)

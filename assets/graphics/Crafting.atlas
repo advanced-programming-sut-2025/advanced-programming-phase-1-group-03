@@ -1,0 +1,67 @@
+Crafting.png
+size: 785, 489
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+pma: false
+Bee_House
+  bounds: 690, 99, 48, 94
+  offsets: 0, 0, 48, 96
+Bomb
+  bounds: 227, 440, 46, 44
+  offsets: 0, 2, 48, 48
+Charcoal_Kiln
+  bounds: 640, 1, 48, 96
+Cheese_Press
+  bounds: 689, 371, 46, 92
+  offsets: 0, 2, 48, 96
+Cherry_Bomb
+  bounds: 358, 440, 23, 29
+  offsets: 12, 11, 48, 48
+CraftingBackground
+  bounds: 1, 1, 637, 437
+Dehydrator
+  bounds: 690, 195, 48, 89
+  offsets: 0, 1, 48, 96
+Deluxe_Scarecrow
+  bounds: 690, 1, 48, 96
+Fish_Smoker
+  bounds: 640, 364, 47, 96
+  offsets: 0, 0, 48, 96
+Furnace
+  bounds: 201, 440, 24, 45
+  offsets: 0, 0, 24, 48
+Grass_Starter
+  bounds: 1, 440, 48, 48
+Iridium_Sprinkler
+  bounds: 51, 440, 48, 46
+  offsets: 0, 0, 48, 48
+Keg
+  bounds: 640, 197, 48, 89
+  offsets: 0, 2, 48, 96
+Loom
+  bounds: 640, 288, 48, 74
+  offsets: 0, 4, 48, 96
+Mayonnaise_Machine
+  bounds: 737, 371, 46, 83
+  offsets: 0, 5, 48, 96
+Mega_Bomb
+  bounds: 101, 440, 48, 46
+  offsets: 0, 2, 48, 48
+Mystic_Tree_Seed
+  bounds: 321, 440, 35, 41
+  offsets: 7, 3, 48, 48
+Oil_Maker
+  bounds: 740, 1, 44, 71
+  offsets: 2, 2, 48, 96
+Preserves_Jar
+  bounds: 690, 286, 48, 83
+  offsets: 0, 2, 48, 96
+Quality_Sprinkler
+  bounds: 151, 440, 48, 46
+  offsets: 0, 2, 48, 48
+Scarecrow
+  bounds: 640, 99, 48, 96
+Sprinkler
+  bounds: 275, 440, 44, 41
+  offsets: 2, 1, 48, 48

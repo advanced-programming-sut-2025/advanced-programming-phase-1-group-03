@@ -21,6 +21,7 @@ import com.ap.tiled.TiledAshleyConfigurator;
 import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
 import com.ap.ui.widget.Clock;
+import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.InventoryMenu;
 import com.ap.ui.widget.ItemContainer;
 import com.badlogic.ashley.core.Engine;
@@ -52,6 +53,7 @@ public class Farm implements IMap {
 
     private InventoryMenu inventoryMenu;
     private ItemContainer itemContainer;
+    private CraftingMenu craftingMenu;
     private Clock clock;
 
     // Use to for night darkness
@@ -101,6 +103,7 @@ public class Farm implements IMap {
         // Setup inventory
         itemContainer = gameScreen.getItemContainer();
         inventoryMenu = gameScreen.getInventoryMenu();
+        craftingMenu = gameScreen.getCraftingMenu();
         clock = gameScreen.getClock();
 
         timeSystem = gameScreen.getTimeSystem();
@@ -132,7 +135,7 @@ public class Farm implements IMap {
         if(map == MapAsset.Farm1 || map == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
-        engine.addSystem(new ControllerSystem(inventoryMenu, engine));
+        engine.addSystem(new ControllerSystem(inventoryMenu, craftingMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
 
         timeSystem.addTimeListener(new TimeListener());

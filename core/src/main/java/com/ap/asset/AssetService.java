@@ -4,6 +4,9 @@ import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -46,6 +49,13 @@ public class AssetService implements Disposable {
         assetManager.load(asset.getAssetDescriptor());
     }
 
+    public Texture getWhitePixel() {
+        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.WHITE);
+        pixmap.fill();
+        Texture whiteTexture = new Texture(pixmap);
+        return whiteTexture;
+    }
     public boolean update() {
         return assetManager.update();
     }
