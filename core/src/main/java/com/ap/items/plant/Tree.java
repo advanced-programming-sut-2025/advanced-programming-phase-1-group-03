@@ -1,6 +1,9 @@
 package com.ap.items.plant;
 
+import com.ap.items.Item;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+
+import java.util.List;
 
 public class Tree extends Plant{
     public Tree(String name) {
@@ -8,4 +11,8 @@ public class Tree extends Plant{
     }
 
 
+    @Override
+    public List<Item> produceItems() {
+        return List.of();
+    }
 }

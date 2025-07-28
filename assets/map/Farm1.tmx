@@ -98,18 +98,27 @@
    </properties>
   </tile>
   <tile id="183">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="183" duration="1000"/>
     <frame tileid="1182" duration="1000"/>
    </animation>
   </tile>
   <tile id="184">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="184" duration="1000"/>
     <frame tileid="1183" duration="1000"/>
    </animation>
   </tile>
   <tile id="185">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="185" duration="1000"/>
     <frame tileid="1184" duration="1000"/>
@@ -171,6 +180,9 @@
    </properties>
   </tile>
   <tile id="208">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="208" duration="1000"/>
     <frame tileid="1207" duration="1000"/>
@@ -186,12 +198,18 @@
    </animation>
   </tile>
   <tile id="210">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="210" duration="1000"/>
     <frame tileid="1209" duration="1000"/>
    </animation>
   </tile>
   <tile id="211">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="211" duration="1000"/>
     <frame tileid="1210" duration="1000"/>
@@ -239,12 +257,20 @@
     <property name="Type" value="Dirt"/>
    </properties>
   </tile>
+  <tile id="233">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
+  </tile>
   <tile id="234">
    <properties>
     <property name="Water" value="T"/>
    </properties>
   </tile>
   <tile id="235">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="235" duration="1000"/>
     <frame tileid="1290" duration="1000"/>
@@ -291,12 +317,23 @@
    </properties>
   </tile>
   <tile id="258">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="258" duration="1000"/>
     <frame tileid="1257" duration="1000"/>
    </animation>
   </tile>
+  <tile id="259">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
+  </tile>
   <tile id="260">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="260" duration="1000"/>
     <frame tileid="1315" duration="1000"/>

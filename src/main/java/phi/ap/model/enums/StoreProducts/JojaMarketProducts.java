@@ -5,7 +5,7 @@ import phi.ap.model.Result;
 import phi.ap.model.enums.FoodTypes;
 import phi.ap.model.enums.SeedTypes;
 import phi.ap.model.enums.SoilTypes;
-import phi.ap.model.enums.Time.Seasons;
+import phi.ap.model.enums.Time. Season;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.Seed;
 import phi.ap.model.items.products.Food;
@@ -27,116 +27,116 @@ public enum JojaMarketProducts implements StoreItemProducer{
             new Food(1, 1, FoodTypes.Rice), null),
     // Spring
     PARSNIP_SEEDS("Parsnip Seeds", "Plant these in the spring. Takes 4 days to mature.", 25, 5,
-            new Seed(1, 1, SeedTypes.ParsnipSeeds), Seasons.Spring),
+            new Seed(1, 1, SeedTypes.ParsnipSeeds),  Season.Spring),
     BEAN_STARTER("Bean Starter", "Plant these in the spring. Takes 10 days to mature, but keeps " +
             "producing after that. Grows on a trellis.", 75, 5, new Seed(1, 1,
-            SeedTypes.BeanStarter), Seasons.Spring),
+            SeedTypes.BeanStarter),  Season.Spring),
     CAULIFLOWER_SEEDS("Cauliflower Seeds", "Plant these in the spring. Takes 12 days to produce a large " +
-            "cauliflower.", 100, 5, new Seed(1, 1, SeedTypes.CauliflowerSeeds), Seasons.Spring),
+            "cauliflower.", 100, 5, new Seed(1, 1, SeedTypes.CauliflowerSeeds),  Season.Spring),
     POTATO_SEEDS("Potato Seeds", "Plant these in the spring. Takes 6 days to mature, and has a chance of " +
             "yielding multiple potatoes at harvest.", 62, 5, new Seed(1, 1,
-            SeedTypes.PotatoSeeds), Seasons.Spring),
+            SeedTypes.PotatoSeeds),  Season.Spring),
     STRAWBERRY_SEEDS("Strawberry Seeds", "Plant these in spring. Takes 8 days to mature, and " +
             "keeps producing strawberries after that.", 100, 5, new Seed(1, 1,
-            SeedTypes.StrawberrySeeds), Seasons.Spring),
+            SeedTypes.StrawberrySeeds),  Season.Spring),
     TULIP_BULB("Tulip Bulb", "Plant in spring. Takes 6 days to produce a colorful flower. " +
-            "Assorted colors.", 25, 5, new Seed(1, 1, SeedTypes.TulipBulb), Seasons.Spring),
+            "Assorted colors.", 25, 5, new Seed(1, 1, SeedTypes.TulipBulb),  Season.Spring),
     KALE_SEEDS("Kale Seeds", "Plant these in the spring. Takes 6 days to mature. Harvest with " +
-            "the scythe.", 87, 5, new Seed(1, 1, SeedTypes.KaleSeeds), Seasons.Spring),
+            "the scythe.", 87, 5, new Seed(1, 1, SeedTypes.KaleSeeds),  Season.Spring),
     COFFEE_BEANS("Coffee Beans", "Plant in summer or spring. Takes 10 days to grow, then produces " +
             "coffee beans every other day.", 200, 5, new Seed(1, 1, SeedTypes.CoffeeBean),
-            Seasons.Spring),
+             Season.Spring),
     CARROT_SEEDS("Carrot Seeds", "Plant in the spring. Takes 3 days to grow.", 5, 10,
-            new Seed(1, 1, SeedTypes.CarrotSeeds), Seasons.Spring),
+            new Seed(1, 1, SeedTypes.CarrotSeeds),  Season.Spring),
     RHUBARB_SEEDS("Rhubarb Seeds", "Plant these in the spring. Takes 13 days to mature.", 100,
-            5, new Seed(1, 1, SeedTypes.RhubarbSeeds), Seasons.Spring),
+            5, new Seed(1, 1, SeedTypes.RhubarbSeeds),  Season.Spring),
     JAZZ_SEEDS("Jazz Seeds", "Plant in spring. Takes 7 days to produce a blue puffball flower.",
-            37, 5, new Seed(1, 1, SeedTypes.JazzSeeds), Seasons.Spring),
+            37, 5, new Seed(1, 1, SeedTypes.JazzSeeds),  Season.Spring),
     // Summer
     CORN_SEEDS("Corn Seeds", "Plant these in the summer or fall. Takes 14 days to mature, and continues" +
             " to produce after first harvest.", 187, 5, new Seed(1, 1, SeedTypes.CornSeeds),
-            Seasons.Summer),
+             Season.Summer),
     EGGPLANT_SEEDS("Eggplant Seeds", "Plant these in the fall. Takes 5 days to mature, and continues" +
             " to produce after first harvest.", 25, 5, new Seed(1, 1,
-            SeedTypes.EggplantSeeds), Seasons.Summer),
+            SeedTypes.EggplantSeeds),  Season.Summer),
     PUMPKIN_SEEDS("Pumpkin Seeds", "Plant these in the fall. Takes 13 days to mature.",
-            125, 5, new Seed(1, 1, SeedTypes.PumpkinSeeds), Seasons.Summer),
+            125, 5, new Seed(1, 1, SeedTypes.PumpkinSeeds),  Season.Summer),
     BROCCOLI_SEEDS("Broccoli Seeds", "Plant in the fall. Takes 8 days to mature, and " +
             "continues to produce after first harvest.", 15, 5, new Seed(1, 1,
-            SeedTypes.BroccoliSeeds), Seasons.Summer),
+            SeedTypes.BroccoliSeeds),  Season.Summer),
     AMARANTH_SEEDS("Amaranth Seeds", "Plant these in the fall. Takes 7 days to grow. " +
             "Harvest with the scythe.", 87, 5, new Seed(1, 1,
-            SeedTypes.AmaranthSeeds), Seasons.Summer),
+            SeedTypes.AmaranthSeeds),  Season.Summer),
     GRAPE_STARTER("Grape Starter", "Plant these in the fall. Takes 10 days to grow, " +
             "but keeps producing after that. Grows on a trellis.", 75, 5, new Seed(1, 1,
-            SeedTypes.GrapeStarter), Seasons.Summer),
+            SeedTypes.GrapeStarter),  Season.Summer),
     BEET_SEEDS("Beet Seeds", "Plant these in the fall. Takes 6 days to mature.", 20, 5,
-            new Seed(1, 1, SeedTypes.BeetSeeds), Seasons.Summer),
+            new Seed(1, 1, SeedTypes.BeetSeeds),  Season.Summer),
     YAM_SEEDS("Yam Seeds", "Plant these in the fall. Takes 10 days to mature.", 75, 5,
-            new Seed(1, 1, SeedTypes.CornSeeds), Seasons.Summer),
+            new Seed(1, 1, SeedTypes.CornSeeds),  Season.Summer),
     BOK_CHOY_SEEDS("Bok Choy Seeds", "Plant these in the fall. Takes 4 days to mature.", 20,
-            5, new Seed(1, 1, SeedTypes.YamSeeds), Seasons.Summer),
+            5, new Seed(1, 1, SeedTypes.YamSeeds),  Season.Summer),
     CRANBERRY_SEEDS("Cranberry Seeds", "Plant these in the fall. Takes 7 days to mature, and continues " +
             "to produce after first harvest.", 62, 5, new Seed(1, 1,
-            SeedTypes.CranberrySeeds), Seasons.Summer),
+            SeedTypes.CranberrySeeds),  Season.Summer),
     SUNFLOWER_SEEDS("Sunflower Seeds", "Plant in summer or fall. Takes 8 days to produce a " +
             "large sunflower. Yields more seeds at harvest.", 300, 5, new Seed(1, 1,
-            SeedTypes.SunflowerSeeds), Seasons.Summer),
+            SeedTypes.SunflowerSeeds),  Season.Summer),
     FAIRY_SEEDS("Fairy Seeds", "Plant in fall. Takes 12 days to produce a mysterious flower. Assorted " +
-            "Colors.", 125, 5, new Seed(1, 1, SeedTypes.FairySeeds), Seasons.Summer),
+            "Colors.", 125, 5, new Seed(1, 1, SeedTypes.FairySeeds),  Season.Summer),
     RARE_SEED("Rare Seed", "Sow in fall. Takes all season to grow.", 250, 5,
-            new Seed(1, 1, SeedTypes.RareSeed), Seasons.Summer),
+            new Seed(1, 1, SeedTypes.RareSeed),  Season.Summer),
     WHEAT_SEEDS("Wheat Seeds", "Plant these in the summer or fall. Takes 4 days to mature. " +
             "Harvest with the scythe.", 12, 5, new Seed(1, 1,
-            SeedTypes.WheatSeeds), Seasons.Summer),
+            SeedTypes.WheatSeeds),  Season.Summer),
     // Fall
     CornSeeds("Corn Seeds", "Plant these in the summer or fall. Takes 14 days to mature, and " +
             "continues to produce after first harvest.", 187, 5, new Seed(1, 1,
-            SeedTypes.CornSeeds), Seasons.Fall),
+            SeedTypes.CornSeeds),  Season.Fall),
     EggplantSeeds("Eggplant Seeds", "Plant these in the fall. Takes 5 days to mature, and " +
             "continues to produce after first harvest.", 25, 5, new Seed(1, 1,
-            SeedTypes.EggplantSeeds), Seasons.Fall),
+            SeedTypes.EggplantSeeds),  Season.Fall),
     PumpkinSeeds("Pumpkin Seeds", "Plant these in the fall. Takes 13 days to mature.", 125,
-            5, new Seed(1, 1, SeedTypes.PumpkinSeeds), Seasons.Fall),
+            5, new Seed(1, 1, SeedTypes.PumpkinSeeds),  Season.Fall),
     BroccoliSeeds("Broccoli Seeds", "Plant in the fall. Takes 8 days to mature, and continues to " +
             "produce after first harvest.", 15, 5, new Seed(1, 1,
-            SeedTypes.BroccoliSeeds), Seasons.Fall),
+            SeedTypes.BroccoliSeeds),  Season.Fall),
     AmaranthSeeds("Amaranth Seeds", "Plant these in the fall. Takes 7 days to grow. Harvest " +
-            "with the scythe.", 87, 5, new Seed(1, 1, SeedTypes.AmaranthSeeds), Seasons.Fall),
+            "with the scythe.", 87, 5, new Seed(1, 1, SeedTypes.AmaranthSeeds),  Season.Fall),
     GrapeStarter("Grape Starter", "Plant these in the fall. Takes 10 days to grow, " +
             "but keeps producing after that. Grows on a trellis.", 75, 5,
-            new Seed(1, 1, SeedTypes.GrapeStarter), Seasons.Fall),
+            new Seed(1, 1, SeedTypes.GrapeStarter),  Season.Fall),
     BeetSeeds("Beet Seeds", "Plant these in the fall. Takes 6 days to mature.",
-            20, 5, new Seed(1, 1, SeedTypes.BeetSeeds), Seasons.Fall),
+            20, 5, new Seed(1, 1, SeedTypes.BeetSeeds),  Season.Fall),
     YamSeeds("Yam Seeds", "Plant these in the fall. Takes 10 days to mature.",
-            75, 5, new Seed(1, 1, SeedTypes.YamSeeds), Seasons.Fall),
+            75, 5, new Seed(1, 1, SeedTypes.YamSeeds),  Season.Fall),
     BokChoySeeds("Bok Choy Seeds", "Plant these in the fall. Takes 4 days to mature.",
-            62, 5, new Seed(1, 1, SeedTypes.BokChoySeeds), Seasons.Fall),
+            62, 5, new Seed(1, 1, SeedTypes.BokChoySeeds),  Season.Fall),
     CranberrySeeds("Cranberry Seeds", "Plant these in the fall. Takes 7 days to mature, and " +
             "continues to produce after first harvest.", 300, 5, new Seed(1, 1,
-            SeedTypes.CranberrySeeds), Seasons.Fall),
+            SeedTypes.CranberrySeeds),  Season.Fall),
     SunflowerSeeds("Sunflower Seeds", "Plant in summer or fall. Takes 8 days to produce a " +
             "large sunflower. Yields more seeds at harvest.", 125, 5, new Seed(1, 1,
-            SeedTypes.SunflowerSeeds), Seasons.Fall),
+            SeedTypes.SunflowerSeeds),  Season.Fall),
     FairySeeds("Fairy Seeds", "Plant in fall. Takes 12 days to produce a mysterious flower. " +
-            "Assorted Colors.", 250, 5, new Seed(1, 1, SeedTypes.FairySeeds), Seasons.Fall),
+            "Assorted Colors.", 250, 5, new Seed(1, 1, SeedTypes.FairySeeds),  Season.Fall),
     RareSeed("Rare Seed", "Sow in fall. Takes all season to grow.", 1000, 1,
-            new Seed(1, 1, SeedTypes.RareSeed), Seasons.Fall),
+            new Seed(1, 1, SeedTypes.RareSeed),  Season.Fall),
     WheatSeeds("Wheat Seeds", "Plant these in the summer or fall. Takes 4 days to mature. " +
             "Harvest with the scythe.", 12, 5, new Seed(1, 1,
-            SeedTypes.WheatSeeds), Seasons.Fall),
+            SeedTypes.WheatSeeds),  Season.Fall),
     // Winter
     PowdermelonSeeds("Powdermelon Seeds", "This special melon grows in the winter. Takes 7 days to grow."
-            , 20, 10, new Seed(1, 1, SeedTypes.PowdermelonSeeds), Seasons.Winter);
+            , 20, 10, new Seed(1, 1, SeedTypes.PowdermelonSeeds),  Season.Winter);
     private final String name;
     private final String description;
     private final Integer price;
     private Integer dailyLimit;
     private Integer availableAmount = 1000;
     private final Item item;
-    private final Seasons season;
+    private final  Season season;
 
-    JojaMarketProducts(String name, String description, Integer price, Integer dailyLimit, Item item, Seasons season) {
+    JojaMarketProducts(String name, String description, Integer price, Integer dailyLimit, Item item,  Season season) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -160,7 +160,7 @@ public enum JojaMarketProducts implements StoreItemProducer{
     public Integer getDailyLimit() {
         return this.dailyLimit;
     }
-    public Seasons getSeason() {
+    public  Season getSeason() {
         return this.season;
     }
 

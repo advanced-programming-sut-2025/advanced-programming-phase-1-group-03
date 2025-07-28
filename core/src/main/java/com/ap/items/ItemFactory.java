@@ -2,6 +2,7 @@ package com.ap.items;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
+import com.ap.items.food.Food;
 import com.ap.items.plant.Crop;
 import com.ap.items.plant.Seed;
 import com.ap.items.plant.Tree;
@@ -42,6 +43,14 @@ public class ItemFactory {
     public Item CreateCrop(CropsType type) {
         TextureRegion icon = assetService.get(AtlasAsset.Crops).findRegion(type.getName());
         return new Crop(icon, type);
+    }
+    public Item CreateProductOfCrop(CropsType type) {
+        var icon = assetService.get(AtlasAsset.Crops).findRegion(type.getName());
+        if(type.getEnergyProduce() == null) {
+            return new Item(type.name(), 64, icon, type.getBaseSellPrice());
+        } else {
+            return new Food(type.name(), 64, icon, type.getBaseSellPrice());
+        }
     }
     public void setAssetService(AssetService assetService) {
         this.assetService = assetService;

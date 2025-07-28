@@ -19,7 +19,7 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Seed extends Item {
     private CropsType belongingCropType;
     public Seed(TextureRegion icon, CropsType belongingCropType) {
-        super(belongingCropType.name(), 64, icon, 0);
+        super(belongingCropType.name() + " Seeds", 64, icon, 0);
         this.belongingCropType = belongingCropType;
     }
 

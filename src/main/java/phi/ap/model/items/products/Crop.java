@@ -16,7 +16,7 @@ public class Crop extends Plant {
     private CropsTypes type = null;
     private ForagingCropsTypes foragingType = null;
     private boolean oneTime = true;
-    private int regrowthTime = 100000000;
+    private int regrowthTime =  null;
     private Date lastHarvestDate = null;
 
     public Crop(int height, int width, CropsTypes type) {
@@ -70,7 +70,7 @@ public class Crop extends Plant {
             setLevelsForArrayList(products);
             return products;
         }
-        if ((type != null ? !type.getSeasonsList().contains(Game.getInstance().getDate().getSeason()) : !foragingType.getSeasonsList().contains(Game.getInstance().getDate().getSeason())) && !isInGreenHouse()) {
+        if ((type != null ? !type.get SeasonList().contains(Game.getInstance().getDate().getSeason()) : !foragingType.get SeasonList().contains(Game.getInstance().getDate().getSeason())) && !isInGreenHouse()) {
             setLevelsForArrayList(products);
             return products;
         }

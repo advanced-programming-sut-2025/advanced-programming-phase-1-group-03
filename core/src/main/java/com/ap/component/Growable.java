@@ -15,11 +15,18 @@ public class Growable implements Component {
     private int elapsedDay;
     private boolean isWateredToday = false;
 
+    // 1 base
+    private int currentStage;
+
     public Growable(ArrayList<Integer> stages, AtlasAsset atlas, String assetKey) {
         this.stages = stages;
         this.atlas = atlas;
         this.assetKey = assetKey;
         this.elapsedDay = 0;
+    }
+
+    public boolean canProduce() {
+        return currentStage == stages.size();
     }
 
     public ArrayList<Integer> getStages() {
@@ -60,5 +67,13 @@ public class Growable implements Component {
 
     public void setWateredToday(boolean wateredToday) {
         isWateredToday = wateredToday;
+    }
+
+    public int getCurrentStage() {
+        return currentStage;
+    }
+
+    public void setCurrentStage(int currentStage) {
+        this.currentStage = currentStage;
     }
 }

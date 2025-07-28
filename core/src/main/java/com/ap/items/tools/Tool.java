@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public abstract class Tool extends Item {
     protected final Abilities relatedAbility;
+    protected int currentLevel = 0;
 
     public Tool(String name, TextureRegion icon, Abilities relatedAbility) {
         super(name, 1, icon);

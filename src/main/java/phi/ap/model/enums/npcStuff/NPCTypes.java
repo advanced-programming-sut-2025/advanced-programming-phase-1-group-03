@@ -4,7 +4,7 @@ import phi.ap.model.App;
 import phi.ap.model.ItemStack;
 import phi.ap.model.Tile;
 import phi.ap.model.enums.*;
-import phi.ap.model.enums.Time.Seasons;
+import phi.ap.model.enums.Time. Season;
 import phi.ap.model.items.Item;
 import phi.ap.model.npcStuff.dialogueStuff.ConditionTypes;
 import phi.ap.model.npcStuff.dialogueStuff.DialogueNode;
@@ -102,9 +102,9 @@ public enum NPCTypes {
             friendShip3.addChild(stormDay);
             friendShip3.addChild(snowDay);
 
-            DialogueNode seasonSummer = new DialogueNode("I love summer!", ConditionTypes.season(Seasons.Summer), false, "season");
-            root.addChild(seasonSummer);
-            friendShip3.addChild(seasonSummer);
+            DialogueNode  Seasonummer = new DialogueNode("I love summer!", ConditionTypes.season( Season.Summer), false, "season");
+            root.addChild( Seasonummer);
+            friendShip3.addChild( Seasonummer);
 
             DialogueNode hi = new DialogueNode("Is everything fine?", ConditionTypes.always(), false, "hi");
             root.addChild(hi);
@@ -135,9 +135,9 @@ public enum NPCTypes {
             DialogueNode friendShip3 = new DialogueNode("wanna stay:)?", ConditionTypes.friendshipMore(3), false, "friendship");
             root.addChild(friendShip3);
 
-            DialogueNode seasonSummer = new DialogueNode("summerTime sadness:(", ConditionTypes.season(Seasons.Summer), false, "season");
-            friendship2.addChild(seasonSummer);
-            friendShip3.addChild(seasonSummer);
+            DialogueNode  Seasonummer = new DialogueNode("summerTime sadness:(", ConditionTypes.season( Season.Summer), false, "season");
+            friendship2.addChild( Seasonummer);
+            friendShip3.addChild( Seasonummer);
 
             DialogueNode rainyDay = new DialogueNode("wanna walk under the rain?", ConditionTypes.weather(Weather.Rain));
             DialogueNode stormDay = new DialogueNode("It's such a heavy storm, stay here it's dangerous", ConditionTypes.weather(Weather.Storm));
@@ -184,9 +184,9 @@ public enum NPCTypes {
             friendShip3.addChild(stormDay);
             friendShip3.addChild(snowDay);
 
-            DialogueNode seasonSummer = new DialogueNode("If the summer weren't so hot, I would be white!", ConditionTypes.season(Seasons.Summer), false, "season");
-            root.addChild(seasonSummer);
-            friendShip3.addChild(seasonSummer);
+            DialogueNode  Seasonummer = new DialogueNode("If the summer weren't so hot, I would be white!", ConditionTypes.season( Season.Summer), false, "season");
+            root.addChild( Seasonummer);
+            friendShip3.addChild( Seasonummer);
 
             DialogueNode hi = new DialogueNode("What's up?", ConditionTypes.always(), false, "hi");
             root.addChild(hi);
@@ -222,9 +222,9 @@ public enum NPCTypes {
             root.addChild(stormDay);
             root.addChild(snowDay);
 
-            DialogueNode seasonSummer = new DialogueNode("It's such a cool season for swim, I love it!", ConditionTypes.season(Seasons.Summer), false, "season");
-            root.addChild(seasonSummer);
-            friendShip3.addChild(seasonSummer);
+            DialogueNode  Seasonummer = new DialogueNode("It's such a cool season for swim, I love it!", ConditionTypes.season( Season.Summer), false, "season");
+            root.addChild( Seasonummer);
+            friendShip3.addChild( Seasonummer);
 
             DialogueNode hi = new DialogueNode("how are you dear?", ConditionTypes.always(), false, "hi");
             root.addChild(hi);
@@ -263,9 +263,9 @@ public enum NPCTypes {
             friendShip3.addChild(stormDay);
             friendShip3.addChild(snowDay);
 
-            DialogueNode seasonSummer = new DialogueNode("Summer's warmth is a gift, but also a test. Life grows wild in its light, but remember — not all that flourishes is meant to last.", ConditionTypes.season(Seasons.Summer), false, "season");
-            root.addChild(seasonSummer);
-            friendShip3.addChild(seasonSummer);
+            DialogueNode  Seasonummer = new DialogueNode("Summer's warmth is a gift, but also a test. Life grows wild in its light, but remember — not all that flourishes is meant to last.", ConditionTypes.season( Season.Summer), false, "season");
+            root.addChild( Seasonummer);
+            friendShip3.addChild( Seasonummer);
 
             DialogueNode hi = new DialogueNode("How you're day is going?", ConditionTypes.always(), false, "hi");
             root.addChild(hi);

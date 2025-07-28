@@ -77,6 +77,10 @@ public class ItemContainer extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
+        // Preventing selectedIndex exceed the inventory size
+        if(selectedIndex >= inventory.getSize()) {
+            selectedIndex = inventory.getSize() - 1;
+        }
         batch.draw(texture,
                 getX(), getY(),
                 0, 0,

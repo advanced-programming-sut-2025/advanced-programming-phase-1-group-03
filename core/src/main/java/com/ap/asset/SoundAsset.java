@@ -11,7 +11,9 @@ public enum SoundAsset implements Asset<Sound> {
     Axe("axe.wav"),
     Pickaxe("pickaxe.wav"),
     Walk("walk.wav"),
-    Gift("gift.wav")
+    Gift("gift.wav"),
+    Watering("watering.wav"),
+    WateringCanNo("wateringCanNo.wav"),
     ;
 
     private final AssetDescriptor<Sound> descriptor;
