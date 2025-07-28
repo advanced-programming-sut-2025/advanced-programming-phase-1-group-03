@@ -15,6 +15,8 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.*;
 
+import java.util.Map;
+
 public class PhysicSystem extends IteratingSystem implements EntityListener, ContactListener {
     private World world;
     private float interval;
@@ -113,12 +115,13 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
 
         var map = isSpawner(userDataA, userDataB);
         if(map != null) {
-            mapManager.changeMap(map);
+            changeMap(map);
         }
         map = isSpawner(userDataB, userDataA);
         if(map != null) {
-            mapManager.changeMap(map);
+            changeMap(map);
         }
+
         Item item = isPlayerItemInteract(userDataA, userDataB);
         if(item != null) {
             item.interact(fixtureA.getBody(), engine, gameScreen);
@@ -128,6 +131,14 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
             item.interact(fixtureB.getBody(), engine, gameScreen);
         }
 
+    }
+
+    private void changeMap(MapAsset map) {
+        // prevent moving to broken greenhouse
+        if(map == MapAsset.Greenhouse && !GameData.getInstance().isGreenhouseBuilt()) {
+            return;
+        }
+        mapManager.changeMap(map);
     }
 
     private Item isPlayerItemInteract(Object userDataA, Object userDataB) {

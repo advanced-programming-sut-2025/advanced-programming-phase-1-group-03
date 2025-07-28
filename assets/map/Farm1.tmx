@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="80" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="103">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="80" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="106">
  <properties>
   <property name="AllowGrassSurviveInWinter" value="T"/>
   <property name="Outdoors" value="T"/>
@@ -1960,9 +1960,6 @@
     <property name="speed" type="float" value="3"/>
    </properties>
   </object>
-  <object id="91" name="Map Boundary" x="672.333" y="-0.333333" rotation="90">
-   <polygon points="0,0 -0.666667,127 64.3333,128 63.3333,111.333 205.667,109.667 205.667,159.667 281,159.667 431,159 431,123.667 493,123.667 493.667,158.333 575,157.667 575.667,233.667 575.667,241 606.333,240.333 606.333,288.333 557.667,288.333 558.333,607.667 559.667,883.667 491,886.333 491,932.333 439.667,933.667 419,935 418.333,982.333 1.66667,983.667 0.333333,1037.67 -35.6667,1037.67 -35.6667,978.333 -625,981 -624.333,575.667 -576.333,535.667 -563,543 -559.667,360.333 -623.667,358.333 -625.667,147 -592.333,123.667 -564.333,125 -563.667,143.667 -511.667,143 -513,129 -31.6667,126.333 -32.3333,-1"/>
-  </object>
   <object id="92" name="Lake1Boundary" x="577" y="783.5">
    <polygon points="0,0 94.5,0 110.5,8.5 121,20.5 126,27.5 126,33 146.5,33 158.5,44 159,51.5 166.5,53.5 172,60.5 172.5,64.5 169.5,68 171,98 159,112 126.5,144 113,135.5 93,145 79,161 54.5,152 28,160.5 -4.5,123.5 -17,128 -30,115 -29.5,95 -36.5,96 -47,79 -47.5,62 -3,17"/>
   </object>
@@ -1985,6 +1982,15 @@
     <property name="sensor" type="bool" value="true"/>
     <property name="spawner" value="House"/>
    </properties>
+  </object>
+  <object id="104" name="GreenhouseSpawner" x="281" y="269" width="12.5" height="14.5">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="Greenhouse"/>
+   </properties>
+  </object>
+  <object id="105" name="MapBoundary" x="671.636" y="0.181818">
+   <polygon points="0,0 0.113636,127.318 64.3636,127.068 65.1136,112.068 206.114,111.068 206.614,159.068 434.364,158.485 434.364,126.485 490.364,127.818 490.364,159.152 574.364,159.818 575.03,239.818 607.03,239.818 609.03,288.485 560.364,289.152 560.364,883.152 487.03,883.818 473.697,903.152 473.03,929.152 431.03,929.818 404.364,975.818 0.363636,980.485 0.363636,1037.82 -34.9697,1039.15 -34.9697,976.485 -616.97,980.485 -619.636,577.818 -558.97,529.152 -558.97,352.485 -621.636,352.485 -620.97,147.152 -594.97,122.485 -563.636,123.152 -562.303,145.818 -506.97,144.485 -508.97,123.152 -31.6364,127.818 -32.303,0.484848"/>
   </object>
  </objectgroup>
 </map>

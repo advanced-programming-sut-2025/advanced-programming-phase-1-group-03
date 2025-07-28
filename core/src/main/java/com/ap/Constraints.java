@@ -28,7 +28,7 @@ public class Constraints {
     public static final int STUMP_GIVEN_WOOD = 3;
     public static final int NUMBER_OF_AXE_NEED_TO_CUT_DOWN_TREE = 4;
     public static final int PLAYER_INITIAL_GOLD = 500;
-    public static final int GREEN_HOUSE_WOOD_NEEDED = 100;
+    public static final int GREEN_HOUSE_WOOD_NEEDED = 10;
     public static final int GREEN_HOUSE_GOLD_NEEDED = 500;
 
 

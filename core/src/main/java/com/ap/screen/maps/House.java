@@ -48,11 +48,11 @@ public class House implements IMap{
     private Viewport viewport;
     private Batch batch;
 
-
     private TimeSystem timeSystem;
 
     private InventoryMenu inventoryMenu;
     private Clock clock;
+    private ItemContainer itemContainer;
 
     private TiledMap map;
 
@@ -77,6 +77,8 @@ public class House implements IMap{
         camera = game.getCamera();
         viewport = game.getViewport();
         batch = game.getBatch();
+
+        itemContainer = gameScreen.getItemContainer();
 
         engine = new Engine();
 
@@ -120,6 +122,11 @@ public class House implements IMap{
         engine.addSystem(new RenderSystem(batch, viewport, camera));
         engine.addSystem(new ControllerSystem(inventoryMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
+
+        // It'd be better we create separate class for green house, but we hard code it :)
+        if(map == MapAsset.Greenhouse) {
+            engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
+        }
         //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
         timeSystem.addTimeListener(new TimeListener());

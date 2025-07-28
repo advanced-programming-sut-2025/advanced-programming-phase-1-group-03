@@ -48,8 +48,6 @@ public class Farm implements IMap {
     private Viewport viewport;
     private Batch batch;
 
-    private Inventory inventory;
-
     private TimeSystem timeSystem;
 
     private InventoryMenu inventoryMenu;
@@ -100,7 +98,6 @@ public class Farm implements IMap {
         tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
 
         // Setup inventory
-        inventory = gameScreen.getInventory();
         itemContainer = gameScreen.getItemContainer();
         inventoryMenu = gameScreen.getInventoryMenu();
         clock = gameScreen.getClock();
@@ -134,7 +131,6 @@ public class Farm implements IMap {
         }
         engine.addSystem(new ControllerSystem(inventoryMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
-        //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
         timeSystem.addTimeListener(new TimeListener());
 
