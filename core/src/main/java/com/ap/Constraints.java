@@ -30,6 +30,7 @@ public class Constraints {
     public static final int PLAYER_INITIAL_GOLD = 500;
     public static final int GREEN_HOUSE_WOOD_NEEDED = 10;
     public static final int GREEN_HOUSE_GOLD_NEEDED = 500;
+    public static final int CROPS_Z = 1;
 
 
     public static String[] secQuestions = {

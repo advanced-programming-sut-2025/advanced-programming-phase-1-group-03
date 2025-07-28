@@ -2,7 +2,10 @@ package com.ap.items;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
+import com.ap.items.plant.Crop;
+import com.ap.items.plant.Seed;
 import com.ap.items.plant.Tree;
+import com.ap.model.CropsType;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class ItemFactory {
@@ -32,6 +35,14 @@ public class ItemFactory {
         return new Tree(ItemNames.Tree.name());
     }
 
+    public Item CreateSeed(CropsType belongingCropType) {
+        TextureRegion icon = assetService.get(AtlasAsset.Crops).findRegion(belongingCropType.getName() + "_Seeds");
+        return new Seed(icon, belongingCropType);
+    }
+    public Item CreateCrop(CropsType type) {
+        TextureRegion icon = assetService.get(AtlasAsset.Crops).findRegion(type.getName());
+        return new Crop(icon, type);
+    }
     public void setAssetService(AssetService assetService) {
         this.assetService = assetService;
     }

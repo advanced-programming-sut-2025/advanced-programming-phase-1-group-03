@@ -14,7 +14,8 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     Environment("OnMap/environment.atlas"),
     Fish("Animals/Fish.atlas"),
     Snowfall("OnMap/snowfall.atlas"),
-    Journal("Journal.atlas");
+    Journal("Journal.atlas"),
+    Crops("Plants/crops.atlas");
 
     private final AssetDescriptor<TextureAtlas> descriptor;
     AtlasAsset(String name) {

@@ -31,6 +31,8 @@ graphics/OnMap/snowfall.png
 graphics/OnMap/trees.atlas
 graphics/OnMap/trees.png
 graphics/OnMap/trees.tps
+graphics/Plants/crops.atlas
+graphics/Plants/crops.png
 graphics/Rain.png
 graphics/RiverLandMap.png
 graphics/SeasonalObjects.atlas

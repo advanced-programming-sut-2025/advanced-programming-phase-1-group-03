@@ -8,8 +8,8 @@ import com.ap.asset.MapAsset;
 import com.ap.audio.AudioService;
 import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
-import com.ap.items.Inventory;
 import com.ap.managers.GameUIManager;
+import com.ap.system.GrowSystem;
 import com.ap.managers.MapManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
@@ -61,6 +61,7 @@ public class House implements IMap{
 
     private MapManager mapManager;
     private WeatherSystem weatherSystem;
+    private GrowSystem growSystem;
 
     private WeatherEffects weatherEffects;
 
@@ -119,6 +120,8 @@ public class House implements IMap{
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
         engine.addSystem(new CameraSystem(camera));
+        growSystem = new GrowSystem(assetService, weatherSystem);
+        engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
         engine.addSystem(new ControllerSystem(inventoryMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
@@ -174,6 +177,10 @@ public class House implements IMap{
         @Override
         public void onSeasonChanged(Season season) {
             tiledService.changeSeasonTileset(season);
+        }
+        @Override
+        public void onDayChanged(int day) {
+            growSystem.dayPassed();
         }
     }
 }

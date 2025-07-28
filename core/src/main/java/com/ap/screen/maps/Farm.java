@@ -8,8 +8,8 @@ import com.ap.asset.MapAsset;
 import com.ap.audio.AudioService;
 import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
-import com.ap.items.Inventory;
 import com.ap.managers.GameUIManager;
+import com.ap.system.GrowSystem;
 import com.ap.managers.MapManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
@@ -68,6 +68,7 @@ public class Farm implements IMap {
 
     private GameScreen gameScreen;
     private GdxGame game;
+    private GrowSystem growSystem;
 
     public Farm(GdxGame game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -124,6 +125,8 @@ public class Farm implements IMap {
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new SeasonalGraphicSystem(assetService, timeSystem));
         engine.addSystem(new AdjustAlphaSystem(engine));
+        growSystem = new GrowSystem(assetService, weatherSystem);
+        engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
         // Actually it would be better we create a class for forest, but because of simplicity just hardcode it
         if(map == MapAsset.Farm1 || map == MapAsset.Farm2) {
@@ -181,6 +184,9 @@ public class Farm implements IMap {
         public void onSeasonChanged(Season season) {
             tiledService.changeSeasonTileset(season);
         }
-
+        @Override
+        public void onDayChanged(int day) {
+            growSystem.dayPassed();
+        }
     }
 }
