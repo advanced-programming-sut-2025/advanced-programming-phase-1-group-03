@@ -106,7 +106,6 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
         stage.addActor(journal);
-        stage.addActor(craftingMenu);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
