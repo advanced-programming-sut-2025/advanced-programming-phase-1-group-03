@@ -101,6 +101,10 @@ public class TiledPhysic {
     }
 
     public static Body createBodyForTile(int x, int y, Object userData, World world, boolean sensor) {
+        return createRectagleBody(x, y, 1, 1, userData, world, sensor);
+    }
+
+    public static Body createRectagleBody(int x, int y, int w, int h, Object userData, World world, boolean sensor) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(new Vector2(x, y));
         bodyDef.type = BodyDef.BodyType.StaticBody;
@@ -110,7 +114,7 @@ public class TiledPhysic {
         body.setUserData(userData);
 
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(0.5f, 0.5f, new Vector2(0.5f, 0.5f), 0);
+        shape.setAsBox(w / 2f, h / 2f, new Vector2(w / 2f, h / 2f), 0);
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.isSensor = sensor;

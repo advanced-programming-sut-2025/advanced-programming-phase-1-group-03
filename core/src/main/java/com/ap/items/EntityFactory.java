@@ -4,6 +4,7 @@ import com.ap.Constraints;
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.component.*;
+import com.ap.items.plant.Crop;
 import com.ap.model.CropsType;
 import com.ap.tiled.TiledPhysic;
 import com.badlogic.ashley.core.Entity;
@@ -15,7 +16,15 @@ import com.badlogic.gdx.physics.box2d.World;
 import java.util.Random;
 
 public class EntityFactory {
-    public static Entity CreatePlowedDirt(Body body, World world) {
+    public static EntityFactory instance = new EntityFactory();
+
+    private AssetService assetService;
+
+    public void setup(AssetService asset) {
+        assetService = asset;
+    }
+
+    public Entity CreatePlowedDirt(Body body, World world) {
         Entity entity = new Entity();
         entity.add(new Graphic(null));
         entity.add(new SeasonalGraphic(AtlasAsset.SeasonalObjects, "dirt_hoed"));
@@ -28,7 +37,7 @@ public class EntityFactory {
         return entity;
     }
 
-    public static Entity CreateTreeEntity(Vector2 position, String name, AssetService assetService, World world) {
+    public Entity CreateTreeEntity(Vector2 position, String name, World world) {
         TextureRegion fullTreeTexture = assetService.get(AtlasAsset.Trees).findRegions(name+"/spring/stage").get(4);
         Vector2 fullTreeSize = new Vector2(fullTreeTexture.getRegionWidth(), fullTreeTexture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
         Entity stumpEntity = new Entity();
@@ -71,7 +80,7 @@ public class EntityFactory {
         return entity;
     }
 
-    public static Entity CreateStoneEntity(Vector2 position, int type, AssetService assetService, World world) {
+    public Entity CreateStoneEntity(Vector2 position, int type, World world) {
         TextureRegion texture = assetService.get(AtlasAsset.Environment).findRegions("stone/regular").get(type);
         Vector2 size = new Vector2(1, 1);
         Entity entity = new Entity();
@@ -87,7 +96,7 @@ public class EntityFactory {
         return entity;
     }
 
-    public static Entity CreateGrassEntity(Vector2 position, int type, AssetService assetService, World world) {
+    public Entity CreateGrassEntity(Vector2 position, int type, World world) {
         TextureRegion texture = assetService.get(AtlasAsset.Environment).
                 findRegions("grass/type_"+type+"_color").get(new Random().nextInt(2));
 
@@ -106,7 +115,7 @@ public class EntityFactory {
         return entity;
     }
 
-    public static Entity CreateWoodEntity(Vector2 position, AssetService assetService, World world) {
+    public Entity CreateWoodEntity(Vector2 position, World world) {
         int deg = new Random().nextInt(90);
 
         TextureRegion shadowTexture = assetService.get(AtlasAsset.Shadows).findRegion("shadow");
@@ -137,19 +146,40 @@ public class EntityFactory {
         return entity;
     }
 
-    public static Entity CreateCropEntity(Vector2 position, CropsType type, AssetService assetService, World world) {
+    public Entity CreateCropEntity(Vector2 position, CropsType type, World world) {
         Entity entity = new Entity();
         entity.add(new Transform(new Vector2(position.x, position.y),
                 Constraints.CROPS_Z,
                 new Vector2(1, 1),
                 new Vector2(1, 1),
-                0, 1));
+                0, 2));
 
         entity.add(new Graphic(null));
         var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, true);
         entity.add(new Physic(body, position));
         entity.add(new ItemHolder(ItemFactory.instance.CreateCrop(type)));
         entity.add(new Growable(type.getStage(), AtlasAsset.Crops, type.name()));
+        return entity;
+    }
+
+    public Entity CreateGiantCropEntity(Vector2 position, CropsType type, World world) {
+        Entity entity = new Entity();
+        entity.add(new Transform(new Vector2(position.x, position.y),
+                Constraints.CROPS_Z,
+                new Vector2(1, 1),
+                new Vector2(3, 3),
+                0, 2));
+
+        var texture = assetService.get(AtlasAsset.Crops).findRegion(type.getName() + "_Giant");
+        entity.add(new Graphic(texture));
+
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, 3, 3, entity, world, false);
+        entity.add(new Physic(body, position));
+
+        var crop = (Crop) ItemFactory.instance.CreateCrop(type);
+        crop.setGiant(true);
+
+        entity.add(new ItemHolder(crop));
         return entity;
     }
 }

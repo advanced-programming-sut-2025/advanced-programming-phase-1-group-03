@@ -1,7 +1,7 @@
 Journal.png
 size: 830, 729
 format: RGBA8888
-filter: Linear, Linear
+filter: Nearest, Nearest
 repeat: none
 pma: false
 Exit

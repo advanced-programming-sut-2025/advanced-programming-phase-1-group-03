@@ -69,6 +69,7 @@ public class Farm implements IMap {
     private GameScreen gameScreen;
     private GdxGame game;
     private GrowSystem growSystem;
+    private GiantCropManager giantCropManager;
 
     public Farm(GdxGame game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -115,6 +116,8 @@ public class Farm implements IMap {
 
     @Override
     public void setup(MapAsset map) {
+        TiledMap startMap = tiledService.load(map);
+
         // Adding systems to the engine
         engine.addSystem(new PhysicMoveSystem());
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, gameScreen));
@@ -126,17 +129,19 @@ public class Farm implements IMap {
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new SeasonalGraphicSystem(assetService, timeSystem));
         engine.addSystem(new AdjustAlphaSystem(engine));
+
+
         growSystem = new GrowSystem(assetService, weatherSystem);
         engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
+
         // Actually it would be better we create a class for forest, but because of simplicity just hardcode it
         if(map == MapAsset.Farm1 || map == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
         engine.addSystem(new ControllerSystem(tabManager, craftingMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
-
-        timeSystem.addTimeListener(new TimeListener());
+      //  engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
         // Setup consumers
         Consumer<TiledMap> renderConsumer = engine.getSystem(RenderSystem.class)::setMap;
@@ -148,9 +153,12 @@ public class Farm implements IMap {
         tiledService.setBoundaryConsumer(tileConfigurator::onLoadBoundary);
         tiledService.setGenerateItemsConsumer(tiledMapGenerator::generate);
         tiledService.setLoadSpanwerConsumer(tileConfigurator::onLoadSpawner);
-        TiledMap startMap = tiledService.load(map);
         this.map = startMap;
         tiledService.setMap(startMap);
+
+        giantCropManager = new GiantCropManager(startMap, world, engine);
+
+        timeSystem.addTimeListener(new TimeListener());
 
     }
 
@@ -188,6 +196,7 @@ public class Farm implements IMap {
         @Override
         public void onDayChanged(int day) {
             growSystem.dayPassed();
+            giantCropManager.checkGiant();
         }
     }
 }

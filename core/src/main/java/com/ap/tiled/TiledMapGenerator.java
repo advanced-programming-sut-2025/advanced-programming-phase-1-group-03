@@ -56,7 +56,7 @@ public class TiledMapGenerator {
             }
         }
         for(Vector2 position : positions) {
-            Entity entity = EntityFactory.CreateWoodEntity(position, assetService, world);
+            Entity entity = EntityFactory.instance.CreateWoodEntity(position, world);
             Helper.addEntity(entity, engine);
         }
     }
@@ -77,7 +77,7 @@ public class TiledMapGenerator {
         }
         for(Vector2 position : positions) {
             int type = new Random().nextInt(3);
-            Entity entity = EntityFactory.CreateGrassEntity(position, type, assetService, world);
+            Entity entity = EntityFactory.instance.CreateGrassEntity(position, type, world);
             engine.addEntity(entity);
         }
     }
@@ -114,7 +114,7 @@ public class TiledMapGenerator {
         }
         for(Vector2 position : positions) {
             int type = new Random().nextInt(2);
-            Entity entity = EntityFactory.CreateStoneEntity(position, type, assetService, world);
+            Entity entity = EntityFactory.instance.CreateStoneEntity(position, type, world);
             engine.addEntity(entity);
         }
     }
@@ -183,7 +183,7 @@ public class TiledMapGenerator {
 
         for(Vector2 position : positions) {
             String name = Trees.values()[new Random().nextInt(Trees.values().length)].name();
-            Entity entity = EntityFactory.CreateTreeEntity(position, name, assetService, world);
+            Entity entity = EntityFactory.instance.CreateTreeEntity(position, name, world);
             engine.addEntity(entity);
             for(Entity child : Container.mapper.get(entity).getChildren()) {
                 engine.addEntity(child);

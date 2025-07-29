@@ -10,6 +10,7 @@ import com.ap.component.Transform;
 import com.ap.items.Inventory;
 import com.ap.screen.GameScreen;
 import com.ap.ui.widget.ItemContainer;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntitySystem;
@@ -55,7 +56,7 @@ public class TileSelectionSystem extends IteratingSystem {
     }
 
     public void click() {
-        itemContainer.useSelectedItem(getTopBodyAtPoint(new Vector2(tileX, tileY)), engine, game, world);
+        itemContainer.useSelectedItem(Helper.getTopBodyAtPoint(new Vector2(tileX, tileY), world), engine, game, world);
     }
 
     @Override
@@ -79,33 +80,5 @@ public class TileSelectionSystem extends IteratingSystem {
         batch.end();
     }
 
-    private Body getTopBodyAtPoint(Vector2 tilePos) {
-        tilePos.add(new Vector2(0.5f, 0.5f));
-        final Body[] topBody = {null};
-        final int[] highestZIndex = {-1};
 
-        world.QueryAABB(new QueryCallback() {
-            @Override
-            public boolean reportFixture(Fixture fixture) {
-                if(fixture.getBody().getUserData() instanceof Entity entity) {
-                    if (Transform.mapper.has(entity)) {
-                        Transform transform = Transform.mapper.get(entity);
-                        if (transform.getZ() > highestZIndex[0]) {
-                            highestZIndex[0] = transform.getZ();
-                            topBody[0] = fixture.getBody();
-                        }
-                    }
-                } else if(fixture.getBody().getUserData() instanceof TiledMapTile tile) {
-                    if(highestZIndex[0] != -1) {
-                        return true;
-                    }
-                    highestZIndex[0] = 0;
-                    topBody[0] = fixture.getBody();
-                }
-                return true;
-            }
-        }, tilePos.x - 0.01f, tilePos.y - 0.01f, tilePos.x + 0.01f, tilePos.y + 0.01f);
-
-        return topBody[0];
-    }
 }

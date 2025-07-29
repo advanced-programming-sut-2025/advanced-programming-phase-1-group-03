@@ -68,18 +68,16 @@ public class Journal extends Actor {
 
         createJournalBoxes();
 
-
-
         stage.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 if (isOnTarget(journalToggle, toggleScale, togglePosX, togglePosY, x, y)) {
                     isToggled = !isToggled;
-                    return true;
+                    return false;
                 }
                 if (isOnTarget(journalExit, exitScale, exitPosX, exitPosY, x, y)) {
                     isToggled = false;
-                    return true;
+                    return false;
                 }
                 return false;
             }

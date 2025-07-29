@@ -37,7 +37,6 @@ public class GrowSystem extends IteratingSystem implements EntityListener {
 
         int elapsedDay = growable.getElapsedDay();
 
-
         // If crop is regrowing it doesn't follow stages
         if(item instanceof Crop crop && crop.isRegrowing()) {
             if(!growable.canProduce() && elapsedDay >= crop.getType().getRegrowthTime()) {
@@ -70,7 +69,7 @@ public class GrowSystem extends IteratingSystem implements EntityListener {
             if(weatherSystem.getCurrentWeather().equals(Weather.Rain)) {
                 growable.setWateredToday(true);
             }else {
-                growable.setWateredToday(false);
+                growable.setWateredToday(true);
             }
         }
     }
