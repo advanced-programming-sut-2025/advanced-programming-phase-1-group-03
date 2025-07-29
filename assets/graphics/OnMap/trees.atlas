@@ -1,44 +1,245 @@
 trees.png
-size: 195, 124
+size: 1247, 126
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 pma: false
+mahogany/fall/seed
+  bounds: 405, 110, 16, 16
+mahogany/fall/stage
+  bounds: 0, 119, 10, 7
+  offsets: 4, 3, 16, 16
+  index: 0
+mahogany/fall/stage
+  bounds: 278, 112, 16, 13
+  offsets: 0, 2, 16, 16
+  index: 1
+mahogany/fall/stage
+  bounds: 941, 77, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+mahogany/fall/stage
+  bounds: 394, 82, 16, 26
+  offsets: 0, 0, 16, 32
+  index: 3
+mahogany/fall/stage
+  bounds: 442, 0, 48, 76
+  offsets: 0, 0, 48, 80
+  index: 4
+mahogany/fall/stump
+  bounds: 459, 105, 16, 21
+  offsets: 0, 0, 16, 32
+mahogany/spring/seed
+  bounds: 423, 110, 16, 16
+mahogany/spring/stage
+  bounds: 12, 119, 10, 7
+  offsets: 4, 3, 16, 16
+  index: 0
+mahogany/spring/stage
+  bounds: 296, 112, 16, 13
+  offsets: 0, 2, 16, 16
+  index: 1
+mahogany/spring/stage
+  bounds: 958, 75, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+mahogany/spring/stage
+  bounds: 412, 82, 16, 26
+  offsets: 0, 0, 16, 32
+  index: 3
+mahogany/spring/stage
+  bounds: 492, 0, 48, 76
+  offsets: 0, 0, 48, 80
+  index: 4
+mahogany/spring/stump
+  bounds: 477, 105, 16, 21
+  offsets: 0, 0, 16, 32
+mahogany/summer/seed
+  bounds: 441, 110, 16, 16
+mahogany/summer/stage
+  bounds: 24, 119, 10, 7
+  offsets: 4, 3, 16, 16
+  index: 0
+mahogany/summer/stage
+  bounds: 314, 112, 16, 13
+  offsets: 0, 2, 16, 16
+  index: 1
+mahogany/summer/stage
+  bounds: 958, 93, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+mahogany/summer/stage
+  bounds: 430, 82, 16, 26
+  offsets: 0, 0, 16, 32
+  index: 3
+mahogany/summer/stage
+  bounds: 542, 0, 48, 76
+  offsets: 0, 0, 48, 80
+  index: 4
+mahogany/summer/stump
+  bounds: 616, 102, 16, 21
+  offsets: 0, 0, 16, 32
+mahogany/winter/seed
+  bounds: 725, 78, 16, 16
+mahogany/winter/stage
+  bounds: 36, 119, 10, 7
+  offsets: 4, 3, 16, 16
+  index: 0
+mahogany/winter/stage
+  bounds: 810, 114, 10, 12
+  offsets: 3, 2, 16, 16
+  index: 1
+mahogany/winter/stage
+  bounds: 332, 111, 13, 15
+  offsets: 2, 0, 16, 16
+  index: 2
+mahogany/winter/stage
+  bounds: 448, 78, 13, 25
+  offsets: 1, 1, 16, 32
+  index: 3
+mahogany/winter/stage
+  bounds: 942, 0, 46, 73
+  offsets: 2, 0, 48, 80
+  index: 4
+mahogany/winter/stump
+  bounds: 708, 78, 15, 21
+  offsets: 1, 0, 16, 32
+maple/fall/seed
+  bounds: 742, 96, 16, 16
+maple/fall/stage
+  bounds: 141, 116, 8, 8
+  offsets: 5, 4, 16, 16
+  index: 0
+maple/fall/stage
+  bounds: 780, 114, 13, 12
+  offsets: 2, 3, 16, 16
+  index: 1
+maple/fall/stage
+  bounds: 975, 75, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+maple/fall/stage
+  bounds: 268, 82, 16, 28
+  offsets: 0, 0, 16, 32
+  index: 3
+maple/fall/stage
+  bounds: 792, 0, 48, 75
+  offsets: 0, 0, 48, 80
+  index: 4
+maple/fall/stump
+  bounds: 618, 78, 16, 21
+  offsets: 0, 0, 16, 32
+maple/spring/seed
+  bounds: 724, 101, 16, 17
+  offsets: 0, 0, 16, 32
+maple/spring/stage
+  bounds: 108, 116, 9, 8
+  offsets: 5, 4, 16, 16
+  index: 0
+maple/spring/stage
+  bounds: 119, 116, 9, 8
+  offsets: 5, 4, 16, 16
+  index: 1
+maple/spring/stage
+  bounds: 975, 93, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+maple/spring/stage
+  bounds: 286, 82, 16, 28
+  offsets: 0, 0, 16, 32
+  index: 3
+maple/spring/stage
+  bounds: 842, 0, 48, 75
+  offsets: 0, 0, 48, 80
+  index: 4
+maple/spring/stump
+  bounds: 634, 101, 16, 21
+  offsets: 0, 0, 16, 32
+maple/summer/seed
+  bounds: 743, 78, 16, 16
+maple/summer/stage
+  bounds: 151, 116, 8, 8
+  offsets: 5, 4, 16, 16
+  index: 0
+maple/summer/stage
+  bounds: 795, 114, 13, 12
+  offsets: 2, 3, 16, 16
+  index: 1
+maple/summer/stage
+  bounds: 1198, 0, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+maple/summer/stage
+  bounds: 304, 82, 16, 28
+  offsets: 0, 0, 16, 32
+  index: 3
+maple/summer/stage
+  bounds: 892, 0, 48, 75
+  offsets: 0, 0, 48, 80
+  index: 4
+maple/summer/stump
+  bounds: 636, 78, 16, 21
+  offsets: 0, 0, 16, 32
+maple/winter/seed
+  bounds: 760, 96, 16, 16
+maple/winter/stage
+  bounds: 130, 116, 9, 8
+  offsets: 4, 5, 16, 16
+  index: 0
+maple/winter/stage
+  bounds: 930, 113, 9, 12
+  offsets: 3, 2, 16, 16
+  index: 1
+maple/winter/stage
+  bounds: 347, 111, 13, 15
+  offsets: 2, 0, 16, 16
+  index: 2
+maple/winter/stage
+  bounds: 463, 78, 13, 25
+  offsets: 1, 1, 16, 32
+  index: 3
+maple/winter/stage
+  bounds: 397, 0, 43, 80
+  offsets: 3, 0, 48, 80
+  index: 4
+maple/winter/stump
+  bounds: 564, 78, 16, 23
+  offsets: 0, 0, 16, 32
 oak/fall/seed
-  bounds: 52, 108, 16, 16
+  bounds: 761, 78, 16, 16
 oak/fall/stage
-  bounds: 184, 82, 10, 8
+  bounds: 60, 116, 10, 8
   offsets: 4, 3, 16, 16
   index: 0
 oak/fall/stage
-  bounds: 158, 113, 13, 11
+  bounds: 173, 115, 13, 11
   offsets: 2, 3, 16, 16
   index: 1
 oak/fall/stage
-  bounds: 124, 105, 15, 16
+  bounds: 1215, 0, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
 oak/fall/stage
-  bounds: 18, 85, 15, 30
+  bounds: 234, 82, 15, 30
   index: 3
 oak/fall/stage
   bounds: 47, 0, 48, 80
   index: 4
 oak/fall/stump
-  bounds: 83, 82, 16, 21
+  bounds: 652, 101, 16, 21
   offsets: 0, 0, 16, 32
 oak/spring/seed
-  bounds: 70, 107, 16, 16
+  bounds: 778, 96, 16, 16
 oak/spring/stage
-  bounds: 184, 92, 10, 8
+  bounds: 72, 116, 10, 8
   offsets: 4, 3, 16, 16
   index: 0
 oak/spring/stage
-  bounds: 169, 82, 13, 11
+  bounds: 188, 115, 13, 11
   offsets: 2, 3, 16, 16
   index: 1
 oak/spring/stage
-  bounds: 137, 82, 15, 16
+  bounds: 1232, 0, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
 oak/spring/stage
@@ -48,51 +249,439 @@ oak/spring/stage
   bounds: 97, 0, 48, 80
   index: 4
 oak/spring/stump
-  bounds: 101, 82, 16, 21
+  bounds: 654, 78, 16, 21
   offsets: 0, 0, 16, 32
 oak/summer/seed
-  bounds: 88, 105, 16, 16
+  bounds: 779, 78, 16, 16
 oak/summer/stage
-  bounds: 170, 102, 10, 8
+  bounds: 84, 116, 10, 8
   offsets: 4, 3, 16, 16
   index: 0
 oak/summer/stage
-  bounds: 182, 102, 13, 11
+  bounds: 203, 115, 13, 11
   offsets: 2, 3, 16, 16
   index: 1
 oak/summer/stage
-  bounds: 141, 100, 15, 16
+  bounds: 1190, 18, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
 oak/summer/stage
-  bounds: 35, 85, 15, 30
+  bounds: 251, 82, 15, 30
   index: 3
 oak/summer/stage
   bounds: 147, 0, 48, 80
   index: 4
 oak/summer/stump
-  bounds: 119, 82, 16, 21
+  bounds: 670, 101, 16, 21
   offsets: 0, 0, 16, 32
 oak/winter/seed
-  bounds: 106, 105, 16, 16
+  bounds: 796, 96, 16, 16
 oak/winter/stage
-  bounds: 173, 115, 10, 8
+  bounds: 96, 116, 10, 8
   offsets: 4, 3, 16, 16
   index: 0
 oak/winter/stage
-  bounds: 158, 99, 10, 12
+  bounds: 918, 113, 10, 12
   offsets: 3, 2, 16, 16
   index: 1
 oak/winter/stage
-  bounds: 154, 82, 13, 15
+  bounds: 362, 111, 13, 15
   offsets: 2, 0, 16, 16
   index: 2
 oak/winter/stage
-  bounds: 70, 82, 11, 23
+  bounds: 567, 103, 11, 23
   index: 3
 oak/winter/stage
   bounds: 0, 0, 45, 83
   index: 4
 oak/winter/stump
-  bounds: 52, 82, 16, 24
+  bounds: 478, 78, 16, 24
+  offsets: 0, 0, 16, 32
+pine/fall/seed
+  bounds: 797, 77, 16, 16
+pine/fall/stage
+  bounds: 48, 119, 10, 6
+  offsets: 4, 4, 16, 16
+  index: 0
+pine/fall/stage
+  bounds: 874, 113, 9, 13
+  offsets: 4, 1, 16, 16
+  index: 1
+pine/fall/stage
+  bounds: 377, 111, 12, 15
+  offsets: 2, 1, 16, 16
+  index: 2
+pine/fall/stage
+  bounds: 18, 85, 16, 32
+  index: 3
+pine/fall/stage
+  bounds: 592, 0, 48, 76
+  offsets: 0, 0, 48, 80
+  index: 4
+pine/fall/stump
+  bounds: 495, 104, 16, 22
+  offsets: 0, 0, 16, 32
+pine/spring/seed
+  bounds: 814, 95, 16, 16
+pine/spring/stage
+  bounds: 1222, 105, 9, 6
+  offsets: 5, 4, 16, 16
+  index: 0
+pine/spring/stage
+  bounds: 885, 113, 9, 13
+  offsets: 4, 1, 16, 16
+  index: 1
+pine/spring/stage
+  bounds: 391, 111, 12, 15
+  offsets: 2, 1, 16, 16
+  index: 2
+pine/spring/stage
+  bounds: 36, 85, 16, 32
+  index: 3
+pine/spring/stage
+  bounds: 642, 0, 48, 76
+  offsets: 0, 0, 48, 80
+  index: 4
+pine/spring/stump
+  bounds: 513, 104, 16, 22
+  offsets: 0, 0, 16, 32
+pine/summer/seed
+  bounds: 815, 77, 16, 16
+pine/summer/stage
+  bounds: 1233, 105, 9, 6
+  offsets: 5, 4, 16, 16
+  index: 0
+pine/summer/stage
+  bounds: 896, 113, 9, 13
+  offsets: 4, 1, 16, 16
+  index: 1
+pine/summer/stage
+  bounds: 969, 111, 12, 15
+  offsets: 2, 1, 16, 16
+  index: 2
+pine/summer/stage
+  bounds: 54, 82, 16, 32
+  index: 3
+pine/summer/stage
+  bounds: 692, 0, 48, 76
+  offsets: 0, 0, 48, 80
+  index: 4
+pine/summer/stump
+  bounds: 531, 104, 16, 22
+  offsets: 0, 0, 16, 32
+pine/winter/seed
+  bounds: 832, 95, 16, 16
+pine/winter/stage
+  bounds: 1222, 113, 9, 6
+  offsets: 5, 4, 16, 16
+  index: 0
+pine/winter/stage
+  bounds: 907, 113, 9, 13
+  offsets: 4, 1, 16, 16
+  index: 1
+pine/winter/stage
+  bounds: 983, 111, 12, 15
+  offsets: 2, 1, 16, 16
+  index: 2
+pine/winter/stage
+  bounds: 72, 82, 16, 32
+  index: 3
+pine/winter/stage
+  bounds: 742, 0, 48, 76
+  offsets: 0, 0, 48, 80
+  index: 4
+pine/winter/stump
+  bounds: 549, 104, 16, 22
+  offsets: 0, 0, 16, 32
+special/mushroom/fall/seed
+  bounds: 833, 77, 16, 16
+special/mushroom/fall/stage
+  bounds: 161, 116, 10, 6
+  offsets: 4, 4, 16, 16
+  index: 0
+special/mushroom/fall/stage
+  bounds: 1190, 54, 10, 11
+  offsets: 3, 1, 16, 16
+  index: 1
+special/mushroom/fall/stage
+  bounds: 1236, 54, 11, 15
+  offsets: 3, 0, 16, 16
+  index: 2
+special/mushroom/fall/stage
+  bounds: 322, 82, 16, 27
+  offsets: 0, 0, 16, 32
+  index: 3
+special/mushroom/fall/stage
+  bounds: 990, 0, 48, 65
+  offsets: 0, 0, 48, 80
+  index: 4
+special/mushroom/fall/stump
+  bounds: 496, 78, 15, 24
+  offsets: 0, 0, 16, 32
+special/mushroom/spring/seed
+  bounds: 850, 95, 16, 16
+special/mushroom/spring/stage
+  bounds: 724, 120, 10, 6
+  offsets: 4, 4, 16, 16
+  index: 0
+special/mushroom/spring/stage
+  bounds: 1215, 89, 10, 11
+  offsets: 3, 1, 16, 16
+  index: 1
+special/mushroom/spring/stage
+  bounds: 1236, 71, 11, 15
+  offsets: 3, 0, 16, 16
+  index: 2
+special/mushroom/spring/stage
+  bounds: 340, 82, 16, 27
+  offsets: 0, 0, 16, 32
+  index: 3
+special/mushroom/spring/stage
+  bounds: 1040, 0, 48, 65
+  offsets: 0, 0, 48, 80
+  index: 4
+special/mushroom/spring/stump
+  bounds: 513, 78, 15, 24
+  offsets: 0, 0, 16, 32
+special/mushroom/summer/seed
+  bounds: 851, 77, 16, 16
+special/mushroom/summer/stage
+  bounds: 736, 120, 10, 6
+  offsets: 4, 4, 16, 16
+  index: 0
+special/mushroom/summer/stage
+  bounds: 1198, 90, 10, 11
+  offsets: 3, 1, 16, 16
+  index: 1
+special/mushroom/summer/stage
+  bounds: 1215, 72, 11, 15
+  offsets: 3, 0, 16, 16
+  index: 2
+special/mushroom/summer/stage
+  bounds: 358, 82, 16, 27
+  offsets: 0, 0, 16, 32
+  index: 3
+special/mushroom/summer/stage
+  bounds: 1090, 0, 48, 65
+  offsets: 0, 0, 48, 80
+  index: 4
+special/mushroom/summer/stump
+  bounds: 530, 78, 15, 24
+  offsets: 0, 0, 16, 32
+special/mushroom/winter/seed
+  bounds: 868, 95, 16, 16
+special/mushroom/winter/stage
+  bounds: 990, 67, 10, 6
+  offsets: 4, 4, 16, 16
+  index: 0
+special/mushroom/winter/stage
+  bounds: 1210, 102, 10, 11
+  offsets: 3, 1, 16, 16
+  index: 1
+special/mushroom/winter/stage
+  bounds: 1228, 88, 11, 15
+  offsets: 3, 0, 16, 16
+  index: 2
+special/mushroom/winter/stage
+  bounds: 376, 82, 16, 27
+  offsets: 0, 0, 16, 32
+  index: 3
+special/mushroom/winter/stage
+  bounds: 1140, 0, 48, 65
+  offsets: 0, 0, 48, 80
+  index: 4
+special/mushroom/winter/stump
+  bounds: 547, 78, 15, 24
+  offsets: 0, 0, 16, 32
+special/mystic/fall/seed
+  bounds: 869, 77, 16, 16
+special/mystic/fall/stage
+  bounds: 218, 115, 12, 11
+  offsets: 3, 3, 16, 16
+  index: 0
+special/mystic/fall/stage
+  bounds: 246, 114, 14, 12
+  offsets: 1, 3, 16, 16
+  index: 1
+special/mystic/fall/stage
+  bounds: 1190, 36, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+special/mystic/fall/stage
+  bounds: 90, 82, 16, 32
+  index: 3
+special/mystic/fall/stage
+  bounds: 197, 0, 48, 80
+  index: 4
+special/mystic/fall/stump
+  bounds: 672, 78, 16, 21
+  offsets: 0, 0, 16, 32
+special/mystic/spring/seed
+  bounds: 886, 95, 16, 16
+special/mystic/spring/stage
+  bounds: 232, 115, 12, 11
+  offsets: 3, 3, 16, 16
+  index: 0
+special/mystic/spring/stage
+  bounds: 262, 114, 14, 12
+  offsets: 1, 3, 16, 16
+  index: 1
+special/mystic/spring/stage
+  bounds: 1207, 18, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+special/mystic/spring/stage
+  bounds: 108, 82, 16, 32
+  index: 3
+special/mystic/spring/stage
+  bounds: 247, 0, 48, 80
+  index: 4
+special/mystic/spring/stump
+  bounds: 688, 101, 16, 21
+  offsets: 0, 0, 16, 32
+special/mystic/summer/seed
+  bounds: 887, 77, 16, 16
+special/mystic/summer/stage
+  bounds: 941, 113, 12, 11
+  offsets: 3, 3, 16, 16
+  index: 0
+special/mystic/summer/stage
+  bounds: 748, 114, 14, 12
+  offsets: 1, 3, 16, 16
+  index: 1
+special/mystic/summer/stage
+  bounds: 1224, 18, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+special/mystic/summer/stage
+  bounds: 126, 82, 16, 32
+  index: 3
+special/mystic/summer/stage
+  bounds: 297, 0, 48, 80
+  index: 4
+special/mystic/summer/stump
+  bounds: 690, 78, 16, 21
+  offsets: 0, 0, 16, 32
+special/mystic/winter/seed
+  bounds: 904, 95, 16, 16
+special/mystic/winter/stage
+  bounds: 955, 113, 12, 11
+  offsets: 3, 3, 16, 16
+  index: 0
+special/mystic/winter/stage
+  bounds: 764, 114, 14, 12
+  offsets: 1, 3, 16, 16
+  index: 1
+special/mystic/winter/stage
+  bounds: 1207, 36, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+special/mystic/winter/stage
+  bounds: 144, 82, 16, 32
+  index: 3
+special/mystic/winter/stage
+  bounds: 347, 0, 48, 80
+  index: 4
+special/mystic/winter/stump
+  bounds: 706, 101, 16, 21
+  offsets: 0, 0, 16, 32
+special/palm/fall/seed
+  bounds: 905, 77, 16, 16
+special/palm/fall/stage
+  bounds: 1198, 103, 10, 6
+  offsets: 4, 4, 16, 16
+  index: 0
+special/palm/fall/stage
+  bounds: 822, 113, 11, 13
+  offsets: 3, 0, 16, 16
+  index: 1
+special/palm/fall/stage
+  bounds: 1224, 36, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+special/palm/fall/stage
+  bounds: 162, 82, 16, 31
+  offsets: 0, 0, 16, 32
+  index: 3
+special/palm/fall/stage
+  bounds: 1002, 67, 47, 58
+  offsets: 0, 0, 48, 80
+  index: 4
+special/palm/fall/stump
+  bounds: 580, 103, 16, 22
+  offsets: 0, 0, 16, 32
+special/palm/spring/seed
+  bounds: 922, 95, 16, 16
+special/palm/spring/stage
+  bounds: 1198, 111, 10, 6
+  offsets: 4, 4, 16, 16
+  index: 0
+special/palm/spring/stage
+  bounds: 835, 113, 11, 13
+  offsets: 3, 0, 16, 16
+  index: 1
+special/palm/spring/stage
+  bounds: 1202, 54, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+special/palm/spring/stage
+  bounds: 180, 82, 16, 31
+  offsets: 0, 0, 16, 32
+  index: 3
+special/palm/spring/stage
+  bounds: 1051, 67, 47, 58
+  offsets: 0, 0, 48, 80
+  index: 4
+special/palm/spring/stump
+  bounds: 582, 78, 16, 22
+  offsets: 0, 0, 16, 32
+special/palm/summer/seed
+  bounds: 923, 77, 16, 16
+special/palm/summer/stage
+  bounds: 1198, 119, 10, 6
+  offsets: 4, 4, 16, 16
+  index: 0
+special/palm/summer/stage
+  bounds: 848, 113, 11, 13
+  offsets: 3, 0, 16, 16
+  index: 1
+special/palm/summer/stage
+  bounds: 1219, 54, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+special/palm/summer/stage
+  bounds: 198, 82, 16, 31
+  offsets: 0, 0, 16, 32
+  index: 3
+special/palm/summer/stage
+  bounds: 1100, 67, 47, 58
+  offsets: 0, 0, 48, 80
+  index: 4
+special/palm/summer/stump
+  bounds: 598, 102, 16, 22
+  offsets: 0, 0, 16, 32
+special/palm/winter/seed
+  bounds: 940, 95, 16, 16
+special/palm/winter/stage
+  bounds: 1210, 115, 10, 6
+  offsets: 4, 4, 16, 16
+  index: 0
+special/palm/winter/stage
+  bounds: 861, 113, 11, 13
+  offsets: 3, 0, 16, 16
+  index: 1
+special/palm/winter/stage
+  bounds: 1198, 72, 15, 16
+  offsets: 1, 0, 16, 16
+  index: 2
+special/palm/winter/stage
+  bounds: 216, 82, 16, 31
+  offsets: 0, 0, 16, 32
+  index: 3
+special/palm/winter/stage
+  bounds: 1149, 67, 47, 58
+  offsets: 0, 0, 48, 80
+  index: 4
+special/palm/winter/stump
+  bounds: 600, 78, 16, 22
   offsets: 0, 0, 16, 32

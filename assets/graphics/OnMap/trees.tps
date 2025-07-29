@@ -141,7 +141,7 @@
             <string></string>
         </struct>
         <key>autoAliasEnabled</key>
-        <true/>
+        <false/>
         <key>trimSpriteNames</key>
         <false/>
         <key>prependSmartFolderName</key>
@@ -173,6 +173,37 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">../sprites/trees/mahogany/fall/seed.png</key>
+            <key type="filename">../sprites/trees/mahogany/fall/stage_0.png</key>
+            <key type="filename">../sprites/trees/mahogany/fall/stage_1.png</key>
+            <key type="filename">../sprites/trees/mahogany/fall/stage_2.png</key>
+            <key type="filename">../sprites/trees/mahogany/spring/seed.png</key>
+            <key type="filename">../sprites/trees/mahogany/spring/stage_0.png</key>
+            <key type="filename">../sprites/trees/mahogany/spring/stage_1.png</key>
+            <key type="filename">../sprites/trees/mahogany/spring/stage_2.png</key>
+            <key type="filename">../sprites/trees/mahogany/summer/seed.png</key>
+            <key type="filename">../sprites/trees/mahogany/summer/stage_0.png</key>
+            <key type="filename">../sprites/trees/mahogany/summer/stage_1.png</key>
+            <key type="filename">../sprites/trees/mahogany/summer/stage_2.png</key>
+            <key type="filename">../sprites/trees/mahogany/winter/seed.png</key>
+            <key type="filename">../sprites/trees/mahogany/winter/stage_0.png</key>
+            <key type="filename">../sprites/trees/mahogany/winter/stage_1.png</key>
+            <key type="filename">../sprites/trees/mahogany/winter/stage_2.png</key>
+            <key type="filename">../sprites/trees/maple/fall/seed.png</key>
+            <key type="filename">../sprites/trees/maple/fall/stage_0.png</key>
+            <key type="filename">../sprites/trees/maple/fall/stage_1.png</key>
+            <key type="filename">../sprites/trees/maple/fall/stage_2.png</key>
+            <key type="filename">../sprites/trees/maple/spring/stage_0.png</key>
+            <key type="filename">../sprites/trees/maple/spring/stage_1.png</key>
+            <key type="filename">../sprites/trees/maple/spring/stage_2.png</key>
+            <key type="filename">../sprites/trees/maple/summer/seed.png</key>
+            <key type="filename">../sprites/trees/maple/summer/stage_0.png</key>
+            <key type="filename">../sprites/trees/maple/summer/stage_1.png</key>
+            <key type="filename">../sprites/trees/maple/summer/stage_2.png</key>
+            <key type="filename">../sprites/trees/maple/winter/seed.png</key>
+            <key type="filename">../sprites/trees/maple/winter/stage_0.png</key>
+            <key type="filename">../sprites/trees/maple/winter/stage_1.png</key>
+            <key type="filename">../sprites/trees/maple/winter/stage_2.png</key>
             <key type="filename">../sprites/trees/oak/fall/seed.png</key>
             <key type="filename">../sprites/trees/oak/fall/stage_0.png</key>
             <key type="filename">../sprites/trees/oak/fall/stage_1.png</key>
@@ -189,6 +220,70 @@
             <key type="filename">../sprites/trees/oak/winter/stage_0.png</key>
             <key type="filename">../sprites/trees/oak/winter/stage_1.png</key>
             <key type="filename">../sprites/trees/oak/winter/stage_2.png</key>
+            <key type="filename">../sprites/trees/pine/fall/seed.png</key>
+            <key type="filename">../sprites/trees/pine/fall/stage_0.png</key>
+            <key type="filename">../sprites/trees/pine/fall/stage_1.png</key>
+            <key type="filename">../sprites/trees/pine/fall/stage_2.png</key>
+            <key type="filename">../sprites/trees/pine/spring/seed.png</key>
+            <key type="filename">../sprites/trees/pine/spring/stage_0.png</key>
+            <key type="filename">../sprites/trees/pine/spring/stage_1.png</key>
+            <key type="filename">../sprites/trees/pine/spring/stage_2.png</key>
+            <key type="filename">../sprites/trees/pine/summer/seed.png</key>
+            <key type="filename">../sprites/trees/pine/summer/stage_0.png</key>
+            <key type="filename">../sprites/trees/pine/summer/stage_1.png</key>
+            <key type="filename">../sprites/trees/pine/summer/stage_2.png</key>
+            <key type="filename">../sprites/trees/pine/winter/seed.png</key>
+            <key type="filename">../sprites/trees/pine/winter/stage_0.png</key>
+            <key type="filename">../sprites/trees/pine/winter/stage_1.png</key>
+            <key type="filename">../sprites/trees/pine/winter/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/fall/seed.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/fall/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/fall/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/fall/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/spring/seed.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/spring/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/spring/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/spring/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/summer/seed.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/summer/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/summer/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/summer/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/winter/seed.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/winter/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/winter/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/winter/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/mystic/fall/seed.png</key>
+            <key type="filename">../sprites/trees/special/mystic/fall/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/mystic/fall/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/mystic/fall/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/mystic/spring/seed.png</key>
+            <key type="filename">../sprites/trees/special/mystic/spring/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/mystic/spring/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/mystic/spring/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/mystic/summer/seed.png</key>
+            <key type="filename">../sprites/trees/special/mystic/summer/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/mystic/summer/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/mystic/summer/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/mystic/winter/seed.png</key>
+            <key type="filename">../sprites/trees/special/mystic/winter/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/mystic/winter/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/mystic/winter/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/palm/fall/seed.png</key>
+            <key type="filename">../sprites/trees/special/palm/fall/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/palm/fall/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/palm/fall/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/palm/spring/seed.png</key>
+            <key type="filename">../sprites/trees/special/palm/spring/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/palm/spring/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/palm/spring/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/palm/summer/seed.png</key>
+            <key type="filename">../sprites/trees/special/palm/summer/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/palm/summer/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/palm/summer/stage_2.png</key>
+            <key type="filename">../sprites/trees/special/palm/winter/seed.png</key>
+            <key type="filename">../sprites/trees/special/palm/winter/stage_0.png</key>
+            <key type="filename">../sprites/trees/special/palm/winter/stage_1.png</key>
+            <key type="filename">../sprites/trees/special/palm/winter/stage_2.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -200,6 +295,115 @@
                 <rect>4,4,8,8</rect>
                 <key>scale9Paddings</key>
                 <rect>4,4,8,8</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sprites/trees/mahogany/fall/stage_3.png</key>
+            <key type="filename">../sprites/trees/mahogany/fall/stump.png</key>
+            <key type="filename">../sprites/trees/mahogany/spring/stage_3.png</key>
+            <key type="filename">../sprites/trees/mahogany/spring/stump.png</key>
+            <key type="filename">../sprites/trees/mahogany/summer/stage_3.png</key>
+            <key type="filename">../sprites/trees/mahogany/summer/stump.png</key>
+            <key type="filename">../sprites/trees/mahogany/winter/stage_3.png</key>
+            <key type="filename">../sprites/trees/mahogany/winter/stump.png</key>
+            <key type="filename">../sprites/trees/maple/fall/stage_3.png</key>
+            <key type="filename">../sprites/trees/maple/fall/stump.png</key>
+            <key type="filename">../sprites/trees/maple/spring/seed.png</key>
+            <key type="filename">../sprites/trees/maple/spring/stage_3.png</key>
+            <key type="filename">../sprites/trees/maple/spring/stump.png</key>
+            <key type="filename">../sprites/trees/maple/summer/stage_3.png</key>
+            <key type="filename">../sprites/trees/maple/summer/stump.png</key>
+            <key type="filename">../sprites/trees/maple/winter/stage_3.png</key>
+            <key type="filename">../sprites/trees/maple/winter/stump.png</key>
+            <key type="filename">../sprites/trees/oak/fall/stump.png</key>
+            <key type="filename">../sprites/trees/oak/spring/stage_3.png</key>
+            <key type="filename">../sprites/trees/oak/spring/stump.png</key>
+            <key type="filename">../sprites/trees/oak/summer/stump.png</key>
+            <key type="filename">../sprites/trees/oak/winter/stump.png</key>
+            <key type="filename">../sprites/trees/pine/fall/stage_3.png</key>
+            <key type="filename">../sprites/trees/pine/fall/stump.png</key>
+            <key type="filename">../sprites/trees/pine/spring/stage_3.png</key>
+            <key type="filename">../sprites/trees/pine/spring/stump.png</key>
+            <key type="filename">../sprites/trees/pine/summer/stage_3.png</key>
+            <key type="filename">../sprites/trees/pine/summer/stump.png</key>
+            <key type="filename">../sprites/trees/pine/winter/stage_3.png</key>
+            <key type="filename">../sprites/trees/pine/winter/stump.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/fall/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/fall/stump.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/spring/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/spring/stump.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/summer/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/summer/stump.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/winter/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/winter/stump.png</key>
+            <key type="filename">../sprites/trees/special/mystic/fall/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/mystic/fall/stump.png</key>
+            <key type="filename">../sprites/trees/special/mystic/spring/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/mystic/spring/stump.png</key>
+            <key type="filename">../sprites/trees/special/mystic/summer/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/mystic/summer/stump.png</key>
+            <key type="filename">../sprites/trees/special/mystic/winter/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/mystic/winter/stump.png</key>
+            <key type="filename">../sprites/trees/special/palm/fall/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/palm/fall/stump.png</key>
+            <key type="filename">../sprites/trees/special/palm/spring/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/palm/spring/stump.png</key>
+            <key type="filename">../sprites/trees/special/palm/summer/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/palm/summer/stump.png</key>
+            <key type="filename">../sprites/trees/special/palm/winter/stage_3.png</key>
+            <key type="filename">../sprites/trees/special/palm/winter/stump.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>4,8,8,16</rect>
+                <key>scale9Paddings</key>
+                <rect>4,8,8,16</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
+            <key type="filename">../sprites/trees/mahogany/fall/stage_4.png</key>
+            <key type="filename">../sprites/trees/mahogany/spring/stage_4.png</key>
+            <key type="filename">../sprites/trees/mahogany/summer/stage_4.png</key>
+            <key type="filename">../sprites/trees/mahogany/winter/stage_4.png</key>
+            <key type="filename">../sprites/trees/maple/fall/stage_4.png</key>
+            <key type="filename">../sprites/trees/maple/spring/stage_4.png</key>
+            <key type="filename">../sprites/trees/maple/summer/stage_4.png</key>
+            <key type="filename">../sprites/trees/maple/winter/stage_4.png</key>
+            <key type="filename">../sprites/trees/oak/fall/stage_4.png</key>
+            <key type="filename">../sprites/trees/oak/spring/stage_4.png</key>
+            <key type="filename">../sprites/trees/oak/summer/stage_4.png</key>
+            <key type="filename">../sprites/trees/pine/fall/stage_4.png</key>
+            <key type="filename">../sprites/trees/pine/spring/stage_4.png</key>
+            <key type="filename">../sprites/trees/pine/summer/stage_4.png</key>
+            <key type="filename">../sprites/trees/pine/winter/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/fall/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/spring/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/summer/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/mushroom/winter/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/mystic/fall/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/mystic/spring/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/mystic/summer/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/mystic/winter/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/palm/fall/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/palm/spring/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/palm/summer/stage_4.png</key>
+            <key type="filename">../sprites/trees/special/palm/winter/stage_4.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>12,20,24,40</rect>
+                <key>scale9Paddings</key>
+                <rect>12,20,24,40</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
@@ -216,42 +420,6 @@
                 <rect>4,8,7,15</rect>
                 <key>scale9Paddings</key>
                 <rect>4,8,7,15</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../sprites/trees/oak/fall/stage_4.png</key>
-            <key type="filename">../sprites/trees/oak/spring/stage_4.png</key>
-            <key type="filename">../sprites/trees/oak/summer/stage_4.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>12,20,24,40</rect>
-                <key>scale9Paddings</key>
-                <rect>12,20,24,40</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
-            <key type="filename">../sprites/trees/oak/fall/stump.png</key>
-            <key type="filename">../sprites/trees/oak/spring/stage_3.png</key>
-            <key type="filename">../sprites/trees/oak/spring/stump.png</key>
-            <key type="filename">../sprites/trees/oak/summer/stump.png</key>
-            <key type="filename">../sprites/trees/oak/winter/stump.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>4,8,8,16</rect>
-                <key>scale9Paddings</key>
-                <rect>4,8,8,16</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
