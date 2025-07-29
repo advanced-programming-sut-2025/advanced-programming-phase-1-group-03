@@ -35,7 +35,7 @@ public class CraftingMenu extends Actor {
     private final Array<CraftableItem> craftables = new Array<>();
 
     final float scale = 0.68f;
-    private final float craftScale = 1.2f;
+    private final float craftScale = 1.1f;
     final int sizeOfEachColumn = 12;
 
     private EventListener clickListener;
@@ -231,11 +231,11 @@ public class CraftingMenu extends Actor {
 
     private void drawItems(Batch batch) {
         final float offsetX = 20f;
-        final float offsetY = 320f;
+        final float offsetY = 345f;
         final float offsetEachX = 70f;
-        final float offsetEachY = 120f;
+        final float offsetEachY = 77f;
 
-        int columns = 12;
+        int columns = 9;
         int i = 0;
 
         Vector2 mousePos = stage.screenToStageCoordinates(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
@@ -245,6 +245,9 @@ public class CraftingMenu extends Actor {
         for (CraftableItem item : craftables) {
             int col = i % columns;
             int row = i / columns;
+
+            if(row == 2)
+                col += 3;
 
             float drawX = getX() + offsetX + col * offsetEachX;
             float drawY = getY() + offsetY - row * offsetEachY;

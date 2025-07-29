@@ -90,8 +90,6 @@ map/tileset/winter_Shadows.png
 map/tileset/winter_Waterfalls.png
 map/tileset/winter_outdoorsTileSheet.png
 map/tileset/winter_outdoorsTileSheet2.png
-skins/Stardew Valley ALL CAPS.ttf
-skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas
