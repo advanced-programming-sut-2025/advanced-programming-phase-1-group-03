@@ -14,10 +14,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
@@ -41,26 +38,29 @@ public class CraftingMenu extends Actor {
     private final float craftScale = 1.2f;
     final int sizeOfEachColumn = 12;
 
+    private EventListener clickListener;
+
     public CraftingMenu(AssetService assetService, Skin skin, Stage stage, Inventory inventory, AudioService audioService) {
         this.assetService = assetService;
         this.skin = skin;
         this.stage = stage;
         this.inventory = inventory;
         this.audioService = audioService;
-
         background = assetService.get(AtlasAsset.Crafting).findRegion("CraftingBackground");
+    }
+
+    public void setupUI() {
         setX((Constraints.WORLD_WIDTH_RESOLUTION - background.getRegionWidth()) / 2f);
         setY((Constraints.WORLD_HEIGHT_RESOLUTION - background.getRegionHeight()) / 2f);
 
         loadCraftableItems();
 
-        stage.addListener(new InputListener() {
+        stage.addListener(clickListener = new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
                 Vector2 stageCoords = stage.screenToStageCoordinates(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
                 float worldX = stageCoords.x;
                 float worldY = stageCoords.y;
-
                 for (CraftableItem item : craftables) {
                     if (item.isMouseOver(worldX, worldY)) {
                         Gdx.app.log("Crafting", "Clicked on: " + item.name);
@@ -76,10 +76,7 @@ public class CraftingMenu extends Actor {
                 return true;
             }
         });
-
-
     }
-
     private void showErrorDialog(String message) {
         Dialog dialog = new Dialog("خطا", skin) {
             @Override
@@ -203,12 +200,10 @@ public class CraftingMenu extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        if (isShowing) {
-            batch.draw(background, getX(), getY());
-            drawInventoryItems(batch);
-            drawItems(batch);
-            drawTooltip(batch);
-        }
+        batch.draw(background, getX(), getY());
+        drawInventoryItems(batch);
+        drawItems(batch);
+        drawTooltip(batch);
     }
 
     private void drawInventoryItems(Batch batch) {
@@ -324,14 +319,15 @@ public class CraftingMenu extends Actor {
     public void toggle() {
         if (!isShowing) {
             instance = new CraftingMenu(assetService, skin, stage, inventory, audioService);
+            instance.setupUI();
             stage.addActor(instance);
         } else {
+            stage.removeListener(instance.clickListener);
             stage.getActors().removeValue(instance, true);
         }
         isShowing = !isShowing;
     }
 
-    // کلاس داخلی آیتم‌ها
     private static class CraftableItem {
         public final String name;
         public final TextureRegion icon;
@@ -351,4 +347,5 @@ public class CraftingMenu extends Actor {
             return mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + height;
         }
     }
+
 }

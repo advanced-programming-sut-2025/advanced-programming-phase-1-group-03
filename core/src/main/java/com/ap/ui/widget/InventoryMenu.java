@@ -72,13 +72,4 @@ public class InventoryMenu extends Actor {
         }
     }
 
-    public void toggle() {
-        if(!isShowing) {
-            instance = new InventoryMenu(assetService, skin, stage, inventory, audioService);
-            stage.addActor(instance);
-        } else {
-            stage.getActors().removeValue(instance, true);
-        }
-        isShowing = !isShowing;
-    }
 }

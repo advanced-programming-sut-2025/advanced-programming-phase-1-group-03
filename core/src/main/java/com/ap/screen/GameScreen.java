@@ -69,7 +69,6 @@ public class GameScreen extends AbstractScreen {
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
         tabManager = new TabManager(stage, assetService, skin, audioService);
-
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
 
@@ -101,8 +100,6 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
         stage.addActor(journal);
-        stage.addActor(craftingMenu);
-
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
     }
