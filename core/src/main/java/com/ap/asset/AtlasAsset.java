@@ -18,7 +18,8 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     UIElements("UI_elements.atlas"),
     Toggles("Tabs/Toggles.atlas"),
     Crops("Plants/crops.atlas"),
-    Crafting("Crafting.atlas");
+    Crafting("Crafting.atlas"),
+    Cooking("Cooking.atlas");
 
     private final AssetDescriptor<TextureAtlas> descriptor;
     AtlasAsset(String name) {

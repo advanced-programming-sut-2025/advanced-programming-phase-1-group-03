@@ -9,6 +9,7 @@ public enum Command {
     Up(Input.Keys.UP, Input.Keys.W),
     OpenInventory(Input.Keys.E),
     OpenCrafting(Input.Keys.B),
+    OpenCooking(Input.Keys.C),
     Click()
     ;
 
