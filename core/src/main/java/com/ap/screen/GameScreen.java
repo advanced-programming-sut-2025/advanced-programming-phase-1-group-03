@@ -72,7 +72,7 @@ public class GameScreen extends AbstractScreen {
         energyBar = new EnergyBar(assetService, skin);
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
 
-        tabManager = new TabManager(stage, assetService, skin, audioService);
+        tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
 
@@ -106,7 +106,6 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
         stage.addActor(journal);
-        stage.addActor(craftingMenu);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
@@ -172,6 +171,10 @@ public class GameScreen extends AbstractScreen {
 
     public TabManager getTabManager() {
         return tabManager;
+    }
+
+    public CookingMenu getCookingMenu() {
+        return cookingMenu;
     }
 
     class TimeListener implements ITimeListener {
