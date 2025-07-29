@@ -72,7 +72,6 @@ public class GameScreen extends AbstractScreen {
         energyBar = new EnergyBar(assetService, skin);
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
 
-        tabManager = new TabManager(stage, assetService, skin, audioService);
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
 
@@ -172,6 +171,10 @@ public class GameScreen extends AbstractScreen {
 
     public TabManager getTabManager() {
         return tabManager;
+    }
+
+    public CookingMenu getCookingMenu() {
+        return cookingMenu;
     }
 
     class TimeListener implements ITimeListener {
