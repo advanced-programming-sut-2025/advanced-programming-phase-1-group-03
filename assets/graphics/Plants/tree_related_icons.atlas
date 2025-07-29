@@ -1,0 +1,96 @@
+tree_related_icons.png
+size: 267, 124
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+pma: false
+acorn
+  bounds: 171, 100, 20, 24
+  offsets: 1, 0, 24, 24
+apple
+  bounds: 247, 47, 20, 21
+  offsets: 3, 0, 24, 24
+apple_sapling
+  bounds: 0, 0, 48, 48
+apricot
+  bounds: 234, 110, 14, 14
+  offsets: 4, 0, 24, 24
+apricot_sapling
+  bounds: 0, 50, 48, 48
+banana
+  bounds: 193, 100, 20, 24
+  offsets: 2, 0, 24, 24
+banana_sapling
+  bounds: 50, 0, 48, 48
+cherry
+  bounds: 76, 100, 22, 24
+  offsets: 1, 0, 24, 24
+cherry_sapling
+  bounds: 50, 50, 48, 48
+common_mushroom
+  bounds: 200, 49, 22, 21
+  offsets: 2, 0, 24, 24
+cranberry_candy
+  bounds: 250, 21, 17, 24
+  offsets: 3, 0, 24, 24
+gold
+  bounds: 246, 70, 16, 18
+  offsets: 1, 0, 18, 18
+mahogany_seed
+  bounds: 225, 0, 22, 22
+  offsets: 1, 1, 24, 24
+mango
+  bounds: 200, 0, 23, 22
+  offsets: 1, 1, 24, 24
+mango_sapling
+  bounds: 100, 0, 48, 48
+maple_seed
+  bounds: 224, 24, 24, 20
+  offsets: 0, 3, 24, 24
+maple_syrup
+  bounds: 100, 100, 22, 24
+  offsets: 1, 0, 24, 24
+mossy_seed
+  bounds: 148, 100, 21, 24
+  offsets: 2, 0, 24, 24
+mussel
+  bounds: 250, 90, 16, 16
+  offsets: 4, 4, 24, 24
+mystic_syrup
+  bounds: 200, 24, 22, 23
+  offsets: 1, 0, 24, 24
+mystic_tree_seed
+  bounds: 200, 72, 20, 23
+  offsets: 2, 0, 24, 24
+oak_resin
+  bounds: 215, 97, 17, 24
+  offsets: 4, 0, 24, 24
+orange
+  bounds: 26, 100, 23, 24
+  offsets: 1, 0, 24, 24
+orange_sapling
+  bounds: 100, 50, 48, 48
+peach
+  bounds: 224, 46, 21, 21
+  offsets: 2, 0, 24, 24
+peach_sapling
+  bounds: 150, 0, 48, 48
+pine_cone
+  bounds: 51, 100, 23, 24
+  offsets: 0, 0, 24, 24
+pine_tar
+  bounds: 224, 69, 20, 20
+  offsets: 1, 3, 24, 24
+pomegranate
+  bounds: 249, 0, 18, 19
+  offsets: 3, 0, 24, 24
+pomegranate_sapling
+  bounds: 150, 50, 48, 48
+purple_mushroom
+  bounds: 0, 100, 24, 24
+red_mushroom
+  bounds: 124, 100, 22, 24
+  offsets: 1, 0, 24, 24
+sap
+  bounds: 234, 91, 14, 17
+  offsets: 5, 3, 24, 24
