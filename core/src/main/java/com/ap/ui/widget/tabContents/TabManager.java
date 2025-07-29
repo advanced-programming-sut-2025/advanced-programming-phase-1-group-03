@@ -1,3 +1,4 @@
+
 package com.ap.ui.widget.tabContents;
 
 import com.ap.Constraints;
@@ -5,7 +6,8 @@ import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
 import com.ap.audio.AudioService;
-import com.badlogic.gdx.Gdx;
+import com.ap.items.Inventory;
+import com.ap.ui.widget.ItemContainer;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -26,9 +28,8 @@ public class TabManager {
     private final TextureAtlas toggleAtlas;
     private boolean isShowing;
 
-    private HorizontalGroup tabIcons;
+
     private Group ui;
-    private Stack contents;
 
 
     private Array <AbstractContent> contentArray;
@@ -37,14 +38,14 @@ public class TabManager {
     private AbstractContent currentContent = null;
     private int currentTab;
 
-    private final float upPadding;
     private final float iconWidth = 48;
     private final float iconHeight = 48;
 
     private float iconY;
+    private float iconX;
 
 
-    public TabManager(Stage stage, AssetService assetService, Skin skin, AudioService audioService) {
+    public TabManager(Stage stage, AssetService assetService, Skin skin, AudioService audioService, Inventory inventory) {
         this.stage = stage;
         this.assetService = assetService;
         this.skin = skin;
@@ -52,37 +53,42 @@ public class TabManager {
         this.toggleAtlas = assetService.get(AtlasAsset.Toggles);
 
         ui = new Group();
-        contents = new Stack();
-        contents.pack();
-        tabIcons = new HorizontalGroup();
-        tabIcons.setFillParent(true);
+        ui.setSize(Constraints.WORLD_WIDTH_RESOLUTION, Constraints.WORLD_HEIGHT_RESOLUTION);
+        ui.setPosition(0, 0);
         contentArray = new Array<>();
         iconArray = new Array<>();
 
-        contentArray.add(new InventoryTab(stage, assetService, skin, audioService, 600, 300, Tabs.Inventory));
+
+        contentArray.add(new InventoryTab(stage, assetService, skin, audioService, 600, 300, Tabs.Inventory, inventory));
         contentArray.add(new SkillTab(stage, assetService, skin, audioService, 600, 300, Tabs.Skill));
         contentArray.add(new SocialTab(stage, assetService, skin, audioService, 600, 300, Tabs.Social));
         contentArray.add(new MapTab(stage, assetService, skin, audioService, 600, 300, Tabs.Map));
         contentArray.add(new OptionsTab(stage, assetService, skin, audioService, 600, 300, Tabs.Options));
         contentArray.add(new ExitTab(stage, assetService, skin, audioService, 600, 300, Tabs.Exit));
 
+        iconY = Constraints.WORLD_HEIGHT_RESOLUTION / 2f;
+        iconX = (Constraints.WORLD_WIDTH_RESOLUTION - contentArray.size * iconWidth) / 2f;
+
         for (AbstractContent content : contentArray) {
-            contents.addActor(content);
-            content.setVisible(false);
+            ui.addActor(content);
             TextureRegion region = toggleAtlas.findRegion(content.icon.path);
             TextureRegionDrawable drawable = new TextureRegionDrawable(region);
             drawable.setMinSize(iconWidth, iconHeight);
             ImageButton button = new ImageButton(drawable);
             iconArray.add(button);
+            iconY = content.getY() + content.getHeight();
+            content.setVisible(false);
         }
-
         int tabIndex = 0;
+        iconY -= 6;
+
         for (ImageButton button : iconArray) {
             button.setSize(iconWidth, iconHeight);
             final int idx = tabIndex;
             button.addListener(new ClickListener() {
                 public void clicked(InputEvent event, float x, float y) {
                     setCurrentContent(idx);
+                    audioService.playSound(SoundAsset.HoverButton);
                 }
             });
             button.setTransform(true);
@@ -92,23 +98,18 @@ public class TabManager {
                 @Override
                 public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                     button.addAction(Actions.scaleTo(1.2f, 1.2f, 0.1f));
+                    audioService.playSound(SoundAsset.HoverButton);
                 }
-
                 @Override
                 public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
                     button.addAction(Actions.scaleTo(1f, 1f, 0.1f));
                 }
             });
-            tabIcons.addActor(button);
+            button.setPosition(tabIndex * iconWidth + iconX, iconY);
+            ui.addActor(button);
             ++tabIndex;
         }
 
-        upPadding = (Constraints.WORLD_HEIGHT_RESOLUTION - contentArray.get(0).getHeight()) / 2f;
-
-        ui.addActor(contents);
-        tabIcons.pack();
-        tabIcons.setPosition((Constraints.WORLD_WIDTH_RESOLUTION - tabIcons.getWidth()) / 2f, Constraints.WORLD_HEIGHT_RESOLUTION - upPadding + 16);
-        ui.addActor(tabIcons);
 
         stage.addActor(ui);
 
@@ -136,7 +137,6 @@ public class TabManager {
             }
         });
 
-        iconY = tabIcons.getChild(0).getY() - 26;
 
         currentTab = 0;
         ui.setVisible(false);
@@ -144,24 +144,20 @@ public class TabManager {
 
     public void toggle() {
         ui.setVisible(!ui.isVisible());
-        setCurrentContent(currentTab);
-        nextTab();
-        previousTab();
+        if (ui.isVisible()) setCurrentContent(currentTab);
+
     }
 
     public void setCurrentContent(int idx) {
         AbstractContent content = contentArray.get(idx);
         if (currentContent != null) {
             currentContent.setVisible(false);
-        }
-        for (Actor child : tabIcons.getChildren()) {
-            child.setY(iconY);
+            iconArray.get(currentTab).setY(iconY);
         }
         currentContent = content;
         content.setVisible(true);
         currentTab = idx;
-        System.out.println("idx: " + idx);
-        tabIcons.getChild(currentTab).moveBy(0, -5);
+        iconArray.get(idx).setY(iconY - 5);
 
     }
 

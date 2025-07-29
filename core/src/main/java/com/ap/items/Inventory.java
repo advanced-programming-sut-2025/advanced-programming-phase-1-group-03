@@ -3,6 +3,7 @@ package com.ap.items;
 import java.util.ArrayList;
 
 public class Inventory {
+    public final static int maxStorage = 36;
     private int storage = 12;
     private final ArrayList<ItemStack> items = new ArrayList<>();
 

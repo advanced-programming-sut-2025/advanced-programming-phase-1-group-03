@@ -12,12 +12,12 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
-public abstract class AbstractContent extends Actor {
+public abstract class AbstractContent extends Group {
 
     protected final Stage stage;
     protected final AssetService assetService;
@@ -25,21 +25,20 @@ public abstract class AbstractContent extends Actor {
     protected final TextureAtlas atlas;
     protected final AudioService audioService;
 
-    private boolean isShowing;
-    protected Table background;
-    protected Table content;
 
-    private Group group;
-
-    private int width; //just inner cells
-    private int height; //just inner cells
+    protected int width; //just inner cells
+    protected int height; //just inner cells
     private final int tileWidth;
     private final int tileHeight;
 
     protected final Tabs icon;
 
-    private float startX;
-    private float startY;
+    protected float X;
+    protected float Y;
+    protected float contentX;
+    protected float contentY;
+    protected float contentWidth;
+    protected float contentHeight;
 
     public final TextureRegion innerCell;
     public final TextureRegion UL_Corner;
@@ -58,6 +57,7 @@ public abstract class AbstractContent extends Actor {
     public final TextureRegion V_Line;
     public final TextureRegion H_thin_line;
     public final TextureRegion V_thin_line;
+
 
     public AbstractContent(Stage stage, AssetService assetService, Skin skin, AudioService audioService, int width, int height, Tabs icon) {
         tileHeight = 32;
@@ -88,120 +88,72 @@ public abstract class AbstractContent extends Actor {
         H_thin_line = atlas.findRegion("border/filled/h_thin_line");
         V_thin_line = atlas.findRegion("border/filled/v_thin_line");
 
-        background = new Table();
-        content = new Table();
-        group = new Group();
 
         assembleBackground();
 
 
-//        group.setPosition(startX, startY);
-        group.addActor(background);
-        group.addActor(content);
+
 
     }
 
     private void assembleBackground() {
-        int n = MathUtils.ceil((float) height / tileWidth);
-        int m = MathUtils.ceil((float) width / tileHeight);
-        for (int i = 0; i <= n + 1; i++) {
-            for (int j = 0; j <= m + 1; j++) {
+        int n = MathUtils.ceil((float) height / tileHeight) + 2;
+        int m = MathUtils.ceil((float) width / tileWidth) + 2;
+        height = n * tileHeight;
+        width = m * tileWidth;
+        setSize(width, height);
+        for (int i = 0; i < n; i++) {
+            float y = 0;
+            for (int j = 0; j < m; j++) {
                 TextureRegion region;
 
                 if (i == 0 && j == 0) {
                     region = UL_Corner;
-                } else if (i == 0 && j == m + 1) {
+                } else if (i == 0 && j == m - 1) {
                     region = UR_Corner;
-                } else if (i == n + 1 && j == 0) {
+                } else if (i == n - 1 && j == 0) {
                     region = DL_Corner;
-                } else if (i == n + 1 && j == m + 1) {
+                } else if (i == n - 1 && j == m - 1) {
                     region = DR_Corner;
                 } else if (j == 0) {
                     region = L_Line;
-                } else if (j == m + 1) {
+                } else if (j == m - 1) {
                     region = R_Line;
                 } else if (i == 0) {
                     region = U_Line;
-                } else if (i == n + 1) {
+                } else if (i == n - 1) {
                     region = D_Line;
                 } else {
                     region = innerCell;
                 }
 
                 Image tile = new Image(new TextureRegionDrawable(region));
-                background.add(tile).size(tileWidth, tileHeight);
+                tile.setSize(tileWidth, tileHeight);
+                tile.setPosition(j * tileWidth, (n - i - 1) * tileHeight);
+                addActor(tile);
             }
-            background.row();
+
         }
-        background.pack();
-        startX = (Constraints.WORLD_WIDTH_RESOLUTION - background.getWidth()) / 2f;
-        startY = (Constraints.WORLD_HEIGHT_RESOLUTION - background.getHeight()) / 2f;
+        X = (Constraints.WORLD_WIDTH_RESOLUTION - width) / 2f;
+        Y = (Constraints.WORLD_HEIGHT_RESOLUTION - height) / 2f;
+        contentWidth = width - (2 * tileWidth);
+        contentHeight = height - (2 * tileHeight);
+        contentX = (Constraints.WORLD_WIDTH_RESOLUTION - contentWidth) / 2f;
+        contentY = (Constraints.WORLD_HEIGHT_RESOLUTION - contentHeight) / 2f;
+        setPosition(X, Y);
 
-        background.setPosition(startX, startY);
-
-        content.setSize(background.getWidth(), background.getHeight());
-        content.setPosition(background.getX(), background.getY());
-        System.out.println(background.getWidth() + "," + background.getHeight() + ",\n" + startX + "," + startY);
     }
+
+
 
     @Override
-    public void draw(Batch batch, float parentAlpha) {
-        group.draw(batch, parentAlpha);
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+        if (visible) loadData();
     }
 
-    @Override
-    public void act(float delta) {
-//        super.act(delta);
-        group.act(delta);
-    }
-
-    @Override
-    public void moveBy(float x, float y) {
-        background.moveBy(x, y);
-        content.moveBy(x, y);
-        startX = background.getX();
-        startY = background.getY();
-    }
-    @Override
-    public void setPosition(float x, float y) {
-        background.setPosition(x, y);
-        content.setPosition(x, y);
-        startX = background.getX();
-        startY = background.getY();
-    }
-
-    @Override
-    public float getHeight() {
-        return background.getHeight();
-    }
-    @Override
-    public float getWidth() {
-        return background.getWidth();
-    }
+    public abstract void makeStructure();
+    public abstract void loadData();
 
 
-    public boolean isShowing() {
-        return isShowing;
-    }
-
-    public void setShowing(boolean showing) {
-        isShowing = showing;
-    }
-
-
-    public int getTileWidth() {
-        return tileWidth;
-    }
-
-    public int getTileHeight() {
-        return tileHeight;
-    }
-
-    public float getStartX() {
-        return startX;
-    }
-
-    public float getStartY() {
-        return startY;
-    }
 }

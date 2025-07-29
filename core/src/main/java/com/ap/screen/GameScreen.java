@@ -62,17 +62,19 @@ public class GameScreen extends AbstractScreen {
         ItemFactory.instance.setAssetService(assetService);
 
         // Setup inventory
+        TooltipHelper tooltipHelper = TooltipHelper.getTooltip(skin);
         inventory = new Inventory();
         Tool.addBasicTools(inventory, assetService);
 
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
-        tabManager = new TabManager(stage, assetService, skin, audioService);
+        tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
 
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
 
+        stage.addActor(tooltipHelper);
         clockManager = new ClockManager(clock);
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock, timeSystem);

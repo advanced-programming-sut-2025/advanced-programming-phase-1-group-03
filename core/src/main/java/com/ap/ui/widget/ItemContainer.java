@@ -34,7 +34,7 @@ public class ItemContainer extends Actor {
     private TextureRegion selectedItem;
 
     // It shows the maximum amount of items can be shown on item container
-    private final static int maxSize = 12;
+    public final static int maxSize = 12;
 
     private final float scale = 0.25f * 2;
     private final float itemScale = (1 / 3f) * 2;
