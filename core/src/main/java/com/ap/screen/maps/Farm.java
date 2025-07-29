@@ -52,7 +52,6 @@ public class Farm implements IMap {
     private TabManager tabManager;
     private ItemContainer itemContainer;
     private CraftingMenu craftingMenu;
-    private CookingMenu cookingMenu;
     private Clock clock;
 
     // Use to for night darkness
@@ -102,7 +101,6 @@ public class Farm implements IMap {
         // Setup inventory
         itemContainer = gameScreen.getItemContainer();
         craftingMenu = gameScreen.getCraftingMenu();
-        cookingMenu = gameScreen.getCookingMenu();
         tabManager = gameScreen.getTabManager();
         clock = gameScreen.getClock();
 
