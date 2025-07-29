@@ -4,6 +4,7 @@ import com.ap.component.Controller;
 import com.ap.component.Move;
 import com.ap.component.Player;
 import com.ap.input.Command;
+import com.ap.ui.widget.CookingMenu;
 import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.InventoryMenu;
 import com.ap.ui.widget.tabContents.TabManager;
@@ -16,10 +17,19 @@ public class ControllerSystem extends IteratingSystem {
     private InventoryMenu inventoryMenu;
     private TabManager tabManager;
     private CraftingMenu craftingMenu;
+    private CookingMenu cookingMenu;
     private TileSelectionSystem tileSelectionSystem;
     private int totalMovement = 0;
 
-    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu,  Engine engine) {
+    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CookingMenu cookingMenu,  Engine engine) {
+        super(Family.all(Controller.class).get());
+        this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
+        this.craftingMenu = craftingMenu;
+        this.cookingMenu = cookingMenu;
+        this.tabManager = tabManager;
+    }
+
+    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, Engine engine) {
         super(Family.all(Controller.class).get());
         this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
         this.craftingMenu = craftingMenu;
@@ -55,6 +65,9 @@ public class ControllerSystem extends IteratingSystem {
                     clicked();
                 } case OpenCrafting -> {
                     craftingMenu.toggle();
+                } case OpenCooking -> {
+                    if(cookingMenu != null)
+                        cookingMenu.toggle();
                 }
             }
         }

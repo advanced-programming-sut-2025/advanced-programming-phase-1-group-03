@@ -36,6 +36,7 @@ public class GameScreen extends AbstractScreen {
     private ItemContainer itemContainer;
     private EnergyBar energyBar;
     private CraftingMenu craftingMenu;
+    private CookingMenu cookingMenu;
     private TabManager tabManager;
     private Journal journal;
 
@@ -71,7 +72,7 @@ public class GameScreen extends AbstractScreen {
         tabManager = new TabManager(stage, assetService, skin, audioService);
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
-
+        cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
         clockManager = new ClockManager(clock);
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock, timeSystem);
@@ -138,6 +139,10 @@ public class GameScreen extends AbstractScreen {
 
     public CraftingMenu getCraftingMenu() {
         return craftingMenu;
+    }
+
+    public CookingMenu getCookingMenu() {
+        return cookingMenu;
     }
 
     public EnergyBar getEnergyBar() {

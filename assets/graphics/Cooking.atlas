@@ -1,0 +1,77 @@
+Cooking.png
+size: 689, 487
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+pma: false
+Baked_Fish
+  bounds: 640, 1, 46, 48
+  offsets: 0, 0, 48, 48
+Bread
+  bounds: 640, 51, 46, 48
+  offsets: 0, 0, 48, 48
+Cookie
+  bounds: 587, 440, 44, 38
+  offsets: 2, 5, 48, 48
+CraftingBackground
+  bounds: 1, 1, 637, 437
+Dish_O%27_The_Sea
+  bounds: 201, 440, 48, 44
+  offsets: 0, 2, 48, 48
+Farmer%27s_Lunch
+  bounds: 640, 151, 48, 47
+  offsets: 0, 1, 48, 48
+Fried_Egg
+  bounds: 633, 445, 44, 38
+  offsets: 2, 4, 48, 48
+Fruit_Salad
+  bounds: 449, 440, 44, 46
+  offsets: 2, 0, 48, 48
+Hashbrowns
+  bounds: 640, 200, 48, 47
+  offsets: 0, 0, 48, 48
+Maki_Roll
+  bounds: 401, 440, 46, 38
+  offsets: 0, 0, 48, 48
+Miner%27s_Treat
+  bounds: 640, 396, 29, 47
+  offsets: 8, 0, 48, 48
+Omelet
+  bounds: 640, 249, 48, 47
+  offsets: 0, 1, 48, 48
+Pancakes
+  bounds: 1, 440, 48, 46
+  offsets: 0, 0, 48, 48
+Pizza
+  bounds: 251, 440, 48, 44
+  offsets: 0, 2, 48, 48
+Pumpkin_Pie
+  bounds: 351, 440, 48, 37
+  offsets: 0, 0, 48, 48
+Red_Plate
+  bounds: 51, 440, 48, 46
+  offsets: 0, 2, 48, 48
+Salad
+  bounds: 101, 440, 48, 46
+  offsets: 0, 2, 48, 48
+Salmon_Dinner
+  bounds: 301, 440, 48, 41
+  offsets: 0, 5, 48, 48
+Seafoam_Pudding
+  bounds: 640, 101, 41, 48
+  offsets: 4, 0, 48, 48
+Spaghetti
+  bounds: 640, 298, 48, 47
+  offsets: 0, 0, 48, 48
+Survival_Burger
+  bounds: 640, 347, 48, 47
+  offsets: 0, 1, 48, 48
+Tortilla
+  bounds: 541, 440, 44, 41
+  offsets: 3, 3, 48, 48
+Triple_Shot_Espresso
+  bounds: 495, 440, 44, 44
+  offsets: 2, 2, 48, 48
+Vegetable_Medley
+  bounds: 151, 440, 48, 46
+  offsets: 0, 2, 48, 48

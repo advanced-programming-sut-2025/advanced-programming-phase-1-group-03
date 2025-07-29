@@ -20,6 +20,8 @@ data.db
 graphics/Animals/Fish.atlas
 graphics/Animals/Fish.png
 graphics/Animals/Fishing-2.png
+graphics/Cooking.atlas
+graphics/Cooking.png
 graphics/Crafting.atlas
 graphics/Crafting.png
 graphics/FishingMiniGame.png

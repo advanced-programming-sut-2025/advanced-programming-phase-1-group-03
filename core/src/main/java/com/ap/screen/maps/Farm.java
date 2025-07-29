@@ -20,10 +20,7 @@ import com.ap.system.universal.TimeSystem;
 import com.ap.tiled.TiledAshleyConfigurator;
 import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
-import com.ap.ui.widget.Clock;
-import com.ap.ui.widget.CraftingMenu;
-import com.ap.ui.widget.InventoryMenu;
-import com.ap.ui.widget.ItemContainer;
+import com.ap.ui.widget.*;
 import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
@@ -55,6 +52,7 @@ public class Farm implements IMap {
     private TabManager tabManager;
     private ItemContainer itemContainer;
     private CraftingMenu craftingMenu;
+    private CookingMenu cookingMenu;
     private Clock clock;
 
     // Use to for night darkness
@@ -104,6 +102,7 @@ public class Farm implements IMap {
         // Setup inventory
         itemContainer = gameScreen.getItemContainer();
         craftingMenu = gameScreen.getCraftingMenu();
+        cookingMenu = gameScreen.getCookingMenu();
         tabManager = gameScreen.getTabManager();
         clock = gameScreen.getClock();
 
