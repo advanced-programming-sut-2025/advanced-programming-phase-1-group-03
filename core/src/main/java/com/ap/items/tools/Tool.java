@@ -38,6 +38,6 @@ public abstract class Tool extends Item {
         inventory.addItem(new Scythe(atlas.findRegion("scythe/normal")), 1);
         inventory.addItem(new Shear(atlas.findRegion("shear/normal")), 1);
         inventory.addItem(new WateringCan(atlas.findRegion("watering_can/normal")), 1);
-        inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Carrot), 2);
+        inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Cauliflower), 9);
     }
 }

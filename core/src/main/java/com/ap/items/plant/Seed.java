@@ -41,7 +41,8 @@ public class Seed extends Item {
         // Reduce from inventory
         game.getInventory().removeItem(ItemFactory.instance.CreateSeed(belongingCropType), 1);
 
-        Entity crop = EntityFactory.CreateCropEntity(body.getPosition(), belongingCropType, game.getAssetService(), world);
+        Entity crop = EntityFactory.instance.CreateCropEntity(body.getPosition(), belongingCropType, world);
+
         engine.addEntity(crop);
     }
 }

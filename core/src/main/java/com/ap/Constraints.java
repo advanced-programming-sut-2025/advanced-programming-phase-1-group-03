@@ -15,7 +15,7 @@ public class Constraints {
     public static final float PLAYER_ANIMATION_FRAME_DURATION =  1/ 8f;
 
     // It means 1 second in the real world is equal to how many seconds in the game
-    public static final float GAME_SPEED = 2000f;
+    public static final float GAME_SPEED = 200f;
     // The game start at this hour
     public static final int START_HOUR = 8;
     public static final int END_HOUR = 22;
@@ -31,7 +31,9 @@ public class Constraints {
     public static final int GREEN_HOUSE_WOOD_NEEDED = 10;
     public static final int GREEN_HOUSE_GOLD_NEEDED = 500;
     public static final int CROPS_Z = 1;
-
+    public static final int NUMBER_OF_AXE_NEED_TO_DESTROY_GIANT = 10;
+    public static final int MIN_ITEM_GIANT_GIVE = 20;
+    public static final int MAX_ITEM_GIANT_GIVE = 25;
 
     public static String[] secQuestions = {
             "What is your dad's name?",
@@ -41,6 +43,7 @@ public class Constraints {
 
     // in 10 probabilities
     public static final int PROB_OF_GRASS_GIVE_FIBBER = 1;
+    public static final int PROP_OF_BECOME_GIANT = 1;
 
     public static final int STONE_Z = 1;
     public static int HOE_DIRT_Z = 1;

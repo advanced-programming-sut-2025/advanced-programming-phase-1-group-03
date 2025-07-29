@@ -6,6 +6,7 @@ import com.ap.asset.MapAsset;
 import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
 import com.ap.component.Player;
+import com.ap.items.EntityFactory;
 import com.ap.items.Inventory;
 import com.ap.items.ItemFactory;
 import com.ap.items.tools.Tool;
@@ -61,6 +62,7 @@ public class GameScreen extends AbstractScreen {
 
         GameUIManager.instance.setup(stage, skin, audioService);
         ItemFactory.instance.setAssetService(assetService);
+        EntityFactory.instance.setup(assetService);
 
         // Setup inventory
         TooltipHelper tooltipHelper = TooltipHelper.getTooltip(skin);

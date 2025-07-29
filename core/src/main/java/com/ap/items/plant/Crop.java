@@ -10,7 +10,11 @@ import java.util.List;
 
 public class Crop extends Plant {
     private CropsType type;
+    private boolean isGiant = false;
     private boolean isRegrowing = false;
+
+    // This field store how many times the crop was hit by axe
+    private int axeHit = 0;
 
     public Crop(TextureRegion icon, CropsType type) {
         super(type.getName(), 0, icon, 0);
@@ -36,5 +40,21 @@ public class Crop extends Plant {
 
     public void setRegrowing(boolean regrowing) {
         isRegrowing = regrowing;
+    }
+
+    public boolean isGiant() {
+        return isGiant;
+    }
+
+    public void setGiant(boolean giant) {
+        isGiant = giant;
+    }
+
+    public int getAxeHit() {
+        return axeHit;
+    }
+
+    public void setAxeHit(int axeHit) {
+        this.axeHit = axeHit;
     }
 }

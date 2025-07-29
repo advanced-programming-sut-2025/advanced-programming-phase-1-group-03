@@ -30,7 +30,7 @@ public class Hoe extends Tool{
             if(!tile.getProperties().get("Type", "", String.class).equals("Dirt")) {
                 return;
             }
-            Entity entity = EntityFactory.CreatePlowedDirt(body, world);
+            Entity entity = EntityFactory.instance.CreatePlowedDirt(body, world);
             game.getAudioService().playSound(SoundAsset.HoeHit, 0.2f);
             engine.addEntity(entity);
         }
