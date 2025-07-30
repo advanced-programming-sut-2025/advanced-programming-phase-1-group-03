@@ -1,0 +1,136 @@
+Characters.png
+size: 1448, 507
+format: RGBA8888
+filter: Linear, Linear
+repeat: none
+pma: false
+Abigail
+  bounds: 1, 391, 106, 115
+  offsets: 11, 0, 128, 128
+Alex
+  bounds: 391, 261, 125, 128
+  offsets: 3, 0, 128, 128
+Birdie
+  bounds: 675, 388, 128, 117
+  offsets: 0, 0, 128, 128
+Bouncer
+  bounds: 518, 261, 125, 128
+  offsets: 3, 0, 128, 128
+Caroline
+  bounds: 770, 259, 116, 127
+  offsets: 7, 0, 128, 128
+Clint
+  bounds: 888, 259, 128, 123
+  offsets: 0, 0, 128, 128
+Demetrius
+  bounds: 1, 1, 128, 128
+Dwarf
+  bounds: 573, 391, 100, 85
+  offsets: 15, 0, 128, 128
+Elliott
+  bounds: 1, 131, 128, 128
+Emily
+  bounds: 1225, 126, 112, 123
+  offsets: 7, 0, 128, 128
+Evelyn
+  bounds: 347, 391, 104, 113
+  offsets: 12, 0, 128, 128
+Fizz
+  bounds: 1, 261, 128, 128
+  index: 0
+George
+  bounds: 453, 391, 118, 109
+  offsets: 5, 0, 128, 128
+Gil
+  bounds: 805, 388, 125, 117
+  offsets: 0, 0, 128, 128
+Governor
+  bounds: 131, 1, 128, 128
+Grandpa
+  bounds: 1018, 253, 127, 123
+  offsets: 1, 0, 128, 128
+Gunther
+  bounds: 932, 384, 128, 121
+  offsets: 0, 0, 128, 128
+Gus
+  bounds: 521, 1, 128, 127
+  offsets: 0, 0, 128, 128
+Haley
+  bounds: 1062, 378, 124, 123
+  offsets: 1, 0, 128, 128
+Harvey
+  bounds: 645, 259, 123, 127
+  offsets: 0, 0, 128, 128
+Henchman_Portrait
+  bounds: 217, 391, 128, 113
+  offsets: 0, 0, 128, 128
+  index: 1
+Jas
+  bounds: 1147, 251, 116, 123
+  offsets: 5, 0, 128, 128
+Jodi
+  bounds: 131, 131, 128, 128
+Kent
+  bounds: 131, 261, 128, 128
+Krobus
+  bounds: 109, 391, 106, 115
+  offsets: 9, 0, 128, 128
+Leah
+  bounds: 1339, 124, 108, 117
+  offsets: 15, 0, 128, 128
+Leo
+  bounds: 966, 128, 128, 123
+  offsets: 0, 0, 128, 128
+Lewis
+  bounds: 1288, 1, 128, 121
+  offsets: 0, 0, 128, 128
+Linus
+  bounds: 626, 130, 128, 127
+  offsets: 0, 0, 128, 128
+Marlon
+  bounds: 651, 1, 128, 127
+  offsets: 0, 0, 128, 128
+Marnie
+  bounds: 1318, 372, 116, 119
+  offsets: 5, 0, 128, 128
+Maru
+  bounds: 391, 131, 127, 128
+  offsets: 0, 0, 128, 128
+Morris
+  bounds: 261, 1, 128, 128
+Mr._Qi
+  bounds: 1031, 1, 128, 123
+  offsets: 0, 0, 128, 128
+Pam
+  bounds: 1265, 251, 124, 119
+  offsets: 1, 0, 128, 128
+Penny
+  bounds: 880, 130, 84, 127
+  offsets: 23, 0, 128, 128
+Pierre
+  bounds: 261, 131, 128, 128
+Professor_Snail
+  bounds: 1188, 376, 128, 121
+  offsets: 0, 0, 128, 128
+Robin
+  bounds: 781, 1, 120, 127
+  offsets: 5, 0, 128, 128
+Sam
+  bounds: 756, 130, 122, 127
+  offsets: 5, 0, 128, 128
+Sandy
+  bounds: 1161, 1, 125, 123
+  offsets: 3, 0, 128, 128
+Sebastian
+  bounds: 261, 261, 128, 128
+Shane
+  bounds: 903, 1, 126, 125
+  offsets: 1, 0, 128, 128
+Vincent
+  bounds: 520, 131, 104, 128
+  offsets: 9, 0, 128, 128
+Willy
+  bounds: 1096, 126, 127, 123
+  offsets: 1, 0, 128, 128
+Wizard
+  bounds: 391, 1, 128, 128

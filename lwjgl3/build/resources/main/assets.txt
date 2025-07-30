@@ -8,7 +8,6 @@ audio/Winter.mp3
 audio/axe.wav
 audio/coin.wav
 audio/cut.wav
-audio/drumkit1.wav
 audio/gift.wav
 audio/hoeHit.wav
 audio/hover-sound.wav
@@ -21,6 +20,8 @@ data.db
 graphics/Animals/Fish.atlas
 graphics/Animals/Fish.png
 graphics/Animals/Fishing-2.png
+graphics/Characters.atlas
+graphics/Characters.png
 graphics/Cooking.atlas
 graphics/Cooking.png
 graphics/Crafting.atlas
@@ -40,10 +41,17 @@ graphics/OnMap/trees.png
 graphics/OnMap/trees.tps
 graphics/Plants/crops.atlas
 graphics/Plants/crops.png
+graphics/Plants/fruit_trees.atlas
+graphics/Plants/fruit_trees.png
+graphics/Plants/fruit_trees.tps
+graphics/Plants/tree_related_icons.atlas
+graphics/Plants/tree_related_icons.png
+graphics/Plants/tree_related_icons.tps
 graphics/Rain.png
 graphics/RiverLandMap.png
 graphics/SeasonalObjects.atlas
 graphics/SeasonalObjects.png
+graphics/StoreBackground.png
 graphics/Tabs/socialBackground.png
 graphics/Tabs/socialtoggle.png
 graphics/Tabs/toggles.atlas
@@ -58,6 +66,7 @@ graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
 graphics/img.png
+graphics/img_1.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
@@ -93,8 +102,8 @@ map/tileset/winter_Shadows.png
 map/tileset/winter_Waterfalls.png
 map/tileset/winter_outdoorsTileSheet.png
 map/tileset/winter_outdoorsTileSheet2.png
-skins/Stardew Valley ALL CAPS.ttf
-skins/Stardew Valley Regular.ttf
+skins/LondonMM.ttf
+skins/Millennium-Bold.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

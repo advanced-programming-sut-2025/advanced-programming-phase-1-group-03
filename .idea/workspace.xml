@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="trees atlas completed" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="trees atlas completed">
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Characters.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Characters.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/StoreBackground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/skins/LondonMM.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/skins/Millennium-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/StoreMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/skins/skin.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/skins/skin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CraftingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CraftingMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +100,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/StardewValley/assets/graphics/Plants",
+    "last_opened_file_path": "C:/Users/Surface/IdeaProjects/Stardew/assets/skins",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -103,18 +119,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Surface\IdeaProjects\Stardew\assets\skins" />
+      <recent name="C:\Users\Surface\IdeaProjects\Stardew\assets\graphics" />
+      <recent name="C:\Users\Surface\IdeaProjects\Stardew\core\src\main\java\com\ap\ui\widget" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\Plants" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\OnMap" />
-      <recent name="C:\Users\Surface\IdeaProjects\Stardew\assets\graphics" />
-      <recent name="D:\StarehdewValley\assets\map\tileset" />
-      <recent name="D:\StarehdewValley\assets\audio" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.ap.screen.maps" />
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RunGDX">
+  <component name="RunManager" selected="Gradle.StardewValley [run]">
     <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -162,7 +178,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.RunGDX" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>

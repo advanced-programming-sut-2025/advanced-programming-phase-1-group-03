@@ -78,7 +78,7 @@ public class CraftingMenu extends Actor {
         });
     }
     private void showErrorDialog(String message) {
-        Dialog dialog = new Dialog("خطا", skin) {
+        Dialog dialog = new Dialog("Error", skin) {
             @Override
             protected void result(Object object) {
             }
