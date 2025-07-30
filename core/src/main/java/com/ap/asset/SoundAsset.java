@@ -14,6 +14,7 @@ public enum SoundAsset implements Asset<Sound> {
     Gift("gift.wav"),
     Watering("watering.wav"),
     WateringCanNo("wateringCanNo.wav"),
+    Thunder("thunder.mp3"),
     Mineral("mineral.wav"),
     ;
 

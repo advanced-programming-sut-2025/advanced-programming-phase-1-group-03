@@ -5,15 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Mine Completed">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/ForagingTrees.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/audio/thunder.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/LightningCloud.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/LightningStorm.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/LightningStorm2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/LightningStorm3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/whiteflash.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/LightningStorm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/trees.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/trees.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/trees.tps" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/trees.tps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/MusicAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/MusicAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +93,7 @@
     "Application.RunGDX.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
-    "Gradle.StardewValley [run].executor": "Debug",
+    "Gradle.StardewValley [run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",

@@ -1,5 +1,6 @@
 package com.ap.screen;
 
+import com.ap.Constraints;
 import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
@@ -39,6 +40,7 @@ public class GameScreen extends AbstractScreen {
     private CraftingMenu craftingMenu;
     private CookingMenu cookingMenu;
     private StoreMenu storeMenu;
+    private LightningStorm lightningStorm;
     private TabManager tabManager;
     private Journal journal;
 
@@ -80,6 +82,7 @@ public class GameScreen extends AbstractScreen {
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
         storeMenu = new StoreMenu(assetService, skin, stage, inventory, audioService, "Gus",
                 "Hungry? Thirsty? I've got just the thing.");
+        lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
         cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
         stage.addActor(tooltipHelper);
         clockManager = new ClockManager(clock);
@@ -87,7 +90,6 @@ public class GameScreen extends AbstractScreen {
         weatherSystem = new WeatherSystem(clock, timeSystem);
         mapManager = new MapManager(game, this);
         mapManager.loadAllMaps();
-
     }
 
 
@@ -96,7 +98,6 @@ public class GameScreen extends AbstractScreen {
         universalEngine.addSystem(timeSystem);
         universalEngine.addSystem(weatherSystem);
         universalEngine.addSystem(new EnergySystem(energyBar));
-
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
 
@@ -111,6 +112,7 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(energyBar);
         stage.addActor(journal);
      //   stage.addActor(storeMenu);
+        lightningStorm.toggle(0, 0);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);

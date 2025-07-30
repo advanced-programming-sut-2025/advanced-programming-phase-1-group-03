@@ -12,7 +12,8 @@ public enum MusicAsset implements Asset<Music> {
     Winter("Winter.mp3"),
     Fall("Fall.mp3"),
     Type("type.mp3"),
-    Mine("Mine.mp3")
+    Mine("Mine.mp3"),
+    Thunder("thunder.mp3")
     ;
 
     private final AssetDescriptor<Music> descriptor;
