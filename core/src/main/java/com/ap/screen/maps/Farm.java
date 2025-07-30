@@ -71,6 +71,7 @@ public class Farm implements IMap {
     private GdxGame game;
     private GrowSystem growSystem;
     private GiantCropManager giantCropManager;
+    private CrowAttackManagerSystem crowAttackManagerSystem;
 
     public Farm(GdxGame game, GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -142,6 +143,9 @@ public class Farm implements IMap {
         }
         engine.addSystem(new ControllerSystem(tabManager, craftingMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
+        crowAttackManagerSystem = new CrowAttackManagerSystem(engine, world);
+        engine.addSystem(crowAttackManagerSystem);
+
       //  engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
         // Setup consumers
@@ -200,6 +204,7 @@ public class Farm implements IMap {
         public void onDayChanged(int day) {
             growSystem.dayPassed();
             giantCropManager.checkGiant();
+            crowAttackManagerSystem.onDayChanged();
         }
     }
 }

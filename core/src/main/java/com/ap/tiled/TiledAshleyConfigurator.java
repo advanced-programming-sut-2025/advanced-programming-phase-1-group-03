@@ -5,6 +5,7 @@ import com.ap.asset.AtlasAsset;
 import com.ap.component.*;
 import com.ap.component.Transform;
 import com.ap.items.environment.Greenhouse;
+import com.ap.state.AnimationState;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Color;
@@ -102,7 +103,7 @@ public class TiledAshleyConfigurator {
     }
 
     private void addEntityFsm(Entity entity) {
-        entity.add(new Fsm(entity));
+        entity.add(new Fsm(entity, AnimationState.Idle));
     }
 
     private void addEntityAnimation(TiledMapTile tile, Entity entity) {

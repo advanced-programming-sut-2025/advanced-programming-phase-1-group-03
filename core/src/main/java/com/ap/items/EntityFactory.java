@@ -3,12 +3,15 @@ package com.ap.items;
 import com.ap.Constraints;
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
+import com.ap.audio.AudioService;
 import com.ap.component.*;
 import com.ap.items.plant.Crop;
 import com.ap.model.CropsType;
+import com.ap.state.CrowAnimationState;
 import com.ap.model.MineralNodes;
 import com.ap.tiled.TiledPhysic;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -20,9 +23,11 @@ public class EntityFactory {
     public static EntityFactory instance = new EntityFactory();
 
     private AssetService assetService;
+    private AudioService audioService;
 
-    public void setup(AssetService asset) {
+    public void setup(AssetService asset, AudioService audioService) {
         assetService = asset;
+        this.audioService = audioService;
     }
 
     public Entity CreatePlowedDirt(Body body, World world) {
@@ -181,6 +186,21 @@ public class EntityFactory {
         crop.setGiant(true);
 
         entity.add(new ItemHolder(crop));
+        return entity;
+    }
+
+    public Entity createCrowEntity(Entity purposeEntity) {
+        Entity entity = new Entity();
+        Vector2 pos = Transform.mapper.get(purposeEntity).getPosition();
+
+        entity.add(new Transform(new Vector2(pos.x, pos.y), Constraints.CROW_Z, new Vector2(1f, 1), new Vector2(1, 1), 0, 0));
+        entity.add(new Facing(Facing.FacingDirection.Left));
+        entity.add(new Move(Crow.Situation.Fly.speed));
+        entity.add(new Graphic(null));
+        entity.add(new Fsm(entity, CrowAnimationState.Voice));
+        entity.add(new Animation2D(AtlasAsset.Crow, "", Animation2D.AnimationType.Voice, Animation.PlayMode.LOOP, 0.5f));
+        entity.add(new Crow(purposeEntity, entity, audioService));
+
         return entity;
     }
 

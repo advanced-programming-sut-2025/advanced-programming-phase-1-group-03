@@ -11,6 +11,7 @@ public class Move implements Component {
     private final Vector2 direction;
     private boolean isRooted;
 
+
     public Move(float maxSpeed) {
         this.maxSpeed = maxSpeed;
         direction = new Vector2();

@@ -79,7 +79,9 @@ public class Animation2D implements Component {
 
     public enum AnimationType {
         Idle,
-        Walk
+        Walk,
+        Voice,
+        Fly
         ;
         private final String atlasKey;
         AnimationType() {

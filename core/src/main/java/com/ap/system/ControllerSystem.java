@@ -6,7 +6,6 @@ import com.ap.component.Player;
 import com.ap.input.Command;
 import com.ap.ui.widget.CookingMenu;
 import com.ap.ui.widget.CraftingMenu;
-import com.ap.ui.widget.InventoryMenu;
 import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -14,7 +13,6 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 
 public class ControllerSystem extends IteratingSystem {
-    private InventoryMenu inventoryMenu;
     private TabManager tabManager;
     private CraftingMenu craftingMenu;
     private CookingMenu cookingMenu;

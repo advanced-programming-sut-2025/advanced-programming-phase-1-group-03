@@ -65,7 +65,7 @@ public class GameScreen extends AbstractScreen {
 
         GameUIManager.instance.setup(stage, skin, audioService);
         ItemFactory.instance.setAssetService(assetService);
-        EntityFactory.instance.setup(assetService);
+        EntityFactory.instance.setup(assetService, audioService);
 
         // Setup inventory
         TooltipHelper tooltipHelper = TooltipHelper.getTooltip(skin);

@@ -60,7 +60,7 @@ public class AnimationSystem extends IteratingSystem {
         CacheKey cacheKey = new CacheKey(atlasAsset, atlasKey, type, facing);
         Animation<TextureRegion> animation = animationCache.computeIfAbsent(cacheKey, key -> {
             TextureAtlas atlas = assetService.get(atlasAsset);
-            String combinedKey = atlasKey + "/" + type.getAtlasKey() + "_" + facing.getAtlasKey();
+            String combinedKey = (!atlasKey.isEmpty() ? atlasKey+ "/" : "") +type.getAtlasKey() + "_" + facing.getAtlasKey();
             var regions = atlas.findRegions(combinedKey);
             return new Animation<>(frameDuration, regions);
         });
