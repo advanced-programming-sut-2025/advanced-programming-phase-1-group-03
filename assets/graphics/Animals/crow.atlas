@@ -1,0 +1,114 @@
+crow.png
+size: 798, 127
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+pma: false
+fly
+  bounds: 690, 47, 64, 34
+  offsets: 0, 15, 64, 64
+  index: 0
+fly
+  bounds: 668, 0, 64, 45
+  offsets: 0, 0, 64, 64
+  index: 1
+fly
+  bounds: 690, 83, 64, 34
+  offsets: 0, 15, 64, 64
+  index: 2
+fly
+  bounds: 734, 0, 64, 45
+  offsets: 0, 19, 64, 64
+  index: 3
+idle/front
+  bounds: 252, 0, 50, 64
+  offsets: 7, 0, 64, 64
+  index: 0
+idle/front
+  bounds: 378, 66, 50, 61
+  offsets: 7, 0, 64, 64
+  index: 1
+idle/front
+  bounds: 304, 0, 50, 64
+  offsets: 7, 0, 64, 64
+  index: 2
+idle/front
+  bounds: 430, 66, 50, 61
+  offsets: 7, 0, 64, 64
+  index: 3
+voice/back
+  bounds: 482, 66, 50, 61
+  offsets: 7, 0, 64, 64
+voice/front
+  bounds: 534, 66, 50, 61
+  offsets: 7, 0, 64, 64
+voice/left
+  bounds: 0, 66, 61, 61
+  offsets: 3, 0, 64, 64
+voice/right
+  bounds: 63, 66, 61, 61
+  offsets: 0, 0, 64, 64
+walk/back
+  bounds: 356, 0, 50, 64
+  offsets: 7, 0, 64, 64
+  index: 0
+walk/back
+  bounds: 564, 0, 50, 61
+  offsets: 7, 0, 64, 64
+  index: 1
+walk/back
+  bounds: 408, 0, 50, 64
+  offsets: 7, 0, 64, 64
+  index: 2
+walk/back
+  bounds: 586, 63, 50, 61
+  offsets: 7, 0, 64, 64
+  index: 3
+walk/front
+  bounds: 460, 0, 50, 64
+  offsets: 7, 0, 64, 64
+  index: 0
+walk/front
+  bounds: 616, 0, 50, 61
+  offsets: 7, 0, 64, 64
+  index: 1
+walk/front
+  bounds: 512, 0, 50, 64
+  offsets: 7, 0, 64, 64
+  index: 2
+walk/front
+  bounds: 638, 63, 50, 61
+  offsets: 7, 0, 64, 64
+  index: 3
+walk/left
+  bounds: 0, 0, 61, 64
+  offsets: 0, 0, 64, 64
+  index: 0
+walk/left
+  bounds: 126, 66, 61, 61
+  offsets: 0, 0, 64, 64
+  index: 1
+walk/left
+  bounds: 63, 0, 61, 64
+  offsets: 0, 0, 64, 64
+  index: 2
+walk/left
+  bounds: 189, 66, 61, 61
+  offsets: 0, 0, 64, 64
+  index: 3
+walk/right
+  bounds: 126, 0, 61, 64
+  offsets: 3, 0, 64, 64
+  index: 0
+walk/right
+  bounds: 252, 66, 61, 61
+  offsets: 3, 0, 64, 64
+  index: 1
+walk/right
+  bounds: 189, 0, 61, 64
+  offsets: 3, 0, 64, 64
+  index: 2
+walk/right
+  bounds: 315, 66, 61, 61
+  offsets: 3, 0, 64, 64
+  index: 3
