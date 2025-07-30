@@ -12,6 +12,7 @@ audio/cut.wav
 audio/gift.wav
 audio/hoeHit.wav
 audio/hover-sound.wav
+audio/mineral.wav
 audio/pickaxe.wav
 audio/type.mp3
 audio/walk.wav
@@ -32,6 +33,8 @@ graphics/ForestMap.png
 graphics/GreenHouse.png
 graphics/Journal.atlas
 graphics/Journal.png
+graphics/Mineral.atlas
+graphics/Mineral.png
 graphics/OnMap/environment.atlas
 graphics/OnMap/environment.png
 graphics/OnMap/environment.tps

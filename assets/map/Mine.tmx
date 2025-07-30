@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="70" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="8">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="70" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="16">
  <tileset firstgid="1" name="Mine" tilewidth="16" tileheight="16" tilecount="288" columns="16">
   <image source="tileset/mine.png" width="256" height="288"/>
   <tile id="0">
@@ -10,181 +10,242 @@
   <tile id="137">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="138">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="139">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="140">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="149">
+   <properties>
+    <property name="mineralSpawner" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="150">
+   <properties>
+    <property name="mineralSpawner" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="151">
+   <properties>
+    <property name="mineralSpawner" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="152">
+   <properties>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="153">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="154">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="155">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
+   </properties>
+  </tile>
+  <tile id="156">
+   <properties>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="165">
    <properties>
     <property name="Type" value="Dirt"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="166">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="167">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="168">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="169">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="170">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="171">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="172">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="181">
    <properties>
     <property name="Type" value="Dirt"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="182">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="183">
    <properties>
     <property name="Type" value="Dirt"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="184">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="185">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="186">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="187">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="188">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="198">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="199">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="200">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="201">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="202">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="203">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="204">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="217">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="218">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="219">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="233">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="234">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="235">
    <properties>
     <property name="Type" value="Stone"/>
+    <property name="mineralSpawner" type="bool" value="true"/>
    </properties>
   </tile>
   <tile id="240">
@@ -273,6 +334,30 @@
   </object>
   <object id="7" x="808.5" y="223.75">
    <polygon points="0,0 6.5,-3 11.75,-0.75 14.5,-3.5 22.5,-5.25 24,-10 21.5,-18.25 24.25,-21.25 24,-26.75 21,-30.5 23,-34.5 20.25,-37.75 24,-43.25 23.5,-47.5 19.25,-50.5 24.25,-58.5 24,-71.5 19,-73.75 19.25,-76.75 23.5,-80 20,-83.5 19.5,-88.75 6.25,-95.75 1.5,-93.25 -2.75,-92.75 -8,-97.25 -20.75,-87.5 -21.25,-82.75 -25,-80 -24.25,-78.75 -20.75,-78.5 -20,-73.75 -24.5,-71.25 -24.5,-58 -20.0455,-51.2045 -25.0455,-40.9318 -24.7727,-36.75 -22.2273,-34.2955 -24.7727,-30.4773 -24.7727,-26.5682 -20.6818,-21.5682 -23.7727,-18.1136 -23.0455,-16.5682 -22.8636,-11.75 -24.7727,-10.75 -25.1364,-7.84091 -23.0455,-4.20455 -18.6818,-4.56818 -13.1364,-1.47727 -7.95455,-3.11364 -3.31818,0.431818"/>
+  </object>
+  <object id="8" x="690.25" y="348">
+   <polygon points="0,0 25.75,-1.25 38,-4 43.75,-10 43.5,-16 48,-14.5 60,-18 61.5,-22.5 61.5,-93 51,-124.5 39.25,-120.5 30.25,-124 23,-118.75 13.75,-124.25 2,-115.75 2,-111.5 -12,-104.5 -21.25,-109 -30,-97.75 -31.75,-94.75 -30,-88.75 -34.5,-73.5 -29.5,-64.25 -35,-52.25 -34,-49.25 -31.75,-46.5 -35.5,-41 -30,-34.25 -32,-30.25 -32.25,-24.25 -33.5,-23.25 -30.75,-17.75 -21.25,-13.5 -16,-17.5 -15.25,-13.5 -14,-8 -8.25,-2.75"/>
+  </object>
+  <object id="9" x="930.333" y="556.667">
+   <polygon points="0,0 1,7 8.33333,13.6667 21.6667,13.6667 31.6667,15 45.3333,16.3333 55,15.3333 61,10 59.3333,0.666667 61.3333,-4 58.6667,-11 60.3333,-14.6667 56.6667,-19.3333 62.3333,-25.6667 56.6667,-32 61.8485,-39.9394 61.1212,-52.1212 56.3939,-56.303 57.303,-59.9394 62.0303,-61.0303 53.303,-89.0303 41.6667,-95.7576 40.9394,-100.667 29.6667,-108.667 21.303,-104.848 14.3939,-108.303 6.21212,-102.667 -1.9697,-109.03 -10.1515,-104.848 -11.2424,-98.6667 -15.2424,-95.9394 -14.3333,-89.7576 -18.8788,-76.8485 -13.7879,-75.7576 -12.5152,-70.4848 -18.1515,-66.1212 -17.9697,-54.8485 -15.6061,-49.5758 -12.8788,-47.9394 -18.1515,-37.7576 -17.7879,-32.8485 -15.4242,-31.3939 -18.1515,-26.4848 -17.4242,-21.0303 -13.9697,-17.3939 -17.4242,-14.8485 -16.5152,-10.6667 -18.8788,-7.93939 -17.6061,-2.84848 -5.24242,0.0606061"/>
+  </object>
+  <object id="10" x="800" y="441">
+   <polygon points="0,0 -0.75,-74.5 14.25,-88.5 16.25,-96.75 21.25,-99.75 17.25,-104.75 20.5,-108.75 20.5,-114 33,-120.75 39.75,-115.5 47.25,-121.5 53.75,-119.25 63,-120.25 75.75,-113.25 75.25,-109.75 86.75,-102 96.75,-68.5 91.75,-59 95.75,-54.75 92.75,-49.5 95.25,-44.75 95.75,-16.5 63.5,2.25 53,1.75 41.75,5.25 33.5,2.75 25.25,3.5 17.25,3 12,5.75"/>
+  </object>
+  <object id="11" x="717.333" y="609">
+   <polygon points="0.333333,-1.33333 66.6667,-1 67,-103.333 55.3333,-129.667 44,-128.333 27,-124.333 23,-126 19.3333,-132.333 10.6667,-159.333 1.33333,-161.333 -5.66667,-158 -12.3333,-161.667 -22,-157 -28.3333,-161.667 -41.3333,-150.667 -41.6667,-146.667 -62,-145 -70,-139.667 -76.3333,-145.333 -89,-135.333 -93.6667,-128 -93.3333,-114.667 -101.333,-108.667 -108.333,-98 -106.333,-93.6667 -109,-79.3333 -105,-68.6667 -108.667,-58.3333 -109.333,-25.3333 -95.6667,-19.3333 -27,-17.3333 -22,-9.66667 -9.33333,-4.66667"/>
+  </object>
+  <object id="12" x="511.667" y="265">
+   <polygon points="0,0 41.3333,5.33333 55.6667,1.33333 59.6667,-4.66667 66,4.66667 79.3333,1.33333 79.6667,-4.66667 77.3333,-13 80.6667,-17 81,-39.3333 76.3333,-44.6667 80.6667,-55.3333 71.6667,-88.3333 62,-89.6667 57.3333,-83.6667 44.3333,-92.6667 43.3333,-97 30.3333,-106 24,-102 17.6667,-105.333 10.6667,-100.667 -3,-108.667 -4,-113 -17,-120.667 -24.1667,-117.625 -31.4167,-121 -39.5417,-115.125 -51.2917,-122 -62.0417,-108.125 -60.2917,-101 -63.4167,-91.375 -63.4167,-81.625 -59.1667,-77 -64.7917,-65.375 -61.5417,-59.375 -64.1667,-54.125 -59.5417,-47.375 -61.7917,-43.625 -62.4167,-31.25 -51.6667,-27.375 -38.5417,-16 -17.4167,-12.125 -9.66667,-1.375"/>
+  </object>
+  <object id="13" x="223.75" y="376">
+   <polygon points="0,0 -0.5,-73.5 -16,-88.75 -30.5,-88.75 -45.75,-75.75 -48,-62.5 -47.25,-1 -34.75,6 -12.5,6.25"/>
+  </object>
+  <object id="14" x="369.5" y="368.5">
+   <polygon points="0,0 30,-0.25 46.5,-9 46.5,-82.75 37.25,-110.25 31.75,-111.25 29.75,-120.75 30,-131.25 22.5,-157.75 15.5,-160.75 15.5,-179 6.5,-206.25 -1,-208.5 -9.5,-205.5 -20.75,-212 -21.75,-217 -33.75,-225.5 -41,-221.5 -48.25,-225.75 -61.75,-216.25 -66.25,-208 -63.75,-203.25 -66.5,-190.5 -65.25,-162.25 -80,-149 -78.75,-141.5 -82.75,-127 -76.75,-115.5 -82.25,-104.5 -81.75,-70.75 -68.5,-66.5 -50,-68.25 -49.75,-7.25 -35.75,-3.5 -19,-2.5 -8.5,-0.75"/>
+  </object>
+  <object id="15" x="400.667" y="504.667">
+   <polygon points="0,0 0.333333,-57.3333 -9.33333,-87.6667 -18,-90.3333 -23.3333,-87 -30.8485,-89.3939 -41.9394,-83.2121 -46.6667,-89.9394 -57.0303,-82.8485 -63.2121,-75.0303 -73.7576,-68.6667 -77.9394,-73.7576 -86.6667,-68.6667 -101.03,-76.4848 -101.212,-81.0303 -113.758,-89.5758 -120.121,-84.6667 -126.485,-89.3939 -135.939,-83.5758 -143.576,-90.8485 -154.667,-83.5758 -156.121,-78.8485 -158.848,-75.0303 -155.03,-68.6667 -160.667,-57.7576 -175.212,-56.8485 -184.667,-51.7576 -191.394,-58.1212 -204.303,-47.9394 -209.212,-39.9394 -208.848,-24.6667 -209.03,0.969697 -204.485,4.24242 -209.758,15.5152 -208.667,48.9697 -195.212,53.697 -163.758,54.6061 -161.03,50.7879 -152.303,53.697 -131.939,44.4242 -114.542,37.4583 -87.5417,31.8333 -82.4167,25.8333 -82.6667,19.0833 -64.2917,18.5833 -60.0417,21.0833 -26.0417,16.3333"/>
   </object>
  </objectgroup>
 </map>

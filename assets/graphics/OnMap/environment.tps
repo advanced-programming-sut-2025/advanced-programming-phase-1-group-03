@@ -124,7 +124,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>environment.atlas</filename>
+                <filename>envIronment.atlas</filename>
             </struct>
         </map>
         <key>multiPackMode</key>

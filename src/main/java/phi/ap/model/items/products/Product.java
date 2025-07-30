@@ -4,7 +4,7 @@ import phi.ap.model.App;
 import phi.ap.model.Eatable;
 import phi.ap.model.ItemStack;
 import phi.ap.model.LevelProcess;
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 import phi.ap.model.enums.ProductNames;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.machines.Machine;
@@ -39,12 +39,12 @@ public class Product extends Item {
 
     public Product(int height, int width) {
         super(height, width);
-        levels = new LevelProcess(new ArrayList<>(List.of(LevelName.normal)), 0);
+        levels = new LevelProcess(new ArrayList<>(List.of(Tool.BasicToolLevels.normal)), 0);
     }
 
     public Product(Product product) {
         super(product.getSuper());
-        levels = new LevelProcess(new ArrayList<>(List.of(LevelName.normal)), 0);
+        levels = new LevelProcess(new ArrayList<>(List.of(Tool.BasicToolLevels.normal)), 0);
         if (product.getLevels() != null) this.levels = new LevelProcess(product.getLevels());
         if (product.getEatable() != null) setEatable(new Eatable(product.getEatable()));
         else setEatable(null);
@@ -63,7 +63,7 @@ public class Product extends Item {
 
     public Product(ProductNames type) {
         super(type.getInstance().getHeight(), type.getInstance().getWidth());
-        levels = new LevelProcess(new ArrayList<>(List.of(LevelName.normal)), 0);
+        levels = new LevelProcess(new ArrayList<>(List.of(Tool.BasicToolLevels.normal)), 0);
         Product product = type.getInstance();
         if (product.getLevels() != null) this.levels = new LevelProcess(product.getLevels());
         if (product.getEatable() != null) setEatable(new Eatable(product.getEatable()));
@@ -82,7 +82,7 @@ public class Product extends Item {
 
     public static LevelProcess getBasicLevels(){
         return  new LevelProcess(new ArrayList<>(
-                List.of(LevelName.normal, LevelName.silver, LevelName.golden, LevelName.iridium)), 0);
+                List.of(Tool.BasicToolLevels.normal, Tool.BasicToolLevels.silver, Tool.BasicToolLevels.golden, Tool.BasicToolLevels.iridium)), 0);
     }
     public static LevelProcess getRandomLevelProcessSample() {
         LevelProcess levelsSample = new LevelProcess(new LevelProcess(Product.getBasicLevels()));
@@ -146,7 +146,7 @@ public class Product extends Item {
 
     public int getSellPrice() {
         if (levels == null) return super.getSellPrice();
-        return (int) (super.getSellPrice() * levels.getCurrentLevelName().getSellPrinceCoefficient());
+        return (int) (super.getSellPrice() * levels.getCurrentTool.BasicToolLevels().getSellPrinceCoefficient());
     }
 
     public Product getThis() {

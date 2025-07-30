@@ -738,7 +738,7 @@ public class GameMenuController {
         if(tool.getLevelProcess().isMax())
             return new Result<>(false, "Your tool is at maximum level!! you can't upgrade it anymore");
 
-        LevelName level = tool.getLevelProcess().getCurrentLevelName();
+        Tool.BasicToolLevels level = tool.getLevelProcess().getCurrentTool.BasicToolLevels();
         BlackSmithsProducts productNextLevel;
         if(tool instanceof TrashCan)
             productNextLevel = BlackSmithsProducts.getNextLevelTrashcan(level);
@@ -758,7 +758,7 @@ public class GameMenuController {
                 productNextLevel.getIngredient().getItem(), productNextLevel.getIngredient().getAmount());
         Game.getInstance().getCurrentPlayer().setGold(
                 Game.getInstance().getCurrentPlayer().getGold() - productNextLevel.getPrice());
-        return new Result<>(true, "tool upgraded successfully, current Level is : " + tool.getLevelProcess().getCurrentLevelName().toString());
+        return new Result<>(true, "tool upgraded successfully, current Level is : " + tool.getLevelProcess().getCurrentTool.BasicToolLevels().toString());
     }
 
     public Result<String> useTool(String direction) {
@@ -1587,7 +1587,7 @@ public class GameMenuController {
             else
                 fish.getLevels().setCurrentLevel(3);
             Game.getInstance().getCurrentPlayer().getInventoryManager().addItem(fish, 1);
-            response.append(fish.getName() + " caught! " + fish.getLevels().getCurrentLevelName() + "\n");
+            response.append(fish.getName() + " caught! " + fish.getLevels().getCurrentTool.BasicToolLevels() + "\n");
         }
 
         return new Result<>(true, response.toString());

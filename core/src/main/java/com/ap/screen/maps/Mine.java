@@ -11,6 +11,7 @@ import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
 import com.ap.managers.GameUIManager;
 import com.ap.managers.MapManager;
+import com.ap.managers.MineManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
 import com.ap.screen.GameScreen;
@@ -64,6 +65,7 @@ public class Mine implements IMap{
     private Stage stage;
 
     private MapManager mapManager;
+    private MineManager mineManager;
 
     private GdxGame game;
     private GameScreen gameScreen;
@@ -118,13 +120,12 @@ public class Mine implements IMap{
         engine.addSystem(new AnimationSystem(assetService));
         engine.addSystem(new CameraSystem(camera));
         engine.addSystem(new RenderSystem(batch, viewport, camera));
+        engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
+
         engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cookingMenu, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
 
-        engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
-
-        timeSystem.addTimeListener(new TimeListener());
 
         // Setup consumers
         Consumer<TiledMap> renderConsumer = engine.getSystem(RenderSystem.class)::setMap;
@@ -138,7 +139,12 @@ public class Mine implements IMap{
         tiledService.setLoadSpanwerConsumer(tileConfigurator::onLoadSpawner);
         TiledMap startMap = tiledService.load(map);
         this.map = startMap;
+
         tiledService.setMap(startMap);
+        mineManager = new MineManager(engine, startMap, world);
+
+        timeSystem.addTimeListener(new TimeListener());
+
     }
 
     @Override
@@ -171,7 +177,7 @@ public class Mine implements IMap{
         }
         @Override
         public void onDayChanged(int day) {
-
+            mineManager.spawnMinerals();
         }
     }
 }

@@ -1,19 +1,19 @@
 package phi.ap.model.items.products;
 
 import phi.ap.model.enums.AnimalProductTypes;
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 import phi.ap.model.items.Animal;
 
 public class AnimalProduct extends Product {
     AnimalProductTypes animalProductType;
-    LevelName levelName;
+    Tool.BasicToolLevels Tool.BasicToolLevels;
     double productNum;
     Animal animal;
-    public AnimalProduct(int height, int width, AnimalProductTypes animalProductType, LevelName levelName,
+    public AnimalProduct(int height, int width, AnimalProductTypes animalProductType, Tool.BasicToolLevels Tool.BasicToolLevels,
                          double productNum, Animal animal) {
         super(height, width);
         this.animalProductType = animalProductType;
-        this.levelName = levelName;
+        this.Tool.BasicToolLevels = Tool.BasicToolLevels;
         this.productNum = productNum;
         this.animal = animal;
         setName(animalProductType.getName());

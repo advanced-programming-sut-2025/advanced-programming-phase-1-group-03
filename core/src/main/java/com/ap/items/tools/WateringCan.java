@@ -18,6 +18,7 @@ import java.util.List;
 
 public class WateringCan extends Tool{
     private final ArrayList<Integer> capacities;
+    private BasicToolLevels currentLevel = BasicToolLevels.Normal;
     int currentOccupied = 0;
 
     public WateringCan(TextureRegion icon)
@@ -37,7 +38,7 @@ public class WateringCan extends Tool{
             String water = tile.getProperties().get("Water", "", String.class);
             if(water.equals("T")) {
                 game.getAudioService().playSound(SoundAsset.Watering);
-                currentOccupied = capacities.get(currentLevel);
+                currentOccupied = capacities.get(currentLevel.ordinal());
             }
         }
         if(currentOccupied == 0) {

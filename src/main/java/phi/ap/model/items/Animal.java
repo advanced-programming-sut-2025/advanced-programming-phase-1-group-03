@@ -2,7 +2,7 @@ package phi.ap.model.items;
 
 import phi.ap.model.ItemStack;
 import phi.ap.model.enums.AnimalTypes;
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 import phi.ap.model.enums.TileType;
 import phi.ap.model.items.products.AnimalProduct;
 
@@ -99,29 +99,29 @@ public class Animal extends Item {
             return null;
         double randomDouble = 0.5 + Math.random();
         double quality = ((double)(friendShipAmount/1000))*(0.5 + 0.5 * Math.random()); // TODO : cast to double?
-        LevelName levelName;
+        Tool.BasicToolLevels Tool.BasicToolLevels;
         double productNum;
         if(quality <= 0.5) {
-            levelName = LevelName.normal;
+            Tool.BasicToolLevels = Tool.BasicToolLevels.normal;
             productNum = 1;
         }
         else if(quality <= 0.7) {
-            levelName = LevelName.silver;
+            Tool.BasicToolLevels = Tool.BasicToolLevels.silver;
             productNum = 1.25;
         }
         else if(quality <= 0.9) {
-            levelName = LevelName.golden;
+            Tool.BasicToolLevels = Tool.BasicToolLevels.golden;
             productNum = 1.5;
         }
         else {
-            levelName = LevelName.iridium;
+            Tool.BasicToolLevels = Tool.BasicToolLevels.iridium;
             productNum = 2;
         }
         double amount = (friendShipAmount + 150 * randomDouble)/1500;
         if(amount >= 0.5 && friendShipAmount >= 100 && animalProducts.size() >= 2)
-            return new AnimalProduct(1, 1, type.getAnimalProductTypes().get(1), levelName, productNum, this);
+            return new AnimalProduct(1, 1, type.getAnimalProductTypes().get(1), Tool.BasicToolLevels, productNum, this);
         else
-            return new AnimalProduct(1, 1, type.getAnimalProductTypes().get(0), levelName, productNum, this);
+            return new AnimalProduct(1, 1, type.getAnimalProductTypes().get(0), Tool.BasicToolLevels, productNum, this);
     }
 
     public int getSellPrice() {

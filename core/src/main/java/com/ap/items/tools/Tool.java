@@ -12,7 +12,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public abstract class Tool extends Item {
     protected final Abilities relatedAbility;
-    protected int currentLevel = 0;
 
     public Tool(String name, TextureRegion icon, Abilities relatedAbility) {
         super(name, 1, icon);
@@ -39,5 +38,17 @@ public abstract class Tool extends Item {
         inventory.addItem(new Shear(atlas.findRegion("shear/normal")), 1);
         inventory.addItem(new WateringCan(atlas.findRegion("watering_can/normal")), 1);
         inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Cauliflower), 9);
+    }
+
+    public enum BasicToolLevels {
+        Normal,
+        Copper,
+        Iron,
+        Gold,
+        Iridium;
+
+        public boolean isStrictlyGreater(BasicToolLevels o) {
+            return this.ordinal() < o.ordinal();
+        }
     }
 }

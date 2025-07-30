@@ -3,7 +3,7 @@ package phi.ap.model.enums.StoreProducts;
 import phi.ap.model.Game;
 import phi.ap.model.Result;
 import phi.ap.model.enums.CraftingTypes;
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 import phi.ap.model.enums.ProductNames;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Product;
@@ -38,7 +38,7 @@ public enum FishShopProducts implements StoreItemProducer {
             return getName();
         }
     },
-    BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500, 1, 0, LevelName.bamboo){
+    BambooPole("Bamboo Pole", "Use in the water to catch fish.", 500, 1, 0, Tool.BasicToolLevels.bamboo){
         @Override
         public Item getItem() {
             Item p = getFishingPole();
@@ -51,7 +51,7 @@ public enum FishShopProducts implements StoreItemProducer {
             return getName();
         }
     },
-    TrainingRod("Training Rod", "It's a lot easier to use than other rods, but can only catch basic fish.", 25, 1, 0, LevelName.training){
+    TrainingRod("Training Rod", "It's a lot easier to use than other rods, but can only catch basic fish.", 25, 1, 0, Tool.BasicToolLevels.training){
         @Override
         public Item getItem() {
             Item p = getFishingPole();
@@ -64,7 +64,7 @@ public enum FishShopProducts implements StoreItemProducer {
             return getName();
         }
     },
-    FiberglassRod("Fiberglass Rod", "Use in the water to catch fish.", 1800, 1, 2,LevelName.fiberGlass){
+    FiberglassRod("Fiberglass Rod", "Use in the water to catch fish.", 1800, 1, 2,Tool.BasicToolLevels.fiberGlass){
         @Override
         public Item getItem() {
             Item p = getFishingPole();
@@ -77,7 +77,7 @@ public enum FishShopProducts implements StoreItemProducer {
             return getName();
         }
     },
-    IridiumRod("Iridium Rod", "Use in the water to catch fish.", 7500, 1, 4, LevelName.iridium){
+    IridiumRod("Iridium Rod", "Use in the water to catch fish.", 7500, 1, 4, Tool.BasicToolLevels.iridium){
         @Override
         public Item getItem() {
             Item p = getFishingPole();
@@ -95,9 +95,9 @@ public enum FishShopProducts implements StoreItemProducer {
     private int dailyLimit;
     private int availableAmount = 1000;
     private final Integer fishingSkill;
-    private final LevelName level;
+    private final Tool.BasicToolLevels level;
     private Item item;
-    FishShopProducts(String name, String description, Integer price, Integer dailyLimit, Integer fishingSkill, LevelName level) {
+    FishShopProducts(String name, String description, Integer price, Integer dailyLimit, Integer fishingSkill, Tool.BasicToolLevels level) {
         this.name = name;
         this.description = description;
         this.price = price;

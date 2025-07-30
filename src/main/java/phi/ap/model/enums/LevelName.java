@@ -1,8 +1,8 @@
 package phi.ap.model.enums;
 
-public enum LevelName {
+public enum Tool.BasicToolLevels {
     copper("Copper", 1.1),
-    iron("Iron", 1.25),
+    Iron("Iron", 1.25),
     golden("Golden", 1.5),
     iridium("Iridium", 2),
     training("Training", 1),
@@ -17,7 +17,7 @@ public enum LevelName {
     private String name;
     double sellPrinceCoefficient;
 
-    LevelName(String name, double sellPrinceCoefficient) {
+    Tool.BasicToolLevels(String name, double sellPrinceCoefficient) {
         this.name = name;
         this.sellPrinceCoefficient = sellPrinceCoefficient;
     }

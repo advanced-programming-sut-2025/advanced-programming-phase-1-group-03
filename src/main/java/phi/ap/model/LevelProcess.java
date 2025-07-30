@@ -1,80 +1,80 @@
 package phi.ap.model;
 
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LevelProcess {
-    private ArrayList<LevelName> levelNames;
+    private ArrayList<Tool.BasicToolLevels> Tool.BasicToolLevelss;
     private int currentLevel;
 
     public LevelProcess() {
-        this.levelNames = new ArrayList<>(List.of(LevelName.normal));
+        this.Tool.BasicToolLevelss = new ArrayList<>(List.of(Tool.BasicToolLevels.normal));
         this.currentLevel = 0;
     }
 
-    public LevelProcess(ArrayList<LevelName> levelNames, int currentLevel) {
-        this.levelNames = levelNames;
+    public LevelProcess(ArrayList<Tool.BasicToolLevels> Tool.BasicToolLevelss, int currentLevel) {
+        this.Tool.BasicToolLevelss = Tool.BasicToolLevelss;
         this.currentLevel = currentLevel;
     }
 
     public LevelProcess(LevelProcess levelProcess) {
-        this.levelNames = new ArrayList<>(levelProcess.getLevelNames());
+        this.Tool.BasicToolLevelss = new ArrayList<>(levelProcess.getTool.BasicToolLevelss());
         this.currentLevel = levelProcess.getCurrentLevel();
     }
 
     public void upgrade(){
-        currentLevel = Math.min((currentLevel + 1),levelNames.size() - 1);
+        currentLevel = Math.min((currentLevel + 1),Tool.BasicToolLevelss.size() - 1);
     }
-    public boolean levelNamesEqual(ArrayList<LevelName> levelNames) {
-        if (levelNames == null) return false;
-        if (levelNames.size() != this.levelNames.size()) return false;
-        for (int i = 0; i < levelNames.size(); i++) {
-            if (!levelNames.get(i).equals(this.levelNames.get(i))) return false;
+    public boolean Tool.BasicToolLevelssEqual(ArrayList<Tool.BasicToolLevels> Tool.BasicToolLevelss) {
+        if (Tool.BasicToolLevelss == null) return false;
+        if (Tool.BasicToolLevelss.size() != this.Tool.BasicToolLevelss.size()) return false;
+        for (int i = 0; i < Tool.BasicToolLevelss.size(); i++) {
+            if (!Tool.BasicToolLevelss.get(i).equals(this.Tool.BasicToolLevelss.get(i))) return false;
         }
         return true;
     }
 
     public boolean isEqual(LevelProcess levelProcess) {
         if (levelProcess == null) return false;
-        if (!levelNamesEqual(levelProcess.getLevelNames())) return false;
+        if (!Tool.BasicToolLevelssEqual(levelProcess.getTool.BasicToolLevelss())) return false;
         if (levelProcess.getCurrentLevel() != this.currentLevel) return false;
         return true;
     }
 
-    public ArrayList<LevelName> getLevelNames() {
-        return levelNames;
+    public ArrayList<Tool.BasicToolLevels> getTool.BasicToolLevelss() {
+        return Tool.BasicToolLevelss;
     }
 
     public int  getCurrentLevel() {
         return currentLevel;
     }
 
-    public LevelName getCurrentLevelName() {
-        if (levelNames == null) return null;
-        return levelNames.get(currentLevel);
+    public Tool.BasicToolLevels getCurrentTool.BasicToolLevels() {
+        if (Tool.BasicToolLevelss == null) return null;
+        return Tool.BasicToolLevelss.get(currentLevel);
     }
 
     public boolean isMax(){
-        return currentLevel == levelNames.size() - 1;
+        return currentLevel == Tool.BasicToolLevelss.size() - 1;
     }
     public void setCurrentLevel(int currentLevel) {
         this.currentLevel = currentLevel;
     }
-    public void setCurrentLevel(LevelName currentLevel) {
-        for(int i = 0; i < levelNames.size(); i++)
-            if(levelNames.get(i) == currentLevel)
+    public void setCurrentLevel(Tool.BasicToolLevels currentLevel) {
+        for(int i = 0; i < Tool.BasicToolLevelss.size(); i++)
+            if(Tool.BasicToolLevelss.get(i) == currentLevel)
                 this.currentLevel = i;
     }
-    public int getLevelOfThisType(LevelName levelName){
-        for(int i = 0; i < levelNames.size(); i++)
-            if(levelNames.get(i) == levelName)
+    public int getLevelOfThisType(Tool.BasicToolLevels Tool.BasicToolLevels){
+        for(int i = 0; i < Tool.BasicToolLevelss.size(); i++)
+            if(Tool.BasicToolLevelss.get(i) == Tool.BasicToolLevels)
                 return i;
         return -1;
     }
     @Override
     public String toString() {
-        return levelNames.get(currentLevel).toString();
+        return Tool.BasicToolLevelss.get(currentLevel).toString();
     }
 }

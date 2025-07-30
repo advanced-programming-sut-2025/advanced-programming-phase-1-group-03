@@ -126,13 +126,16 @@ public class House implements IMap{
         growSystem = new GrowSystem(assetService, weatherSystem);
         engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
-        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cookingMenu, engine));
-        engine.addSystem(new PlayerCoinSystem(clock));
 
         // It'd be better we create separate class for green house, but we hard code it :)
         if(map == MapAsset.Greenhouse) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
+        
+        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cookingMenu, engine));
+        engine.addSystem(new PlayerCoinSystem(clock));
+
+
         //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
 
         timeSystem.addTimeListener(new TimeListener());

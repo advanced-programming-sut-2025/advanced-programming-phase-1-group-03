@@ -2,7 +2,7 @@ package phi.ap.model.items.tools;
 
 import phi.ap.model.*;
 import phi.ap.model.enums.AbilityType;
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 import phi.ap.model.enums.ProductNames;
 import phi.ap.model.items.Dirt;
 import phi.ap.model.items.Item;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Scythe extends Tool{
     public Scythe(){
-        super(new LevelProcess(new ArrayList<LevelName>(List.of(LevelName.normal)),0),
+        super(new LevelProcess(new ArrayList<Tool.BasicToolLevels>(List.of(Tool.BasicToolLevels.normal)),0),
                 new ArrayList<>(List.of(2)),null);
         this.setName("Scythe");
     }

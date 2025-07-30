@@ -4,15 +4,15 @@ import phi.ap.model.Coordinate;
 import phi.ap.model.ItemStack;
 import phi.ap.model.LevelProcess;
 import phi.ap.model.Result;
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TrashCan extends Tool {
     public TrashCan(){
-        super(new LevelProcess(new ArrayList<>(List.of(LevelName.normal, LevelName.copper,
-                LevelName.iron, LevelName.golden, LevelName.iridium)), 0),
+        super(new LevelProcess(new ArrayList<>(List.of(Tool.BasicToolLevels.normal, Tool.BasicToolLevels.copper,
+                Tool.BasicToolLevels.Iron, Tool.BasicToolLevels.golden, Tool.BasicToolLevels.iridium)), 0),
                 new ArrayList<>(List.of(0,0,0,0,0)), null);
         this.setName("Trash Can");
     }
@@ -25,10 +25,10 @@ public class TrashCan extends Tool {
 
     public int trash(ItemStack itemStack){
         int money = itemStack.getAmount() * itemStack.getItem().getSellPrice();
-        return switch (getLevelProcess().getCurrentLevelName()){
+        return switch (getLevelProcess().getCurrentTool.BasicToolLevels()){
             case normal -> 0;
             case copper -> money * 15 /100;
-            case iron -> money * 30 /100;
+            case Iron -> money * 30 /100;
             case golden -> money * 45 / 100;
             case iridium -> money * 60 /100;
             default -> money;

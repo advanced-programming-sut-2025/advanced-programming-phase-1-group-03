@@ -34,6 +34,8 @@ public class Constraints {
     public static final int NUMBER_OF_AXE_NEED_TO_DESTROY_GIANT = 10;
     public static final int MIN_ITEM_GIANT_GIVE = 20;
     public static final int MAX_ITEM_GIANT_GIVE = 25;
+    public static final int DEFAULT_MINERALS_COUNT = 20;
+    public static final int MINERAL_Z = 1;
 
     public static String[] secQuestions = {
             "What is your dad's name?",

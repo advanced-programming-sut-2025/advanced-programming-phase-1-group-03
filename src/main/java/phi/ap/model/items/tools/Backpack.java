@@ -4,20 +4,20 @@ import phi.ap.model.Coordinate;
 import phi.ap.model.ItemStack;
 import phi.ap.model.LevelProcess;
 import phi.ap.model.Result;
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Backpack extends Tool{
     public Backpack(){
-        super(new LevelProcess(new ArrayList<>(List.of(LevelName.normal, LevelName.big,
-                LevelName.deluxe)), 0),new ArrayList<>(List.of(0,0,0)), null);
+        super(new LevelProcess(new ArrayList<>(List.of(Tool.BasicToolLevels.normal, Tool.BasicToolLevels.big,
+                Tool.BasicToolLevels.deluxe)), 0),new ArrayList<>(List.of(0,0,0)), null);
         this.setName("Backpack");
     }
     public Backpack(int currentLevel){
-        super(new LevelProcess(new ArrayList<>(List.of(LevelName.normal, LevelName.big,
-                LevelName.deluxe)), currentLevel),new ArrayList<>(List.of(0,0,0)), null);
+        super(new LevelProcess(new ArrayList<>(List.of(Tool.BasicToolLevels.normal, Tool.BasicToolLevels.big,
+                Tool.BasicToolLevels.deluxe)), currentLevel),new ArrayList<>(List.of(0,0,0)), null);
         this.setName("Backpack");
     }
     private int size;

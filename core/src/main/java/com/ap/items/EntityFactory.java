@@ -6,6 +6,7 @@ import com.ap.asset.AtlasAsset;
 import com.ap.component.*;
 import com.ap.items.plant.Crop;
 import com.ap.model.CropsType;
+import com.ap.model.MineralNodes;
 import com.ap.tiled.TiledPhysic;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -81,7 +82,7 @@ public class EntityFactory {
     }
 
     public Entity CreateStoneEntity(Vector2 position, int type, World world) {
-        TextureRegion texture = assetService.get(AtlasAsset.Environment).findRegions("stone/regular").get(type);
+        TextureRegion texture = assetService.get(AtlasAsset.EnvIronment).findRegions("stone/regular").get(type);
         Vector2 size = new Vector2(1, 1);
         Entity entity = new Entity();
         entity.add(new Transform(new Vector2(position.x, position.y),
@@ -97,7 +98,7 @@ public class EntityFactory {
     }
 
     public Entity CreateGrassEntity(Vector2 position, int type, World world) {
-        TextureRegion texture = assetService.get(AtlasAsset.Environment).
+        TextureRegion texture = assetService.get(AtlasAsset.EnvIronment).
                 findRegions("grass/type_"+type+"_color").get(new Random().nextInt(2));
 
         Vector2 size = new Vector2(1, 1);
@@ -129,7 +130,7 @@ public class EntityFactory {
         shadowEntity.add(new Shadow());
         shadowEntity.add(new Graphic(shadowTexture));
 
-        TextureRegion texture = assetService.get(AtlasAsset.Environment).findRegion("wood/regular");
+        TextureRegion texture = assetService.get(AtlasAsset.EnvIronment).findRegion("wood/regular");
         Vector2 size = new Vector2(1, 1);
         Entity entity = new Entity();
 
@@ -180,6 +181,21 @@ public class EntityFactory {
         crop.setGiant(true);
 
         entity.add(new ItemHolder(crop));
+        return entity;
+    }
+
+    public Entity CreateMineralNodeEntity(Vector2 position, MineralNodes type, World world) {
+        Entity entity = new Entity();
+        entity.add(new Transform(new Vector2(position.x, position.y),
+                Constraints.MINERAL_Z,
+                new Vector2(1, 1),
+                new Vector2(1, 1),
+                0, 2));
+        var texture = assetService.get(AtlasAsset.Mineral).findRegion(type.name());
+        entity.add(new Graphic(texture));
+        var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, false);
+        entity.add(new Physic(body, position));
+        entity.add(new MineralNode(type));
         return entity;
     }
 }

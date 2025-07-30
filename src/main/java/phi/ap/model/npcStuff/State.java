@@ -26,10 +26,10 @@ public class State { //this class store state between player and NPC, each npc h
     private InventoryManager giftSent = null; // to player
     {
         Backpack backpack1 = new Backpack();
-        backpack1.getLevelProcess().setCurrentLevel(backpack1.getLevelProcess().getLevelNames().size() - 1);
+        backpack1.getLevelProcess().setCurrentLevel(backpack1.getLevelProcess().getTool.BasicToolLevelss().size() - 1);
         giftReceived = new InventoryManager(backpack1, new TrashCan());
         Backpack backpack2 = new Backpack();
-        backpack2.getLevelProcess().setCurrentLevel(backpack2.getLevelProcess().getLevelNames().size() - 1);
+        backpack2.getLevelProcess().setCurrentLevel(backpack2.getLevelProcess().getTool.BasicToolLevelss().size() - 1);
         giftSent = new InventoryManager(backpack2, new TrashCan());
     }
 

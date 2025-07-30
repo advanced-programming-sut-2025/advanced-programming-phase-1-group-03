@@ -49,7 +49,7 @@
 #       problems, so this is (mostly) avoided, by progressively accumulating
 #       options in "$@", and eventually passing that to Java.
 #
-#       Where the inherited environment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
+#       Where the inherited envIronment variables (DEFAULT_JVM_OPTS, JAVA_OPTS,
 #       and GRADLE_OPTS) rely on word-splitting, this is performed explicitly;
 #       see the in-line comments for details.
 #
@@ -128,7 +128,7 @@ if [ -n "$JAVA_HOME" ] ; then
     if [ ! -x "$JAVACMD" ] ; then
         die "ERROR: JAVA_HOME is set to an invalid directory: $JAVA_HOME
 
-Please set the JAVA_HOME variable in your environment to match the
+Please set the JAVA_HOME variable in your envIronment to match the
 location of your Java installation."
     fi
 else
@@ -137,7 +137,7 @@ else
     then
         die "ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH.
 
-Please set the JAVA_HOME variable in your environment to match the
+Please set the JAVA_HOME variable in your envIronment to match the
 location of your Java installation."
     fi
 fi
@@ -167,7 +167,7 @@ fi
 #   * -classpath
 #   * -D...appname settings
 #   * --module-path (only if needed)
-#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS environment variables.
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and GRADLE_OPTS envIronment variables.
 
 # For Cygwin or MSYS, switch paths to Windows format before running java
 if "$cygwin" || "$msys" ; then
@@ -205,9 +205,9 @@ fi
 DEFAULT_JVM_OPTS='"-Xmx64m" "-Xms64m"'
 
 # Collect all arguments for the java command:
-#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvironmentVar are not allowed to contain shell fragments,
+#   * DEFAULT_JVM_OPTS, JAVA_OPTS, and optsEnvIronmentVar are not allowed to contain shell fragments,
 #     and any embedded shellness will be escaped.
-#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an environment variable and will be
+#   * For example: A user cannot expect ${Hostname} to be expanded, as it is an envIronment variable and will be
 #     treated as '${Hostname}' itself on the command line.
 
 set -- \

@@ -5,7 +5,7 @@ import phi.ap.model.Game;
 import phi.ap.model.LevelProcess;
 import phi.ap.model.Result;
 import phi.ap.model.enums.AbilityType;
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 import phi.ap.model.items.Dirt;
 import phi.ap.model.items.Item;
 import phi.ap.model.items.products.Mineral;
@@ -17,8 +17,8 @@ import java.util.List;
 
 public class Pickaxe extends Tool{
     public Pickaxe(){
-        super(new LevelProcess(new ArrayList<>(List.of(LevelName.normal, LevelName.copper,
-                LevelName.iron, LevelName.golden, LevelName.iridium)),0),
+        super(new LevelProcess(new ArrayList<>(List.of(Tool.BasicToolLevels.normal, Tool.BasicToolLevels.copper,
+                Tool.BasicToolLevels.Iron, Tool.BasicToolLevels.golden, Tool.BasicToolLevels.iridium)),0),
                 new ArrayList<>(List.of(5,4,3,2,1)), AbilityType.Extraction);
         this.setName("Pickaxe");
     }
@@ -84,7 +84,7 @@ public class Pickaxe extends Tool{
         }
     }
 
-    private boolean canIMineThisLevel(LevelName level){
+    private boolean canIMineThisLevel(Tool.BasicToolLevels level){
         return getLevelProcess().getLevelOfThisType(level) <= getLevelProcess().getCurrentLevel();
     }
     private boolean reduceFailedEnergy(){

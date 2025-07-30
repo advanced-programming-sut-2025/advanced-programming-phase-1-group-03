@@ -11,7 +11,7 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     SeasonalObjects("SeasonalObjects.atlas"),
     Trees("OnMap/trees.atlas"),
     Shadows("shadow.atlas"),
-    Environment("OnMap/environment.atlas"),
+    EnvIronment("OnMap/envIronment.atlas"),
     Fish("Animals/Fish.atlas"),
     Snowfall("OnMap/snowfall.atlas"),
     Journal("Journal.atlas"),
@@ -20,7 +20,8 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     Crops("Plants/crops.atlas"),
     Crafting("Crafting.atlas"),
     Cooking("Cooking.atlas"),
-    Character("Characters.atlas");
+    Character("Characters.atlas"),
+    Mineral("Mineral.atlas");
 
     private final AssetDescriptor<TextureAtlas> descriptor;
     AtlasAsset(String name) {

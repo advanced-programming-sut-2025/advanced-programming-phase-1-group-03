@@ -4,15 +4,15 @@ import phi.ap.model.Coordinate;
 import phi.ap.model.LevelProcess;
 import phi.ap.model.Result;
 import phi.ap.model.enums.AbilityType;
-import phi.ap.model.enums.LevelName;
+import phi.ap.model.enums.Tool.BasicToolLevels;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FishingPole extends Tool {
     public FishingPole(){
-        super(new LevelProcess(new ArrayList<>(List.of(LevelName.training,
-                LevelName.bamboo, LevelName.fiberGlass, LevelName.iridium)),0),
+        super(new LevelProcess(new ArrayList<>(List.of(Tool.BasicToolLevels.training,
+                Tool.BasicToolLevels.bamboo, Tool.BasicToolLevels.fiberGlass, Tool.BasicToolLevels.iridium)),0),
                 new ArrayList<>(List.of(8, 8, 6, 4)), AbilityType.Fishing);
     }
 
@@ -30,7 +30,7 @@ public class FishingPole extends Tool {
     }
 
     public double getCoef(){
-        return switch (getLevelProcess().getCurrentLevelName()){
+        return switch (getLevelProcess().getCurrentTool.BasicToolLevels()){
             case training -> 0.1;
             case bamboo -> 0.5;
             case fiberGlass -> 0.9;
