@@ -3,6 +3,7 @@ package com.ap.tiled;
 import com.ap.asset.AssetService;
 import com.ap.component.*;
 import com.ap.items.EntityFactory;
+import com.ap.model.ForagingTrees;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -182,7 +183,7 @@ public class TiledMapGenerator {
         }
 
         for(Vector2 position : positions) {
-            String name = Trees.values()[new Random().nextInt(Trees.values().length)].name();
+            String name = ForagingTrees.values()[new Random().nextInt(ForagingTrees.values().length)].name();
             Entity entity = EntityFactory.instance.CreateTreeEntity(position, name, world);
             engine.addEntity(entity);
             for(Entity child : Container.mapper.get(entity).getChildren()) {
@@ -191,8 +192,4 @@ public class TiledMapGenerator {
         }
     }
 
-
-    private enum Trees {
-        oak,
-    }
 }

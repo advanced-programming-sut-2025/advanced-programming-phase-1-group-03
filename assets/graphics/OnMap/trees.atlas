@@ -393,295 +393,295 @@ pine/winter/stage
 pine/winter/stump
   bounds: 549, 104, 16, 22
   offsets: 0, 0, 16, 32
-special/mushroom/fall/seed
+mushroom/fall/seed
   bounds: 833, 77, 16, 16
-special/mushroom/fall/stage
+mushroom/fall/stage
   bounds: 161, 116, 10, 6
   offsets: 4, 4, 16, 16
   index: 0
-special/mushroom/fall/stage
+mushroom/fall/stage
   bounds: 1190, 54, 10, 11
   offsets: 3, 1, 16, 16
   index: 1
-special/mushroom/fall/stage
+mushroom/fall/stage
   bounds: 1236, 54, 11, 15
   offsets: 3, 0, 16, 16
   index: 2
-special/mushroom/fall/stage
+mushroom/fall/stage
   bounds: 322, 82, 16, 27
   offsets: 0, 0, 16, 32
   index: 3
-special/mushroom/fall/stage
+mushroom/fall/stage
   bounds: 990, 0, 48, 65
   offsets: 0, 0, 48, 80
   index: 4
-special/mushroom/fall/stump
+mushroom/fall/stump
   bounds: 496, 78, 15, 24
   offsets: 0, 0, 16, 32
-special/mushroom/spring/seed
+mushroom/spring/seed
   bounds: 850, 95, 16, 16
-special/mushroom/spring/stage
+mushroom/spring/stage
   bounds: 724, 120, 10, 6
   offsets: 4, 4, 16, 16
   index: 0
-special/mushroom/spring/stage
+mushroom/spring/stage
   bounds: 1215, 89, 10, 11
   offsets: 3, 1, 16, 16
   index: 1
-special/mushroom/spring/stage
+mushroom/spring/stage
   bounds: 1236, 71, 11, 15
   offsets: 3, 0, 16, 16
   index: 2
-special/mushroom/spring/stage
+mushroom/spring/stage
   bounds: 340, 82, 16, 27
   offsets: 0, 0, 16, 32
   index: 3
-special/mushroom/spring/stage
+mushroom/spring/stage
   bounds: 1040, 0, 48, 65
   offsets: 0, 0, 48, 80
   index: 4
-special/mushroom/spring/stump
+mushroom/spring/stump
   bounds: 513, 78, 15, 24
   offsets: 0, 0, 16, 32
-special/mushroom/summer/seed
+mushroom/summer/seed
   bounds: 851, 77, 16, 16
-special/mushroom/summer/stage
+mushroom/summer/stage
   bounds: 736, 120, 10, 6
   offsets: 4, 4, 16, 16
   index: 0
-special/mushroom/summer/stage
+mushroom/summer/stage
   bounds: 1198, 90, 10, 11
   offsets: 3, 1, 16, 16
   index: 1
-special/mushroom/summer/stage
+mushroom/summer/stage
   bounds: 1215, 72, 11, 15
   offsets: 3, 0, 16, 16
   index: 2
-special/mushroom/summer/stage
+mushroom/summer/stage
   bounds: 358, 82, 16, 27
   offsets: 0, 0, 16, 32
   index: 3
-special/mushroom/summer/stage
+mushroom/summer/stage
   bounds: 1090, 0, 48, 65
   offsets: 0, 0, 48, 80
   index: 4
-special/mushroom/summer/stump
+mushroom/summer/stump
   bounds: 530, 78, 15, 24
   offsets: 0, 0, 16, 32
-special/mushroom/winter/seed
+mushroom/winter/seed
   bounds: 868, 95, 16, 16
-special/mushroom/winter/stage
+mushroom/winter/stage
   bounds: 990, 67, 10, 6
   offsets: 4, 4, 16, 16
   index: 0
-special/mushroom/winter/stage
+mushroom/winter/stage
   bounds: 1210, 102, 10, 11
   offsets: 3, 1, 16, 16
   index: 1
-special/mushroom/winter/stage
+mushroom/winter/stage
   bounds: 1228, 88, 11, 15
   offsets: 3, 0, 16, 16
   index: 2
-special/mushroom/winter/stage
+mushroom/winter/stage
   bounds: 376, 82, 16, 27
   offsets: 0, 0, 16, 32
   index: 3
-special/mushroom/winter/stage
+mushroom/winter/stage
   bounds: 1140, 0, 48, 65
   offsets: 0, 0, 48, 80
   index: 4
-special/mushroom/winter/stump
+mushroom/winter/stump
   bounds: 547, 78, 15, 24
   offsets: 0, 0, 16, 32
-special/mystic/fall/seed
+mystic/fall/seed
   bounds: 869, 77, 16, 16
-special/mystic/fall/stage
+mystic/fall/stage
   bounds: 218, 115, 12, 11
   offsets: 3, 3, 16, 16
   index: 0
-special/mystic/fall/stage
+mystic/fall/stage
   bounds: 246, 114, 14, 12
   offsets: 1, 3, 16, 16
   index: 1
-special/mystic/fall/stage
+mystic/fall/stage
   bounds: 1190, 36, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
-special/mystic/fall/stage
+mystic/fall/stage
   bounds: 90, 82, 16, 32
   index: 3
-special/mystic/fall/stage
+mystic/fall/stage
   bounds: 197, 0, 48, 80
   index: 4
-special/mystic/fall/stump
+mystic/fall/stump
   bounds: 672, 78, 16, 21
   offsets: 0, 0, 16, 32
-special/mystic/spring/seed
+mystic/spring/seed
   bounds: 886, 95, 16, 16
-special/mystic/spring/stage
+mystic/spring/stage
   bounds: 232, 115, 12, 11
   offsets: 3, 3, 16, 16
   index: 0
-special/mystic/spring/stage
+mystic/spring/stage
   bounds: 262, 114, 14, 12
   offsets: 1, 3, 16, 16
   index: 1
-special/mystic/spring/stage
+mystic/spring/stage
   bounds: 1207, 18, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
-special/mystic/spring/stage
+mystic/spring/stage
   bounds: 108, 82, 16, 32
   index: 3
-special/mystic/spring/stage
+mystic/spring/stage
   bounds: 247, 0, 48, 80
   index: 4
-special/mystic/spring/stump
+mystic/spring/stump
   bounds: 688, 101, 16, 21
   offsets: 0, 0, 16, 32
-special/mystic/summer/seed
+mystic/summer/seed
   bounds: 887, 77, 16, 16
-special/mystic/summer/stage
+mystic/summer/stage
   bounds: 941, 113, 12, 11
   offsets: 3, 3, 16, 16
   index: 0
-special/mystic/summer/stage
+mystic/summer/stage
   bounds: 748, 114, 14, 12
   offsets: 1, 3, 16, 16
   index: 1
-special/mystic/summer/stage
+mystic/summer/stage
   bounds: 1224, 18, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
-special/mystic/summer/stage
+mystic/summer/stage
   bounds: 126, 82, 16, 32
   index: 3
-special/mystic/summer/stage
+mystic/summer/stage
   bounds: 297, 0, 48, 80
   index: 4
-special/mystic/summer/stump
+mystic/summer/stump
   bounds: 690, 78, 16, 21
   offsets: 0, 0, 16, 32
-special/mystic/winter/seed
+mystic/winter/seed
   bounds: 904, 95, 16, 16
-special/mystic/winter/stage
+mystic/winter/stage
   bounds: 955, 113, 12, 11
   offsets: 3, 3, 16, 16
   index: 0
-special/mystic/winter/stage
+mystic/winter/stage
   bounds: 764, 114, 14, 12
   offsets: 1, 3, 16, 16
   index: 1
-special/mystic/winter/stage
+mystic/winter/stage
   bounds: 1207, 36, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
-special/mystic/winter/stage
+mystic/winter/stage
   bounds: 144, 82, 16, 32
   index: 3
-special/mystic/winter/stage
+mystic/winter/stage
   bounds: 347, 0, 48, 80
   index: 4
-special/mystic/winter/stump
+mystic/winter/stump
   bounds: 706, 101, 16, 21
   offsets: 0, 0, 16, 32
-special/palm/fall/seed
+palm/fall/seed
   bounds: 905, 77, 16, 16
-special/palm/fall/stage
+palm/fall/stage
   bounds: 1198, 103, 10, 6
   offsets: 4, 4, 16, 16
   index: 0
-special/palm/fall/stage
+palm/fall/stage
   bounds: 822, 113, 11, 13
   offsets: 3, 0, 16, 16
   index: 1
-special/palm/fall/stage
+palm/fall/stage
   bounds: 1224, 36, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
-special/palm/fall/stage
+palm/fall/stage
   bounds: 162, 82, 16, 31
   offsets: 0, 0, 16, 32
   index: 3
-special/palm/fall/stage
+palm/fall/stage
   bounds: 1002, 67, 47, 58
   offsets: 0, 0, 48, 80
   index: 4
-special/palm/fall/stump
+palm/fall/stump
   bounds: 580, 103, 16, 22
   offsets: 0, 0, 16, 32
-special/palm/spring/seed
+palm/spring/seed
   bounds: 922, 95, 16, 16
-special/palm/spring/stage
+palm/spring/stage
   bounds: 1198, 111, 10, 6
   offsets: 4, 4, 16, 16
   index: 0
-special/palm/spring/stage
+palm/spring/stage
   bounds: 835, 113, 11, 13
   offsets: 3, 0, 16, 16
   index: 1
-special/palm/spring/stage
+palm/spring/stage
   bounds: 1202, 54, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
-special/palm/spring/stage
+palm/spring/stage
   bounds: 180, 82, 16, 31
   offsets: 0, 0, 16, 32
   index: 3
-special/palm/spring/stage
+palm/spring/stage
   bounds: 1051, 67, 47, 58
   offsets: 0, 0, 48, 80
   index: 4
-special/palm/spring/stump
+palm/spring/stump
   bounds: 582, 78, 16, 22
   offsets: 0, 0, 16, 32
-special/palm/summer/seed
+palm/summer/seed
   bounds: 923, 77, 16, 16
-special/palm/summer/stage
+palm/summer/stage
   bounds: 1198, 119, 10, 6
   offsets: 4, 4, 16, 16
   index: 0
-special/palm/summer/stage
+palm/summer/stage
   bounds: 848, 113, 11, 13
   offsets: 3, 0, 16, 16
   index: 1
-special/palm/summer/stage
+palm/summer/stage
   bounds: 1219, 54, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
-special/palm/summer/stage
+palm/summer/stage
   bounds: 198, 82, 16, 31
   offsets: 0, 0, 16, 32
   index: 3
-special/palm/summer/stage
+palm/summer/stage
   bounds: 1100, 67, 47, 58
   offsets: 0, 0, 48, 80
   index: 4
-special/palm/summer/stump
+palm/summer/stump
   bounds: 598, 102, 16, 22
   offsets: 0, 0, 16, 32
-special/palm/winter/seed
+palm/winter/seed
   bounds: 940, 95, 16, 16
-special/palm/winter/stage
+palm/winter/stage
   bounds: 1210, 115, 10, 6
   offsets: 4, 4, 16, 16
   index: 0
-special/palm/winter/stage
+palm/winter/stage
   bounds: 861, 113, 11, 13
   offsets: 3, 0, 16, 16
   index: 1
-special/palm/winter/stage
+palm/winter/stage
   bounds: 1198, 72, 15, 16
   offsets: 1, 0, 16, 16
   index: 2
-special/palm/winter/stage
+palm/winter/stage
   bounds: 216, 82, 16, 31
   offsets: 0, 0, 16, 32
   index: 3
-special/palm/winter/stage
+palm/winter/stage
   bounds: 1149, 67, 47, 58
   offsets: 0, 0, 48, 80
   index: 4
-special/palm/winter/stump
+palm/winter/stump
   bounds: 600, 78, 16, 22
   offsets: 0, 0, 16, 32

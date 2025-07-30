@@ -22,6 +22,8 @@ data.db
 graphics/Animals/Fish.atlas
 graphics/Animals/Fish.png
 graphics/Animals/Fishing-2.png
+graphics/Animals/crow.atlas
+graphics/Animals/crow.png
 graphics/Characters.atlas
 graphics/Characters.png
 graphics/Cooking.atlas

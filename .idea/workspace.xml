@@ -4,56 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Town and Mine added">
-      <change afterPath="$PROJECT_DIR$/assets/audio/mineral.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/graphics/Mineral.atlas" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/graphics/Mineral.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/MineralNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/mine/Mineral.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/MineManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/MineralNodes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Minerals.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Mine Completed">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/ForagingTrees.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/environment.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/environment.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/environment.tps" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/environment.tps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Mine.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Mine.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/trees.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/trees.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/OnMap/trees.tps" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/OnMap/trees.tps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/EntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Pickaxe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Pickaxe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/WateringCan.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/WateringCan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Mine.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Mine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/Controller/MenuControllers/MainMenuControllers/GameMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/LevelProcess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/LevelProcess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingMineralTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/ForagingMineralTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/LevelName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/LevelName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/BlackSmithsProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/BlackSmithsProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/FishShopProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/StoreProducts/FishShopProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/AnimalProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/AnimalProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/products/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Axe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Backpack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Backpack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/FishingPole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/FishingPole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Hoe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Hoe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/MilkPail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/MilkPail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Pickaxe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Pickaxe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Scythe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Scythe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Shear.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/Shear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/TrashCan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/TrashCan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/WateringCan.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/items/tools/WateringCan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/npcStuff/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/phi/ap/model/npcStuff/State.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,8 +50,8 @@
       <list>
         <option value="Interface" />
         <option value="Kotlin Class" />
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -126,7 +86,7 @@
     "Application.RunGDX.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
-    "Gradle.StardewValley [run].executor": "Run",
+    "Gradle.StardewValley [run].executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -293,15 +253,7 @@
       <workItem from="1753730034681" duration="2292000" />
       <workItem from="1753870388263" duration="1461000" />
       <workItem from="1753871879298" duration="256000" />
-      <workItem from="1753876301922" duration="6542000" />
-    </task>
-    <task id="LOCAL-00033" summary="h bug fixed">
-      <option name="closed" value="true" />
-      <created>1747505701474</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1747505701474</updated>
+      <workItem from="1753876301922" duration="7398000" />
     </task>
     <task id="LOCAL‎−۰۰۰۳۴" summary="Setting up graphical project">
       <option name="closed" value="true" />
@@ -652,7 +604,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۸۱" />
       <updated>1753871913000</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL‎−۰۰۰۸۲" summary="Mine Completed">
+      <option name="closed" value="true" />
+      <created>1753882974198</created>
+      <option name="number" value="LOCAL‎−۰۰۰۸۲" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۸۲" />
+      <updated>1753882974202</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,7 +642,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Tools icon atlas added&#10;Tools class added" />
     <MESSAGE value="Trees atlas added&#10;Oak tree added" />
     <MESSAGE value="grass asset added" />
     <MESSAGE value="grass type{3}_color{10} added&#10;regular stone added&#10;wood added" />
@@ -708,7 +666,8 @@
     <MESSAGE value="Cooking Menu Ui developed2." />
     <MESSAGE value="trees atlas completed" />
     <MESSAGE value="Town and Mine added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Town and Mine added" />
+    <MESSAGE value="Mine Completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mine Completed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -772,6 +731,11 @@
           <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/system/TileSelectionSystem.java</url>
           <line>58</line>
           <option name="timeStamp" value="103" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java</url>
+          <line>185</line>
+          <option name="timeStamp" value="105" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />
