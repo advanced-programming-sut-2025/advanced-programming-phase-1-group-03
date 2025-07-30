@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="87">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="80" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="88">
  <properties>
   <property name="AllowGrassSurviveInWinter" value="T"/>
   <property name="Outdoors" value="T"/>
@@ -37,6 +37,7 @@
   <tile id="153">
    <properties>
     <property name="Diggable" value="T"/>
+    <property name="Dirt" value="T"/>
    </properties>
   </tile>
   <tile id="156">
@@ -209,6 +210,7 @@
   <tile id="226">
    <properties>
     <property name="Diggable" value="T"/>
+    <property name="Dirt" value="T"/>
    </properties>
   </tile>
   <tile id="227">
@@ -2076,6 +2078,12 @@
    <properties>
     <property name="sensor" type="bool" value="true"/>
     <property name="spawner" value="Greenhouse"/>
+   </properties>
+  </object>
+  <object id="87" name="MineSpawner" x="479.818" y="562" width="16" height="42.3636">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="Mine"/>
    </properties>
   </object>
  </objectgroup>

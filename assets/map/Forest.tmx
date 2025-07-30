@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="120" tilewidth="16" tileheight="16" infinite="0" nextlayerid="21" nextobjectid="47">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="120" tilewidth="16" tileheight="16" infinite="0" nextlayerid="21" nextobjectid="48">
  <properties>
   <property name="AllowGrassSurviveInWinter" value="T"/>
   <property name="BrookSounds" value="54 99 5 64 101 4"/>
@@ -3484,6 +3484,12 @@
    <properties>
     <property name="sensor" type="bool" value="true"/>
     <property name="spawner" value="Farm"/>
+   </properties>
+  </object>
+  <object id="47" name="TownSpawner" x="1078" y="4.33333" width="80.6667" height="10">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="Town"/>
    </properties>
   </object>
  </objectgroup>

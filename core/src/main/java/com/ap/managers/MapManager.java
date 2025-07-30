@@ -6,6 +6,7 @@ import com.ap.screen.GameScreen;
 import com.ap.screen.maps.Farm;
 import com.ap.screen.maps.House;
 import com.ap.screen.maps.IMap;
+import com.ap.screen.maps.Mine;
 import com.badlogic.gdx.Gdx;
 
 import java.util.HashMap;
@@ -39,10 +40,12 @@ public class MapManager {
 
     private IMap createMap(MapAsset map) {
         switch (map) {
-            case Farm1, Farm2, Forest -> {
+            case Farm1, Farm2, Forest, Town -> {
                 return new Farm(game, gameScreen);
             } case House,Greenhouse -> {
                 return new House(game, gameScreen);
+            } case Mine -> {
+                return new Mine(game, gameScreen);
             }
         }
         throw new IllegalArgumentException("Map " + map.name() + " is not supported");

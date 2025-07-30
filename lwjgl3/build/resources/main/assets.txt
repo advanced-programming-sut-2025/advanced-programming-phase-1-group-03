@@ -1,5 +1,6 @@
 audio/Fall.mp3
 audio/Game1.mp3
+audio/Mine.mp3
 audio/Overture.mp3
 audio/Rain.mp3
 audio/Spring.mp3
@@ -66,7 +67,6 @@ graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
 graphics/img.png
-graphics/img_1.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
@@ -77,6 +77,8 @@ map/Farm2.tmx
 map/Forest.tmx
 map/Greenhouse.tmx
 map/House.tmx
+map/Mine.tmx
+map/Town.tmx
 map/objects/GameObjects.tsx
 map/objects/House.png
 map/objects/Objects.tsx
@@ -87,23 +89,30 @@ map/tileset/fall_Shadows.png
 map/tileset/fall_Waterfalls.png
 map/tileset/fall_outdoorsTileSheet.png
 map/tileset/fall_outdoorsTileSheet2.png
+map/tileset/fall_town.png
 map/tileset/farmhouse_tiles.png
+map/tileset/mine.png
 map/tileset/spring_Shadows.png
 map/tileset/spring_Waterfalls.png
 map/tileset/spring_outdoorsTileSheet.png
 map/tileset/spring_outdoorsTileSheet2.png
+map/tileset/spring_town.png
 map/tileset/summer_Shadows.png
 map/tileset/summer_Waterfalls.png
 map/tileset/summer_outdoorsTileSheet.png
 map/tileset/summer_outdoorsTileSheet2.png
+map/tileset/summer_town.png
 map/tileset/townInterior.png
 map/tileset/walls_and_floors.png
 map/tileset/winter_Shadows.png
 map/tileset/winter_Waterfalls.png
 map/tileset/winter_outdoorsTileSheet.png
 map/tileset/winter_outdoorsTileSheet2.png
+map/tileset/winter_town.png
 skins/LondonMM.ttf
 skins/Millennium-Bold.ttf
+skins/Stardew Valley ALL CAPS.ttf
+skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

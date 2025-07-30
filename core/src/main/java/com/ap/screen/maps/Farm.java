@@ -22,6 +22,7 @@ import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
 import com.ap.ui.widget.*;
 import com.ap.ui.widget.tabContents.TabManager;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -168,6 +169,7 @@ public class Farm implements IMap {
         weatherSystem.setWeatherConsumer(weatherEffects::onWeatherChanged);
         engine.getSystem(CameraSystem.class).setMap(map);
         GameUIManager.instance.setEngine(engine);
+        Helper.playMusicOfSeason(audioService, timeSystem.getSeason());
     }
 
     @Override
@@ -191,6 +193,7 @@ public class Farm implements IMap {
 
         @Override
         public void onSeasonChanged(Season season) {
+            Helper.playMusicOfSeason(audioService, season);
             tiledService.changeSeasonTileset(season);
         }
         @Override

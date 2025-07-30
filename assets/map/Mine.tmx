@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="70" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="8">
+ <tileset firstgid="1" name="Mine" tilewidth="16" tileheight="16" tilecount="288" columns="16">
+  <image source="tileset/mine.png" width="256" height="288"/>
+  <tile id="0">
+   <properties>
+    <property name="Type" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="137">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="138">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="139">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="140">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="153">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="154">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="155">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="165">
+   <properties>
+    <property name="Type" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="166">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="167">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="168">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="169">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="170">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="171">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="172">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="181">
+   <properties>
+    <property name="Type" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="182">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="183">
+   <properties>
+    <property name="Type" value="Dirt"/>
+   </properties>
+  </tile>
+  <tile id="184">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="185">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="186">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="187">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="188">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="198">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="199">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="200">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="201">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="202">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="203">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="204">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="217">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="218">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="219">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="233">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="234">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="235">
+   <properties>
+    <property name="Type" value="Stone"/>
+   </properties>
+  </tile>
+  <tile id="240">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="241">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="242">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="256">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="257">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="258">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="272">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="273">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="274">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="289" source="objects/Objects.tsx"/>
+ <layer id="1" name="Back" width="70" height="45">
+  <data encoding="base64" compression="zlib">
+   eJztWstyGzcQnIryBU6+wPHXkuLVikie5YjMWSatD4hsJxf7ZuvmnGJ+RIASuthszmCxS1EqV/HQRXG5Cwx6eh7Aamxm4xNOOOGEE354fD0AQ+d47jX35eI24XsH3h3I5aEcH5OPaP2bhGnCqNyf/54nLBJm5dp/A/jy5tP7n1MTsG9D902Ig/y5TPiTeBjJuNNgvogv5ntcOMb9zM1z6mLj3Dt31h5hTlyCN6x3RL/reOBax/vyxLwwD7xujhEP57L+Fo4y3iT8UXBN1zn+vOefmhcGdDsrtnxI+Fi5v1U7zMllwk3CKmEtHCNOPa6Zl6fiBnbBl9dlzbDF8x847OKOOfwr4XXCRcJdwnsZc1QZEzkJeeaYfOTx74tN8CX7MeLF82Ptnp8SzhJ+LtyAj6Vtc8nUGRP2sYZa5juED+Ra5Ne39qDvC7K7y4aZ7etb7/8s+GZb/UTjcr3ayP3H5IXnhJ+yH6HtFt/gOdV31Ie9SPgl4VODfVq/YM/5kXkZy3w5V0xstxYhxrts4B4j4ifHwsuE3wovv1bGUx1NaI5j6yWDcyyuLW0b7611kfsT5oexKb4eFV5eNfqL7QFnXtw+Zp3K+eTKHnIsfHROv/eti9yr6Xpw/azw0lrDgBmN0bW3GMoHdM35hH+vxUWNC2Aqv7OWkF8in/9dxoO2PE2zjZiP+74hfGgN6vL/1LrjybP93Px1IL9EvNzLc1nT3DewL3SOobxAbxsZ39OsN58Xx+h5EI/jYExG5sXTIvsLe4JI02OaS+v3kDzDe7n8qXGOeVgDNd8iR2X8bvt6V0wLL+jxtE95Q2N08TuR7y1x3wLuBVTDnJOjPLeh+1a2q5kIuYf51/b7O/jhspFf5kzPONjevpws7aFeqL8wttfj6R4K68ic8D6wVmswb+5luI9564xTs9/LyV7O6Qvk8MgX2lstyvWZbfcL0Ag+oZfW/RL3MdhPsu64r/TyBuxYW3xmcwhQKyKu9cwNvr2ST+yravkI3IIX6GViW43eNYyjmmb7+vZGCsRlnzM45gW61zMDzUf/2P753wvb1Yt3dufxojULz8yd54ZwgnGi89cWXqAT7pfn9Ml26xjILzXbov1EZDfme4zzK611ffXCNUjP3BjeOiJe8r1Le8gXnOO9s88an++svSYhPg/J23eC9+Zrg+M00k0N3DOqPqNnWLct8VSLz5Y8FeU+juvo76Ha5Hjl+tdVw+HzFl6+2258wu5Z5floH8/cQu/RvEN6Cu2NOGZR8yJfDsm//Ay/A+k6z7i1/dzX4vuu9ywRmAfUO/Q2a6vHCOxa9OAlw+sRo3qoGpvZft2JtMA+6PveYCXI+wK8W9HzeK/mDDkH5n07uI3qIXpizLNwxov0MBEf9Dkf4ZzOPTDsXpi/R+Scp2cCXdAeUf3dUiP5rKn27k3PTrriVf0/td0e2OttdX83pB+rAe+PmAPUSNQCaFr7CF3vffGp+qDP/zbA9/ARx+aI/Lmw+L1uK9T3CuR/7RdWwfd18Y+ul/flWA++c2xBc1Ec61mRagG/8158bX6P0Aea31AHX5u/X17Zbm3wtKNr15i8dJ7VMTiPQRfKM2tJ95uH7huVF879Hmf6+5Xtx9e1+bmd9w4R9ziPQt7U2qfQ+Hns95EeP13AWm7k+tr8/T+f64HbKxmnpZdlTtg/8MEh7wUekx9FNLaex2muYl5bbAXP3vneU7ynHcpDxIsH5IY+vHTV7xP64X9dlKAq
+  </data>
+ </layer>
+ <layer id="3" name="Buildings" width="70" height="45">
+  <data encoding="base64" compression="zlib">
+   eJzdWjmPXEUQroRbGBIOgwQv4TDsQsThY3dH3JcdcF9rEOIGG2Rxg8ESZ2SQgNQgATmJ802IISJcTUqw/4EqTX9636vpft39ZmbXckmfdman+3VXdd39DonIoW3CaMaxNyluLpi7S3HJNvJVgiXFhYqLiL9V+n2fYj/9b1nR0O+3KG4Nn/k5ffDjrlFcewbIgs/ygGJFcZXiasV9ivsV5ysuUDyiOEdxruK88P2g4jDNWQufV0hOS9LVoeXwF/LF3CaMLdWtRaIh/h9yfD+peEpxpWK34nnFZYrLFVeE7+uKoz3yWiN5Q99Y3g+78Tb2RWn1dVF8s55e6va3GvYH/p91fL+qeElxo2KP4m3FdYrrFTeE70cUn7t5Xyq+CvJ6R7r6djAA8n7OydfGvytd+10UTDeXZdousD/j/zXFm47vDxQfKu5U7FV8prhNcbvijvD9uOKkm/ej4qcgry+kq2/rAZD3W06+Nv5E5ExnwS6J+3LTzXtl2i7WgzzA/yeO728U30qeTrl5vyl+D/L6Xrr6diQA8v7UydfG/yAT3Z6XXqR8+cWKJ6TVC+wT+yvlv5ZMXr9IV9+OB8TWw/hfpeuX+858CNivvyLTdpHa307Tg9L6mdyZDwVi4PuyOL2YhcYy2edp+t8z0voZxPR5wvQQvvaBzP42wvh/e8ZshX0uZcbVkOmGxQDe3xvS+pl55jPw4+xrn87s758wFzH8vwQPyDFWpJX9LDIy3djt9vextH6G1yqNMznA11pMfD2zv7FMdAE5zunIGOPhqExs/zCtA1uNyTJHpht7Evuzs2qke9b2eST1Psfm7Au8sa/9KLO/Tbd2TAeMB+QYkA/nbDlbjZHpxt7E/sbSyhzn9YJ067AhKPW1W9LNF7CuP3/j4aRMbP+YTOdsOVutJbNbX5sgTq1JmQz4rOEjfq5Y38dFWzdmS8gxIB/O2fps9e/wXMulSu3N7NbXJkPyYfPdjZTHIF4f6y3R8/7qmRPL2WK2YLqI/KzPd8XI7NbXJohTufqJfbLP90v1muMi+/9GhvlSJsQw8wu152V262sTxCnYBJ8jAz4ZPoHz/VwM4vWx3khaX2fPLz3bFHEMqz2vFEHW0IVcfmM+IRWDxpLn09bzPYEhMYaJY1hpzpAjljX7xBQs/0jFIPDcx6eth/iCHsqsZ8sxrDRnyJHJGvHwhOTjtvn6rxPPAs99fNp6iC/ooZScLewuRfDROK/vImPG0vKXy59Z1uYTYSux/Bf+OWUn4LmPT1sP8QU9lL6zNV4471nuWT9Hm9LyZ8/J+XvuSaCfnMp/zTenYit4nlWHmZB3WY/2Hhnuj8YykW9NnQvyeXoMiLHzqnVzZLZ5l+JuxeMy6f8N8UfwfSbfmpjl8/SRTMvEy2zWvKOEzDYfVTymeFkm/b8hsQa+z3rgNTkG5+mNxHM6AD7wjwH7qyXkXdajfU8m/b8hdgrfZz3wmpiVytO9n2mk3D5ZB9nurI5BPb4dOmcE32fyrekppvJ0X//W1ADw/z72N1Lv+3aKOE/vy3VzfSjr86B2Y39kc00OyHHnla+DcAZD/B7Xnal48qd0axfvb3N9qLFM34Vazg854N6rtr6KEc7A5xG1sXJM81M9ig2J10jgNdeH4voHd42W80PHcO81j3wdOsL+0N9Tl+gOakTMieWN6E17wDZSNQCI6x/cNVrODzng3mvW+xTTfej1gcSeDSUxk2vEVH03llYGPr8bSb4/x/UP7hot5y+Vwxat1XfWdsbce8S7CqzrjZTVDFwjpuo79l8MrNfXXzPi+mfIXSPbYa4u594j3lXw73WUxDuuEWP1nZ0VYupI0n2GRdYAbIe5upx7j6abx6TNaWt7GNwz9T4Pdym+D+5z3lxMm4XYDnN1Ofce8a4CctqaHkaOxhK/q43V1jX+vobYDmtj1Slpc9qSHkYpWX6e64FzLtPXczhbaEPq35PZ7p7DTpD5Fv8OaSkamcjHcsWzTUZj6b/XT/nhUeR3f8d1JskKeYjtscQ34g6zBKkeZ0zXEPcR4+GvY7KyPSOHxbxGhr8Lsxnmc72HuFLiGzel7YfU2E8qjnMeaJ8t7o/c76hpGkm/r4R8AXqMcSmZ+v441sDaHFP6fCPksd/tO8bnEP3J+exYfep1zsuT+cPeeRw/M1Y3xd5xaUiWq4l9eT7/B4ZbQWo=
+  </data>
+ </layer>
+ <layer id="5" name="Front" width="70" height="45">
+  <data encoding="base64" compression="zlib">
+   eJztmU0OAiEMhbn/vXSJO38WehZpRmIzgZnCwADlfQkxMQThUcorGgMAAAAAAM7GuvZ07dp6IhEk83u79hD008jdLOt+CfrNqpEUr9GelkAHlDc+q+8oBrD/9aG87vMR9F5ikbS4tZ5IQS4GezsrvfvKVtjfJ3Q5B37PHNG81Dg9QGvhvoc8T4k1wTstrPWtAd2to8ehlJBP3wJxCEoTe2NCHfOHvzFpqmOk8Fionf9jv5sag9reTmvsgeb7hJ9ZrWuMkeorRoef9dn2ejQksTlTDZCKz2vQJ4zmOw1sQx4px58j38TB/+v7cI161KqnWl6qlQ30O6JtaLwUj5ybW44Q0mprzntnNUeDWG70Y41WZ6RqetZYwJgvxVSXEA==
+  </data>
+ </layer>
+ <objectgroup id="7" name="objects">
+  <object id="2" name="Spawner" x="560.333" y="431.667" width="13.6667" height="6.33333">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="Farm"/>
+   </properties>
+  </object>
+  <object id="3" name="MapBoundary" x="285.818" y="133.091">
+   <polygon points="0,0 -0.181818,-8.18182 26,-10.5455 31.4545,-16.5455 32.3636,-24 54.5455,-23.4545 54.7273,-20.7273 94.3636,-21.0909 93.8182,-24.7273 122.515,-27.4242 130.515,-39.7576 151.848,-37.7576 169.182,-40.4242 180.848,-40.4242 183.515,-37.0909 222.182,-36.7576 224.182,-40.7273 232.909,-40.9091 258.364,-39.8182 262.909,-30.7273 272.545,-26.3636 279.273,-20.7273 317.091,-20.5455 356.545,-20.7273 358.909,-14.5455 363.818,-11.0909 370.727,-11.0909 372.727,-8.72727 404,-7.63636 408.909,-4.36364 415.091,-5.27273 417.273,-8.36364 427.636,-9.09091 462.364,-7.63636 478,-13.6364 481.091,-23.8182 499.818,-23.8182 502.182,-21.0909 511.818,-22.1818 525.091,-26.5455 530.727,-23.8182 546.909,-24 549.273,-16 555.455,-10 577.455,-8.36364 577.455,3.63636 581.455,7.63636 576.909,19.6364 579.636,24 576.909,31.2727 581.273,36.5455 578.182,40.5455 578.545,53.8182 591.818,57.2727 596.545,54 608.909,55.8182 609.636,151.636 616.727,151.091 625.818,154.909 690.909,155.091 701.818,151.818 704.727,157.455 706.364,213.273 718.364,217.818 723.273,217.818 729.091,228.727 741.636,229.818 752.909,230.909 752.727,234.545 745.273,238.909 740.545,246.727 740.364,252.727 742.364,254.545 738.545,260 737.636,272.727 742,278.909 737.091,290.545 738,295.091 739.818,296.545 737.091,301.818 737.818,305.455 740.909,308.909 738.727,312.727 738.909,325.818 753.818,329.636 756.909,325.273 769.636,327.636 769.818,393.455 762.364,397.818 759.818,403.818 756.545,406 756.182,408.909 758,413.636 753.091,427.455 753.273,458.182 737.432,474.409 737.682,522.159 724.932,532.909 725.182,536.909 714.932,544.659 707.682,537.909 694.932,546.909 693.432,552.409 682.432,557.659 673.682,554.159 666.682,560.409 659.182,553.659 650.182,558.159 643.182,552.909 635.432,560.159 622.432,551.909 620.932,545.659 611.182,539.159 600.432,506.659 559.932,506.659 549.932,515.909 549.182,520.909 536.682,525.909 531.932,521.659 522.682,527.159 514.432,521.409 506.682,525.909 498.932,521.909 489.682,528.159 482.932,521.159 469.932,531.409 469.682,535.159 458.432,541.659 450.182,536.909 442.932,543.409 433.182,537.909 425.682,542.159 419.432,537.409 410.932,543.909 402.182,537.409 388.682,548.159 389.432,552.409 378.369,557.847 372.869,554.034 366.307,554.659 361.994,559.659 353.932,552.847 346.119,557.034 338.364,553.636 331.091,560 318.727,552 318.364,547.273 305.636,537.455 298.182,541.242 291.182,537.909 282.848,543.576 270.515,535.909 270.515,529.909 257.848,520.909 250.515,526.242 243.515,521.242 233.515,528.242 225.848,520.909 217.848,526.242 210.807,521.409 202.682,528.034 193.932,520.784 186.307,526.034 178.682,521.159 170.682,527.909 162.182,521.534 149.307,531.659 149.307,535.284 138.932,541.284 129.682,536.909 122.557,543.284 113.557,536.784 106.432,540.909 98.3068,537.284 90.5568,543.659 79.3068,535.409 78.1818,530.284 65.1818,521.534 57.8068,525.909 51.4318,521.284 42.3068,527.409 33.5568,521.409 26.3068,525.534 18.8068,521.409 10.8068,527.659 -1.44318,519.534 -1.56818,514.784 -15.3182,505.659 -21.7557,509.722 -29.5682,505.722 -37.6932,511.722 -46.1307,505.847 -53.6932,509.722 -60.8807,505.034 -69.6932,511.909 -81.3182,503.909 -81.6932,498.534 -94.4432,489.784 -101.091,493.636 -109.273,489.455 -116.727,496.182 -128.909,487.818 -129.636,482.727 -140.727,475.636 -150.909,443.818 -161.091,440 -161.455,435.455 -174,425.818 -181.273,431.455 -192.909,424 -193.273,419.455 -203.818,412.182 -208,402.545 -205.455,399.273 -205.818,376.182 -182.364,372.909 -173.818,361.818 -157.818,357.636 -157.818,350.364 -160,345.091 -156,340.727 -159.818,331.455 -157.273,328.727 -161.455,324.182 -156.545,319.636 -157.455,315.091 -162.182,311.455 -156.545,302.909 -157.091,278.545 -167.455,250.727 -176.909,249.091 -177.455,242 -188.909,234.909 -189.182,226.455 -193.909,223.273 -188.909,217.727 -189.364,199.909 -169.636,197.818 -141,178.364 -141.568,103.409 -119.318,100.159 -109.818,91.1591 -93.3182,84.1591 -93.5682,22.9091 -69.8182,20.4091 -63.5682,7.90909 -44.3182,7.15909 -38.8182,11.1591 -33.0682,10.6591 -29.5682,5.65909 -25.0682,5.90909 -22.0682,9.15909"/>
+  </object>
+  <object id="4" x="512" y="424.5">
+   <polygon points="0,0 2.34091,-76.7273 29.3636,-104.091 65,-104.477 95.25,-75 95.9545,5.09091 58.25,4.5 39.75,8"/>
+  </object>
+  <object id="5" name="Player" gid="291" x="553" y="475" width="32" height="32">
+   <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
+    <property name="speed" type="float" value="3"/>
+   </properties>
+  </object>
+  <object id="6" x="449.818" y="602.545">
+   <polygon points="0,0 5.45455,1.09091 10.3636,3.45455 20.9091,1.09091 24.3636,2.90909 29.8182,2.90909 31.6364,1.63636 35.2727,4.54545 44.3636,4.18182 45.0909,1.09091 48.9091,4 61.0909,0.363636 62.3636,-5.63636 60.5455,-12.5455 62.9091,-15.6364 62.7273,-61.8182 51.8182,-90.7273 10,-90.1818 4.54545,-83.0909 0.363636,-78.5455 2.36364,-71.0909 -2.54545,-60.3636 -2.90909,-52.9091 1.81818,-46.1818 -2.54545,-35.6364 -2.18182,-32.1818 0.181818,-29.2727 -2.54545,-24.7273 -2.54545,-21.6364 0.909091,-17.4545 -1.09091,-13.8182 -0.545455,-8 -2.54545,-4.36364"/>
+  </object>
+  <object id="7" x="808.5" y="223.75">
+   <polygon points="0,0 6.5,-3 11.75,-0.75 14.5,-3.5 22.5,-5.25 24,-10 21.5,-18.25 24.25,-21.25 24,-26.75 21,-30.5 23,-34.5 20.25,-37.75 24,-43.25 23.5,-47.5 19.25,-50.5 24.25,-58.5 24,-71.5 19,-73.75 19.25,-76.75 23.5,-80 20,-83.5 19.5,-88.75 6.25,-95.75 1.5,-93.25 -2.75,-92.75 -8,-97.25 -20.75,-87.5 -21.25,-82.75 -25,-80 -24.25,-78.75 -20.75,-78.5 -20,-73.75 -24.5,-71.25 -24.5,-58 -20.0455,-51.2045 -25.0455,-40.9318 -24.7727,-36.75 -22.2273,-34.2955 -24.7727,-30.4773 -24.7727,-26.5682 -20.6818,-21.5682 -23.7727,-18.1136 -23.0455,-16.5682 -22.8636,-11.75 -24.7727,-10.75 -25.1364,-7.84091 -23.0455,-4.20455 -18.6818,-4.56818 -13.1364,-1.47727 -7.95455,-3.11364 -3.31818,0.431818"/>
+  </object>
+ </objectgroup>
+</map>

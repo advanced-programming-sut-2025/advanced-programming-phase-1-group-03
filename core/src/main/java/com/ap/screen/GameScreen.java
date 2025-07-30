@@ -110,7 +110,7 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
         stage.addActor(journal);
-        stage.addActor(storeMenu);
+     //   stage.addActor(storeMenu);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
@@ -186,20 +186,6 @@ public class GameScreen extends AbstractScreen {
 
         @Override
         public void onSeasonChanged(Season season) {
-            switch (season) {
-                case Spring -> {
-                    audioService.playMusic(MusicAsset.Spring);
-                }
-                case Summer -> {
-                    audioService.playMusic(MusicAsset.Summer);
-                }
-                case Fall -> {
-                    audioService.playMusic(MusicAsset.Fall);
-                }
-                case Winter -> {
-                    audioService.playMusic(MusicAsset.Winter);
-                }
-            }
         }
 
         @Override

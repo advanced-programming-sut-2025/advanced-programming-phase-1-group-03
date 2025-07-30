@@ -24,6 +24,11 @@ public enum TilesetAsset implements Asset<Texture> {
     WaterfallSummer("summer_Waterfalls.png"),
     WaterfallFall("fall_Waterfalls.png"),
     WaterfallWinter("winter_Waterfalls.png"),
+
+    TownSpring("spring_town.png"),
+    TownSummer("summer_town.png"),
+    TownFall("fall_town.png"),
+    TownWinter("winter_town.png"),
     ;
 
     private final AssetDescriptor<Texture> descriptor;

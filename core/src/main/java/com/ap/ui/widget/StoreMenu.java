@@ -114,8 +114,8 @@ public class StoreMenu extends Actor {
     }
 
     private void drawInventoryItems(Batch batch) {
-        final float offsetX = 348f;
-        final float offsetY = 83f;
+        final float offsetX = 359f;
+        final float offsetY = 94f;
         int sizeOfEachColumn = 12;
         float scale = 0.58f;
 
@@ -131,8 +131,8 @@ public class StoreMenu extends Actor {
             int index = (counter++) % sizeOfEachColumn;
             batch.draw(item.getIcon(),
                     getX() + offsetX + index * offsetEachX, getY() + offsetY - itemOffsetY,
-                    item.getIcon().getRegionWidth() / 2f, item.getIcon().getRegionHeight() /2f,
-                    item.getIcon().getRegionWidth(), item.getIcon().getRegionHeight(),
+                    0, 0,
+                    48, 48,
                     scale, scale,
                     0);
         }

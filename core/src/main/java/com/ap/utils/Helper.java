@@ -1,8 +1,11 @@
 package com.ap.utils;
 
+import com.ap.asset.MusicAsset;
+import com.ap.audio.AudioService;
 import com.ap.component.Container;
 import com.ap.component.Physic;
 import com.ap.component.Transform;
+import com.ap.model.Season;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -73,5 +76,22 @@ public class Helper {
         }, tilePos.x - 0.01f, tilePos.y - 0.01f, tilePos.x + 0.01f, tilePos.y + 0.01f);
 
         return topBody[0];
+    }
+
+    public static void playMusicOfSeason(AudioService audioService, Season season) {
+        switch (season) {
+            case Spring -> {
+                audioService.playMusic(MusicAsset.Spring);
+            }
+            case Summer -> {
+                audioService.playMusic(MusicAsset.Summer);
+            }
+            case Fall -> {
+                audioService.playMusic(MusicAsset.Fall);
+            }
+            case Winter -> {
+                audioService.playMusic(MusicAsset.Winter);
+            }
+        }
     }
 }
