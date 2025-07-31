@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="cheat code box added">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="cheat code box fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CheatCodeBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CheatCodeBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/Town.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Town.tmx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,14 +248,7 @@
       <workItem from="1753870388263" duration="1461000" />
       <workItem from="1753871879298" duration="256000" />
       <workItem from="1753876301922" duration="7398000" />
-      <workItem from="1753952529205" duration="8660000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۳۶" summary="Changing gamma values of fonts">
-      <option name="closed" value="true" />
-      <created>1752301194769</created>
-      <option name="number" value="LOCAL‎−۰۰۰۳۶" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۳۶" />
-      <updated>1752301194769</updated>
+      <workItem from="1753952529205" duration="12369000" />
     </task>
     <task id="LOCAL‎−۰۰۰۳۷" summary="Adding render system">
       <option name="closed" value="true" />
@@ -608,7 +601,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753961425494</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="cheat code box fixed">
+      <option name="closed" value="true" />
+      <created>1753962054166</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1753962054166</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -639,7 +640,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="grass type{3}_color{10} added&#10;regular stone added&#10;wood added" />
     <MESSAGE value="typo fixed" />
     <MESSAGE value="typo really fixed this time" />
     <MESSAGE value="atlas rotation disabled;&#10;half tree fixed;" />
@@ -664,7 +664,8 @@
     <MESSAGE value="Mine Completed" />
     <MESSAGE value="crow attack added" />
     <MESSAGE value="cheat code box added" />
-    <option name="LAST_COMMIT_MESSAGE" value="cheat code box added" />
+    <MESSAGE value="cheat code box fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="cheat code box fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -726,17 +727,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java</url>
-          <line>87</line>
+          <line>24</line>
           <option name="timeStamp" value="106" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java</url>
-          <line>83</line>
+          <line>87</line>
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java</url>
-          <line>89</line>
+          <line>26</line>
           <option name="timeStamp" value="108" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
