@@ -48,10 +48,10 @@ public class CheatCodeBox extends Group {
         setPosition(0, 0);
 
         input = new TextField("", skin);
-        input.setSize(maxWidth, tileHeight);
+        input.setSize(maxWidth + 8, tileHeight);
 //        input.setMessageText("Enter command...");
 
-        input.setPosition(0, 0);
+        input.setPosition(-8, -4);
         input.addListener(new InputListener() {
             public boolean keyDown(InputEvent event, int keycode) {
                 if (keycode == Input.Keys.ESCAPE || keycode == Input.Keys.F3) {
@@ -104,7 +104,7 @@ public class CheatCodeBox extends Group {
 
         historyTable.setWidth(maxWidth);
         historyTable.setHeight(height);
-        historyTable.setPosition(0, tileHeight);
+        historyTable.setPosition(0, tileHeight - 4);
         addActor(historyTable);
 
     }

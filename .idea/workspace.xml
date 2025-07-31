@@ -4,15 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="crow attack added">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CheatCodeBox.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="cheat code box added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Mine.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Mine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CheatCodeBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CheatCodeBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,14 +248,7 @@
       <workItem from="1753870388263" duration="1461000" />
       <workItem from="1753871879298" duration="256000" />
       <workItem from="1753876301922" duration="7398000" />
-      <workItem from="1753952529205" duration="7895000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۳۵" summary="Adding buttons to main menu &amp; Adding audio service">
-      <option name="closed" value="true" />
-      <created>1752296975238</created>
-      <option name="number" value="LOCAL‎−۰۰۰۳۵" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۳۵" />
-      <updated>1752296975238</updated>
+      <workItem from="1753952529205" duration="8660000" />
     </task>
     <task id="LOCAL‎−۰۰۰۳۶" summary="Changing gamma values of fonts">
       <option name="closed" value="true" />
@@ -613,7 +600,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753911798528</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="cheat code box added">
+      <option name="closed" value="true" />
+      <created>1753961425493</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1753961425494</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -644,7 +639,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="grass asset added" />
     <MESSAGE value="grass type{3}_color{10} added&#10;regular stone added&#10;wood added" />
     <MESSAGE value="typo fixed" />
     <MESSAGE value="typo really fixed this time" />
@@ -669,7 +663,8 @@
     <MESSAGE value="Town and Mine added" />
     <MESSAGE value="Mine Completed" />
     <MESSAGE value="crow attack added" />
-    <option name="LAST_COMMIT_MESSAGE" value="crow attack added" />
+    <MESSAGE value="cheat code box added" />
+    <option name="LAST_COMMIT_MESSAGE" value="cheat code box added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
