@@ -23,14 +23,14 @@ public class Hoe extends Tool{
     }
 
     @Override
-    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
+    public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
         // It's a ground tile
         if(body.getUserData() instanceof TiledMapTile tile) {
             // It's not dirt
             if(!tile.getProperties().get("Type", "", String.class).equals("Dirt")) {
                 return;
             }
-            Entity entity = EntityFactory.instance.CreatePlowedDirt(body, world);
+            Entity entity = EntityFactory.instance.CreatePlowedDirt(body.getPosition(), world);
             game.getAudioService().playSound(SoundAsset.HoeHit, 0.2f);
             engine.addEntity(entity);
         }

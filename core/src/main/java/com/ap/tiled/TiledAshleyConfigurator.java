@@ -11,9 +11,11 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject;
 import com.badlogic.gdx.math.Vector2;
@@ -29,18 +31,21 @@ public class TiledAshleyConfigurator {
     }
 
     public void onLoadTile(TiledMapTile tile, int x, int y) {
-        TiledPhysic.createBodyForTile(x, y, tile, world, true);
+   //     TiledPhysic.createBodyForTile(x, y, tile, world, true);
     }
 
+    public void onLoadMap(TiledMap tiledMap) {
 
-    public void onLoadSpawner(MapObject object) {
+    }
+
+    public void onLoadTileData(MapObject object, String key) {
         MapObjects objects = new MapObjects();
         objects.add(object);
         createBody(objects,
                 Vector2.Zero,
                 new Vector2(1, 1),
                 BodyDef.BodyType.StaticBody,
-                Vector2.Zero, object.getProperties().get("spawner", String.class));
+                Vector2.Zero, object.getProperties().get(key, String.class));
     }
     public void onLoadBoundary(MapObject object) {
         MapObjects objects = new MapObjects();
@@ -226,4 +231,6 @@ public class TiledAshleyConfigurator {
         String bodyType = tile.getProperties().get("bodyType", "DynamicBody",String.class);
         return BodyDef.BodyType.valueOf(bodyType);
     }
+
+
 }

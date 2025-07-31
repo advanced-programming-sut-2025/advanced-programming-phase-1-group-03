@@ -5,6 +5,7 @@ import com.badlogic.ashley.core.ComponentMapper;
 
 public class TreeComponent implements Component {
     public static final ComponentMapper<TreeComponent> mapper = ComponentMapper.getFor(TreeComponent.class);
+    private boolean isSapling = false;
     private boolean hasLeaf;
     private int numberOfAxeNeededToCut;
 
@@ -27,5 +28,13 @@ public class TreeComponent implements Component {
 
     public int getNumberOfAxeNeededToCut() {
         return numberOfAxeNeededToCut;
+    }
+
+    public boolean isSapling() {
+        return isSapling;
+    }
+
+    public void setSapling(boolean sapling) {
+        isSapling = sapling;
     }
 }

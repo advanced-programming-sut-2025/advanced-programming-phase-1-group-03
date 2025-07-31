@@ -105,8 +105,12 @@ public class TiledPhysic {
     }
 
     public static Body createRectagleBody(int x, int y, int w, int h, Object userData, World world, boolean sensor) {
+        if (w <= 0 || h <= 0) {
+            throw new IllegalArgumentException("Invalid width or height: " + w + ", " + h);
+        }
+
         BodyDef bodyDef = new BodyDef();
-        bodyDef.position.set(new Vector2(x, y));
+        bodyDef.position.set(x, y);
         bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.fixedRotation = true;
 
@@ -115,10 +119,13 @@ public class TiledPhysic {
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(w / 2f, h / 2f, new Vector2(w / 2f, h / 2f), 0);
+
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.isSensor = sensor;
         body.createFixture(fixtureDef);
+
+        shape.dispose();
 
         return body;
     }

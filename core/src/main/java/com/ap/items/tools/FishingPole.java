@@ -19,7 +19,7 @@ public class FishingPole extends Tool{
     }
 
     @Override
-    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
+    public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
         super.applyItem(body, engine, game, world);
     }
 }

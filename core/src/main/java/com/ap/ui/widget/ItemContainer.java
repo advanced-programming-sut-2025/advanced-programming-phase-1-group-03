@@ -121,7 +121,7 @@ public class ItemContainer extends Actor {
         }
     }
 
-    public void useSelectedItem(Body body, Engine engine, GameScreen game, World world) {
+    public void useSelectedItem(Item.WorldObject body, Engine engine, GameScreen game, World world) {
         if (isSelectedEmpty()) return;
         inventory.getItems().get(selectedIndex).getItem().applyItem(body, engine, game, world);
     }

@@ -9,6 +9,7 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -168,13 +169,19 @@ public class TiledMapGenerator {
     }
 
     private void generateTrees(TiledMap map) {
+        createTree(map, treeCount);
+    }
+
+    private void createTree(TiledMap map, int count) {
         Array<Vector2> positions = new Array<>();
 
         int mapWidth = map.getProperties().get("width", Integer.class);
         int mapHeight = map.getProperties().get("height", Integer.class);
 
-        for(int i = 0; i < treeCount; i++) {
-            while(true) {
+        for(int i = 0; i < count; i++) {
+            int attemp = 0;
+            while(attemp < 10) {
+                attemp ++;
                 int x = new Random().nextInt(10, mapWidth - 10);
                 int y = new Random().nextInt(10, mapHeight - 10);
                 boolean accepted = isTileValid(map, x, y);;
@@ -192,4 +199,29 @@ public class TiledMapGenerator {
         }
     }
 
+    public void generateForagingTree(TiledMap map) {
+        createTree(map, 1);
+    }
+
+    public void makingGreenhouseFloor(TiledMap map) {
+        int mapWidth = map.getProperties().get("width", Integer.class);
+        int mapHeight = map.getProperties().get("height", Integer.class);
+        for(int i = 0; i < mapWidth; i++) {
+            for(int j = 0; j < mapHeight; j++) {
+                for(MapLayer layer : map.getLayers()) {
+                    if(!(layer instanceof TiledMapTileLayer tileLayer)) {
+                        continue;
+                    }
+                    var cell = tileLayer.getCell(i, j);
+                    if(cell == null) {
+                        continue;
+                    }
+                    var tile = cell.getTile();
+                    if(tile.getProperties().get("Type", "", String.class).equals("Dirt")) {
+                        engine.addEntity(EntityFactory.instance.CreateGreenhousePlowedDirt(new Vector2(i, j), world));
+                    }
+                }
+            }
+        }
+    }
 }

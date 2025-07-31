@@ -4,6 +4,7 @@ import com.ap.Constraints;
 import com.ap.component.Growable;
 import com.ap.component.ItemHolder;
 import com.ap.items.EntityFactory;
+import com.ap.items.Item;
 import com.ap.items.plant.Crop;
 import com.ap.model.CropsType;
 import com.ap.utils.Helper;
@@ -20,8 +21,10 @@ public class GiantCropManager  {
     private int mapHeight;
     private final World world;
     private Engine engine;
+    private TiledMap map;
 
     public GiantCropManager(TiledMap map, World world, Engine engine) {
+        this.map = map;
         mapWidth = map.getProperties().get("width", Integer.class);
         mapHeight = map.getProperties().get("height", Integer.class);
         this.world = world;
@@ -45,7 +48,7 @@ public class GiantCropManager  {
 
         for(int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                Body top = Helper.getTopBodyAtPoint(new Vector2(x + i, y + j), world);
+                Item.WorldObject top = Helper.getTopBodyAtPoint(new Vector2(x + i, y + j), world, map);
                 var entity = (Entity) top.getUserData();
 
                 Crop crop = (Crop) ItemHolder.mapper.get(entity).getItem();
@@ -63,7 +66,7 @@ public class GiantCropManager  {
 
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                Body top = Helper.getTopBodyAtPoint(new Vector2(startX + i, startY + j), world);
+                Item.WorldObject top = Helper.getTopBodyAtPoint(new Vector2(startX + i, startY + j), world, map);
                 // Check that at this point a crop exists
                 if (top.getUserData() instanceof Entity entity && Growable.mapper.has(entity)) {
                     Growable growable = Growable.mapper.get(entity);

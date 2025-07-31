@@ -7,4 +7,5 @@ public interface IMap {
     void setup(MapAsset map);
     void load();
     void leave();
+    void addSystems();
 }

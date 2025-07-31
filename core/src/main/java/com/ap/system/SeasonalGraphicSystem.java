@@ -15,6 +15,8 @@ public class SeasonalGraphicSystem extends IteratingSystem {
     private final AssetService assetService;
     private final TimeSystem timeSystem;
 
+    String textureName, textureName2;
+
     public SeasonalGraphicSystem(AssetService assetService, TimeSystem timeSystem) {
         super(Family.all(Graphic.class, SeasonalGraphic.class).get());
         this.timeSystem = timeSystem;
@@ -25,8 +27,8 @@ public class SeasonalGraphicSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         Graphic graphic = Graphic.mapper.get(entity);
         SeasonalGraphic seasonalGraphic = SeasonalGraphic.mapper.get(entity);
-        String textureName = seasonalGraphic.getAtlasKey() + "/" + timeSystem.getSeason().name().toLowerCase();
-        String textureName2 = seasonalGraphic.getAtlasKey().replace("{season}", timeSystem.getSeason().name().toLowerCase());
+        textureName = seasonalGraphic.getAtlasKey() + "/" + timeSystem.getSeason().name().toLowerCase();
+        textureName2 = seasonalGraphic.getAtlasKey().replace("{season}", timeSystem.getSeason().name().toLowerCase());
         var atlas = assetService.get(seasonalGraphic.getAtlas());
 
         TextureRegion newRegion = null;

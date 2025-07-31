@@ -3,10 +3,7 @@ package com.ap.managers;
 import com.ap.GdxGame;
 import com.ap.asset.MapAsset;
 import com.ap.screen.GameScreen;
-import com.ap.screen.maps.Farm;
-import com.ap.screen.maps.House;
-import com.ap.screen.maps.IMap;
-import com.ap.screen.maps.Mine;
+import com.ap.screen.maps.*;
 import com.badlogic.gdx.Gdx;
 
 import java.util.HashMap;
@@ -46,6 +43,8 @@ public class MapManager {
                 return new House(game, gameScreen);
             } case Mine -> {
                 return new Mine(game, gameScreen);
+            } case StardropSaloon -> {
+                return new Store(game, gameScreen);
             }
         }
         throw new IllegalArgumentException("Map " + map.name() + " is not supported");

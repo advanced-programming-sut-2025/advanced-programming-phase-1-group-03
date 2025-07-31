@@ -3,6 +3,7 @@ package com.ap.component;
 import com.ap.asset.AtlasAsset;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Entity;
 
 import java.util.ArrayList;
 
@@ -14,15 +15,17 @@ public class Growable implements Component {
     private String assetKey;
     private int elapsedDay;
     private boolean isWateredToday = false;
+    private Entity dirtEntity;
 
     // 1 base
     private int currentStage;
 
-    public Growable(ArrayList<Integer> stages, AtlasAsset atlas, String assetKey) {
+    public Growable(ArrayList<Integer> stages, AtlasAsset atlas, String assetKey, Entity dirtEntity) {
         this.stages = stages;
         this.atlas = atlas;
         this.assetKey = assetKey;
         this.elapsedDay = 0;
+        this.dirtEntity = dirtEntity;
     }
 
     public boolean canProduce() {
@@ -75,5 +78,13 @@ public class Growable implements Component {
 
     public void setCurrentStage(int currentStage) {
         this.currentStage = currentStage;
+    }
+
+    public Entity getDirtEntity() {
+        return dirtEntity;
+    }
+
+    public void setDirtEntity(Entity dirtEntity) {
+        this.dirtEntity = dirtEntity;
     }
 }

@@ -4,6 +4,6 @@ public enum ForagingTrees {
     oak,
     pine,
     mahogany,
-    palm,
+    maple,
 
 }

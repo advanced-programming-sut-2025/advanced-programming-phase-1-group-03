@@ -4,6 +4,7 @@ import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -52,7 +53,7 @@ public class Item {
      * Items can override this method
      * When we want to apply item this method will be called
      */
-    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
+    public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
     }
 
     /**
@@ -85,5 +86,20 @@ public class Item {
      */
     public void interact(Body body, Engine engine, GameScreen game) {
 
+    }
+
+    public static class WorldObject {
+        Object getUserData;
+        Vector2 position;
+        public WorldObject(Object getUserData, Vector2 position) {
+            this.getUserData = getUserData;
+            this.position = position;
+        }
+        public Object getUserData() {
+            return getUserData;
+        }
+        public Vector2 getPosition() {
+            return position;
+        }
     }
 }

@@ -32,7 +32,7 @@ public class Scythe extends Tool{
     }
 
     @Override
-    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
+    public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
         if(!(body.getUserData() instanceof Entity entity)) {
             return;
         }

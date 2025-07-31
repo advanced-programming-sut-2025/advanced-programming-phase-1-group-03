@@ -1,5 +1,6 @@
 package com.ap.items.plant;
 
+import com.ap.asset.MapAsset;
 import com.ap.asset.SoundAsset;
 import com.ap.component.Dirt;
 import com.ap.component.ItemHolder;
@@ -24,7 +25,7 @@ public class Seed extends Item {
     }
 
     @Override
-    public void applyItem(Body body, Engine engine, GameScreen game, World world) {
+    public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
         if(!(body.getUserData() instanceof Entity dirt)) {
             return;
         }
@@ -33,7 +34,8 @@ public class Seed extends Item {
             return;
         }
         Season currentSeason = game.getTimeSystem().getSeason();
-        if(!belongingCropType.getSeasonList().contains(currentSeason)) {
+        if(!belongingCropType.getSeasonList().contains(currentSeason)
+                && game.getCurrentMap() != MapAsset.Greenhouse) {
             GameUIManager.instance.showMessageDialog("This seed is not belonging to the current season!");
             return;
         }
@@ -41,7 +43,7 @@ public class Seed extends Item {
         // Reduce from inventory
         game.getInventory().removeItem(ItemFactory.instance.CreateSeed(belongingCropType), 1);
 
-        Entity crop = EntityFactory.instance.CreateCropEntity(body.getPosition(), belongingCropType, world);
+        Entity crop = EntityFactory.instance.CreateCropEntity(body.getPosition(), belongingCropType, world, dirt);
 
         engine.addEntity(crop);
     }

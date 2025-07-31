@@ -11,6 +11,7 @@ import com.ap.state.CrowAnimationState;
 import com.ap.model.MineralNodes;
 import com.ap.tiled.TiledPhysic;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -30,19 +31,30 @@ public class EntityFactory {
         this.audioService = audioService;
     }
 
-    public Entity CreatePlowedDirt(Body body, World world) {
+    public Entity CreatePlowedDirt(Vector2 position, World world) {
         Entity entity = new Entity();
         entity.add(new Graphic(null));
         entity.add(new SeasonalGraphic(AtlasAsset.SeasonalObjects, "dirt_hoed"));
-        entity.add(new Transform(body.getPosition(), Constraints.HOE_DIRT_Z
+        entity.add(new Transform(position, Constraints.HOE_DIRT_Z
                 , new Vector2(1, 1), new Vector2(1, 1), 0, -2));
 
-        Body newBody = TiledPhysic.createBodyForTile((int) body.getPosition().x, (int) body.getPosition().y, entity, world, true);
-        entity.add(new Physic(newBody, body.getPosition()));
+        Body newBody = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, true);
+        entity.add(new Physic(newBody, position));
         entity.add(new Dirt(true));
         return entity;
     }
 
+    public Entity CreateGreenhousePlowedDirt(Vector2 position, World world) {
+        Entity entity = new Entity();
+        entity.add(new Graphic(null));
+        entity.add(new Transform(position, Constraints.HOE_DIRT_Z
+                , new Vector2(1, 1), new Vector2(1, 1), 0, -2));
+
+        Body newBody = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, true);
+        entity.add(new Physic(newBody, position));
+        entity.add(new Dirt(true));
+        return entity;
+    }
     public Entity CreateTreeEntity(Vector2 position, String name, World world) {
         TextureRegion fullTreeTexture = assetService.get(AtlasAsset.Trees).findRegions(name+"/spring/stage").get(4);
         Vector2 fullTreeSize = new Vector2(fullTreeTexture.getRegionWidth(), fullTreeTexture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
@@ -152,7 +164,7 @@ public class EntityFactory {
         return entity;
     }
 
-    public Entity CreateCropEntity(Vector2 position, CropsType type, World world) {
+    public Entity CreateCropEntity(Vector2 position, CropsType type, World world, Entity dirtEntity) {
         Entity entity = new Entity();
         entity.add(new Transform(new Vector2(position.x, position.y),
                 Constraints.CROPS_Z,
@@ -164,7 +176,7 @@ public class EntityFactory {
         var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, true);
         entity.add(new Physic(body, position));
         entity.add(new ItemHolder(ItemFactory.instance.CreateCrop(type)));
-        entity.add(new Growable(type.getStage(), AtlasAsset.Crops, type.name()));
+        entity.add(new Growable(type.getStage(), AtlasAsset.Crops, type.name(), dirtEntity));
         return entity;
     }
 
@@ -189,7 +201,7 @@ public class EntityFactory {
         return entity;
     }
 
-    public Entity createCrowEntity(Entity purposeEntity) {
+    public Entity CreateCrowEntity(Entity purposeEntity) {
         Entity entity = new Entity();
         Vector2 pos = Transform.mapper.get(purposeEntity).getPosition();
 

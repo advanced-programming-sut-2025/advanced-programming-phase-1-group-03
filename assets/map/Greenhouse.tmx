@@ -29,6 +29,9 @@
    </properties>
   </tile>
   <tile id="2046">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="2046" duration="250"/>
     <frame tileid="2046" duration="250"/>
@@ -41,6 +44,9 @@
    </animation>
   </tile>
   <tile id="2047">
+   <properties>
+    <property name="Water" value="T"/>
+   </properties>
    <animation>
     <frame tileid="2047" duration="250"/>
     <frame tileid="2047" duration="250"/>
@@ -100,7 +106,7 @@
  <tileset firstgid="2177" source="objects/Objects.tsx"/>
  <layer id="1" name="Back" width="20" height="24">
   <data encoding="base64" compression="zlib">
-   eJxjZGBgYKQyphYYNY8+5v1hh2BizUtgJ4ztOAirgZkHUkspnoVmHogvD6Tj2EnD8njMswbSMiRgWQ6IHnzmzQbSNkg0OkYWtyXCPGxmUMM8dHci0zA2ue7DFQakmgdzCza3UeJfargPV/wiyxFjHj5zyDGPkFmk+BeUdxRIxPjyGzHlDK6yB908apYvxGCQHmLUAQDEKWUR
+   eJxjZGBgYKQyphYYNY8+5v1hh2BizUtgx4/tOCCYkDqYeTD1lOBZaOaB+PJAOo6dNCyPxzxrIC1DApblgOjBZ95sIG2DRKNjZHFbIszDZgY1zEN3JzINY5PrPlxhQKp5MLdgcxsl/qWG+3DFL7IcMebhM4cc8wiZRYp/QXlHgUSML78RKj/wlT/o5lGzfCEGg/QQow4AGXxk8A==
   </data>
  </layer>
  <layer id="3" name="Buildings" width="20" height="24">

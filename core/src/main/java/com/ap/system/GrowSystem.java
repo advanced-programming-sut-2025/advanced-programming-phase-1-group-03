@@ -13,6 +13,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.graphics.Color;
 
 public class GrowSystem extends IteratingSystem implements EntityListener {
     private AssetService assetService;
@@ -51,6 +52,14 @@ public class GrowSystem extends IteratingSystem implements EntityListener {
             }
         }
 
+        if(growable.getDirtEntity() != null) {
+            Graphic graphic = Graphic.mapper.get(growable.getDirtEntity());
+            if(growable.isWateredToday()) {
+                graphic.getColor().set(0.5f, 0.5f, 0.5f, 1);
+            } else {
+                graphic.getColor().set(1f, 1f, 1f, 1f);
+            }
+        }
         if(Graphic.mapper.has(entity)) {
             Graphic graphic = Graphic.mapper.get(entity);
             var texture = assetService.get(growable.getAtlas()).
@@ -69,7 +78,7 @@ public class GrowSystem extends IteratingSystem implements EntityListener {
             if(weatherSystem.getCurrentWeather().equals(Weather.Rain)) {
                 growable.setWateredToday(true);
             }else {
-                growable.setWateredToday(true);
+                growable.setWateredToday(false);
             }
         }
     }

@@ -25,13 +25,13 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 import com.badlogic.gdx.utils.IntArray;
 
 import java.util.HashMap;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public class TiledService {
     private final AssetService assetService;
     private TiledMap currentMap = null;
 
-    private HashMap<String, Vector2> spawnPoints = new HashMap<>();
 
     // We use this consumer to notify other systems when map changes
     private Consumer<TiledMap> mapChangeConsumer;
@@ -39,7 +39,8 @@ public class TiledService {
     private Consumer<TiledMapTileMapObject> loadObjectConsumer;
     private Consumer<MapObject> loadBoundaryConsumer;
     private Consumer<TiledMap> generateItemsConsumer;
-    private Consumer<MapObject> loadSpanwerConsumer;
+    private Consumer<TiledMap> loadMapConsumer;
+    private BiConsumer<MapObject, String> loadTileDataConsumer;
 
     public TiledService(AssetService assetService) {
         this.assetService = assetService;
@@ -55,6 +56,8 @@ public class TiledService {
 
         loadMapObjects(startMap);
 
+        loadMapConsumer.accept(startMap);
+
         if(mapChangeConsumer != null) {
             // notify All
             mapChangeConsumer.accept(startMap);
@@ -62,8 +65,6 @@ public class TiledService {
         if(startMap.getProperties().get("generateItems", false, Boolean.class)) {
             generateItemsConsumer.accept(startMap);
         }
-
-//        changeSeasonTileset(Season.Fall);
     }
 
     private void loadMapObjects(TiledMap startMap) {
@@ -76,6 +77,7 @@ public class TiledService {
                 throw new GdxRuntimeException("Unsupported map layer: " + layer.getName());
             }
         }
+
     }
 
     private void loadObjectLayer(MapLayer layer) {
@@ -85,12 +87,20 @@ public class TiledService {
             } else if(object instanceof PolygonMapObject polygon) {
                 loadBoundaryConsumer.accept(polygon);
             } else if(object instanceof RectangleMapObject point) {
-                setSpawnPoint(point);
                 setSpawner(point);
+                setMenuOpen(point);
             }else {
                 throw new GdxRuntimeException("Unsupported map object: " + object.getClass().getName());
             }
         }
+    }
+
+    private void setMenuOpen(RectangleMapObject point) {
+        String location = point.getProperties().get("menuOpen", "", String.class);
+        if(location.isBlank()) {
+            return;
+        }
+        loadTileDataConsumer.accept(point, "menuOpen");
     }
 
     private void setSpawner(RectangleMapObject point) {
@@ -98,18 +108,9 @@ public class TiledService {
         if(location.isBlank()) {
             return;
         }
-        loadSpanwerConsumer.accept(point);
+        loadTileDataConsumer.accept(point, "spawner");
     }
 
-    private void setSpawnPoint(RectangleMapObject point) {
-        String location = point.getProperties().get("StartLocation", "", String.class);
-        if(location.isBlank()) {
-            return;
-        }
-        Vector2 pos = new Vector2(point.getRectangle().getX(), point.getRectangle().getY());
-        pos.scl(Constraints.UNIT_SCALE);
-        spawnPoints.put(location, pos);
-    }
 
     private void loadTileLayer(TiledMapTileLayer tileLayer) {
         for(int x = 0; x < tileLayer.getWidth(); x++) {
@@ -196,8 +197,16 @@ public class TiledService {
         this.generateItemsConsumer = generateItemsConsumer;
     }
 
-    public void setLoadSpanwerConsumer(Consumer<MapObject> loadSpanwerConsumer) {
-        this.loadSpanwerConsumer = loadSpanwerConsumer;
+    public BiConsumer<MapObject, String> getLoadTileDataConsumer() {
+        return loadTileDataConsumer;
+    }
+
+    public void setLoadTileDataConsumer(BiConsumer<MapObject, String> loadTileDataConsumer) {
+        this.loadTileDataConsumer = loadTileDataConsumer;
+    }
+
+    public void setLoadMapConsumer(Consumer<TiledMap> loadMapConsumer) {
+        this.loadMapConsumer = loadMapConsumer;
     }
 
     @FunctionalInterface

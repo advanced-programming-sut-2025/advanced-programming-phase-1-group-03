@@ -71,9 +71,7 @@ public class ControllerSystem extends IteratingSystem {
                     if(cookingMenu != null)
                         cookingMenu.toggle();
                 } case OpenCheatCode -> {
-                    if (!cheatCodeBox.isShowing()) {
-                        cheatCodeBox.toggle();
-                    }
+                    cheatCodeBox.toggle();
                 }
             }
         }

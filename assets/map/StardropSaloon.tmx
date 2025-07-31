@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="46" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="22">
+ <properties>
+  <property name="DayTiles" value="Front 7 1 256 Front 7 2 288"/>
+  <property name="Doors" value="11 9 1 120 20 9 1 120 3 16 1 824 4 16 1 825"/>
+  <property name="NightTiles" value="Front 7 1 1253 Front 7 2 1285"/>
+  <property name="Warp" value="14 25 Town 45 71"/>
+ </properties>
+ <tileset firstgid="1" name="1" tilewidth="16" tileheight="16" tilecount="2176" columns="32">
+  <image source="tileset/townInterior.png" width="512" height="1088"/>
+  <tile id="581">
+   <animation>
+    <frame tileid="581" duration="500"/>
+    <frame tileid="550" duration="500"/>
+    <frame tileid="581" duration="500"/>
+    <frame tileid="582" duration="500"/>
+   </animation>
+  </tile>
+  <tile id="1378">
+   <animation>
+    <frame tileid="1378" duration="120"/>
+    <frame tileid="1381" duration="120"/>
+    <frame tileid="1384" duration="120"/>
+   </animation>
+  </tile>
+  <tile id="1379">
+   <animation>
+    <frame tileid="1379" duration="120"/>
+    <frame tileid="1382" duration="120"/>
+    <frame tileid="1385" duration="120"/>
+   </animation>
+  </tile>
+  <tile id="1380">
+   <animation>
+    <frame tileid="1380" duration="120"/>
+    <frame tileid="1383" duration="120"/>
+    <frame tileid="1386" duration="120"/>
+   </animation>
+  </tile>
+  <tile id="1410">
+   <animation>
+    <frame tileid="1410" duration="250"/>
+    <frame tileid="1474" duration="250"/>
+   </animation>
+  </tile>
+  <tile id="1411">
+   <animation>
+    <frame tileid="1411" duration="500"/>
+    <frame tileid="1475" duration="500"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="2177" name="2" tilewidth="16" tileheight="16" tilecount="1312" columns="32">
+  <image source="tileset/townInterior_2.png" width="512" height="656"/>
+ </tileset>
+ <tileset firstgid="3489" source="objects/Objects.tsx"/>
+ <layer id="1" name="Back" width="46" height="25">
+  <data encoding="base64" compression="zlib">
+   eJy9VksyBEEQrW7TYlrNWjAMdjYuYCIwWDqBWZjhBjZY6XEJrHAKHIEL4AgEa78FMkNlVE7prs98ZMSL7Oquqn79OutVCSFEKxaiHQ8vU0QDhGC896QQ+xYcSM1nGcbVPDAjBh/EOwMeHcAx8Dqx4FT+9sP+UzBuyQPTxjvvYI57Bx6kH2/S+1La//c1e468dz1g8n6FOd4cePfkjfo9Qh5VuAXc5OQk1XovA1YAjYJMmE+73zlesXPCmHD04XqXI80vjX7bebmfdYnxXhLiE/BhyROJH2/S+0kU50Rl0jsk85iEiaqJO4fobdN5UHovAqd64s4u3huRhssHUXu65uMQdB/1Nb1zGHrzd7t8EDXn7Y3obx/kbXrnsPV24TzW1yb/vD6Zui4Kl6423hhUhzZva6h6tXlfQ83Dx5g+yMOlq4t3qD/04yc8+tGbA/VcK+vv4eGqoV6iH70R5COoz3Y530tcvG0+VOQvqPdzGoaXVPMmH0G9V8v5XhKyfm3g/oJ6y7EwVMY0b5yvFWu9r3rkWXRWpjMWXl8z7X3rm5/TFhTvFeYjyL0u3Z5h85yiMxbqge0t5u+od9E55aKSfx/PLrQWi3wA12hI5uNrCp1Y15/pL7Q/Ih8zI096vgloqn20qnhn7BxBoDZq1Mt55Asm/lYQ6juaUv8T4lX32O/NXE90/ZEOBGpvSv2ffesFx80AZhXm2PfQvJyH775PuZp0+3aInoegVQbolPz6Z6qWzPPhoPSmvJ5TrzyfAd9zXDsl9365o/huq/q+GOmu7//Uu8XWm6/eTeZTvnofxWF6++R2QH+zvrm3h+pN434A6WRXjg==
+  </data>
+ </layer>
+ <layer id="3" name="Back2" width="46" height="25">
+  <properties>
+   <property name="Draw" value="Back"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzrERgCAQBdFLr/8UpRGQRlRa4QdXgJkD7JvZfM2AvSQ3O6JTZf/76Juizxpdqk3yfevziV7VJ/kGAAAAgBUMC0gLoQ==
+  </data>
+ </layer>
+ <layer id="5" name="Buildings" width="46" height="25">
+  <data encoding="base64" compression="zlib">
+   eJy9l8luFDEQht02LQ0JB+ASILwC6w1uIOASlsBpTggJgoSIIAmgkAuBYy5kMixCIiwSiwggIKwHcgEpKGF5ACAvwCNAOPBbY6ur3W4vMxNK+qbb7XLXX7a7uidhjCWKUIvx1f5LSYyG/6E79H694KCDQxG+tjHtWlNT9wAYdDBk+G7gjG0Em3jRtw9Ox5P8mNB8da6humtgDzScQOM3+AMWwRTowvW64bsP1/aDA+C8YGwE9BsB6yxubuj8hOpewxvXx9BYi/N1oBvMq5vMJu71HhbZ+Q447UyKcWS+l0RGb4o5TrNjNc1yDdUdYtq3S+V4xDOQ5iqpEo1MtaX1pPm+GN3mGoeMseXu6p9b5r6/1h+j+1YH1rrTzqQac1MdzX5ppo+02x3Gc0n2g8vaVQdnwAh4H+ljq4N0n1Crkr0TWwd/MvszvqDGlPXbfGTbrIMxeypUd83h26yZdZDGZsytr8zK8vM9e0Lh83PN4VLpbtV0buY5jWvTEJv/JDmn9UD3nULg02AADIIhcAacBedEcYzPdGw57iiew2Ogz1NjzLGyjsyQ62bNkH2XoW0c1MAEqIMr4Cq4Jvsq6KtkYxbxXvrL7d8eNLarPvm+XWQdkc/+NsTfLoo1Q/Y9w/Xn4AWYBi/BK/AavJF9lfwYrdv27SHnWK+vrT49wLw/TLP2StxnFVjN8/XpO9o/eNgaueww2cTdOF+v2h+g4SMYRfuiaMwxXd97an/cV8dZHD+Bb6q9Gdq2gK3Gt53LrguPA7ELIv9tZdod9N1V67lQ7lZqPdC9lxd1mzFl+y14F8iNFU2IibCT0Nxv0a2/oX2m87Pl2Q57hP0xBR6DJ+ApqTP1xL5PbLHbpUfvb19NnoPOefAZfAFfjfpI/X3a9Fq0koPc37+Sct1jAS+8YZJ36P4ou0/M+OW8XPc0fjpVXdvFG/9JdvNinGbfsbHvaF2HW4ln8g+hwLIC
+  </data>
+ </layer>
+ <layer id="7" name="Front" width="46" height="25">
+  <data encoding="base64" compression="zlib">
+   eJy1V7luFEEQnZn1JjYRiMNkBBBgAgjAg5CQV2iJLMxtOeFwRkpAiMRlAYbUBkxirwUkREhInBIs4hOQwPwBMSxXwCvo0tTW1sx0r4cnPfV0d1X3q96antooypCAQ2DNII0PgLGjtB1SlGMDUXWIjbEt4Hb33Kg7u7i7vwPcKmw74FPwg/IjjCKwNMl8GBSvdS6SHGucQ4mGFYsRYFPYfksMJ7aD78E48/m7XpSdzb5arw+Pcawhurc5LR9h8AlccYYdocGK8ST2nALHnV0L7bLSbfnloRmg+7sanFD9A/V83YRJcYZt+L7L0T1dy7gTa+6qZ21aD9ftA9bN5z9mvSwCHCvvkQqNUZTpHKl3z4XoHi/RwLoXwSXwgWLL2SyLsYfgI7FHGVi/r27S8sbQwnwP7gXfRvn3QNuwkfcg6db5kAdf3dY9GKn+VM58kY28B/m8ZZ5IpCJ3QvLk1WDvWqvF68Esv2V+WTmlc6vK97IfNI2xRsEcI1S3dQb9Ur6XUovUnacvVLc+A0of+f7N4ds0n3SPrYn8UKVu+kS2RZ/vA66NaO4QBibAw+AR8Ch4DDwOnqj985E11QIWvZ9012myzmqovXzJ/vIe+YF9foILeF4Pow3gRnCTUUtY+OpqBLpLXuD5JdgBz6I/re6XsveJaxXdSv+7WPseOIy5zW5+N9o94CiYeuomcK21gvaze74EzZfFvUdn3O7xzHANtjPg7Zw7nr/Zz7D+84Lazhf7RXy/sN5vt+Yi9l8CT2P+jHEGV5y+q0rn4xLdRbgQcNaEyUD7EIxQPZ/06tZ7Un8OnAfvuLaIF/+jZgmtey1+l3UldQOB47PirALXoeEGeBOcBW8JTedjO0+svavSw/ltfddahZ7dkLrLtPFvsZoYZpNsX/0tIR3nPOpo9id7/o+lccqjzqI4fPOL8CTO1034IrTr/yS8T9F/gCIW1XK+9YrW7atD1zshKKrlQmuNfvkHDZCrew==
+  </data>
+ </layer>
+ <layer id="9" name="Front2" width="46" height="25">
+  <properties>
+   <property name="Draw" value="Front"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt1rEJACAMRNG0ii4gZP8dhYAbJFgYDPzX/ubKE6lvD79by9lxa02/a8/ZAQAAUIkF3+9XGnw/AABeOLUTA44=
+  </data>
+ </layer>
+ <objectgroup id="13" name="objects">
+  <object id="18" name="MapBoundary" x="16.5" y="286">
+   <polygon points="0,0 -0.5,82.75 7,89.75 208,89.75 208,113.75 223.5,113.5 223.5,89 439.75,90 447.5,83.25 447.25,42.25 543,42 543.25,82.5 550.5,89.5 695.75,89 703.5,83 702.591,1.45455 686.045,-15.4545 496.167,-13.3333 496.167,-133.333 583.5,-133.333 591.5,-140.333 591.167,-190.667 574.833,-207.667 447.5,-206 432.167,-191.667 431.167,-142.333 437.5,-134 478.833,-133.667 480.167,18 448.167,19 417.5,18.6667 416.167,0.666667 387.167,1 386.167,-15.3333 368.167,-14.6667 368.167,2.33333 334.167,1.66667 335.167,-14.6667 303.833,-15 304.167,31.6667 111,34 110.5,-14.5 65,-15.5 64,-102.5 375.833,-101.333 366.833,-110.667 319.5,-110 318.833,-181.667 376.167,-182 383.167,-188.333 383.167,-207 365.833,-224 366.5,-191.667 362.5,-191 351.833,-196 340.5,-191.333 336.167,-191.667 335.167,-224 317.5,-222.667 318.833,-206.667 303.5,-206.667 303.167,-189.667 288.5,-190 288.5,-206.333 255.833,-206.667 256.167,-184 303.167,-181 303.167,-111.667 176.5,-109.667 174.833,-207.333 158.833,-224.333 47.1667,-223.333 31.1667,-206.333 30.8333,-175.333 39.5,-167 159.5,-166.667 159.833,-113 47.8333,-110.333 31.8333,-94.3333 31.8333,0"/>
+  </object>
+  <object id="19" name="Spawner" x="226" y="383.5" width="12" height="14.5">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="Town"/>
+   </properties>
+  </object>
+  <object id="20" name="Player" gid="3491" x="217" y="369.5" width="32" height="32">
+   <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
+    <property name="speed" type="float" value="3"/>
+   </properties>
+  </object>
+  <object id="21" name="Menu Open" x="164.333" y="289.667" width="14.3333" height="32">
+   <properties>
+    <property name="menuOpen" value="T"/>
+    <property name="sensor" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

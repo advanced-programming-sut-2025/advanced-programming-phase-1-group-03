@@ -21,7 +21,10 @@ import com.ap.system.universal.TimeSystem;
 import com.ap.tiled.TiledAshleyConfigurator;
 import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
-import com.ap.ui.widget.*;
+import com.ap.ui.widget.Clock;
+import com.ap.ui.widget.CookingMenu;
+import com.ap.ui.widget.CraftingMenu;
+import com.ap.ui.widget.ItemContainer;
 import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
@@ -34,84 +37,41 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.util.function.Consumer;
 
-public class Mine implements IMap{
-    private AssetService assetService;
-    private AudioService audioService;
-    private Engine engine;
-    private TiledService tiledService;
-    private TiledAshleyConfigurator tileConfigurator;
-    private TiledMapGenerator tiledMapGenerator;
-    private KeyboardController keyboardController;
-    private World world;
-
-    private Camera camera;
-    private Viewport viewport;
-    private Batch batch;
-
-    private TimeSystem timeSystem;
-
-    private TabManager tabManager;
-    private CraftingMenu craftingMenu;
-    private CookingMenu cookingMenu;
-    private Clock clock;
-    private ItemContainer itemContainer;
-    private CheatCodeBox cheatCodeBox;
-
-    private TiledMap map;
-
-    // For handling UI
-    private Stage stage;
-
-    private MapManager mapManager;
+public class Mine extends MapAdaptor{
     private MineManager mineManager;
 
-    private GdxGame game;
-    private GameScreen gameScreen;
-
     public Mine(GdxGame game, GameScreen gameScreen) {
-        this.game = game;
-        this.gameScreen = gameScreen;
-
-        mapManager = gameScreen.getMapManger();
-        stage = gameScreen.getStage();
-
-        camera = game.getCamera();
-        viewport = game.getViewport();
-        batch = game.getBatch();
-
-        itemContainer = gameScreen.getItemContainer();
-        craftingMenu = gameScreen.getCraftingMenu();
-        cookingMenu = gameScreen.getCookingMenu();
-        cheatCodeBox = gameScreen.getCheatCodeBox();
-
-        engine = new Engine();
-
-        // Setup world with zero gravity
-        world = new World(Vector2.Zero, true);
-
-        // Set autoClearForces to false because we want to apply our customized timeStep
-        world.setAutoClearForces(false);
-
-        keyboardController = new KeyboardController(GameControllerState.class, engine, gameScreen.getStage());
-
-        assetService = game.getAssetService();
-        audioService = game.getAudioService();
-
-        tiledService = new TiledService(assetService);
-        tileConfigurator = new TiledAshleyConfigurator(engine, world);
-        tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
-
-        // Setup inventory
-        tabManager = gameScreen.getTabManager();
-        clock = gameScreen.getClock();
-
-        timeSystem = gameScreen.getTimeSystem();
+        super(game, gameScreen);
     }
 
     @Override
     public void setup(MapAsset map) {
+        super.setup(map);
 
         // Adding systems to the engine
+        addSystems();
+
+        // Setup consumers
+        super.setupMap();
+
+        mineManager = new MineManager(engine, this.map, world);
+
+        timeSystem.addTimeListener(new TimeListener());
+    }
+
+    @Override
+    public void load() {
+        super.load();
+        audioService.playMusic(MusicAsset.Mine);
+    }
+
+    @Override
+    public void leave() {
+        super.leave();
+    }
+
+    @Override
+    public void addSystems() {
         engine.addSystem(new PhysicMoveSystem());
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, gameScreen));
         engine.addSystem(new FacingSystem());
@@ -121,51 +81,13 @@ public class Mine implements IMap{
         engine.addSystem(new RenderSystem(batch, viewport, camera));
         engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
 
-        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cookingMenu, cheatCodeBox, engine));
+        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cheatCodeBox, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
-
-        //engine.addSystem(new PhysicDebugRenderSystem(camera, world));
-
-        // Setup consumers
-        Consumer<TiledMap> renderConsumer = engine.getSystem(RenderSystem.class)::setMap;
-        Consumer<TiledMap> cameraConsumer = engine.getSystem(CameraSystem.class)::setMap;
-        tiledService.setMapChangeConsumer(renderConsumer.andThen(cameraConsumer));
-
-        tiledService.setLoadTileConsumer(tileConfigurator::onLoadTile);
-        tiledService.setLoadObjectConsumer(tileConfigurator::onLoadObject);
-        tiledService.setBoundaryConsumer(tileConfigurator::onLoadBoundary);
-        tiledService.setGenerateItemsConsumer(tiledMapGenerator::generate);
-        tiledService.setLoadSpanwerConsumer(tileConfigurator::onLoadSpawner);
-        TiledMap startMap = tiledService.load(map);
-        this.map = startMap;
-
-        tiledService.setMap(startMap);
-        mineManager = new MineManager(engine, startMap, world);
-
-        timeSystem.addTimeListener(new TimeListener());
-
-    }
-
-    @Override
-    public void load() {
-        game.setInputProcessors(stage, keyboardController);
-        engine.getSystem(CameraSystem.class).setMap(map);
-        GameUIManager.instance.setEngine(engine);
-        audioService.playMusic(MusicAsset.Mine);
-    }
-
-    @Override
-    public void leave() {
-        engine.getSystem(ControllerSystem.class).reset();
     }
 
     @Override
     public void update(float delta) {
-        delta = Math.min(1 / 30f, delta);
-        engine.update(delta);
-
-        stage.act(delta);
-        stage.draw();
+        super.update(delta);
     }
 
     class TimeListener implements ITimeListener {

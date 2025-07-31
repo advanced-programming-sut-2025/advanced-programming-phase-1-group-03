@@ -2,26 +2,43 @@ package com.ap.screen.maps;
 
 import com.ap.Constraints;
 import com.ap.GdxGame;
+import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
-import com.ap.system.GrowSystem;
+import com.ap.audio.AudioService;
+import com.ap.input.GameControllerState;
+import com.ap.input.KeyboardController;
+import com.ap.managers.GameUIManager;
+import com.ap.managers.MapManager;
+import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
 import com.ap.screen.GameScreen;
 import com.ap.system.*;
 import com.ap.system.universal.ITimeListener;
-import com.ap.ui.widget.*;
+import com.ap.system.universal.TimeSystem;
+import com.ap.tiled.TiledAshleyConfigurator;
+import com.ap.tiled.TiledMapGenerator;
+import com.ap.tiled.TiledService;
+import com.ap.ui.widget.Clock;
+import com.ap.ui.widget.CookingMenu;
+import com.ap.ui.widget.CraftingMenu;
+import com.ap.ui.widget.ItemContainer;
+import com.ap.ui.widget.tabContents.TabManager;
 import com.ap.utils.Helper;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.Viewport;
 
-public class House extends MapAdaptor{
-    private final CookingMenu cookingMenu;
-    private CheatCodeBox cheatCodeBox;
+import java.util.function.Consumer;
 
-    private GrowSystem growSystem;
+public class Store extends MapAdaptor {
 
-    public House(GdxGame game, GameScreen gameScreen) {
+    public Store(GdxGame game, GameScreen gameScreen) {
         super(game, gameScreen);
-        cheatCodeBox = gameScreen.getCheatCodeBox();
-
-        cookingMenu = gameScreen.getCookingMenu();
     }
 
     @Override
@@ -29,22 +46,17 @@ public class House extends MapAdaptor{
         super.setup(map);
 
         // Adding systems to the engine
-       addSystems();
-
-        // Setup consumers
-        super.setupMap();
+         addSystems();
 
         timeSystem.addTimeListener(new TimeListener());
 
-        if(map == MapAsset.Greenhouse) {
-            tiledMapGenerator.makingGreenhouseFloor(this.map);
-        }
+        // Setup consumers
+        super.setupMap();
     }
 
     @Override
     public void load() {
         super.load();
-        Helper.playMusicOfSeason(audioService, timeSystem.getSeason());
     }
 
     @Override
@@ -60,18 +72,9 @@ public class House extends MapAdaptor{
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
         engine.addSystem(new CameraSystem(camera));
-        growSystem = new GrowSystem(assetService, weatherSystem);
-        engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
-
-        // It'd be better we create separate class for green house, but we hard code it :)
-        if(mapAsset == MapAsset.Greenhouse) {
-            engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
-        }
-
-        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cookingMenu, cheatCodeBox, engine));
+        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cheatCodeBox, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
-
     }
 
     @Override
@@ -87,8 +90,7 @@ public class House extends MapAdaptor{
             tiledService.changeSeasonTileset(season);
         }
         @Override
-        public void onDayChanged(int day) {
-            growSystem.dayPassed();
+        public void onDayChanged(int day){
         }
     }
 }

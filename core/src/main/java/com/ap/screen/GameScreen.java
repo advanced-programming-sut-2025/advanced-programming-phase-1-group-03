@@ -26,6 +26,7 @@ import com.ap.ui.widget.*;
 import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameScreen extends AbstractScreen {
@@ -55,6 +56,9 @@ public class GameScreen extends AbstractScreen {
     private TimeSystem timeSystem;
     private WeatherSystem weatherSystem;
     private WeatherEffects weatherEffects;
+
+    private MapAsset currentMap;
+    private TiledMap currentTiledMap;
 
     public GameScreen(GdxGame game) {
         super(game);
@@ -188,6 +192,22 @@ public class GameScreen extends AbstractScreen {
 
     public CheatCodeBox getCheatCodeBox() {
         return cheatCodeBox;
+    }
+
+    public MapAsset getCurrentMap() {
+        return currentMap;
+    }
+
+    public void setCurrentMap(MapAsset currentMap) {
+        this.currentMap = currentMap;
+    }
+
+    public TiledMap getCurrentTiledMap() {
+        return currentTiledMap;
+    }
+
+    public void setCurrentTiledMap(TiledMap currentTiledMap) {
+        this.currentTiledMap = currentTiledMap;
     }
 
     class TimeListener implements ITimeListener {

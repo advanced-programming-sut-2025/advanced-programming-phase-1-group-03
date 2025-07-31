@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="130" height="110" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="54">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="130" height="110" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="56">
  <properties>
   <property name="BrookSounds" value="94 5 5"/>
   <property name="DayTiles" value="AlwaysFront 52 98 907 AlwaysFront 56 98 907 AlwaysFront 24 50 907 AlwaysFront 33 53 907 AlwaysFront 24 58 907 AlwaysFront 27 72 907 AlwaysFront 30 72 907 AlwaysFront 38 65 907 AlwaysFront 27 86 907 AlwaysFront 17 86 907 AlwaysFront 21 64 907 Buildings 92 79 186 Buildings 41 69 560 Buildings 71 67 720"/>
@@ -13,6 +13,9 @@
   <property name="Winter_Objects" value="T"/>
  </properties>
  <tileset firstgid="1" name="Outdoor" tilewidth="16" tileheight="16" tilecount="1975" columns="25">
+  <properties>
+   <property name="seasonal" type="bool" value="true"/>
+  </properties>
   <image source="tileset/spring_outdoorsTileSheet.png" width="400" height="1264"/>
   <tile id="150">
    <properties>
@@ -1484,6 +1487,11 @@
  </tileset>
  <tileset firstgid="1976" name="Town" tilewidth="16" tileheight="16" tilecount="2304" columns="32">
   <image source="tileset/spring_town.png" width="512" height="1152"/>
+  <tile id="0">
+   <properties>
+    <property name="seasonal" type="bool" value="true"/>
+   </properties>
+  </tile>
   <tile id="45">
    <animation>
     <frame tileid="45" duration="1000"/>
@@ -2089,6 +2097,9 @@
   </tile>
  </tileset>
  <tileset firstgid="4280" name="Outdoor2" tilewidth="16" tileheight="16" tilecount="1120" columns="16">
+  <properties>
+   <property name="seasonal" type="bool" value="true"/>
+  </properties>
   <image source="tileset/spring_outdoorsTileSheet2.png" width="256" height="1120"/>
   <tile id="568">
    <animation>
@@ -2396,9 +2407,15 @@
   </tile>
  </tileset>
  <tileset firstgid="5400" name="Shadow" tilewidth="16" tileheight="16" tilecount="475" columns="19">
+  <properties>
+   <property name="seasonal" type="bool" value="true"/>
+  </properties>
   <image source="tileset/spring_Shadows.png" width="304" height="400"/>
  </tileset>
  <tileset firstgid="5875" name="Waterfall" tilewidth="16" tileheight="16" tilecount="900" columns="36">
+  <properties>
+   <property name="seasonal" type="bool" value="true"/>
+  </properties>
   <image source="tileset/spring_Waterfalls.png" width="576" height="400"/>
   <tile id="145">
    <animation>
@@ -3187,6 +3204,15 @@
   </object>
   <object id="53" name="MapBoundary" x="1125.67" y="847.667">
    <polygon points="0,0 119.333,0 120.333,-39 105,-47.3333 103,-52.6667 90.6667,-69.6667 72.3333,-79.6667 71.6667,-123.333 93.3333,-145.333 116.667,-151.333 138.333,-145 147.667,-147.333 155.667,-143.667 177.667,-164.333 188.333,-159 199,-165.667 206.667,-179.333 220.333,-175 232.333,-183.667 236.667,-194.333 244.333,-196 251.333,-192 265.667,-206 276.333,-211.667 283.333,-207.667 289.333,-217.667 312.333,-229.667 321.333,-248.333 343.333,-261.333 349,-274.667 361.333,-285.333 359.333,-310.667 353.333,-319 361,-329.333 353.667,-335.667 359.667,-350 377.667,-366.333 374.667,-393.333 368,-403 376.667,-417.667 375.667,-455.667 371.333,-460.667 376.333,-473.333 369.333,-481 393,-511.333 391.333,-523.333 408.333,-541.333 407.333,-555.667 426,-574.667 424.333,-602 417.667,-609.667 427,-626 347.667,-625.333 350,-613.667 349.333,-607 339.333,-604.667 330.333,-592 321,-586.333 315.667,-576.667 316,-558.333 304.667,-554 299.667,-544.333 300,-525 307.667,-516 300.333,-496 300,-463.333 307,-451 300.333,-439.333 306.667,-430.667 299.333,-414 300.333,-399.333 287,-393 283,-382.667 273,-378 267.333,-370 269.333,-357.333 267,-350 270.667,-343.667 267.333,-335.333 256.333,-330 249.667,-318.667 239.667,-313.667 230.667,-304 212,-301 201.667,-287.333 180.667,-285.667 166,-271 147.667,-268.667 137.667,-256.667 124.333,-244.667 120.333,-238 101,-223 25.3333,-222.667 14.6667,-217.333 6,-208 -11.3333,-206 -22,-191.333 -33,-184.333 -36.3333,-175.333 -35.6667,-125.667 -28.6667,-115 -35.3333,-104 -30.3333,-94.6667 -37,-79.6667 -34,-70 -36.6667,-60.3333 -2,-27.6667"/>
+  </object>
+  <object id="54" x="643.25" y="1152.5">
+   <polygon points="0,0 108.25,0.25 108.5,-17 125.75,-16.5 124.25,-38.25 108.75,-38 109.5,-99.25 62.25,-145.25 42.25,-145 -4.5,-99"/>
+  </object>
+  <object id="55" x="721.75" y="1125.25" width="13.25" height="27.75">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="StardropSaloon"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

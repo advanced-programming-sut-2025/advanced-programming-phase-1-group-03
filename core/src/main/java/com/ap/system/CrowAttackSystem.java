@@ -10,17 +10,16 @@ import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.ashley.utils.ImmutableArray;
 import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.math.RandomXS128;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 
-public class CrowAttackManagerSystem extends IteratingSystem {
+public class CrowAttackSystem extends IteratingSystem {
 
     Engine engine;
     World world;
 
-    public CrowAttackManagerSystem(Engine engine, World world) {
+    public CrowAttackSystem(Engine engine, World world) {
         super(Family.all(Crow.class).get());
         this.engine = engine;
         this.world = world;
@@ -79,13 +78,13 @@ public class CrowAttackManagerSystem extends IteratingSystem {
             attackables.add(entity);
         }
 
-        int newCrowNumber = Math.min(attackables.size / 16, 4);
+        int newCrowNumber = Math.min(attackables.size / 4, 4);
         for (int i = 0; i < newCrowNumber; i++) {
             if (Helper.random(1, 2) != 1) continue;
             int index = Helper.random(0, attackables.size - 1);
             Entity purpose = attackables.get(index);
             attackables.removeIndex(index);
-            engine.addEntity(EntityFactory.instance.createCrowEntity(purpose));
+            engine.addEntity(EntityFactory.instance.CreateCrowEntity(purpose));
         }
 
     }

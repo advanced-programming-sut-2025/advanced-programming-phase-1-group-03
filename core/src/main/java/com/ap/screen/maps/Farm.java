@@ -3,114 +3,29 @@ package com.ap.screen.maps;
 import box2dLight.RayHandler;
 import com.ap.Constraints;
 import com.ap.GdxGame;
-import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
-import com.ap.audio.AudioService;
-import com.ap.input.GameControllerState;
-import com.ap.input.KeyboardController;
-import com.ap.managers.GameUIManager;
 import com.ap.system.GrowSystem;
-import com.ap.managers.MapManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
 import com.ap.screen.GameScreen;
 import com.ap.system.*;
 import com.ap.system.universal.ITimeListener;
-import com.ap.system.universal.TimeSystem;
-import com.ap.tiled.TiledAshleyConfigurator;
-import com.ap.tiled.TiledMapGenerator;
-import com.ap.tiled.TiledService;
-import com.ap.ui.widget.*;
-import com.ap.ui.widget.tabContents.TabManager;
 import com.ap.utils.Helper;
-import com.badlogic.ashley.core.Engine;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
-import java.util.function.Consumer;
-
-public class Farm implements IMap {
-    private AssetService assetService;
-    private AudioService audioService;
-    private Engine engine;
-    private TiledService tiledService;
-    private TiledAshleyConfigurator tileConfigurator;
-    private TiledMapGenerator tiledMapGenerator;
-    private KeyboardController keyboardController;
-    private World world;
-
-    private Camera camera;
-    private Viewport viewport;
-    private Batch batch;
-
-    private TimeSystem timeSystem;
-
-    private TabManager tabManager;
-    private ItemContainer itemContainer;
-    private CraftingMenu craftingMenu;
-    private Clock clock;
-    private CheatCodeBox cheatCodeBox;
+public class Farm extends MapAdaptor {
 
     // Use to for night darkness
-    private RayHandler rayHandler;
-    private TiledMap map;
+    private final RayHandler rayHandler;
 
-    // For handling UI
-    private Stage stage;
+    private final WeatherEffects weatherEffects;
 
-    private MapManager mapManager;
-    private WeatherSystem weatherSystem;
-
-    private WeatherEffects weatherEffects;
-
-    private GameScreen gameScreen;
-    private GdxGame game;
     private GrowSystem growSystem;
     private GiantCropManager giantCropManager;
-    private CrowAttackManagerSystem crowAttackManagerSystem;
+    private CrowAttackSystem crowAttackSystem;
 
     public Farm(GdxGame game, GameScreen gameScreen) {
-        this.gameScreen = gameScreen;
-        this.game = game;
-
-        mapManager = gameScreen.getMapManger();
-        stage = gameScreen.getStage();
-
-        camera = game.getCamera();
-        viewport = game.getViewport();
-        batch = game.getBatch();
-
-        engine = new Engine();
-
-        // Setup world with zero gravity
-        world = new World(Vector2.Zero, true);
-
-        // Set autoClearForces to false because we want to apply our customized timeStep
-        world.setAutoClearForces(false);
-
-        keyboardController = new KeyboardController(GameControllerState.class, engine, gameScreen.getStage());
-
-        assetService = game.getAssetService();
-        audioService = game.getAudioService();
-
-        tiledService = new TiledService(assetService);
-        tileConfigurator = new TiledAshleyConfigurator(engine, world);
-        tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
-
-        // Setup inventory
-        itemContainer = gameScreen.getItemContainer();
-        craftingMenu = gameScreen.getCraftingMenu();
-        tabManager = gameScreen.getTabManager();
-        cheatCodeBox = gameScreen.getCheatCodeBox();
-        clock = gameScreen.getClock();
-
-        timeSystem = gameScreen.getTimeSystem();
-        weatherSystem = gameScreen.getWeatherSystem();
+        super(game, gameScreen);
 
         weatherEffects = new WeatherEffects(assetService, engine, stage, audioService);
 
@@ -119,10 +34,7 @@ public class Farm implements IMap {
     }
 
     @Override
-    public void setup(MapAsset map) {
-        TiledMap startMap = tiledService.load(map);
-
-        // Adding systems to the engine
+    public void addSystems() {
         engine.addSystem(new PhysicMoveSystem());
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, gameScreen));
         engine.addSystem(new FacingSystem());
@@ -140,57 +52,45 @@ public class Farm implements IMap {
         engine.addSystem(new RenderSystem(batch, viewport, camera));
 
         // Actually it would be better we create a class for forest, but because of simplicity just hardcode it
-        if(map == MapAsset.Farm1 || map == MapAsset.Farm2) {
+        if(mapAsset == MapAsset.Farm1 || mapAsset == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
+
         engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cheatCodeBox, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
-        crowAttackManagerSystem = new CrowAttackManagerSystem(engine, world);
-        engine.addSystem(crowAttackManagerSystem);
+        crowAttackSystem = new CrowAttackSystem(engine, world);
+        engine.addSystem(crowAttackSystem);
+    }
 
-      //  engine.addSystem(new PhysicDebugRenderSystem(camera, world));
+    @Override
+    public void setup(MapAsset map) {
+        super.setup(map);
+        // Adding systems to the engine
+        addSystems();
 
         // Setup consumers
-        Consumer<TiledMap> renderConsumer = engine.getSystem(RenderSystem.class)::setMap;
-        Consumer<TiledMap> cameraConsumer = engine.getSystem(CameraSystem.class)::setMap;
-        tiledService.setMapChangeConsumer(renderConsumer.andThen(cameraConsumer));
+        setupMap();
 
-        tiledService.setLoadTileConsumer(tileConfigurator::onLoadTile);
-        tiledService.setLoadObjectConsumer(tileConfigurator::onLoadObject);
-        tiledService.setBoundaryConsumer(tileConfigurator::onLoadBoundary);
-        tiledService.setGenerateItemsConsumer(tiledMapGenerator::generate);
-        tiledService.setLoadSpanwerConsumer(tileConfigurator::onLoadSpawner);
-        this.map = startMap;
-        tiledService.setMap(startMap);
-
-        giantCropManager = new GiantCropManager(startMap, world, engine);
-
+        giantCropManager = new GiantCropManager(this.map, world, engine);
         timeSystem.addTimeListener(new TimeListener());
-
     }
 
     @Override
     public void load() {
-        game.setInputProcessors(stage, keyboardController);
+        super.load();
         weatherSystem.setWeatherConsumer(weatherEffects::onWeatherChanged);
-        engine.getSystem(CameraSystem.class).setMap(map);
-        GameUIManager.instance.setEngine(engine);
         Helper.playMusicOfSeason(audioService, timeSystem.getSeason());
     }
 
     @Override
     public void leave() {
-        engine.getSystem(ControllerSystem.class).reset();
+        super.leave();
         weatherEffects.removeActors();
     }
 
     @Override
     public void update(float delta) {
-        delta = Math.min(1 / 30f, delta);
-        engine.update(delta);
-
-        stage.act(delta);
-        stage.draw();
+        super.update(delta);
         rayHandler.setCombinedMatrix(camera.combined);
         rayHandler.updateAndRender();
     }
@@ -206,7 +106,10 @@ public class Farm implements IMap {
         public void onDayChanged(int day) {
             growSystem.dayPassed();
             giantCropManager.checkGiant();
-            crowAttackManagerSystem.onDayChanged();
+            if(map.getProperties().get("generateItems", false, Boolean.class)) {
+                tiledMapGenerator.generateForagingTree(map);
+            }
+            crowAttackSystem.onDayChanged();
         }
     }
 }
