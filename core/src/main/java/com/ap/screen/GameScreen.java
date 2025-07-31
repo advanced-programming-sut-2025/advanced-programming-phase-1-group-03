@@ -43,6 +43,7 @@ public class GameScreen extends AbstractScreen {
     private LightningStorm lightningStorm;
     private TabManager tabManager;
     private Journal journal;
+    private CheatCodeBox cheatCodeBox;
 
     private ClockManager clockManager;
     private MapManager mapManager;
@@ -80,6 +81,7 @@ public class GameScreen extends AbstractScreen {
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
+        cheatCodeBox = new CheatCodeBox(stage, skin);
         storeMenu = new StoreMenu(assetService, skin, stage, inventory, audioService, "Gus",
                 "Hungry? Thirsty? I've got just the thing.");
         lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
@@ -182,6 +184,10 @@ public class GameScreen extends AbstractScreen {
 
     public CookingMenu getCookingMenu() {
         return cookingMenu;
+    }
+
+    public CheatCodeBox getCheatCodeBox() {
+        return cheatCodeBox;
     }
 
     class TimeListener implements ITimeListener {

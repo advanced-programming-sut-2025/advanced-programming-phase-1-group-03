@@ -54,6 +54,7 @@ public class Farm implements IMap {
     private ItemContainer itemContainer;
     private CraftingMenu craftingMenu;
     private Clock clock;
+    private CheatCodeBox cheatCodeBox;
 
     // Use to for night darkness
     private RayHandler rayHandler;
@@ -105,6 +106,7 @@ public class Farm implements IMap {
         itemContainer = gameScreen.getItemContainer();
         craftingMenu = gameScreen.getCraftingMenu();
         tabManager = gameScreen.getTabManager();
+        cheatCodeBox = gameScreen.getCheatCodeBox();
         clock = gameScreen.getClock();
 
         timeSystem = gameScreen.getTimeSystem();
@@ -141,7 +143,7 @@ public class Farm implements IMap {
         if(map == MapAsset.Farm1 || map == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
-        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, engine));
+        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cheatCodeBox, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
         crowAttackManagerSystem = new CrowAttackManagerSystem(engine, world);
         engine.addSystem(crowAttackManagerSystem);

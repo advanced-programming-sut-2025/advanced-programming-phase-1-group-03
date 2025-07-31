@@ -21,10 +21,7 @@ import com.ap.system.universal.TimeSystem;
 import com.ap.tiled.TiledAshleyConfigurator;
 import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
-import com.ap.ui.widget.Clock;
-import com.ap.ui.widget.CookingMenu;
-import com.ap.ui.widget.CraftingMenu;
-import com.ap.ui.widget.ItemContainer;
+import com.ap.ui.widget.*;
 import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
@@ -58,6 +55,7 @@ public class Mine implements IMap{
     private CookingMenu cookingMenu;
     private Clock clock;
     private ItemContainer itemContainer;
+    private CheatCodeBox cheatCodeBox;
 
     private TiledMap map;
 
@@ -84,6 +82,7 @@ public class Mine implements IMap{
         itemContainer = gameScreen.getItemContainer();
         craftingMenu = gameScreen.getCraftingMenu();
         cookingMenu = gameScreen.getCookingMenu();
+        cheatCodeBox = gameScreen.getCheatCodeBox();
 
         engine = new Engine();
 
@@ -122,7 +121,7 @@ public class Mine implements IMap{
         engine.addSystem(new RenderSystem(batch, viewport, camera));
         engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
 
-        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cookingMenu, engine));
+        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cookingMenu, cheatCodeBox, engine));
         engine.addSystem(new PlayerCoinSystem(clock));
 
         //engine.addSystem(new PhysicDebugRenderSystem(camera, world));

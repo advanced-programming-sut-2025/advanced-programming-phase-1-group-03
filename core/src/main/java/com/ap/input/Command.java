@@ -10,7 +10,8 @@ public enum Command {
     OpenInventory(Input.Keys.E),
     OpenCrafting(Input.Keys.B),
     OpenCooking(Input.Keys.C),
-    Click()
+    Click(),
+    OpenCheatCode(Input.Keys.F3),
     ;
 
     private final int[] correspondingKeys;

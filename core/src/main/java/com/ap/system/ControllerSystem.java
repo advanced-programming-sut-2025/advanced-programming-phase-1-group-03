@@ -4,6 +4,7 @@ import com.ap.component.Controller;
 import com.ap.component.Move;
 import com.ap.component.Player;
 import com.ap.input.Command;
+import com.ap.ui.widget.CheatCodeBox;
 import com.ap.ui.widget.CookingMenu;
 import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.tabContents.TabManager;
@@ -16,22 +17,25 @@ public class ControllerSystem extends IteratingSystem {
     private TabManager tabManager;
     private CraftingMenu craftingMenu;
     private CookingMenu cookingMenu;
+    private CheatCodeBox cheatCodeBox;
     private TileSelectionSystem tileSelectionSystem;
     private int totalMovement = 0;
 
-    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CookingMenu cookingMenu,  Engine engine) {
+    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CookingMenu cookingMenu, CheatCodeBox cheatCodeBox,  Engine engine) {
         super(Family.all(Controller.class).get());
         this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
         this.craftingMenu = craftingMenu;
         this.cookingMenu = cookingMenu;
         this.tabManager = tabManager;
+        this.cheatCodeBox = cheatCodeBox;
     }
 
-    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, Engine engine) {
+    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CheatCodeBox cheatCodeBox, Engine engine) {
         super(Family.all(Controller.class).get());
         this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
         this.craftingMenu = craftingMenu;
         this.tabManager = tabManager;
+        this.cheatCodeBox = cheatCodeBox;
     }
 
     @Override
@@ -66,6 +70,10 @@ public class ControllerSystem extends IteratingSystem {
                 } case OpenCooking -> {
                     if(cookingMenu != null)
                         cookingMenu.toggle();
+                } case OpenCheatCode -> {
+                    if (!cheatCodeBox.isShowing()) {
+                        cheatCodeBox.toggle();
+                    }
                 }
             }
         }
