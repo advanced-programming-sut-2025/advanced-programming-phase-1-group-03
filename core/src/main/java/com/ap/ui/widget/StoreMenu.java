@@ -125,11 +125,12 @@ public class StoreMenu extends Actor {
         batch.draw(background, getX(), getY());
         drawCharacter(batch);
         drawInventoryItems(batch);
-        updateHoverRow();
+        updateHoverRow(batch);
         drawProducts(batch);
+        drawHoverTooltip(batch);
     }
 
-    private void updateHoverRow() {
+    private void updateHoverRow(Batch batch) {
         Vector2 mousePos = stage.screenToStageCoordinates(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
         float mouseX = mousePos.x;
         float mouseY = mousePos.y;
@@ -209,11 +210,11 @@ public class StoreMenu extends Actor {
 
     private void loadProducts() {
         TextureAtlas atlas = assetService.get(AtlasAsset.Crops);
-        list.add(new StoreProduct(atlas.findRegion("Poppy"), "Poppy", 200, 0));
-        list.add(new StoreProduct(atlas.findRegion("Parsnip"), "Parsnip", 80, 1));
-        list.add(new StoreProduct(atlas.findRegion("Melon"), "Melon", 1000, 2));
-        list.add(new StoreProduct(atlas.findRegion("Kale"), "Kale", 5, 3));
-        list.add(new StoreProduct(atlas.findRegion("Hot_Pepper"), "Hot_Pepper", 1000, 4));
+        list.add(new StoreProduct(atlas.findRegion("Poppy"), "Poppy", "description test for using this elemnt on top for using it on fhf=fbkjfb fijkjnkf", 200, 0));
+        list.add(new StoreProduct(atlas.findRegion("Parsnip"), "Parsnip", "description test", 80, 1));
+        list.add(new StoreProduct(atlas.findRegion("Melon"), "Melon", "description test", 1000, 2));
+        list.add(new StoreProduct(atlas.findRegion("Kale"), "Kale", "description test", 5, 3));
+        list.add(new StoreProduct(atlas.findRegion("Hot_Pepper"), "Hot_Pepper", "description test", 1000, 4));
     }
 
     private void drawProducts(Batch batch) {
@@ -233,13 +234,46 @@ public class StoreMenu extends Actor {
         }
     }
 
+    private void drawHoverTooltip(Batch batch) {
+        if(hoverRow < 0 || hoverRow > 3)
+            return;
+        StoreProduct product = list.get(hoverRow);
+        BitmapFont font = new BitmapFont();
+        font.setColor(Color.WHITE);
+
+
+        Vector2 mousePos = stage.screenToStageCoordinates(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+        float tooltipX = mousePos.x + 16;
+        float tooltipY = mousePos.y - 16;
+
+        float tooltipWidth = 300f;
+        float tooltipHeight = 120f;
+
+
+        batch.setColor(new Color(0f, 0f, 0f, 0.65f));
+        batch.draw(whiteTexture, tooltipX, tooltipY, tooltipWidth, tooltipHeight);
+        batch.setColor(Color.WHITE);
+
+
+        float iconSize = 24f;
+        batch.draw(product.texture, tooltipX + 10, tooltipY + tooltipHeight - iconSize - 10, iconSize, iconSize);
+
+
+        font.draw(batch, product.name, tooltipX + iconSize + 18, tooltipY + tooltipHeight - 14);
+
+        float descY = tooltipY + tooltipHeight - 40;
+        font.draw(batch, product.description, tooltipX + 10, descY - 15, tooltipWidth - 20, 1, true);
+    }
+
+
+
     private void drawThisProduct(Batch batch, StoreProduct storeProduct, int row) {
         BitmapFont font = skin.getFont("Mill24");
         font.setColor(Color.BROWN);
         float posX = 230;
         float posY = 360;
         float eachY = 57;
-        batch.draw(storeProduct.texture, getX() + posX, getY() + posY - row * eachY - 20);
+        batch.draw(storeProduct.texture, getX() + posX, getY() + posY - row * eachY - 20, 24, 24);
         font.draw(batch, storeProduct.name, getX() + posX + 30, getY() + posY - row * eachY);
         String sellString = Integer.toString(storeProduct.sellPrice);
         font.draw(batch, sellString, getX() + posX + 450 + (4 - sellString.length()) * 13, getY() + posY - row * eachY);
@@ -248,14 +282,16 @@ public class StoreMenu extends Actor {
     private static class StoreProduct {
         TextureRegion texture;
         String name;
+        String description;
         int sellPrice;
         int row;
 
-        StoreProduct(TextureRegion texture, String name, int sellPrice, int row) {
+        StoreProduct(TextureRegion texture, String name, String description, int sellPrice, int row) {
             this.texture = texture;
             this.name = name;
             this.sellPrice = sellPrice;
             this.row = row;
+            this.description = description;
         }
     }
 

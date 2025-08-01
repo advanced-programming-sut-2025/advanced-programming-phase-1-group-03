@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="store menu bug fixed.">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="effect added.">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/universal/EnergyManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/LightningStorm.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/LightningStorm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/StoreMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/StoreMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -244,13 +243,6 @@
       <workItem from="1753871879298" duration="256000" />
       <workItem from="1753876301922" duration="7398000" />
       <workItem from="1753952529205" duration="12369000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۳۸" summary="Add missing assets">
-      <option name="closed" value="true" />
-      <created>1752328107727</created>
-      <option name="number" value="LOCAL‎−۰۰۰۳۸" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۳۸" />
-      <updated>1752328107727</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۳۹" summary="Setup input managing">
       <option name="closed" value="true" />
@@ -605,7 +597,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754044407575</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="effect added.">
+      <option name="closed" value="true" />
+      <created>1754047966432</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1754047966432</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +636,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="typo really fixed this time" />
     <MESSAGE value="atlas rotation disabled;&#10;half tree fixed;" />
     <MESSAGE value="Tree random generation" />
     <MESSAGE value="Shadow bug fixed" />
@@ -661,7 +660,8 @@
     <MESSAGE value="cheat code box added" />
     <MESSAGE value="cheat code box fixed" />
     <MESSAGE value="store menu bug fixed." />
-    <option name="LAST_COMMIT_MESSAGE" value="store menu bug fixed." />
+    <MESSAGE value="effect added." />
+    <option name="LAST_COMMIT_MESSAGE" value="effect added." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
