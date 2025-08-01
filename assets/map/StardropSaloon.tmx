@@ -103,7 +103,7 @@
   </object>
   <object id="21" name="Menu Open" x="164.333" y="289.667" width="14.3333" height="32">
    <properties>
-    <property name="menuOpen" value="T"/>
+    <property name="menuOpen" value="StardropSaloonMenu"/>
     <property name="sensor" type="bool" value="true"/>
    </properties>
   </object>

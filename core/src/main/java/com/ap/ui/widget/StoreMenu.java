@@ -8,7 +8,9 @@ import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
 import com.ap.items.ItemStack;
+import com.ap.managers.GameUIManager;
 import com.ap.model.GameData;
+import com.ap.model.Menus;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -26,6 +28,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.StringBuilder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class StoreMenu extends Actor {
     private TextureRegion background;
@@ -51,8 +54,12 @@ public class StoreMenu extends Actor {
     private int hoverRow = -1;
     private TextureRegion whiteTexture;
 
+    private InputListener event;
+    private Menus menu;
+
     public StoreMenu(AssetService assetService, Skin skin, Stage stage, Inventory inventory, AudioService audioService,
-                     String characterString, String message) {
+                     String characterString, String message, Menus menu, ArrayList<StoreProduct> products) {
+        this.menu = menu;
         this.assetService = assetService;
         this.skin = skin;
         this.stage = stage;
@@ -63,11 +70,10 @@ public class StoreMenu extends Actor {
         background = new TextureRegion(new Texture(Gdx.files.internal("graphics/StoreBackground.png")));
         this.message = message;
         setUpUI(characterString);
-        list = new ArrayList<>();
-        loadProducts();
+        list = products;
         createWhiteTexture();
 
-        stage.addListener(new InputListener() {
+        stage.addListener(event = new InputListener() {
             @Override
             public boolean scrolled(InputEvent event, float x, float y, float amountX, float amountY) {
                 if (amountY > 0)
@@ -84,8 +90,7 @@ public class StoreMenu extends Actor {
                 float rectWidth = 544f;
 
                 if (x >= 968.0852f && x <= 985.6384 && y >= 506.383 && y <= 522.34045) {
-                    isShowing = false;
-                    stage.getActors().removeValue(instance, true);
+                    GameUIManager.instance.exitMenu(menu);
                 }
 
                 if (x >= rectX && x <= rectX + rectWidth) {
@@ -181,6 +186,7 @@ public class StoreMenu extends Actor {
                     getX() + goldOffsetX - counter * widthEachFont, getY() + goldOffsetY);
             counter++;
         }
+        font2.setColor(Color.WHITE);
     }
 
     private void drawInventoryItems(Batch batch) {
@@ -210,11 +216,11 @@ public class StoreMenu extends Actor {
 
     private void loadProducts() {
         TextureAtlas atlas = assetService.get(AtlasAsset.Crops);
-        list.add(new StoreProduct(atlas.findRegion("Poppy"), "Poppy", "description test for using this elemnt on top for using it on fhf=fbkjfb fijkjnkf", 200, 0));
-        list.add(new StoreProduct(atlas.findRegion("Parsnip"), "Parsnip", "description test", 80, 1));
-        list.add(new StoreProduct(atlas.findRegion("Melon"), "Melon", "description test", 1000, 2));
-        list.add(new StoreProduct(atlas.findRegion("Kale"), "Kale", "description test", 5, 3));
-        list.add(new StoreProduct(atlas.findRegion("Hot_Pepper"), "Hot_Pepper", "description test", 1000, 4));
+        list.add(new StoreProduct(atlas.findRegion("Poppy"), "Poppy", 200, 0));
+        list.add(new StoreProduct(atlas.findRegion("Parsnip"), "Parsnip", 80, 1));
+        list.add(new StoreProduct(atlas.findRegion("Melon"), "Melon", 1000, 2));
+        list.add(new StoreProduct(atlas.findRegion("Kale"), "Kale", 5, 3));
+        list.add(new StoreProduct(atlas.findRegion("Hot_Pepper"), "Hot_Pepper", 1000, 4));
     }
 
     private void drawProducts(Batch batch) {
@@ -279,7 +285,7 @@ public class StoreMenu extends Actor {
         font.draw(batch, sellString, getX() + posX + 450 + (4 - sellString.length()) * 13, getY() + posY - row * eachY);
     }
 
-    private static class StoreProduct {
+    public static class StoreProduct {
         TextureRegion texture;
         String name;
         String description;
@@ -291,17 +297,12 @@ public class StoreMenu extends Actor {
             this.name = name;
             this.sellPrice = sellPrice;
             this.row = row;
-            this.description = description;
         }
     }
 
-    public void toggle() {
-        if (!isShowing) {
-            instance = new StoreMenu(assetService, skin, stage, inventory, audioService, characterString, message);
-            stage.addActor(instance);
-        } else {
-            stage.getActors().removeValue(instance, true);
-        }
-        isShowing = !isShowing;
+    @Override
+    public boolean remove() {
+        stage.removeListener(event);
+        return super.remove();
     }
 }

@@ -57,11 +57,13 @@ public class Store extends MapAdaptor {
     @Override
     public void load() {
         super.load();
+        itemContainer.setScrollable(false);
     }
 
     @Override
     public void leave() {
         super.leave();
+        itemContainer.setScrollable(true);
     }
 
     @Override
