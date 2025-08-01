@@ -22,6 +22,9 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.StringBuilder;
+import com.github.tommyettinger.textra.utils.ColorUtils;
+
+import java.util.ArrayList;
 
 public class StoreMenu extends Actor {
     private TextureRegion background;
@@ -38,6 +41,8 @@ public class StoreMenu extends Actor {
 
     private StoreMenu instance;
 
+    private ArrayList<StoreProduct> list;
+
     private int row = 0;
     private float scale = 2f;
 
@@ -52,17 +57,42 @@ public class StoreMenu extends Actor {
         background = new TextureRegion(new Texture(Gdx.files.internal("graphics/StoreBackground.png")));
         this.message = message;
         setUpUI(characterString);
+        list = new ArrayList<>();
+        loadProducts();
 
         stage.addListener(new InputListener() {
             @Override
             public boolean scrolled(InputEvent event, float x, float y, float amountX, float amountY) {
-                if(amountY > 0)
-                    row ++;
+                if (amountY > 0)
+                    row = Math.min(list.size() - 4, row + 1);
                 else
-                    row--;
+                    row = Math.max(0, row - 1);
                 return true;
             }
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+
+                float rectX = 425f;
+                float rectY = 508f;
+                float rectWidth = 544f;
+                float rectHeight = 214f;
+
+                if(x >= rectX && x <= rectX + rectWidth) {
+                    int rowNum = (int)((rectY - y) / 53.5f);
+                    if(rowNum >= 0 && rowNum <= 3) {
+                        applyItem(list.get(row + rowNum));
+                        return true;
+                    }
+                }
+                return false;
+            }
         });
+
+    }
+
+    private void applyItem(StoreProduct storeProduct) {
+        // TODO implement choosing item here
     }
 
     private void setUpUI(String characterString) {
@@ -97,7 +127,7 @@ public class StoreMenu extends Actor {
 
         font1.draw(batch, message, messageOffsetX + getX(), messageOffsetY + getY(), 160f, 0, true);
 
-        // drawing gold;
+        // drawing gold
 
         int gold = GameData.getInstance().getPlayerGold();
         float goldOffsetY = 127f;
@@ -138,31 +168,44 @@ public class StoreMenu extends Actor {
         }
     }
 
-    private void drawProducts(Batch batch) {
+    private void loadProducts() {
         TextureAtlas atlas = assetService.get(AtlasAsset.Crops);
-        if(row == 0) {
-            drawThisProduct(batch, atlas.findRegion("Poppy"), "Poppy", 200, 0);
-            drawThisProduct(batch, atlas.findRegion("Parsnip"), "Parsnip", 80, 1);
-            drawThisProduct(batch, atlas.findRegion("Melon"), "Melon", 1000, 2);
-            drawThisProduct(batch, atlas.findRegion("Kale"), "Kale", 5, 3);
-        }
-        else {
-            drawThisProduct(batch, atlas.findRegion("Parsnip"), "Parsnip", 80, 0);
-            drawThisProduct(batch, atlas.findRegion("Melon"), "Melon", 1000, 1);
-            drawThisProduct(batch, atlas.findRegion("Kale"), "Kale", 5, 2);
-            drawThisProduct(batch, atlas.findRegion("Hot_Pepper"), "Hot_Pepper", 1000, 3);
+        list.add(new StoreProduct(atlas.findRegion("Poppy"), "Poppy", 200, 0));
+        list.add(new StoreProduct(atlas.findRegion("Parsnip"), "Parsnip", 80, 1));
+        list.add(new StoreProduct(atlas.findRegion("Melon"), "Melon", 1000, 2));
+        list.add(new StoreProduct(atlas.findRegion("Kale"), "Kale", 5, 3));
+        list.add(new StoreProduct(atlas.findRegion("Hot_Pepper"), "Hot_Pepper", 1000, 4));
+    }
+
+    private void drawProducts(Batch batch) {
+        for(int i = row; i < Math.min(list.size(), row + 4); i++) {
+            drawThisProduct(batch, list.get(i), i - row);
         }
     }
 
-    private void drawThisProduct(Batch batch, TextureRegion texture, String name, int sellPrice, int row) {
+    private void drawThisProduct(Batch batch, StoreProduct storeProduct, int row) {
         BitmapFont font = skin.getFont("Mill24");
         font.setColor(Color.BROWN);
         float posX = 230;
         float posY = 360;
         float eachY = 57;
-        batch.draw(texture, getX() + posX, getY() + posY - row * eachY - 20);
-        font.draw(batch, name, getX() + posX + 30, getY() + posY - row * eachY);
-        String sellString = Integer.toString(sellPrice);
+        batch.draw(storeProduct.texture, getX() + posX, getY() + posY - row * eachY - 20);
+        font.draw(batch, storeProduct.name, getX() + posX + 30, getY() + posY - row * eachY);
+        String sellString = Integer.toString(storeProduct.sellPrice);
         font.draw(batch, sellString, getX() + posX + 450 + (4 - sellString.length()) * 13, getY() + posY - row * eachY);
+    }
+
+    private static class StoreProduct {
+        TextureRegion texture;
+        String name;
+        int sellPrice;
+        int row;
+
+        StoreProduct(TextureRegion texture, String name, int sellPrice, int row) {
+            this.texture = texture;
+            this.name = name;
+            this.sellPrice = sellPrice;
+            this.row = row;
+        }
     }
 }

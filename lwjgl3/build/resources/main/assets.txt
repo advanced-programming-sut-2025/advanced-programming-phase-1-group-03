@@ -81,21 +81,12 @@ graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
 graphics/img.png
+graphics/img_1.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
 graphics/shadow.png
 graphics/whiteflash.png
-hs_err_pid11656.log
-hs_err_pid11760.log
-hs_err_pid11968.log
-hs_err_pid17156.log
-hs_err_pid20992.log
-hs_err_pid21416.log
-hs_err_pid22168.log
-hs_err_pid22608.log
-hs_err_pid23164.log
-hs_err_pid7028.log
 map/Farm Buildings.tsx
 map/Farm1.tmx
 map/Farm2.tmx
@@ -138,8 +129,6 @@ map/tileset/winter_outdoorsTileSheet2.png
 map/tileset/winter_town.png
 skins/LondonMM.ttf
 skins/Millennium-Bold.ttf
-skins/Stardew Valley ALL CAPS.ttf
-skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

@@ -117,7 +117,7 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
         stage.addActor(journal);
-     //   stage.addActor(storeMenu);
+        stage.addActor(storeMenu);
         lightningStorm.toggle(0, 0);
 
         // Play background music
