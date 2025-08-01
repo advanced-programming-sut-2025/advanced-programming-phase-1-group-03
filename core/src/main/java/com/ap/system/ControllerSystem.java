@@ -4,7 +4,7 @@ import com.ap.component.Controller;
 import com.ap.component.Move;
 import com.ap.component.Player;
 import com.ap.input.Command;
-import com.ap.ui.widget.CheatCodeBox;
+import com.ap.ui.widget.cheatCode.CheatCodeBox;
 import com.ap.ui.widget.CookingMenu;
 import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.tabContents.TabManager;

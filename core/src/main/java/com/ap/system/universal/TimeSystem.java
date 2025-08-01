@@ -15,7 +15,7 @@ import java.util.function.Consumer;
 public class TimeSystem extends EntitySystem {
     private static final int startHour = Constraints.START_HOUR;
     private static final int endHour = Constraints.END_HOUR;
-    private static final float gameSpeed = Constraints.GAME_SPEED;
+    private static float gameSpeed = Constraints.GAME_SPEED;
     private static final int monthsDays = Constraints.MONTHS_DAYS;
 
     private ArrayList<ITimeListener> listeners = new ArrayList<>();
@@ -124,6 +124,11 @@ public class TimeSystem extends EntitySystem {
         listener.onHourChanged(time.hour);
         listener.onMonthChanged(time.minute);
     }
+
+    public static void setGameSpeed(float gameSpeed) {
+        TimeSystem.gameSpeed = gameSpeed;
+    }
+
     public void removeTimeListener(ITimeListener listener) {
         listeners.remove(listener);
     }

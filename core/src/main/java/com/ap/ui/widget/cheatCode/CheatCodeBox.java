@@ -1,4 +1,4 @@
-package com.ap.ui.widget;
+package com.ap.ui.widget.cheatCode;
 
 import com.ap.Constraints;
 import com.badlogic.gdx.Input;
@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
@@ -31,10 +30,12 @@ public class CheatCodeBox extends Group {
     private Texture backgroundTexture;
     private TextField input;
     private CheatCodeBox manager;
+    private final CheatCodeController controller;
 
-    public CheatCodeBox(Stage stage, Skin skin) {
+    public CheatCodeBox(Stage stage, Skin skin, CheatCodeController controller) {
         this.stage = stage;
         this.skin = skin;
+        this.controller = controller;
         maxLine = 10;
         maxWidth = Constraints.WORLD_WIDTH_RESOLUTION / 2f;
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
@@ -62,6 +63,7 @@ public class CheatCodeBox extends Group {
                 if (keycode == Input.Keys.ENTER) {
                     String s = input.getText();
                     history.add(s);
+                    controller.ProcessCommand(s);
                     shouldUpdate = true;
                     input.setText("");
                     return true;
@@ -125,7 +127,7 @@ public class CheatCodeBox extends Group {
 
     public void toggle() {
         if (!isShowing) {
-            instance = new CheatCodeBox(stage, skin);
+            instance = new CheatCodeBox(stage, skin, controller);
             instance.setManager(this);
             instance.setupUI();
             stage.addActor(instance);

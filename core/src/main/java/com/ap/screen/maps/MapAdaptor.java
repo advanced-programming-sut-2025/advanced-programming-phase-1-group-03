@@ -1,6 +1,5 @@
 package com.ap.screen.maps;
 
-import box2dLight.RayHandler;
 import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
@@ -9,14 +8,13 @@ import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
 import com.ap.managers.GameUIManager;
 import com.ap.managers.MapManager;
-import com.ap.managers.WeatherEffects;
 import com.ap.screen.GameScreen;
 import com.ap.system.*;
 import com.ap.system.universal.TimeSystem;
 import com.ap.tiled.TiledAshleyConfigurator;
 import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
-import com.ap.ui.widget.CheatCodeBox;
+import com.ap.ui.widget.cheatCode.CheatCodeBox;
 import com.ap.ui.widget.Clock;
 import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.ItemContainer;

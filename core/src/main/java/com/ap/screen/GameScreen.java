@@ -1,12 +1,10 @@
 package com.ap.screen;
 
-import com.ap.Constraints;
 import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
-import com.ap.component.Player;
 import com.ap.items.EntityFactory;
 import com.ap.items.Inventory;
 import com.ap.items.ItemFactory;
@@ -23,11 +21,12 @@ import com.ap.system.universal.TimeSystem;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
 import com.ap.ui.widget.*;
+import com.ap.ui.widget.cheatCode.CheatCodeBox;
+import com.ap.ui.widget.cheatCode.CheatCodeController;
 import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameScreen extends AbstractScreen {
     private AssetService assetService;
@@ -48,6 +47,7 @@ public class GameScreen extends AbstractScreen {
 
     private ClockManager clockManager;
     private MapManager mapManager;
+    private CheatCodeController cheatCodeController;
 
     private Inventory inventory;
 
@@ -85,7 +85,8 @@ public class GameScreen extends AbstractScreen {
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
-        cheatCodeBox = new CheatCodeBox(stage, skin);
+        cheatCodeController = new CheatCodeController(this);
+        cheatCodeBox = new CheatCodeBox(stage, skin, cheatCodeController);
         storeMenu = new StoreMenu(assetService, skin, stage, inventory, audioService, "Gus",
                 "Hungry? Thirsty? I've got just the thing.");
         lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);

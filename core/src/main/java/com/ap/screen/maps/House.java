@@ -9,6 +9,7 @@ import com.ap.screen.GameScreen;
 import com.ap.system.*;
 import com.ap.system.universal.ITimeListener;
 import com.ap.ui.widget.*;
+import com.ap.ui.widget.cheatCode.CheatCodeBox;
 import com.ap.utils.Helper;
 
 public class House extends MapAdaptor{

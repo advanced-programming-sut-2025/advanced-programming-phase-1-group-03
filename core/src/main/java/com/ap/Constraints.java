@@ -16,6 +16,8 @@ public class Constraints {
 
     // It means 1 second in the real world is equal to how many seconds in the game
     public static final float GAME_SPEED = 3600;
+    public static final float GAME_SPEED_MIN = 0.2f;
+    public static final float GAME_SPEED_MAX = 7 * 24 * 60 * 60;
     // The game start at this hour
     public static final int START_HOUR = 8;
     public static final int END_HOUR = 22;
