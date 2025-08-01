@@ -148,6 +148,5 @@ public abstract class MapAdaptor implements IMap {
     @Override
     public void leave() {
         engine.getSystem(ControllerSystem.class).reset();
-
     }
 }

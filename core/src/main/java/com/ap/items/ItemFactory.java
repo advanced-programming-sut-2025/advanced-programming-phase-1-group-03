@@ -21,16 +21,16 @@ public class ItemFactory {
     }
 
     public Item CreateFiber() {
-        TextureRegion icon = assetService.get(AtlasAsset.EnvIronment).findRegion("grass/Fiber");
+        TextureRegion icon = assetService.get(AtlasAsset.Environment).findRegion("grass/Fiber");
         return new Item(ItemNames.Fiber.name(), 64, icon);
     }
     public Item CreateStone() {
-        TextureRegion icon = assetService.get(AtlasAsset.EnvIronment).findRegions("stone/regular").get(0);
+        TextureRegion icon = assetService.get(AtlasAsset.Environment).findRegions("stone/regular").get(0);
         return new Item(ItemNames.Stone.name(), 64, icon);
     }
 
     public Item CreateWood() {
-        TextureRegion icon = assetService.get(AtlasAsset.EnvIronment).findRegions("wood/regular").get(0);
+        TextureRegion icon = assetService.get(AtlasAsset.Environment).findRegions("wood/regular").get(0);
         return new Item(ItemNames.Wood.name(), 64, icon);
     }
 

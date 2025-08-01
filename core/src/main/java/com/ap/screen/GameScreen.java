@@ -40,7 +40,6 @@ public class GameScreen extends AbstractScreen {
     private EnergyBar energyBar;
     private CraftingMenu craftingMenu;
     private CookingMenu cookingMenu;
-    private StoreMenu storeMenu;
     private LightningStorm lightningStorm;
     private TabManager tabManager;
     private Journal journal;
@@ -68,7 +67,7 @@ public class GameScreen extends AbstractScreen {
         assetService = game.getAssetService();
         audioService = game.getAudioService();
 
-        GameUIManager.instance.setup(stage, skin, audioService);
+        GameUIManager.instance.setup(stage, skin, audioService, this);
         ItemFactory.instance.setAssetService(assetService);
         EntityFactory.instance.setup(assetService, audioService);
 
@@ -86,8 +85,6 @@ public class GameScreen extends AbstractScreen {
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
         cheatCodeBox = new CheatCodeBox(stage, skin);
-        storeMenu = new StoreMenu(assetService, skin, stage, inventory, audioService, "Gus",
-                "Hungry? Thirsty? I've got just the thing.");
         lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
         cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
         stage.addActor(tooltipHelper);
@@ -117,7 +114,6 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
         stage.addActor(journal);
-        storeMenu.toggle();
         lightningStorm.toggle(0, 0);
 
         // Play background music
