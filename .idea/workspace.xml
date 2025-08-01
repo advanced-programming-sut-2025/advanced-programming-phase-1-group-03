@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Thunder Storm implemented.">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="store menu bug fixed.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/LightningStorm.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/LightningStorm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/StoreMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/StoreMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,12 +61,12 @@
     &quot;assignee&quot;: &quot;amirshs84&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03",
-    "accountId": "9a5e195d-f7dd-4766-bce2-9098d13f6850"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03&quot;,
+    &quot;accountId&quot;: &quot;9a5e195d-f7dd-4766-bce2-9098d13f6850&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -245,13 +244,6 @@
       <workItem from="1753871879298" duration="256000" />
       <workItem from="1753876301922" duration="7398000" />
       <workItem from="1753952529205" duration="12369000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۳۷" summary="Adding render system">
-      <option name="closed" value="true" />
-      <created>1752315589821</created>
-      <option name="number" value="LOCAL‎−۰۰۰۳۷" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۳۷" />
-      <updated>1752315589821</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۳۸" summary="Add missing assets">
       <option name="closed" value="true" />
@@ -605,7 +597,15 @@
       <option name="project" value="LOCAL" />
       <updated>1753962054166</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="store menu bug fixed.">
+      <option name="closed" value="true" />
+      <created>1754044407575</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1754044407575</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +636,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="typo fixed" />
     <MESSAGE value="typo really fixed this time" />
     <MESSAGE value="atlas rotation disabled;&#10;half tree fixed;" />
     <MESSAGE value="Tree random generation" />
@@ -661,7 +660,8 @@
     <MESSAGE value="crow attack added" />
     <MESSAGE value="cheat code box added" />
     <MESSAGE value="cheat code box fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="cheat code box fixed" />
+    <MESSAGE value="store menu bug fixed." />
+    <option name="LAST_COMMIT_MESSAGE" value="store menu bug fixed." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

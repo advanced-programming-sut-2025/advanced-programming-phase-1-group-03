@@ -24,7 +24,7 @@ public class LightningStorm extends Actor {
 
     private final TextureRegion clouds;
     private final TextureRegion light;
-    private final Texture whiteFlash; // بافت سفید کوچک
+    private final Texture whiteFlash;
 
     private final Stage stage;
     private final AssetService assetService;
@@ -79,7 +79,7 @@ public class LightningStorm extends Actor {
                 if (timeAccumulator > 1.5f) {
                     timeAccumulator = 0f;
                     lightningAlpha = 1f;
-                    flashAlpha = 0.7f; // شروع فلاش
+                    flashAlpha = 0.7f;
                     if (!thunderPlayed) {
                         audioService.playSound(SoundAsset.Thunder, 1);
                         thunderPlayed = true;
@@ -90,7 +90,7 @@ public class LightningStorm extends Actor {
 
             case FLASHING_LIGHTNING:
                 lightningAlpha -= delta * 2f;
-                flashAlpha -= delta * 2.5f; // محو تدریجی فلاش
+                flashAlpha -= delta * 2.5f;
 
                 if (lightningAlpha <= 0f) {
                     lightningAlpha = 0f;
@@ -117,11 +117,11 @@ public class LightningStorm extends Actor {
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
-        // رسم ابرها
+
         batch.setColor(1f, 1f, 1f, cloudAlpha);
         batch.draw(clouds, 0, 0);
 
-        // رسم صاعقه
+
         if (lightningAlpha > 0f) {
             batch.setColor(1f, 1f, 1f, lightningAlpha);
             batch.draw(
@@ -133,18 +133,17 @@ public class LightningStorm extends Actor {
             );
         }
 
-        // رسم فلاش سفید روی کل صفحه
+
         if (flashAlpha > 0f) {
             batch.setColor(1f, 1f, 1f, flashAlpha);
             batch.draw(whiteFlash, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         }
 
-        // ریست رنگ
+
         batch.setColor(1f, 1f, 1f, 1f);
     }
 
     public void toggle(float x, float y) {
-        System.out.println("!! " + stage.getActors().contains(instance, true));
         if (!isShowing) {
             instance = new LightningStorm(assetService, skin, stage, audioService, x, y);
             stage.addActor(instance);
@@ -152,6 +151,5 @@ public class LightningStorm extends Actor {
             stage.getActors().removeValue(instance, true);
         }
         isShowing = !isShowing;
-        System.out.println("!! " + stage.getActors().contains(instance, true));
     }
 }
