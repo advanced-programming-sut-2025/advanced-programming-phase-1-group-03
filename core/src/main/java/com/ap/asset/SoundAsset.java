@@ -18,6 +18,8 @@ public enum SoundAsset implements Asset<Sound> {
     BirdFlying("bird_flying.wav"),
     Thunder("thunder.mp3"),
     Mineral("mineral.wav"),
+    Purchase("purchase.mp3"),
+    Eat("eat.wav")
     ;
 
     private final AssetDescriptor<Sound> descriptor;

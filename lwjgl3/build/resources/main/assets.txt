@@ -13,11 +13,13 @@ audio/crow_0.wav
 audio/crow_1.wav
 audio/crow_2.wav
 audio/cut.wav
+audio/eat.wav
 audio/gift.wav
 audio/hoeHit.wav
 audio/hover-sound.wav
 audio/mineral.wav
 audio/pickaxe.wav
+audio/purchase.mp3
 audio/thunder.mp3
 audio/type.mp3
 audio/walk.wav
@@ -36,6 +38,9 @@ graphics/Cooking.png
 graphics/Crafting.atlas
 graphics/Crafting.png
 graphics/FishingMiniGame.png
+graphics/Foods/Foods.atlas
+graphics/Foods/Foods.png
+graphics/Foods/Foods.tps
 graphics/ForestMap.png
 graphics/GreenHouse.png
 graphics/Journal.atlas
@@ -80,22 +85,11 @@ graphics/UI_elements.png
 graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
-graphics/img.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
 graphics/shadow.png
 graphics/whiteflash.png
-hs_err_pid11656.log
-hs_err_pid11760.log
-hs_err_pid11968.log
-hs_err_pid17156.log
-hs_err_pid20992.log
-hs_err_pid21416.log
-hs_err_pid22168.log
-hs_err_pid22608.log
-hs_err_pid23164.log
-hs_err_pid7028.log
 map/Farm Buildings.tsx
 map/Farm1.tmx
 map/Farm2.tmx

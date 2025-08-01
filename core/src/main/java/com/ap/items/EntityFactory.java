@@ -99,7 +99,7 @@ public class EntityFactory {
     }
 
     public Entity CreateStoneEntity(Vector2 position, int type, World world) {
-        TextureRegion texture = assetService.get(AtlasAsset.EnvIronment).findRegions("stone/regular").get(type);
+        TextureRegion texture = assetService.get(AtlasAsset.Environment).findRegions("stone/regular").get(type);
         Vector2 size = new Vector2(1, 1);
         Entity entity = new Entity();
         entity.add(new Transform(new Vector2(position.x, position.y),
@@ -115,7 +115,7 @@ public class EntityFactory {
     }
 
     public Entity CreateGrassEntity(Vector2 position, int type, World world) {
-        TextureRegion texture = assetService.get(AtlasAsset.EnvIronment).
+        TextureRegion texture = assetService.get(AtlasAsset.Environment).
                 findRegions("grass/type_"+type+"_color").get(new Random().nextInt(2));
 
         Vector2 size = new Vector2(1, 1);
@@ -147,7 +147,7 @@ public class EntityFactory {
         shadowEntity.add(new Shadow());
         shadowEntity.add(new Graphic(shadowTexture));
 
-        TextureRegion texture = assetService.get(AtlasAsset.EnvIronment).findRegion("wood/regular");
+        TextureRegion texture = assetService.get(AtlasAsset.Environment).findRegion("wood/regular");
         Vector2 size = new Vector2(1, 1);
         Entity entity = new Entity();
 

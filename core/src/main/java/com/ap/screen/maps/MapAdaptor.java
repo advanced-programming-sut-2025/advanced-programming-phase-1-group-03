@@ -1,5 +1,6 @@
 package com.ap.screen.maps;
 
+import box2dLight.RayHandler;
 import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
@@ -8,6 +9,8 @@ import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
 import com.ap.managers.GameUIManager;
 import com.ap.managers.MapManager;
+import com.ap.managers.StoreManager;
+import com.ap.managers.WeatherEffects;
 import com.ap.screen.GameScreen;
 import com.ap.system.*;
 import com.ap.system.universal.TimeSystem;
@@ -61,6 +64,7 @@ public abstract class MapAdaptor implements IMap {
 
     protected MapManager mapManager;
     protected WeatherSystem weatherSystem;
+    protected StoreManager storeManager;
 
     protected GameScreen gameScreen;
     protected GdxGame game;
@@ -102,6 +106,7 @@ public abstract class MapAdaptor implements IMap {
 
         timeSystem = gameScreen.getTimeSystem();
         weatherSystem = gameScreen.getWeatherSystem();
+        storeManager = new StoreManager(gameScreen.getInventory(), audioService);
     }
 
     protected void setupMap() {
@@ -146,6 +151,5 @@ public abstract class MapAdaptor implements IMap {
     @Override
     public void leave() {
         engine.getSystem(ControllerSystem.class).reset();
-
     }
 }

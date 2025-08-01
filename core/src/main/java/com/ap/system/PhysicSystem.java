@@ -4,8 +4,11 @@ import com.ap.asset.MapAsset;
 import com.ap.component.*;
 import com.ap.component.Transform;
 import com.ap.items.Item;
+import com.ap.managers.GameUIManager;
 import com.ap.managers.MapManager;
+import com.ap.managers.StoreManager;
 import com.ap.model.GameData;
+import com.ap.model.Menus;
 import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -24,13 +27,19 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
     private Engine engine;
     private GameScreen gameScreen;
     private MapManager mapManager;
+    private StoreManager storeManager;
 
-    public PhysicSystem(World world, float interval, MapManager mapManager, Engine engine, GameScreen gameScreen) {
+    public PhysicSystem(World world, float interval,
+                        MapManager mapManager,
+                        Engine engine,
+                        GameScreen gameScreen,
+                        StoreManager storeManager) {
         super(Family.all(Physic.class, Transform.class).get());
         this.world = world;
         this.gameScreen = gameScreen;
         this.mapManager = mapManager;
         this.interval = interval;
+        this.storeManager = storeManager;
         world.setContactListener(this);
     }
 
@@ -113,6 +122,9 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         Fixture fixtureB = contact.getFixtureB();
         Object userDataB = fixtureB.getBody().getUserData();
 
+        menuOpener(userDataA, userDataB);
+        menuOpener(userDataB, userDataA);
+
         var map = isSpawner(userDataA, userDataB);
         if(map != null) {
             changeMap(map);
@@ -131,6 +143,16 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
             item.interact(fixtureB.getBody(), engine, gameScreen);
         }
 
+    }
+    @Override
+    public void endContact(Contact contact) {
+        Fixture fixtureA = contact.getFixtureA();
+        Object userDataA = fixtureA.getBody().getUserData();
+        Fixture fixtureB = contact.getFixtureB();
+        Object userDataB = fixtureB.getBody().getUserData();
+
+        exitMenu(userDataA, userDataB);
+        exitMenu(userDataB, userDataA);
     }
 
     private void changeMap(MapAsset map) {
@@ -151,6 +173,32 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         return null;
     }
 
+    private void menuOpener(Object userDataA, Object userDataB) {
+        if(userDataA instanceof Entity entity &&
+                Player.mapper.has(entity) &&
+                userDataB instanceof String str) {
+            Menus menu = null;
+            try {
+                menu = Menus.valueOf(str);
+            }catch(Exception ignored) {}
+            if(menu != null) {
+                GameUIManager.instance.displayMenu(menu, storeManager::onBuy);
+            }
+        }
+    }
+    private void exitMenu(Object userDataA, Object userDataB) {
+        if(userDataA instanceof Entity entity &&
+                Player.mapper.has(entity) &&
+                userDataB instanceof String str) {
+            Menus menu = null;
+            try {
+                menu = Menus.valueOf(str);
+            }catch(Exception ignored) {}
+            if(menu != null) {
+                GameUIManager.instance.exitMenu(menu);
+            }
+        }
+    }
     private MapAsset isSpawner(Object userDataA, Object userDataB) {
         if(userDataA instanceof String str) {
             if(str.equals("Farm")) {
@@ -176,10 +224,6 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         return null;
     }
 
-    @Override
-    public void endContact(Contact contact) {
-
-    }
 
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {

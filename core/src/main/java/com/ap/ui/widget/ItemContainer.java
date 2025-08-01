@@ -38,6 +38,7 @@ public class ItemContainer extends Actor {
 
     private final float scale = 0.25f * 2;
     private final float itemScale = (1 / 3f) * 2;
+    private boolean scrollable = true;
 
     public int selectedIndex = 0;
 
@@ -51,6 +52,9 @@ public class ItemContainer extends Actor {
         stage.addListener(new InputListener() {
             @Override
             public boolean scrolled(InputEvent event, float x, float y, float amountX, float amountY) {
+                if(!scrollable) {
+                    return true;
+                }
                 boolean up = amountY < 0;
                 int prev = selectedIndex;
                 if(up) {
@@ -129,5 +133,13 @@ public class ItemContainer extends Actor {
     public boolean isSelectedEmpty() {
         if (selectedIndex > inventory.getSize()) return true;
         return (inventory.getItems().get(selectedIndex) == null);
+    }
+
+    public boolean isScrollable() {
+        return scrollable;
+    }
+
+    public void setScrollable(boolean scrollable) {
+        this.scrollable = scrollable;
     }
 }

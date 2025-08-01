@@ -36,7 +36,7 @@ public class Farm extends MapAdaptor {
     @Override
     public void addSystems() {
         engine.addSystem(new PhysicMoveSystem());
-        engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, gameScreen));
+        engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, gameScreen, storeManager));
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));

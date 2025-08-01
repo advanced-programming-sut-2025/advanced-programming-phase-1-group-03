@@ -1,10 +1,12 @@
 package com.ap.screen;
 
+import com.ap.Constraints;
 import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
+import com.ap.component.Player;
 import com.ap.items.EntityFactory;
 import com.ap.items.Inventory;
 import com.ap.items.ItemFactory;
@@ -27,6 +29,7 @@ import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameScreen extends AbstractScreen {
     private AssetService assetService;
@@ -39,7 +42,6 @@ public class GameScreen extends AbstractScreen {
     private EnergyBar energyBar;
     private CraftingMenu craftingMenu;
     private CookingMenu cookingMenu;
-    private StoreMenu storeMenu;
     private LightningStorm lightningStorm;
     private TabManager tabManager;
     private Journal journal;
@@ -68,7 +70,7 @@ public class GameScreen extends AbstractScreen {
         assetService = game.getAssetService();
         audioService = game.getAudioService();
 
-        GameUIManager.instance.setup(stage, skin, audioService);
+        GameUIManager.instance.setup(stage, skin, audioService, this);
         ItemFactory.instance.setAssetService(assetService);
         EntityFactory.instance.setup(assetService, audioService);
 
@@ -87,8 +89,6 @@ public class GameScreen extends AbstractScreen {
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
         cheatCodeController = new CheatCodeController(this);
         cheatCodeBox = new CheatCodeBox(stage, skin, cheatCodeController);
-        storeMenu = new StoreMenu(assetService, skin, stage, inventory, audioService, "Gus",
-                "Hungry? Thirsty? I've got just the thing.");
         lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
         cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
         stage.addActor(tooltipHelper);
@@ -118,7 +118,6 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
         stage.addActor(journal);
-     //   stage.addActor(storeMenu);
         lightningStorm.toggle(0, 0);
 
         // Play background music
