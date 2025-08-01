@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="effect added.">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/universal/EnergyManager.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="tool tip added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/store/StardropSaloonProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/store/StardropSaloonProducts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/StoreMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/StoreMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,13 +245,6 @@
       <workItem from="1753871879298" duration="256000" />
       <workItem from="1753876301922" duration="7398000" />
       <workItem from="1753952529205" duration="12369000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۳۹" summary="Setup input managing">
-      <option name="closed" value="true" />
-      <created>1752333136566</created>
-      <option name="number" value="LOCAL‎−۰۰۰۳۹" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۳۹" />
-      <updated>1752333136566</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۴۰" summary="Static graphic added">
       <option name="closed" value="true" />
@@ -605,7 +600,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754047966432</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="tool tip added">
+      <option name="closed" value="true" />
+      <created>1754055496606</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1754055496606</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +639,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="atlas rotation disabled;&#10;half tree fixed;" />
     <MESSAGE value="Tree random generation" />
     <MESSAGE value="Shadow bug fixed" />
     <MESSAGE value="Map generation" />
@@ -661,7 +663,8 @@
     <MESSAGE value="cheat code box fixed" />
     <MESSAGE value="store menu bug fixed." />
     <MESSAGE value="effect added." />
-    <option name="LAST_COMMIT_MESSAGE" value="effect added." />
+    <MESSAGE value="tool tip added" />
+    <option name="LAST_COMMIT_MESSAGE" value="tool tip added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -728,7 +731,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java</url>
-          <line>87</line>
+          <line>86</line>
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -216,11 +216,11 @@ public class StoreMenu extends Actor {
 
     private void loadProducts() {
         TextureAtlas atlas = assetService.get(AtlasAsset.Crops);
-        list.add(new StoreProduct(atlas.findRegion("Poppy"), "Poppy", 200, 0));
-        list.add(new StoreProduct(atlas.findRegion("Parsnip"), "Parsnip", 80, 1));
-        list.add(new StoreProduct(atlas.findRegion("Melon"), "Melon", 1000, 2));
-        list.add(new StoreProduct(atlas.findRegion("Kale"), "Kale", 5, 3));
-        list.add(new StoreProduct(atlas.findRegion("Hot_Pepper"), "Hot_Pepper", 1000, 4));
+        list.add(new StoreProduct(atlas.findRegion("Poppy"), "Poppy", "description test", 200, 0));
+        list.add(new StoreProduct(atlas.findRegion("Parsnip"), "Parsnip", "description test", 80, 1));
+        list.add(new StoreProduct(atlas.findRegion("Melon"), "Melon", "description test", 1000, 2));
+        list.add(new StoreProduct(atlas.findRegion("Kale"), "Kale", "description test", 5, 3));
+        list.add(new StoreProduct(atlas.findRegion("Hot_Pepper"), "Hot_Pepper", "description test", 1000, 4));
     }
 
     private void drawProducts(Batch batch) {
@@ -292,11 +292,12 @@ public class StoreMenu extends Actor {
         int sellPrice;
         int row;
 
-        StoreProduct(TextureRegion texture, String name, String description, int sellPrice, int row) {
+        public StoreProduct(TextureRegion texture, String name, String description, int sellPrice, int row) {
             this.texture = texture;
             this.name = name;
             this.sellPrice = sellPrice;
             this.row = row;
+            this.description = description;
         }
     }
 

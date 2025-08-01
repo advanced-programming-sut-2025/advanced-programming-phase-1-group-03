@@ -50,7 +50,7 @@ public enum StardropSaloonProducts {
         int row = 0;
         for(StardropSaloonProducts product : StardropSaloonProducts.values()) {
             var texture = assetService.get(AtlasAsset.Foods).findRegion(product.name());
-            list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.getPrice(), row++));
+            list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.description, product.getPrice(), row++));
         }
         return list;
     }
