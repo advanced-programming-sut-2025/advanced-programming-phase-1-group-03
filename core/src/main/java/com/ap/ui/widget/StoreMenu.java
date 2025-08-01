@@ -29,6 +29,8 @@ import com.badlogic.gdx.utils.StringBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class StoreMenu extends Actor {
     private TextureRegion background;
@@ -56,9 +58,12 @@ public class StoreMenu extends Actor {
 
     private InputListener event;
     private Menus menu;
+    private BiConsumer<StoreProduct, Menus> buyConsumer;
 
     public StoreMenu(AssetService assetService, Skin skin, Stage stage, Inventory inventory, AudioService audioService,
-                     String characterString, String message, Menus menu, ArrayList<StoreProduct> products) {
+                     String characterString, String message,
+                     Menus menu, ArrayList<StoreProduct> products,
+                     BiConsumer<StoreProduct, Menus> buyConsumer) {
         this.menu = menu;
         this.assetService = assetService;
         this.skin = skin;
@@ -67,6 +72,7 @@ public class StoreMenu extends Actor {
         this.audioService = audioService;
         this.atlas = assetService.get(AtlasAsset.Character);
         this.characterString = characterString;
+        this.buyConsumer = buyConsumer;
         background = new TextureRegion(new Texture(Gdx.files.internal("graphics/StoreBackground.png")));
         this.message = message;
         setUpUI(characterString);
@@ -107,7 +113,7 @@ public class StoreMenu extends Actor {
     }
 
     private void applyItem(StoreProduct storeProduct) {
-        // TODO implement choosing item here
+        buyConsumer.accept(storeProduct, menu);
     }
 
     private void setUpUI(String characterString) {
@@ -214,15 +220,6 @@ public class StoreMenu extends Actor {
         }
     }
 
-    private void loadProducts() {
-        TextureAtlas atlas = assetService.get(AtlasAsset.Crops);
-        list.add(new StoreProduct(atlas.findRegion("Poppy"), "Poppy", "description test", 200, 0));
-        list.add(new StoreProduct(atlas.findRegion("Parsnip"), "Parsnip", "description test", 80, 1));
-        list.add(new StoreProduct(atlas.findRegion("Melon"), "Melon", "description test", 1000, 2));
-        list.add(new StoreProduct(atlas.findRegion("Kale"), "Kale", "description test", 5, 3));
-        list.add(new StoreProduct(atlas.findRegion("Hot_Pepper"), "Hot_Pepper", "description test", 1000, 4));
-    }
-
     private void drawProducts(Batch batch) {
         if (hoverRow >= 0) {
             float posX = 230;
@@ -230,7 +227,7 @@ public class StoreMenu extends Actor {
             float eachY = 57;
             float rectWidth = 546f;
             float rectHeight = eachY - 7;
-            batch.setColor(new Color(0.36f, 0.23f, 0.1f, 0.4f)); // قهوه‌ای نیمه‌شفاف
+            batch.setColor(new Color(0.36f, 0.23f, 0.1f, 0.4f));
             batch.draw(whiteTexture, getX() + posX - 10, getY() + posY - hoverRow * eachY - 43 + 10, rectWidth, rectHeight);
             batch.setColor(Color.WHITE);
         }
@@ -286,11 +283,11 @@ public class StoreMenu extends Actor {
     }
 
     public static class StoreProduct {
-        TextureRegion texture;
-        String name;
-        String description;
-        int sellPrice;
-        int row;
+       public TextureRegion texture;
+       public String name;
+       public String description;
+       public int sellPrice;
+       public int row;
 
         public StoreProduct(TextureRegion texture, String name, String description, int sellPrice, int row) {
             this.texture = texture;

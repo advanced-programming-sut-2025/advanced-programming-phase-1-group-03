@@ -6,6 +6,7 @@ import com.ap.component.Transform;
 import com.ap.items.Item;
 import com.ap.managers.GameUIManager;
 import com.ap.managers.MapManager;
+import com.ap.managers.StoreManager;
 import com.ap.model.GameData;
 import com.ap.model.Menus;
 import com.ap.screen.GameScreen;
@@ -26,13 +27,19 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
     private Engine engine;
     private GameScreen gameScreen;
     private MapManager mapManager;
+    private StoreManager storeManager;
 
-    public PhysicSystem(World world, float interval, MapManager mapManager, Engine engine, GameScreen gameScreen) {
+    public PhysicSystem(World world, float interval,
+                        MapManager mapManager,
+                        Engine engine,
+                        GameScreen gameScreen,
+                        StoreManager storeManager) {
         super(Family.all(Physic.class, Transform.class).get());
         this.world = world;
         this.gameScreen = gameScreen;
         this.mapManager = mapManager;
         this.interval = interval;
+        this.storeManager = storeManager;
         world.setContactListener(this);
     }
 
@@ -175,7 +182,7 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
                 menu = Menus.valueOf(str);
             }catch(Exception ignored) {}
             if(menu != null) {
-                GameUIManager.instance.displayMenu(menu);
+                GameUIManager.instance.displayMenu(menu, storeManager::onBuy);
             }
         }
     }

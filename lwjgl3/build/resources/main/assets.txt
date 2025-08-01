@@ -13,11 +13,13 @@ audio/crow_0.wav
 audio/crow_1.wav
 audio/crow_2.wav
 audio/cut.wav
+audio/eat.wav
 audio/gift.wav
 audio/hoeHit.wav
 audio/hover-sound.wav
 audio/mineral.wav
 audio/pickaxe.wav
+audio/purchase.mp3
 audio/thunder.mp3
 audio/type.mp3
 audio/walk.wav
@@ -83,7 +85,6 @@ graphics/UI_elements.png
 graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
-graphics/img_1.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
@@ -131,6 +132,8 @@ map/tileset/winter_outdoorsTileSheet2.png
 map/tileset/winter_town.png
 skins/LondonMM.ttf
 skins/Millennium-Bold.ttf
+skins/Stardew Valley ALL CAPS.ttf
+skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

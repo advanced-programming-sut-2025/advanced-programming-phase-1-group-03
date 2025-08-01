@@ -13,6 +13,20 @@ public enum Foods {
     Pizza("Pizza", 150),
 
     Coffee("Coffee", 75),
+
+    HashBrowns("HashBrowns", 90),
+
+    Omelet("Omelet", 100),
+
+    Pancakes("Pancakes", 90),
+
+    Tortilla("Tortilla", 50),
+
+    MakiRoll("MakiRoll", 100),
+
+    TripleShotEspresso("TripleShotEspresso", 200),
+
+    Cookie("Cookie", 90);
     ;
 
     // Artisian FoodTypes :

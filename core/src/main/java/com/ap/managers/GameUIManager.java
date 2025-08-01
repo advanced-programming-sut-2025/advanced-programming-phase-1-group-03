@@ -13,8 +13,11 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 public class GameUIManager {
     public static GameUIManager instance = new GameUIManager();
@@ -55,14 +58,14 @@ public class GameUIManager {
         this.engine = engine;
     }
 
-    public void displayMenu(Menus menu) {
+    public void displayMenu(Menus menu, BiConsumer<StoreMenu.StoreProduct, Menus> onBuy) {
         switch (menu) {
             case StardropSaloonMenu:
                 menus.put(menu, (new StoreMenu(
                         gameScreen.getAssetService(), skin, stage, gameScreen.getInventory(),
                         gameScreen.getAudioService(),"Gus",
                         "Hungry? Thirsty? I've got just the thing.", menu,
-                        StardropSaloonProducts.buildStoreItems(gameScreen.getAssetService()))
+                        StardropSaloonProducts.buildStoreItems(gameScreen.getAssetService()), onBuy)
                 ));
         }
         stage.addActor(menus.get(menu));

@@ -9,6 +9,7 @@ import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
 import com.ap.managers.GameUIManager;
 import com.ap.managers.MapManager;
+import com.ap.managers.StoreManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.screen.GameScreen;
 import com.ap.system.*;
@@ -63,6 +64,7 @@ public abstract class MapAdaptor implements IMap {
 
     protected MapManager mapManager;
     protected WeatherSystem weatherSystem;
+    protected StoreManager storeManager;
 
     protected GameScreen gameScreen;
     protected GdxGame game;
@@ -104,6 +106,7 @@ public abstract class MapAdaptor implements IMap {
 
         timeSystem = gameScreen.getTimeSystem();
         weatherSystem = gameScreen.getWeatherSystem();
+        storeManager = new StoreManager(gameScreen.getInventory(), audioService);
     }
 
     protected void setupMap() {

@@ -8,6 +8,7 @@ import com.ap.items.plant.Crop;
 import com.ap.items.plant.Seed;
 import com.ap.items.plant.Tree;
 import com.ap.model.CropsType;
+import com.ap.model.Foods;
 import com.ap.model.Minerals;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -51,12 +52,17 @@ public class ItemFactory {
         if(type.getEnergyProduce() == null) {
             return new Item(type.name(), 64, icon, type.getBaseSellPrice());
         } else {
-            return new Food(type.name(), 64, icon, type.getBaseSellPrice());
+            return new Food(type.name(), 64, icon, type.getBaseSellPrice(), type.getEnergyProduce());
         }
     }
     public Item CreateMineral(Minerals type) {
         var icon = assetService.get(AtlasAsset.Mineral).findRegion(type.name());
         return new Mineral(icon, type);
+    }
+
+    public Item CreateFood(Foods type, int price) {
+        var icon = assetService.get(AtlasAsset.Foods).findRegion(type.name());
+        return new Food(type.getName(), 64, icon, price, type.getEnergy());
     }
     public void setAssetService(AssetService assetService) {
         this.assetService = assetService;
