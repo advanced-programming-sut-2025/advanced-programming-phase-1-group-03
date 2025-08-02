@@ -97,8 +97,8 @@ public abstract class AbstractContent extends Group {
     }
 
     private void assembleBackground() {
-        int n = MathUtils.ceil((float) height / tileHeight) + 2;
-        int m = MathUtils.ceil((float) width / tileWidth) + 2;
+        int n = MathUtils.ceil((float) height / tileHeight);
+        int m = MathUtils.ceil((float) width / tileWidth);
         height = n * tileHeight;
         width = m * tileWidth;
         setSize(width, height);

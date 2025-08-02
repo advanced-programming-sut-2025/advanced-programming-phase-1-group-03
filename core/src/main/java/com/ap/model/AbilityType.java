@@ -1,10 +1,10 @@
 package com.ap.model;
 
 public enum AbilityType {
-    Farming(4),
-    Mining(4),
-    Foraging(4),
-    Fishing(4),
+    Farming(10),
+    Mining(10),
+    Foraging(10),
+    Fishing(10),
     ;
     public final int maxLevel;
 

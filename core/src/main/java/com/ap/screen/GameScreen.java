@@ -77,13 +77,13 @@ public class GameScreen extends AbstractScreen {
         inventory = new Inventory();
         Tool.addBasicTools(inventory, assetService);
         abilityManager = new AbilityManager();
+        AbilityManager.setINSTANCE(abilityManager);
 
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
 
-        tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
         cheatCodeController = new CheatCodeController(this);

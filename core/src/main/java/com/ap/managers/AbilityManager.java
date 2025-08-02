@@ -7,6 +7,16 @@ import java.util.Map;
 
 public class AbilityManager {
 
+    private static AbilityManager INSTANCE;
+
+    public static AbilityManager getInstance() {
+        return INSTANCE;
+    }
+
+    public static void setINSTANCE(AbilityManager INSTANCE) {
+        AbilityManager.INSTANCE = INSTANCE;
+    }
+
     private final Map<AbilityType, Ability> abilities;
 
     public AbilityManager() {
@@ -15,6 +25,7 @@ public class AbilityManager {
             abilities.put(type, new Ability(type));
         }
     }
+
 
     public Ability getAbility(AbilityType type) {
         return abilities.get(type);

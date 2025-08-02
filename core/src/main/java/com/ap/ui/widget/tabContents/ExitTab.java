@@ -9,7 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 public class ExitTab extends AbstractContent{
     public ExitTab(Stage stage, AssetService assetService, Skin skin, AudioService audioService, int width, int height, Tabs icon) {
         super(stage, assetService, skin, audioService, width, height, icon);
-        Label label = new Label("Social", skin);
+        Label label = new Label("Exit", skin);
         addActor(label);
     }
 

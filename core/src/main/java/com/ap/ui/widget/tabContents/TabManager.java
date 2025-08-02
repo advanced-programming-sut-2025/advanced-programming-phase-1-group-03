@@ -58,13 +58,14 @@ public class TabManager {
         contentArray = new Array<>();
         iconArray = new Array<>();
 
-
-        contentArray.add(new InventoryTab(stage, assetService, skin, audioService, 600, 300, Tabs.Inventory, inventory));
-        contentArray.add(new SkillTab(stage, assetService, skin, audioService, 600, 300, Tabs.Skill));
-        contentArray.add(new SocialTab(stage, assetService, skin, audioService, 600, 300, Tabs.Social));
-        contentArray.add(new MapTab(stage, assetService, skin, audioService, 600, 300, Tabs.Map));
-        contentArray.add(new OptionsTab(stage, assetService, skin, audioService, 600, 300, Tabs.Options));
-        contentArray.add(new ExitTab(stage, assetService, skin, audioService, 600, 300, Tabs.Exit));
+        int bgWidth = 637;
+        int bgHeight = 440;
+        contentArray.add(new InventoryTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Inventory, inventory));
+        contentArray.add(new SkillTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Skill));
+        contentArray.add(new SocialTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Social));
+        contentArray.add(new MapTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Map));
+        contentArray.add(new OptionsTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Options));
+        contentArray.add(new ExitTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Exit));
 
         iconY = Constraints.WORLD_HEIGHT_RESOLUTION / 2f;
         iconX = (Constraints.WORLD_WIDTH_RESOLUTION - contentArray.size * iconWidth) / 2f;
