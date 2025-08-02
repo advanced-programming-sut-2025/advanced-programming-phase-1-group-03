@@ -7,6 +7,7 @@ import com.ap.managers.GameUIManager;
 import com.ap.model.Foods;
 import com.ap.model.GameData;
 import com.ap.screen.GameScreen;
+import com.ap.system.universal.EnergyManager;
 import com.ap.ui.widget.DecisionDialog;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -35,7 +36,6 @@ public class Food extends Item {
     private void eatFood(Inventory inventory) {
         inventory.removeItem(this, 1);
         eatDialog.remove();
-
-        //TODO add energy
+        EnergyManager.getInstance().advance(energy);
     }
 }

@@ -11,13 +11,11 @@ import com.ap.items.EntityFactory;
 import com.ap.items.Inventory;
 import com.ap.items.ItemFactory;
 import com.ap.items.tools.Tool;
-import com.ap.managers.ClockManager;
-import com.ap.managers.GameUIManager;
-import com.ap.managers.MapManager;
-import com.ap.managers.WeatherEffects;
+import com.ap.managers.*;
 import com.ap.model.GameData;
 import com.ap.model.Season;
 import com.ap.system.*;
+import com.ap.system.universal.EnergyManager;
 import com.ap.system.universal.ITimeListener;
 import com.ap.system.universal.TimeSystem;
 import com.ap.ui.model.GameViewModel;
@@ -52,6 +50,7 @@ public class GameScreen extends AbstractScreen {
     private CheatCodeController cheatCodeController;
 
     private Inventory inventory;
+    private AbilityManager abilityManager;
 
     private Engine universalEngine;
 
@@ -61,6 +60,8 @@ public class GameScreen extends AbstractScreen {
 
     private MapAsset currentMap;
     private TiledMap currentTiledMap;
+
+    private EnergyManager energyManager;
 
     public GameScreen(GdxGame game) {
         super(game);
@@ -78,11 +79,13 @@ public class GameScreen extends AbstractScreen {
         TooltipHelper tooltipHelper = TooltipHelper.getTooltip(skin);
         inventory = new Inventory();
         Tool.addBasicTools(inventory, assetService);
+        abilityManager = new AbilityManager();
 
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
+        energyManager = EnergyManager.getInstance();
 
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
         journal = new Journal(assetService, skin, stage);
@@ -148,6 +151,10 @@ public class GameScreen extends AbstractScreen {
         return inventory;
     }
 
+    public AbilityManager getAbilityManager() {
+        return abilityManager;
+    }
+
     public Clock getClock() {
         return clock;
     }
@@ -163,7 +170,6 @@ public class GameScreen extends AbstractScreen {
     public EnergyBar getEnergyBar() {
         return energyBar;
     }
-
 
 
     public AssetService getAssetService() {
