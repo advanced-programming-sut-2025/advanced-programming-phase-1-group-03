@@ -12,16 +12,25 @@ public class EnergyManager {
         return instance;
     }
 
+    public float getPercentage() {
+        return ((float)amount/(float)maxAmount);
+    }
+
+    public int getConsumedEnergy() {
+        return maxAmount - amount;
+    }
+
     private EnergyManager() {
         maxAmount = 500;
         this.amount = maxAmount;
     }
 
     public void advance(int diff) {
+        System.out.println(diff);
         if(diff > 0)
             amount = Math.min(maxAmount, amount + diff);
         else
-            amount = Math.max(0, amount - diff);
+            amount = Math.max(0, amount + diff);
         if(amount <= 0)
             faint();
     }

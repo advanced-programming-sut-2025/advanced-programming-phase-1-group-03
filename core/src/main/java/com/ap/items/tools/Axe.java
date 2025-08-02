@@ -8,8 +8,11 @@ import com.ap.items.ItemFactory;
 import com.ap.items.ItemNames;
 import com.ap.items.plant.Crop;
 import com.ap.items.plant.Tree;
+import com.ap.managers.AbilityManager;
 import com.ap.model.AbilityType;
+import com.ap.model.Weather;
 import com.ap.screen.GameScreen;
+import com.ap.system.universal.EnergyManager;
 import com.ap.system.universal.TimeSystem;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
@@ -27,22 +30,55 @@ public class Axe extends Tool {
     }
 
     @Override
-    int getEnergyConsumption() {
-        return switch(currentLevel) {
-            case Normal -> 5;
-            case Copper -> 4;
-            case Iron -> 3;
-            case Gold -> 2;
-            case Iridium -> 1;
-        };
+    int getEnergyConsumption(GameScreen gameScreen, boolean successful) {
+        int amount = 0;
+        switch(currentLevel) {
+            case Normal : {
+                amount = 5;
+                break;
+            }
+            case Copper : {
+                amount = 4;
+                break;
+            }
+            case Iron : {
+                amount = 3;
+                break;
+            }
+            case Gold : {
+                amount = 2;
+                break;
+            }
+            case Iridium : {
+                amount = 1;
+                break;
+            }
+        }
+        System.out.println("&& " + amount);
+        if(successful)
+            amount -= 1;
+        System.out.println("&& " + amount);
+        if(AbilityManager.getInstance().getAbility(AbilityType.Foraging).getLevel() == relatedAbility.maxLevel)
+            amount -= 1;
+        System.out.println("&& " + amount);
+        if(gameScreen.getWeatherSystem().getCurrentWeather().equals(Weather.Rain))
+            amount = (int)(amount * 1.5f);
+        System.out.println("&& " + amount);
+        if(gameScreen.getWeatherSystem().getCurrentWeather().equals(Weather.Snow))
+            amount *= 2;
+        System.out.println("&& " + amount);
+        System.out.println("!! " + amount);
+        return Math.min(0, -amount);
     }
 
     @Override
     public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
         if(!(body.getUserData() instanceof Entity entity)) {
+            EnergyManager.getInstance().advance(getEnergyConsumption(game, false));
             return;
         }
         if(!ItemHolder.mapper.has(entity)) {
+            EnergyManager.getInstance().advance(getEnergyConsumption(game, false));
             return;
         }
         game.getAudioService().playSound(SoundAsset.Axe);
@@ -56,6 +92,7 @@ public class Axe extends Tool {
             handleTree(engine, game, world, entity, wood);
         } else if(item instanceof Crop crop) {
             if(!crop.isGiant()) {
+                EnergyManager.getInstance().advance(getEnergyConsumption(game, false));
                 return;
             }
             if(crop.getAxeHit() == Constraints.NUMBER_OF_AXE_NEED_TO_DESTROY_GIANT) {
@@ -68,6 +105,8 @@ public class Axe extends Tool {
                 crop.setAxeHit(crop.getAxeHit() + 1);
             }
         }
+        EnergyManager.getInstance().advance(getEnergyConsumption(game, true));
+
     }
 
     private void handleTree(Engine engine, GameScreen game, World world, Entity entity, Item wood) {

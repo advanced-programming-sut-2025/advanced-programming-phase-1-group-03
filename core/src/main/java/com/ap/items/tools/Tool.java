@@ -7,6 +7,7 @@ import com.ap.items.Item;
 import com.ap.items.ItemFactory;
 import com.ap.model.AbilityType;
 import com.ap.model.CropsType;
+import com.ap.screen.GameScreen;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -22,7 +23,7 @@ public abstract class Tool extends Item {
      * This method will return energy consumption for each usage based on level of tool
      * @return Energy amount
      */
-    abstract int getEnergyConsumption();
+    abstract int getEnergyConsumption(GameScreen gameScreen, boolean successful);
 
     /**
      * This method add primary tools to the inventory

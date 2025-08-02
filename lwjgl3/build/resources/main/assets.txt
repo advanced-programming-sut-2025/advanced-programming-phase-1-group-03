@@ -72,6 +72,8 @@ graphics/RiverLandMap.png
 graphics/SeasonalObjects.atlas
 graphics/SeasonalObjects.png
 graphics/StoreBackground.png
+graphics/Tabs/skill_icons.atlas
+graphics/Tabs/skill_icons.png
 graphics/Tabs/socialBackground.png
 graphics/Tabs/socialtoggle.png
 graphics/Tabs/toggles.atlas
@@ -85,6 +87,7 @@ graphics/UI_elements.png
 graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
+graphics/img_1.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
@@ -132,8 +135,6 @@ map/tileset/winter_outdoorsTileSheet2.png
 map/tileset/winter_town.png
 skins/LondonMM.ttf
 skins/Millennium-Bold.ttf
-skins/Stardew Valley ALL CAPS.ttf
-skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas
