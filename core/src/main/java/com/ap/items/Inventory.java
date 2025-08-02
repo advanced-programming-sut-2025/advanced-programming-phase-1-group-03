@@ -1,11 +1,14 @@
 package com.ap.items;
 
+import com.ap.model.FoodRecipes;
+
 import java.util.ArrayList;
 
 public class Inventory {
     public final static int maxStorage = 36;
     private int storage = 15;
     private final ArrayList<ItemStack> items = new ArrayList<>();
+    private final ArrayList<FoodRecipes> foodRecipes = new ArrayList<>();
 
     public boolean canAdd() {
         return !(items.size() == storage);
@@ -75,5 +78,9 @@ public class Inventory {
     }
     public int getSize() {
         return items.size();
+    }
+
+    public ArrayList<FoodRecipes> getFoodRecipes() {
+        return foodRecipes;
     }
 }

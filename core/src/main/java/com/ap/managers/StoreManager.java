@@ -31,14 +31,25 @@ public class StoreManager {
     }
 
     private void buyStardropSaloon(StoreMenu.StoreProduct storeProduct) {
-        var product = StardropSaloonProducts.valueOf(storeProduct.name);
+        var product = StardropSaloonProducts.valueOf(storeProduct.enumName);
         if(GameData.getInstance().getPlayerGold() < storeProduct.sellPrice) {
             GameUIManager.instance.showMessageDialog("You don't have enough money!");
             return;
         }
         // Reducing money
         GameData.getInstance().setPlayerGold(GameData.getInstance().getPlayerGold() - storeProduct.sellPrice);
-        inventory.addItem(ItemFactory.instance.CreateFood(product.getFood(), storeProduct.sellPrice), 1);
+
+        // Food
+        if(product.getFood() != null) {
+            inventory.addItem(ItemFactory.instance.CreateFood(product.getFood(), storeProduct.sellPrice), 1);
+        } else { // Recipe
+            var recipe = product.getRecipe();
+            if(inventory.getFoodRecipes().contains(recipe)) {
+                GameUIManager.instance.showMessageDialog("You already bought this recipe!");
+                return;
+            }
+            inventory.getFoodRecipes().add(recipe);
+        }
         audioService.playSound(SoundAsset.Purchase);
     }
 }

@@ -1,47 +1,96 @@
 Foods.png
-size: 98, 143
+size: 50, 599
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 Beer
   rotate: false
-  xy: 51, 51
+  xy: 1, 340
   size: 46, 46
   orig: 48, 48
   offset: 2, 2
   index: -1
 Bread
   rotate: false
-  xy: 51, 1
+  xy: 1, 290
   size: 46, 48
   orig: 48, 48
   offset: 0, 0
   index: -1
 Coffee
   rotate: false
-  xy: 51, 99
+  xy: 1, 557
   size: 38, 41
   orig: 48, 48
   offset: 2, 2
   index: -1
+Cookie
+  rotate: false
+  xy: 1, 517
+  size: 44, 38
+  orig: 48, 48
+  offset: 2, 5
+  index: -1
+Hashbrowns
+  rotate: false
+  xy: 1, 1
+  size: 48, 47
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+Maki_Roll
+  rotate: false
+  xy: 1, 388
+  size: 46, 38
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
+Omelet
+  rotate: false
+  xy: 1, 50
+  size: 48, 47
+  orig: 48, 48
+  offset: 0, 1
+  index: -1
+Pancakes
+  rotate: false
+  xy: 1, 148
+  size: 48, 46
+  orig: 48, 48
+  offset: 0, 0
+  index: -1
 Pizza
   rotate: false
-  xy: 1, 98
+  xy: 1, 244
   size: 48, 44
   orig: 48, 48
   offset: 0, 2
   index: -1
 Salad
   rotate: false
-  xy: 1, 50
+  xy: 1, 196
   size: 48, 46
   orig: 48, 48
   offset: 0, 2
   index: -1
 Spaghetti
   rotate: false
-  xy: 1, 1
+  xy: 1, 99
   size: 48, 47
   orig: 48, 48
   offset: 0, 0
+  index: -1
+Tortilla
+  rotate: false
+  xy: 1, 474
+  size: 44, 41
+  orig: 48, 48
+  offset: 3, 3
+  index: -1
+Triple_Shot_Espresso
+  rotate: false
+  xy: 1, 428
+  size: 44, 44
+  orig: 48, 48
+  offset: 2, 2
   index: -1
