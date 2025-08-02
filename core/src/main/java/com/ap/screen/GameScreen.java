@@ -27,6 +27,7 @@ import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameScreen extends AbstractScreen {
@@ -76,7 +77,8 @@ public class GameScreen extends AbstractScreen {
         EntityFactory.instance.setup(assetService, audioService);
 
         // Setup inventory
-        TooltipHelper tooltipHelper = TooltipHelper.getTooltip(skin);
+        TooltipHelper.setTooltip(skin);
+        TooltipHelper tooltipHelper = TooltipHelper.getTooltip();
         inventory = new Inventory();
         Tool.addBasicTools(inventory, assetService);
         abilityManager = new AbilityManager();
@@ -85,7 +87,7 @@ public class GameScreen extends AbstractScreen {
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
-        tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
+        tabManager = new TabManager(this);
         energyManager = EnergyManager.getInstance();
 
         journal = new Journal(assetService, skin, stage);
@@ -94,7 +96,6 @@ public class GameScreen extends AbstractScreen {
         cheatCodeBox = new CheatCodeBox(stage, skin, cheatCodeController);
         lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
         cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
-        stage.addActor(tooltipHelper);
         clockManager = new ClockManager(clock);
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock, timeSystem);
@@ -121,7 +122,9 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(itemContainer);
         stage.addActor(energyBar);
         stage.addActor(journal);
-        lightningStorm.toggle(0, 0);
+        stage.addActor(TooltipHelper.getTooltip());
+
+//        lightningStorm.toggle(0, 0);
 
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
@@ -215,6 +218,11 @@ public class GameScreen extends AbstractScreen {
     public void setCurrentTiledMap(TiledMap currentTiledMap) {
         this.currentTiledMap = currentTiledMap;
     }
+
+    public Skin getSkin() {
+        return skin;
+    }
+
 
     class TimeListener implements ITimeListener {
 

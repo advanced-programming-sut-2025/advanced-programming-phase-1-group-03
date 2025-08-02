@@ -4,10 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="StardropSaloonProducts finshed">
-      <change afterPath="$PROJECT_DIR$/assets/graphics/Tabs/skill_icons.atlas" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/graphics/Tabs/skill_icons.png" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="skill assets added">
+      <change afterPath="$PROJECT_DIR$/assets/skins/Roboto-Regular.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/Tabs/skill_icons.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Tabs/skill_icons.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/Tabs/skill_icons.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Tabs/skill_icons.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/AbilityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/AbilityManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/AbilityType.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/AbilityType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/TooltipHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/TooltipHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/AbstractContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/AbstractContent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/ExitTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/ExitTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/InventoryTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/InventoryTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/MapTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/MapTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/OptionsTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/OptionsTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/SkillTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/SkillTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/SocialTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/SocialTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/TabManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/TabManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +102,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/StardewValley/assets/graphics/Tabs",
+    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/StardewValley/assets/skins",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -107,18 +121,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\skins" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\Tabs" />
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics" />
       <recent name="D:\StarehdewValley\assets\audio" />
       <recent name="D:\StarehdewValley\assets\map\tileset" />
-      <recent name="C:\Users\Surface\IdeaProjects\Stardew\assets\skins" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.ap.screen.maps" />
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.StardewValley [run]">
+  <component name="RunManager" selected="Application.RunGDX">
     <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -252,13 +266,6 @@
       <workItem from="1753952529205" duration="12369000" />
       <workItem from="1754133416833" duration="550000" />
       <workItem from="1754134966745" duration="7966000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۴۱" summary="Add facing and camera follow system">
-      <option name="closed" value="true" />
-      <created>1752578585407</created>
-      <option name="number" value="LOCAL‎−۰۰۰۴۱" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۴۱" />
-      <updated>1752578585407</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۴۲" summary="Adding animation system">
       <option name="closed" value="true" />
@@ -615,7 +622,15 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۸۹" />
       <updated>1754059422888</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="skill assets added">
+      <option name="closed" value="true" />
+      <created>1754151277251</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1754151277251</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,7 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Shadow bug fixed" />
     <MESSAGE value="Map generation" />
     <MESSAGE value="Axe and Pickaxe" />
     <MESSAGE value="Multiple map system fixed" />
@@ -671,7 +685,8 @@
     <MESSAGE value="effect added." />
     <MESSAGE value="tool tip added" />
     <MESSAGE value="StardropSaloonProducts finshed" />
-    <option name="LAST_COMMIT_MESSAGE" value="StardropSaloonProducts finshed" />
+    <MESSAGE value="skill assets added" />
+    <option name="LAST_COMMIT_MESSAGE" value="skill assets added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -738,7 +753,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java</url>
-          <line>86</line>
+          <line>88</line>
           <option name="timeStamp" value="107" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

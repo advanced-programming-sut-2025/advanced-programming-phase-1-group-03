@@ -155,5 +155,10 @@ public abstract class AbstractContent extends Group {
     public abstract void makeStructure();
     public abstract void loadData();
 
+    public Image getNewImage(TextureRegion region, float width, float height) {
+        TextureRegionDrawable drawable = new TextureRegionDrawable(region);
+        drawable.setMinSize(width, height);
+        return new Image(drawable);
+    }
 
 }

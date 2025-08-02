@@ -57,7 +57,7 @@ public class AbilityManager {
         }
 
         public void advanceLevel(){
-            level = Math.min(abilityType.maxLevel, level + 1);
+            level = Math.min(AbilityType.maxLevel, level + 1);
         }
 
         public void advanceXP(int gained){

@@ -23,7 +23,9 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     Character("Characters.atlas"),
     Crow("Animals/Crow.atlas"),
     Mineral("Mineral.atlas"),
-    Foods("Foods/Foods.atlas");
+    Foods("Foods/Foods.atlas"),
+    SkillIcons("Tabs/skill_icons.atlas")
+    ;
 
     private final AssetDescriptor<TextureAtlas> descriptor;
     AtlasAsset(String name) {

@@ -1,53 +1,67 @@
 skill_icons.png
-size: 74, 14
+size: 132, 398
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 combat
   rotate: false
-  xy: 2, 2
+  xy: 2, 386
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
+daybg
+  rotate: false
+  xy: 2, 2
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
 farming
   rotate: false
-  xy: 12, 2
+  xy: 12, 386
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 fishing
   rotate: false
-  xy: 22, 2
+  xy: 22, 386
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 foraging
   rotate: false
-  xy: 32, 2
+  xy: 32, 386
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 mining
   rotate: false
-  xy: 42, 2
+  xy: 42, 386
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
+nightbg
+  rotate: false
+  xy: 2, 194
+  size: 128, 192
+  orig: 128, 192
+  offset: 0, 0
+  index: -1
 star_empty
   rotate: false
-  xy: 52, 2
+  xy: 52, 386
   size: 10, 10
   orig: 10, 10
   offset: 0, 0
   index: -1
 star_filled
   rotate: false
-  xy: 62, 2
+  xy: 62, 386
   size: 10, 10
   orig: 10, 10
   offset: 0, 0

@@ -1,10 +1,12 @@
 package com.ap.ui.widget;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
@@ -33,6 +35,14 @@ public class TooltipHelper extends Table {
 
         Label.LabelStyle newStyle = new Label.LabelStyle(title.getStyle());
         newStyle.fontColor = Color.WHITE;
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("skins/Roboto-Regular.ttf"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = 24;
+        parameter.color = Color.WHITE;
+
+        BitmapFont font = generator.generateFont(parameter);
+        generator.dispose();
+        newStyle.font = font;
         title.setStyle(newStyle);
         title.setFontScale(1f);
         add(title).pad(15);
@@ -40,11 +50,11 @@ public class TooltipHelper extends Table {
         setPosition(10, 10);
         setVisible(false);
     }
-    public static TooltipHelper getTooltip(Skin skin) {
-        if (INSTANCE == null) {
-            INSTANCE = new TooltipHelper(skin);
-        }
+    public static TooltipHelper getTooltip() {
         return INSTANCE;
+    }
+    public static void setTooltip(Skin skin) {
+        INSTANCE = new TooltipHelper(skin);
     }
 
     public Label getTitle() {

@@ -7,10 +7,13 @@ import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
 import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
+import com.ap.screen.GameScreen;
 import com.ap.ui.widget.ItemContainer;
+import com.ap.ui.widget.TooltipHelper;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -45,11 +48,11 @@ public class TabManager {
     private float iconX;
 
 
-    public TabManager(Stage stage, AssetService assetService, Skin skin, AudioService audioService, Inventory inventory) {
-        this.stage = stage;
-        this.assetService = assetService;
-        this.skin = skin;
-        this.audioService = audioService;
+    public TabManager(GameScreen gameScreen) {
+        this.stage = gameScreen.getStage();
+        this.assetService = gameScreen.getAssetService();
+        this.skin = gameScreen.getSkin();
+        this.audioService = gameScreen.getAudioService();
         this.toggleAtlas = assetService.get(AtlasAsset.Toggles);
 
         ui = new Group();
@@ -60,12 +63,12 @@ public class TabManager {
 
         int bgWidth = 637;
         int bgHeight = 440;
-        contentArray.add(new InventoryTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Inventory, inventory));
-        contentArray.add(new SkillTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Skill));
-        contentArray.add(new SocialTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Social));
-        contentArray.add(new MapTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Map));
-        contentArray.add(new OptionsTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Options));
-        contentArray.add(new ExitTab(stage, assetService, skin, audioService, bgWidth, bgHeight, Tabs.Exit));
+        contentArray.add(new InventoryTab(gameScreen, bgWidth, bgHeight, Tabs.Inventory));
+        contentArray.add(new SkillTab(gameScreen, bgWidth, bgHeight, Tabs.Skill));
+        contentArray.add(new SocialTab(gameScreen, bgWidth, bgHeight, Tabs.Social));
+        contentArray.add(new MapTab(gameScreen, bgWidth, bgHeight, Tabs.Map));
+        contentArray.add(new OptionsTab(gameScreen, bgWidth, bgHeight, Tabs.Options));
+        contentArray.add(new ExitTab(gameScreen, bgWidth, bgHeight, Tabs.Exit));
 
         iconY = Constraints.WORLD_HEIGHT_RESOLUTION / 2f;
         iconX = (Constraints.WORLD_WIDTH_RESOLUTION - contentArray.size * iconWidth) / 2f;
@@ -100,10 +103,18 @@ public class TabManager {
                 public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                     button.addAction(Actions.scaleTo(1.2f, 1.2f, 0.1f));
                     audioService.playSound(SoundAsset.HoverButton);
+                    TooltipHelper tooltipHelper = TooltipHelper.getTooltip();
+                    Vector2 stageCoords = button.localToStageCoordinates(new Vector2(x, y));
+                    tooltipHelper.setVisible(true);
+                    tooltipHelper.getTitle().setText(contentArray.get(idx).icon.name());
+                    tooltipHelper.getTitle().setFontScale(1f);
+                    tooltipHelper.pack();
+                    tooltipHelper.setPosition(stageCoords.x, stageCoords.y);
                 }
                 @Override
                 public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
                     button.addAction(Actions.scaleTo(1f, 1f, 0.1f));
+                    TooltipHelper.getTooltip().setVisible(false);
                 }
             });
             button.setPosition(tabIndex * iconWidth + iconX, iconY);

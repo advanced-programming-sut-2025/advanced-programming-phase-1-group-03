@@ -6,6 +6,7 @@ import com.ap.asset.SoundAsset;
 import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.ItemStack;
+import com.ap.screen.GameScreen;
 import com.ap.ui.widget.ItemContainer;
 import com.ap.ui.widget.TooltipHelper;
 import com.badlogic.gdx.graphics.Color;
@@ -41,14 +42,12 @@ public class InventoryTab extends AbstractContent{
 
     private TooltipHelper tooltipHelper;
 
-    private Table tooltip;
-    private Label tooltipLabel;
 
     private int selectedCell = -1;
 
-    public InventoryTab(Stage stage, AssetService assetService, Skin skin, AudioService audioService, int width, int height, Tabs icon, Inventory inventory) {
-        super(stage, assetService, skin, audioService, width, height, icon);
-        this.inventory = inventory;
+    public InventoryTab(GameScreen gameScreen, int width, int height, Tabs icon) {
+        super(gameScreen.getStage(), gameScreen.getAssetService(), gameScreen.getSkin(), gameScreen.getAudioService(), width, height, icon);
+        this.inventory = gameScreen.getInventory();
 
         border_free = atlas.findRegion("cell/border", 0);
         border_selected = atlas.findRegion("cell/border", 1);
@@ -61,16 +60,10 @@ public class InventoryTab extends AbstractContent{
         m = ItemContainer.maxSize;
         n = MathUtils.ceil((float) Inventory.maxStorage / m);
 
-        tooltipHelper = TooltipHelper.getTooltip(skin);
-        tooltip = new Table();
-        tooltipLabel = new Label("I'm tooltip", skin);
-        tooltipLabel.setFillParent(true);
-        tooltip.add(tooltipLabel).center().expand().fill();
-        tooltip.setVisible(false);
+        tooltipHelper = TooltipHelper.getTooltip();
 
         makeStructure();
         loadData();
-        addActor(tooltip);
 
 
     }
@@ -122,6 +115,7 @@ public class InventoryTab extends AbstractContent{
                         Vector2 stageCoords = cell.localToStageCoordinates(new Vector2(x, y));
                         tooltipHelper.setVisible(true);
                         tooltipHelper.getTitle().setText(cell.getItem().getItem().getName());
+                        tooltipHelper.getTitle().setFontScale(1f);
                         tooltipHelper.pack();
                         tooltipHelper.setPosition(stageCoords.x, stageCoords.y);
 
@@ -223,21 +217,10 @@ public class InventoryTab extends AbstractContent{
             super();
             TextureRegionDrawable drawable;
 
-            drawable = new TextureRegionDrawable(cell_empty);
-            drawable.setMinSize(cellWidth, cellHeight);
-            blankCell = new Image(new TextureRegionDrawable(drawable));
-
-            drawable = new TextureRegionDrawable(cell_locked);
-            drawable.setMinSize(cellWidth, cellHeight);
-            lockedCell = new Image(new TextureRegionDrawable(drawable));
-
-            drawable = new TextureRegionDrawable(border_free);
-            drawable.setMinSize(cellWidth, cellHeight);
-            freeBorder = new Image(new TextureRegionDrawable(drawable));
-
-            drawable = new TextureRegionDrawable(border_selected);
-            drawable.setMinSize(cellWidth, cellHeight);
-            selectedBorder = new Image(new TextureRegionDrawable(drawable));
+            blankCell = getNewImage(cell_empty, cellWidth, cellHeight);
+            lockedCell = getNewImage(cell_locked, cellWidth, cellHeight);
+            freeBorder = getNewImage(border_free, cellWidth, cellHeight);
+            selectedBorder = getNewImage(border_selected, cellWidth, cellHeight);
 
             blankCell.setSize(cellWidth, cellHeight);
             lockedCell.setSize(cellWidth, cellHeight);
