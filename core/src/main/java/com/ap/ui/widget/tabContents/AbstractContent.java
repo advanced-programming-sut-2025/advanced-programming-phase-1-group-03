@@ -158,7 +158,9 @@ public abstract class AbstractContent extends Group {
     public Image getNewImage(TextureRegion region, float width, float height) {
         TextureRegionDrawable drawable = new TextureRegionDrawable(region);
         drawable.setMinSize(width, height);
-        return new Image(drawable);
+        Image image = new Image(drawable);
+        image.setSize(width, height);
+        return image;
     }
 
 }

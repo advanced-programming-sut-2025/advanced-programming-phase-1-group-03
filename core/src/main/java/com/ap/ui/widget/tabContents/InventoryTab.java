@@ -1,15 +1,14 @@
 package com.ap.ui.widget.tabContents;
 
-import com.ap.Constraints;
-import com.ap.asset.AssetService;
+import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
-import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.ItemStack;
 import com.ap.screen.GameScreen;
 import com.ap.ui.widget.ItemContainer;
 import com.ap.ui.widget.TooltipHelper;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -18,8 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-
-import static java.util.Collections.swap;
+import com.badlogic.gdx.utils.Array;
 
 public class InventoryTab extends AbstractContent{
 
@@ -28,6 +26,8 @@ public class InventoryTab extends AbstractContent{
     private Table itemContainer;
     private Table backpack;
 
+    private Group trashCan;
+
     private float cellWidth;
     private float cellHeight;
 
@@ -35,6 +35,11 @@ public class InventoryTab extends AbstractContent{
     protected TextureRegion border_selected;
     protected TextureRegion cell_locked;
     protected TextureRegion cell_empty;
+
+    private Array<TextureRegion> canBodiesTexture;
+    private Array<TextureRegion> canTopsTexture;
+    private Array<Image> canBodies;
+    private Array<Image> canTops;
 
     private ItemCell[][] cells;
     private final int n;
@@ -53,6 +58,17 @@ public class InventoryTab extends AbstractContent{
         border_selected = atlas.findRegion("cell/border", 1);
         cell_locked = atlas.findRegion("cell/locked");
         cell_empty = atlas.findRegion("cell/blank");
+
+        TextureAtlas canAssets = gameScreen.getAssetService().get(AtlasAsset.Toggles);
+
+        canBodiesTexture = new Array<>();
+        canTopsTexture = new Array<>();
+        for (int i = 0; i <= Inventory.maxTrashCanLevel; i++) {
+            TextureRegion body = canAssets.findRegion("can/level", i);
+            TextureRegion top = canAssets.findRegion("can/top_level", i);
+            canBodiesTexture.add(body);
+            canTopsTexture.add(top);
+        }
 
         cellWidth = 48;
         cellHeight = 48 ;
@@ -135,7 +151,7 @@ public class InventoryTab extends AbstractContent{
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     if (selectedCell == -1) {
-                        if (!cell.isLocked()) {
+                        if (!cell.isLocked() && cell.isHasItem()) {
                             selectedCell = id;
                             cell.setSelected(true);
                         }
@@ -157,10 +173,76 @@ public class InventoryTab extends AbstractContent{
             });
         }
 
+        addTrashCan();
+
+    }
+
+    private void addTrashCan() {
+        canBodies = new Array<>();
+        canTops = new Array<>();
+        float canBodyWidth = 50; //original 16 * 26
+        float canBodyHeight = canBodyWidth * 26f / 16f;
+        float canTopWidth = canBodyWidth * 18f / 16f; // original 18 * 10
+        float canTopHeight = canTopWidth * 10f / 18f;
+        for (int i = 0; i < Inventory.maxTrashCanLevel; i++) {
+            Image body = getNewImage(canBodiesTexture.get(i), canBodyWidth, canBodyHeight);
+            Image top = getNewImage(canTopsTexture.get(i), canTopWidth, canTopHeight);
+            canBodies.add(body);
+            canTops.add(top);
+        }
+
+        trashCan = new Group();
+        trashCan.setSize(canTopWidth, canBodyHeight);
+        trashCan.setPosition((width - trashCan.getWidth()) / 2f, 100);
+
+        for (int i = 0; i < Inventory.maxTrashCanLevel; i++) {
+            Image body = canBodies.get(i);
+            Image top = canTops.get(i);
+            body.setPosition((canTopWidth - canBodyWidth) / 2f, 0);
+            top.setPosition(0, canBodyHeight - canTopHeight);
+            body.setVisible(false);
+            top.setVisible(false);
+            trashCan.addActor(body);
+            trashCan.addActor(top);
+            top.setOrigin(canTopWidth, 0);
+            trashCan.addListener(new InputListener() {
+                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                    top.addAction(Actions.rotateBy(-45, 0.3f));
+                }
+                public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                    top.addAction(Actions.rotateBy(45, 0.3f));
+                }
+            });
+            trashCan.addListener(new ClickListener() {
+                public void clicked(InputEvent event, float x, float y) {
+                    if (selectedCell == -1) {
+                        return;
+                    }
+                    if (inventory.getSize() == 1) return;
+                    inventory.removeItemViaTrashCan(cells[selectedCell / m][selectedCell % m].getItem());
+                    loadInventory();
+                }
+            });
+
+
+        }
+        addActor(trashCan);
     }
 
     @Override
     public void loadData() {
+        loadInventory();
+
+        for (int i = 0; i < Inventory.maxTrashCanLevel; i++) {
+            canBodies.get(i).setVisible(false);
+            canTops.get(i).setVisible(false);
+        }
+        canBodies.get(inventory.getTrashCanLevel()).setVisible(true);
+        canTops.get(inventory.getTrashCanLevel()).setVisible(true);
+
+    }
+
+    private void loadInventory() {
         selectedCell = -1;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
@@ -179,7 +261,6 @@ public class InventoryTab extends AbstractContent{
             int j = x % m;
             cells[i][j].addItem(inventory.getItems().get(x));
         }
-
     }
 
     public void swapItems(int x, int y) {
@@ -239,7 +320,9 @@ public class InventoryTab extends AbstractContent{
         public void free() {
             item = null;
             if (icon != null) removeActor(icon);
+            if (number != null) removeActor(number);
             icon = null;
+            number = null;
             hasItem = false;
         }
 

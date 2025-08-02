@@ -1,49 +1,53 @@
 toggles.png
-size: 152, 495
-format: RGBA8888
-filter: Nearest, Nearest
-repeat: none
-pma: false
+size:512,32
+repeat:none
 animals
-  bounds: 132, 289, 16, 16
+bounds:200,14,16,16
 blank
-  bounds: 132, 307, 16, 16
-blank_bg
-  bounds: 132, 325, 16, 16
-boardGameBorder
-  bounds: 2, 18, 138, 74
+bounds:182,14,16,16
 collections
-  bounds: 132, 343, 16, 16
+bounds:164,14,16,16
 crafting
-  bounds: 132, 361, 16, 16
-cross_icon
-  bounds: 2, 482, 11, 11
-daybg
-  bounds: 2, 94, 128, 192
+bounds:92,14,16,16
 exit
-  bounds: 132, 379, 16, 16
+bounds:254,14,16,16
 inventory
-  bounds: 132, 397, 16, 16
-level-0
-  bounds: 132, 94, 18, 37
-level-1
-  bounds: 132, 133, 18, 37
-level-2
-  bounds: 132, 172, 18, 37
-level-3
-  bounds: 132, 211, 18, 37
-level-4
-  bounds: 132, 250, 18, 37
+bounds:110,14,16,16
+can/level
+index:0
+bounds:2,4,16,26
+can/level
+index:2
+bounds:20,4,16,26
+can/level
+index:4
+bounds:38,4,16,26
+can/level
+index:1
+bounds:56,4,16,26
+can/level
+index:3
+bounds:74,4,16,26
 map
-  bounds: 132, 415, 16, 16
-nightbg
-  bounds: 2, 288, 128, 192
+bounds:128,14,16,16
 options
-  bounds: 132, 433, 16, 16
-skill_process_bas
-  bounds: 2, 2, 144, 14
-  offsets: 2, 1, 149, 15
+bounds:146,14,16,16
 social
-  bounds: 132, 451, 16, 16
+bounds:218,14,16,16
 specials
-  bounds: 132, 469, 16, 16
+bounds:236,14,16,16
+can/top_level
+index:4
+bounds:92,2,18,10
+can/top_level
+index:1
+bounds:112,2,18,10
+can/top_level
+index:3
+bounds:132,2,18,10
+can/top_level
+index:0
+bounds:152,2,18,10
+can/top_level
+index:2
+bounds:172,2,18,10
