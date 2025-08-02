@@ -1,21 +1,20 @@
 package com.ap.screen;
 
-import com.ap.Constraints;
 import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
-import com.ap.component.Player;
 import com.ap.items.EntityFactory;
 import com.ap.items.Inventory;
 import com.ap.items.ItemFactory;
 import com.ap.items.tools.Tool;
 import com.ap.managers.*;
+import com.ap.model.AbilityType;
 import com.ap.model.GameData;
 import com.ap.model.Season;
 import com.ap.system.*;
-import com.ap.system.universal.EnergyManager;
+import com.ap.managers.EnergyManager;
 import com.ap.system.universal.ITimeListener;
 import com.ap.system.universal.TimeSystem;
 import com.ap.ui.model.GameViewModel;
@@ -27,6 +26,9 @@ import com.ap.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+
+import java.util.HashMap;
+import java.util.Map;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
@@ -64,6 +66,8 @@ public class GameScreen extends AbstractScreen {
 
     private EnergyManager energyManager;
 
+    private Map<MapAsset, Engine> engineCache = new HashMap<>();
+
     public GameScreen(GdxGame game) {
         super(game);
         universalEngine = new Engine();
@@ -82,13 +86,11 @@ public class GameScreen extends AbstractScreen {
         inventory = new Inventory();
         Tool.addBasicTools(inventory, assetService);
         abilityManager = new AbilityManager();
-        AbilityManager.setINSTANCE(abilityManager);
 
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
         tabManager = new TabManager(this);
-        energyManager = EnergyManager.getInstance();
 
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
@@ -99,6 +101,9 @@ public class GameScreen extends AbstractScreen {
         clockManager = new ClockManager(clock);
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock, timeSystem);
+
+        energyManager = new EnergyManager(weatherSystem, abilityManager);
+
         mapManager = new MapManager(game, this);
         mapManager.loadAllMaps();
     }
@@ -108,7 +113,7 @@ public class GameScreen extends AbstractScreen {
     public void show() {
         universalEngine.addSystem(timeSystem);
         universalEngine.addSystem(weatherSystem);
-        universalEngine.addSystem(new EnergySystem(energyBar));
+        universalEngine.addSystem(new EnergySystem(energyBar, energyManager));
         // Play background music
         audioService.playMusic(MusicAsset.Spring);
 
@@ -217,6 +222,21 @@ public class GameScreen extends AbstractScreen {
 
     public void setCurrentTiledMap(TiledMap currentTiledMap) {
         this.currentTiledMap = currentTiledMap;
+    }
+
+    public Map<MapAsset, Engine> getEngineCache() {
+        return engineCache;
+    }
+    public Engine getFarmEngine() {
+        var engine = engineCache.get(MapAsset.Farm1);
+        if(engine == null) {
+            return engineCache.get(MapAsset.Farm2);
+        }
+        return engine;
+    }
+
+    public EnergyManager getEnergyManager() {
+        return energyManager;
     }
 
     public Skin getSkin() {

@@ -2,6 +2,7 @@ package com.ap.model;
 
 import com.ap.Constraints;
 import com.ap.asset.MapAsset;
+import com.badlogic.ashley.core.Entity;
 
 /**
  * We use this class to store current game data
@@ -14,6 +15,7 @@ public class GameData {
     private int farmIndex;
     private boolean isGreenhouseBuilt = false;
     private int gold = Constraints.PLAYER_INITIAL_GOLD;
+    private Entity carriedEntity = null;
 
     public static GameData getInstance() {
         if (instance == null) {
@@ -60,5 +62,13 @@ public class GameData {
 
     public void setPlayerGold(int i) {
         gold = i;
+    }
+
+    public Entity getCarriedEntity() {
+        return carriedEntity;
+    }
+
+    public void setCarriedEntity(Entity carriedEntity) {
+        this.carriedEntity = carriedEntity;
     }
 }

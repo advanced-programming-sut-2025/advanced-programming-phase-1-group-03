@@ -4,10 +4,8 @@ import com.ap.asset.SoundAsset;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
 import com.ap.managers.GameUIManager;
-import com.ap.model.Foods;
-import com.ap.model.GameData;
 import com.ap.screen.GameScreen;
-import com.ap.system.universal.EnergyManager;
+import com.ap.managers.EnergyManager;
 import com.ap.ui.widget.DecisionDialog;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -26,16 +24,16 @@ public class Food extends Item {
     public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
         eatDialog = GameUIManager.instance.showDecisionDialog("Would you like to eat " + name + "?",
                 () -> {
-                    eatFood(game.getInventory());
+                    eatFood(game.getInventory(),  game.getEnergyManager());
                     game.getAudioService().playSound(SoundAsset.Eat);
                 }, () -> {
                     eatDialog.remove();
                 });
     }
 
-    private void eatFood(Inventory inventory) {
+    private void eatFood(Inventory inventory, EnergyManager energyManager) {
         inventory.removeItem(this, 1);
         eatDialog.remove();
-        EnergyManager.getInstance().advance(energy);
+        energyManager.advance(energy);
     }
 }

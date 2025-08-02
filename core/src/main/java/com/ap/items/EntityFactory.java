@@ -5,7 +5,10 @@ import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.audio.AudioService;
 import com.ap.component.*;
+import com.ap.component.items.Barn;
+import com.ap.component.items.Well;
 import com.ap.items.plant.Crop;
+import com.ap.model.BarnsType;
 import com.ap.model.CropsType;
 import com.ap.state.CrowAnimationState;
 import com.ap.model.MineralNodes;
@@ -228,6 +231,73 @@ public class EntityFactory {
         var body = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, false);
         entity.add(new Physic(body, position));
         entity.add(new MineralNode(type));
+        return entity;
+    }
+    private Entity CreateCarrierEntity(TextureRegion texture) {
+        Entity entity = new Entity();
+        Vector2 size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
+        entity.add(new Transform(new Vector2(0,0),
+                1000,
+                new Vector2(1, 1),
+                size,
+                0, 4));
+        entity.add(new Graphic(texture, new Color(1f, 1f, 1f, 0.5f)));
+        entity.add(new Carrier());
+        return entity;
+    }
+
+    public Entity CreateCarrierBarnEntity(BarnsType type) {
+        var texture = assetService.get(AtlasAsset.Barns).findRegion(type.name());
+        Entity entity = CreateCarrierEntity(texture);
+        entity.add(new Barn(type));
+        return entity;
+    }
+    public Entity CreateCarrierWellEntity() {
+        var texture = assetService.get(AtlasAsset.Barns).findRegion("Well_Complete");
+        Entity entity = CreateCarrierEntity(texture);
+        entity.add(new Well());
+        return entity;
+    }
+    public Entity CreateBarnEntity(BarnsType type, Vector2 position, World world) {
+        Entity entity = new Entity();
+        var texture = assetService.get(AtlasAsset.Barns).findRegion(type.name());
+        Vector2 size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
+        entity.add(new Transform(position,
+                Constraints.BARN_Z,
+                new Vector2(1, 1),
+                size,
+                0, 5));
+        entity.add(new Graphic(texture));
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false);
+        entity.add(new Physic(body, position));
+        entity.add(new Barn(type));
+        return entity;
+    }
+    public Entity CreateWellEntity(Vector2 position, World world) {
+        Entity entity = new Entity();
+        var bottomTexture = assetService.get(AtlasAsset.Barns).findRegion("Well_Bottom");
+        Vector2 size = new Vector2(bottomTexture.getRegionWidth(), bottomTexture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
+        entity.add(new Transform(position,
+                Constraints.WELL_BOTTOM_Z,
+                new Vector2(1, 1),
+                size,
+                0, 4));
+        entity.add(new Graphic(bottomTexture));
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false);
+        entity.add(new Physic(body, position));
+
+        var topTexture = assetService.get(AtlasAsset.Barns).findRegion("Well_Top");
+        Vector2 topSize = new Vector2(topTexture.getRegionWidth(), topTexture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
+        Entity topEntity = new Entity();
+        topEntity.add(new Transform(position.cpy().add(0, 1.3f),
+                Constraints.WELL_TOP_Z,
+                new Vector2(1, 1),
+                topSize,
+                0, 0));
+        topEntity.add(new Graphic(topTexture));
+
+        entity.add(new Container(topEntity));
+        entity.add(new Well());
         return entity;
     }
 }

@@ -19,6 +19,7 @@ audio/hoeHit.wav
 audio/hover-sound.wav
 audio/mineral.wav
 audio/pickaxe.wav
+audio/placeItem.wav
 audio/purchase.mp3
 audio/thunder.mp3
 audio/type.mp3
@@ -31,6 +32,10 @@ graphics/Animals/Fish.png
 graphics/Animals/Fishing-2.png
 graphics/Animals/crow.atlas
 graphics/Animals/crow.png
+graphics/Barns.atlas
+graphics/Barns.png
+graphics/Carpenter.atlas
+graphics/Carpenter.png
 graphics/Characters.atlas
 graphics/Characters.png
 graphics/Cooking.atlas
@@ -87,12 +92,12 @@ graphics/UI_elements.png
 graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
-graphics/img_1.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
 graphics/shadow.png
 graphics/whiteflash.png
+map/Carpenter.tmx
 map/Farm Buildings.tsx
 map/Farm1.tmx
 map/Farm2.tmx
@@ -135,6 +140,9 @@ map/tileset/winter_outdoorsTileSheet2.png
 map/tileset/winter_town.png
 skins/LondonMM.ttf
 skins/Millennium-Bold.ttf
+skins/Roboto-Regular.ttf
+skins/Stardew Valley ALL CAPS.ttf
+skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

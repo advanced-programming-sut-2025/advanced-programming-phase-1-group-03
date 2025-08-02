@@ -1,5 +1,6 @@
 package com.ap.system;
 
+import com.ap.component.Carrier;
 import com.ap.component.Graphic;
 import com.ap.component.Player;
 import com.ap.component.Transform;
@@ -19,6 +20,9 @@ public class AdjustAlphaSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
+        if(Carrier.mapper.has(entity)) {
+            return;
+        }
         Entity player = engine.getEntitiesFor(Family.all(Player.class).get()).get(0);
 
         if(entity == player) {

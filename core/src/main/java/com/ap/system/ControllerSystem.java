@@ -4,7 +4,6 @@ import com.ap.component.Controller;
 import com.ap.component.Move;
 import com.ap.component.Player;
 import com.ap.input.Command;
-import com.ap.system.universal.EnergyManager;
 import com.ap.ui.widget.cheatCode.CheatCodeBox;
 import com.ap.ui.widget.CookingMenu;
 import com.ap.ui.widget.CraftingMenu;
@@ -20,11 +19,13 @@ public class ControllerSystem extends IteratingSystem {
     private CookingMenu cookingMenu;
     private CheatCodeBox cheatCodeBox;
     private TileSelectionSystem tileSelectionSystem;
+    private CarrierSystem carrierSystem;
     private int totalMovement = 0;
 
     public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CookingMenu cookingMenu, CheatCodeBox cheatCodeBox,  Engine engine) {
         super(Family.all(Controller.class).get());
         this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
+        this.carrierSystem = engine.getSystem(CarrierSystem.class);
         this.craftingMenu = craftingMenu;
         this.cookingMenu = cookingMenu;
         this.tabManager = tabManager;
@@ -32,11 +33,7 @@ public class ControllerSystem extends IteratingSystem {
     }
 
     public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CheatCodeBox cheatCodeBox, Engine engine) {
-        super(Family.all(Controller.class).get());
-        this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
-        this.craftingMenu = craftingMenu;
-        this.tabManager = tabManager;
-        this.cheatCodeBox = cheatCodeBox;
+        this(tabManager, craftingMenu, null, cheatCodeBox, engine);
     }
 
     @Override
@@ -73,6 +70,8 @@ public class ControllerSystem extends IteratingSystem {
                         cookingMenu.toggle();
                 } case OpenCheatCode -> {
                     cheatCodeBox.toggle();
+                } case Place -> {
+                    carrierSystem.place();
                 }
             }
         }

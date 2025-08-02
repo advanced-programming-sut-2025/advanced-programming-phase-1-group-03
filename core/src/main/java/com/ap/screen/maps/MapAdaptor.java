@@ -106,7 +106,7 @@ public abstract class MapAdaptor implements IMap {
 
         timeSystem = gameScreen.getTimeSystem();
         weatherSystem = gameScreen.getWeatherSystem();
-        storeManager = new StoreManager(gameScreen.getInventory(), audioService);
+        storeManager = new StoreManager(gameScreen.getInventory(), audioService, gameScreen.getFarmEngine(), world);
     }
 
     protected void setupMap() {
@@ -136,6 +136,7 @@ public abstract class MapAdaptor implements IMap {
     public void setup(MapAsset map) {
         this.mapAsset = map;
         this.map = tiledService.load(map);
+        gameScreen.getEngineCache().put(map, engine);
     }
 
     @Override

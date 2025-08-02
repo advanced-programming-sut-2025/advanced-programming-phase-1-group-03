@@ -44,6 +44,18 @@ public class Helper {
         }
     }
 
+    public static boolean canPlace(Vector2 position, Vector2 size, World world) {
+        final boolean[] found = {false};
+        world.QueryAABB(new QueryCallback() {
+            @Override
+            public boolean reportFixture(Fixture fixture) {
+                if(!fixture.isSensor())
+                    found[0] = true;
+                return true;
+            }
+        }, position.x, position.y , position.x + size.x, position.y + size.y);
+        return !found[0];
+    }
     public static Item.WorldObject getTopBodyAtPoint(Vector2 tilePos, World world, TiledMap map) {
 
         tilePos.add(new Vector2(0.5f, 0.5f));
