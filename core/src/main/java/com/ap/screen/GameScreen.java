@@ -18,6 +18,7 @@ import com.ap.managers.WeatherEffects;
 import com.ap.model.GameData;
 import com.ap.model.Season;
 import com.ap.system.*;
+import com.ap.system.universal.EnergyManager;
 import com.ap.system.universal.ITimeListener;
 import com.ap.system.universal.TimeSystem;
 import com.ap.ui.model.GameViewModel;
@@ -62,6 +63,10 @@ public class GameScreen extends AbstractScreen {
     private MapAsset currentMap;
     private TiledMap currentTiledMap;
 
+    private EnergyManager energyManager;
+
+    private static GameScreen instance;
+
     public GameScreen(GdxGame game) {
         super(game);
         universalEngine = new Engine();
@@ -83,6 +88,7 @@ public class GameScreen extends AbstractScreen {
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
+        energyManager = EnergyManager.getInstance();
 
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
         journal = new Journal(assetService, skin, stage);
@@ -97,6 +103,7 @@ public class GameScreen extends AbstractScreen {
         weatherSystem = new WeatherSystem(clock, timeSystem);
         mapManager = new MapManager(game, this);
         mapManager.loadAllMaps();
+        instance = this;
     }
 
 
@@ -164,7 +171,9 @@ public class GameScreen extends AbstractScreen {
         return energyBar;
     }
 
-
+    public static GameScreen getInstance() {
+        return instance;
+    }
 
     public AssetService getAssetService() {
         return assetService;
