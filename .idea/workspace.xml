@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="tool tip added">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/AbilityManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/FishingPole.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/FishingPole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Hoe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Hoe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/MilkPail.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/MilkPail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Pickaxe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Pickaxe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Scythe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Scythe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Shear.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Shear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/WateringCan.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/WateringCan.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Abilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/AbilityType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,7 +117,7 @@
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RunGDX">
+  <component name="RunManager" selected="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError">
     <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -176,7 +165,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.RunGDX" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>

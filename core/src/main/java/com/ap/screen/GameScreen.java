@@ -63,8 +63,6 @@ public class GameScreen extends AbstractScreen {
 
     private EnergyManager energyManager;
 
-    private static GameScreen instance;
-
     public GameScreen(GdxGame game) {
         super(game);
         universalEngine = new Engine();
@@ -102,7 +100,6 @@ public class GameScreen extends AbstractScreen {
         weatherSystem = new WeatherSystem(clock, timeSystem);
         mapManager = new MapManager(game, this);
         mapManager.loadAllMaps();
-        instance = this;
     }
 
 
@@ -174,9 +171,6 @@ public class GameScreen extends AbstractScreen {
         return energyBar;
     }
 
-    public static GameScreen getInstance() {
-        return instance;
-    }
 
     public AssetService getAssetService() {
         return assetService;
