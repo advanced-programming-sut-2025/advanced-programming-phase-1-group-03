@@ -240,7 +240,7 @@ public class StoreMenu extends Actor {
     private void drawHoverTooltip(Batch batch) {
         if(hoverRow < 0 || hoverRow > 3)
             return;
-        StoreProduct product = list.get(hoverRow);
+        StoreProduct product = list.get(hoverRow + row);
         BitmapFont font = new BitmapFont();
         font.setColor(Color.WHITE);
 
