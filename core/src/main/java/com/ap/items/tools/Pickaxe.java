@@ -24,7 +24,13 @@ public class Pickaxe extends Tool {
 
     @Override
     int getEnergyConsumption() {
-        return 0;
+        return switch(currentLevel) {
+            case Normal -> 5;
+            case Copper -> 4;
+            case Iron -> 3;
+            case Gold -> 2;
+            case Iridium -> 1;
+        };
     }
 
     @Override

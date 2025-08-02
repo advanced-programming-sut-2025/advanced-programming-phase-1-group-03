@@ -11,13 +11,20 @@ import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Hoe extends Tool{
+    private BasicToolLevels currentLevel = BasicToolLevels.Normal;
     public Hoe(TextureRegion icon) {
         super("Hoe", icon, AbilityType.Foraging);
     }
 
     @Override
     int getEnergyConsumption() {
-        return 0;
+        return switch(currentLevel) {
+            case Normal -> 5;
+            case Copper -> 4;
+            case Iron -> 3;
+            case Gold -> 2;
+            case Iridium -> 1;
+        };
     }
 
     @Override

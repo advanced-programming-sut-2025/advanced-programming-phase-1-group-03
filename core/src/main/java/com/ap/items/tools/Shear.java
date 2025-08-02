@@ -12,7 +12,7 @@ public class Shear extends Tool{
 
     @Override
     int getEnergyConsumption() {
-        return 0;
+        return 4;
     }
 
     @Override

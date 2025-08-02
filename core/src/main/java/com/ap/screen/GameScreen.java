@@ -15,6 +15,7 @@ import com.ap.managers.*;
 import com.ap.model.GameData;
 import com.ap.model.Season;
 import com.ap.system.*;
+import com.ap.system.universal.EnergyManager;
 import com.ap.system.universal.ITimeListener;
 import com.ap.system.universal.TimeSystem;
 import com.ap.ui.model.GameViewModel;
@@ -60,6 +61,8 @@ public class GameScreen extends AbstractScreen {
     private MapAsset currentMap;
     private TiledMap currentTiledMap;
 
+    private EnergyManager energyManager;
+
     public GameScreen(GdxGame game) {
         super(game);
         universalEngine = new Engine();
@@ -83,6 +86,7 @@ public class GameScreen extends AbstractScreen {
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
         tabManager = new TabManager(stage, assetService, skin, audioService, inventory);
+        energyManager = EnergyManager.getInstance();
 
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
@@ -166,7 +170,6 @@ public class GameScreen extends AbstractScreen {
     public EnergyBar getEnergyBar() {
         return energyBar;
     }
-
 
 
     public AssetService getAssetService() {

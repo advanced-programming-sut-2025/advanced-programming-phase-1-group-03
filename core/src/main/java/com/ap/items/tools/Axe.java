@@ -10,6 +10,7 @@ import com.ap.items.plant.Crop;
 import com.ap.items.plant.Tree;
 import com.ap.model.AbilityType;
 import com.ap.screen.GameScreen;
+import com.ap.system.universal.TimeSystem;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -19,13 +20,21 @@ import com.badlogic.gdx.utils.Timer;
 
 
 public class Axe extends Tool {
+    private BasicToolLevels currentLevel = BasicToolLevels.Normal;
+
     public Axe(TextureRegion icon) {
         super("Axe", icon, AbilityType.Foraging);
     }
 
     @Override
     int getEnergyConsumption() {
-        return 0;
+        return switch(currentLevel) {
+            case Normal -> 5;
+            case Copper -> 4;
+            case Iron -> 3;
+            case Gold -> 2;
+            case Iridium -> 1;
+        };
     }
 
     @Override
