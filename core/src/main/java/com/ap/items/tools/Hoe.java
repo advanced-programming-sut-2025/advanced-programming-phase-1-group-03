@@ -1,20 +1,18 @@
 package com.ap.items.tools;
 
-import com.ap.GdxGame;
 import com.ap.asset.SoundAsset;
 import com.ap.items.EntityFactory;
-import com.ap.model.Abilities;
+import com.ap.model.AbilityType;
 import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Hoe extends Tool{
     public Hoe(TextureRegion icon) {
-        super("Hoe", icon, Abilities.Foraging);
+        super("Hoe", icon, AbilityType.Foraging);
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.ap.items.tools;
 
-import com.ap.Constraints;
-import com.ap.GdxGame;
 import com.ap.asset.SoundAsset;
 import com.ap.component.ItemHolder;
 import com.ap.component.MineralNode;
@@ -9,22 +7,19 @@ import com.ap.items.Item;
 import com.ap.items.ItemFactory;
 import com.ap.items.ItemNames;
 import com.ap.managers.GameUIManager;
-import com.ap.model.Abilities;
+import com.ap.model.AbilityType;
 import com.ap.screen.GameScreen;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
-
-import java.util.Random;
 
 public class Pickaxe extends Tool {
     private BasicToolLevels currentLevel = BasicToolLevels.Normal;
 
     public Pickaxe(TextureRegion icon) {
-        super("Pickaxe", icon, Abilities.Mining);
+        super("Pickaxe", icon, AbilityType.Mining);
     }
 
     @Override
