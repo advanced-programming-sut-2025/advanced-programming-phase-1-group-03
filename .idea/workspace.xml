@@ -5,29 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="tool tip added">
-      <change afterPath="$PROJECT_DIR$/assets/audio/eat.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/audio/purchase.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/StoreManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/FoodRecipes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/AbilityManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/ItemFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/food/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/food/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/GameUIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/GameUIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Foods.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Foods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/store/StardropSaloonProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/store/StardropSaloonProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/MapAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/MapAdaptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Mine.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Mine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/PhysicSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/PhysicSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/StoreMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/StoreMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/FishingPole.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/FishingPole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Hoe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Hoe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/MilkPail.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/MilkPail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Pickaxe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Pickaxe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Scythe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Scythe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Shear.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Shear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/WateringCan.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/WateringCan.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Abilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/AbilityType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,8 +54,8 @@
       <list>
         <option value="Interface" />
         <option value="Kotlin Class" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -138,7 +128,7 @@
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.StardewValley [run]">
+  <component name="RunManager" selected="Application.RunGDX">
     <configuration name="LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -186,6 +176,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.RunGDX" />
       <item itemvalue="Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>
@@ -739,21 +730,6 @@
           <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/LoginScreen.java</url>
           <line>20</line>
           <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java</url>
-          <line>86</line>
-          <option name="timeStamp" value="107" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/House.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="108" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />

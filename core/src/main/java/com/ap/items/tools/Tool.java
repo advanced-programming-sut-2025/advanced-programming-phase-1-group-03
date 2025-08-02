@@ -5,15 +5,15 @@ import com.ap.asset.AtlasAsset;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
 import com.ap.items.ItemFactory;
-import com.ap.model.Abilities;
+import com.ap.model.AbilityType;
 import com.ap.model.CropsType;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public abstract class Tool extends Item {
-    protected final Abilities relatedAbility;
+    protected final AbilityType relatedAbility;
 
-    public Tool(String name, TextureRegion icon, Abilities relatedAbility) {
+    public Tool(String name, TextureRegion icon, AbilityType relatedAbility) {
         super(name, 1, icon);
         this.relatedAbility = relatedAbility;
     }
