@@ -1,12 +1,10 @@
-package com.ap.ui.model;
+package com.ap.client.ui.model;
 
-import com.ap.GdxGame;
-import com.ap.asset.MapAsset;
-import com.ap.database.SqliteConnection;
-import com.ap.model.GameData;
-import com.ap.screen.GameScreen;
-
-import javax.swing.text.View;
+import com.ap.client.GdxGame;
+import com.ap.client.asset.MapAsset;
+import com.ap.client.database.SqliteConnection;
+import com.ap.client.model.GameData;
+import com.ap.client.screen.GameScreen;
 
 public class LobbyViewModel extends ViewModel {
     private SqliteConnection sqlite;

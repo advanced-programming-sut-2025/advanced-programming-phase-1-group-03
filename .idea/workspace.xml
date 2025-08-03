@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding server side">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/listeners/LobbyListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Registrator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/IntroductionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/IntroductionResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/ServerData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/model/Room.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/model/ServerPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/GdxGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/GameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/GameClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/MainViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/database/SqliteConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/database/SqliteConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/listerners/LobbyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/listerners/LobbyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-    </list>
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding server side 2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -95,7 +77,7 @@
     "Application.Server.executor": "Run",
     "Gradle.Download Sources.executor": "Run",
     "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
-    "Gradle.StardewValley [run].executor": "Debug",
+    "Gradle.StardewValley [run].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -133,7 +115,7 @@
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Gradle.StardewValley [run]">
     <configuration name="StardewValley [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -242,14 +224,7 @@
       <workItem from="1754133416833" duration="550000" />
       <workItem from="1754134966745" duration="7966000" />
       <workItem from="1754209611033" duration="4922000" />
-      <workItem from="1754219959592" duration="10098000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۴۵" summary="Registration System Completed">
-      <option name="closed" value="true" />
-      <created>1752797017869</created>
-      <option name="number" value="LOCAL‎−۰۰۰۴۵" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۴۵" />
-      <updated>1752797017869</updated>
+      <workItem from="1754219959592" duration="10451000" />
     </task>
     <task id="LOCAL‎−۰۰۰۴۶" summary="stay logged in and login page completed">
       <option name="closed" value="true" />
@@ -606,7 +581,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۹۳" />
       <updated>1754229591417</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL‎−۰۰۰۹۴" summary="Adding server side 2">
+      <option name="closed" value="true" />
+      <created>1754231780214</created>
+      <option name="number" value="LOCAL‎−۰۰۰۹۴" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۹۴" />
+      <updated>1754231780214</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -637,7 +619,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixing weather system and house inside" />
     <MESSAGE value="Farm 2 added" />
     <MESSAGE value="Greenhouse done" />
     <MESSAGE value="Fix some bugs" />
@@ -662,7 +643,8 @@
     <MESSAGE value="Avoid crash" />
     <MESSAGE value="Avoid crash 2" />
     <MESSAGE value="Adding server side" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding server side" />
+    <MESSAGE value="Adding server side 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding server side 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

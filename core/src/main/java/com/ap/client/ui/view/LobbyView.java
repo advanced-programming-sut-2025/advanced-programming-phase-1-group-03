@@ -1,9 +1,9 @@
-package com.ap.ui.view;
+package com.ap.client.ui.view;
 
-import com.ap.asset.AssetService;
-import com.ap.asset.AtlasAsset;
-import com.ap.audio.AudioService;
-import com.ap.ui.model.LobbyViewModel;
+import com.ap.client.asset.AssetService;
+import com.ap.client.asset.AtlasAsset;
+import com.ap.client.audio.AudioService;
+import com.ap.client.ui.model.LobbyViewModel;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -31,6 +31,7 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         this.atlas = assetService.get(AtlasAsset.Avatars);
         setupUI();
     }
+
 
     @Override
     protected void setupUI() {

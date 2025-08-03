@@ -1,17 +1,19 @@
-package com.ap.screen;
+package com.ap.client.screen;
 
-import com.ap.GdxGame;
-import com.ap.asset.AssetService;
-import com.ap.audio.AudioService;
-import com.ap.input.KeyboardController;
-import com.ap.input.UIControllerState;
-import com.ap.ui.common.BackButtonLayer;
-import com.ap.ui.model.LobbyViewModel;
-import com.ap.ui.model.PreGameViewModel;
-import com.ap.ui.view.LobbyView;
-import com.ap.ui.view.PreGameView;
+import com.ap.client.GdxGame;
+import com.ap.client.asset.AssetService;
+import com.ap.client.audio.AudioService;
+import com.ap.client.input.KeyboardController;
+import com.ap.client.input.UIControllerState;
+import com.ap.client.screen.AbstractScreen;
+import com.ap.client.screen.MainMenuScreen;
+import com.ap.client.ui.common.BackButtonLayer;
+import com.ap.client.ui.model.LobbyViewModel;
+import com.ap.client.ui.model.PreGameViewModel;
+import com.ap.client.ui.view.LobbyView;
+import com.ap.client.ui.view.PreGameView;
 
-public class LobbyScreen extends AbstractScreen{
+public class LobbyScreen extends AbstractScreen {
     private AudioService audioService;
     private final KeyboardController controller;
     private final AssetService assetService;
