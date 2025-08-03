@@ -5,8 +5,9 @@ import java.util.regex.Pattern;
 
 public enum CheatCodes {
     TimeSpeed("\\s*set\\s+time\\s+speed\\s+(?<speed>\\d+)\\s*(?<unit>.*)\\s*"),
-    Thor("\\s*summon\\s+thor\\s*"),
+    Thor("\\s*summon\\s+thor\\s+at\\s+(?<x>\\d+)\\s+(?<y>\\d+)\\s*"),
     Energy("\\s*set\\s+energy\\s+(?<energy>\\d+)\\s*"),
+    AddGold("\\s*set\\s+gold\\s+(?<gold>\\d+)\\s*"),
     ;
     private String pattern;
 

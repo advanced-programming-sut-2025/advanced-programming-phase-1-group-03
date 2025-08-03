@@ -17,6 +17,9 @@ public class EnergyManager {
         return ((float)amount/(float)maxAmount);
     }
 
+    public void setPercentage(float percentage) {
+        setAmount(Math.round(percentage*maxAmount / 100f));
+    }
     public int getConsumedEnergy() {
         return maxAmount - amount;
     }
