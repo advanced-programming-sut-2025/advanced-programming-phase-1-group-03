@@ -38,7 +38,7 @@ public class EntityFactory {
         Entity entity = new Entity();
         entity.add(new Graphic(null));
         entity.add(new SeasonalGraphic(AtlasAsset.SeasonalObjects, "dirt_hoed"));
-        entity.add(new Transform(position, Constraints.HOE_DIRT_Z
+        entity.add(new Transform(new Vector2((int) position.x, (int) position.y), Constraints.HOE_DIRT_Z
                 , new Vector2(1, 1), new Vector2(1, 1), 0, -2));
 
         Body newBody = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, true);
@@ -50,7 +50,7 @@ public class EntityFactory {
     public Entity CreateGreenhousePlowedDirt(Vector2 position, World world) {
         Entity entity = new Entity();
         entity.add(new Graphic(null));
-        entity.add(new Transform(position, Constraints.HOE_DIRT_Z
+        entity.add(new Transform(new Vector2((int) position.x, (int) position.y), Constraints.HOE_DIRT_Z
                 , new Vector2(1, 1), new Vector2(1, 1), 0, -2));
 
         Body newBody = TiledPhysic.createBodyForTile((int) position.x, (int) position.y, entity, world, true);
@@ -105,7 +105,7 @@ public class EntityFactory {
         TextureRegion texture = assetService.get(AtlasAsset.Environment).findRegions("stone/regular").get(type);
         Vector2 size = new Vector2(1, 1);
         Entity entity = new Entity();
-        entity.add(new Transform(new Vector2(position.x, position.y),
+        entity.add(new Transform(new Vector2((int) position.x, (int) position.y),
                 Constraints.STONE_Z,
                 new Vector2(1, 1),
                 size,
@@ -123,7 +123,7 @@ public class EntityFactory {
 
         Vector2 size = new Vector2(1, 1);
         Entity entity = new Entity();
-        entity.add(new Transform(new Vector2(position.x, position.y),
+        entity.add(new Transform(new Vector2((int) position.x, (int) position.y),
                 Constraints.GRASS_Z,
                 new Vector2(1, 1),
                 size,

@@ -140,6 +140,7 @@ map/tileset/winter_outdoorsTileSheet2.png
 map/tileset/winter_town.png
 skins/LondonMM.ttf
 skins/Millennium-Bold.ttf
+skins/Roboto-Bold.ttf
 skins/Roboto-Regular.ttf
 skins/Stardew Valley ALL CAPS.ttf
 skins/Stardew Valley Regular.ttf
