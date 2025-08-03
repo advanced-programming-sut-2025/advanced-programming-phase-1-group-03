@@ -4,9 +4,7 @@ import com.ap.client.GdxGame;
 import com.ap.client.database.SqliteConnection;
 import com.ap.client.database.UserLoader;
 import com.ap.client.network.GameClient;
-import com.ap.client.screen.PreGameScreen;
-import com.ap.client.screen.ProfileScreen;
-import com.ap.client.screen.SignupScreen;
+import com.ap.client.screen.*;
 import com.badlogic.gdx.Gdx;
 
 public class MainViewModel extends ViewModel{
@@ -23,7 +21,8 @@ public class MainViewModel extends ViewModel{
 
     private void connectionEstablished() {
         connectThread.interrupt();
-        gameClient.sendIntroduction();
+        gameClient.getSender().introduction(sqlite);
+        game.setScreen(LobbyScreen.class);
     }
 
     public void clickSignupButton() {

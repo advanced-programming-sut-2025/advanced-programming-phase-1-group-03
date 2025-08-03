@@ -1,10 +1,10 @@
 package com.ap.client.ui.view;
 
-import com.ap.client.Constraints;
 import com.ap.client.asset.AssetService;
 import com.ap.client.asset.AtlasAsset;
 import com.ap.client.asset.TextureAsset;
 import com.ap.client.audio.AudioService;
+import com.ap.client.ui.actor.SimpleDialog;
 import com.ap.client.ui.model.LobbyViewModel;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -25,7 +25,7 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
     private final TextureAtlas atlas;
     private final Texture grid;
 
-    private final List<ServerEntry> servers;
+    private List<ServerEntry> servers;
 
     private Window window;
     private Label statusLabel;
@@ -37,28 +37,24 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         this.atlas = assetService.get(AtlasAsset.Avatars);
         this.servers = new ArrayList<>();
         this.grid = assetService.get(TextureAsset.Grid);
-        addTestServer();
+        viewModel.setRoomsObserver(this::showRooms);
         setupUI();
     }
 
-    public void addTestServer() {
-        servers.add(new ServerEntry("Alice", "avatar0", List.of("Alice", "Bob")));
-        servers.add(new ServerEntry("Max", "avatar1", List.of("Max", "John", "Clara")));
-        servers.add(new ServerEntry("Nina", "avatar2", List.of("Nina")));
-        servers.add(new ServerEntry("Dev", "avatar3", List.of("Dev", "Lina", "Rob", "Jade")));
-        servers.add(new ServerEntry("Mamad", "avatar4", List.of("Dev")));
-        servers.add(new ServerEntry("Ali", "avatar5", List.of("Mamad")));
-        servers.add(new ServerEntry("Zara", "avatar6", List.of("Zara", "Reza")));
-    }
-
-    public void addServer(String hostName, String avatarString, ArrayList<String> playerNames) {
-        servers.add(new ServerEntry(hostName, avatarString, playerNames));
-    }
 
     @Override
     protected void setupUI() {
+
         setFillParent(true);
         setBackground(skin.getDrawable("Panorama"));
+
+        showRooms();
+    }
+
+    public void showRooms() {
+        clearChildren();
+
+        servers = viewModel.getRooms();
 
         window = new Window("Lobby", skin, "window2");
         window.setMovable(false);
@@ -84,7 +80,7 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
             avatar.setSize(64, 64);
 
             Label nameLabel = new Label("Host: " + entry.hostName, skin);
-            String playerText = "(" + entry.players.size() + ") " + String.join(", ", entry.players);
+            String playerText = "(" + entry.playersCount + ") ";
             Label playersLabel = new Label("Players: " + playerText, skin);
             playersLabel.setWrap(true);
 
@@ -131,19 +127,8 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         TextButton hostButton = new TextButton("Host", skin);
         TextButton refreshButton = new TextButton("Refresh", skin);
 
-        hostButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                statusLabel.setText("Hosting new server...");
-            }
-        });
-
-        refreshButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                statusLabel.setText("Refreshing server list...");
-            }
-        });
+        OnClick(hostButton, this::host);
+        OnClick(refreshButton, viewModel::refresh);
 
         bottomBar.add(hostButton).width(150).padRight(20);
         bottomBar.add(refreshButton).width(150);
@@ -158,16 +143,23 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         add(window); // ← Just add without fill
     }
 
+    private void host() {
+        var dialog = new SimpleDialog("", "If you want a public room, leave the password empty", skin);
+        Table table = new Table();
+        var nameField = new TextField("", skin);
+        var passwordField = new TextField("", skin);
+        table.add(new Label("Name : ", skin));
+        table.add(nameField).pad(2).row();
+        table.add(new Label("Password : ", skin));
+        table.add(passwordField).pad(2);
 
-    private static class ServerEntry {
-        public final String hostName;
-        public final String avatarRegionName;
-        public final List<String> players;
+        dialog.addToContent(table);
+        dialog.setupEvent(() -> {
+            viewModel.hostServer(nameField.getText(), passwordField.getText());
+        });
+        dialog.show(stage);
+    }
 
-        public ServerEntry(String hostName, String avatarRegionName, List<String> players) {
-            this.hostName = hostName;
-            this.avatarRegionName = avatarRegionName;
-            this.players = players;
-        }
+    public record ServerEntry(String hostName, String avatarRegionName, int playersCount) {
     }
 }

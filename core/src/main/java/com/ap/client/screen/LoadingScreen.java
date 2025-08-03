@@ -19,6 +19,7 @@ public class LoadingScreen extends AbstractScreen {
         assetService = game.getAssetService();
         preferencesManager = game.getPreferencesManager();
         sqlite = game.getSqlite();
+
     }
 
     @Override
@@ -79,5 +80,6 @@ public class LoadingScreen extends AbstractScreen {
         game.addScreen(new LoginScreen(game));
         game.addScreen(new ProfileScreen(game));
         game.addScreen(new PreGameScreen(game));
+        game.addScreen(new LobbyScreen(game));
     }
 }
