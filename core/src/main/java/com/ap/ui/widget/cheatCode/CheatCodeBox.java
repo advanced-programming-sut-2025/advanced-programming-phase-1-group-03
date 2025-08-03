@@ -107,7 +107,7 @@ public class CheatCodeBox extends Group {
                 case "black" -> label.setColor(Color.BLACK);
                 default -> label.setColor(Color.WHITE);
             }
-            label.setFontScale(0.9f);
+//            label.setFontScale(0.9f);
             label.setWrap(true);
             label.setWidth(maxWidth);
             height += label.getPrefHeight();

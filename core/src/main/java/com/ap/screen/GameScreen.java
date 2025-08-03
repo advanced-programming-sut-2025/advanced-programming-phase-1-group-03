@@ -200,6 +200,9 @@ public class GameScreen extends AbstractScreen {
         return energyBar;
     }
 
+    public LightningStorm getLightningStorm() {
+        return lightningStorm;
+    }
 
     public AssetService getAssetService() {
         return assetService;
