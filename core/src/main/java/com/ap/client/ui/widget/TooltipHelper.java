@@ -1,0 +1,48 @@
+package com.ap.client.ui.widget;
+
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+
+
+public class TooltipHelper extends Table {
+    private static TooltipHelper INSTANCE = null;
+    private Label title;
+    private TooltipHelper(Skin skin) {
+        super(skin);
+
+
+        title = new Label("I'm tooltip", skin, "roboto24");
+//        System.out.println("------------------------------------------------------" + skin.getFont("roboto24").getData().markupEnabled);  // should be true
+
+        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmap.setColor(0, 0, 0, 0.7f); // Any color
+        pixmap.fill();
+
+        Texture texture = new Texture(pixmap);
+        Drawable background = new TextureRegionDrawable(new TextureRegion(texture));
+        setBackground(background);
+
+        pixmap.dispose();
+        title.setFontScale(1f);
+        add(title).pad(15);
+        pack();
+        setPosition(10, 10);
+        setVisible(false);
+    }
+    public static TooltipHelper getTooltip() {
+        return INSTANCE;
+    }
+    public static void setTooltip(Skin skin) {
+        INSTANCE = new TooltipHelper(skin);
+    }
+
+    public Label getTitle() {
+        return title;
+    }
+}
