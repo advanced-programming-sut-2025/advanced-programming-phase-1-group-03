@@ -71,7 +71,7 @@ public class GdxGame extends Game {
 
         preferencesManager = new PreferencesManager();
 
-        client = new GameClient();
+        client = new GameClient(sqlite);
 
         //addScreen(new PreGameScreen(this));
         addScreen(new LoadingScreen(this));

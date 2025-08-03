@@ -1,8 +1,12 @@
 package com.ap.server;
 
 import com.ap.global.Configuration;
+import com.ap.global.Registrator;
+import com.ap.global.requests.IntroductionRequest;
+import com.ap.global.responses.IntroductionResponse;
 import com.ap.server.database.SqliteConnection;
 import com.ap.server.listerners.LobbyListener;
+import com.ap.server.model.ServerPlayer;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Server;
 
@@ -20,6 +24,7 @@ public class GameServer {
 
         // Registrations
         Kryo kryo = server.getKryo();
+        Registrator.register(kryo);
 
         SqliteConnection.instance.init();
 

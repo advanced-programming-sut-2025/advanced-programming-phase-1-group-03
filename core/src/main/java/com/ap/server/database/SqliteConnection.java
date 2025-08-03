@@ -12,15 +12,5 @@ public class SqliteConnection {
 
     public void init() throws SQLException {
         connection = DriverManager.getConnection("jdbc:sqlite:rooms.db");
-        Statement stmt = connection.createStatement();
-        stmt.execute("""
-            CREATE TABLE IF NOT EXISTS rooms (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                isPrivate INTEGER NOT NULL,
-                password TEXT,
-                ownerName TEXT NOT NULL,
-                currentPlayers INTEGER DEFAULT 0
-            );
-        """);
     }
 }

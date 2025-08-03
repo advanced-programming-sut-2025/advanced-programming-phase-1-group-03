@@ -19,24 +19,11 @@ public class MainViewModel extends ViewModel{
         this.gameClient = game.getClient();
         this.sqlite = sqlite;
 
-        connectThread = new Thread(() -> {
-            while(true) {
-                gameClient.tryingToConnect();
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                if(gameClient.isConnected()) {
-                    connectionEstablished();
-                }
-            }
-        });
     }
 
     private void connectionEstablished() {
         connectThread.interrupt();
-        System.out.println("connected!!");
+        gameClient.sendIntroduction();
     }
 
     public void clickSignupButton() {
@@ -65,6 +52,20 @@ public class MainViewModel extends ViewModel{
     }
 
     public void tryingToConnect() {
+        connectThread = new Thread(() -> {
+            while(true) {
+                gameClient.tryingToConnect();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                }
+                if(gameClient.isConnected()) {
+                    connectionEstablished();
+                }
+            }
+        });
         connectThread.start();
     }
 
