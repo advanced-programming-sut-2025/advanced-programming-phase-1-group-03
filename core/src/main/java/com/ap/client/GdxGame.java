@@ -6,6 +6,7 @@ import com.ap.client.database.SqliteConnection;
 import com.ap.client.managers.TransitionManager;
 import com.ap.client.network.GameClient;
 import com.ap.client.screen.LoadingScreen;
+import com.ap.client.screen.LobbyScreen;
 import com.ap.client.utils.PreferencesManager;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
@@ -74,8 +75,8 @@ public class GdxGame extends Game {
         client = new GameClient(sqlite);
 
         //addScreen(new PreGameScreen(this));
-        addScreen(new LoadingScreen(this));
-        changeScreen(LoadingScreen.class);
+        addScreen(new LobbyScreen(this));
+        changeScreen(LobbyScreen.class);
     }
 
     @Override

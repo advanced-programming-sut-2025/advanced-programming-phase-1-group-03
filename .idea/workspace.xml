@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Adding server side 2" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="lobby doesn't show2.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,40 +70,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Main.executor": "Run",
-    "Application.Run.executor": "Run",
-    "Application.RunGDX.executor": "Run",
-    "Application.Server.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
-    "Gradle.StardewValley [run].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ASUS/Desktop/LearnLibgdx",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "configurable.group.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Run.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RunGDX.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Desktop/LearnLibgdx&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\Tabs" />
@@ -115,7 +117,7 @@
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.StardewValley [run]">
+  <component name="RunManager">
     <configuration name="StardewValley [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -138,10 +140,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Application.Server" />
-      <item itemvalue="Gradle.StardewValley [run]" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.StardewValley [run]" />
@@ -225,13 +223,6 @@
       <workItem from="1754134966745" duration="7966000" />
       <workItem from="1754209611033" duration="4922000" />
       <workItem from="1754219959592" duration="10451000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۴۶" summary="stay logged in and login page completed">
-      <option name="closed" value="true" />
-      <created>1752840705478</created>
-      <option name="number" value="LOCAL‎−۰۰۰۴۶" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۴۶" />
-      <updated>1752840705478</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۴۷" summary="Register &amp; Login finished">
       <option name="closed" value="true" />
@@ -588,7 +579,15 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۹۴" />
       <updated>1754231780214</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="lobby doesn't show2.">
+      <option name="closed" value="true" />
+      <created>1754232445550</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1754232445550</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -619,7 +618,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Farm 2 added" />
     <MESSAGE value="Greenhouse done" />
     <MESSAGE value="Fix some bugs" />
     <MESSAGE value="Greenhouse bug fixed" />
@@ -644,7 +642,8 @@
     <MESSAGE value="Avoid crash 2" />
     <MESSAGE value="Adding server side" />
     <MESSAGE value="Adding server side 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding server side 2" />
+    <MESSAGE value="lobby doesn't show2." />
+    <option name="LAST_COMMIT_MESSAGE" value="lobby doesn't show2." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
