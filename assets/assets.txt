@@ -92,6 +92,7 @@ graphics/UI_elements.png
 graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
+graphics/grid.png
 graphics/img_1.png
 graphics/player.atlas
 graphics/player.png

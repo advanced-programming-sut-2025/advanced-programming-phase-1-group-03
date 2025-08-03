@@ -3,15 +3,17 @@ package com.ap.client.ui.view;
 import com.ap.client.Constraints;
 import com.ap.client.asset.AssetService;
 import com.ap.client.asset.AtlasAsset;
+import com.ap.client.asset.TextureAsset;
 import com.ap.client.audio.AudioService;
 import com.ap.client.ui.model.LobbyViewModel;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 
 import java.util.ArrayList;
@@ -21,8 +23,9 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
     private final AudioService audioService;
     private final AssetService assetService;
     private final TextureAtlas atlas;
+    private final Texture grid;
 
-    List<ServerEntry> servers;
+    private final List<ServerEntry> servers;
 
     private Window window;
     private Label statusLabel;
@@ -32,7 +35,8 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         this.audioService = audioService;
         this.assetService = assetService;
         this.atlas = assetService.get(AtlasAsset.Avatars);
-        servers = new ArrayList<>();
+        this.servers = new ArrayList<>();
+        this.grid = assetService.get(TextureAsset.Grid);
         addTestServer();
         setupUI();
     }
@@ -42,12 +46,14 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         servers.add(new ServerEntry("Max", "avatar1", List.of("Max", "John", "Clara")));
         servers.add(new ServerEntry("Nina", "avatar2", List.of("Nina")));
         servers.add(new ServerEntry("Dev", "avatar3", List.of("Dev", "Lina", "Rob", "Jade")));
+        servers.add(new ServerEntry("Mamad", "avatar4", List.of("Dev")));
+        servers.add(new ServerEntry("Ali", "avatar5", List.of("Mamad")));
+        servers.add(new ServerEntry("Zara", "avatar6", List.of("Zara", "Reza")));
     }
 
     public void addServer(String hostName, String avatarString, ArrayList<String> playerNames) {
         servers.add(new ServerEntry(hostName, avatarString, playerNames));
     }
-
 
     @Override
     protected void setupUI() {
@@ -55,22 +61,22 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         setBackground(skin.getDrawable("Panorama"));
 
         window = new Window("Lobby", skin, "window2");
-        window.setSize(800, 500);
         window.setMovable(false);
         window.setResizable(false);
 
-        window.setPosition(
-                Constraints.WORLD_WIDTH_RESOLUTION / 2f - window.getWidth() / 2f,
-                Constraints.WORLD_HEIGHT_RESOLUTION / 2f - window.getHeight() / 2f
-        );
+        // Set window size manually and disable resizing behavior
+        float screenWidth = 1100;
+        float screenHeight = 630;
+        window.setSize(screenWidth, screenHeight); // ← Force full resolution size
+        window.setBounds(0, 0, screenWidth, screenHeight); // ← Force placement
+        window.padTop(50); // Optional top padding for title
 
         Table serverTable = new Table();
-        serverTable.defaults().pad(10).left();
+        serverTable.top();
+        serverTable.defaults().padBottom(6); // ← spacing between server rows
 
         for (int i = 0; i < servers.size(); i++) {
             ServerEntry entry = servers.get(i);
-
-            Table row = new Table();
 
             TextureRegion avatarRegion = atlas.findRegion(entry.avatarRegionName);
             Image avatar = new Image(avatarRegion);
@@ -78,34 +84,50 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
             avatar.setSize(64, 64);
 
             Label nameLabel = new Label("Host: " + entry.hostName, skin);
-            Label playersLabel = new Label("Players: " + String.join(", ", entry.players), skin);
+            String playerText = "(" + entry.players.size() + ") " + String.join(", ", entry.players);
+            Label playersLabel = new Label("Players: " + playerText, skin);
             playersLabel.setWrap(true);
 
-            row.add(avatar).size(64, 64).padRight(20);
-            row.add(nameLabel).width(150).padRight(20).align(Align.left);
-            row.add(playersLabel).width(400).align(Align.left);
-            row.row();
-
-            int finalIndex = i;
-            row.addListener(new ClickListener() {
+            TextButton joinButton = new TextButton("Join", skin);
+            joinButton.getLabel().setFontScale(0.95f);
+            joinButton.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    statusLabel.setText("Selected Server: " + entry.hostName);
+                    statusLabel.setText("Joining " + entry.hostName + "...");
                 }
             });
 
-            serverTable.add(row).expandX().fillX().row();
+            Table content = new Table();
+            content.defaults().center().pad(0);
+            content.add(avatar).size(64, 64).padLeft(20);
+            content.add(nameLabel).width(160).left().padLeft(15);
+            content.add(playersLabel).width(500).left().padLeft(15);
+            content.add(joinButton).width(90).height(40).padLeft(0);
+
+            Image gridBg = new Image(grid);
+            Stack stacked = new Stack();
+            stacked.add(gridBg);
+            stacked.add(content);
+
+            serverTable.add(stacked).width(1100).height(130).padBottom(10).row(); // ← Increased height
         }
 
         ScrollPane scrollPane = new ScrollPane(serverTable, skin);
         scrollPane.setFadeScrollBars(false);
         scrollPane.setScrollingDisabled(true, false);
         scrollPane.setForceScroll(false, true);
+        scrollPane.setScrollbarsOnTop(true);
+        scrollPane.setOverscroll(false, false);
+        scrollPane.setScrollY(0);
+        scrollPane.layout();
 
-        window.add(scrollPane).expand().fill().pad(10);
+        Table scrollContainer = new Table();
+        scrollContainer.top().pad(30); // ← Add more padding around
+        scrollContainer.add(scrollPane).width(screenWidth - 50).height(screenHeight - 220); // ← Constrain to fit screen
+        window.add(scrollContainer).expand().fill().pad(10);
         window.row();
 
-        Table buttonRow = new Table();
+        Table bottomBar = new Table();
         TextButton hostButton = new TextButton("Host", skin);
         TextButton refreshButton = new TextButton("Refresh", skin);
 
@@ -123,18 +145,19 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
             }
         });
 
-        buttonRow.add(hostButton).width(150).padRight(20);
-        buttonRow.add(refreshButton).width(150);
-        window.add(buttonRow).pad(10);
+        bottomBar.add(hostButton).width(150).padRight(20);
+        bottomBar.add(refreshButton).width(150);
+        window.add(bottomBar).pad(10);
         window.row();
 
         statusLabel = new Label("", skin);
-        statusLabel.setColor(com.badlogic.gdx.graphics.Color.YELLOW);
+        statusLabel.setColor(Color.YELLOW);
         window.add(statusLabel).padBottom(10);
         window.row();
 
-        stage.addActor(window);
+        add(window); // ← Just add without fill
     }
+
 
     private static class ServerEntry {
         public final String hostName;
