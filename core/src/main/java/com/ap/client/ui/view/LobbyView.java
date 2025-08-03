@@ -1,5 +1,6 @@
 package com.ap.client.ui.view;
 
+import com.ap.client.Constraints;
 import com.ap.client.asset.AssetService;
 import com.ap.client.asset.AtlasAsset;
 import com.ap.client.audio.AudioService;
@@ -21,6 +22,8 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
     private final AssetService assetService;
     private final TextureAtlas atlas;
 
+    List<ServerEntry> servers;
+
     private Window window;
     private Label statusLabel;
 
@@ -29,7 +32,20 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         this.audioService = audioService;
         this.assetService = assetService;
         this.atlas = assetService.get(AtlasAsset.Avatars);
+        servers = new ArrayList<>();
+        addTestServer();
         setupUI();
+    }
+
+    public void addTestServer() {
+        servers.add(new ServerEntry("Alice", "avatar0", List.of("Alice", "Bob")));
+        servers.add(new ServerEntry("Max", "avatar1", List.of("Max", "John", "Clara")));
+        servers.add(new ServerEntry("Nina", "avatar2", List.of("Nina")));
+        servers.add(new ServerEntry("Dev", "avatar3", List.of("Dev", "Lina", "Rob", "Jade")));
+    }
+
+    public void addServer(String hostName, String avatarString, ArrayList<String> playerNames) {
+        servers.add(new ServerEntry(hostName, avatarString, playerNames));
     }
 
 
@@ -44,15 +60,9 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         window.setResizable(false);
 
         window.setPosition(
-                stage.getWidth() / 2f - window.getWidth() / 2f,
-                stage.getHeight() / 2f - window.getHeight() / 2f
+                Constraints.WORLD_WIDTH_RESOLUTION / 2f - window.getWidth() / 2f,
+                Constraints.WORLD_HEIGHT_RESOLUTION / 2f - window.getHeight() / 2f
         );
-
-        List<ServerEntry> servers = new ArrayList<>();
-        servers.add(new ServerEntry("Alice", "avatar0", List.of("Alice", "Bob")));
-        servers.add(new ServerEntry("Max", "avatar1", List.of("Max", "John", "Clara")));
-        servers.add(new ServerEntry("Nina", "avatar2", List.of("Nina")));
-        servers.add(new ServerEntry("Dev", "avatar3", List.of("Dev", "Lina", "Rob", "Jade")));
 
         Table serverTable = new Table();
         serverTable.defaults().pad(10).left();
