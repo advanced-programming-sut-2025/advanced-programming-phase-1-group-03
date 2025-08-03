@@ -17,31 +17,37 @@ public class CheatCodeController {
         this.gameScreen = gameScreen;
     }
 
-    public void ProcessCommand(String command) {
+    public Result ProcessCommand(String command) {
         Matcher matcher;
         System.out.println(command);
        if ((matcher = CheatCodes.TimeSpeed.getMatcher(command)) != null) {
-           System.out.println(changeTimeSpeed(matcher.group("speed"), matcher.group("unit")));
+            return changeTimeSpeed(matcher.group("speed"), matcher.group("unit"));
        }
+       return new Result(false, "Invalid command");
     }
 
-    public String changeTimeSpeed(String speedStr, String unitStr) {
+    public Result changeTimeSpeed(String speedStr, String unitStr) {
         unitStr = unitStr.toLowerCase();
         unitStr = unitStr.trim();
         float speed;
         try {
             speed = (float) Double.parseDouble(speedStr);
         } catch (Exception e) {
-            return "not parseable!";
+            return new Result(false, "value is not parseable!");
         }
 
         switch (unitStr) {
             case "h", "hour" -> speed = speed * 3600;
             case "d", "day" -> speed = speed * 86400;
             case "m", "minute" -> speed = speed * 60;
+            case "s", "second", "" -> speed = speed;
+            default -> {
+                return new Result(false, "unknown unit!");
+            }
         }
         speed = MathUtils.clamp(speed, Constraints.GAME_SPEED_MIN, Constraints.GAME_SPEED_MAX);
         TimeSystem.setGameSpeed(speed);
-        return "changed speed to " + speed;
+        return new Result(true, "game speed successfully changed to " + speed + " s.");
     }
+
 }

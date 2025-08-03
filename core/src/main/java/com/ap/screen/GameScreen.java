@@ -67,7 +67,28 @@ public class GameScreen extends AbstractScreen {
     public GameScreen(GdxGame game) {
         super(game);
         universalEngine = new Engine();
-
+//        skin.getFont("roboto16").getData().markupEnabled = true;
+//        skin.getFont("roboto20").getData().markupEnabled = true;
+//        skin.getFont("roboto24").getData().markupEnabled = true;
+//        skin.getFont("roboto28").getData().markupEnabled = true;
+//
+//        skin.getFont("robotoBold16").getData().markupEnabled = true;
+//        skin.getFont("robotoBold20").getData().markupEnabled = true;
+//        skin.getFont("robotoBold24").getData().markupEnabled = true;
+//        skin.getFont("robotoBold28").getData().markupEnabled = true;
+//
+//        for (int i = 12; i <= 24; i++) {
+//            skin.getFont("myFont" + i).getData().markupEnabled = true;
+//            skin.getFont("Mill" + i).getData().markupEnabled = true;
+//        }
+//
+//        skin.getFont("font16").getData().markupEnabled = true;
+//        skin.getFont("font20").getData().markupEnabled = true;
+//        skin.getFont("font24").getData().markupEnabled = true;
+//        skin.getFont("font24white").getData().markupEnabled = true;
+//        skin.getFont("font28").getData().markupEnabled = true;
+//        skin.getFont("font36").getData().markupEnabled = true;
+//        skin.getFont("font48").getData().markupEnabled = true;
         camera = game.getCamera();
         assetService = game.getAssetService();
         audioService = game.getAudioService();

@@ -36,8 +36,8 @@ public class CheatCodeBox extends Group {
         this.stage = stage;
         this.skin = skin;
         this.controller = controller;
-        maxLine = 10;
-        maxWidth = Constraints.WORLD_WIDTH_RESOLUTION / 2f;
+        maxLine = 20;
+        maxWidth = Constraints.WORLD_WIDTH_RESOLUTION / 1.5f;
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(0, 0, 0, 0.7f); // Any color
         pixmap.fill();
@@ -48,7 +48,7 @@ public class CheatCodeBox extends Group {
     private void setupUI() {
         setPosition(0, 0);
 
-        input = new TextField("", skin);
+        input = new TextField("", skin, "roboto24");
         input.setSize(maxWidth + 8, tileHeight);
 //        input.setMessageText("Enter command...");
 
@@ -62,12 +62,15 @@ public class CheatCodeBox extends Group {
                 }
                 if (keycode == Input.Keys.ENTER) {
                     String s = input.getText();
-                    history.add(s);
-                    controller.ProcessCommand(s);
+                    history.add("white/~" + s);
+                    Result result = controller.ProcessCommand(s);
+                    if (result.success()) history.add("green/\t" + result.message());
+                    else history.add("red/\t" + result.message());
                     shouldUpdate = true;
                     input.setText("");
                     return true;
                 }
+
                 return false;
             }
         });
@@ -94,10 +97,17 @@ public class CheatCodeBox extends Group {
         float height = 0;
         for (int i = Math.max(0, history.size() - maxLine); i < history.size(); i++) {
             String s = history.get(i);
-            Label label = new Label("~" + s, skin);
-            Label.LabelStyle newStyle = new Label.LabelStyle(label.getStyle());
-            newStyle.fontColor = Color.GREEN;
-            label.setStyle(newStyle);
+            String color = s.split("/")[0];
+            String message = s.split("/")[1];
+            Label label = new Label(message, skin, "roboto24");
+            switch (color) {
+                case "red" -> label.setColor(Color.RED);
+                case "green" -> label.setColor(Color.GREEN);
+                case "blue" -> label.setColor(Color.BLUE);
+                case "black" -> label.setColor(Color.BLACK);
+                default -> label.setColor(Color.WHITE);
+            }
+            label.setFontScale(0.9f);
             label.setWrap(true);
             label.setWidth(maxWidth);
             height += label.getPrefHeight();
@@ -105,7 +115,7 @@ public class CheatCodeBox extends Group {
         }
 
         historyTable.setWidth(maxWidth);
-        historyTable.setHeight(height);
+        historyTable.setHeight(height + 32);
         historyTable.setPosition(0, tileHeight - 4);
         addActor(historyTable);
 

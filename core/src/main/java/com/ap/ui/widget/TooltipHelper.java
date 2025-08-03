@@ -21,7 +21,9 @@ public class TooltipHelper extends Table {
     private TooltipHelper(Skin skin) {
         super(skin);
 
-        title = new Label("I'm tooltip", skin);
+
+        title = new Label("I'm tooltip", skin, "roboto24");
+//        System.out.println("------------------------------------------------------" + skin.getFont("roboto24").getData().markupEnabled);  // should be true
 
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(0, 0, 0, 0.7f); // Any color
@@ -32,18 +34,6 @@ public class TooltipHelper extends Table {
         setBackground(background);
 
         pixmap.dispose();
-
-        Label.LabelStyle newStyle = new Label.LabelStyle(title.getStyle());
-        newStyle.fontColor = Color.WHITE;
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("skins/Roboto-Regular.ttf"));
-        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 24;
-        parameter.color = Color.WHITE;
-
-        BitmapFont font = generator.generateFont(parameter);
-        generator.dispose();
-        newStyle.font = font;
-        title.setStyle(newStyle);
         title.setFontScale(1f);
         add(title).pad(15);
         pack();

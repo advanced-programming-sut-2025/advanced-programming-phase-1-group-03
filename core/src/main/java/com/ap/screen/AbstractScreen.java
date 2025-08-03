@@ -4,9 +4,13 @@ import com.ap.GdxGame;
 import com.ap.asset.SkinAsset;
 import com.ap.Constraints;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.ObjectMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
+
+import javax.swing.plaf.IconUIResource;
 
 public abstract class AbstractScreen implements Screen {
 
@@ -21,6 +25,10 @@ public abstract class AbstractScreen implements Screen {
         stage = new Stage(uiViewport, game.getBatch());
 
         skin = game.getAssetService().get(SkinAsset.Default);
+//        for (ObjectMap.Entry<String, BitmapFont> entry : skin.getAll(BitmapFont.class)) {
+//            entry.value.getData().markupEnabled = true;
+//            System.out.println(entry);
+//        }
     }
 
     @Override
