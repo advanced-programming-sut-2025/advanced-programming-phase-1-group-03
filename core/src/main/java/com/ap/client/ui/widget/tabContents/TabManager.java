@@ -65,6 +65,7 @@ public class TabManager {
         contentArray.add(new SkillTab(gameScreen, bgWidth, bgHeight, Tabs.Skill));
         contentArray.add(new SocialTab(gameScreen, bgWidth, bgHeight, Tabs.Social));
         contentArray.add(new MapTab(gameScreen, bgWidth, bgHeight, Tabs.Map));
+        contentArray.add(new CraftingTab(gameScreen, bgWidth, bgHeight, Tabs.Crafting));
         contentArray.add(new OptionsTab(gameScreen, bgWidth, bgHeight, Tabs.Options));
         contentArray.add(new ExitTab(gameScreen, bgWidth, bgHeight, Tabs.Exit));
 
@@ -123,7 +124,7 @@ public class TabManager {
 
         stage.addActor(ui);
 
-        stage.addListener(new InputListener() {
+        ui.addListener(new InputListener() {
             boolean shiftPressed = false;
             @Override
             public boolean keyDown(InputEvent event, int keycode) {
@@ -155,6 +156,16 @@ public class TabManager {
     public void toggle() {
         ui.setVisible(!ui.isVisible());
         if (ui.isVisible()) setCurrentContent(currentTab);
+        if (ui.isVisible()) {
+            stage.setKeyboardFocus(ui);
+        }
+        else {
+            stage.unfocus(ui);
+            for (AbstractContent content : contentArray) {
+                content.setVisible(false);
+            }
+        }
+        isShowing = !isShowing;
 
     }
 
@@ -168,7 +179,18 @@ public class TabManager {
         content.setVisible(true);
         currentTab = idx;
         iconArray.get(idx).setY(iconY - 5);
+        ui.toFront();
+    }
 
+    public void setCurrentContent(Tabs tabType) {
+        int idx = 0;
+        for (AbstractContent abstractContent : contentArray) {
+            if (abstractContent.icon == tabType) {
+                setCurrentContent(idx);
+                break;
+            }
+            ++idx;
+        }
     }
 
     public void nextTab() {
@@ -185,7 +207,4 @@ public class TabManager {
         return isShowing;
     }
 
-    public void setShowing(boolean showing) {
-        isShowing = showing;
-    }
 }

@@ -26,7 +26,6 @@ audio/type.mp3
 audio/walk.wav
 audio/watering.wav
 audio/wateringCanNo.wav
-data.db
 graphics/Animals/Fish.atlas
 graphics/Animals/Fish.png
 graphics/Animals/Fishing-2.png
@@ -93,7 +92,6 @@ graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
 graphics/grid.png
-graphics/img_1.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas

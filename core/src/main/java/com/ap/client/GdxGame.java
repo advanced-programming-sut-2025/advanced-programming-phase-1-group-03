@@ -7,6 +7,7 @@ import com.ap.client.managers.TransitionManager;
 import com.ap.client.network.GameClient;
 import com.ap.client.screen.LoadingScreen;
 import com.ap.client.screen.LobbyScreen;
+import com.ap.client.screen.PreGameScreen;
 import com.ap.client.utils.PreferencesManager;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
@@ -74,9 +75,10 @@ public class GdxGame extends Game {
 
         client = new GameClient(sqlite);
 
-        //addScreen(new PreGameScreen(this));
+//        addScreen(new PreGameScreen(this));
+        addScreen(new LoadingScreen(this));
         addScreen(new LobbyScreen(this));
-        changeScreen(LobbyScreen.class);
+        changeScreen(LoadingScreen.class);
     }
 
     @Override
@@ -119,7 +121,7 @@ public class GdxGame extends Game {
     public void changeScreen(Class<? extends Screen> screen) {
         Screen screenInstance = screenCache.get(screen);
         if(screenInstance == null) {
-            throw new IllegalArgumentException("Screen does not exists");
+            throw new IllegalArgumentException("Screen does not exists" + screen);
         }
         setScreen(screenInstance);
     }

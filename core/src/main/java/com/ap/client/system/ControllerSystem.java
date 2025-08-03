@@ -8,6 +8,7 @@ import com.ap.client.ui.widget.cheatCode.CheatCodeBox;
 import com.ap.client.ui.widget.CookingMenu;
 import com.ap.client.ui.widget.CraftingMenu;
 import com.ap.client.ui.widget.tabContents.TabManager;
+import com.ap.client.ui.widget.tabContents.Tabs;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -64,7 +65,8 @@ public class ControllerSystem extends IteratingSystem {
                 } case Click -> {
                     clicked();
                 } case OpenCrafting -> {
-                    craftingMenu.toggle();
+                    if (!tabManager.isShowing()) tabManager.toggle();
+                    tabManager.setCurrentContent(Tabs.Crafting);
                 } case OpenCooking -> {
                     if(cookingMenu != null)
                         cookingMenu.toggle();

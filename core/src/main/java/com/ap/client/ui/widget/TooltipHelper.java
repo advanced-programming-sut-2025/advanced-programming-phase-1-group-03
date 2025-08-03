@@ -17,8 +17,7 @@ public class TooltipHelper extends Table {
         super(skin);
 
 
-        title = new Label("I'm tooltip", skin, "roboto24");
-//        System.out.println("------------------------------------------------------" + skin.getFont("roboto24").getData().markupEnabled);  // should be true
+        title = new Label("I'm tooltip", skin, "roboto20");
 
         Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
         pixmap.setColor(0, 0, 0, 0.7f); // Any color
@@ -44,5 +43,9 @@ public class TooltipHelper extends Table {
 
     public Label getTitle() {
         return title;
+    }
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+        if (visible) toFront();
     }
 }

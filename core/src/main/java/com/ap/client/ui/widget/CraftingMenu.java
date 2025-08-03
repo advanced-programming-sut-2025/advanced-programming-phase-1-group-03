@@ -329,6 +329,10 @@ public class CraftingMenu extends Actor {
         isShowing = !isShowing;
     }
 
+    public boolean isShowing() {
+        return isShowing;
+    }
+
     private static class CraftableItem {
         public final String name;
         public final TextureRegion icon;

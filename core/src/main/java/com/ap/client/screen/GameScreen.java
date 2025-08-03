@@ -110,7 +110,6 @@ public class GameScreen extends AbstractScreen {
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
         energyBar = new EnergyBar(assetService, skin);
-        tabManager = new TabManager(this);
 
         journal = new Journal(assetService, skin, stage);
         craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
@@ -118,6 +117,7 @@ public class GameScreen extends AbstractScreen {
         cheatCodeBox = new CheatCodeBox(stage, skin, cheatCodeController);
         lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
         cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
+        tabManager = new TabManager(this);
         clockManager = new ClockManager(clock);
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock, timeSystem);

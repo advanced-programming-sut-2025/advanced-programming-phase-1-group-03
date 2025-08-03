@@ -6,7 +6,8 @@ public enum Tabs {
     Skill("blank"),
     Options("options"),
     Map("map"),
-    Exit("exit")
+    Exit("exit"),
+    Crafting("crafting"),
     ;
 
     public final String path;
