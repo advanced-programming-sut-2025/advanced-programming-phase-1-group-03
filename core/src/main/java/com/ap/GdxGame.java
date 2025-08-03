@@ -5,10 +5,7 @@ import com.ap.asset.MapAsset;
 import com.ap.audio.AudioService;
 import com.ap.database.SqliteConnection;
 import com.ap.managers.TransitionManager;
-import com.ap.screen.GameScreen;
-import com.ap.screen.LoadingScreen;
-import com.ap.screen.LoginScreen;
-import com.ap.screen.PreGameScreen;
+import com.ap.screen.*;
 import com.ap.utils.PreferencesManager;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
@@ -72,8 +69,8 @@ public class GdxGame extends Game {
         preferencesManager = new PreferencesManager();
 
         //addScreen(new PreGameScreen(this));
-        addScreen(new LoadingScreen(this));
-        changeScreen(LoadingScreen.class);
+        addScreen(new LobbyScreen(this));
+        changeScreen(LobbyScreen.class);
     }
 
     @Override
