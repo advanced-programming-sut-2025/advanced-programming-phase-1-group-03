@@ -4,19 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="cheat codes [energy, gold, thor] added">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/tabContents/CraftingTab.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="lobby doesn't show3.">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/Sender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/RoomInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/CreateRoomRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/RoomsListRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/RoomsListResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/skins/skin.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/skins/skin.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/GdxGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/ControllerSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/CraftingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/CraftingMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/TooltipHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/TooltipHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/tabContents/TabManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/tabContents/TabManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/tabContents/Tabs.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/tabContents/Tabs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/StartupHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/StartupHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/GameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/GameClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/listeners/LobbyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/listeners/LobbyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LoadingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LoadingScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LobbyScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LobbyScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/LobbyViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/LobbyViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/MainViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/LobbyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/LobbyView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Registrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/ServerData.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/ServerData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/listerners/LobbyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/listerners/LobbyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/Lwjgl3Launcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/Lwjgl3Launcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/src/main/java/com/ap/lwjgl3/Lwjgl3Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/src/main/java/com/ap/lwjgl3/Lwjgl3Launcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,40 +94,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Run.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RunGDX.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Surface/IdeaProjects/Stardew/assets/graphics&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Lwjgl3Launcher.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Run.executor": "Run",
+    "Application.RunGDX.executor": "Run",
+    "Application.Server.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
+    "Gradle.StardewValley [run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Surface/IdeaProjects/Stardew/assets/graphics",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.editor",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Surface\IdeaProjects\Stardew\assets\graphics" />
@@ -128,16 +142,10 @@
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.RunGDX">
-    <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Gradle.StardewValley [run]">
+    <configuration name="Server" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ap.server.Server" />
-      <module name="StardewValley.core.main" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.ap.server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <module name="StarehdewValley.core.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -147,7 +155,7 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--debug" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -165,13 +173,11 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.RunGDX" />
       <item itemvalue="Application.Server" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Server" />
         <item itemvalue="Gradle.StardewValley [run]" />
       </list>
     </recent_temporary>
@@ -728,11 +734,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/phi/ap/view/menus/MainMenus/GameMenu.java</url>
           <line>182</line>
           <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/core/src/main/java/com/ap/client/network/GameClient.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="113" />
         </line-breakpoint>
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.ExceptionInInitializerError" package="java.lang" />
