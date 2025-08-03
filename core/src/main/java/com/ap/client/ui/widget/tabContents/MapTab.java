@@ -1,0 +1,22 @@
+package com.ap.client.ui.widget.tabContents;
+
+import com.ap.client.screen.GameScreen;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+
+public class MapTab extends AbstractContent{
+    public MapTab(GameScreen gameScreen, int width, int height, Tabs icon) {
+        super(gameScreen.getStage(), gameScreen.getAssetService(), gameScreen.getSkin(), gameScreen.getAudioService(), width, height, icon);
+        Label label = new Label("Map", skin);
+        addActor(label);
+    }
+
+    @Override
+    public void makeStructure() {
+
+    }
+
+    @Override
+    public void loadData() {
+
+    }
+}
