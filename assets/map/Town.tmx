@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="130" height="110" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="190">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="130" height="110" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="191">
  <properties>
   <property name="BrookSounds" value="94 5 5"/>
   <property name="DayTiles" value="AlwaysFront 52 98 907 AlwaysFront 56 98 907 AlwaysFront 24 50 907 AlwaysFront 33 53 907 AlwaysFront 24 58 907 AlwaysFront 27 72 907 AlwaysFront 30 72 907 AlwaysFront 38 65 907 AlwaysFront 27 86 907 AlwaysFront 17 86 907 AlwaysFront 21 64 907 Buildings 92 79 186 Buildings 41 69 560 Buildings 71 67 720"/>
@@ -3501,6 +3501,12 @@
   </object>
   <object id="189" x="529.818" y="1228.91">
    <polygon points="0,0 -1.81818,16.5455 4.54545,33.0909 38.3636,32.9091 43.8182,27.8182 42.7273,0.727273 23.6364,-1.45455"/>
+  </object>
+  <object id="190" x="930" y="1378" width="27.3333" height="25.3333">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="CarpenterShop"/>
+   </properties>
   </object>
  </objectgroup>
 </map>

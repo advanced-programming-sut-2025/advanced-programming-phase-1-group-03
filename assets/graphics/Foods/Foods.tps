@@ -136,7 +136,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename></filename>
+                <filename>Foods.atlas</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -188,9 +188,16 @@
             <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Artisan_good/Beer.png</key>
             <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Artisan_good/Coffee.png</key>
             <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Bread.png</key>
+            <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Cookie.png</key>
+            <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Hashbrowns.png</key>
+            <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Maki_Roll.png</key>
+            <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Omelet.png</key>
+            <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Pancakes.png</key>
             <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Pizza.png</key>
             <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Salad.png</key>
             <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Spaghetti.png</key>
+            <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Tortilla.png</key>
+            <key type="filename">C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Triple_Shot_Espresso.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -214,6 +221,13 @@
             <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Spaghetti.png</filename>
             <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Pizza.png</filename>
             <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Artisan_good/Coffee.png</filename>
+            <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Hashbrowns.png</filename>
+            <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Omelet.png</filename>
+            <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Pancakes.png</filename>
+            <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Tortilla.png</filename>
+            <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Maki_Roll.png</filename>
+            <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Triple_Shot_Espresso.png</filename>
+            <filename>C:/Users/ASUS/Downloads/Stardew_Valley_Images-main/Stardew_Valley_Images-main/Recipe/Cookie.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

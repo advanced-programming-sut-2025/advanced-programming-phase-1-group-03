@@ -29,7 +29,7 @@ public class Constraints {
     public static final int MAXIMUM_WOOD_TREE_GIVE = 8;
     public static final int STUMP_GIVEN_WOOD = 3;
     public static final int NUMBER_OF_AXE_NEED_TO_CUT_DOWN_TREE = 4;
-    public static final int PLAYER_INITIAL_GOLD = 500;
+    public static final int PLAYER_INITIAL_GOLD = 50000;
     public static final int GREEN_HOUSE_WOOD_NEEDED = 10;
     public static final int GREEN_HOUSE_GOLD_NEEDED = 500;
     public static final int CROPS_Z = 1;
@@ -39,7 +39,10 @@ public class Constraints {
     public static final int DEFAULT_MINERALS_COUNT = 20;
     public static final int MINERAL_Z = 1;
     public static final int MINERAL_PER_DAY = 30;
-
+    public static final int BARN_Z = 1;
+    public static final int WELL_BOTTOM_Z = 1;
+    public static final int WELL_TOP_Z = 3;
+    public static final int MAX_ENERGY_AMOUNT = 500;
     public static String[] secQuestions = {
             "What is your dad's name?",
             "What is name of your first school?",

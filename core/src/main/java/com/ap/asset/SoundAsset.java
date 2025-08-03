@@ -19,7 +19,8 @@ public enum SoundAsset implements Asset<Sound> {
     Thunder("thunder.mp3"),
     Mineral("mineral.wav"),
     Purchase("purchase.mp3"),
-    Eat("eat.wav")
+    Eat("eat.wav"),
+    PlaceNewItem("placeItem.wav"),
     ;
 
     private final AssetDescriptor<Sound> descriptor;

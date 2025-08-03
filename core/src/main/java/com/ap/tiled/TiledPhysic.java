@@ -100,11 +100,11 @@ public class TiledPhysic {
         return fixtureDef;
     }
 
-    public static Body createBodyForTile(int x, int y, Object userData, World world, boolean sensor) {
+    public static Body createBodyForTile(float x, float y, Object userData, World world, boolean sensor) {
         return createRectagleBody(x, y, 1, 1, userData, world, sensor);
     }
 
-    public static Body createRectagleBody(int x, int y, int w, int h, Object userData, World world, boolean sensor) {
+    public static Body createRectagleBody(float x, float y, float w, float h, Object userData, World world, boolean sensor) {
         if (w <= 0 || h <= 0) {
             throw new IllegalArgumentException("Invalid width or height: " + w + ", " + h);
         }

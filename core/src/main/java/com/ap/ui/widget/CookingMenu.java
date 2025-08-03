@@ -7,7 +7,7 @@ import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
 import com.ap.items.ItemStack;
-import com.ap.system.universal.EnergyManager;
+import com.ap.managers.EnergyManager;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
@@ -324,7 +324,7 @@ public class CookingMenu extends Actor {
     }
 
     private void addItem() {
-        EnergyManager.getInstance().advance(-3);
+        //EnergyManager.getInstance().advance(-3);
         // TODO : add the item to inventory
     }
 

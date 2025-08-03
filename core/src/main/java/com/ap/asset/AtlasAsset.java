@@ -24,6 +24,8 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     Crow("Animals/Crow.atlas"),
     Mineral("Mineral.atlas"),
     Foods("Foods/Foods.atlas"),
+    Carpenter("Carpenter.atlas"),
+    Barns("Barns.atlas"),
     SkillIcons("Tabs/skill_icons.atlas")
     ;
 

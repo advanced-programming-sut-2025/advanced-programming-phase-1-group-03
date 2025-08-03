@@ -7,9 +7,8 @@ import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
 import com.ap.items.ItemStack;
-import com.ap.system.universal.EnergyManager;
+import com.ap.managers.EnergyManager;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
@@ -19,7 +18,6 @@ import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
-import org.w3c.dom.ls.LSOutput;
 
 public class CraftingMenu extends Actor {
 
@@ -317,7 +315,6 @@ public class CraftingMenu extends Actor {
     }
 
     private void addItem() {
-        EnergyManager.getInstance().advance(-2);
         // TODO : add the item to inventory
     }
 

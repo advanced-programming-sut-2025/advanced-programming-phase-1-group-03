@@ -2,11 +2,10 @@ package com.ap.items.tools;
 
 import com.ap.asset.SoundAsset;
 import com.ap.component.Growable;
-import com.ap.managers.AbilityManager;
+import com.ap.component.items.Well;
 import com.ap.model.AbilityType;
-import com.ap.model.Weather;
 import com.ap.screen.GameScreen;
-import com.ap.system.universal.EnergyManager;
+import com.ap.managers.EnergyManager;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -28,48 +27,27 @@ public class WateringCan extends Tool{
     }
 
     @Override
-    int getEnergyConsumption(GameScreen gameScreen, boolean successful) {
-        int amount = 0;
-        switch(currentLevel) {
-            case Normal : {
-                amount = 5;
-                break;
-            }
-            case Copper : {
-                amount = 4;
-                break;
-            }
-            case Iron : {
-                amount = 3;
-                break;
-            }
-            case Gold : {
-                amount = 2;
-                break;
-            }
-            case Iridium : {
-                amount = 1;
-                break;
-            }
-        }
-        if(AbilityManager.getInstance().getAbility(AbilityType.Farming).getLevel() == relatedAbility.maxLevel)
-            amount -= 1;
-        if(gameScreen.getWeatherSystem().getCurrentWeather().equals(Weather.Rain))
-            amount = (int)(amount * 1.5f);
-        if(gameScreen.getWeatherSystem().getCurrentWeather().equals(Weather.Snow))
-            amount *= 2;
-        return Math.min(0, -amount);
+    public int getEnergyConsumption() {
+        return switch(currentLevel) {
+            case Normal -> 5;
+            case Copper -> 4;
+            case Iron -> 3;
+            case Gold -> 2;
+            case Iridium -> 1;
+        };
     }
 
     @Override
     public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
-        EnergyManager.getInstance().advance(getEnergyConsumption(game, false));
+        super.applyItem(body, engine, game, world);
+
         if(body.getUserData() instanceof TiledMapTile tile) {
             String water = tile.getProperties().get("Water", "", String.class);
             if(water.equals("T")) {
-                game.getAudioService().playSound(SoundAsset.Watering);
-                currentOccupied = capacities.get(currentLevel.ordinal());
+                fillWater(game);
             }
+        } else if(body.getUserData() instanceof Entity entity && Well.mapper.has(entity)) {
+            fillWater(game);
         }
         if(currentOccupied == 0) {
             game.getAudioService().playSound(SoundAsset.WateringCanNo);
@@ -81,5 +59,10 @@ public class WateringCan extends Tool{
             Growable growable = Growable.mapper.get(entity);
             growable.setWateredToday(true);
         }
+    }
+
+    private void fillWater(GameScreen game) {
+        game.getAudioService().playSound(SoundAsset.Watering);
+        currentOccupied = capacities.get(currentLevel.ordinal());
     }
 }

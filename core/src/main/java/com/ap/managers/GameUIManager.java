@@ -3,6 +3,7 @@ package com.ap.managers;
 import com.ap.asset.AssetService;
 import com.ap.audio.AudioService;
 import com.ap.model.Menus;
+import com.ap.model.store.CarpenterShop;
 import com.ap.model.store.StardropSaloonProducts;
 import com.ap.screen.GameScreen;
 import com.ap.system.ControllerSystem;
@@ -66,6 +67,13 @@ public class GameUIManager {
                         gameScreen.getAudioService(),"Gus",
                         "Hungry? Thirsty? I've got just the thing.", menu,
                         StardropSaloonProducts.buildStoreItems(gameScreen.getAssetService()), onBuy)
+                ));
+            case CarpenterShopMenu:
+                menus.put(menu, (new StoreMenu(
+                        gameScreen.getAssetService(), skin, stage, gameScreen.getInventory(),
+                        gameScreen.getAudioService(),"Robin",
+                        "Hungry? Thirsty? I've got just the thing.", menu,
+                        CarpenterShop.buildStoreItems(gameScreen.getAssetService()), onBuy)
                 ));
         }
         stage.addActor(menus.get(menu));

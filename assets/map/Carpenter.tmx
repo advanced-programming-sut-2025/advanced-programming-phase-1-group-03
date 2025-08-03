@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="25" height="12" tilewidth="16" tileheight="16" infinite="0" nextlayerid="16" nextobjectid="19">
+ <properties>
+  <property name="DayTiles" value="Front 7 1 225 Front 7 2 469 Front 7 3 501 Front 19 1 256 Front 19 2 288 Back 7 5 507 Back 7 6 539 Back 19 4 507 Back 19 5 539"/>
+  <property name="Doors" value="16 9 1 120"/>
+  <property name="NightTiles" value="Front 7 1 1222 Front 7 2 1219 Front 7 3 1251 Front 19 1 1253 Front 19 2 1285 Back 7 5 604 Back 7 6 635 Back 19 4 604 Back 19 5 635"/>
+  <property name="Warp" value="4 12 Town 58 86 5 12 Town 59 86"/>
+ </properties>
+ <tileset firstgid="1" name="1" tilewidth="16" tileheight="16" tilecount="2176" columns="32">
+  <image source="tileset/townInterior.png" width="512" height="1088"/>
+ </tileset>
+ <tileset firstgid="2177" name="untitled tile sheet2" tilewidth="16" tileheight="16" tilecount="1312" columns="32">
+  <image source="tileset/townInterior_2.png" width="512" height="656"/>
+  <tile id="52">
+   <animation>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="112" duration="50"/>
+    <frame tileid="113" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="47" duration="50"/>
+    <frame tileid="113" duration="50"/>
+    <frame tileid="112" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+    <frame tileid="52" duration="50"/>
+   </animation>
+  </tile>
+ </tileset>
+ <tileset firstgid="3489" source="objects/Objects.tsx"/>
+ <layer id="1" name="Back" width="25" height="12">
+  <data encoding="base64" compression="zlib">
+   eJy9krERwjAMRWWnI84G6QIrAEVYAyiSnpaGo0jHOLAJ9AxAxzECBTbg048SQcNRPPtO/tKXbBsiMn9g4JcU2KefOaScO3ZEE4WpY52scfzCCTzmvs5CYQkeV1Hj7INretFYpnrvN/DYOD4LxLzAFjwwXnrdznWpLTOznFtC/G50nVYPc3CWBPoLsWFGNPLktj3TBeZF7xp0OdwPgh5PT1+/yNr3KXXoXQldn0foL/6dvvdCHXqgBnfpGfuLf6exPI9EzqF5yBniPeOZoa5Om0NDehbwL1bQqyRRzuRb/YIHvONidg==
+  </data>
+ </layer>
+ <layer id="3" name="Back2" width="25" height="12">
+  <properties>
+   <property name="Draw" value="Back"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJzt0MERgjAQheFcApjQBiiFoFCI0oiUFsFCILEL/0uGA9Ew48UDb+a7LMtuEiH27FnHaCEeGDDiqZdv93z7nBu93Yf+iZkzLBxeOty3NdfAHkktQYoMh8jZjeLeGDCqpe7v3Af+L6iVOOKEKrJjYu4MC6e+9/rUzDzjggZtZIfkLROkyH5813/KG3S+FiM=
+  </data>
+ </layer>
+ <layer id="5" name="Buildings" width="25" height="12">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYETDs7GI4cPMUIxPDTKYxgqxAxeYA6Vheudy4VY7jwvVjtlQ/SC8G4gDceA9QByEZEcAHrXI6kD8i0wMDJeYIGZcBApeAuLLQFzIgImLkPQWoMldB+JUoEQaI6q6qxwMDI+BjCdAfAfI/wikPwHxZyD+AsRfkQJ0IpA9CUnvBCBm4WVgYOXFDCtkdR+AdjAD/cACxO84cIcvFxOCjS0uYcARKOEExOJM+NWhg59Ahb+A+DcjYTtg4Cgj8XZ0MqLacZIRkUZwAW+gH3yw+OMODgtBdkgC1UsBsTQTxA5Q2tvDgPBTCDdC/RugQDZQXQ6JYQUDWtA4uc0ASR+VUDNKuDHVCiHlj6OkWoQGSCkTGCnQhw8DANvWONA=
+  </data>
+ </layer>
+ <objectgroup id="15" name="objects">
+  <object id="11" name="Player" gid="3491" x="65.5" y="170" width="32" height="32">
+   <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
+    <property name="speed" type="float" value="3"/>
+   </properties>
+  </object>
+  <object id="13" name="TownSpawner" x="67" y="174" width="26.5" height="15">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="Town"/>
+   </properties>
+  </object>
+  <object id="15" name="MapBoundary" x="64.3636" y="190.545">
+   <polygon points="0,0 -0.363636,-22.9091 -41.8182,-22.9091 -47.6364,-29.4545 -48,-95.6364 16,-94.7273 16.1818,-111.455 96.7273,-110.545 96,-127.091 130.909,-126.727 130.727,-110.545 144.182,-110.727 144.545,-126.545 158.727,-111.273 159.136,-30.5455 192.886,-31.5455 191.886,-110.045 207.136,-126.045 206.636,-112.795 240.136,-112.295 239.636,-127.295 271.886,-127.045 271.386,-94.7955 302.886,-95.0455 303.136,-86.0455 287.136,-86.0455 287.886,-61.5455 272.136,-62.0455 272.636,-48.0455 238.386,-47.5455 238.775,-68.0028 225.068,-68.0227 224.348,-74.3068 208.886,-74.0455 207.386,-28.7955 200.136,-21.2955 93.6364,-21.7955 79.1364,-22.5455 78.8864,-28.2955 49.1364,-28.5455 48.6364,-22.2955 31.8864,-22.5455 32.1364,-0.295455"/>
+  </object>
+  <object id="16" name="MenuOpener" x="99" y="79.6667" width="16.6667" height="17.3333">
+   <properties>
+    <property name="menuOpen" value="CarpenterShopMenu"/>
+    <property name="sensor" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="18" name="MapBoundary2" x="223.667" y="143.333">
+   <polygon points="0,0 -17,0 -16.6667,16.3333 -31.3333,16.3333 -31,-1.66667 -81,0.333333 -80,-48.6667 -72.6667,-48 -72.3333,-36.3333 -61.3333,-35.3333 -61,-52.3333 -47.3333,-52.6667 -47,-76.3333 -47,-80"/>
+  </object>
+ </objectgroup>
+ <layer id="7" name="Front" width="25" height="12">
+  <data encoding="base64" compression="zlib">
+   eJyVkr1KA0EUhXeigrtJ0MIXSGGjAS0EFSuR2PnbibWohUp8B9FCBH0BSRB/mqBg0EIFY28RVKJWphQkYKGWfsvOMpPZdU0OfMwwc+49w2WEVS8HWiKIQysISQxyCcvKJ4Je32f2vJNZZajCIE2G4JT9mbxLQzekoAdu6V8CQcOddvVe3zdqBXWB9xKe4ByKwjufZp2BWcjI2mse+Ub/KqQ4L5CRYR2HG0f5ilp2jf02767g+YIHeBTqPiv3fq0rkWRmSeVZxLMU4tvn7Ife91qeqXctS681tYlvC75FtM/UM/4XeA15318aa2s8Y5m+q7AGE3ACJUv9jzD1MpN0LJhxJcL9bsYkTMGKzPA1DAswEA/Wle3mZmWqItc52LC8f2LqU8tw59bBP+t06j1Z/uM6jNjReV1wCB/U1xxv73IEx5CDPPRx169lHMAu/fdg3lZ1Jn4f0SD63DJN1P3HL5TQRLY=
+  </data>
+ </layer>
+ <layer id="9" name="Front2" width="25" height="12">
+  <properties>
+   <property name="Draw" value="Front"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBj8oIQLU2wxDwPDEh7q2TEFix2HgeYfoaIdo2AU0BowMTEwMDLhll8GxIuxiMHwYAcAvgsHXQ==
+  </data>
+ </layer>
+ <layer id="11" name="Front3" width="25" height="12">
+  <properties>
+   <property name="Draw" value="Front"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUDBewDIqHKwAAJKcBTQ==
+  </data>
+ </layer>
+</map>

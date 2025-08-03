@@ -46,7 +46,6 @@ public class Farm extends MapAdaptor {
         engine.addSystem(new SeasonalGraphicSystem(assetService, timeSystem));
         engine.addSystem(new AdjustAlphaSystem(engine));
 
-
         growSystem = new GrowSystem(assetService, weatherSystem);
         engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
@@ -55,6 +54,7 @@ public class Farm extends MapAdaptor {
         if(mapAsset == MapAsset.Farm1 || mapAsset == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
+        engine.addSystem(new CarrierSystem(engine, assetService, batch, world, audioService));
 
         engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cheatCodeBox, engine));
         engine.addSystem(new PlayerCoinSystem(clock));

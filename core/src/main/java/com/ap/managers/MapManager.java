@@ -43,7 +43,7 @@ public class MapManager {
                 return new House(game, gameScreen);
             } case Mine -> {
                 return new Mine(game, gameScreen);
-            } case StardropSaloon -> {
+            } case StardropSaloon, CarpenterShop -> {
                 return new Store(game, gameScreen);
             }
         }

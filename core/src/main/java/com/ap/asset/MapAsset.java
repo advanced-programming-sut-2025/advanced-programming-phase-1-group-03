@@ -11,7 +11,9 @@ public enum MapAsset implements Asset<TiledMap>{
     Greenhouse("Greenhouse.tmx"),
     Town("Town.tmx"),
     Mine("Mine.tmx"),
-    StardropSaloon("StardropSaloon.tmx");
+    StardropSaloon("StardropSaloon.tmx"),
+    CarpenterShop("Carpenter.tmx");
+
     private final AssetDescriptor<TiledMap> descriptor;
 
     MapAsset(String name) {

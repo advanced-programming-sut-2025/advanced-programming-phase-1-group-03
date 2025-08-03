@@ -26,7 +26,7 @@ public class SkillTab extends AbstractContent{
     private TextureRegion[] iconsTexture;
     private final TextureRegion starEmptyRegion;
     private final TextureRegion starFilledRegion;
-
+    private AbilityManager abilityManager;
     private Group skillsGroup;
 
     private final float starWidth = 32;
@@ -40,6 +40,7 @@ public class SkillTab extends AbstractContent{
     public SkillTab(GameScreen gameScreen, int width, int height, Tabs icon) {
         super(gameScreen.getStage(), gameScreen.getAssetService(), gameScreen.getSkin(), gameScreen.getAudioService(), width, height, icon);
         this.gameScreen = gameScreen;
+        this.abilityManager = gameScreen.getAbilityManager();
         n = AbilityType.values().length;
         m = AbilityType.maxLevel;
         skill_icons_atlas = assetService.get(AtlasAsset.SkillIcons);
@@ -92,14 +93,14 @@ public class SkillTab extends AbstractContent{
             TooltipHelper tooltipHelper = TooltipHelper.getTooltip();
             Label label = tooltipHelper.getTitle();
             label.setText(abilityType.name() + "\n" +
-                    "current level: " + AbilityManager.getInstance().getAbility(abilityType).getLevel() + "\n" +
+                    "current level: " + abilityManager.getAbility(abilityType).getLevel() + "\n" +
                     "note: \n" + abilityType.getDescription());
             image.addListener(new InputListener() {
                 public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                         Vector2 stageCoords = image.localToStageCoordinates(new Vector2(x, y));
                         tooltipHelper.setVisible(true);
                         tooltipHelper.getTitle().setText(abilityType.name() + "\n\n" +
-                                "current level: " + AbilityManager.getInstance().getAbility(abilityType).getLevel() + "\n\n" +
+                                "current level: " + abilityManager.getAbility(abilityType).getLevel() + "\n\n" +
                                 "note: \n" + abilityType.getDescription());
                         tooltipHelper.getTitle().setFontScale(1f);
                         tooltipHelper.pack();

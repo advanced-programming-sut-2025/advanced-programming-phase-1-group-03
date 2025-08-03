@@ -7,16 +7,6 @@ import java.util.Map;
 
 public class AbilityManager {
 
-    private static AbilityManager INSTANCE;
-
-    public static AbilityManager getInstance() {
-        return INSTANCE;
-    }
-
-    public static void setINSTANCE(AbilityManager INSTANCE) {
-        AbilityManager.INSTANCE = INSTANCE;
-    }
-
     private final Map<AbilityType, Ability> abilities;
 
     public AbilityManager() {
@@ -31,7 +21,7 @@ public class AbilityManager {
         return abilities.get(type);
     }
 
-    public class Ability {
+    public static class Ability {
         private final AbilityType abilityType;
         private int level = 0;
         private int xp = 0;
@@ -70,6 +60,10 @@ public class AbilityManager {
                     xp = 0;
                 }
             }
+        }
+
+        public boolean isMax() {
+            return level == abilityType.maxLevel;
         }
     }
 }
