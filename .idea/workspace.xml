@@ -4,62 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="StardropSaloonProducts finshed">
-      <change afterPath="$PROJECT_DIR$/assets/audio/placeItem.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/graphics/Barns.atlas" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/graphics/Barns.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/graphics/Carpenter.atlas" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/graphics/Carpenter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/map/Carpenter.tmx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Carrier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/items/Barn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/items/Well.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/EnergyManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/BarnsType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/store/CarpenterShop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/CarrierSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/Foods/Foods.tps" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Foods/Foods.tps" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Farm1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Farm1.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Town.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Town.tmx" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Placing items system completed">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/MapAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/MapAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/SoundAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/EntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/food/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/food/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Axe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/FishingPole.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/FishingPole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Hoe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Hoe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/MilkPail.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/MilkPail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Pickaxe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Pickaxe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Scythe.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Scythe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Shear.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Shear.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/WateringCan.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/items/tools/WateringCan.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/AbilityManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/AbilityManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/GameUIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/GameUIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/managers/StoreManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/GameData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Menus.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Menus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/MapAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/screen/maps/MapAdaptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/AdjustAlphaSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/AdjustAlphaSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/EnergySystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/EnergySystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/universal/EnergyManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/FacingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/FacingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/system/PhysicSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/system/PhysicSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledMapGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledPhysic.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/tiled/TiledPhysic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CookingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CookingMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CraftingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/CraftingMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/SkillTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/ui/widget/tabContents/SkillTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/utils/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +154,7 @@
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="--info" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -303,13 +257,7 @@
       <workItem from="1753952529205" duration="12369000" />
       <workItem from="1754133416833" duration="550000" />
       <workItem from="1754134966745" duration="7966000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۴۱" summary="Add facing and camera follow system">
-      <option name="closed" value="true" />
-      <created>1752578585407</created>
-      <option name="number" value="LOCAL‎−۰۰۰۴۱" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۴۱" />
-      <updated>1752578585407</updated>
+      <workItem from="1754209611033" duration="3687000" />
     </task>
     <task id="LOCAL‎−۰۰۰۴۲" summary="Adding animation system">
       <option name="closed" value="true" />
@@ -666,7 +614,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۸۹" />
       <updated>1754059422888</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL‎−۰۰۰۹۰" summary="Placing items system completed">
+      <option name="closed" value="true" />
+      <created>1754175017715</created>
+      <option name="number" value="LOCAL‎−۰۰۰۹۰" />
+      <option name="presentableId" value="LOCAL‎−۰۰۰۹۰" />
+      <updated>1754175017715</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,7 +652,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Shadow bug fixed" />
     <MESSAGE value="Map generation" />
     <MESSAGE value="Axe and Pickaxe" />
     <MESSAGE value="Multiple map system fixed" />
@@ -722,7 +676,8 @@
     <MESSAGE value="effect added." />
     <MESSAGE value="tool tip added" />
     <MESSAGE value="StardropSaloonProducts finshed" />
-    <option name="LAST_COMMIT_MESSAGE" value="StardropSaloonProducts finshed" />
+    <MESSAGE value="Placing items system completed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Placing items system completed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

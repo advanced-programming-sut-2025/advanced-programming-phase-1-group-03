@@ -15,7 +15,6 @@ public class FacingSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
-//        System.out.println(entity);
         Crow crow = Crow.mapper.get(entity);
         if (crow == null) {
             Move move = Move.mapper.get(entity);
@@ -35,7 +34,6 @@ public class FacingSystem extends IteratingSystem {
                 facing.setDirection(Facing.FacingDirection.Left);
             }
         } else {
-//            if (crow.getSpeed() == 0) return;
             Facing.FacingDirection facingDirection;
             Facing facing = Facing.mapper.get(entity);
             float direction = crow.getDirection();
@@ -44,7 +42,6 @@ public class FacingSystem extends IteratingSystem {
             else if (direction > 45 && direction <= 135) facing.setDirection(facingDirection = Facing.FacingDirection.Up);
             else if (direction > 135 && direction <= 225) facing.setDirection(facingDirection = Facing.FacingDirection.Left);
             else facing.setDirection(facingDirection = Facing.FacingDirection.Down);
-//            System.out.println("*facingDirection: " + facingDirection);
         }
     }
 }

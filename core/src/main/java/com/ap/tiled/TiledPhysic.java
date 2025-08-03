@@ -126,7 +126,6 @@ public class TiledPhysic {
         body.createFixture(fixtureDef);
 
         shape.dispose();
-
         return body;
     }
 }

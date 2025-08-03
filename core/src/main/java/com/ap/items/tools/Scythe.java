@@ -35,13 +35,13 @@ public class Scythe extends Tool{
     @Override
     public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
         super.applyItem(body, engine, game, world);
+        game.getAudioService().playSound(SoundAsset.Scythe);
         if(!(body.getUserData() instanceof Entity entity)) {
             return;
         }
         if(!ItemHolder.mapper.has(entity)) {
             return;
         }
-        game.getAudioService().playSound(SoundAsset.Scythe);
         Item item = ItemHolder.mapper.get(entity).getItem();
         if(item.getName().equals(ItemNames.Grass.name())) {
             Helper.removeEntity(entity, engine, world);

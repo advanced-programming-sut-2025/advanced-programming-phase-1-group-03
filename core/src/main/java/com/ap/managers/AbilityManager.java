@@ -63,7 +63,7 @@ public class AbilityManager {
         }
 
         public boolean isMax() {
-            return level == abilityType.maxLevel;
+            return level == AbilityType.maxLevel;
         }
     }
 }

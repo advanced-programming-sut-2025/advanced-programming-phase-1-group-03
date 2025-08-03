@@ -15,6 +15,7 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.*;
 
@@ -65,13 +66,21 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
     public void update(float deltaTime) {
         accumulator += deltaTime;
 
-        while(accumulator >= interval) {
-            accumulator -= interval;
+        int maxSteps = 10; // حداکثر تعداد step در هر فریم
+        int stepCount = 0;
 
-            // Call processEntity for each entity
+        while (accumulator >= interval && stepCount < maxSteps) {
+            accumulator -= interval;
+            stepCount++;
+
             super.update(interval);
 
+            float startTime = System.nanoTime();
             world.step(interval, 6, 2);
+            float duration = (System.nanoTime() - startTime) / 1_000_000f;
+            if (duration > 16) {
+                Gdx.app.log("Warning", "World step took too long: " + duration + "ms, Body count: " + world.getBodyCount());
+            }
         }
 
         world.clearForces();
@@ -87,6 +96,7 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
             }
         }
     }
+
 
     private void updateTransform(Entity entity, float alpha) {
         Transform transform = Transform.mapper.get(entity);

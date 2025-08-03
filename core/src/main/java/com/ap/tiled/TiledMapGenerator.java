@@ -200,7 +200,8 @@ public class TiledMapGenerator {
     }
 
     public void generateForagingTree(TiledMap map) {
-        createTree(map, 1);
+
+        //createTree(map, 1);
     }
 
     public void makingGreenhouseFloor(TiledMap map) {
