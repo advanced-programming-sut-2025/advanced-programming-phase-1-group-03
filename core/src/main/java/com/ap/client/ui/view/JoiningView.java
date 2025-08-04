@@ -111,7 +111,7 @@ public class JoiningView extends AbstractView<JoiningViewModel> {
 
         TextureRegion avatarRegion = atlas.findRegion(avatarName);
         if (avatarRegion == null) {
-            avatarRegion = atlas.findRegion("default");
+            avatarRegion = atlas.findRegion("avatar0");
         }
 
         players.add(new Player(name, avatarRegion));
