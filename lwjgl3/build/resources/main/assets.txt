@@ -93,11 +93,14 @@ graphics/avatars.atlas
 graphics/avatars.png
 graphics/greenBar.png
 graphics/grid.png
+graphics/grid2.png
+graphics/img_1.png
 graphics/player.atlas
 graphics/player.png
 graphics/shadow.atlas
 graphics/shadow.png
 graphics/whiteflash.png
+graphics/wood.png
 map/Carpenter.tmx
 map/Farm Buildings.tsx
 map/Farm1.tmx
@@ -143,8 +146,6 @@ skins/LondonMM.ttf
 skins/Millennium-Bold.ttf
 skins/Roboto-Bold.ttf
 skins/Roboto-Regular.ttf
-skins/Stardew Valley ALL CAPS.ttf
-skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas
