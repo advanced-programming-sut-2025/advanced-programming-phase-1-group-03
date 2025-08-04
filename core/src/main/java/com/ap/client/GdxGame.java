@@ -5,6 +5,7 @@ import com.ap.client.audio.AudioService;
 import com.ap.client.database.SqliteConnection;
 import com.ap.client.managers.TransitionManager;
 import com.ap.client.network.GameClient;
+import com.ap.client.screen.JoiningScreen;
 import com.ap.client.screen.LoadingScreen;
 import com.ap.client.screen.LobbyScreen;
 import com.ap.client.screen.PreGameScreen;
@@ -76,8 +77,8 @@ public class GdxGame extends Game {
         client = new GameClient();
 
         //addScreen(new PreGameScreen(this));
-        addScreen(new LoadingScreen(this));
-        changeScreen(LoadingScreen.class);
+        addScreen(new JoiningScreen(this));
+        changeScreen(JoiningScreen.class);
     }
 
     @Override
