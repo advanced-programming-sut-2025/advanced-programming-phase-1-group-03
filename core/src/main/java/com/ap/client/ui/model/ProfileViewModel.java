@@ -1,59 +1,64 @@
 package com.ap.client.ui.model;
 
 import com.ap.client.GdxGame;
-import com.ap.client.database.SqliteConnection;
-import com.ap.client.database.UserLoader;
 import com.ap.client.model.GameData;
-import com.ap.client.model.Result;
+import com.ap.client.network.GameClient;
+import com.ap.client.screen.MainMenuScreen;
+import com.ap.global.model.Result;
 import com.ap.client.screen.ProfileScreen;
-import com.ap.client.utils.Crypto;
-import com.ap.client.utils.RegistrationValidator;
+import com.ap.global.responses.GetUserInfoResponse;
+import com.ap.global.utils.Crypto;
+import com.ap.global.utils.RegistrationValidator;
+import com.badlogic.gdx.Gdx;
 
 public class ProfileViewModel extends ViewModel{
-    private final SqliteConnection sqlite;
     private final RegistrationValidator validator;
+    private final GameClient client;
+    private String token;
 
-    public ProfileViewModel(GdxGame game, SqliteConnection sqlite) {
+    private GetUserInfoResponse info;
+
+    public ProfileViewModel(GdxGame game) {
         super(game);
-        this.sqlite = sqlite;
-        validator = new RegistrationValidator(sqlite);
+        token = game.getPreferencesManager().getToken();
+        client = game.getClient();
+        validator = new RegistrationValidator();
     }
 
     public String getUsername() {
-        return GameData.getInstance().getLoggedUserUsername();
+        return info.username;
     }
 
     public int getMaximumCoin() {
-        return UserLoader.getLoggedInUserMaximumCoin(sqlite);
+        return info.maximumCoin;
     }
 
     public int getGamesCount() {
-        return UserLoader.getLoggedInUserGamesCount(sqlite);
+        return info.gamesCount;
     }
 
     public String getEmail() {
-        return UserLoader.getLoggedInUserEmail(sqlite);
+        return info.email;
     }
 
     public String getNickname() {
-        return UserLoader.getLoggedInUserNickname(sqlite);
+        return info.nickname;
     }
 
     public int getAvatarIndex() {
-        return UserLoader.getLoggedInUserAvatarIndex(sqlite);
+        return info.avatarIndex;
     }
 
     public void chooseAvatar(int i) {
-        UserLoader.changeAvatarIndex(sqlite, i);
+        client.getSender().changeAvatar(token, i);
     }
 
     public Result<String> changeUsername(String username) {
-        if(!validator.usernameValidity(username)) {
-            return new Result<>(false, "Username is not valid");
+        var response =  client.getSender().changeUsername(token, username);
+        if(response == null) {
+            return new Result<>(false, "server doesn't responding");
         }
-        UserLoader.changeUsername(sqlite, username);
-        GameData.getInstance().setLoggedUserUsername(username);
-        return new Result<>(true, "Username Changed Successfully");
+        return new Result<>(response.success, response.message);
     }
 
     public void reload() {
@@ -61,15 +66,15 @@ public class ProfileViewModel extends ViewModel{
     }
 
     public Result<String> changeNickname(String nickname) {
-        UserLoader.changeNickname(sqlite, nickname);
+    //    UserLoader.changeNickname(sqlite, nickname);
         return new Result<>(true, "Nickname Changed Successfully");
     }
 
     public Result<String> changeEmail(String email) {
-        if(!validator.emailValidity(email)) {
-            return new Result<>(false, "Email is not valid");
-        }
-        UserLoader.changeEmail(sqlite, email);
+//        if(!validator.emailValidity(email)) {
+//            return new Result<>(false, "Email is not valid");
+//        }
+//        UserLoader.changeEmail(sqlite, email);
         return new Result<>(true, "Email Changed Successfully");
     }
 
@@ -78,10 +83,19 @@ public class ProfileViewModel extends ViewModel{
     }
 
     public Result<String> changePassword(String password) {
-        if(!validator.passwordValidity(password).isSuccess()) {
-            return validator.passwordValidity(password);
-        }
-        UserLoader.changePassword(sqlite, Crypto.hash(password));
+//        if(!validator.passwordValidity(password).isSuccess()) {
+//            return validator.passwordValidity(password);
+//        }
+//        UserLoader.changePassword(sqlite, Crypto.hash(password));
         return new Result<>(true, "Password Changed Successfully");
+    }
+
+    public void setViewRunnable(Runnable r) {
+        info = client.getSender().userInfo(token);
+        Gdx.app.postRunnable(r);
+    }
+
+    public void goToMainMenu() {
+        game.setScreen(MainMenuScreen.class);
     }
 }

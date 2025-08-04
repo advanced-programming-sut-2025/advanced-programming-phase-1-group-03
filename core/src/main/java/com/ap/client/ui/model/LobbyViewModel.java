@@ -2,7 +2,6 @@ package com.ap.client.ui.model;
 
 import com.ap.client.GdxGame;
 import com.ap.client.asset.MapAsset;
-import com.ap.client.database.SqliteConnection;
 import com.ap.client.model.GameData;
 import com.ap.client.network.GameClient;
 import com.ap.client.screen.GameScreen;
@@ -15,15 +14,13 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class LobbyViewModel extends ViewModel {
-    private SqliteConnection sqlite;
     private GameClient client;
 
     private Runnable roomsObserver;
 
     private List<LobbyView.ServerEntry> rooms = new ArrayList<>();
-    public LobbyViewModel(GdxGame game, SqliteConnection sqlite) {
+    public LobbyViewModel(GdxGame game) {
         super(game);
-        this.sqlite = sqlite;
         this.client = game.getClient();
         client.getSender().requestRoomsList();
     }
@@ -37,8 +34,8 @@ public class LobbyViewModel extends ViewModel {
     }
 
 
-    public void hostServer(String name, String password) {
-        client.getSender().createRoom(name, password);
+    public void hostServer(String name, String password, boolean isVisible) {
+        client.getSender().createRoom(name, password, isVisible);
     }
 
     public void setRooms(List<LobbyView.ServerEntry> rooms) {

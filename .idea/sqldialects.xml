@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/core/src/main/java/com/ap/client/database/SqliteConnection.java" dialect="SQLite" />
-    <file url="file://$PROJECT_DIR$/core/src/main/java/com/ap/client/utils/RegistrationValidator.java" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/core/src/main/java/com/ap/server/database/SqliteConnection.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/core/src/main/java/com/ap/global/utils/RegistrationValidator.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/core/src/main/java/com/ap/server/database/SqliteConnection.java" dialect="SQLite" />
   </component>
 </project>

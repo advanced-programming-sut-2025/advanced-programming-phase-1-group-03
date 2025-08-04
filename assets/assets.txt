@@ -26,6 +26,7 @@ audio/type.mp3
 audio/walk.wav
 audio/watering.wav
 audio/wateringCanNo.wav
+data.db
 graphics/Animals/Fish.atlas
 graphics/Animals/Fish.png
 graphics/Animals/Fishing-2.png

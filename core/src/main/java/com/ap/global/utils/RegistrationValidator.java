@@ -1,24 +1,18 @@
-package com.ap.client.utils;
+package com.ap.global.utils;
 
-import com.ap.client.database.SqliteConnection;
-import com.ap.client.model.Result;
+import com.ap.server.database.SqliteConnection;
+import com.ap.global.model.Result;
 import com.badlogic.gdx.utils.GdxRuntimeException;
 
 import java.util.regex.Pattern;
 
 public class RegistrationValidator {
-    private final SqliteConnection sqlite;
-
-    public RegistrationValidator(SqliteConnection sqlite) {
-        this.sqlite = sqlite;
-    }
-
     /**
      * This method check that is username unique
      * @param username Username wants to register
      * @return If true someone already picked this username
      */
-    public boolean duplicateUsername(String username) {
+    public boolean duplicateUsername(String username, SqliteConnection sqlite) {
         var sql = """
                 SELECT COUNT(*) FROM users WHERE username = ?;
                 """;
@@ -35,7 +29,7 @@ public class RegistrationValidator {
         return false;
     }
 
-    public boolean checkLogin(String username, String password) {
+    public boolean checkLogin(String username, String password, SqliteConnection sqlite) {
         var sql = """
                 SELECT COUNT(*) FROM users WHERE username = ? AND password = ?;
                 """;

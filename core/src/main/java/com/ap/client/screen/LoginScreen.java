@@ -20,7 +20,7 @@ public class LoginScreen extends AbstractScreen {
 
     @Override
     public void show() {
-        this.stage.addActor(new LoginView(stage, skin, new LoginViewModel(game, game.getSqlite()), audioService));
+        this.stage.addActor(new LoginView(stage, skin, new LoginViewModel(game), audioService));
         this.stage.addActor(new BackButtonLayer(game, skin, MainMenuScreen.class));
         game.setInputProcessors(stage, controller);
     }

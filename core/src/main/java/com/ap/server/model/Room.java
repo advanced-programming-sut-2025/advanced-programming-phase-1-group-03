@@ -9,6 +9,8 @@ public class Room {
     public boolean isPrivate;
     public String password;
     public ServerPlayer owner;
+    public boolean visible;
+
     public List<ServerPlayer> players = new ArrayList<>();
 
     public void broadcast(Object packet, ServerPlayer except) {

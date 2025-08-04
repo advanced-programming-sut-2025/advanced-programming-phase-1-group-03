@@ -7,7 +7,7 @@ import com.badlogic.gdx.Preferences;
 
 public class PreferencesManager {
     private final Preferences preferences;
-    private final String rememberUserKey = "remember_username";
+    private final String rememberTokenKey = "remember_token";
 
     public PreferencesManager() {
         preferences = Gdx.app.getPreferences("preferences");
@@ -18,7 +18,8 @@ public class PreferencesManager {
     public boolean containsKey(String key) {
         return preferences.contains(key);
     }
-    public String getString(String key) {
+
+    private String getString(String key) {
         return preferences.getString(key, "");
     }
 
@@ -26,18 +27,11 @@ public class PreferencesManager {
         preferences.flush();
     }
 
-    public void removeRememberUser() {
-        preferences.remove(rememberUserKey);
+    public void rememberToken(String token) {
+        putString(rememberTokenKey, token);
         save();
     }
-    public void rememberUsername(String username) {
-        putString(rememberUserKey, username);
-        save();
-    }
-
-    public void load() {
-        if(containsKey(rememberUserKey)) {
-            GameData.getInstance().setLoggedUserUsername(getString(rememberUserKey));
-        }
+    public String getToken() {
+        return getString(rememberTokenKey);
     }
 }

@@ -21,6 +21,9 @@ public class LobbyListener extends Listener {
         } else if(object instanceof RoomsListResponse response) {
             ArrayList<LobbyView.ServerEntry> serverEntries = new ArrayList<>();
             for(RoomInfo info : response.roomsInfo) {
+                if(!info.isVisible) {
+                    continue;
+                }
                 serverEntries.add(new LobbyView.ServerEntry(
                         info.name, "avatar" + info.ownerAvatarIndex, info.currentPlayers
                 ));

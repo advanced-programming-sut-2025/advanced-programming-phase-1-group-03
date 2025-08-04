@@ -1,4 +1,4 @@
-package com.ap.client.utils;
+package com.ap.global.utils;
 
 import com.badlogic.gdx.utils.GdxRuntimeException;
 

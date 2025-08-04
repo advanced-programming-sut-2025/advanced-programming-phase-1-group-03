@@ -2,7 +2,6 @@ package com.ap.client.screen;
 
 import com.ap.client.GdxGame;
 import com.ap.client.asset.*;
-import com.ap.client.database.SqliteConnection;
 import com.ap.client.ui.model.LoadingViewModel;
 import com.ap.client.ui.view.LoadingView;
 import com.ap.client.utils.PreferencesManager;
@@ -10,7 +9,6 @@ import com.badlogic.gdx.utils.GdxRuntimeException;
 
 public class LoadingScreen extends AbstractScreen {
     private final AssetService assetService;
-    private final SqliteConnection sqlite;
     private final PreferencesManager preferencesManager;
     private boolean loaded = false;
 
@@ -18,8 +16,6 @@ public class LoadingScreen extends AbstractScreen {
         super(game);
         assetService = game.getAssetService();
         preferencesManager = game.getPreferencesManager();
-        sqlite = game.getSqlite();
-
     }
 
     @Override
@@ -27,13 +23,9 @@ public class LoadingScreen extends AbstractScreen {
         // Loading the view
         stage.addActor(new LoadingView(stage, skin, new LoadingViewModel(game)));
 
-        // Connect to database
-        if(! sqlite.connect())
-            throw new GdxRuntimeException("Failed to establish a connection with database");
-        sqlite.createTables();
-
         // Load preferences
-        preferencesManager.load();
+     //   preferencesManager.load();
+
         // Loading all the assets
         // .
         // .

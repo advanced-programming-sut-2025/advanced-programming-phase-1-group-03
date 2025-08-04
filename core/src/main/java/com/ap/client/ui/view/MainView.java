@@ -27,13 +27,31 @@ public class MainView extends AbstractView<MainViewModel>{
         super(stage, skin, viewModel);
         this.audioService = audioService;
         this.assetService = assetService;
-        setupUI();
+
+        setFillParent(true);
+        setBackground(skin.getDrawable("Panorama"));
+
+        setupConnectingUI();
+
+        viewModel.setConnectRunnable(this::setupUI);
+        viewModel.tryingToConnect();
+
+    }
+
+    private void setupConnectingUI() {
+        Label loadingLabel = new Label("Connecting...", skin, "font48");
+        add(loadingLabel).center();
+
+        // Adding blink effect to the loading label
+        loadingLabel.addAction(Actions.forever(Actions.sequence(
+                Actions.fadeOut(1),
+                Actions.fadeIn(1)
+        )));
     }
 
     @Override
     protected void setupUI() {
-        setFillParent(true);
-        setBackground(skin.getDrawable("Panorama"));
+        clearChildren();
 
         drawHeader();
 
@@ -55,25 +73,22 @@ public class MainView extends AbstractView<MainViewModel>{
             add(avatar).maxWidth(40).maxHeight(40).pad(10);
         }
         add(new Label("Welcome  " + viewModel.getLoggedInUserNickname(), skin)).colspan(1).padLeft(10).padTop(10);
-
-        add().colspan(2).expandX().fillX().center();
+        TextButton loginButton = new TextButton("Signup/Login", skin);
+        add().colspan(isLoggedIn ? 1 : 2).expandX().fillX();
+        add(loginButton).colspan(1).padTop(10).padRight(10).row();
 
         if(isLoggedIn) {
             TextButton profileButton = new TextButton("Profile", skin);
-            add(profileButton).pad(5).row();
+            add(profileButton).colspan(1).pad(5).row();
             OnClick(profileButton, viewModel::openProfilePage);
-        } else {
-            TextButton loginButton = new TextButton("Signup/Login", skin);
-            add(loginButton).colspan(1).padTop(10).padRight(10).row();
-
-            // Setup events
-            OnClick(loginButton, viewModel::clickSignupButton);
         }
-
 
         Image logo = new Image(skin.getDrawable("Logo"));
         logo.setScaling(Scaling.fit);
         add(logo).padTop(20).colspan(4).fillX().top().row();
+
+        // Setup events
+        OnClick(loginButton, viewModel::clickSignupButton);
     }
 
     private void drawButtons() {
@@ -95,14 +110,6 @@ public class MainView extends AbstractView<MainViewModel>{
         // Setup events
         OnClick(newButton, viewModel::clickNewGameButton);
         OnClick(exitButton, viewModel::exitGame);
-        OnClick(coOpButton, this::onlineButton);
-    }
-
-    private void onlineButton() {
-        SimpleDialog dialog = new SimpleDialog("", "Connecting to the server...", skin);
-        viewModel.tryingToConnect();
-        dialog.setupEvent(viewModel::stopConnecting);
-        dialog.show(stage);
     }
 
     private ImageButton createImageButton(Drawable drawable, Drawable hoverDrawable) {

@@ -23,7 +23,7 @@ public class PreGameScreen extends AbstractScreen{
 
     @Override
     public void show() {
-        this.stage.addActor(new PreGameView(stage, skin, new PreGameViewModel(game, game.getSqlite()), audioService, assetService));
+        this.stage.addActor(new PreGameView(stage, skin, new PreGameViewModel(game), audioService, assetService));
         this.stage.addActor(new BackButtonLayer(game, skin, MainMenuScreen.class));
         game.setInputProcessors(stage, controller);
     }

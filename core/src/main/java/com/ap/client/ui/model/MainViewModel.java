@@ -1,28 +1,32 @@
 package com.ap.client.ui.model;
 
 import com.ap.client.GdxGame;
-import com.ap.client.database.SqliteConnection;
-import com.ap.client.database.UserLoader;
 import com.ap.client.network.GameClient;
 import com.ap.client.screen.*;
+import com.ap.global.requests.GetUserInfoRequest;
+import com.ap.global.responses.GetUserInfoResponse;
 import com.badlogic.gdx.Gdx;
 
 public class MainViewModel extends ViewModel{
-    private SqliteConnection sqlite;
     private GameClient gameClient;
     private Thread connectThread;
+    private String token;
+    private Runnable connectRunnable;
 
-    public MainViewModel(GdxGame game, SqliteConnection sqlite) {
+    private GetUserInfoResponse info;
+
+    public MainViewModel(GdxGame game) {
         super(game);
+        token = game.getPreferencesManager().getToken();
         this.gameClient = game.getClient();
-        this.sqlite = sqlite;
-
     }
 
     private void connectionEstablished() {
-        connectThread.interrupt();
-        gameClient.getSender().introduction(sqlite);
-        game.setScreen(LobbyScreen.class);
+        info = gameClient.getSender().userInfo(token);
+        if(info == null) {
+            info = new GetUserInfoResponse(false);
+        }
+        Gdx.app.postRunnable(connectRunnable);
     }
 
     public void clickSignupButton() {
@@ -39,7 +43,7 @@ public class MainViewModel extends ViewModel{
     }
 
     public String getLoggedInUserNickname() {
-        return UserLoader.getLoggedInUserNickname(sqlite);
+        return info.success ? info.username : "Guest";
     }
 
     public void openProfilePage() {
@@ -47,7 +51,7 @@ public class MainViewModel extends ViewModel{
     }
 
     public int getAvatarIndex() {
-        return UserLoader.getLoggedInUserAvatarIndex(sqlite);
+        return info.avatarIndex;
     }
 
     public void tryingToConnect() {
@@ -62,13 +66,15 @@ public class MainViewModel extends ViewModel{
                 }
                 if(gameClient.isConnected()) {
                     connectionEstablished();
+                    break;
                 }
             }
         });
         connectThread.start();
     }
 
-    public void stopConnecting() {
-        connectThread.interrupt();
+
+    public void setConnectRunnable(Runnable runnable) {
+        connectRunnable = runnable;
     }
 }

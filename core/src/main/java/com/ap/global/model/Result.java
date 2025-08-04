@@ -1,4 +1,4 @@
-package com.ap.client.model;
+package com.ap.global.model;
 
 public class Result<T> {
     private final boolean success;

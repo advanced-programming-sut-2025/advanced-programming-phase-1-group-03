@@ -23,7 +23,7 @@ public class ProfileScreen extends AbstractScreen{
 
     @Override
     public void show() {
-        this.stage.addActor(new ProfileView(stage, skin, new ProfileViewModel(game, game.getSqlite()), audioService, assetService));
+        this.stage.addActor(new ProfileView(stage, skin, new ProfileViewModel(game), audioService, assetService));
         this.stage.addActor(new BackButtonLayer(game, skin, MainMenuScreen.class));
         game.setInputProcessors(stage, controller);
     }

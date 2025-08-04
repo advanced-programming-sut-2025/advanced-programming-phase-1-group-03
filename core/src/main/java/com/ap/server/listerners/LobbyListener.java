@@ -14,6 +14,7 @@ import com.esotericsoftware.kryonet.Listener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class LobbyListener extends Listener {
     @Override
@@ -35,18 +36,29 @@ public class LobbyListener extends Listener {
         } else if(object instanceof CreateRoomRequest request) {
             var room = new Room();
             var senderPlayer = ServerData.instance.activePlayers.get(connection);
-            room.id = ServerData.instance.activeRooms.size();
+
+            int[] chosenId = {0};
+            do {
+                chosenId[0] = new Random().nextInt(10000);
+            }
+            while(ServerData.instance.activeRooms.stream().anyMatch(r -> r.id == chosenId[0]));
+
+            room.id = chosenId[0];
+
             room.name = request.name;
             room.password = request.password;
             room.isPrivate = !room.password.isEmpty();
             room.players.add(senderPlayer);
             room.owner = senderPlayer;
+            room.visible = request.isVisible;
             ServerData.instance.activeRooms.add(room);
         }else if(object instanceof RoomsListRequest) {
             var response = new RoomsListResponse();
             List<RoomInfo> rooms = new ArrayList<>();
             for(Room room : ServerData.instance.activeRooms) {
-                rooms.add(new RoomInfo(room.id, room.isPrivate, room.players.size(),room.name, room.owner.name, room.owner.avatar));
+                rooms.add(new RoomInfo(
+                        room.id, room.isPrivate, room.players.size(),room.name, room.owner.name, room.owner.avatar, room.visible
+                ));
             }
             response.roomsInfo = rooms.toArray(new RoomInfo[0]);
             connection.sendTCP(response);

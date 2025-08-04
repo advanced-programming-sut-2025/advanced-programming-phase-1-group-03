@@ -1,47 +1,37 @@
 package com.ap.client.ui.model;
 
 import com.ap.client.GdxGame;
-import com.ap.client.database.SqliteConnection;
 import com.ap.client.model.GameData;
-import com.ap.client.model.Result;
+import com.ap.client.network.GameClient;
 import com.ap.client.screen.MainMenuScreen;
 import com.ap.client.screen.SignupScreen;
-import com.ap.client.utils.Crypto;
 import com.ap.client.utils.PreferencesManager;
-import com.ap.client.utils.RegistrationValidator;
-import com.badlogic.gdx.utils.GdxRuntimeException;
-
-import java.sql.PreparedStatement;
+import com.ap.global.utils.RegistrationValidator;
+import com.ap.global.model.Result;
 
 public class LoginViewModel extends ViewModel {
-    private final SqliteConnection sqlite;
-    private final RegistrationValidator registrationValidator;
     private final PreferencesManager preferencesManager;
+    private final GameClient client;
 
-    public LoginViewModel(GdxGame game, SqliteConnection sqlite) {
+    public LoginViewModel(GdxGame game) {
         super(game);
-        this.sqlite = sqlite;
-        registrationValidator = new RegistrationValidator(sqlite);
+        client = game.getClient();
         preferencesManager = new PreferencesManager();
     }
 
-    public Result<String> submit(String username, String password) {
-        if(!registrationValidator.checkLogin(username, Crypto.hash(password))) {
-            return new Result<>(false, "Password is incorrect or username doesn't exist");
+    public Result<String> submit(String username, String password, boolean stayLoggedIn) {
+        var response = client.getSender().login(username, password, stayLoggedIn);
+        if(response == null) {
+            return new Result<>(false, "Server doesn't respond.");
         }
-
-        return new Result<>(true, "Login was successful");
+        if(response.success) {
+            preferencesManager.rememberToken(response.token);
+            System.out.println(response.token);
+        }
+        return new Result<>(response.success, response.message);
     }
 
-    public void loginSuccessful(String username, boolean rememberMe) {
-        GameData.getInstance().setLoggedUserUsername(username);
-
-        if(rememberMe) {
-            preferencesManager.rememberUsername(username);
-        } else {
-            game.getPreferencesManager().removeRememberUser();
-        }
-
+    public void successfulLogin() {
         game.setScreen(MainMenuScreen.class);
     }
 
@@ -50,67 +40,31 @@ public class LoginViewModel extends ViewModel {
     }
 
     public int getSecurityQuestion(String username) {
-        var sql = """
-                SELECT securityQuestionId FROM users WHERE username = ?;
-                """;
-        var result = sqlite.runSql(sql, (PreparedStatement ps) -> {
-            ps.setString(1, username);
-        });
-        try {
-            if (result.next()) {
-                return result.getInt(1);
-            }
-        }catch (Exception e) {
-            throw new GdxRuntimeException(e.getMessage());
+        var response = client.getSender().getSecurityQuestion(username);
+        if(response == null) {
+            return -1;
         }
-        return -1;
+        // It will be -1 if user doesn't exist
+        return response.securityId;
     }
 
     public boolean isSecurityQuestionValid(String securityQuestionAnswer, String username) {
-        var sql = """
-                SELECT securityQuestion FROM users WHERE username = ?;
-                """;
-        var result = sqlite.runSql(sql, (PreparedStatement ps) -> {
-            ps.setString(1, username);
-        });
-        try {
-            if(result.next()) {
-                return result.getString(1).equalsIgnoreCase(securityQuestionAnswer);
-            }
-        }catch (Exception e) {
-            throw new GdxRuntimeException(e.getMessage());
+        var response = client.getSender().securityQPass(securityQuestionAnswer, username);
+        if(response == null) {
+            return false;
         }
-        return false;
-    }
-    public String getPassword(String securityQuestionAnswer, String username, int securityQuestionId) {
-        var sql = """
-                SELECT securityQuestion FROM users WHERE username = ? AND securityQuestionId = ?;
-                """;
-        var result = sqlite.runSql(sql, (PreparedStatement ps) -> {
-            ps.setString(1, username);
-            ps.setInt(2, securityQuestionId);
-        });
-        try {
-            if(result.next()) {
-                return result.getString(1);
-            }
-        }catch (Exception e) {
-            throw new GdxRuntimeException(e.getMessage());
-        }
-        return null;
+
+        return response.success;
     }
 
-    public Result<String> changePassword(String username, String password) {
-        var sql = """
-                UPDATE users SET password = ? WHERE username = ?;
-                """;
-        if(!registrationValidator.passwordValidity(password).isSuccess()) {
-            return registrationValidator.passwordValidity(password);
+
+    public Result<String> changePassword(String username, String password, String secQAns) {
+        var response = client.getSender().changePassword(username, password, secQAns);
+
+        if(response == null) {
+            return new Result<>(false, "Server doesn't respond.");
         }
-        sqlite.runSqlWithoutResult(sql, (PreparedStatement ps) -> {
-            ps.setString(1, Crypto.hash(password));
-            ps.setString(2, username);
-        });
-        return new Result<>(true, "Password changed successfully");
+        return new Result<>(response.success, response.message);
     }
+
 }

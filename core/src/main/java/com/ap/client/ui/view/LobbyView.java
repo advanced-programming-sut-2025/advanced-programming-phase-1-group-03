@@ -148,14 +148,18 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         Table table = new Table();
         var nameField = new TextField("", skin);
         var passwordField = new TextField("", skin);
+        var visibility = new CheckBox("", skin);
+
         table.add(new Label("Name : ", skin));
         table.add(nameField).pad(2).row();
         table.add(new Label("Password : ", skin));
-        table.add(passwordField).pad(2);
+        table.add(passwordField).pad(2).row();
+        table.add(new Label("Is visible?", skin));
+        table.add(visibility).pad(2).row();
 
         dialog.addToContent(table);
         dialog.setupEvent(() -> {
-            viewModel.hostServer(nameField.getText(), passwordField.getText());
+            viewModel.hostServer(nameField.getText(), passwordField.getText(), visibility.isChecked());
         });
         dialog.show(stage);
     }

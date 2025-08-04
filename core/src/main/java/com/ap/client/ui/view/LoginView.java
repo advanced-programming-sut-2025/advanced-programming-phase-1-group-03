@@ -52,11 +52,11 @@ public class LoginView extends AbstractView<LoginViewModel> {
         // Setup events
         OnClick(submit, () -> {
             var result = viewModel.submit(usernameField.getText(),
-                    passwordField.getText());
+                    passwordField.getText(), rememberCheckbox.isChecked());
             SimpleDialog dialog = new SimpleDialog("Message", result.getData(), skin);
             dialog.setupEvent(() -> {
                 if(result.isSuccess()) {
-                    viewModel.loginSuccessful(usernameField.getText(), rememberCheckbox.isChecked());
+                    viewModel.successfulLogin();
                 }
             });
             dialog.show(stage);
@@ -75,7 +75,7 @@ public class LoginView extends AbstractView<LoginViewModel> {
         add(forgetPassButton);
         OnClick(registerButton, viewModel::openRegisterPage);
         OnClick(forgetPassButton, () -> {
-            openSecQuestionDialog(usernameField.getText());
+            new Thread(() -> openSecQuestionDialog(usernameField.getText())).start();
         });
     }
 
@@ -94,18 +94,18 @@ public class LoginView extends AbstractView<LoginViewModel> {
                 new SimpleDialog("", "Security question didn't passed", skin).show(stage);
                 return;
             }
-            openNewPasswordDialog(username);
+            openNewPasswordDialog(username, questionField.getText());
         });
         dialog.show(stage);
 
     }
 
-    private void openNewPasswordDialog(String username) {
+    private void openNewPasswordDialog(String username, String secQAns) {
         SimpleDialog dialog = new SimpleDialog("", "Enter your new password:", skin);
         TextField passwordField = new TextField("", skin);
         dialog.addToContent(passwordField);
         dialog.setupEvent(() -> {
-            var result = viewModel.changePassword(username, passwordField.getText());
+            var result = viewModel.changePassword(username, passwordField.getText(), secQAns);
             new SimpleDialog("", result.getData(), skin).show(stage);
         });
         dialog.show(stage);

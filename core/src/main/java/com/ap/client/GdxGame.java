@@ -2,7 +2,6 @@ package com.ap.client;
 
 import com.ap.client.asset.AssetService;
 import com.ap.client.audio.AudioService;
-import com.ap.client.database.SqliteConnection;
 import com.ap.client.managers.TransitionManager;
 import com.ap.client.network.GameClient;
 import com.ap.client.screen.LoadingScreen;
@@ -41,9 +40,6 @@ public class GdxGame extends Game {
     // Transition for changing screens
     private TransitionManager transitionManager;
 
-    // Database
-    private SqliteConnection sqlite;
-
     // We use preferences to store small data
     private PreferencesManager preferencesManager;
 
@@ -68,8 +64,6 @@ public class GdxGame extends Game {
         Gdx.input.setInputProcessor(inputMultiplexer);
 
         transitionManager = new TransitionManager(this);
-
-        sqlite = new SqliteConnection();
 
         preferencesManager = new PreferencesManager();
 
@@ -160,10 +154,6 @@ public class GdxGame extends Game {
         for(InputProcessor inputProcessor : inputs) {
             inputMultiplexer.addProcessor(inputProcessor);
         }
-    }
-
-    public SqliteConnection getSqlite() {
-        return sqlite;
     }
 
     public PreferencesManager getPreferencesManager() {

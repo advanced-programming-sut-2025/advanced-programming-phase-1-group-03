@@ -24,14 +24,16 @@ public class ProfileView extends AbstractView<ProfileViewModel> {
         this.audioService = audioService;
         this.assetService = assetService;
         avatarAtlas = assetService.get(AtlasAsset.Avatars);
-        setupUI();
+
+        setFillParent(true);
+        setBackground(skin.getDrawable("Panorama"));
+
+        viewModel.setViewRunnable(this::setupUI);
     }
 
 
     @Override
     protected void setupUI() {
-        setFillParent(true);
-        setBackground(skin.getDrawable("Panorama"));
 
         Window window = new Window("", skin);
 
@@ -138,7 +140,7 @@ public class ProfileView extends AbstractView<ProfileViewModel> {
         dialog.addToContent(usernameField);
         dialog.setupEvent(() -> {
             var result = viewModel.changeUsername(usernameField.getText());
-            new SimpleDialog("", result.getData(), skin).setupEvent(viewModel::reload).show(stage);
+            new SimpleDialog("", result.getData(), skin).setupEvent(viewModel::goToMainMenu).show(stage);
         });
         dialog.show(stage);
     }

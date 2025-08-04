@@ -31,7 +31,7 @@ public class LobbyScreen extends AbstractScreen {
 
     @Override
     public void show() {
-        var viewModel = new LobbyViewModel(game, game.getSqlite());
+        var viewModel = new LobbyViewModel(game);
         client.getListener(LobbyListener.class).setLobbyViewModel(viewModel);
         this.stage.addActor(new LobbyView(stage, skin, viewModel, audioService, assetService));
         this.stage.addActor(new BackButtonLayer(game, skin, MainMenuScreen.class));

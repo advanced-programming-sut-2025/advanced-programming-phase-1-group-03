@@ -1,72 +1,46 @@
 package com.ap.client.ui.model;
 
 import com.ap.client.GdxGame;
-import com.ap.client.database.SqliteConnection;
-import com.ap.client.model.Gender;
-import com.ap.client.model.Result;
+import com.ap.client.network.GameClient;
 import com.ap.client.screen.LoginScreen;
 import com.ap.client.screen.MainMenuScreen;
-import com.ap.client.utils.Crypto;
-import com.ap.client.utils.RegistrationValidator;
+import com.ap.global.model.Gender;
+import com.ap.global.model.Result;
+import com.ap.global.responses.SignupUserResponse;
+import com.ap.global.utils.Crypto;
+import com.ap.global.utils.RegistrationValidator;
 
-import java.sql.PreparedStatement;
 import java.util.Random;
 
 import static com.ap.client.Constraints.secQuestions;
 
 public class SignupViewModel extends ViewModel {
     private Gender gender;
-    private final SqliteConnection sqlite;
     private final RegistrationValidator validator;
-    private int selectedSecQuestionId;
-
-
+    private final GameClient client;
     private final int secQuestionNumber;
 
-    public SignupViewModel(GdxGame game, SqliteConnection sqlite) {
+    public SignupViewModel(GdxGame game) {
         super(game);
-        this.sqlite = sqlite;
-        validator = new RegistrationValidator(sqlite);
+        this.client = game.getClient();
+        validator = new RegistrationValidator();
         secQuestionNumber = new Random().nextInt(secQuestions.length);
     }
 
     public String getSecQuestion() {
         return secQuestions[secQuestionNumber];
     }
+
     public Result<String> submit(
             String username, String email, String password, String confPassword, String nickname, String securityQuestion) {
-        if(validator.duplicateUsername(username)) {
-            return new Result<>(false, "A user with username already exists");
-        }
-        if(!validator.usernameValidity(username)) {
-            return new Result<>(false, "Username is not valid");
-        }
-        if(!validator.emailValidity(email)) {
-            return new Result<>(false, "Email is not valid");
-        }
-        if(!validator.passwordValidity(password).isSuccess()) {
-            return validator.passwordValidity(password);
-        }
-        if(!password.equals(confPassword)) {
-            return new Result<>(false, "Password and its confirmation don't match");
-        }
-        if(gender == null) {
-            return new Result<>(false, "Please select gender");
-        }
 
-        var sql = """
-                INSERT INTO users(username, password, email, gender, nickname, securityQuestionId, securityQuestion) VALUES (?, ?, ?, ?, ?, ?, ?)
-                """;
-        sqlite.runSqlWithoutResult(sql, (PreparedStatement stm) -> {
-            stm.setString(1, username);
-            stm.setString(2, Crypto.hash(password));
-            stm.setString(3, email);
-            stm.setString(4, gender.name());
-            stm.setString(5, nickname);
-            stm.setInt(6, secQuestionNumber);
-            stm.setString(7, securityQuestion);
-        });
-        return new Result<>(true, "Registration was successful");
+        var result =
+                client.getSender().signup(
+                        username, email, password, confPassword, nickname, secQuestionNumber, securityQuestion, gender);
+        if(result == null) {
+            return new Result<>(false, "Server doesn't respond.");
+        }
+        return new Result<>(result.success, result.message);
     }
 
 
@@ -89,7 +63,6 @@ public class SignupViewModel extends ViewModel {
      * This method called when registration was successfully
      */
     public void registerSuccessful(String username) {
-        game.getPreferencesManager().removeRememberUser();
         game.setScreen(MainMenuScreen.class);
     }
 

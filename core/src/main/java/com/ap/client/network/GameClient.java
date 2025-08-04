@@ -1,7 +1,5 @@
 package com.ap.client.network;
 
-import com.ap.client.database.SqliteConnection;
-import com.ap.client.database.UserLoader;
 import com.ap.client.model.GameData;
 import com.ap.client.network.listeners.LobbyListener;
 import com.ap.global.Configuration;
@@ -23,7 +21,6 @@ public class GameClient {
     public GameClient() {
 
         client = new Client();
-        client.start();
 
         // Registration
         Kryo kryo = client.getKryo();
@@ -50,8 +47,10 @@ public class GameClient {
             return;
         }
         try {
-            client.connect(5000, Configuration.HOST_IP, Configuration.TCP_PORT, Configuration.UDP_PORT);
+            client.start();
+            client.connect(20000, Configuration.HOST_IP, Configuration.TCP_PORT);
         } catch (IOException ignored) {
+            System.out.println(ignored.getMessage());
         }
     }
 

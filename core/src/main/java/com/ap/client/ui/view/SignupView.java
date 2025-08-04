@@ -102,19 +102,21 @@ public class SignupView extends AbstractView<SignupViewModel> {
 
         // Setup events
         OnClick(submit, () -> {
-            var result = viewModel.submit(usernameField.getText(),
-                    emailField.getText(),
-                    passwordField.getText(),
-                    confirmPasswordField.getText(),
-                    nicknameField.getText(),
-                    securityQuestion.getText());
-            SimpleDialog dialog = new SimpleDialog("Message", result.getData(), skin);
-            dialog.setupEvent(() -> {
-                if(result.isSuccess()) {
-                    viewModel.registerSuccessful(usernameField.getText());
-                }
-            });
-            dialog.show(stage);
+            new Thread(() -> {
+                var result = viewModel.submit(usernameField.getText(),
+                        emailField.getText(),
+                        passwordField.getText(),
+                        confirmPasswordField.getText(),
+                        nicknameField.getText(),
+                        securityQuestion.getText());
+                SimpleDialog dialog = new SimpleDialog("Message", result.getData(), skin);
+                dialog.setupEvent(() -> {
+                    if(result.isSuccess()) {
+                        viewModel.registerSuccessful(usernameField.getText());
+                    }
+                });
+                dialog.show(stage);
+            }).start();
         });
         OnClick(genPasswordButton, () -> {
             // Without thread the program will crash if you click generate password button multiple time
