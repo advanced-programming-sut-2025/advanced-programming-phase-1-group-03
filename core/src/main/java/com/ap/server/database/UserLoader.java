@@ -108,7 +108,12 @@ public class UserLoader {
         });
     }
 
-    public static void changeEmail(String username, String email) {
+    public static Result<String> changeEmail(String username, String email) {
+        var validator = new RegistrationValidator();
+        if(!validator.emailValidity(email)) {
+            return new Result<>(false, "Email is not valid");
+        }
+
         var sql = """
                 UPDATE users SET email = ? WHERE username = ?;
                 """;
@@ -116,9 +121,13 @@ public class UserLoader {
             ps.setString(1, email);
             ps.setString(2, username);
         });
+        return new Result<>(true, "Email has been changed");
     }
 
-    public static void changePassword(String username, String password) {
+    public static Result<String> changePassword(String username, String password) {
+        if(!new RegistrationValidator().passwordValidity(password).isSuccess()) {
+            return new RegistrationValidator().passwordValidity(password);
+        }
         var sql = """
                 UPDATE users SET password = ? WHERE username = ?;
                 """;
@@ -126,6 +135,7 @@ public class UserLoader {
             ps.setString(1, password);
             ps.setString(2, username);
         });
+        return new Result<>(true, "Password has been changed");
     }
 
     public static int getSecurityQuestionId(String username) {

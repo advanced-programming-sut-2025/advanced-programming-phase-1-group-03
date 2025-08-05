@@ -29,7 +29,7 @@ public class TokenManager {
                     .verify(token)
                     .getSubject();
         } catch (JWTVerificationException e) {
-            return null;
+            return "";
         }
     }
 }

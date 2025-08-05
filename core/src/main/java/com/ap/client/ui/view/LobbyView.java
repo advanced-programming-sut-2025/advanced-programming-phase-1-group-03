@@ -89,7 +89,11 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
             joinButton.addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    statusLabel.setText("Joining " + entry.hostName + "...");
+                    if(!entry.isPrivate) {
+                        joinRoom(entry.roomId, "");
+                    } else {
+                        openPasswordDialog(entry.roomId);
+                    }
                 }
             });
 
@@ -143,6 +147,25 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         add(window); // ← Just add without fill
     }
 
+    private void joinRoom(int roomId, String password) {
+        var response = viewModel.joinRoom(roomId, password);
+        if(!response.isSuccess()) {
+            new SimpleDialog("", response.getData(), skin).show(stage);
+        } else {
+            viewModel.loadJoinScreen();
+        }
+    }
+
+    private void openPasswordDialog(int roomId) {
+        var dialog = new SimpleDialog("", "Enter the password of room: ", skin);
+        var passwordField = new TextField("", skin);
+        dialog.addToContent(passwordField);
+        dialog.setupEvent(() -> {
+            joinRoom(roomId, passwordField.getText());
+        });
+        dialog.show(stage);
+    }
+
     private void host() {
         var dialog = new SimpleDialog("", "If you want a public room, leave the password empty", skin);
         Table table = new Table();
@@ -164,6 +187,6 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         dialog.show(stage);
     }
 
-    public record ServerEntry(String hostName, String avatarRegionName, int playersCount) {
+    public record ServerEntry(String hostName, String avatarRegionName, int playersCount, int roomId, boolean isPrivate) {
     }
 }

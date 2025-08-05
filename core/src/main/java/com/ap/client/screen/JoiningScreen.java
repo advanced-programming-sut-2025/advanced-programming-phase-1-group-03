@@ -6,6 +6,7 @@ import com.ap.client.audio.AudioService;
 import com.ap.client.input.KeyboardController;
 import com.ap.client.input.UIControllerState;
 import com.ap.client.network.GameClient;
+import com.ap.client.network.listeners.JoinGameListener;
 import com.ap.client.network.listeners.LobbyListener;
 import com.ap.client.ui.common.BackButtonLayer;
 import com.ap.client.ui.model.JoiningViewModel;
@@ -30,7 +31,9 @@ public class JoiningScreen extends AbstractScreen{
 
     @Override
     public void show() {
-        this.stage.addActor(new JoiningView(stage, skin, new JoiningViewModel(game, game.getSqlite()), audioService, assetService));
+        var viewModel = new JoiningViewModel(game);
+        client.getListener(JoinGameListener.class).setJoiningViewModel(viewModel);
+        this.stage.addActor(new JoiningView(stage, skin, viewModel, audioService, assetService));
         this.stage.addActor(new BackButtonLayer(game, skin, MainMenuScreen.class));
         game.setInputProcessors(stage, controller);
     }

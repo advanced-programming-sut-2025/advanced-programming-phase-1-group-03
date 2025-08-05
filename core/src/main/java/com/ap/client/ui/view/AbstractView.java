@@ -6,6 +6,7 @@ import com.ap.client.input.UIEvent;
 import com.ap.client.ui.model.ViewModel;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -27,6 +28,17 @@ public abstract class AbstractView<T extends ViewModel>  extends Table implement
         // Now we can receive events from stage
         stage.addListener(this);
 
+    }
+
+    protected void setupConnectingUI() {
+        Label loadingLabel = new Label("Connecting...", skin, "font48");
+        add(loadingLabel).center();
+
+        // Adding blink effect to the loading label
+        loadingLabel.addAction(Actions.forever(Actions.sequence(
+                Actions.fadeOut(1),
+                Actions.fadeIn(1)
+        )));
     }
 
     abstract protected void setupUI();

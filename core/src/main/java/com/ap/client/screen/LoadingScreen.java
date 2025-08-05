@@ -73,5 +73,6 @@ public class LoadingScreen extends AbstractScreen {
         game.addScreen(new ProfileScreen(game));
         game.addScreen(new PreGameScreen(game));
         game.addScreen(new LobbyScreen(game));
+        game.addScreen(new JoiningScreen(game));
     }
 }

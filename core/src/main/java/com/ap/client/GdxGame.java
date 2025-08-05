@@ -70,9 +70,8 @@ public class GdxGame extends Game {
 
         client = new GameClient();
 
-        //addScreen(new PreGameScreen(this));
-        addScreen(new JoiningScreen(this));
-        changeScreen(JoiningScreen.class);
+        addScreen(new LoadingScreen(this));
+        changeScreen(LoadingScreen.class);
     }
 
     @Override

@@ -113,4 +113,39 @@ public class Sender {
         var request = new ChangeUsernameRequest(token, username);
         return sendMessageAndWaitForResponse(request, ChangeUsernameResponse.class);
     }
+
+    public void changeNickname(String token, String nickname) {
+        var request = new ChangeNicknameRequest(token, nickname);
+        sendMessageAndWaitForResponse(request, ChangeNicknameResponse.class);
+    }
+
+    public ChangeEmailResponse changeEmail(String token, String email) {
+        var request = new ChangeEmailRequest(token, email);
+        return sendMessageAndWaitForResponse(request, ChangeEmailResponse.class);
+    }
+
+    public ChangePasswordViaTokenResponse changePassword(String token, String password) {
+        var request = new ChangePasswordViaTokenRequest(token, password);
+        return sendMessageAndWaitForResponse(request, ChangePasswordViaTokenResponse.class);
+    }
+
+    public IntroductionResponse introduce(String token) {
+        var request = new IntroductionRequest(token);
+        return sendMessageAndWaitForResponse(request, IntroductionResponse.class);
+    }
+
+    public JoinRoomResponse joinRoom(int roomId, String password) {
+        var request = new JoinRoomRequest(roomId, password);
+        return sendMessageAndWaitForResponse(request, JoinRoomResponse.class);
+    }
+
+    public AmIHostResponse amIHost() {
+        var request = new AmIHostRequest();
+        return sendMessageAndWaitForResponse(request, AmIHostResponse.class);
+    }
+
+    public void startGame() {
+        var request = new StartGameRequest();
+        client.sendTCP(request);
+    }
 }

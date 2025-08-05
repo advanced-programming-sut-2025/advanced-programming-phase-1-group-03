@@ -5,7 +5,9 @@ import com.ap.client.asset.MapAsset;
 import com.ap.client.model.GameData;
 import com.ap.client.network.GameClient;
 import com.ap.client.screen.GameScreen;
+import com.ap.client.screen.JoiningScreen;
 import com.ap.client.ui.view.LobbyView;
+import com.ap.global.model.Result;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 
@@ -36,6 +38,7 @@ public class LobbyViewModel extends ViewModel {
 
     public void hostServer(String name, String password, boolean isVisible) {
         client.getSender().createRoom(name, password, isVisible);
+        game.setScreen(JoiningScreen.class);
     }
 
     public void setRooms(List<LobbyView.ServerEntry> rooms) {
@@ -47,5 +50,17 @@ public class LobbyViewModel extends ViewModel {
     }
     public void refresh() {
         client.getSender().requestRoomsList();
+    }
+
+    public Result<String> joinRoom(int roomId, String password) {
+        var response = client.getSender().joinRoom(roomId, password);
+        if(response == null) {
+            return new Result<>(false, "server didn't respond");
+        }
+        return new Result<>(response.success, response.message);
+    }
+
+    public void loadJoinScreen() {
+        game.setScreen(JoiningScreen.class);
     }
 }

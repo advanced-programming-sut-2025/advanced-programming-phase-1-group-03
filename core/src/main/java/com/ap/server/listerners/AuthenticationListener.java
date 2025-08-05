@@ -3,8 +3,10 @@ package com.ap.server.listerners;
 import com.ap.global.requests.*;
 import com.ap.global.responses.*;
 import com.ap.global.utils.RegistrationValidator;
+import com.ap.server.ServerData;
 import com.ap.server.database.SqliteConnection;
 import com.ap.server.database.UserLoader;
+import com.ap.server.model.ServerPlayer;
 import com.ap.server.utils.TokenManager;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -39,7 +41,7 @@ public class AuthenticationListener extends Listener {
         } else if(object instanceof GetUserInfoRequest request) {
             String username = TokenManager.verifyAndGetUsername(request.token);
             GetUserInfoResponse response;
-            if(username == null) {
+            if(username.isEmpty()) {
                 response = new GetUserInfoResponse(false);
             } else {
                 response = new GetUserInfoResponse(true, username,
@@ -52,15 +54,39 @@ public class AuthenticationListener extends Listener {
             connection.sendTCP(response);
         } else if(object instanceof ChangeAvatarRequest request) {
             String username = TokenManager.verifyAndGetUsername(request.token);
-            if(username == null) {
-                return;
-            }
             UserLoader.changeAvatarIndex(username, request.newAvatarIndex);
             connection.sendTCP(new ChangeAvatarResponse());
         } else if(object instanceof ChangeUsernameRequest request) {
             String username = TokenManager.verifyAndGetUsername(request.token);
             var result = UserLoader.changeUsername(username, request.newUsername);
             connection.sendTCP(new ChangeUsernameResponse(result.getData(), result.isSuccess()));
+        } else if(object instanceof ChangeNicknameRequest request) {
+            String username = TokenManager.verifyAndGetUsername(request.token);
+            UserLoader.changeNickname(username, request.newNickname);
+            connection.sendTCP(new ChangeNicknameResponse());
+        } else if(object instanceof ChangeEmailRequest request) {
+            String username = TokenManager.verifyAndGetUsername(request.token);
+            var result = UserLoader.changeEmail(username, request.newEmail);
+            connection.sendTCP(new ChangeEmailResponse(result.getData(), result.isSuccess()));
+        } else if(object instanceof ChangePasswordViaTokenRequest request) {
+            String username = TokenManager.verifyAndGetUsername(request.token);
+            var result = UserLoader.changePassword(username, request.password);
+            var response = new ChangePasswordViaTokenResponse(result.isSuccess(), result.getData());
+            connection.sendTCP(response);
+        } else if(object instanceof IntroductionRequest request) {
+            String username = TokenManager.verifyAndGetUsername(request.token);
+            IntroductionResponse response;
+            if(username.isEmpty()) {
+                response = new IntroductionResponse(false, "You should login first");
+            } else {
+                response = new IntroductionResponse(true, "");
+            }
+
+            // Store player
+            var player = new ServerPlayer(username, connection);
+            ServerData.instance.activePlayers.put(connection, player);
+
+            connection.sendTCP(response);
         }
     }
 }

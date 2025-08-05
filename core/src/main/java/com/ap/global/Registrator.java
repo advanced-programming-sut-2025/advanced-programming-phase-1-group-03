@@ -1,6 +1,7 @@
 package com.ap.global;
 
 import com.ap.global.model.Gender;
+import com.ap.global.model.RoommateLobbyInfo;
 import com.ap.global.requests.*;
 import com.ap.global.responses.*;
 import com.esotericsoftware.kryo.Kryo;
@@ -41,5 +42,28 @@ public class Registrator {
 
         kryo.register(ChangeUsernameRequest.class);
         kryo.register(ChangeUsernameResponse.class);
+
+        kryo.register(ChangeNicknameRequest.class);
+        kryo.register(ChangeNicknameResponse.class);
+
+        kryo.register(ChangeEmailRequest.class);
+        kryo.register(ChangeEmailResponse.class);
+
+        kryo.register(ChangePasswordViaTokenRequest.class);
+        kryo.register(ChangePasswordViaTokenResponse.class);
+
+        kryo.register(RoommateLobbyInfo.class);
+        kryo.register(RoommateLobbyInfo[].class);
+        kryo.register(RoommatesInfoLobbyRequest.class);
+        kryo.register(RoommatesInfoLobbyResponse.class);
+
+        kryo.register(JoinRoomRequest.class);
+        kryo.register(JoinRoomResponse.class);
+
+        kryo.register(AmIHostRequest.class);
+        kryo.register(AmIHostResponse.class);
+
+        kryo.register(StartGameRequest.class);
+        kryo.register(StartGameResponse.class);
     }
 }

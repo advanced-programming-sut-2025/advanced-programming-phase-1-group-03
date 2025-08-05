@@ -3,8 +3,12 @@ package com.ap.server.model;
 import com.esotericsoftware.kryonet.Connection;
 
 public class ServerPlayer {
-    public String name;
+    public String username;
     public Connection connection;
-    public int avatar;
     public Room currentRoom;
+
+    public ServerPlayer(String username, Connection connection) {
+        this.username = username;
+        this.connection = connection;
+    }
 }

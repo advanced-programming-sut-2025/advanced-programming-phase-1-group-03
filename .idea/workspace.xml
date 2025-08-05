@@ -5,68 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Lobby completed">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/ChangeAvatarRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/ChangePasswordRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/ChangeUsernameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/GetSecurityIdRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/GetUserInfoRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/SecurityQPassRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/SignupUserRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/ChangeAvatarResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/ChangePasswordResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/ChangeUsernameResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/GetSecurityIdResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/GetUserInfoResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/LoginResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/SecurityQPassResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/SignupUserResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/listerners/AuthenticationListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/utils/TokenManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/listeners/JoinGameListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/model/RoommateLobbyInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/AmIHostRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/ChangeEmailRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/ChangeNicknameRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/ChangePasswordViaTokenRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/JoinRoomRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/RoommatesInfoLobbyRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/StartGameRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/AmIHostResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/ChangeEmailResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/ChangeNicknameResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/ChangePasswordViaTokenResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/JoinRoomResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/RoommatesInfoLobbyResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/StartGameResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/core/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/GdxGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/database/SqliteConnection.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/database/UserLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/database/UserLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/Gender.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/model/Gender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/Result.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/model/Result.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/GameData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/GameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/GameClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/Sender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/listeners/LobbyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/network/listeners/LobbyListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/JoiningScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/JoiningScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LoadingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LoadingScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LobbyScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LobbyScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LoginScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/LoginScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/MainMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/MainMenuScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/PreGameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/PreGameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/ProfileScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/ProfileScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/SignupScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/SignupScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/JoiningViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/JoiningViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/LobbyViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/LobbyViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/LoginViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/LoginViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/MainViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/MainViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/PreGameViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/PreGameViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/ProfileViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/ProfileViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/SignupViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/model/SignupViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/AbstractView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/AbstractView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/JoiningView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/JoiningView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/LobbyView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/LobbyView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/LoginView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/MainView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/ProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/ProfileView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/SignupView.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/view/SignupView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/utils/Crypto.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/utils/Crypto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/utils/PreferencesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/utils/PreferencesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/utils/RegistrationValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/utils/RegistrationValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Registrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/global/RoomInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/RoomInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/CreateRoomRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/CreateRoomRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/database/SqliteConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/database/SqliteConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/IntroductionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/requests/IntroductionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/IntroductionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/responses/IntroductionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/database/UserLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/database/UserLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/listerners/AuthenticationListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/listerners/AuthenticationListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/listerners/LobbyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/listerners/LobbyListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/model/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/StartupHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/StartupHelper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/model/ServerPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/model/ServerPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/server/utils/TokenManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/server/utils/TokenManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,6 +125,7 @@
     "Gradle.Download Sources.executor": "Run",
     "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
     "Gradle.StardewValley [run].executor": "Run",
+    "Gradle.StarehdewValley2.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -181,7 +164,7 @@
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Gradle.StarehdewValley2">
     <configuration name="Server" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ap.server.Server" />
       <module name="StarehdewValley.core.main" />
@@ -211,8 +194,31 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
+    <configuration name="StarehdewValley2" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.Server" />
+      <item itemvalue="Gradle.StarehdewValley2" />
       <item itemvalue="Gradle.StardewValley [run]" />
     </list>
     <recent_temporary>
@@ -299,6 +305,8 @@
       <workItem from="1754209611033" duration="4922000" />
       <workItem from="1754219959592" duration="10451000" />
       <workItem from="1754301462507" duration="18027000" />
+      <workItem from="1754332340743" duration="817000" />
+      <workItem from="1754379275306" duration="9946000" />
     </task>
     <task id="LOCAL‎−۰۰۰۴۹" summary="Add Clock">
       <option name="closed" value="true" />

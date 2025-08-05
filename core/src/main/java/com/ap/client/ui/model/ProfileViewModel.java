@@ -66,16 +66,16 @@ public class ProfileViewModel extends ViewModel{
     }
 
     public Result<String> changeNickname(String nickname) {
-    //    UserLoader.changeNickname(sqlite, nickname);
+        client.getSender().changeNickname(token, nickname);
         return new Result<>(true, "Nickname Changed Successfully");
     }
 
     public Result<String> changeEmail(String email) {
-//        if(!validator.emailValidity(email)) {
-//            return new Result<>(false, "Email is not valid");
-//        }
-//        UserLoader.changeEmail(sqlite, email);
-        return new Result<>(true, "Email Changed Successfully");
+        var response = client.getSender().changeEmail(token, email);
+        if(response == null) {
+            return new Result<>(false, "Server is not responding");
+        }
+        return new Result<>(response.success, response.message);
     }
 
     public String generatePassword() {
@@ -83,11 +83,11 @@ public class ProfileViewModel extends ViewModel{
     }
 
     public Result<String> changePassword(String password) {
-//        if(!validator.passwordValidity(password).isSuccess()) {
-//            return validator.passwordValidity(password);
-//        }
-//        UserLoader.changePassword(sqlite, Crypto.hash(password));
-        return new Result<>(true, "Password Changed Successfully");
+        var response = client.getSender().changePassword(token, password);
+        if(response == null) {
+            return new Result<>(false, "server doesn't responding");
+        }
+        return new Result<>(response.success, response.message);
     }
 
     public void setViewRunnable(Runnable r) {

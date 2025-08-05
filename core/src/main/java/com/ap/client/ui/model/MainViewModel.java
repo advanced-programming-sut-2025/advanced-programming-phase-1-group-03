@@ -3,6 +3,8 @@ package com.ap.client.ui.model;
 import com.ap.client.GdxGame;
 import com.ap.client.network.GameClient;
 import com.ap.client.screen.*;
+import com.ap.client.ui.actor.SimpleDialog;
+import com.ap.global.model.Result;
 import com.ap.global.requests.GetUserInfoRequest;
 import com.ap.global.responses.GetUserInfoResponse;
 import com.badlogic.gdx.Gdx;
@@ -76,5 +78,18 @@ public class MainViewModel extends ViewModel{
 
     public void setConnectRunnable(Runnable runnable) {
         connectRunnable = runnable;
+    }
+
+    public Result<String> openLobby() {
+        var response = gameClient.getSender().introduce(token);
+        if(response == null) {
+            return new Result<>(false, "server does not respond");
+        }
+        if(response.success) {
+            game.setScreen(LobbyScreen.class);
+            return new Result<>(true, "");
+        } else {
+            return new Result<>(false, response.message);
+        }
     }
 }

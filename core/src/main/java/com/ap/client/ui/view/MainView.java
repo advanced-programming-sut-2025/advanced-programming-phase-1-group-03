@@ -35,19 +35,8 @@ public class MainView extends AbstractView<MainViewModel>{
 
         viewModel.setConnectRunnable(this::setupUI);
         viewModel.tryingToConnect();
-
     }
 
-    private void setupConnectingUI() {
-        Label loadingLabel = new Label("Connecting...", skin, "font48");
-        add(loadingLabel).center();
-
-        // Adding blink effect to the loading label
-        loadingLabel.addAction(Actions.forever(Actions.sequence(
-                Actions.fadeOut(1),
-                Actions.fadeIn(1)
-        )));
-    }
 
     @Override
     protected void setupUI() {
@@ -110,6 +99,16 @@ public class MainView extends AbstractView<MainViewModel>{
         // Setup events
         OnClick(newButton, viewModel::clickNewGameButton);
         OnClick(exitButton, viewModel::exitGame);
+        OnClick(coOpButton, this::connectToLobby);
+    }
+
+    private void connectToLobby() {
+        new Thread(() -> {
+            var result = viewModel.openLobby();
+            if(!result.isSuccess()) {
+                new SimpleDialog("", result.getData(), skin).show(stage);
+            }
+        }).start();
     }
 
     private ImageButton createImageButton(Drawable drawable, Drawable hoverDrawable) {

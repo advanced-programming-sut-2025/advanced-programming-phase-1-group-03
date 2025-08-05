@@ -1,10 +1,12 @@
 package com.ap.client.network;
 
 import com.ap.client.model.GameData;
+import com.ap.client.network.listeners.JoinGameListener;
 import com.ap.client.network.listeners.LobbyListener;
 import com.ap.global.Configuration;
 import com.ap.global.Registrator;
 import com.ap.global.requests.IntroductionRequest;
+import com.ap.global.requests.RoommatesInfoLobbyRequest;
 import com.badlogic.gdx.Screen;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
@@ -28,6 +30,7 @@ public class GameClient {
 
         // Add listeners
         listenersCache.put(LobbyListener.class, new LobbyListener());
+        listenersCache.put(JoinGameListener.class, new JoinGameListener());
 
         for(Listener listener : listenersCache.values()) {
             client.addListener(listener);
@@ -56,5 +59,9 @@ public class GameClient {
 
     public Sender getSender() {
         return new Sender(client);
+    }
+
+    public void requestMyRoommatesInfo() {
+        client.sendTCP(new RoommatesInfoLobbyRequest());
     }
 }

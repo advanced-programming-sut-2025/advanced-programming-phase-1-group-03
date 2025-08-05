@@ -1,13 +1,13 @@
 package com.ap.global.responses;
 
-public class IntroductionResponse {
+public class ChangeEmailResponse {
     public String message;
     public boolean success;
 
-    public IntroductionResponse() {
+    public ChangeEmailResponse() {
     }
 
-    public IntroductionResponse(boolean success, String message) {
+    public ChangeEmailResponse(String message, boolean success) {
         this.message = message;
         this.success = success;
     }

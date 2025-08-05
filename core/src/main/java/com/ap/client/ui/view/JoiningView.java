@@ -23,7 +23,7 @@ public class JoiningView extends AbstractView<JoiningViewModel> {
     private final TextureAtlas atlas;
     private final Texture gridTexture;
 
-    private final List<Player> players = new ArrayList<>();
+    private List<Player> players = new ArrayList<>();
     private TextButton startGameButton;
     private Window window;
 
@@ -34,17 +34,19 @@ public class JoiningView extends AbstractView<JoiningViewModel> {
         this.atlas = assetService.get(AtlasAsset.Avatars);
         this.gridTexture = assetService.get(TextureAsset.Grid2); // load grid2 texture
 
-        setupUI();
-        addPlayer("amir", "avatar0");
-        addPlayer("mamad", "avatar1");
-        addPlayer("ali", "avatar2");
-        addPlayer("hossein", "avatar3");
+        setFillParent(true);
+        setBackground(skin.getDrawable("Panorama"));
+
+        setupConnectingUI();
+
+        viewModel.setUIRunnable(this::setupUI);
     }
 
     @Override
     protected void setupUI() {
-        setFillParent(true);
-        setBackground(skin.getDrawable("Panorama"));
+        clearChildren();
+
+        players = viewModel.getPlayers();
 
         window = new Window("", skin);
         window.setMovable(false);
@@ -78,12 +80,13 @@ public class JoiningView extends AbstractView<JoiningViewModel> {
         grid.add(bottomRow).expand().fill().row();
 
         // Start button
-        startGameButton = new TextButton("Start Game", skin);
-        startGameButton.setDisabled(true);
-        startGameButton.addListener(e -> {
-            // TODO: implement joining game logic
-            return true;
-        });
+        boolean amIHost = viewModel.amIHost();
+        if(amIHost) {
+            startGameButton = new TextButton("Start Game", skin);
+            startGameButton.setDisabled(true);
+            OnClick(startGameButton, viewModel::sendStartGame);
+        }
+
 
         window.add(grid).expand().fill().padBottom(20).row();
         window.add(startGameButton).width(200).height(50);
@@ -98,7 +101,7 @@ public class JoiningView extends AbstractView<JoiningViewModel> {
 
         if (index < players.size()) {
             Player p = players.get(index);
-            slot.add(p.getView()).expand().center();
+            slot.add(p.getView(skin, assetService.get(AtlasAsset.Avatars))).expand().center();
         } else {
             slot.add(new Label("Waiting...", skin)).center();
         }
@@ -106,40 +109,23 @@ public class JoiningView extends AbstractView<JoiningViewModel> {
         return slot;
     }
 
-    public void addPlayer(String name, String avatarName) {
-        if (players.size() >= 4) return;
-
-        TextureRegion avatarRegion = atlas.findRegion(avatarName);
-        if (avatarRegion == null) {
-            avatarRegion = atlas.findRegion("avatar0");
-        }
-
-        players.add(new Player(name, avatarRegion));
-        refreshSlots();
-        checkStartGameCondition();
-    }
-
-    private void refreshSlots() {
-        clearChildren();
-        setupUI();
-    }
-
     private void checkStartGameCondition() {
         startGameButton.setDisabled(players.size() < 2);
     }
 
-    private class Player {
+    public static class Player {
         private final String name;
-        private final TextureRegion avatar;
+        private final int avatarIndex;
 
-        public Player(String name, TextureRegion avatar) {
+        public Player(String name, int avatarIndex) {
             this.name = name;
-            this.avatar = avatar;
+            this.avatarIndex = avatarIndex;
         }
 
-        public Table getView() {
+        public Table getView(Skin skin, TextureAtlas atlas) {
             Table table = new Table(skin);
 
+            var avatar = atlas.findRegion("avatar" + avatarIndex);
             Image avatarImage = new Image(new TextureRegionDrawable(avatar));
             avatarImage.setSize(64, 64);
 

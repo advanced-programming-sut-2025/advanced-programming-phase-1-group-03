@@ -1,12 +1,11 @@
 package com.ap.server.listerners;
 
 import com.ap.global.RoomInfo;
-import com.ap.global.requests.CreateRoomRequest;
-import com.ap.global.requests.IntroductionRequest;
-import com.ap.global.requests.RoomsListRequest;
-import com.ap.global.responses.IntroductionResponse;
-import com.ap.global.responses.RoomsListResponse;
+import com.ap.global.model.RoommateLobbyInfo;
+import com.ap.global.requests.*;
+import com.ap.global.responses.*;
 import com.ap.server.ServerData;
+import com.ap.server.database.UserLoader;
 import com.ap.server.model.Room;
 import com.ap.server.model.ServerPlayer;
 import com.esotericsoftware.kryonet.Connection;
@@ -19,23 +18,14 @@ import java.util.Random;
 public class LobbyListener extends Listener {
     @Override
     public void received(Connection connection, Object object) {
-        if(object instanceof IntroductionRequest introductionRequest) {
-            var player = new ServerPlayer();
-            player.name = introductionRequest.name;
-            player.avatar = introductionRequest.avatar;
-            player.connection = connection;
-            player.currentRoom = null;
+        // Player is not authorized, so refuse to connect
+        if(!ServerData.instance.activePlayers.containsKey(connection)){
+            return;
+        }
+        ServerPlayer senderPlayer = ServerData.instance.activePlayers.get(connection);
 
-            ServerData.instance.activePlayers.put(connection, player);
-
-            var response = new IntroductionResponse();
-            response.message = "Join successfully";
-            response.success = true;
-
-            connection.sendTCP(response);
-        } else if(object instanceof CreateRoomRequest request) {
+        if(object instanceof CreateRoomRequest request) {
             var room = new Room();
-            var senderPlayer = ServerData.instance.activePlayers.get(connection);
 
             int[] chosenId = {0};
             do {
@@ -51,17 +41,61 @@ public class LobbyListener extends Listener {
             room.players.add(senderPlayer);
             room.owner = senderPlayer;
             room.visible = request.isVisible;
+            senderPlayer.currentRoom = room;
+
             ServerData.instance.activeRooms.add(room);
         }else if(object instanceof RoomsListRequest) {
             var response = new RoomsListResponse();
             List<RoomInfo> rooms = new ArrayList<>();
             for(Room room : ServerData.instance.activeRooms) {
+                int avatar = UserLoader.getUserAvatarIndex(room.owner.username);
                 rooms.add(new RoomInfo(
-                        room.id, room.isPrivate, room.players.size(),room.name, room.owner.name, room.owner.avatar, room.visible
+                        room.id, room.isPrivate, room.players.size(),room.name, room.owner.username, avatar, room.visible
                 ));
             }
             response.roomsInfo = rooms.toArray(new RoomInfo[0]);
             connection.sendTCP(response);
+        } else if(object instanceof RoommatesInfoLobbyRequest) {
+            sendRoommatesInfo(connection, senderPlayer.currentRoom);
+        } else if(object instanceof JoinRoomRequest request) {
+            Room room = ServerData.instance.activeRooms.stream().filter((Room r) -> r.id == request.roomId).findFirst().orElse(null);
+            if(room == null) {
+                var response = new JoinRoomResponse(false, "Hacker poofyooz");
+                connection.sendTCP(response);
+                return;
+            }
+            if(room.players.size() < 4 && room.password.equals(request.password)) {
+                room.players.add(senderPlayer);
+                senderPlayer.currentRoom = room;
+
+                room.broadcast((Connection c) -> sendRoommatesInfo(c, room));
+                connection.sendTCP(new JoinRoomResponse(true, "Joining..."));
+            }
+            if(room.players.size() == 4) {
+                connection.sendTCP(new JoinRoomResponse(false, "Room is full"));
+            } else {
+                connection.sendTCP(new JoinRoomResponse(false, "Password is not correct"));
+            }
+        } else if(object instanceof AmIHostRequest) {
+            var response = new AmIHostResponse(
+                    senderPlayer.currentRoom != null && senderPlayer.currentRoom.owner.equals(senderPlayer)
+            );
+            connection.sendTCP(response);
+        } else if(object instanceof StartGameRequest request) {
+            boolean amIHost = senderPlayer.currentRoom != null && senderPlayer.currentRoom.owner.equals(senderPlayer);
+            if(amIHost) {
+                senderPlayer.currentRoom.broadcast(new StartGameResponse());
+            }
         }
+    }
+
+    private static void sendRoommatesInfo(Connection connection, Room room) {
+        List<RoommateLobbyInfo> roommates = new ArrayList<>();
+        for(ServerPlayer player : room.players) {
+            int avatar = UserLoader.getUserAvatarIndex(player.username);
+            roommates.add(new RoommateLobbyInfo(player.username, avatar));
+        }
+        var response = new RoommatesInfoLobbyResponse(roommates.toArray(new RoommateLobbyInfo[0]));
+        connection.sendTCP(response);
     }
 }
