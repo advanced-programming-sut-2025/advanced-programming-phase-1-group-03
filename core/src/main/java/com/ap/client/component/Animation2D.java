@@ -78,17 +78,23 @@ public class Animation2D implements Component {
     }
 
     public enum AnimationType {
-        Idle,
-        Walk,
-        Voice,
-        Fly
+        Idle(true),
+        Walk(true),
+        Voice(true),
+        Fly(true)
         ;
         private final String atlasKey;
-        AnimationType() {
+        private boolean hasFacing;
+        AnimationType(boolean hasFacing) {
             atlasKey = name().toLowerCase();
+            this.hasFacing = hasFacing;
         }
         public String getAtlasKey() {
             return atlasKey;
+        }
+
+        public boolean isHasFacing() {
+            return hasFacing;
         }
     }
 }

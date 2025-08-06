@@ -65,8 +65,12 @@ public class ControllerSystem extends IteratingSystem {
                 } case Click -> {
                     clicked();
                 } case OpenCrafting -> {
-                    if (!tabManager.isShowing()) tabManager.toggle();
-                    tabManager.setCurrentContent(Tabs.Crafting);
+                    if (!tabManager.isShowing()) {
+                        tabManager.toggle();
+                        tabManager.setCurrentContent(Tabs.Crafting);
+                    } else {
+                        tabManager.toggle();
+                    }
                 } case OpenCooking -> {
                     if(cookingMenu != null)
                         cookingMenu.toggle();
