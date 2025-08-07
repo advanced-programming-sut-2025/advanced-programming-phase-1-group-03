@@ -1,5 +1,6 @@
 package com.ap.client.component;
 
+import com.ap.client.Constraints;
 import com.ap.client.asset.AtlasAsset;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.ComponentMapper;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Animation2D implements Component {
     public final static ComponentMapper<Animation2D> mapper = ComponentMapper.getFor(Animation2D.class);
 
+    private float frameDuration = Constraints.PLAYER_ANIMATION_FRAME_DURATION;
     private AnimationType animationType;
     private Facing.FacingDirection facingDirection;
     private Animation<TextureRegion> animation;
@@ -37,6 +39,21 @@ public class Animation2D implements Component {
         this.shouldUpdate = true;
     }
 
+    public void setFrameDuration(float frameDuration) {
+        this.frameDuration = frameDuration;
+        this.shouldUpdate = true;
+    }
+
+    public void setPlayMode(Animation.PlayMode playMode) {
+        this.playMode = playMode;
+        this.shouldUpdate = true;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+        this.shouldUpdate = true;
+    }
+
     public void setAnimation(Animation<TextureRegion> animation, Facing.FacingDirection facingDirection) {
         this.animation = animation;
         this.stateTime = 0f;
@@ -59,6 +76,10 @@ public class Animation2D implements Component {
 
     public Animation<TextureRegion> getAnimation() {
         return animation;
+    }
+
+    public float getFrameDuration() {
+        return frameDuration;
     }
 
     public Animation.PlayMode getPlayMode() {

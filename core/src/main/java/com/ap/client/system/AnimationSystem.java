@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AnimationSystem extends IteratingSystem {
-    private final float frameDuration = Constraints.PLAYER_ANIMATION_FRAME_DURATION;
 
     private final AssetService assetService;
     private final Map<CacheKey, Animation<TextureRegion>> animationCache;
@@ -59,7 +58,7 @@ public class AnimationSystem extends IteratingSystem {
             TextureAtlas atlas = assetService.get(atlasAsset);
             String combinedKey = (!atlasKey.isEmpty() ? atlasKey+ "/" : "") +type.getAtlasKey() +(type.isHasFacing() ? "_" + facing.getAtlasKey() : "");
             var regions = atlas.findRegions(combinedKey);
-            return new Animation<>(frameDuration, regions);
+            return new Animation<>(animation2D.getFrameDuration(), regions);
         });
         animation2D.setAnimation(animation, facing);
     }
