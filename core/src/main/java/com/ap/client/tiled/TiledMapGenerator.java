@@ -1,8 +1,10 @@
 package com.ap.client.tiled;
 
+import com.ap.client.Constraints;
 import com.ap.client.asset.AssetService;
 import com.ap.client.component.*;
 import com.ap.client.items.EntityFactory;
+import com.ap.client.model.FarmAnimalTypes;
 import com.ap.client.model.ForagingTrees;
 import com.ap.client.utils.Helper;
 import com.badlogic.ashley.core.Engine;
@@ -40,6 +42,17 @@ public class TiledMapGenerator {
         generateStones(map);
         generateGrasses(map);
         generateWoods(map);
+        generateTestingStuff();
+    }
+
+    private void generateTestingStuff() {
+
+//        for (int i = 40; i < 50; i+=3) {
+//            for (int j = 60; j < 70; j+=3) {
+//                Helper.addEntity(EntityFactory.instance.CreateFarmAnimalEntity(new Vector2(j, i), FarmAnimalTypes.Pig, world), engine);
+//            }
+//        }
+
     }
 
     private void generateWoods(TiledMap map) {
@@ -47,7 +60,6 @@ public class TiledMapGenerator {
 
         int mapWidth = map.getProperties().get("width", Integer.class);
         int mapHeight = map.getProperties().get("height", Integer.class);
-
         for(int i = 0; i < woodCount; i++) {
             while(true) {
                 int x = new Random().nextInt(10, mapWidth - 10);

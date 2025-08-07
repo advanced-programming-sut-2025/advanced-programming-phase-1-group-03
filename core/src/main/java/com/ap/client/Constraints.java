@@ -61,6 +61,7 @@ public class Constraints {
     public static final int WOOD_Z = 1;
     public static final int SHADOW_Z = 1;
     public static final int CROW_Z = 4;
+    public static final int Animal_Z = 2;
 
     // PLAYER_Z = 2, it was set from tile
 }

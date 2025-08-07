@@ -102,7 +102,11 @@ public class Animation2D implements Component {
         Idle(true),
         Walk(true),
         Voice(true),
-        Fly(true)
+        Fly(true),
+        Eat(false),
+        Sleep(true),
+        Special(true),
+        Swim(true)
         ;
         private final String atlasKey;
         private boolean hasFacing;

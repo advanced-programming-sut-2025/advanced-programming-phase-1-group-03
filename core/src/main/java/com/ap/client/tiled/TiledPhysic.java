@@ -101,17 +101,17 @@ public class TiledPhysic {
     }
 
     public static Body createBodyForTile(float x, float y, Object userData, World world, boolean sensor) {
-        return createRectagleBody(x, y, 1, 1, userData, world, sensor);
+        return createRectagleBody(x, y, 1, 1, userData, world, sensor, BodyDef.BodyType.StaticBody);
     }
 
-    public static Body createRectagleBody(float x, float y, float w, float h, Object userData, World world, boolean sensor) {
+    public static Body createRectagleBody(float x, float y, float w, float h, Object userData, World world, boolean sensor, BodyDef.BodyType bodyType) {
         if (w <= 0 || h <= 0) {
             throw new IllegalArgumentException("Invalid width or height: " + w + ", " + h);
         }
 
         BodyDef bodyDef = new BodyDef();
         bodyDef.position.set(x, y);
-        bodyDef.type = BodyDef.BodyType.StaticBody;
+        bodyDef.type = bodyType;
         bodyDef.fixedRotation = true;
 
         Body body = world.createBody(bodyDef);

@@ -3,177 +3,181 @@ package com.ap.client.model;
 public enum FarmAnimalTypes {
     BlueChicken("blue_chicken",
             "blue chicken",
-            false,
+            16, 16, false,
             false,
             false,
             true),
     BrownChicken("brown_chicken",
             "brown chicken",
-            false,
+            16, 16, false,
             false,
             false,
             true),
     WhiteChicken("white_chicken",
             "white chicken",
-            false,
+            16, 16, false,
             false,
             false,
             true),
     VoidChicken("void_chicken",
             "void chicken",
-            false,
+            16, 16, false,
             false,
             false,
             true),
     GoldenChicken("golden_chicken",
             "golden chicken",
-            false,
+            16, 16, false,
             false,
             false,
             true),
     Dinosaur("dinosaur",
             "dinosaur",
-            false,
+            16, 16, false,
             false,
             false,
             true),
     Duck("duck",
             "duck",
-            false,
+            16, 16, false,
             true,
             false,
             true),
     Rabbit("rabbit",
             "rabbit",
-            false,
+            16, 16, false,
             false,
             false,
             true),
 
     BrownCow("brown_cow",
             "brown cow",
-            false,
+            32, 32, false,
             false,
             true,
             false),
     WhiteCow("white_cow",
             "white cow",
-            false,
+            32, 32, false,
             false,
             true,
             false),
     Sheep("sheep",
             "sheep",
-            false,
+            32, 32, false,
             false,
             true,
             false),
     Goat("goat",
             "goat",
-            false,
+            32, 32, false,
             false,
             true,
             false),
     Pig("pig",
             "pig",
-            false,
+            32, 32, false,
             false,
             true,
             false),
 
     Ostrich("ostrich",
             "ostrich",
-            false,
+            32, 32, false,
             false,
             true,
             false),
 
     BabyBlueChicken("baby/blue_chicken",
             "baby blue chicken",
-            true,
+            16, 16, true,
             false,
             false,
             true),
     BabyBrownChicken("baby/brown_chicken",
             "baby brown chicken",
-            true,
+            16, 16, true,
             false,
             false,
             true),
     BabyWhiteChicken("baby/white_chicken",
             "baby white chicken",
-            true,
+            16, 16, true,
             false,
             false,
             true),
     BabyVoidChicken("baby/void_chicken",
             "baby void chicken",
-            true,
+            16, 16, true,
             false,
             false,
             true),
     BabyGoldenChicken("baby/golden_chicken",
             "baby golden chicken",
-            true,
+            16, 16, true,
             false,
             false,
             true),
     BabyRabbit("baby/rabbit",
             "baby rabbit",
-            true,
+            16, 16, true,
             false,
             false,
             true),
 
     BabyBrownCow("baby/brown_cow",
             "baby brown cow",
-            true,
+            32, 32, true,
             false,
             true,
             false),
     BabyWhiteCow("baby/white_cow",
             "baby white cow",
-            true,
+            32, 32, true,
             false,
             true,
             false),
     BabySheep("baby/sheep",
             "baby sheep",
-            true,
+            32, 32, true,
             false,
             true,
             false),
     BabyGoat("baby/goat",
             "baby goat",
-            true,
+            32, 32, true,
             false,
             true,
             false),
     BabyPig("baby/pig",
             "baby pig",
-            true,
+            32, 32, true,
             false,
             true,
             false),
 
     BabyOstrich("baby/ostrich",
             "baby ostrich",
-            true,
+            32, 32, true,
             false,
             true,
             false),
     ;
 
-    private String atlasKey;
-    private String uiName;
-    private boolean isBaby;
-    private boolean canSwim;
-    private boolean liveBarn;
-    private boolean liveCoop;
+    private final String atlasKey;
+    private final String uiName;
+    private final float widthInPx;
+    private final float heightInPx;
+    private final boolean isBaby;
+    private final boolean canSwim;
+    private final boolean liveBarn;
+    private final boolean liveCoop;
 
-    FarmAnimalTypes(String atlasKey, String uiName, boolean isBaby, boolean canSwim, boolean liveBarn, boolean liveCoop) {
+    FarmAnimalTypes(String atlasKey, String uiName, float widthInPx, float heightInPx, boolean isBaby, boolean canSwim, boolean liveBarn, boolean liveCoop) {
         this.atlasKey = atlasKey;
         this.uiName = uiName;
+        this.widthInPx = widthInPx;
+        this.heightInPx = heightInPx;
         this.isBaby = isBaby;
         this.canSwim = canSwim;
         this.liveBarn = liveBarn;
@@ -202,5 +206,13 @@ public enum FarmAnimalTypes {
 
     public boolean isLiveCoop() {
         return liveCoop;
+    }
+
+public float getWidthInPx() {
+        return widthInPx;
+    }
+
+    public float getHeightInPx() {
+        return heightInPx;
     }
 }

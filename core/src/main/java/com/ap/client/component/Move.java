@@ -9,7 +9,7 @@ public class Move implements Component {
 
     private float maxSpeed;
     private final Vector2 direction;
-    private boolean isRooted;
+    private boolean isRooted = false;
 
 
     public Move(float maxSpeed) {

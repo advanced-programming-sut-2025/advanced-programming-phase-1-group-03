@@ -59,6 +59,7 @@ public class Farm extends MapAdaptor {
         engine.addSystem(new PlayerCoinSystem(clock));
         crowAttackSystem = new CrowAttackSystem(engine, world);
         engine.addSystem(crowAttackSystem);
+        engine.addSystem(new FarmAnimalSystem(engine, world));
     }
 
     @Override

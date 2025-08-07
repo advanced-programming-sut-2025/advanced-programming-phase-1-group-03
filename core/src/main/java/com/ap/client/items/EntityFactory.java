@@ -6,10 +6,12 @@ import com.ap.client.asset.AtlasAsset;
 import com.ap.client.audio.AudioService;
 import com.ap.client.component.*;
 import com.ap.client.component.items.Barn;
+import com.ap.client.component.items.FarmAnimal;
 import com.ap.client.component.items.Well;
 import com.ap.client.items.plant.Crop;
 import com.ap.client.model.BarnsType;
 import com.ap.client.model.CropsType;
+import com.ap.client.model.FarmAnimalTypes;
 import com.ap.client.state.CrowAnimationState;
 import com.ap.client.model.MineralNodes;
 import com.ap.client.tiled.TiledPhysic;
@@ -19,6 +21,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.Random;
@@ -194,7 +197,7 @@ public class EntityFactory {
         var texture = assetService.get(AtlasAsset.Crops).findRegion(type.getName() + "_Giant");
         entity.add(new Graphic(texture));
 
-        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, 3, 3, entity, world, false);
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, 3, 3, entity, world, false, BodyDef.BodyType.StaticBody);
         entity.add(new Physic(body, position));
 
         var crop = (Crop) ItemFactory.instance.CreateCrop(type);
@@ -215,6 +218,34 @@ public class EntityFactory {
         entity.add(new Fsm(entity, CrowAnimationState.Voice));
         entity.add(new Animation2D(AtlasAsset.Crow, "", Animation2D.AnimationType.Voice, Animation.PlayMode.LOOP, 0.5f));
         entity.add(new Crow(purposeEntity, entity, audioService));
+
+        return entity;
+    }
+
+    public Entity CreateFarmAnimalEntity(Vector2 position, FarmAnimalTypes type, World world) {
+        Entity entity = new Entity();
+
+        float realW = type.getWidthInPx() * Constraints.UNIT_SCALE;
+        float realH = type.getHeightInPx() * Constraints.UNIT_SCALE;
+
+        float bodyW = realW * 1f;
+        float bodyH = realH * 0.6f;
+
+        var body = TiledPhysic.createRectagleBody(position.x, position.y, bodyW, bodyH, entity, world, false, BodyDef.BodyType.DynamicBody);
+
+        entity.add(new Transform(position, Constraints.Animal_Z, new Vector2(1f, 1f),
+                new Vector2(realW, realH),
+                0, 0));
+        entity.add(new Physic(body, position));
+        entity.add(new Move(1));
+//        entity.add(new Controller());
+        entity.add(new Facing(Facing.FacingDirection.Left));
+        entity.add(new Graphic(null));
+        entity.add(new Fsm(entity, FarmAnimal.Situation.Idle.animationState));
+        entity.add(new Animation2D(AtlasAsset.Animals, type.getAtlasKey(), Animation2D.AnimationType.Idle, Animation.PlayMode.LOOP, 0.5f));
+        entity.add(new FarmAnimal(type));
+
+//        Move.mapper.get(entity).getDirection().x = 1;
 
         return entity;
     }
@@ -268,7 +299,7 @@ public class EntityFactory {
                 size,
                 0, 5));
         entity.add(new Graphic(texture));
-        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false);
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false, BodyDef.BodyType.StaticBody);
         entity.add(new Physic(body, position));
         entity.add(new Barn(type));
         return entity;
@@ -283,7 +314,7 @@ public class EntityFactory {
                 size,
                 0, 4));
         entity.add(new Graphic(bottomTexture));
-        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false);
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false, BodyDef.BodyType.StaticBody);
         entity.add(new Physic(body, position));
 
         var topTexture = assetService.get(AtlasAsset.Barns).findRegion("Well_Top");
@@ -300,4 +331,6 @@ public class EntityFactory {
         entity.add(new Well());
         return entity;
     }
+
+
 }
