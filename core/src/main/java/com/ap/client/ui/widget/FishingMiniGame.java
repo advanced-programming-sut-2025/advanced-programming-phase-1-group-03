@@ -2,6 +2,12 @@ package com.ap.client.ui.widget;
 
 import com.ap.client.asset.AssetService;
 import com.ap.client.asset.AtlasAsset;
+import com.ap.client.items.Animals.Fish;
+import com.ap.client.managers.AbilityManager;
+import com.ap.client.model.AbilityType;
+import com.ap.client.model.FishTypes;
+import com.ap.client.screen.GameScreen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
@@ -59,6 +65,7 @@ public class FishingMiniGame extends Actor {
 
     private final float TIME_STEP = 1/60f;
     private float accumulator = 0;
+    private final GameScreen gameScreen;
 
     // Fish movement
     private enum FishMovementType {
@@ -67,23 +74,34 @@ public class FishingMiniGame extends Actor {
 
 
     private boolean isPerfect = true;
+    private boolean sonar = false;
+    private final String fishString;
 
     private FishMovementType movementType = FishMovementType.MIXED;
     private float moveTimer = 0f;
     private int lastMove = 0;
 
-    public FishingMiniGame(AssetService assetService, Skin skin, float x, float y, Stage stage) {
+    public FishingMiniGame(AssetService assetService, Skin skin, float x, float y, Stage stage,
+                           GameScreen gameScreen, boolean sonar) {
         this.assetService = assetService;
         this.skin = skin;
         this.backgroundPosX = x;
         this.backgroundPosY = y;
+        this.gameScreen = gameScreen;
+        this.sonar = sonar;
 
         this.world = new World(new Vector2(0, -80f), true);
 
         this.textureAtlas = assetService.get(AtlasAsset.Fish);
-        this.bodyFish = textureAtlas.findRegion("Fishing-8");
         this.background = new TextureRegion(new Texture(Gdx.files.internal("graphics/FishingMiniGame.png")));
         this.greenBar = new TextureRegion(new Texture(Gdx.files.internal("graphics/greenBar.png")));
+
+        int rand =(int)(Math.random() * 40);
+        fishString = "Fishing-" + rand;
+        if(sonar)
+            this.bodyFish = textureAtlas.findRegion(fishString);
+        else
+            this.bodyFish = textureAtlas.findRegion("Fishing-8");
 
         this.shapeRenderer = new ShapeRenderer();
 
@@ -240,6 +258,16 @@ public class FishingMiniGame extends Actor {
         }
         catchProgress = MathUtils.clamp(catchProgress, 0f, 100f);
         // here we should give the fish fo inventory
+        if(catchProgress >= 100f) {
+            if(isPerfect) {
+                gameScreen.getAbilityManager().getAbility(AbilityType.Fishing).advanceXP(
+                        (int) (1.4f * gameScreen.getAbilityManager().getAbility(AbilityType.Fishing).getXp()));
+                gameScreen.getInventory().addItem(
+                        new Fish(FishTypes.Legend, textureAtlas.findRegion("Fishing-44")), 1);
+            }
+            gameScreen.getInventory().addItem(new Fish(FishTypes.Legend, textureAtlas.findRegion(fishString)), 1);
+            remove();
+        }
         if (catchProgress >= 100f || catchProgress <= 0f) {
             remove();
         }

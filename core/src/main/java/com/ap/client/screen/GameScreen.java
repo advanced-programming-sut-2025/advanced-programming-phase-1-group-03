@@ -121,7 +121,6 @@ public class GameScreen extends AbstractScreen {
         clockManager = new ClockManager(clock);
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock, timeSystem);
-
         energyManager = new EnergyManager(weatherSystem, abilityManager);
 
         mapManager = new MapManager(game, this);
