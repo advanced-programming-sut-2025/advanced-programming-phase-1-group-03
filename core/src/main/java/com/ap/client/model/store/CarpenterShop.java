@@ -46,8 +46,12 @@ public enum CarpenterShop {
         for(CarpenterShop product : CarpenterShop.values()) {
             String key = product.name();
             var texture = assetService.get(AtlasAsset.Carpenter).findRegion(key);
-            list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.name(), product.getDescription(), product.getPrice(), row++));
-        }
+            double rand = Math.random();
+            System.out.println(product.getName() + " " + rand);
+            if(rand <= 0.5)
+                list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.name(), product.description, product.getPrice(), row++, true));
+            else
+                list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.name(), product.description, product.getPrice(), row++, false));        }
         return list;
     }
 

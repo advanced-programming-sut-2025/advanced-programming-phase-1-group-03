@@ -25,6 +25,8 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.StringBuilder;
 
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class StoreMenu extends Actor {
     private StoreMenu instance;
 
     private ArrayList<StoreProduct> list;
+    private ArrayList<StoreProduct> filteredList;
 
     private int row = 0;
     private float scale = 2f;
@@ -57,6 +60,8 @@ public class StoreMenu extends Actor {
     private InputListener event;
     private Menus menu;
     private BiConsumer<StoreProduct, Menus> buyConsumer;
+
+    private boolean filterAvailableOnly = false;
 
     public StoreMenu(AssetService assetService, Skin skin, Stage stage, Inventory inventory, AudioService audioService,
                      String characterString, String message,
@@ -75,13 +80,31 @@ public class StoreMenu extends Actor {
         this.message = message;
         setUpUI(characterString);
         list = products;
+        filteredList = new ArrayList<>(list);
         createWhiteTexture();
+
+        TextButton filterButton = new TextButton("Show Available", skin);
+        filterButton.setPosition(getX() + 820, getY() + 40);
+        filterButton.setSize(150, 40);
+
+        filterButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                filterAvailableOnly = !filterAvailableOnly;
+                filterButton.setText(filterAvailableOnly ? "Show All" : "Show Available");
+                updateFilteredList();
+            }
+        });
+
+        stage.addActor(filterButton);
 
         stage.addListener(event = new InputListener() {
             @Override
             public boolean scrolled(InputEvent event, float x, float y, float amountX, float amountY) {
-                if (amountY > 0)
-                    row = Math.min(list.size() - 4, row + 1);
+                if (amountY > 0) {
+                    row = Math.min(filteredList.size() - 4, row + 1);
+                    row = Math.max(row, 0);
+                }
                 else
                     row = Math.max(0, row - 1);
                 return true;
@@ -99,9 +122,9 @@ public class StoreMenu extends Actor {
 
                 if (x >= rectX && x <= rectX + rectWidth) {
                     int rowNum = (int) ((rectY - y) / 53.5f);
-                    if (rowNum >= 0 && rowNum <= 3 && row + rowNum < list.size()) {
+                    if (rowNum >= 0 && rowNum <= 3 && row + rowNum < filteredList.size()) {
                         audioService.playSound(SoundAsset.HoverButton);
-                        applyItem(list.get(row + rowNum));
+                        applyItem(filteredList.get(row + rowNum));
                         return true;
                     }
                 }
@@ -110,9 +133,29 @@ public class StoreMenu extends Actor {
         });
     }
 
-    private void applyItem(StoreProduct storeProduct) {
-        buyConsumer.accept(storeProduct, menu);
+    private void updateFilteredList() {
+        if (filterAvailableOnly) {
+            filteredList.clear();
+            for (StoreProduct product : list) {
+                if (product.isAvailable) {
+                    filteredList.add(product);
+                }
+            }
+        } else {
+            filteredList = new ArrayList<>(list);
+        }
+        row = 0;
     }
+
+    private void applyItem(StoreProduct storeProduct) {
+        GameUIManager.instance.exitMenu(menu);
+        StoreBuyDialog dialog = new StoreBuyDialog(skin, stage, storeProduct, audioService,
+                (product, count) -> {
+                    buyConsumer.accept(product, menu);
+                });
+    }
+
+
 
     private void setUpUI(String characterString) {
         setX((Constraints.WORLD_WIDTH_RESOLUTION - background.getRegionWidth()) / 2f);
@@ -152,7 +195,7 @@ public class StoreMenu extends Actor {
         if (mouseX >= rectX && mouseX <= rectX + rectWidth &&
                 mouseY >= rectY - rectHeight && mouseY <= rectY) {
             int rowNum = (int) ((rectY - mouseY) / 53.5f);
-            if (rowNum >= 0 && rowNum <= 3 && row + rowNum < list.size()) {
+            if (rowNum >= 0 && rowNum <= 3 && row + rowNum < filteredList.size()) {
                 if(rowNum != hoverRow) {
                     audioService.playSound(SoundAsset.HoverButton, 0.7f);
                 }
@@ -230,18 +273,33 @@ public class StoreMenu extends Actor {
             batch.setColor(Color.WHITE);
         }
 
-        for (int i = row; i < Math.min(list.size(), row + 4); i++) {
-            drawThisProduct(batch, list.get(i), i - row);
+        for (int i = row; i < Math.min(filteredList.size(), row + 4); i++) {
+            StoreProduct product = filteredList.get(i);
+            if(product == null)
+                return;
+
+            if (!product.isAvailable) {
+                float posX = 230;
+                float posY = 360;
+                float eachY = 57;
+                float rectWidth = 546f;
+                float rectHeight = eachY - 7;
+
+                batch.setColor(new Color(0.4f, 0.4f, 0.4f, 0.65f));
+                batch.draw(whiteTexture, getX() + posX - 10, getY() + posY - (i - row) * eachY - 43 + 10, rectWidth, rectHeight);
+                batch.setColor(Color.WHITE);
+            }
+
+            drawThisProduct(batch, product, i - row);
         }
     }
 
     private void drawHoverTooltip(Batch batch) {
         if(hoverRow < 0 || hoverRow > 3)
             return;
-        StoreProduct product = list.get(hoverRow + row);
+        StoreProduct product = filteredList.get(hoverRow + row);
         BitmapFont font = new BitmapFont();
         font.setColor(Color.WHITE);
-
 
         Vector2 mousePos = stage.screenToStageCoordinates(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
         float tooltipX = mousePos.x + 16;
@@ -250,23 +308,18 @@ public class StoreMenu extends Actor {
         float tooltipWidth = 300f;
         float tooltipHeight = 120f;
 
-
         batch.setColor(new Color(0f, 0f, 0f, 0.65f));
         batch.draw(whiteTexture, tooltipX, tooltipY, tooltipWidth, tooltipHeight);
         batch.setColor(Color.WHITE);
 
-
         float iconSize = 24f;
         batch.draw(product.texture, tooltipX + 10, tooltipY + tooltipHeight - iconSize - 10, iconSize, iconSize);
-
 
         font.draw(batch, product.name, tooltipX + iconSize + 18, tooltipY + tooltipHeight - 14);
 
         float descY = tooltipY + tooltipHeight - 40;
         font.draw(batch, product.description, tooltipX + 10, descY - 15, tooltipWidth - 20, 1, true);
     }
-
-
 
     private void drawThisProduct(Batch batch, StoreProduct storeProduct, int row) {
         BitmapFont font = skin.getFont("Mill24");
@@ -281,20 +334,23 @@ public class StoreMenu extends Actor {
     }
 
     public static class StoreProduct {
-       public TextureRegion texture;
-       public String name;
-       public String enumName;
-       public String description;
-       public int sellPrice;
-       public int row;
+        public TextureRegion texture;
+        public String name;
+        public String enumName;
+        public String description;
+        public int sellPrice;
+        public int row;
+        public boolean isAvailable;
 
-        public StoreProduct(TextureRegion texture, String name, String enumName, String description, int sellPrice, int row) {
+        public StoreProduct(TextureRegion texture, String name, String enumName,
+                            String description, int sellPrice, int row, boolean isAvailable) {
             this.texture = texture;
             this.name = name;
             this.enumName = enumName;
             this.sellPrice = sellPrice;
             this.row = row;
             this.description = description;
+            this.isAvailable = isAvailable;
         }
     }
 

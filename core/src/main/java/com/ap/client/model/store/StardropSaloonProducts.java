@@ -72,7 +72,12 @@ public enum StardropSaloonProducts {
                 key = key.replace("Recipe", "");
             }
             var texture = assetService.get(AtlasAsset.Foods).findRegion(key);
-            list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.name(), product.description, product.getPrice(), row++));
+            double rand = Math.random();
+            System.out.println(product.getName() + " " + rand);
+            if (rand <= 0.5)
+                list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.name(), product.description, product.getPrice(), row++, true));
+            else
+                list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.name(), product.description, product.getPrice(), row++, false));
         }
         return list;
     }
