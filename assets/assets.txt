@@ -26,7 +26,6 @@ audio/type.mp3
 audio/walk.wav
 audio/watering.wav
 audio/wateringCanNo.wav
-data.db
 graphics/Animals/Fish.atlas
 graphics/Animals/Fish.png
 graphics/Animals/Fishing-2.png
@@ -147,8 +146,6 @@ skins/LondonMM.ttf
 skins/Millennium-Bold.ttf
 skins/Roboto-Bold.ttf
 skins/Roboto-Regular.ttf
-skins/Stardew Valley ALL CAPS.ttf
-skins/Stardew Valley Regular.ttf
 skins/Stardew_Valley.ttf
 skins/Stardew_Valley2.ttf
 skins/skin.atlas

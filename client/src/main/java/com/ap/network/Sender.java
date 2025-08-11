@@ -164,6 +164,11 @@ public class Sender {
         client.sendTCP(request);
     }
 
+    public void applyReaction(int emojiNum) {
+        var request = new ReactionRequest(emojiNum);
+        client.sendTCP(request);
+    }
+
     public void buildGreenhouse() {
         client.sendTCP(new BuildGreenhouseRequest());
     }

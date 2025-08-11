@@ -88,6 +88,10 @@ public class PlayerManager {
 
     }
 
+    public void applyReaction() {
+
+    }
+
     public void buildGreenhouse() {
         if(mapManager.currentMap instanceof Farm farm) {
             farm.buildGreenhouse();

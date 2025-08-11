@@ -9,6 +9,7 @@ import com.ap.requests.ApplyItemRequest;
 import com.ap.requests.BuildGreenhouseRequest;
 import com.ap.requests.ChatRequest;
 import com.ap.requests.MovePlayerRequest;
+import com.ap.requests.ReactionRequest;
 import com.ap.responses.ChatResponse;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -28,6 +29,8 @@ public class GameListener extends Listener {
             senderPlayer.playerManager.applyItem(applyItemRequest.index, applyItemRequest.x, applyItemRequest.y);
         } else if(object instanceof BuildGreenhouseRequest) {
             senderPlayer.playerManager.buildGreenhouse();
+        } else if(object instanceof ReactionRequest) {
+            senderPlayer.playerManager.applyReaction();
         } else if(object instanceof ChatRequest chatRequest) {
             var notifier = new ChatNotifier(chatRequest.message, chatRequest.toUser != null, senderPlayer.username);
             if(chatRequest.toUser != null) {

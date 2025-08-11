@@ -130,6 +130,8 @@ public class Registrator {
         kryo.register(BuildGreenhouseMsgNotifier.class);
         kryo.register(BuildGreenhouseRequest.class);
 
+        kryo.register(ReactionRequest.class);
+
         kryo.register(ChangeSeasonNotifier.class);
 
         kryo.register(ChatRequest.class);
