@@ -378,7 +378,7 @@ public class InventoryTab extends AbstractContent{
             number = new Label(item.getAmount() + "", skin);
             number.setFontScale(1f);
             Label.LabelStyle newStyle = new Label.LabelStyle(number.getStyle());
-            newStyle.fontColor = Color.RED;
+            newStyle.fontColor = Color.BLACK;
             number.setStyle(newStyle);
             number.setPosition(cellWidth - number.getWidth() - 5, -6);
             if (item.getAmount() <= 1) number.setVisible(false);

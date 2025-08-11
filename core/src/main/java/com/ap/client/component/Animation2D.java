@@ -2,6 +2,7 @@ package com.ap.client.component;
 
 import com.ap.client.Constraints;
 import com.ap.client.asset.AtlasAsset;
+import com.ap.client.model.EmoteType;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -70,6 +71,10 @@ public class Animation2D implements Component {
         return shouldUpdate;
     }
 
+    public void setShouldUpdate(boolean shouldUpdate) {
+        this.shouldUpdate = shouldUpdate;
+    }
+
     public Facing.FacingDirection getFacingDirection() {
         return facingDirection;
     }
@@ -98,6 +103,10 @@ public class Animation2D implements Component {
         return animationType;
     }
 
+    public void setAtlastKey(String atlastKey) {
+        this.atlastKey = atlastKey;
+    }
+
     public enum AnimationType {
         Idle(true),
         Walk(true),
@@ -106,12 +115,21 @@ public class Animation2D implements Component {
         Eat(false),
         Sleep(true),
         Special(true),
-        Swim(true)
+        Swim(true),
+        Emote_Opening(false, "emote_" + EmoteType.Opening.index),
+        Emote_Closing(false, "emote_" + EmoteType.Closing.index),
+        Emote_Heart(false, "emote_" + EmoteType.Heart.index),
+        Emote_Noise(false,  "emote_" + EmoteType.Noise.index),
+        Emote_Sleep(false, "emote_" + EmoteType.Sleep.index),
         ;
         private final String atlasKey;
         private boolean hasFacing;
         AnimationType(boolean hasFacing) {
             atlasKey = name().toLowerCase();
+            this.hasFacing = hasFacing;
+        }
+        AnimationType(boolean hasFacing, String atlasKey) {
+            this.atlasKey = atlasKey;
             this.hasFacing = hasFacing;
         }
         public String getAtlasKey() {

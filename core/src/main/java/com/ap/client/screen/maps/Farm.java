@@ -4,6 +4,7 @@ import box2dLight.RayHandler;
 import com.ap.client.Constraints;
 import com.ap.client.GdxGame;
 import com.ap.client.asset.MapAsset;
+import com.ap.client.managers.AnimalManager;
 import com.ap.client.system.GrowSystem;
 import com.ap.client.managers.WeatherEffects;
 import com.ap.client.model.Season;
@@ -45,21 +46,26 @@ public class Farm extends MapAdaptor {
         engine.addSystem(new SeasonalGraphicSystem(assetService, timeSystem));
         engine.addSystem(new AdjustAlphaSystem(engine));
 
+        clickSystem = new ClickSystem(game.getCamera());
+        engine.addSystem(clickSystem);
+
         growSystem = new GrowSystem(assetService, weatherSystem);
         engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
+        engine.addSystem(new EmoteSystem());
 
         // Actually it would be better we create a class for forest, but because of simplicity just hardcode it
         if(mapAsset == MapAsset.Farm1 || mapAsset == MapAsset.Farm2) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
-        engine.addSystem(new CarrierSystem(engine, assetService, batch, world, audioService));
+        engine.addSystem(new CarrierSystem(engine, assetService, batch, world, audioService, this));
 
-        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cheatCodeBox, engine));
+        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cheatCodeBox, engine, gameScreen.getAnimalStatMenu()));
         engine.addSystem(new PlayerCoinSystem(clock));
         crowAttackSystem = new CrowAttackSystem(engine, world);
         engine.addSystem(crowAttackSystem);
         engine.addSystem(new FarmAnimalSystem(engine, world));
+        engine.addSystem(new CollectingSystem(engine, world, playerEntity, audioService));
     }
 
     @Override
@@ -110,6 +116,7 @@ public class Farm extends MapAdaptor {
                 tiledMapGenerator.generateForagingTree(map);
             }
             crowAttackSystem.onDayChanged();
+            AnimalManager.instance.onDayChanged();
         }
     }
 }

@@ -1,9 +1,10 @@
 package com.ap.client.system;
 
-import com.ap.client.component.Controller;
-import com.ap.client.component.Move;
-import com.ap.client.component.Player;
+import com.ap.client.component.*;
 import com.ap.client.input.Command;
+import com.ap.client.items.Animals.Animal;
+import com.ap.client.managers.AnimalManager;
+import com.ap.client.ui.widget.AnimalStatMenu;
 import com.ap.client.ui.widget.cheatCode.CheatCodeBox;
 import com.ap.client.ui.widget.CookingMenu;
 import com.ap.client.ui.widget.CraftingMenu;
@@ -21,9 +22,11 @@ public class ControllerSystem extends IteratingSystem {
     private CheatCodeBox cheatCodeBox;
     private TileSelectionSystem tileSelectionSystem;
     private CarrierSystem carrierSystem;
+    private AnimalStatMenu animalStatMenu;
     private int totalMovement = 0;
 
-    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CookingMenu cookingMenu, CheatCodeBox cheatCodeBox,  Engine engine) {
+    private Engine engine;
+    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CookingMenu cookingMenu, CheatCodeBox cheatCodeBox,  Engine engine, AnimalStatMenu animalStatMenu) {
         super(Family.all(Controller.class).get());
         this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
         this.carrierSystem = engine.getSystem(CarrierSystem.class);
@@ -31,10 +34,13 @@ public class ControllerSystem extends IteratingSystem {
         this.cookingMenu = cookingMenu;
         this.tabManager = tabManager;
         this.cheatCodeBox = cheatCodeBox;
+        this.engine = engine;
+        this.animalStatMenu = animalStatMenu;
     }
 
-    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CheatCodeBox cheatCodeBox, Engine engine) {
-        this(tabManager, craftingMenu, null, cheatCodeBox, engine);
+    public ControllerSystem(TabManager tabManager, CraftingMenu craftingMenu, CheatCodeBox cheatCodeBox, Engine engine, AnimalStatMenu animalStatMenu) {
+        this(tabManager, craftingMenu, null, cheatCodeBox, engine, animalStatMenu);
+        this.engine = engine;
     }
 
     @Override
@@ -78,6 +84,13 @@ public class ControllerSystem extends IteratingSystem {
                     cheatCodeBox.toggle();
                 } case Place -> {
                     carrierSystem.place();
+
+//                    if (!animalStatMenu.isShowing()) animalStatMenu.show(null);
+//                    if (Player.mapper.has(entity)) {
+//                        Entity emote = EntityFactory.instance.CreateEmoteEntity(Transform.mapper.get(entity), EmoteType.Heart, 3);
+//                        engine.addEntity(emote);
+//                    }
+
                 }
             }
         }

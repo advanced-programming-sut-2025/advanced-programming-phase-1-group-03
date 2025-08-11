@@ -4,6 +4,8 @@ import com.ap.client.Constraints;
 import com.ap.client.asset.AssetService;
 import com.ap.client.component.*;
 import com.ap.client.items.EntityFactory;
+import com.ap.client.items.ItemFactory;
+import com.ap.client.items.ItemStack;
 import com.ap.client.model.FarmAnimalTypes;
 import com.ap.client.model.ForagingTrees;
 import com.ap.client.utils.Helper;
@@ -42,16 +44,12 @@ public class TiledMapGenerator {
         generateStones(map);
         generateGrasses(map);
         generateWoods(map);
-        generateTestingStuff();
+//        generateTestingStuff();
     }
 
     private void generateTestingStuff() {
 
-//        for (int i = 40; i < 50; i+=3) {
-//            for (int j = 60; j < 70; j+=3) {
-//                Helper.addEntity(EntityFactory.instance.CreateFarmAnimalEntity(new Vector2(j, i), FarmAnimalTypes.Pig, world), engine);
-//            }
-//        }
+        Helper.addEntity(EntityFactory.instance.CreateCollectableItemEntity(new Vector2(40, 50), new ItemStack(ItemFactory.instance.CreateStone(), 10)), engine);
 
     }
 

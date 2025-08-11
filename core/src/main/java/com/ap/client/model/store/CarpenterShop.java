@@ -47,6 +47,7 @@ public enum CarpenterShop {
             String key = product.name();
             var texture = assetService.get(AtlasAsset.Carpenter).findRegion(key);
             double rand = Math.random();
+            rand = 0;
             System.out.println(product.getName() + " " + rand);
             if(rand <= 0.5)
                 list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.name(), product.description, product.getPrice(), row++, true));

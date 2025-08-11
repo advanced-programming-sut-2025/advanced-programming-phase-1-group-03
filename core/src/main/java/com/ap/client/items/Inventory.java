@@ -11,6 +11,9 @@ public class Inventory {
     private final ArrayList<ItemStack> items = new ArrayList<>();
     private final ArrayList<FoodRecipes> foodRecipes = new ArrayList<>();
 
+public Inventory() {
+    }
+
     private int trashCanLevel = 0;
 
     public boolean canAdd() {

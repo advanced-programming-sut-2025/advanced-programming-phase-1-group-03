@@ -10,6 +10,7 @@ public class Graphic implements Component {
 
     private TextureRegion texture;
     private Color color;
+    private boolean isVisible = true;
 
     public Graphic(TextureRegion texture, Color color) {
         this.texture = texture;
@@ -34,4 +35,12 @@ public class Graphic implements Component {
     public void setColor(Color color) {
         this.color = color;
     }
+
+//    public boolean isVisible() {
+//        return isVisible;
+//    }
+//
+//    public void setVisible(boolean visible) {
+//        isVisible = visible;
+//    }
 }

@@ -2692,7 +2692,7 @@ shop_icon/rabbit
 bounds:920,120,32,16
 shop_icon/sheep
 bounds:1090,290,32,16
-shop_icon/white_cow
+shop_icon/cow
 bounds:1158,358,32,16
 void_chicken/eat
 index:0

@@ -3,6 +3,7 @@ package com.ap.client.managers;
 import com.ap.client.audio.AudioService;
 import com.ap.client.model.Menus;
 import com.ap.client.model.store.CarpenterShop;
+import com.ap.client.model.store.MarniesRanchProducts;
 import com.ap.client.model.store.StardropSaloonProducts;
 import com.ap.client.screen.GameScreen;
 import com.ap.client.system.ControllerSystem;
@@ -57,6 +58,7 @@ public class GameUIManager {
     }
 
     public void displayMenu(Menus menu, BiConsumer<StoreMenu.StoreProduct, Menus> onBuy) {
+        System.out.println(menu);
         switch (menu) {
             case StardropSaloonMenu:
                 menus.put(menu, (new StoreMenu(
@@ -65,6 +67,7 @@ public class GameUIManager {
                         "Hungry? Thirsty? I've got just the thing.", menu,
                         StardropSaloonProducts.buildStoreItems(gameScreen.getAssetService()), onBuy)
                 ));
+                break;
             case CarpenterShopMenu:
                 menus.put(menu, (new StoreMenu(
                         gameScreen.getAssetService(), skin, stage, gameScreen.getInventory(),
@@ -72,6 +75,15 @@ public class GameUIManager {
                         "Hungry? Thirsty? I've got just the thing.", menu,
                         CarpenterShop.buildStoreItems(gameScreen.getAssetService()), onBuy)
                 ));
+                break;
+            case MarniesRanchMenu:
+                menus.put(menu, (new StoreMenu(
+                        gameScreen.getAssetService(), skin, stage, gameScreen.getInventory(),
+                        gameScreen.getAudioService(), "Marnie",
+                        "Welcome! What can I do for you?", menu,
+                        MarniesRanchProducts.buildStoreItems(gameScreen.getAssetService()), onBuy
+                )));
+                break;
         }
         stage.addActor(menus.get(menu));
     }

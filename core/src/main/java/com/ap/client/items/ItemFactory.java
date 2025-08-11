@@ -7,6 +7,7 @@ import com.ap.client.items.mine.Mineral;
 import com.ap.client.items.plant.Crop;
 import com.ap.client.items.plant.Seed;
 import com.ap.client.items.plant.Tree;
+import com.ap.client.model.AnimalProducts;
 import com.ap.client.model.CropsType;
 import com.ap.client.model.Foods;
 import com.ap.client.model.Minerals;
@@ -28,6 +29,11 @@ public class ItemFactory {
     public Item CreateStone() {
         TextureRegion icon = assetService.get(AtlasAsset.Environment).findRegions("stone/regular").get(0);
         return new Item(ItemNames.Stone.name(), 64, icon);
+    }
+
+    public Item CreateHay() {
+        TextureRegion icon =assetService.get(AtlasAsset.AnimalProducts).findRegion("Hay");
+        return new Item(ItemNames.Hay.name(), 64, icon);
     }
 
     public Item CreateWood() {
@@ -63,6 +69,11 @@ public class ItemFactory {
     public Item CreateFood(Foods type, int price) {
         var icon = assetService.get(AtlasAsset.Foods).findRegion(type.name());
         return new Food(type.getName(), 64, icon, price, type.getEnergy());
+    }
+
+    public Item CreateAnimalProduct(AnimalProducts type, int price) {
+        var icpn = assetService.get(AtlasAsset.AnimalProducts).findRegion(type.getAtlasKey());
+        return new Item(type.getUiName(), 10, icpn, price);
     }
     public void setAssetService(AssetService assetService) {
         this.assetService = assetService;

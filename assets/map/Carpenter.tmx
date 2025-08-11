@@ -88,7 +88,7 @@
   <object id="13" name="TownSpawner" x="67" y="174" width="26.5" height="15">
    <properties>
     <property name="sensor" type="bool" value="true"/>
-    <property name="spawner" value="Town"/>
+    <property name="spawner" value="Farm"/>
    </properties>
   </object>
   <object id="15" name="MapBoundary" x="64.3636" y="190.545">

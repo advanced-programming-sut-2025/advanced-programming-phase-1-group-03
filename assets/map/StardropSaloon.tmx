@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="46" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="22">
+ <editorsettings>
+  <export target="StardropSaloon2..tmx" format="tmx"/>
+ </editorsettings>
  <properties>
   <property name="DayTiles" value="Front 7 1 256 Front 7 2 288"/>
   <property name="Doors" value="11 9 1 120 20 9 1 120 3 16 1 824 4 16 1 825"/>
@@ -92,7 +95,7 @@
   <object id="19" name="Spawner" x="226" y="383.5" width="12" height="14.5">
    <properties>
     <property name="sensor" type="bool" value="true"/>
-    <property name="spawner" value="Town"/>
+    <property name="spawner" value="Farm"/>
    </properties>
   </object>
   <object id="20" name="Player" gid="3491" x="217" y="369.5" width="32" height="32">

@@ -2,6 +2,10 @@ package com.ap.client.model;
 
 import com.ap.client.Constraints;
 import com.ap.client.asset.MapAsset;
+import com.ap.client.items.Inventory;
+import com.ap.client.items.Item;
+import com.ap.client.items.tools.Tool;
+import com.ap.client.ui.widget.ItemContainer;
 import com.badlogic.ashley.core.Entity;
 
 /**
@@ -15,6 +19,9 @@ public class GameData {
     private int farmIndex;
     private boolean isGreenhouseBuilt = false;
     private int gold = Constraints.PLAYER_INITIAL_GOLD;
+    private Item currentTool;
+    private Inventory inventory;
+    private ItemContainer itemContainer;
 
     public static GameData getInstance() {
         if (instance == null) {
@@ -63,4 +70,23 @@ public class GameData {
         gold = i;
     }
 
+    public Item getCurrentTool() {
+        return currentTool;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setItemContainer(ItemContainer itemContainer) {
+        this.itemContainer = itemContainer;
+    }
+
+    public ItemContainer getItemContainer() {
+        return itemContainer;
+    }
 }

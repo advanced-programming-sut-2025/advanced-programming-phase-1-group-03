@@ -4,18 +4,81 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="fishing completed.">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/StoreBuyDialog.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="animal entity added">
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Animals/animal_products.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Animals/animal_products.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Emotes.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Emotes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Foods/Hay.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/tileset/coopTiles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/tileset/paths.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/Clickable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/Collectable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/Emote.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/TwinEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/Animals/Animal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/Animals/AnimalHouse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/managers/AnimalManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/AnimalProducts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/EmoteType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/store/MarniesRanchProducts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/state/EmoteAnimationState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/ClickSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/CollectingSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/EmoteSystem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/AnimalStatMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/core/build/libs/core-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/Animals/animals.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Animals/animals.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/Barns.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Barns.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/Carpenter.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Carpenter.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/Farm1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Farm1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/StardropSaloon.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/StardropSaloon.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/objects/Objects.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/objects/Objects.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/Constraints.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/GdxGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/asset/AtlasAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/asset/MapAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/asset/MapAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/Animation2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/Animation2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/Graphic.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/Graphic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/Transform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/items/FarmAnimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/component/items/FarmAnimal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/input/KeyboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/input/KeyboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/EntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/ItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/ItemFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/ItemNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/ItemNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/items/tools/Tool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/managers/EnergyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/managers/EnergyManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/managers/GameUIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/managers/GameUIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/managers/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/managers/MapManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/managers/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/managers/StoreManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/BarnsType.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/BarnsType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/FarmAnimalTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/FarmAnimalTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/Foods.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/Foods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/GameData.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/GameData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/Menus.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/Menus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/store/CarpenterShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/store/CarpenterShop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/store/StardropSaloonProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/model/store/StardropSaloonProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/StoreMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/StoreMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/Farm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/House.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/MapAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/MapAdaptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/Mine.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/Mine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/screen/maps/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/AnimationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/AnimationSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/CameraSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/CameraSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/CarrierSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/CarrierSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/ControllerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/FarmAnimalSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/FarmAnimalSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/RenderSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/system/RenderSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/tiled/TiledAshleyConfigurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/tiled/TiledAshleyConfigurator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/tiled/TiledMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/tiled/TiledMapGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/tiled/TiledService.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/tiled/TiledService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/ItemContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/cheatCode/CheatCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/cheatCode/CheatCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/tabContents/InventoryTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/client/ui/widget/tabContents/InventoryTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/global/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/StartupHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/classes/java/main/com/ap/lwjgl3/StartupHelper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/resources/main/assets.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lwjgl3/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +163,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/StarehdewValley/core/src/main/java/com/ap/server/database&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Acer/IdeaProjects/Stardew-Valley/assets/graphics/Animals&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
@@ -119,11 +182,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\Animals" />
-      <recent name="D:\StarehdewValley\core\src\main\java\com\ap\server\database" />
-      <recent name="C:\Users\Surface\IdeaProjects\Stardew\assets\graphics" />
-      <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics\Tabs" />
-      <recent name="C:\Users\Acer\IdeaProjects\StardewValley\assets\graphics" />
+      <recent name="C:\Users\Acer\IdeaProjects\Stardew-Valley\assets\graphics\Animals" />
+      <recent name="C:\Users\Acer\IdeaProjects\Stardew-Valley\assets\graphics\Foods" />
+      <recent name="C:\Users\Acer\IdeaProjects\Stardew-Valley\assets\graphics" />
+      <recent name="C:\Users\Acer\IdeaProjects\Stardew-Valley\assets\map\tileset" />
+      <recent name="C:\Users\Acer\IdeaProjects\Stardew-Valley\assets\map" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.ap.server.utility" />
@@ -131,7 +194,7 @@
       <recent name="com.ap.ui.widget" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.StarehdewValley2">
+  <component name="RunManager" selected="Application.RunGdx">
     <configuration name="RunGdx" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ap.lwjgl3.Lwjgl3Launcher" />
       <module name="Stardew-Valley.lwjgl3.main" />
@@ -147,7 +210,7 @@
     </configuration>
     <configuration name="Server" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ap.server.Server" />
-      <module name="StarehdewValley.core.main" />
+      <module name="Stardew-Valley.core.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -289,6 +352,9 @@
       <workItem from="1754332340743" duration="817000" />
       <workItem from="1754379275306" duration="9946000" />
       <workItem from="1754543339930" duration="14390000" />
+      <workItem from="1754664196722" duration="7976000" />
+      <workItem from="1754677502295" duration="8597000" />
+      <workItem from="1754725553391" duration="59900000" />
     </task>
     <task id="LOCAL‎−۰۰۰۵۰" summary="Adding seasons">
       <option name="closed" value="true" />

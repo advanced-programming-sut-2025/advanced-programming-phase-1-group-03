@@ -74,6 +74,7 @@ public class CameraSystem extends IteratingSystem {
         mapW = width * tileW * Constraints.UNIT_SCALE;
         mapH = height * tileH * Constraints.UNIT_SCALE;
 
+        System.out.println(map);
         Entity player = getEntities().first();
         if(player == null)
             return;

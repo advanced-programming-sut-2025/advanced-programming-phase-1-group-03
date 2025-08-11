@@ -10,6 +10,7 @@ import com.ap.client.items.Inventory;
 import com.ap.client.items.ItemFactory;
 import com.ap.client.items.tools.Tool;
 import com.ap.client.managers.*;
+import com.ap.client.model.BarnsType;
 import com.ap.client.model.GameData;
 import com.ap.client.model.Season;
 import com.ap.client.system.*;
@@ -29,6 +30,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 public class GameScreen extends AbstractScreen {
@@ -46,10 +48,12 @@ public class GameScreen extends AbstractScreen {
     private TabManager tabManager;
     private Journal journal;
     private CheatCodeBox cheatCodeBox;
+    private AnimalStatMenu animalStatMenu;
 
     private ClockManager clockManager;
     private MapManager mapManager;
     private CheatCodeController cheatCodeController;
+    private AnimalManager animalManager;
 
     private Inventory inventory;
     private AbilityManager abilityManager;
@@ -66,6 +70,7 @@ public class GameScreen extends AbstractScreen {
     private EnergyManager energyManager;
 
     private Map<MapAsset, Engine> engineCache = new HashMap<>();
+    private Map<MapAsset, World> worldCache = new HashMap<>();
 
     public GameScreen(GdxGame game) {
         super(game);
@@ -104,11 +109,13 @@ public class GameScreen extends AbstractScreen {
         TooltipHelper.setTooltip(skin);
         TooltipHelper tooltipHelper = TooltipHelper.getTooltip();
         inventory = new Inventory();
+        GameData.getInstance().setInventory(inventory);
         Tool.addBasicTools(inventory, assetService);
         abilityManager = new AbilityManager();
 
         clock = new Clock(assetService, skin);
         itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
+        GameData.getInstance().setItemContainer(itemContainer);
         energyBar = new EnergyBar(assetService, skin);
 
         journal = new Journal(assetService, skin, stage);
@@ -122,6 +129,9 @@ public class GameScreen extends AbstractScreen {
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock, timeSystem);
         energyManager = new EnergyManager(weatherSystem, abilityManager);
+        animalStatMenu = new AnimalStatMenu(null, stage, skin, assetService, audioService);
+        animalManager = new AnimalManager(this);
+        AnimalManager.instance = animalManager;
 
         mapManager = new MapManager(game, this);
         mapManager.loadAllMaps();
@@ -249,12 +259,30 @@ public class GameScreen extends AbstractScreen {
     public Map<MapAsset, Engine> getEngineCache() {
         return engineCache;
     }
+
+    public Map<MapAsset, World> getWorldCache() {
+        return worldCache;
+    }
+
     public Engine getFarmEngine() {
         var engine = engineCache.get(MapAsset.Farm1);
         if(engine == null) {
             return engineCache.get(MapAsset.Farm2);
         }
         return engine;
+    }
+    public World getFarmWorld() {
+        var world = worldCache.get(MapAsset.Farm1);
+        if(world == null) {
+            return worldCache.get(MapAsset.Farm2);
+        }
+        return world;
+    }
+    public World getMapWorld(MapAsset mapAsset) {
+        return worldCache.get(mapAsset);
+    }
+    public Engine getBarnEngine(BarnsType barnsType) {
+        return engineCache.get(MapAsset.valueOf(barnsType.name()));
     }
 
     public EnergyManager getEnergyManager() {
@@ -265,6 +293,9 @@ public class GameScreen extends AbstractScreen {
         return skin;
     }
 
+    public AnimalStatMenu getAnimalStatMenu() {
+        return animalStatMenu;
+    }
 
     class TimeListener implements ITimeListener {
 

@@ -44,7 +44,7 @@ public abstract class Tool extends Item {
     }
 
     @Override
-    public void     applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
+    public void applyItem(WorldObject body, Engine engine, GameScreen game, World world) {
         game.getEnergyManager().reduceByUsingTool(this);
     }
 

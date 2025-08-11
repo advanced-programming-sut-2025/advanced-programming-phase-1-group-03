@@ -45,6 +45,10 @@ public class Transform implements Component, Comparable<Transform> {
         return position;
     }
 
+    public Vector2 getMiddlePosition() {
+        return new Vector2(position.x + size.x / 2, position.y + size.y / 2);
+    }
+
     public int getZ() {
         return z;
     }

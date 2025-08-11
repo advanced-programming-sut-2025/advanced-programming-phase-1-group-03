@@ -54,8 +54,10 @@ public class Mine extends MapAdaptor{
         engine.addSystem(new RenderSystem(batch, viewport, camera));
         engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
 
-        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cheatCodeBox, engine));
+        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cheatCodeBox, engine, gameScreen.getAnimalStatMenu()));
         engine.addSystem(new PlayerCoinSystem(clock));
+        engine.addSystem(new CollectingSystem(engine, world, playerEntity, audioService));
+
     }
 
     @Override

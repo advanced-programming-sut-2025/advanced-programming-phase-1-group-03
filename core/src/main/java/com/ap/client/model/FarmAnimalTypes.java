@@ -1,69 +1,96 @@
 package com.ap.client.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public enum FarmAnimalTypes {
     BlueChicken("blue_chicken",
             "blue chicken",
             16, 16, false,
             false,
             false,
-            true),
+            true,
+            AnimalProducts.Egg,
+            AnimalProducts.LargeEgg),
     BrownChicken("brown_chicken",
             "brown chicken",
             16, 16, false,
             false,
             false,
-            true),
+            true,
+            AnimalProducts.BrownEgg,
+            AnimalProducts.LargeBrownEgg),
     WhiteChicken("white_chicken",
             "white chicken",
             16, 16, false,
             false,
             false,
-            true),
+            true,
+            AnimalProducts.Egg,
+            AnimalProducts.LargeEgg),
     VoidChicken("void_chicken",
             "void chicken",
             16, 16, false,
             false,
             false,
-            true),
+            true,
+            AnimalProducts.VoidEgg),
     GoldenChicken("golden_chicken",
             "golden chicken",
             16, 16, false,
             false,
             false,
-            true),
+            true,
+            AnimalProducts.GoldenEgg),
     Dinosaur("dinosaur",
             "dinosaur",
             16, 16, false,
             false,
             false,
-            true),
+            true,
+            AnimalProducts.DinosaurEgg),
     Duck("duck",
             "duck",
             16, 16, false,
             true,
             false,
-            true),
+            true,
+            AnimalProducts.DuckEgg,
+            AnimalProducts.DuckFeather),
     Rabbit("rabbit",
             "rabbit",
             16, 16, false,
             false,
             false,
-            true),
+            true,
+            AnimalProducts.RabbitFoot,
+            AnimalProducts.Wool),
 
     BrownCow("brown_cow",
             "brown cow",
             32, 32, false,
             false,
             true,
-            false),
+            false,
+            AnimalProducts.Milk,
+            AnimalProducts.LargeMilk),
     WhiteCow("white_cow",
             "white cow",
             32, 32, false,
             false,
             true,
-            false),
+            false,
+            AnimalProducts.Milk,
+            AnimalProducts.LargeMilk),
     Sheep("sheep",
             "sheep",
+            32, 32, false,
+            false,
+            true,
+            false,
+            AnimalProducts.Wool),
+    ShearedSheep("sheared_sheep",
+            "sheared sheep",
             32, 32, false,
             false,
             true,
@@ -73,20 +100,24 @@ public enum FarmAnimalTypes {
             32, 32, false,
             false,
             true,
-            false),
+            false,
+            AnimalProducts.GoatMilk,
+            AnimalProducts.LargeGoatMilk),
     Pig("pig",
             "pig",
             32, 32, false,
             false,
             true,
-            false),
+            false,
+            AnimalProducts.Truffle),
 
     Ostrich("ostrich",
             "ostrich",
             32, 32, false,
             false,
             true,
-            false),
+            false,
+            AnimalProducts.OstrichEgg),
 
     BabyBlueChicken("baby/blue_chicken",
             "baby blue chicken",
@@ -162,6 +193,7 @@ public enum FarmAnimalTypes {
             false,
             true,
             false),
+
     ;
 
     private final String atlasKey;
@@ -172,8 +204,10 @@ public enum FarmAnimalTypes {
     private final boolean canSwim;
     private final boolean liveBarn;
     private final boolean liveCoop;
+    private ArrayList<AnimalProducts> products;
 
-    FarmAnimalTypes(String atlasKey, String uiName, float widthInPx, float heightInPx, boolean isBaby, boolean canSwim, boolean liveBarn, boolean liveCoop) {
+    FarmAnimalTypes(String atlasKey, String uiName, float widthInPx, float heightInPx, boolean isBaby, boolean canSwim,
+                    boolean liveBarn, boolean liveCoop, AnimalProducts ... animalProducts) {
         this.atlasKey = atlasKey;
         this.uiName = uiName;
         this.widthInPx = widthInPx;
@@ -182,6 +216,8 @@ public enum FarmAnimalTypes {
         this.canSwim = canSwim;
         this.liveBarn = liveBarn;
         this.liveCoop = liveCoop;
+        this.products = new ArrayList<>();
+        this.products.addAll(Arrays.asList(animalProducts));
     }
 
     public String getAtlasKey() {
@@ -208,7 +244,7 @@ public enum FarmAnimalTypes {
         return liveCoop;
     }
 
-public float getWidthInPx() {
+    public float getWidthInPx() {
         return widthInPx;
     }
 

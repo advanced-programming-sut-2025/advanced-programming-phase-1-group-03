@@ -7,6 +7,8 @@ import com.ap.client.asset.SoundAsset;
 import com.ap.client.audio.AudioService;
 import com.ap.client.items.Inventory;
 import com.ap.client.items.Item;
+import com.ap.client.items.ItemStack;
+import com.ap.client.model.GameData;
 import com.ap.client.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Color;
@@ -125,6 +127,11 @@ public class ItemContainer extends Actor {
     public void useSelectedItem(Item.WorldObject body, Engine engine, GameScreen game, World world) {
         if (isSelectedEmpty()) return;
         inventory.getItems().get(selectedIndex).getItem().applyItem(body, engine, game, world);
+    }
+
+    public ItemStack getSelectedItem() {
+        if (isSelectedEmpty()) return null;
+        return inventory.getItems().get(selectedIndex);
     }
 
     public boolean isSelectedEmpty() {

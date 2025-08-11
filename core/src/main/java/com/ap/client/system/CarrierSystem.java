@@ -2,15 +2,17 @@ package com.ap.client.system;
 
 import com.ap.client.asset.AssetService;
 import com.ap.client.asset.AtlasAsset;
+import com.ap.client.asset.MapAsset;
 import com.ap.client.asset.SoundAsset;
 import com.ap.client.audio.AudioService;
-import com.ap.client.component.Carrier;
-import com.ap.client.component.Graphic;
-import com.ap.client.component.Player;
-import com.ap.client.component.Transform;
+import com.ap.client.component.*;
 import com.ap.client.component.items.Barn;
+import com.ap.client.component.items.FarmAnimal;
 import com.ap.client.component.items.Well;
+import com.ap.client.items.Animals.AnimalHouse;
 import com.ap.client.items.EntityFactory;
+import com.ap.client.managers.AnimalManager;
+import com.ap.client.screen.maps.MapAdaptor;
 import com.ap.client.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -30,8 +32,9 @@ public class CarrierSystem extends IteratingSystem {
     private ShapeRenderer shapeRenderer;
     private AudioService audioService;
     private World world;
+    private MapAdaptor map;
 
-    public CarrierSystem(Engine engine, AssetService assetService, Batch batch, World world, AudioService audioService) {
+    public CarrierSystem(Engine engine, AssetService assetService, Batch batch, World world, AudioService audioService, MapAdaptor map) {
         super(Family.all(Carrier.class, Transform.class, Graphic.class).get());
         this.engine = engine;
         this.audioService = audioService;
@@ -39,6 +42,7 @@ public class CarrierSystem extends IteratingSystem {
         this.world = world;
         selectedItemTexture = assetService.get(AtlasAsset.UI).findRegion("SelectedItem");
         shapeRenderer = new ShapeRenderer();
+        this.map = map;
     }
 
     @Override
@@ -81,12 +85,23 @@ public class CarrierSystem extends IteratingSystem {
         Vector2 position =  new Vector2((int) transform.getPosition().x, (int) transform.getPosition().y);
         if(Barn.mapper.has(entity)) {
             var barn = Barn.mapper.get(entity);
-            Helper.addEntity(EntityFactory.instance.CreateBarnEntity(barn.getType(),
-                   position, world), engine);
+            Entity entity1 = EntityFactory.instance.CreateBarnEntity(barn.getType(),
+                   position, world, engine);
+            Helper.addEntity(entity1, engine);
+            AnimalHouse house = new AnimalHouse(entity1);
+            AnimalManager.instance.addHouse(house);
         } else if(Well.mapper.has(entity)) {
             Helper.addEntity(EntityFactory.instance.CreateWellEntity(position, world), engine);
+        } else if (FarmAnimal.mapper.has(entity)) {
+            var animal = FarmAnimal.mapper.get(entity);
+            if(!AnimalManager.instance.createFarmAnimal(animal.getType(), position, world, engine, map)) {
+                return;
+            }
         }
-        Helper.removeEntity(entity, engine, world);
+        if (!TwinEntity.mapper.has(entity)) Helper.removeEntity(entity, engine, world);
+        else {
+            TwinEntity.mapper.get(entity).removeAll();
+        }
         audioService.playSound(SoundAsset.PlaceNewItem);
     }
 }

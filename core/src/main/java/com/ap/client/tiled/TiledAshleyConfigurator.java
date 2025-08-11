@@ -22,10 +22,13 @@ import com.badlogic.gdx.physics.box2d.*;
 public class TiledAshleyConfigurator {
     private final Engine engine;
     private final World world;
+    private Entity playerEntity;
+    //player entity should be empty, we add systems here;
 
-    public TiledAshleyConfigurator(Engine engine, World world) {
+    public TiledAshleyConfigurator(Engine engine, World world, Entity playerEntity) {
         this.engine = engine;
         this.world = world;
+        this.playerEntity = playerEntity;
     }
 
     public void onLoadTile(TiledMapTile tile, int x, int y) {
@@ -56,9 +59,11 @@ public class TiledAshleyConfigurator {
     }
 
     public void onLoadObject(TiledMapTileMapObject tileObject) {
-        Entity entity = engine.createEntity();
+        Entity entity;
 
         TiledMapTile tile = tileObject.getTile();
+        if (tile.getProperties().get("player", false, Boolean.class)) entity = playerEntity;
+        else entity = engine.createEntity();
         TextureRegion textureRegion = tile.getTextureRegion();
 
         float sortOffsetY = tile.getProperties().get("sortOffsetY", 0.0f, Float.class);

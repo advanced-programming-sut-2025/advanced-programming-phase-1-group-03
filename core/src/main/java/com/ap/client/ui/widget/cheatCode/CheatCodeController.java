@@ -18,7 +18,6 @@ public class CheatCodeController {
 
     public Result ProcessCommand(String command) {
         Matcher matcher;
-        System.out.println(command);
        if ((matcher = CheatCodes.TimeSpeed.getMatcher(command)) != null) {
            return changeTimeSpeed(matcher.group("speed"), matcher.group("unit"));
        } else if ((matcher = CheatCodes.Energy.getMatcher(command)) != null) {

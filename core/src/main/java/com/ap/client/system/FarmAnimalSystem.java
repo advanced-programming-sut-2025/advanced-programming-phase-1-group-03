@@ -1,15 +1,26 @@
 package com.ap.client.system;
 
+import com.ap.client.component.Carrier;
 import com.ap.client.component.Facing;
 import com.ap.client.component.Move;
 import com.ap.client.component.Transform;
 import com.ap.client.component.items.FarmAnimal;
 import com.ap.client.component.items.FarmAnimal.Situation;
+import com.ap.client.items.Animals.Animal;
+import com.ap.client.items.EntityFactory;
+import com.ap.client.items.ItemStack;
+import com.ap.client.items.tools.Tool;
+import com.ap.client.managers.AnimalManager;
+import com.ap.client.model.EmoteType;
+import com.ap.client.model.FarmAnimalTypes;
+import com.ap.client.model.GameData;
 import com.ap.client.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class FarmAnimalSystem extends IteratingSystem {
@@ -25,23 +36,89 @@ public class FarmAnimalSystem extends IteratingSystem {
 
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
+        if (Carrier.mapper.has(entity)) return;
         Move move = Move.mapper.get(entity);
-        Transform transform = Transform.mapper.get(entity);
         FarmAnimal animal = FarmAnimal.mapper.get(entity);
 
         animal.setAnimationStateTime(animal.getAnimationStateTime() + deltaTime);
 
-        if (animal.getAnimationStateTime() >= 3f) {
-            animal.setSituation(Situation.values()[(animal.getSituation().ordinal() + 1) % 5]);
-            if (animal.getSituation() == Situation.Walk) {
-                move.getDirection().x = Helper.random(-1, 1);
-                move.getDirection().y = Helper.random(-1, 1);
-                if (move.getDirection().isZero()) move.getDirection().x = -1;
-            } else {
-                move.getDirection().setZero();
-            }
-            System.out.println(animal.getSituation());
+        if (animal.isClicked()) {
+            onClick(entity);
+            animal.setClicked(false);
         }
 
+        if (animal.getDuration() != -1 && animal.getAnimationStateTime() > animal.getDuration()) {
+            if (animal.getDirection().isZero()) animal.setSituation(Situation.Idle);
+            else animal.setSituation(Situation.Walk);
+        }
+
+        if (animal.getSituation() == Situation.Walk) move.getDirection().set(animal.getDirection());
+        else move.getDirection().set(Vector2.Zero);
+
     }
+
+    public void onClick(Entity entity) {
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        if (farmAnimal.getButtonClicked() == Input.Buttons.RIGHT) {
+            AnimalManager.instance.getAnimalStatMenu().show(animal);
+            return;
+        }
+
+        switch (GameData.getInstance().getItemContainer().getSelectedItem() != null ?
+                GameData.getInstance().getItemContainer().getSelectedItem().getItem().getName() :
+                "") {
+            case "Hay" :
+                feedWithHay(entity);
+                break;
+            case "Shear" :
+                useShear(entity);
+                break;
+            case "MilkPail" :
+                useMilkPail(entity);
+                break;
+            case "Axe" :
+                useAxe(entity);
+                break;
+            default:
+                if (AnimalManager.instance.pet(animal)) {
+                    getEngine().addEntity(EntityFactory.instance.CreateEmoteEntity(Transform.mapper.get(entity), EmoteType.Heart, Situation.Pet.timeLimit));
+                    farmAnimal.setSituation(Situation.Pet);
+                }
+        }
+
+
+    }
+
+    public void feedWithHay(Entity entity) {
+        ItemStack stack = GameData.getInstance().getItemContainer().getSelectedItem();
+        if (stack.getAmount() < 5) return;
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        if (AnimalManager.instance.feed(animal)) {
+            GameData.getInstance().getInventory().removeItem(stack.getItem(), 5);
+            farmAnimal.setSituation(Situation.Eat);
+            animal.setFeedToday(true);
+        }
+    }
+    public void useShear(Entity entity) {
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        if (animal.getType() == FarmAnimalTypes.Sheep) {
+            AnimalManager.instance.shearSheep(entity, engine, world);
+        }
+    }
+    public void useMilkPail(Entity entity) {
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        switch (animal.getType()) {
+            case Goat, WhiteCow, BrownCow : AnimalManager.instance.milkAnimal(animal); break;
+        }
+    }
+    public void useAxe(Entity entity) {
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        AnimalManager.instance.hit(entity, engine, world);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.ap.client.system;
 
 import com.ap.client.Constraints;
+import com.ap.client.component.Emote;
 import com.ap.client.component.Graphic;
 import com.ap.client.component.Transform;
 import com.badlogic.ashley.core.Entity;
@@ -89,6 +90,7 @@ public class RenderSystem extends SortedIteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         Transform transform = Transform.mapper.get(entity);
         Graphic graphic = Graphic.mapper.get(entity);
+
         if(graphic.getTexture() == null)
             return;
 
@@ -109,6 +111,7 @@ public class RenderSystem extends SortedIteratingSystem {
                 scaling.x, scaling.y,
                 transform.getRotationDeg()
         );
+
     }
 
     public void setMap(TiledMap tiledMap) {

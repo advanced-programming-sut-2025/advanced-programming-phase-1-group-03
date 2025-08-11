@@ -12,7 +12,15 @@ public enum MapAsset implements Asset<TiledMap>{
     Town("Town.tmx"),
     Mine("Mine.tmx"),
     StardropSaloon("StardropSaloon.tmx"),
-    CarpenterShop("Carpenter.tmx");
+    CarpenterShop("Carpenter.tmx"),
+    MarniesRanch("MarniesRanch.tmx"),
+    Barn("Barn.tmx"),
+    BigBarn("Barn2.tmx"),
+    DeluxeBarn("Barn3.tmx"),
+    Coop("Coop.tmx"),
+    BigCoop("Coop2.tmx"),
+    DeluxeCoop("Coop3.tmx")
+    ;
 
     private final AssetDescriptor<TiledMap> descriptor;
 

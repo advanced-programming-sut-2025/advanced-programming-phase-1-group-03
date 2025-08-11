@@ -3,18 +3,20 @@ package com.ap.client.items;
 import com.ap.client.Constraints;
 import com.ap.client.asset.AssetService;
 import com.ap.client.asset.AtlasAsset;
+import com.ap.client.asset.MapAsset;
 import com.ap.client.audio.AudioService;
 import com.ap.client.component.*;
 import com.ap.client.component.items.Barn;
 import com.ap.client.component.items.FarmAnimal;
 import com.ap.client.component.items.Well;
+import com.ap.client.items.Animals.Animal;
 import com.ap.client.items.plant.Crop;
-import com.ap.client.model.BarnsType;
-import com.ap.client.model.CropsType;
-import com.ap.client.model.FarmAnimalTypes;
+import com.ap.client.model.*;
 import com.ap.client.state.CrowAnimationState;
-import com.ap.client.model.MineralNodes;
+import com.ap.client.state.EmoteAnimationState;
 import com.ap.client.tiled.TiledPhysic;
+import com.ap.client.utils.Helper;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -222,31 +224,38 @@ public class EntityFactory {
         return entity;
     }
 
-    public Entity CreateFarmAnimalEntity(Vector2 position, FarmAnimalTypes type, World world) {
-        Entity entity = new Entity();
+    public Entity CreateFarmAnimalEntity(Vector2 position, World world, Animal animal) {
+    Entity entity = new Entity();
 
-        float realW = type.getWidthInPx() * Constraints.UNIT_SCALE;
-        float realH = type.getHeightInPx() * Constraints.UNIT_SCALE;
+    FarmAnimalTypes type = animal.getType();
 
-        float bodyW = realW * 1f;
-        float bodyH = realH * 0.6f;
+    float realW = type.getWidthInPx() * Constraints.UNIT_SCALE;
+    float realH = type.getHeightInPx() * Constraints.UNIT_SCALE;
 
-        var body = TiledPhysic.createRectagleBody(position.x, position.y, bodyW, bodyH, entity, world, false, BodyDef.BodyType.DynamicBody);
+    float bodyW = realW * 1f;
+    float bodyH = realH * 0.6f;
 
-        entity.add(new Transform(position, Constraints.Animal_Z, new Vector2(1f, 1f),
-                new Vector2(realW, realH),
-                0, 0));
-        entity.add(new Physic(body, position));
-        entity.add(new Move(1));
-//        entity.add(new Controller());
-        entity.add(new Facing(Facing.FacingDirection.Left));
-        entity.add(new Graphic(null));
-        entity.add(new Fsm(entity, FarmAnimal.Situation.Idle.animationState));
-        entity.add(new Animation2D(AtlasAsset.Animals, type.getAtlasKey(), Animation2D.AnimationType.Idle, Animation.PlayMode.LOOP, 0.5f));
-        entity.add(new FarmAnimal(type));
+    var body = TiledPhysic.createRectagleBody(position.x, position.y, bodyW, bodyH, entity, world, false, BodyDef.BodyType.DynamicBody);
 
-//        Move.mapper.get(entity).getDirection().x = 1;
+    entity.add(new Transform(position, Constraints.Animal_Z, new Vector2(1f, 1f),
+            new Vector2(realW, realH),
+            0, 0));
+    entity.add(new Physic(body, position));
+    entity.add(new Move(1));
+    entity.add(new Facing(Facing.FacingDirection.Down));
+    entity.add(new Graphic(null));
+    entity.add(new Fsm(entity, FarmAnimal.Situation.Idle.animationState));
+    entity.add(new Animation2D(AtlasAsset.Animals, type.getAtlasKey(), Animation2D.AnimationType.Idle, Animation.PlayMode.LOOP, 0.5f));
+    entity.add(new FarmAnimal(type, animal));
+    entity.add(new Clickable());
 
+        return entity;
+    }
+
+    public Entity CreateCarrierFarmAnimalEntity(FarmAnimalTypes type) {
+        var texture = assetService.get(AtlasAsset.Animals).findRegion(type.getAtlasKey() + "/idle_down");
+        Entity entity = CreateCarrierEntity(texture);
+        entity.add(new FarmAnimal(type, null));
         return entity;
     }
 
@@ -289,7 +298,7 @@ public class EntityFactory {
         entity.add(new Well());
         return entity;
     }
-    public Entity CreateBarnEntity(BarnsType type, Vector2 position, World world) {
+    public Entity CreateBarnEntity(BarnsType type, Vector2 position, World world, Engine engine) {
         Entity entity = new Entity();
         var texture = assetService.get(AtlasAsset.Barns).findRegion(type.name());
         Vector2 size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
@@ -302,6 +311,11 @@ public class EntityFactory {
         var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false, BodyDef.BodyType.StaticBody);
         entity.add(new Physic(body, position));
         entity.add(new Barn(type));
+
+        Entity spawner = new Entity();
+        var bodySpawner = TiledPhysic.createRectagleBody(position.x + size.x / 2f, position.y - 1, 2, 1, type.name(), world,true, BodyDef.BodyType.StaticBody);
+        spawner.add(new Physic(bodySpawner, position));
+        Helper.addEntity(spawner, engine);
         return entity;
     }
     public Entity CreateWellEntity(Vector2 position, World world) {
@@ -329,6 +343,37 @@ public class EntityFactory {
 
         entity.add(new Container(topEntity));
         entity.add(new Well());
+        return entity;
+    }
+
+    public Entity CreateEmoteEntity(Transform target, EmoteType emoteType, float duration) {
+        Entity entity = new Entity();
+
+        entity.add(new Transform(new Vector2(target.getPosition().x, target.getPosition().y), Constraints.Emote_Z, new Vector2(1f, 1f),
+                new Vector2(1f, 1),
+                0, 0));
+        entity.add(new Graphic(null));
+        entity.add(new Facing(Facing.FacingDirection.Down));
+        entity.add(new Fsm(entity, EmoteAnimationState.Opening));
+        entity.add(new Animation2D(AtlasAsset.Emotes, "", Animation2D.AnimationType.Emote_Opening, Animation.PlayMode.NORMAL, 1f));
+        entity.add(new Emote(target, emoteType, duration));
+
+        return entity;
+    }
+
+    public Entity CreateCollectableItemEntity(Vector2 position, ItemStack item) {
+        Entity entity = new Entity();
+        var texture = item.getItem().getIcon();
+//        Vector2 size = new Vector2(texture.getRegionWidth() * Constraints.UNIT_SCALE, texture.getRegionHeight() * Constraints.UNIT_SCALE);
+        Vector2 size = new Vector2(1, 1);
+        entity.add(new Transform(position,
+                Constraints.Collectable_Z,
+                new Vector2(1, 1),
+                size,
+                0, 0));
+        entity.add(new Graphic(texture));
+        entity.add(new Collectable(item));
+
         return entity;
     }
 

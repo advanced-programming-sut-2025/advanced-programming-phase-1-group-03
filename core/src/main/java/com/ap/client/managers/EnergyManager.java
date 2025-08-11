@@ -60,7 +60,7 @@ public class EnergyManager {
 
     public void reduceByUsingTool(Tool tool) {
         int base = tool.getEnergyConsumption();
-        if (abilityManager.getAbility(tool.getRelatedAbility()).isMax())
+        if (tool.getRelatedAbility() != null && abilityManager.getAbility(tool.getRelatedAbility()).isMax())
             base -= 1;
         if (weatherSystem.getCurrentWeather().equals(Weather.Rain)) {
             base = (int) (base * 1.5f);

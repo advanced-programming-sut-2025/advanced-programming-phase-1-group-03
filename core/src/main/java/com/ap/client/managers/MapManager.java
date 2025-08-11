@@ -39,11 +39,11 @@ public class MapManager {
         switch (map) {
             case Farm1, Farm2, Forest, Town -> {
                 return new Farm(game, gameScreen);
-            } case House,Greenhouse -> {
+            } case House,Greenhouse,Barn, BigBarn, DeluxeBarn, Coop, BigCoop, DeluxeCoop -> {
                 return new House(game, gameScreen);
             } case Mine -> {
                 return new Mine(game, gameScreen);
-            } case StardropSaloon, CarpenterShop -> {
+            } case StardropSaloon, CarpenterShop, MarniesRanch -> {
                 return new Store(game, gameScreen);
             }
         }

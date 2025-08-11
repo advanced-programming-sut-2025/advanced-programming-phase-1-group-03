@@ -7,6 +7,7 @@
    <property name="animationSpeed" type="float" value="1"/>
    <property name="atlas" value="Player"/>
    <property name="atlasKey" value="player"/>
+   <property name="cameraFollow" type="bool" value="true"/>
    <property name="controller" type="bool" value="true"/>
    <property name="player" type="bool" value="true"/>
    <property name="speed" type="float" value="3"/>

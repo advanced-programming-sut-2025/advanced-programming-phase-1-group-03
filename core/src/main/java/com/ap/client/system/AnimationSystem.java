@@ -4,6 +4,7 @@ import com.ap.client.Constraints;
 import com.ap.client.asset.AssetService;
 import com.ap.client.asset.AtlasAsset;
 import com.ap.client.component.Animation2D;
+import com.ap.client.component.Emote;
 import com.ap.client.component.Facing;
 import com.ap.client.component.Facing.FacingDirection;
 import com.ap.client.component.Graphic;

@@ -30,7 +30,7 @@ public class House extends MapAdaptor{
         super.setup(map);
 
         // Adding systems to the engine
-       addSystems();
+        addSystems();
 
         // Setup consumers
         super.setupMap();
@@ -64,14 +64,28 @@ public class House extends MapAdaptor{
         growSystem = new GrowSystem(assetService, weatherSystem);
         engine.addSystem(growSystem);
         engine.addSystem(new RenderSystem(batch, viewport, camera));
-
+        engine.addSystem(new EmoteSystem());
         // It'd be better we create separate class for green house, but we hard code it :)
         if(mapAsset == MapAsset.Greenhouse) {
             engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
         }
 
-        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cookingMenu, cheatCodeBox, engine));
+        switch (mapAsset) {
+            case Barn, BigBarn, DeluxeBarn, Coop, DeluxeCoop, BigCoop -> {
+                engine.addSystem(new TileSelectionSystem(batch, itemContainer, stage, engine, world, gameScreen));
+                engine.addSystem(new CarrierSystem(engine, assetService, batch, world, audioService, this));
+                engine.addSystem(new FarmAnimalSystem(engine, world));
+            }
+        }
+
+        engine.addSystem(new ControllerSystem(tabManager, craftingMenu, cookingMenu, cheatCodeBox, engine, gameScreen.getAnimalStatMenu()));
         engine.addSystem(new PlayerCoinSystem(clock));
+
+        clickSystem = new ClickSystem(game.getCamera());
+
+        engine.addSystem(clickSystem);
+        engine.addSystem(new CollectingSystem(engine, world, playerEntity, audioService));
+
 
     }
 

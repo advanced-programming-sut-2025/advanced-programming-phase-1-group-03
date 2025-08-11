@@ -68,7 +68,7 @@ public class TiledService {
             } else if("objects".equals(layer.getName())) {
                 loadObjectLayer(layer);
             } else {
-                throw new GdxRuntimeException("Unsupported map layer: " + layer.getName());
+                throw new GdxRuntimeException("Unsupported map layer: " + startMap + " + " + layer.getName());
             }
         }
 

@@ -21,6 +21,7 @@ import com.ap.client.ui.widget.CraftingMenu;
 import com.ap.client.ui.widget.ItemContainer;
 import com.ap.client.ui.widget.tabContents.TabManager;
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -52,6 +53,8 @@ public abstract class MapAdaptor implements IMap {
     protected CraftingMenu craftingMenu;
     protected CheatCodeBox cheatCodeBox;
     protected Clock clock;
+    protected ClickSystem clickSystem;
+    protected Entity playerEntity;
 
     // Use to for night darkness
     protected TiledMap map;
@@ -92,7 +95,8 @@ public abstract class MapAdaptor implements IMap {
         audioService = game.getAudioService();
 
         tiledService = new TiledService(assetService);
-        tileConfigurator = new TiledAshleyConfigurator(engine, world);
+        playerEntity = new Entity();
+        tileConfigurator = new TiledAshleyConfigurator(engine, world, playerEntity);
         tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
 
         // Setup inventory
@@ -104,7 +108,7 @@ public abstract class MapAdaptor implements IMap {
 
         timeSystem = gameScreen.getTimeSystem();
         weatherSystem = gameScreen.getWeatherSystem();
-        storeManager = new StoreManager(gameScreen.getInventory(), audioService, gameScreen.getFarmEngine(), world);
+        storeManager = new StoreManager(gameScreen.getInventory(), audioService, gameScreen.getFarmEngine(), world, gameScreen);
     }
 
     protected void setupMap() {
@@ -140,7 +144,10 @@ public abstract class MapAdaptor implements IMap {
     @Override
     public void load() {
         weatherSystem.setWeatherConsumer(null);
-        game.setInputProcessors(stage, keyboardController);
+        if (clickSystem == null) game.setInputProcessors(stage, keyboardController);
+        else {
+            game.setInputProcessors(stage, keyboardController, clickSystem);
+        }
         engine.getSystem(CameraSystem.class).setMap(map);
         GameUIManager.instance.setEngine(engine);
         gameScreen.setCurrentMap(mapAsset);
@@ -150,5 +157,9 @@ public abstract class MapAdaptor implements IMap {
     @Override
     public void leave() {
         engine.getSystem(ControllerSystem.class).reset();
+    }
+
+    public MapAsset getMapAsset() {
+        return mapAsset;
     }
 }

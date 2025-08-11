@@ -26,7 +26,8 @@ public enum Foods {
 
     TripleShotEspresso("TripleShotEspresso", 200),
 
-    Cookie("Cookie", 90);
+    Cookie("Cookie", 90),
+
     ;
 
     // Artisian FoodTypes :
