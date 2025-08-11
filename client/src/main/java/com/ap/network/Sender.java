@@ -154,6 +154,11 @@ public class Sender {
         return sendMessageAndWaitForResponse(request, SetMapResponse.class);
     }
 
+    public LeaderBoardResponse sendLeaderBoardRequest() {
+        var request = new LeaderBoardRequest();
+        return sendMessageAndWaitForResponse(request, LeaderBoardResponse.class);
+    }
+
     public void sendMove(float dx, float dy, boolean isKeyDown) {
         var request = new MovePlayerRequest(dx, dy, isKeyDown);
         client.sendTCP(request);

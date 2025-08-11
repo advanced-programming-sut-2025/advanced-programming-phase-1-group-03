@@ -1,18 +1,21 @@
 package com.ap.listerners;
 
 import com.ap.ServerData;
+import com.ap.managers.AbilityManager;
+import com.ap.model.AbilityType;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.ChatNotifier;
 import com.ap.notifiers.PopupNotifier;
+import com.ap.packet.LeaderBoardInfo;
 import com.ap.packet.VoiceNetData;
-import com.ap.requests.ApplyItemRequest;
-import com.ap.requests.BuildGreenhouseRequest;
-import com.ap.requests.ChatRequest;
-import com.ap.requests.MovePlayerRequest;
-import com.ap.requests.ReactionRequest;
+import com.ap.requests.*;
 import com.ap.responses.ChatResponse;
+import com.ap.responses.LeaderBoardResponse;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameListener extends Listener {
     @Override
@@ -58,6 +61,21 @@ public class GameListener extends Listener {
             }
         } else if(object instanceof VoiceNetData voicePacket) {
             senderPlayer.currentRoom.broadcastUDP(voicePacket, senderPlayer);
+        } else if(object instanceof LeaderBoardRequest) {
+            List<ServerPlayer> players = senderPlayer.currentRoom.players;
+            ArrayList<LeaderBoardInfo> leaderBoardInfos = new ArrayList<>();
+            for(ServerPlayer serverPlayer : players) {
+                AbilityManager abilityManager = serverPlayer.playerManager.getAbilityManager();
+                double average = (double) (abilityManager.getAbility(AbilityType.Fishing).getLevel() +
+                        abilityManager.getAbility(AbilityType.Farming).getLevel() +
+                        abilityManager.getAbility(AbilityType.Foraging).getLevel() +
+                        abilityManager.getAbility(AbilityType.Mining).getLevel()) / 4;
+                // TODO when quests implemented complete here.
+                // 1 is for test
+                leaderBoardInfos.add(new LeaderBoardInfo(serverPlayer.username,
+                        serverPlayer.gold, 1, average));
+            }
+            senderPlayer.connection.sendTCP(new LeaderBoardResponse(leaderBoardInfos));
         }
     }
 }

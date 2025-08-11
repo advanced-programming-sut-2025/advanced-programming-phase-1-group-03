@@ -27,6 +27,7 @@ public class PlayerManager {
     private Inventory inventory;
     private final AudioService audioService;
     private final MessageSender messageSender;
+    private final AbilityManager abilityManager;
 
     public PlayerManager(GameManager gameManager, ServerPlayer player) {
         this.gameManager = gameManager;
@@ -34,6 +35,7 @@ public class PlayerManager {
         this.messageSender = new MessageSender(player);
         audioService = new AudioService(player);
         inventory = new Inventory(player);
+        abilityManager = new AbilityManager();
     }
     public void setupMap(MapAsset map) {
         this.farmMap = map;
@@ -104,5 +106,9 @@ public class PlayerManager {
 
     public void setBuildGreenhouse(boolean b) {
         isGreenhouseBuilt = true;
+    }
+
+    public AbilityManager getAbilityManager() {
+        return abilityManager;
     }
 }

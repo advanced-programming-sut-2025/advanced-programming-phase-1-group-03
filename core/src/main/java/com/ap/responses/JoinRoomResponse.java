@@ -4,6 +4,7 @@ public class JoinRoomResponse {
     public boolean success;
     public String message;
 
+
     public JoinRoomResponse() {
     }
 

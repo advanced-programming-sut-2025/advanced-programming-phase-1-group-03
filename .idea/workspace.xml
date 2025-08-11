@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Network setup">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/LeaderBoardRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/ReactionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/LeaderBoardResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Client.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="emoji network implemented">
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/LeaderBoard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/packet/LeaderBoardInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/AbilityManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/assets.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/assets.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/JoinRoomResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/JoinRoomResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/LeaderBoardResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/LeaderBoardResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" afterDir="false" />
     </list>
@@ -140,11 +136,11 @@
       <recent name="com.ap" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ap.managers" />
       <recent name="com.ap.model" />
       <recent name="com.ap.server.component" />
       <recent name="com.ap.server.utils" />
       <recent name="com.ap.server.managers" />
-      <recent name="com.ap.server.system.universal" />
     </key>
   </component>
   <component name="RunManager" selected="Application.client2">
@@ -247,13 +243,6 @@
       <workItem from="1754902638222" duration="4145000" />
       <workItem from="1754910933846" duration="17172000" />
       <workItem from="1754938931454" duration="1062000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۵۱" summary="Adding map boundary">
-      <option name="closed" value="true" />
-      <created>1753051598660</created>
-      <option name="number" value="LOCAL‎−۰۰۰۵۱" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۵۱" />
-      <updated>1753051598660</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۵۲" summary="Some improvements">
       <option name="closed" value="true" />
@@ -612,7 +601,15 @@
       <option name="presentableId" value="LOCAL‎−۰۰۰۹۹" />
       <updated>1754906591322</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="emoji network implemented">
+      <option name="closed" value="true" />
+      <created>1754942963757</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1754942963757</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -643,7 +640,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Farming system" />
     <MESSAGE value="Crafting Ui implemented." />
     <MESSAGE value="Crafting Ui implemented. Bug fixed." />
     <MESSAGE value="Cooking Menu Ui developed." />
@@ -668,7 +664,8 @@
     <MESSAGE value="Lobby completed" />
     <MESSAGE value="Lobby completed 2" />
     <MESSAGE value="Network setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Network setup" />
+    <MESSAGE value="emoji network implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="emoji network implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
