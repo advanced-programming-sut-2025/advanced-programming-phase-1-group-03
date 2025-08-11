@@ -62,6 +62,7 @@ public class GameListener extends Listener {
         } else if(object instanceof VoiceNetData voicePacket) {
             senderPlayer.currentRoom.broadcastUDP(voicePacket, senderPlayer);
         } else if(object instanceof LeaderBoardRequest) {
+            System.out.println("salam man gereftam");
             List<ServerPlayer> players = senderPlayer.currentRoom.players;
             ArrayList<LeaderBoardInfo> leaderBoardInfos = new ArrayList<>();
             for(ServerPlayer serverPlayer : players) {

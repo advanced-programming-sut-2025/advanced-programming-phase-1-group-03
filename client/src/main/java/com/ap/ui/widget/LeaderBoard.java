@@ -84,7 +84,7 @@ public class LeaderBoard extends Actor {
         if (!isShowing) {
             instance = new LeaderBoard(assetService, stage, game);
             LeaderBoardResponse leaderBoardResponse = game.getGameClient().getSender().sendLeaderBoardRequest();
-            loadPlayers(leaderBoardResponse);
+            instance.loadPlayers(leaderBoardResponse);
             instance.setupUI();
             stage.addActor(instance);
         } else {
@@ -109,14 +109,10 @@ public class LeaderBoard extends Actor {
 
     public void loadPlayers(LeaderBoardResponse leaderBoardResponse) {
         for(LeaderBoardInfo leaderBoardInfo : leaderBoardResponse.leaderBoardInfos) {
+            System.out.println(leaderBoardInfo.playerName);
             players.add(new Player(leaderBoardInfo.playerName, leaderBoardInfo.gold,
                     leaderBoardInfo.completeQuest, leaderBoardInfo.skillNum));
         }
-//        this.players.add(new Player("Amir", 1500, 12, 4.5));
-//        this.players.add(new Player("Sara", 1200, 10, 4.2));
-//        this.players.add(new Player("Reza", 1000, 8, 3.9));
-//        this.players.add(new Player("Nima", 900, 6, 3.7));
-//        this.players.add(new Player("Hasti", 800, 5, 3.5));
     }
 
     @Override
