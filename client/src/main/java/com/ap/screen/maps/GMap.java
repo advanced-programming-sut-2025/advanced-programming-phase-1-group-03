@@ -78,6 +78,7 @@ public class GMap {
                 gameScreen.getCraftingMenu(),
                 gameScreen.getCookingMenu(),
                 gameScreen.getCheatCodeBox(),
+                gameScreen.getLeaderBoard(),
                 engine,
                 gameScreen.getGameClient(),
                 gameScreen)

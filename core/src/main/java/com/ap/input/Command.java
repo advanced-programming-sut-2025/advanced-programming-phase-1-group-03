@@ -13,7 +13,8 @@ public enum Command {
     Click(),
     OpenCheatCode(Input.Keys.F3),
     Place(Input.Keys.SPACE),
-    Talk(Input.Keys.P);
+    Talk(Input.Keys.P),
+    OpenLeaderBoard(Input.Keys.L)
     ;
 
     private final int[] correspondingKeys;

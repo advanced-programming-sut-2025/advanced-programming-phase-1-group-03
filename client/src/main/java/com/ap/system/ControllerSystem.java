@@ -7,6 +7,7 @@ import com.ap.component.Player;
 import com.ap.input.Command;
 import com.ap.network.GameClient;
 import com.ap.screen.GameScreen;
+import com.ap.ui.widget.LeaderBoard;
 import com.ap.ui.widget.cheatCode.CheatCodeBox;
 import com.ap.ui.widget.CookingMenu;
 import com.ap.ui.widget.CraftingMenu;
@@ -22,6 +23,7 @@ public class ControllerSystem extends IteratingSystem {
     private CraftingMenu craftingMenu;
     private CookingMenu cookingMenu;
     private CheatCodeBox cheatCodeBox;
+    private LeaderBoard leaderBoard;
     private TileSelectionSystem tileSelectionSystem;
     private CarrierSystem carrierSystem;
     private int totalMovement = 0;
@@ -33,6 +35,7 @@ public class ControllerSystem extends IteratingSystem {
                             CraftingMenu craftingMenu,
                             CookingMenu cookingMenu,
                             CheatCodeBox cheatCodeBox,
+                            LeaderBoard leaderBoard,
                             Engine engine,
                             GameClient gameClient,
                             GameScreen gameScreen) {
@@ -45,6 +48,7 @@ public class ControllerSystem extends IteratingSystem {
         this.tabManager = tabManager;
         this.cheatCodeBox = cheatCodeBox;
         this.gameScreen = gameScreen;
+        this.leaderBoard = leaderBoard;
     }
 
 
@@ -86,6 +90,8 @@ public class ControllerSystem extends IteratingSystem {
                     carrierSystem.place();
                 } case Talk -> {
                     gameScreen.sendVoiceMessage = true;
+                } case OpenLeaderBoard -> {
+                    leaderBoard.toggle();
                 }
             }
         }

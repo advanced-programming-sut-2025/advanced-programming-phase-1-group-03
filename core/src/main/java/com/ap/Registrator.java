@@ -138,6 +138,9 @@ public class Registrator {
         kryo.register(ChatResponse.class);
         kryo.register(ChatNotifier.class);
 
+        kryo.register(LeaderBoardResponse.class);
+        kryo.register(LeaderBoardRequest.class);
+
         kryo.register(PopupNotifier.class);
 
         kryo.register(short[].class);

@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="emoji network implemented">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/LeaderBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/packet/LeaderBoardInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/AbilityManager.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="developing leaderBoard.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/JoinRoomResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/JoinRoomResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/LeaderBoardResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/LeaderBoardResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/GMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/GMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/LeaderBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/LeaderBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -243,13 +240,6 @@
       <workItem from="1754902638222" duration="4145000" />
       <workItem from="1754910933846" duration="17172000" />
       <workItem from="1754938931454" duration="1062000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۵۲" summary="Some improvements">
-      <option name="closed" value="true" />
-      <created>1753090850139</created>
-      <option name="number" value="LOCAL‎−۰۰۰۵۲" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۵۲" />
-      <updated>1753090850139</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۵۳" summary="Fix player animation">
       <option name="closed" value="true" />
@@ -609,7 +599,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754942963757</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="developing leaderBoard.">
+      <option name="closed" value="true" />
+      <created>1754946550664</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1754946550664</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -640,7 +638,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Crafting Ui implemented." />
     <MESSAGE value="Crafting Ui implemented. Bug fixed." />
     <MESSAGE value="Cooking Menu Ui developed." />
     <MESSAGE value="Cooking Menu Ui developed2." />
@@ -665,7 +662,8 @@
     <MESSAGE value="Lobby completed 2" />
     <MESSAGE value="Network setup" />
     <MESSAGE value="emoji network implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="emoji network implemented" />
+    <MESSAGE value="developing leaderBoard." />
+    <option name="LAST_COMMIT_MESSAGE" value="developing leaderBoard." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

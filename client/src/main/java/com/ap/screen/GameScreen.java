@@ -58,6 +58,7 @@ public class GameScreen extends AbstractScreen {
     private TabManager tabManager;
     private Journal journal;
     private CheatCodeBox cheatCodeBox;
+    private LeaderBoard leaderBoard;
 
     private ClockManager clockManager;
     private MapManager mapManager;
@@ -127,6 +128,7 @@ public class GameScreen extends AbstractScreen {
         cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
         tabManager = new TabManager(this);
         clockManager = new ClockManager(clock);
+        leaderBoard = new LeaderBoard(assetService, stage, this);
 
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock);
@@ -277,6 +279,10 @@ public class GameScreen extends AbstractScreen {
             return engineCache.get(MapAsset.Farm2);
         }
         return engine;
+    }
+
+    public LeaderBoard getLeaderBoard() {
+        return leaderBoard;
     }
 
     public EnergyManager getEnergyManager() {
