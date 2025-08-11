@@ -6,6 +6,7 @@ import com.ap.component.Network;
 import com.ap.component.Player;
 import com.ap.input.Command;
 import com.ap.network.GameClient;
+import com.ap.screen.GameScreen;
 import com.ap.ui.widget.cheatCode.CheatCodeBox;
 import com.ap.ui.widget.CookingMenu;
 import com.ap.ui.widget.CraftingMenu;
@@ -26,13 +27,15 @@ public class ControllerSystem extends IteratingSystem {
     private int totalMovement = 0;
 
     private GameClient gameClient;
+    private GameScreen gameScreen;
 
     public ControllerSystem(TabManager tabManager,
                             CraftingMenu craftingMenu,
                             CookingMenu cookingMenu,
                             CheatCodeBox cheatCodeBox,
                             Engine engine,
-                            GameClient gameClient) {
+                            GameClient gameClient,
+                            GameScreen gameScreen) {
         super(Family.all(Controller.class).get());
         this.gameClient = gameClient;
         this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
@@ -41,6 +44,7 @@ public class ControllerSystem extends IteratingSystem {
         this.cookingMenu = cookingMenu;
         this.tabManager = tabManager;
         this.cheatCodeBox = cheatCodeBox;
+        this.gameScreen = gameScreen;
     }
 
 
@@ -80,6 +84,8 @@ public class ControllerSystem extends IteratingSystem {
                     cheatCodeBox.toggle();
                 } case Place -> {
                     carrierSystem.place();
+                } case Talk -> {
+                    gameScreen.sendVoiceMessage = true;
                 }
             }
         }
@@ -87,6 +93,10 @@ public class ControllerSystem extends IteratingSystem {
         // We processed all the pressed commands
         controller.getPressedCommands().clear();
         for (Command command : controller.getReleasedCommands()) {
+            if(command == Command.Talk) {
+                gameScreen.sendVoiceMessage = false;
+            }
+
             if(totalMovement <= 0) {
                 continue;
             }

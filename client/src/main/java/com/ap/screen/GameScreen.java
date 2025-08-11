@@ -5,9 +5,8 @@ import com.ap.GdxGame;
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.asset.MapAsset;
-import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
-import com.ap.component.*;
+import com.ap.audio.VoiceChatClient;
 import com.ap.input.KeyboardController;
 import com.ap.items.EntityFactory;
 import com.ap.items.Inventory;
@@ -15,8 +14,8 @@ import com.ap.items.ItemFactory;
 import com.ap.managers.*;
 import com.ap.network.GameClient;
 import com.ap.network.listeners.GameListener;
+import com.ap.notifiers.ChangeSeasonNotifier;
 import com.ap.notifiers.CreateMapNotifier;
-import com.ap.screen.maps.GMap;
 import com.ap.system.*;
 import com.ap.managers.EnergyManager;
 import com.ap.ui.model.GameViewModel;
@@ -28,7 +27,6 @@ import com.ap.ui.widget.tabContents.TabManager;
 import com.ap.system.universal.TimeSystem;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -87,6 +85,10 @@ public class GameScreen extends AbstractScreen {
 
     private RayHandler rayHandler;
 
+    private VoiceChatClient voiceChat;
+
+    public boolean sendVoiceMessage = false;
+
     public GameScreen(GdxGame game) {
         super(game);
         universalEngine = new Engine();
@@ -136,6 +138,9 @@ public class GameScreen extends AbstractScreen {
 
         client.getListener(GameListener.class).setGameScreen(this);
 
+        voiceChat = new VoiceChatClient();
+        voiceChat.addReceiver(client.getClient());
+
         networkGameManager = new NetworkGameManager(this, game);
     }
 
@@ -175,6 +180,9 @@ public class GameScreen extends AbstractScreen {
 
         super.render(delta);
 
+        if(sendVoiceMessage) {
+            voiceChat.sendVoice(client.getClient(), delta);
+        }
 //        if(mapManager != null) {
 //           mapManager.update(delta);
 //        }
@@ -326,8 +334,15 @@ public class GameScreen extends AbstractScreen {
         return rayHandler;
     }
 
+    public void seasonChanged(ChangeSeasonNotifier changeSeasonNotifier) {
+        networkGameManager.seasonChanged(changeSeasonNotifier.season);
+    }
 
-//    class TimeListener implements ITimeListener {
+    public VoiceChatClient getVoiceChat() {
+        return voiceChat;
+    }
+
+    //    class TimeListener implements ITimeListener {
 //
 //        @Override
 //        public void onSeasonChanged(Season season) {

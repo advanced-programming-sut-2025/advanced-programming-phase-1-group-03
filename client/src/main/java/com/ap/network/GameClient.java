@@ -1,5 +1,6 @@
 package com.ap.network;
 
+import com.ap.audio.VoiceChatClient;
 import com.ap.network.listeners.GameListener;
 import com.ap.network.listeners.JoinGameListener;
 import com.ap.network.listeners.LobbyListener;
@@ -22,7 +23,7 @@ public class GameClient {
 
     public GameClient() {
 
-        client = new Client();
+        client = new Client(65536, 65536);
 
         // Registration
         Kryo kryo = client.getKryo();
@@ -64,5 +65,9 @@ public class GameClient {
 
     public void requestMyRoommatesInfo() {
         client.sendTCP(new RoommatesInfoLobbyRequest());
+    }
+
+    public Client getClient() {
+        return client;
     }
 }

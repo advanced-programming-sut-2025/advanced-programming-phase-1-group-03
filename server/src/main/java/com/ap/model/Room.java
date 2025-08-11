@@ -38,4 +38,12 @@ public class Room {
             }
         }
     }
+
+    public void broadcastUDP(Object packet, ServerPlayer except) {
+        for (ServerPlayer p : players) {
+            if (p != except) {
+                p.connection.sendUDP(packet);
+            }
+        }
+    }
 }

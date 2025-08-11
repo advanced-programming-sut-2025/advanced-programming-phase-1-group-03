@@ -4,8 +4,11 @@ import com.ap.GdxGame;
 import com.ap.asset.AtlasAsset;
 import com.ap.asset.MapAsset;
 import com.ap.component.*;
+import com.ap.model.Season;
+import com.ap.notifiers.ChangeSeasonNotifier;
 import com.ap.screen.GameScreen;
 import com.ap.screen.maps.GMap;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -143,5 +146,11 @@ public class NetworkGameManager {
         var entity = entities.get(entityId);
         assert entity != null;
         map.removeEntity(entity);
+    }
+
+    public void seasonChanged(Season newSeason) {
+        for(GMap map : maps.values()) {
+            map.changeSeasonTileset(newSeason);
+        }
     }
 }

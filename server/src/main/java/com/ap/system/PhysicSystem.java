@@ -94,10 +94,8 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         Transform transform = Transform.mapper.get(entity);
         Physic physic = Physic.mapper.get(entity);
 
-        transform.getPosition().set(physic.getBody().getPosition().x,
+        transform.setPosition(physic.getBody().getPosition().x,
                 physic.getBody().getPosition().y);
-
-        transform.setChanged(true);
     }
 
     @Override

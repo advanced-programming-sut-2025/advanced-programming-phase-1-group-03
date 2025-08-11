@@ -12,6 +12,7 @@ import java.util.HashMap;
 public class MapManager {
     HashMap<MapAsset, IMap> mapCache = new HashMap<>();
     IMap currentMap = null;
+    MapAsset currentMapAsset;
 
     private final PlayerManager playerManager;
     private final ServerPlayer player;
@@ -63,6 +64,7 @@ public class MapManager {
             currentMap.leave();
         }
         currentMap = mapCache.get(mapAsset);
+        currentMapAsset = mapAsset;
         currentMap.load();
         player.connection.sendTCP(new ChangeMapNotifier(currentMap.getEngineId()));
     }
@@ -71,4 +73,11 @@ public class MapManager {
         return farmMap;
     }
 
+    public IMap getCurrentMap() {
+        return currentMap;
+    }
+
+    public MapAsset getCurrentMapAsset() {
+        return currentMapAsset;
+    }
 }

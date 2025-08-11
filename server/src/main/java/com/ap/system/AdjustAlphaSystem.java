@@ -53,7 +53,10 @@ public class AdjustAlphaSystem extends IteratingSystem {
             alpha = MathUtils.lerp(graphic.getColor().a, 1f, progress * 2);
         }
 
-        graphic.getColor().a = alpha;
-        graphic.setChanged(true);
+        if(alpha != graphic.getColor().a) {
+            System.out.println("sent");
+            graphic.getColor().a = alpha;
+            graphic.setChanged(true);
+        }
     }
 }

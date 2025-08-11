@@ -13,6 +13,7 @@ import com.ap.model.GameManager;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.ShowMessageNotifier;
 import com.ap.requests.MovePlayerRequest;
+import com.ap.system.universal.TimeSystem;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.math.Vector2;
@@ -91,5 +92,13 @@ public class PlayerManager {
         if(mapManager.currentMap instanceof Farm farm) {
             farm.buildGreenhouse();
         }
+    }
+
+    public TimeSystem getTimeSystem() {
+        return gameManager.getTimeSystem();
+    }
+
+    public void setBuildGreenhouse(boolean b) {
+        isGreenhouseBuilt = true;
     }
 }

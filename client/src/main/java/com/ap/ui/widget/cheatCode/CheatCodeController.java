@@ -2,6 +2,7 @@ package com.ap.ui.widget.cheatCode;
 
 import com.ap.Constraints;
 import com.ap.model.GameData;
+import com.ap.network.Sender;
 import com.ap.screen.GameScreen;
 import com.badlogic.gdx.math.MathUtils;
 
@@ -10,24 +11,33 @@ import java.util.regex.Matcher;
 public class CheatCodeController {
     private GameScreen gameScreen;
 
-
+    private final Sender sender;
     public CheatCodeController(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
+        sender = gameScreen.getGameClient().getSender();
     }
 
     public Result ProcessCommand(String command) {
         Matcher matcher;
         System.out.println(command);
        if ((matcher = CheatCodes.TimeSpeed.getMatcher(command)) != null) {
-           return changeTimeSpeed(matcher.group("speed"), matcher.group("unit"));
+//           return changeTimeSpeed(matcher.group("speed"), matcher.group("unit"));
        } else if ((matcher = CheatCodes.Energy.getMatcher(command)) != null) {
-           return setEnergy(matcher.group("energy"));
+//           return setEnergy(matcher.group("energy"));
        } else if ((matcher = CheatCodes.AddGold.getMatcher(command)) != null) {
-           return setGold(matcher.group("gold"));
+//           return setGold(matcher.group("gold"));
        } else if ((matcher = CheatCodes.Thor.getMatcher(command)) != null) {
-           return thor(matcher.group("x"), matcher.group("y"));
+//           return thor(matcher.group("x"), matcher.group("y"));
+       } else if((matcher = CheatCodes.SendMessage.getMatcher(command)) != null) {
+           return sendMessage(matcher.group("user"), matcher.group("message"));
        }
        return new Result(false, "Invalid command");
+    }
+
+    private Result sendMessage(String user, String message) {
+        boolean isPrivate = !user.equals("all");
+        var result = sender.sendChat(isPrivate ? user : null, message);
+        return new Result(result.success, result.message);
     }
 
     public Result changeTimeSpeed(String speedStr, String unitStr) {

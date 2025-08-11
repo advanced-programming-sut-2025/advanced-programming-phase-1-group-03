@@ -3,6 +3,7 @@ package com.ap.model;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.managers.PlayerManager;
+import com.ap.notifiers.ChangeSeasonNotifier;
 import com.ap.system.universal.ITimeListener;
 import com.ap.system.universal.NotifySystem;
 import com.ap.system.universal.TimeSystem;
@@ -84,6 +85,11 @@ public class GameManager {
         @Override
         public void onDayChanged(int newDay) {
             weatherSystem.setWeatherRandomly();
+        }
+
+        @Override
+        public void onSeasonChanged(Season newSeason) {
+            room.broadcast(new ChangeSeasonNotifier(newSeason));
         }
     }
 

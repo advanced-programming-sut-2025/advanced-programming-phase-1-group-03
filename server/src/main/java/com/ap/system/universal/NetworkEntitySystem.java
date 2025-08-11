@@ -32,6 +32,7 @@ public class NetworkEntitySystem extends IteratingSystem implements EntityListen
 
         if(Player.mapper.has(entity) && !Player.mapper.get(entity).isNotified) {
             player.connection.sendTCP(new ItemNotifier(engineId, network.getId(), Player.mapper.get(entity)));
+            Player.mapper.get(entity).isNotified = true;
         }
 
         if(Transform.mapper.has(entity) && Transform.mapper.get(entity).isChanged()) {

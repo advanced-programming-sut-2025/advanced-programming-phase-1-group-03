@@ -167,4 +167,10 @@ public class Sender {
     public void buildGreenhouse() {
         client.sendTCP(new BuildGreenhouseRequest());
     }
+
+    public ChatResponse sendChat(String user, String message) {
+        var request = new ChatRequest(message,user);
+        return sendMessageAndWaitForResponse(request, ChatResponse.class);
+    }
+
 }

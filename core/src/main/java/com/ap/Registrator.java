@@ -10,6 +10,7 @@ import com.ap.component.Player;
 import com.ap.component.Transform;
 import com.ap.model.*;
 import com.ap.notifiers.*;
+import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
 import com.ap.responses.*;
 import com.badlogic.ashley.core.Component;
@@ -128,5 +129,16 @@ public class Registrator {
 
         kryo.register(BuildGreenhouseMsgNotifier.class);
         kryo.register(BuildGreenhouseRequest.class);
+
+        kryo.register(ChangeSeasonNotifier.class);
+
+        kryo.register(ChatRequest.class);
+        kryo.register(ChatResponse.class);
+        kryo.register(ChatNotifier.class);
+
+        kryo.register(PopupNotifier.class);
+
+        kryo.register(short[].class);
+        kryo.register(VoiceNetData.class);
     }
 }

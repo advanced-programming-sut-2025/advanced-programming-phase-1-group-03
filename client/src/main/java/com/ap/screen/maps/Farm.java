@@ -4,7 +4,6 @@ import box2dLight.RayHandler;
 import com.ap.Constraints;
 import com.ap.GdxGame;
 import com.ap.asset.MapAsset;
-import com.ap.system.GrowSystem;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
 import com.ap.screen.GameScreen;
@@ -18,7 +17,6 @@ public class Farm extends MapAdaptor {
 
     private final WeatherEffects weatherEffects;
 
-    private GrowSystem growSystem;
     private GiantCropManager giantCropManager;
     private CrowAttackSystem crowAttackSystem;
 
@@ -40,8 +38,6 @@ public class Farm extends MapAdaptor {
         engine.addSystem(new PlayerAudioSystem(assetService));
         engine.addSystem(new CameraSystem(camera));
 
-        growSystem = new GrowSystem(assetService, weatherSystem);
-        engine.addSystem(growSystem);
      //   engine.addSystem(new RenderSystem(batch, viewport, camera));
 
         // Actually it would be better we create a class for forest, but because of simplicity just hardcode it

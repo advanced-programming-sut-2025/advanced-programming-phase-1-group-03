@@ -1,8 +1,8 @@
 package com.ap.network.listeners;
 
-import com.ap.asset.MapAsset;
 import com.ap.managers.GameUIManager;
 import com.ap.notifiers.*;
+import com.ap.packet.VoiceNetData;
 import com.ap.screen.GameScreen;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -44,6 +44,12 @@ public class GameListener extends Listener {
                     buildGreenhouseMsgNotifier.goldNeeded,
                     buildGreenhouseMsgNotifier.woodNeeded,
                     gameScreen.getGameClient().getSender()::buildGreenhouse);
+        } else if(object instanceof ChangeSeasonNotifier changeSeasonNotifier) {
+            gameScreen.seasonChanged(changeSeasonNotifier);
+        } else if(object instanceof ChatNotifier chatNotifier) {
+            gameScreen.getCheatCodeBox().receivedChat(chatNotifier.isPrivate, chatNotifier.message, chatNotifier.senderName);
+        } else if(object instanceof PopupNotifier popupNotifier) {
+            GameUIManager.instance.showPopup(popupNotifier.message, popupNotifier.sender);
         }
     }
 

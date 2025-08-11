@@ -23,7 +23,7 @@ public class GameServer {
     private Server server;
 
     public GameServer() {
-        server = new Server();
+        server = new Server(65536, 65536);
         assetService = new AssetService(new InternalFileHandleResolver());
         EntityFactory.instance.setup(assetService);
         ItemFactory.instance.setAssetService(assetService);

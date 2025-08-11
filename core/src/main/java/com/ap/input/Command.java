@@ -12,7 +12,8 @@ public enum Command {
     OpenCooking(Input.Keys.C),
     Click(),
     OpenCheatCode(Input.Keys.F3),
-    Place(Input.Keys.SPACE)
+    Place(Input.Keys.SPACE),
+    Talk(Input.Keys.P);
     ;
 
     private final int[] correspondingKeys;

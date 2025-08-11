@@ -3,7 +3,6 @@ package com.ap.screen.maps;
 import com.ap.Constraints;
 import com.ap.GdxGame;
 import com.ap.asset.MapAsset;
-import com.ap.system.GrowSystem;
 import com.ap.model.Season;
 import com.ap.screen.GameScreen;
 import com.ap.system.*;
@@ -14,7 +13,6 @@ public class House extends MapAdaptor{
     private final CookingMenu cookingMenu;
     private CheatCodeBox cheatCodeBox;
 
-    private GrowSystem growSystem;
 
     public House(GdxGame game, GameScreen gameScreen) {
         super(game, gameScreen);
@@ -59,8 +57,6 @@ public class House extends MapAdaptor{
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(assetService));
         engine.addSystem(new CameraSystem(camera));
-        growSystem = new GrowSystem(assetService, weatherSystem);
-        engine.addSystem(growSystem);
         //engine.addSystem(new RenderSystem(batch, viewport, camera));
 
         // It'd be better we create separate class for green house, but we hard code it :)

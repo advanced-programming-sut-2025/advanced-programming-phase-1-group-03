@@ -6,6 +6,8 @@ import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import java.util.Objects;
+
 public class Graphic implements Component {
     public static final ComponentMapper<Graphic> mapper = ComponentMapper.getFor(Graphic.class);
 
@@ -44,7 +46,7 @@ public class Graphic implements Component {
     }
 
     public void setAtlas(AtlasAsset atlas) {
-        if(!atlas.equals(this.atlas)) {
+        if(!Objects.equals(this.atlas, atlas)) {
             setChanged(true);
         }
         this.atlas = atlas;
@@ -55,7 +57,7 @@ public class Graphic implements Component {
     }
 
     public void setAtlasKey(String atlasKey) {
-        if(this.atlasKey == null || !this.atlasKey.equals(atlasKey)) {
+        if(!Objects.equals(this.atlasKey, atlasKey)) {
             setChanged(true);
         }
         this.atlasKey = atlasKey;
@@ -80,9 +82,6 @@ public class Graphic implements Component {
     }
 
     public void setRegion(TextureRegion region) {
-        if(!region.equals(this.region)) {
-            setChanged(true);
-        }
         this.region = region;
     }
 
@@ -91,6 +90,9 @@ public class Graphic implements Component {
     }
 
     public void setRegionIndex(Integer regionIndex) {
+        if(!Objects.equals(this.regionIndex, regionIndex)) {
+            setChanged(true);
+        }
         this.regionIndex = regionIndex;
     }
 }

@@ -7,17 +7,21 @@ import com.ap.asset.MapAsset;
 import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
 import com.ap.managers.WeatherEffects;
+import com.ap.model.Season;
 import com.ap.screen.GameScreen;
 import com.ap.system.*;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class GMap {
     private Engine engine;
     private MapAsset mapAsset;
+    private TiledMap map;
 
     private AssetService assetService;
     private int engineId;
@@ -75,7 +79,8 @@ public class GMap {
                 gameScreen.getCookingMenu(),
                 gameScreen.getCheatCodeBox(),
                 engine,
-                gameScreen.getGameClient())
+                gameScreen.getGameClient(),
+                gameScreen)
         );
     }
 
@@ -92,7 +97,7 @@ public class GMap {
     public void setup() {
         addSystems();
 
-        var map = assetService.get(mapAsset);
+        map = assetService.get(mapAsset);
         engine.getSystem(RenderSystem.class).setMap(map);
     }
 
@@ -128,5 +133,9 @@ public class GMap {
         showWeather = true;
     }
     public void tileSelectionSystem() { tileSelection = true;
+    }
+
+    public void changeSeasonTileset(Season newSeason) {
+        Helper.changeSeasonTileset(newSeason, map, assetService);
     }
 }

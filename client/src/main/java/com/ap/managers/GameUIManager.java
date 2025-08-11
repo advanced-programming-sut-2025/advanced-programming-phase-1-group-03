@@ -9,6 +9,7 @@ import com.ap.screen.GameScreen;
 import com.ap.system.ControllerSystem;
 import com.ap.ui.widget.DecisionDialog;
 import com.ap.ui.widget.MessageDialog;
+import com.ap.ui.widget.MessagePopup;
 import com.ap.ui.widget.StoreMenu;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -77,7 +78,7 @@ public class GameUIManager {
     private DecisionDialog greenhouseDialog;
 
     public void showGreenhouseMessage(int goldNeeded, int woodNeeded, Runnable whenOk) {
-        greenhouseDialog = GameUIManager.instance.showDecisionDialog(
+        greenhouseDialog = showDecisionDialog(
                 "Would you like to build greenhouse with "+
                         woodNeeded +" amount of wood and "+
                         goldNeeded+" golds?",
@@ -93,5 +94,9 @@ public class GameUIManager {
 
     private void removeGreenhouseMessage() {
         greenhouseDialog.remove();
+    }
+
+    public void showPopup(String message, String sender) {
+        MessagePopup.show(stage, skin, sender, message);
     }
 }

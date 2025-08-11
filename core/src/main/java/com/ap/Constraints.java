@@ -24,7 +24,7 @@ public class Constraints {
     public static final int DARKNESS_END_HOUR = 20;
     public static final int DARKNESS_BEGIN_HOUR = 17;
 
-    public static final int MONTHS_DAYS = 28;
+    public static final int MONTHS_DAYS = 30;
     public static final int MINIMUM_WOOD_TREE_GIVE = 5;
     public static final int MAXIMUM_WOOD_TREE_GIVE = 8;
     public static final int STUMP_GIVEN_WOOD = 3;

@@ -1,6 +1,7 @@
 package com.ap.ui.widget.cheatCode;
 
 import com.ap.Constraints;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -50,7 +51,6 @@ public class CheatCodeBox extends Group {
 
         input = new TextField("", skin, "roboto24");
         input.setSize(maxWidth + 8, tileHeight);
-//        input.setMessageText("Enter command...");
 
         input.setPosition(-8, -4);
         input.addListener(new InputListener() {
@@ -96,20 +96,7 @@ public class CheatCodeBox extends Group {
 
         float height = 0;
         for (int i = Math.max(0, history.size() - maxLine); i < history.size(); i++) {
-            String s = history.get(i);
-            String color = s.split("/")[0];
-            String message = s.split("/")[1];
-            Label label = new Label(message, skin, "roboto24");
-            switch (color) {
-                case "red" -> label.setColor(Color.RED);
-                case "green" -> label.setColor(Color.GREEN);
-                case "blue" -> label.setColor(Color.BLUE);
-                case "black" -> label.setColor(Color.BLACK);
-                default -> label.setColor(Color.WHITE);
-            }
-//            label.setFontScale(0.9f);
-            label.setWrap(true);
-            label.setWidth(maxWidth);
+            Label label = getLabel(i);
             height += label.getPrefHeight();
             historyTable.add(label).width(maxWidth).left().row();
         }
@@ -119,6 +106,24 @@ public class CheatCodeBox extends Group {
         historyTable.setPosition(0, tileHeight - 4);
         addActor(historyTable);
 
+    }
+
+    private Label getLabel(int i) {
+        String s = history.get(i);
+        String color = s.split("/")[0];
+        String message = s.split("/")[1];
+        Label label = new Label(message, skin, "roboto24");
+        switch (color) {
+            case "red" -> label.setColor(Color.RED);
+            case "green" -> label.setColor(Color.GREEN);
+            case "blue" -> label.setColor(Color.BLUE);
+            case "black" -> label.setColor(Color.BLACK);
+            default -> label.setColor(Color.WHITE);
+        }
+//            label.setFontScale(0.9f);
+        label.setWrap(true);
+        label.setWidth(maxWidth);
+        return label;
     }
 
     public TextField getInput() {
@@ -148,7 +153,12 @@ public class CheatCodeBox extends Group {
         isShowing = !isShowing;
     }
 
-    public boolean isShowing() {
-        return isShowing;
+    public void receivedChat(boolean isPrivate, String message, String senderName) {
+        if(isPrivate) {
+            history.add("white/"+senderName + " said to only you: " + message);
+        } else {
+            history.add("white/"+senderName + " said: " + message);
+        }
+        shouldUpdate = true;
     }
 }

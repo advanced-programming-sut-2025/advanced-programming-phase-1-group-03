@@ -24,14 +24,13 @@ import com.badlogic.ashley.core.Family;
 
 public class Farm extends MapAdaptor {
 //
-//    private GrowSystem growSystem;
+    private GrowSystem growSystem;
 //    private GiantCropManager giantCropManager;
 //    private CrowAttackSystem crowAttackSystem;
 
     public Farm(GameManager gameManager, PlayerManager playerManager, ServerPlayer player, MapManager mapManager) {
         super(gameManager, playerManager, player, mapManager);
 
-        gameManager.getTimeSystem().addTimeListener(new TimeListener());
     }
 
     @Override
@@ -39,6 +38,10 @@ public class Farm extends MapAdaptor {
         engine.addSystem(new NetworkEntitySystem(player));
 
         engine.addSystem(new SeasonalGraphicSystem(assetService, timeSystem));
+
+        growSystem = new GrowSystem(weatherSystem);
+        engine.addSystem(growSystem);
+
         engine.addSystem(new PhysicMoveSystem());
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, playerManager));
         engine.addSystem(new FacingSystem());
@@ -62,6 +65,8 @@ public class Farm extends MapAdaptor {
 
        // giantCropManager = new GiantCropManager(this.map, world, engine);
       //  timeSystem.addTimeListener(new TimeListener());
+
+        gameManager.getTimeSystem().addTimeListener(new TimeListener());
     }
 
     @Override
@@ -97,6 +102,7 @@ public class Farm extends MapAdaptor {
         Entity greenhouse = engine.getEntitiesFor(Family.all(GreenhouseCmp.class).get()).first();
         Graphic.mapper.get(greenhouse).setAtlas(AtlasAsset.MapObjects);
         Graphic.mapper.get(greenhouse).setAtlasKey("greenhouse_built");
+        playerManager.setBuildGreenhouse(true);
     }
 
     class TimeListener implements ITimeListener {
@@ -104,11 +110,10 @@ public class Farm extends MapAdaptor {
         @Override
         public void onSeasonChanged(Season season) {
             Helper.playMusicOfSeason(audioService, season);
-            tiledService.changeSeasonTileset(season);
         }
         @Override
         public void onDayChanged(int day) {
-//            growSystem.dayPassed();
+            growSystem.dayPassed();
 //            giantCropManager.checkGiant();
 //            if(map.getProperties().get("generateItems", false, Boolean.class)) {
 //                tiledMapGenerator.generateForagingTree(map);

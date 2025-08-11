@@ -112,59 +112,6 @@ public class TiledService {
         }
     }
 
-    public void changeSeasonTileset(Season season) {
-        if(currentMap == null) {
-            return;
-        }
-
-        for(TiledMapTileSet tileset : currentMap.getTileSets()) {
-            boolean seasonal = tileset.getProperties().get("seasonal", false, Boolean.class);
-            if(!seasonal) {
-                continue;
-            }
-
-            String textureName = tileset.getName() + season.name();
-            Texture newTileSheet = assetService.get(TilesetAsset.valueOf(textureName));
-
-            if(newTileSheet == null) {
-                throw new GdxRuntimeException("Texture not found");
-            }
-            int offset = tileset.getProperties().get("firstgid", int.class);
-
-            for(int i = 0; i < tileset.size(); i++) {
-                int tileId = i+offset;
-
-                TiledMapTile tile = tileset.getTile(tileId);
-
-                if(tile == null)
-                    continue;
-
-                int tileWidth = tileset.getProperties().get("tilewidth", Integer.class);
-                int tileHeight = tileset.getProperties().get("tileheight", Integer.class);
-
-                if(tile instanceof AnimatedTiledMapTile animatedTile) {
-                    updateAnimatedTile(animatedTile, newTileSheet, tileWidth, tileHeight, offset);
-                    continue;
-                }
-
-                int regionX = (i % (newTileSheet.getWidth() / tileWidth)) * tileWidth;
-                int regionY = (i / (newTileSheet.getWidth() / tileWidth)) * tileHeight;
-
-                TextureRegion newRegion = new TextureRegion(newTileSheet, regionX, regionY, tileWidth, tileHeight);
-                tile.setTextureRegion(newRegion);
-            }
-        }
-    }
-
-    private void updateAnimatedTile(AnimatedTiledMapTile animatedTile,
-                                    Texture newTileSheet, int tileWidth, int tileHeight, int offset) {
-        for(StaticTiledMapTile frame : animatedTile.getFrameTiles()) {
-            int regionX = ((frame.getId()-offset) % (newTileSheet.getWidth() / tileWidth)) * tileWidth;
-            int regionY = ((frame.getId()-offset) / (newTileSheet.getWidth() / tileWidth)) * tileHeight;
-            TextureRegion newRegion = new TextureRegion(newTileSheet, regionX, regionY, tileWidth, tileHeight);
-            frame.setTextureRegion(newRegion);
-        }
-    }
 
 
     public void setLoadTileConsumer(LoadTileConsumer loadTileConsumer) {

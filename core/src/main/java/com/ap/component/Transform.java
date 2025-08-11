@@ -103,4 +103,10 @@ public class Transform implements Component, Comparable<Transform> {
         this.changed = changed;
     }
 
+    public void setPosition(float x, float y) {
+        if(x != this.position.x || y != this.position.y)
+            setChanged(true);
+        position.x = x;
+        position.y = y;
+    }
 }
