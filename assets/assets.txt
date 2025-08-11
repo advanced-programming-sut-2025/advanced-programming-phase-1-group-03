@@ -54,6 +54,8 @@ graphics/LightningCloud.png
 graphics/LightningStorm.png
 graphics/LightningStorm2.png
 graphics/LightningStorm3.png
+graphics/MapObjects.atlas
+graphics/MapObjects.png
 graphics/Mineral.atlas
 graphics/Mineral.png
 graphics/OnMap/environment.atlas

@@ -1,0 +1,141 @@
+package com.ap.maps;
+
+
+import com.ap.asset.AssetService;
+import com.ap.asset.MapAsset;
+import com.ap.audio.AudioService;
+import com.ap.component.Move;
+import com.ap.component.Player;
+import com.ap.items.Inventory;
+import com.ap.managers.MapManager;
+import com.ap.managers.PlayerManager;
+import com.ap.model.GameManager;
+import com.ap.model.ServerPlayer;
+import com.ap.requests.MovePlayerRequest;
+import com.ap.system.PhysicMoveSystem;
+import com.ap.system.universal.TimeSystem;
+import com.ap.system.universal.WeatherSystem;
+import com.ap.tiled.TiledAshleyConfigurator;
+import com.ap.tiled.TiledMapGenerator;
+import com.ap.tiled.TiledService;
+import com.ap.utils.Helper;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Family;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2D;
+import com.badlogic.gdx.physics.box2d.World;
+
+public abstract class MapAdaptor implements IMap {
+    protected Engine engine;
+    protected TiledService tiledService;
+    protected TiledAshleyConfigurator tileConfigurator;
+    protected TiledMapGenerator tiledMapGenerator;
+    protected World world;
+
+    protected AssetService assetService;
+
+    protected TimeSystem timeSystem;
+
+    protected TiledMap map;
+    protected MapAsset mapAsset;
+
+    protected WeatherSystem weatherSystem;
+
+    protected GameManager gameManager;
+
+    protected ServerPlayer player;
+
+    protected PlayerManager playerManager;
+
+    protected MapManager mapManager;
+
+    protected MapAsset farmMap;
+
+    protected AudioService audioService;
+
+    protected Inventory inventory;
+
+    public MapAdaptor(GameManager gameManager, PlayerManager playerManager, ServerPlayer player, MapManager mapManager) {
+        this.audioService = playerManager.getAudioService();
+        this.gameManager = gameManager;
+        this.farmMap = mapManager.getFarmMap();
+        this.mapManager = mapManager;
+        this.playerManager = playerManager;
+        this.inventory = playerManager.getInventory();
+        this.player = player;
+
+        engine = new Engine();
+        Helper.createIdForEngine(engine);
+
+        assetService = playerManager.getAssetService();
+
+        Box2D.init();
+
+        // Setup world with zero gravity
+        world = new World(Vector2.Zero, true);
+
+        // Set autoClearForces to false because we want to apply our customized timeStep
+        world.setAutoClearForces(false);
+
+        tiledService = new TiledService(assetService);
+        tileConfigurator = new TiledAshleyConfigurator(engine, world);
+        tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
+
+        // Setup inventory
+        timeSystem = gameManager.getTimeSystem();
+        weatherSystem = gameManager.getWeatherSystem();
+    }
+
+    protected void setupMap() {
+        tiledService.setLoadTileConsumer(tileConfigurator::onLoadTile);
+        tiledService.setLoadObjectConsumer(tileConfigurator::onLoadObject);
+        tiledService.setBoundaryConsumer(tileConfigurator::onLoadBoundary);
+        tiledService.setGenerateItemsConsumer(tiledMapGenerator::generate);
+        tiledService.setLoadTileDataConsumer(tileConfigurator::onLoadTileData);
+        tiledService.setLoadMapConsumer(tileConfigurator::onLoadMap);
+        tiledService.setMap(this.map);
+    }
+    public abstract void addSystems();
+
+    @Override
+    public void update(float delta) {
+        engine.update(delta);
+    }
+
+    @Override
+    public void setup(MapAsset map) {
+        this.mapAsset = map;
+        this.map = tiledService.load(map);
+    }
+
+    @Override
+    public void load() {
+    }
+
+    @Override
+    public void leave() {
+        engine.getSystem(PhysicMoveSystem.class).stopPlayer();
+    }
+
+    @Override
+    public int getEngineId() {
+        return Helper.getEngineId(engine);
+    }
+
+    public void movePlayer(MovePlayerRequest request) {
+        engine.getSystem(PhysicMoveSystem.class).movePlayer(request);
+    }
+
+
+    @Override
+    public void applyItem(int index, int x, int y) {
+        playerManager.getInventory().getItems().get(index).getItem().applyItem(
+                Helper.getTopBodyAtPoint(new Vector2(x, y), world, map),
+                engine,
+                playerManager,
+                world
+        );
+    }
+
+}

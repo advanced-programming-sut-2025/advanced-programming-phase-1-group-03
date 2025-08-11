@@ -1,0 +1,20 @@
+package com.ap.model;
+
+import com.ap.asset.MapAsset;
+import com.ap.managers.PlayerManager;
+import com.badlogic.ashley.core.Engine;
+import com.esotericsoftware.kryonet.Connection;
+
+public class ServerPlayer {
+    public String username;
+    public Connection connection;
+    public Room currentRoom;
+
+    public int gold = 1000;
+
+    public PlayerManager playerManager;
+    public ServerPlayer(String username, Connection connection) {
+        this.username = username;
+        this.connection = connection;
+    }
+}

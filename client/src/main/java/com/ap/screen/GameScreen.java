@@ -1,0 +1,342 @@
+package com.ap.screen;
+
+import box2dLight.RayHandler;
+import com.ap.GdxGame;
+import com.ap.asset.AssetService;
+import com.ap.asset.AtlasAsset;
+import com.ap.asset.MapAsset;
+import com.ap.asset.MusicAsset;
+import com.ap.audio.AudioService;
+import com.ap.component.*;
+import com.ap.input.KeyboardController;
+import com.ap.items.EntityFactory;
+import com.ap.items.Inventory;
+import com.ap.items.ItemFactory;
+import com.ap.managers.*;
+import com.ap.network.GameClient;
+import com.ap.network.listeners.GameListener;
+import com.ap.notifiers.CreateMapNotifier;
+import com.ap.screen.maps.GMap;
+import com.ap.system.*;
+import com.ap.managers.EnergyManager;
+import com.ap.ui.model.GameViewModel;
+import com.ap.ui.view.GameView;
+import com.ap.ui.widget.*;
+import com.ap.ui.widget.cheatCode.CheatCodeBox;
+import com.ap.ui.widget.cheatCode.CheatCodeController;
+import com.ap.ui.widget.tabContents.TabManager;
+import com.ap.system.universal.TimeSystem;
+import com.badlogic.ashley.core.Component;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.viewport.Viewport;
+
+public class GameScreen extends AbstractScreen {
+    private AssetService assetService;
+    private AudioService audioService;
+    private Camera camera;
+    private Batch batch;
+
+    private KeyboardController keyboardController;
+
+    // UI Components
+    private Clock clock;
+    private ItemContainer itemContainer;
+    private EnergyBar energyBar;
+    private CraftingMenu craftingMenu;
+    private CookingMenu cookingMenu;
+    private LightningStorm lightningStorm;
+    private TabManager tabManager;
+    private Journal journal;
+    private CheatCodeBox cheatCodeBox;
+
+    private ClockManager clockManager;
+    private MapManager mapManager;
+    private CheatCodeController cheatCodeController;
+
+    private Inventory inventory;
+    private AbilityManager abilityManager;
+
+    private Engine universalEngine;
+
+    private TimeSystem timeSystem;
+    private WeatherSystem weatherSystem;
+
+    private MapAsset currentMap;
+    private TiledMap currentTiledMap;
+
+    private EnergyManager energyManager;
+
+    private Map<MapAsset, Engine> engineCache = new HashMap<>();
+
+    private GameClient client;
+
+
+    private NetworkGameManager networkGameManager;
+
+    private RayHandler rayHandler;
+
+    public GameScreen(GdxGame game) {
+        super(game);
+        universalEngine = new Engine();
+
+        World world = new World(new Vector2(0, 0), true);
+        RayHandler.useDiffuseLight(true);
+        rayHandler = new RayHandler(world);
+
+        batch = game.getBatch();
+
+        client = game.getClient();
+
+        camera = game.getCamera();
+        assetService = game.getAssetService();
+        audioService = game.getAudioService();
+
+        GameUIManager.instance.setup(stage, skin, audioService, this);
+        ItemFactory.instance.setAssetService(assetService);
+        EntityFactory.instance.setup(assetService, audioService);
+
+        // Setup inventory
+        TooltipHelper.setTooltip(skin);
+        TooltipHelper tooltipHelper = TooltipHelper.getTooltip();
+        inventory = new Inventory(assetService);
+        abilityManager = new AbilityManager();
+
+        clock = new Clock(assetService, skin);
+        itemContainer = new ItemContainer(assetService, skin, stage, inventory, audioService);
+        energyBar = new EnergyBar(assetService, skin);
+
+        journal = new Journal(assetService, skin, stage);
+        craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
+        cheatCodeController = new CheatCodeController(this);
+        cheatCodeBox = new CheatCodeBox(stage, skin, cheatCodeController);
+        lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
+        cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
+        tabManager = new TabManager(this);
+        clockManager = new ClockManager(clock);
+
+        timeSystem = new TimeSystem();
+        weatherSystem = new WeatherSystem(clock);
+
+        energyManager = new EnergyManager(weatherSystem, abilityManager);
+
+        mapManager = new MapManager(game, this);
+     //   mapManager.loadAllMaps();
+
+        client.getListener(GameListener.class).setGameScreen(this);
+
+        networkGameManager = new NetworkGameManager(this, game);
+    }
+
+
+    @Override
+    public void show() {
+
+        timeSystem.addListener(clockManager::receive);
+
+        universalEngine.addSystem(weatherSystem);
+        universalEngine.addSystem(new EnergySystem(energyBar, energyManager));
+
+        // Play background music
+        //audioService.playMusic(MusicAsset.Spring);
+
+       // mapManager.setMap(GameData.getInstance().getStartMap());
+
+        stage.addActor(new GameView(stage, skin, new GameViewModel(game), audioService));
+        stage.addActor(clock);
+        stage.addActor(itemContainer);
+        stage.addActor(energyBar);
+        stage.addActor(journal);
+        stage.addActor(TooltipHelper.getTooltip());
+
+//        lightningStorm.toggle(0, 0);
+
+        // Play background music
+        //audioService.playMusic(MusicAsset.Spring);
+    }
+
+    @Override
+    public void render(float delta) {
+        delta = Math.min(1 / 30f, delta);
+        universalEngine.update(delta);
+
+        networkGameManager.update(delta);
+
+        super.render(delta);
+
+//        if(mapManager != null) {
+//           mapManager.update(delta);
+//        }
+    }
+
+    public void updateEntity(int engineId, int itemId, Component[] components) {
+        networkGameManager.updateEntity(engineId, itemId, components);
+    }
+
+    public WeatherSystem getWeatherSystem() {
+        return weatherSystem;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public AbilityManager getAbilityManager() {
+        return abilityManager;
+    }
+
+    public Clock getClock() {
+        return clock;
+    }
+
+    public ItemContainer getItemContainer() {
+        return itemContainer;
+    }
+
+    public CraftingMenu getCraftingMenu() {
+        return craftingMenu;
+    }
+
+    public EnergyBar getEnergyBar() {
+        return energyBar;
+    }
+
+    public LightningStorm getLightningStorm() {
+        return lightningStorm;
+    }
+
+    public AssetService getAssetService() {
+        return assetService;
+    }
+
+    public AudioService getAudioService() {
+        return audioService;
+    }
+
+    public Camera getCamera() {
+        return camera;
+    }
+
+    public MapManager getMapManger() {
+        return mapManager;
+    }
+
+    public TabManager getTabManager() {
+        return tabManager;
+    }
+
+    public CookingMenu getCookingMenu() {
+        return cookingMenu;
+    }
+
+    public CheatCodeBox getCheatCodeBox() {
+        return cheatCodeBox;
+    }
+
+    public MapAsset getCurrentMap() {
+        return currentMap;
+    }
+
+    public void setCurrentMap(MapAsset currentMap) {
+        this.currentMap = currentMap;
+    }
+
+    public TiledMap getCurrentTiledMap() {
+        return currentTiledMap;
+    }
+
+    public void setCurrentTiledMap(TiledMap currentTiledMap) {
+        this.currentTiledMap = currentTiledMap;
+    }
+
+    public Map<MapAsset, Engine> getEngineCache() {
+        return engineCache;
+    }
+    public Engine getFarmEngine() {
+        var engine = engineCache.get(MapAsset.Farm1);
+        if(engine == null) {
+            return engineCache.get(MapAsset.Farm2);
+        }
+        return engine;
+    }
+
+    public EnergyManager getEnergyManager() {
+        return energyManager;
+    }
+
+    public Skin getSkin() {
+        return skin;
+    }
+
+    public ClockManager getClockManager() {
+        return clockManager;
+    }
+
+    public TimeSystem getTimeSystem() {
+        return timeSystem;
+    }
+
+    public void setAnimation(String atlasKey, AtlasAsset atlasAsset, int entityId, float speed, Animation.PlayMode playMode) {
+        networkGameManager.setAnimation(atlasKey, atlasAsset, entityId, speed, playMode);
+    }
+
+    public void changeMap(int engineId) {
+        networkGameManager.changeMap(engineId);
+    }
+
+    public void createMap(CreateMapNotifier createMapNotifier) {
+        networkGameManager.createMap(createMapNotifier.mapAsset,
+                createMapNotifier.engineId,
+                createMapNotifier.showWeather,
+                createMapNotifier.tileSelectionSystem);
+    }
+
+    public Batch getBatch() {
+        return batch;
+    }
+
+    public void setBatch(Batch batch) {
+        this.batch = batch;
+    }
+
+    public Viewport getViewport() {
+        return game.getViewport();
+    }
+
+    public GameClient getGameClient() {
+        return client;
+    }
+
+    public void removeEntity(int entityId, int engineId) {
+        networkGameManager.removeEntity(entityId, engineId);
+    }
+
+    public RayHandler getRayHandler() {
+        return rayHandler;
+    }
+
+
+//    class TimeListener implements ITimeListener {
+//
+//        @Override
+//        public void onSeasonChanged(Season season) {
+//        }
+//
+//        @Override
+//        public void onDayChanged(int day) {
+//            weatherSystem.setWeatherRandomly();
+//        }
+//
+//    }
+}

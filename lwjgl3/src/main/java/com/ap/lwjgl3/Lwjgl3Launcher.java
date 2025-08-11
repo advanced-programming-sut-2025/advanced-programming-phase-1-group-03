@@ -1,9 +1,9 @@
 package com.ap.lwjgl3;
 
-import com.ap.client.Constraints;
+import com.ap.Constraints;
+import com.ap.GdxGame;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import com.ap.client.GdxGame;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {

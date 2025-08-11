@@ -1,0 +1,11 @@
+MapObjects.png
+size:512,256
+repeat:none
+House
+bounds:2,36,144,144
+greenhouse_built
+bounds:148,19,115,161
+greenhouse_broken
+bounds:265,51,115,129
+player
+bounds:2,2,32,32

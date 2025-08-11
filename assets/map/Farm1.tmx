@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="80" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="109">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="80" height="65" tilewidth="16" tileheight="16" infinite="0" nextlayerid="15" nextobjectid="110">
  <properties>
   <property name="AllowGrassSurviveInWinter" value="T"/>
   <property name="Outdoors" value="T"/>
@@ -2045,6 +2045,11 @@
    <properties>
     <property name="sensor" type="bool" value="true"/>
     <property name="spawner" value="CarpenterShop"/>
+   </properties>
+  </object>
+  <object id="109" name="greenhouse" gid="3100" x="839.833" y="475.5" width="115" height="129">
+   <properties>
+    <property name="greenhouse" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>

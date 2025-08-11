@@ -2,8 +2,8 @@
   <configuration default="false" name="Server" type="Application" factoryName="Application">
     <option name="ALTERNATIVE_JRE_PATH" value="17" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-    <option name="MAIN_CLASS_NAME" value="com.ap.server.Server" />
-    <module name="StarehdewValley.core.main" />
+    <option name="MAIN_CLASS_NAME" value="com.ap.ServerRunner" />
+    <module name="StarehdewValley.server.main" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
