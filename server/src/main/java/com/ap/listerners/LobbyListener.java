@@ -73,8 +73,9 @@ public class LobbyListener extends Listener {
             }
             if(room.players.size() < 4 && room.password.equals(request.password)) {
                 room.players.add(senderPlayer);
-                senderPlayer.currentRoom = room;
+                senderPlayer.id = room.players.size();
 
+                senderPlayer.currentRoom = room;
                 room.broadcast((Connection c) -> sendRoommatesInfo(c, room));
                 connection.sendTCP(new JoinRoomResponse(true, "Joining..."));
             }

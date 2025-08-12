@@ -5,8 +5,10 @@ import com.ap.audio.AudioService;
 import com.ap.component.*;
 import com.ap.items.Item;
 import com.ap.model.Season;
+import com.ap.model.ServerPlayer;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
@@ -16,6 +18,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.QueryCallback;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 
 import java.util.*;
 
@@ -143,5 +146,25 @@ public class Helper {
             return new Item.WorldObject(last, tilePos);
         }
         return new Item.WorldObject(topBody[0].getUserData(), topBody[0].getPosition());
+    }
+
+    public static void sendToAll(Array<ServerPlayer> players, Object message) {
+        for(ServerPlayer serverPlayer : players) {
+            serverPlayer.connection.sendUDP(message);
+        }
+    }
+    public static void sendToAllTCP(Array<ServerPlayer> players, Object message) {
+        for(ServerPlayer serverPlayer : players) {
+            serverPlayer.connection.sendTCP(message);
+        }
+    }
+
+    public static Entity getPlayer(Engine engine, int id) {
+        for(Entity entity : engine.getEntitiesFor(Family.all(Player.class).get())) {
+            if(Player.mapper.get(entity).id == id) {
+                return entity;
+            }
+        }
+        return null;
     }
 }

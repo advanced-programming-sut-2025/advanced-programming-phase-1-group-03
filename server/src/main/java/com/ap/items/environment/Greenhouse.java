@@ -32,7 +32,7 @@ public class Greenhouse extends Item {
         playerManager.getPlayer().connection.sendTCP(
                 new BuildGreenhouseMsgNotifier(Constraints.GREEN_HOUSE_WOOD_NEEDED ,Constraints.GREEN_HOUSE_GOLD_NEEDED));
 
-        engine.getSystem(PhysicMoveSystem.class).stopPlayer();
+        engine.getSystem(PhysicMoveSystem.class).stopPlayer(playerManager.getPlayer());
     }
 
 }

@@ -54,7 +54,6 @@ public class AdjustAlphaSystem extends IteratingSystem {
         }
 
         if(alpha != graphic.getColor().a) {
-            System.out.println("sent");
             graphic.getColor().a = alpha;
             graphic.setChanged(true);
         }

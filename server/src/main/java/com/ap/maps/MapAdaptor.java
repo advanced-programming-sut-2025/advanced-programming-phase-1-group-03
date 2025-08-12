@@ -4,15 +4,15 @@ package com.ap.maps;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.audio.AudioService;
-import com.ap.component.Move;
-import com.ap.component.Player;
 import com.ap.items.Inventory;
 import com.ap.managers.MapManager;
 import com.ap.managers.PlayerManager;
 import com.ap.model.GameManager;
 import com.ap.model.ServerPlayer;
+import com.ap.notifiers.CreateMapNotifier;
 import com.ap.requests.MovePlayerRequest;
 import com.ap.system.PhysicMoveSystem;
+import com.ap.system.universal.NetworkEntitySystem;
 import com.ap.system.universal.TimeSystem;
 import com.ap.system.universal.WeatherSystem;
 import com.ap.tiled.TiledAshleyConfigurator;
@@ -20,11 +20,12 @@ import com.ap.tiled.TiledMapGenerator;
 import com.ap.tiled.TiledService;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.ashley.core.Family;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 
 public abstract class MapAdaptor implements IMap {
     protected Engine engine;
@@ -44,26 +45,22 @@ public abstract class MapAdaptor implements IMap {
 
     protected GameManager gameManager;
 
-    protected ServerPlayer player;
+    protected Array<ServerPlayer> players = new Array<>();
 
     protected PlayerManager playerManager;
 
     protected MapManager mapManager;
 
-    protected MapAsset farmMap;
-
     protected AudioService audioService;
 
     protected Inventory inventory;
 
-    public MapAdaptor(GameManager gameManager, PlayerManager playerManager, ServerPlayer player, MapManager mapManager) {
+    public MapAdaptor(GameManager gameManager, PlayerManager playerManager,MapManager mapManager, int playerId) {
         this.audioService = playerManager.getAudioService();
         this.gameManager = gameManager;
-        this.farmMap = mapManager.getFarmMap();
         this.mapManager = mapManager;
         this.playerManager = playerManager;
         this.inventory = playerManager.getInventory();
-        this.player = player;
 
         engine = new Engine();
         Helper.createIdForEngine(engine);
@@ -79,7 +76,7 @@ public abstract class MapAdaptor implements IMap {
         world.setAutoClearForces(false);
 
         tiledService = new TiledService(assetService);
-        tileConfigurator = new TiledAshleyConfigurator(engine, world);
+        tileConfigurator = new TiledAshleyConfigurator(engine, world, playerId);
         tiledMapGenerator = new TiledMapGenerator(engine, assetService, world);
 
         // Setup inventory
@@ -110,12 +107,13 @@ public abstract class MapAdaptor implements IMap {
     }
 
     @Override
-    public void load() {
+    public void load(Entity player) {
     }
-
     @Override
-    public void leave() {
-        engine.getSystem(PhysicMoveSystem.class).stopPlayer();
+    public Entity leave(ServerPlayer player) {
+        engine.getSystem(PhysicMoveSystem.class).stopPlayer(player);
+        var playerEntity = Helper.getPlayer(engine, player.id);
+        return playerEntity;
     }
 
     @Override
@@ -123,8 +121,8 @@ public abstract class MapAdaptor implements IMap {
         return Helper.getEngineId(engine);
     }
 
-    public void movePlayer(MovePlayerRequest request) {
-        engine.getSystem(PhysicMoveSystem.class).movePlayer(request);
+    public void movePlayer(MovePlayerRequest request, ServerPlayer senderPlayer) {
+        engine.getSystem(PhysicMoveSystem.class).movePlayer(request, senderPlayer);
     }
 
 
@@ -138,4 +136,13 @@ public abstract class MapAdaptor implements IMap {
         );
     }
 
+    @Override
+    public void addPlayer(ServerPlayer player, MapAsset map) {
+        players.add(player);
+
+        // Send to player to create this map
+        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, true, true));
+
+        engine.getSystem(NetworkEntitySystem.class).shouldSend();
+    }
 }

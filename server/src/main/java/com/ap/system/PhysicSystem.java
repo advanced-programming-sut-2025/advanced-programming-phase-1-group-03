@@ -6,6 +6,7 @@ import com.ap.component.Transform;
 import com.ap.items.Item;
 import com.ap.managers.MapManager;
 import com.ap.managers.PlayerManager;
+import com.ap.model.ServerPlayer;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
@@ -14,6 +15,9 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.*;
+
+import java.util.AbstractMap;
+import java.util.Map;
 
 public class PhysicSystem extends IteratingSystem implements EntityListener, ContactListener {
     private World world;
@@ -104,15 +108,6 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
 
     @Override
     public void entityRemoved(Entity entity) {
-        // !!! Important !!!
-        // This does not work if the Physic component gets removed from an entity
-        // because the component is no longer accessible here.
-        // This ONLY works when an entity with a Physic component gets removed entirely from the engine.
-        Physic physic = Physic.mapper.get(entity);
-        if (physic != null) {
-            Body body = physic.getBody();
-            body.getWorld().destroyBody(body);
-        }
     }
 
     @Override
@@ -127,11 +122,11 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
 //
         var map = isSpawner(userDataA, userDataB);
         if(map != null) {
-            changeMap(map);
+            changeMap(map.getValue(), map.getKey());
         }
         map = isSpawner(userDataB, userDataA);
         if(map != null) {
-            changeMap(map);
+            changeMap(map.getValue(), map.getKey());
         }
 
         Item item = isPlayerItemInteract(userDataA, userDataB);
@@ -155,12 +150,12 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
        // exitMenu(userDataB, userDataA);
     }
 
-    private void changeMap(MapAsset map) {
+    private void changeMap(int id, MapAsset map) {
         // prevent moving to broken greenhouse
         if(map == MapAsset.Greenhouse && !playerManager.isGreenhouseBuilt()) {
             return;
         }
-        mapManager.setMap(map);
+        mapManager.setMap(id, map);
     }
 
     private Item isPlayerItemInteract(Object userDataA, Object userDataB) {
@@ -199,7 +194,7 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
 //            }
 //        }
 //    }
-    private MapAsset isSpawner(Object userDataA, Object userDataB) {
+    private Map.Entry<MapAsset, Integer> isSpawner(Object userDataA, Object userDataB) {
         if(userDataA instanceof String str) {
             MapAsset map;
 
@@ -220,7 +215,7 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
             if(!Player.mapper.has(entityB)) {
                 return null;
             }
-            return map;
+            return Map.entry(map, Player.mapper.get(entityB).id);
         }
         return null;
     }

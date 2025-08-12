@@ -2,6 +2,7 @@ package com.ap.model;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
+import com.ap.managers.MapManager;
 import com.ap.managers.PlayerManager;
 import com.ap.notifiers.ChangeSeasonNotifier;
 import com.ap.system.universal.ITimeListener;
@@ -24,14 +25,16 @@ public class GameManager {
     private MapAsset currentMap;
     private TiledMap currentTiledMap;
 
+    private final MapManager mapManager;
+
     public GameManager(Room room, AssetService assetService) {
         this.room = room;
 
         this.assetService = assetService;
 
         universalEngine = new Engine();
-       // ItemFactory.instance.setAssetService(assetService);
-      //  EntityFactory.instance.setup(assetService, audioService);
+
+        mapManager = new MapManager(this);
 
         addSystems();
     }
@@ -50,18 +53,15 @@ public class GameManager {
 
     public void playerJoined(ServerPlayer player, MapAsset map) {
         player.playerManager = new PlayerManager(this, player);
-        player.playerManager.setupMap(map);
+        player.playerManager.setFarmMap(map);
+        mapManager.playerArrived(player, map, player.playerManager);
     }
 
     public void update(float delta) {
         universalEngine.update(delta);
 
         // Update active engine of players
-        for(ServerPlayer player : room.players) {
-            if(player.playerManager != null) {
-                player.playerManager.update(delta);
-            }
-        }
+        mapManager.update(delta);
     }
 
     public TimeSystem getTimeSystem() {
@@ -78,6 +78,10 @@ public class GameManager {
 
     public AssetService getAssetService() {
         return assetService;
+    }
+
+    public MapManager getMapManager() {
+        return mapManager;
     }
 
 

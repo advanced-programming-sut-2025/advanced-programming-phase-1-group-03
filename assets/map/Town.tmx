@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="130" height="110" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="191">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="130" height="110" tilewidth="16" tileheight="16" infinite="0" nextlayerid="18" nextobjectid="194">
  <properties>
   <property name="BrookSounds" value="94 5 5"/>
   <property name="DayTiles" value="AlwaysFront 52 98 907 AlwaysFront 56 98 907 AlwaysFront 24 50 907 AlwaysFront 33 53 907 AlwaysFront 24 58 907 AlwaysFront 27 72 907 AlwaysFront 30 72 907 AlwaysFront 38 65 907 AlwaysFront 27 86 907 AlwaysFront 17 86 907 AlwaysFront 21 64 907 Buildings 92 79 186 Buildings 41 69 560 Buildings 71 67 720"/>
@@ -3178,9 +3178,10 @@
   </data>
  </layer>
  <objectgroup id="17" name="objects">
-  <object id="45" name="Player" gid="6777" x="1291.33" y="60.1667" width="32" height="32">
+  <object id="45" name="Player" gid="6777" x="1287.16" y="65.1667" width="32" height="32">
    <properties>
     <property name="cameraFollow" type="bool" value="true"/>
+    <property name="playerId" type="int" value="0"/>
     <property name="speed" type="float" value="3"/>
    </properties>
   </object>
@@ -3506,6 +3507,27 @@
    <properties>
     <property name="sensor" type="bool" value="true"/>
     <property name="spawner" value="CarpenterShop"/>
+   </properties>
+  </object>
+  <object id="191" name="Player" gid="6777" x="37.6667" y="886" width="32" height="32">
+   <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
+    <property name="playerId" type="int" value="1"/>
+    <property name="speed" type="float" value="3"/>
+   </properties>
+  </object>
+  <object id="192" name="Player" gid="6777" x="25.5" y="1480" width="32" height="32">
+   <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
+    <property name="playerId" type="int" value="3"/>
+    <property name="speed" type="float" value="3"/>
+   </properties>
+  </object>
+  <object id="193" name="Player" gid="6777" x="855" y="1729" width="32" height="32">
+   <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
+    <property name="playerId" type="int" value="2"/>
+    <property name="speed" type="float" value="3"/>
    </properties>
   </object>
  </objectgroup>

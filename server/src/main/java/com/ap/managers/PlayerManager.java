@@ -20,7 +20,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class PlayerManager {
     private final GameManager gameManager;
-    private MapManager mapManager;
     private final ServerPlayer player;
     private MapAsset farmMap;
     private boolean isGreenhouseBuilt = false;
@@ -36,21 +35,16 @@ public class PlayerManager {
         audioService = new AudioService(player);
         inventory = new Inventory(player);
         abilityManager = new AbilityManager();
-    }
-    public void setupMap(MapAsset map) {
-        this.farmMap = map;
-        mapManager = new MapManager(gameManager, this, map, player);
+
         Tool.addBasicTools(inventory);
     }
 
-    public void update(float delta) {
-        if(mapManager != null) {
-            mapManager.update(delta);
-        }
-    }
 
-    public void move(MovePlayerRequest movePlayerRequest) {
-        mapManager.currentMap.movePlayer(movePlayerRequest);
+    public MapAsset getCurrentMapAsset() {
+        return gameManager.getMapManager().currentMapAssets.get(player);
+    }
+    public void move(MovePlayerRequest movePlayerRequest, ServerPlayer senderPlayer) {
+        gameManager.getMapManager().currentMaps.get(senderPlayer).movePlayer(movePlayerRequest, senderPlayer);
     }
 
     public boolean isGreenhouseBuilt() {
@@ -81,22 +75,17 @@ public class PlayerManager {
         return player;
     }
 
-    public MapManager getMapManager() {
-        return mapManager;
-    }
-
-    public void applyItem(int index, int x, int y) {
-        mapManager.currentMap.applyItem(index, x, y);
-
+    public void applyItem(int index, int x, int y, ServerPlayer senderPlayer) {
+        gameManager.getMapManager().currentMaps.get(senderPlayer).applyItem(index, x, y);
     }
 
     public void applyReaction() {
 
     }
 
-    public void buildGreenhouse() {
-        if(mapManager.currentMap instanceof Farm farm) {
-            farm.buildGreenhouse();
+    public void buildGreenhouse(ServerPlayer serverPlayer) {
+        if(gameManager.getMapManager().currentMaps.get(serverPlayer) instanceof Farm farm) {
+            farm.buildGreenhouse(serverPlayer);
         }
     }
 
@@ -110,5 +99,9 @@ public class PlayerManager {
 
     public AbilityManager getAbilityManager() {
         return abilityManager;
+    }
+
+    public void setFarmMap(MapAsset farmMap) {
+        this.farmMap = farmMap;
     }
 }

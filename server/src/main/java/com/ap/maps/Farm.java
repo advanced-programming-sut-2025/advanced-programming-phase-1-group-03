@@ -4,7 +4,6 @@ import com.ap.Constraints;
 import com.ap.asset.AtlasAsset;
 import com.ap.asset.MapAsset;
 import com.ap.asset.SoundAsset;
-import com.ap.audio.AudioService;
 import com.ap.component.Graphic;
 import com.ap.component.GreenhouseCmp;
 import com.ap.items.ItemFactory;
@@ -13,7 +12,6 @@ import com.ap.managers.PlayerManager;
 import com.ap.model.GameManager;
 import com.ap.model.Season;
 import com.ap.model.ServerPlayer;
-import com.ap.notifiers.CreateMapNotifier;
 import com.ap.notifiers.ShowMessageNotifier;
 import com.ap.system.*;
 import com.ap.system.universal.ITimeListener;
@@ -28,14 +26,14 @@ public class Farm extends MapAdaptor {
 //    private GiantCropManager giantCropManager;
 //    private CrowAttackSystem crowAttackSystem;
 
-    public Farm(GameManager gameManager, PlayerManager playerManager, ServerPlayer player, MapManager mapManager) {
-        super(gameManager, playerManager, player, mapManager);
+    public Farm(GameManager gameManager, PlayerManager playerManager, MapManager mapManager, int playerId) {
+        super(gameManager, playerManager, mapManager, playerId);
 
     }
 
     @Override
     public void addSystems() {
-        engine.addSystem(new NetworkEntitySystem(player));
+        engine.addSystem(new NetworkEntitySystem(players));
 
         engine.addSystem(new SeasonalGraphicSystem(assetService, timeSystem));
 
@@ -46,16 +44,13 @@ public class Farm extends MapAdaptor {
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, playerManager));
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
-        engine.addSystem(new AnimationSystem(player));
+        engine.addSystem(new AnimationSystem(players));
         engine.addSystem(new AdjustAlphaSystem(engine));
     }
 
     @Override
     public void setup(MapAsset map) {
         super.setup(map);
-
-        // Send to player to create this map
-        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, true, true));
 
         // Adding systems to the engine
         addSystems();
@@ -70,13 +65,15 @@ public class Farm extends MapAdaptor {
     }
 
     @Override
-    public void load() {
-        super.load();
+    public void load(Entity player) {
+        super.load(player);
     }
 
     @Override
-    public void leave() {
-        super.leave();
+    public Entity leave(ServerPlayer player) {
+        super.leave(player);
+
+        return null;
     }
 
     @Override
@@ -84,7 +81,7 @@ public class Farm extends MapAdaptor {
         super.update(delta);
     }
 
-    public void buildGreenhouse() {
+    public void buildGreenhouse(ServerPlayer player) {
         if(!inventory.have(ItemFactory.instance.CreateWood(), Constraints.GREEN_HOUSE_WOOD_NEEDED)) {
             player.connection.sendTCP(new ShowMessageNotifier("We don't have enough wood to build greenhouse!"));
             return;
