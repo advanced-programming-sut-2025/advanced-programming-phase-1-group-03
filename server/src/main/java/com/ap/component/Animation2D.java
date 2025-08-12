@@ -1,6 +1,7 @@
 package com.ap.component;
 
 import com.ap.asset.AtlasAsset;
+import com.ap.model.EmoteType;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.ComponentMapper;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -67,18 +68,57 @@ public class Animation2D implements Component {
         return playMode;
     }
 
+    public void setPlayMode(Animation.PlayMode playMode) {
+        this.playMode = playMode;
+    }
+
+    public void setShouldUpdate(boolean shouldUpdate) {
+        this.shouldUpdate = shouldUpdate;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public void setAtlasKey(String atlasKey) {
+        this.atlasKey = atlasKey;
+    }
+
+    public void setAtlasAsset(AtlasAsset atlasAsset) {
+        this.atlasAsset = atlasAsset;
+    }
+
     public enum AnimationType {
-        Idle,
-        Walk,
-        Voice,
-        Fly
+        Idle(true),
+        Walk(true),
+        Voice(true),
+        Fly(true),
+        Eat(false),
+        Sleep(true),
+        Special(true),
+        Swim(true),
+        Emote_Opening(false, "emote_" + EmoteType.Opening.index),
+        Emote_Closing(false, "emote_" + EmoteType.Closing.index),
+        Emote_Heart(false, "emote_" + EmoteType.Heart.index),
+        Emote_Noise(false,  "emote_" + EmoteType.Noise.index),
+        Emote_Sleep(false, "emote_" + EmoteType.Sleep.index),
         ;
         private final String atlasKey;
-        AnimationType() {
+        private boolean hasFacing;
+        AnimationType(boolean hasFacing) {
             atlasKey = name().toLowerCase();
+            this.hasFacing = hasFacing;
+        }
+        AnimationType(boolean hasFacing, String atlasKey) {
+            this.atlasKey = atlasKey;
+            this.hasFacing = hasFacing;
         }
         public String getAtlasKey() {
             return atlasKey;
+        }
+
+        public boolean isHasFacing() {
+            return hasFacing;
         }
     }
 }

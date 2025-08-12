@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="developing leaderBoard2.">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="cheat box bug fixed">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Emote.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/EmoteType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/state/EmoteAnimationState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/EmoteSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodeBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodeBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Animation2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Animation2D.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +141,7 @@
       <recent name="com.ap.server.managers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client2">
+  <component name="RunManager" selected="Application.clinet">
     <configuration name="clinet" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ap.lwjgl3.Lwjgl3Launcher" />
       <module name="stardew-valley-network.lwjgl3.main" />
@@ -248,13 +249,6 @@
       <workItem from="1754902638222" duration="4145000" />
       <workItem from="1754910933846" duration="17172000" />
       <workItem from="1754938931454" duration="1062000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۵۴" summary="Add basic items structure">
-      <option name="closed" value="true" />
-      <created>1753179092281</created>
-      <option name="number" value="LOCAL‎−۰۰۰۵۴" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۵۴" />
-      <updated>1753179092281</updated>
     </task>
     <task id="LOCAL‎−۰۰۰۵۵" summary="Add Tools atlas">
       <option name="closed" value="true" />
@@ -616,7 +610,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754951875779</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="cheat box bug fixed">
+      <option name="closed" value="true" />
+      <created>1755015475557</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1755015475557</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -647,7 +649,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cooking Menu Ui developed." />
     <MESSAGE value="Cooking Menu Ui developed2." />
     <MESSAGE value="trees atlas completed" />
     <MESSAGE value="Town and Mine added" />
@@ -672,7 +673,8 @@
     <MESSAGE value="emoji network implemented" />
     <MESSAGE value="developing leaderBoard." />
     <MESSAGE value="developing leaderBoard2." />
-    <option name="LAST_COMMIT_MESSAGE" value="developing leaderBoard2." />
+    <MESSAGE value="cheat box bug fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="cheat box bug fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
