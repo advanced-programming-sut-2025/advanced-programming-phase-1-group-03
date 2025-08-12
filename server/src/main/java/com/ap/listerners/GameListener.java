@@ -35,8 +35,11 @@ public class GameListener extends Listener {
             senderPlayer.playerManager.applyItem(applyItemRequest.index, applyItemRequest.x, applyItemRequest.y, senderPlayer);
         } else if(object instanceof BuildGreenhouseRequest) {
             senderPlayer.playerManager.buildGreenhouse(senderPlayer);
-        } else if(object instanceof ReactionRequest) {
-            senderPlayer.playerManager.applyReaction();
+        } else if(object instanceof ReactionRequest reactionRequest) {
+            if(reactionRequest.emojiNum == null)
+                senderPlayer.playerManager.applyReaction(reactionRequest.message);
+            else
+                senderPlayer.playerManager.applyReaction(reactionRequest.emojiNum);
         } else if(object instanceof ChatRequest chatRequest) {
             var notifier = new ChatNotifier(chatRequest.message, chatRequest.toUser != null, senderPlayer.username);
             if(chatRequest.toUser != null) {

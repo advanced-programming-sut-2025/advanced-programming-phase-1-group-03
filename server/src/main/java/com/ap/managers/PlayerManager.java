@@ -79,8 +79,12 @@ public class PlayerManager {
         gameManager.getMapManager().currentMaps.get(senderPlayer).applyItem(index, x, y);
     }
 
-    public void applyReaction() {
+    public void applyReaction(int emojiNum) {
+        //TODO implement reaction here
+    }
 
+    public void applyReaction(String message) {
+        //TODO implement reaction message here
     }
 
     public void buildGreenhouse(ServerPlayer serverPlayer) {

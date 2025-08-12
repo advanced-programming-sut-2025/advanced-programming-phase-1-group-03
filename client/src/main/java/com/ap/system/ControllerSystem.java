@@ -7,6 +7,7 @@ import com.ap.component.Player;
 import com.ap.input.Command;
 import com.ap.network.GameClient;
 import com.ap.screen.GameScreen;
+import com.ap.ui.widget.EmojiPanel;
 import com.ap.ui.widget.LeaderBoard;
 import com.ap.ui.widget.cheatCode.CheatCodeBox;
 import com.ap.ui.widget.CookingMenu;
@@ -24,6 +25,7 @@ public class ControllerSystem extends IteratingSystem {
     private CookingMenu cookingMenu;
     private CheatCodeBox cheatCodeBox;
     private LeaderBoard leaderBoard;
+    private EmojiPanel emojiPanel;
     private TileSelectionSystem tileSelectionSystem;
     private CarrierSystem carrierSystem;
     private int totalMovement = 0;
@@ -36,6 +38,7 @@ public class ControllerSystem extends IteratingSystem {
                             CookingMenu cookingMenu,
                             CheatCodeBox cheatCodeBox,
                             LeaderBoard leaderBoard,
+                            EmojiPanel emojiPanel,
                             Engine engine,
                             GameClient gameClient,
                             GameScreen gameScreen) {
@@ -49,6 +52,7 @@ public class ControllerSystem extends IteratingSystem {
         this.cheatCodeBox = cheatCodeBox;
         this.gameScreen = gameScreen;
         this.leaderBoard = leaderBoard;
+        this.emojiPanel = emojiPanel;
     }
 
 
@@ -98,8 +102,9 @@ public class ControllerSystem extends IteratingSystem {
                     leaderBoard.toggle();
                 } case OpenTradeStarter -> {
                     gameScreen.getTradeStarterMenu().toggle();
+                } case OpenEmoteMenu -> {
+                    emojiPanel.toggle();
                 }
-
             }
         }
 

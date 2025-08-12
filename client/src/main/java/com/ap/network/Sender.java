@@ -179,6 +179,11 @@ public class Sender {
         client.sendTCP(request);
     }
 
+    public void applyReaction(String message) {
+        var request = new ReactionRequest(message);
+        client.sendTCP(request);
+    }
+
     public void buildGreenhouse() {
         client.sendTCP(new BuildGreenhouseRequest());
     }
