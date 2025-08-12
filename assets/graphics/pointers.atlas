@@ -1,0 +1,11 @@
+pointers.png
+size:128,32
+repeat:none
+pointer_down
+bounds:56,2,16,16
+pointer_left
+bounds:2,2,16,16
+pointer_right
+bounds:20,2,16,16
+pointer_up
+bounds:38,2,16,16

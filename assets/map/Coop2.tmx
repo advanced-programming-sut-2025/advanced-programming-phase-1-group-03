@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="5">
+ <properties>
+  <property name="AmbientLight" value="110 110 110"/>
+  <property name="ProduceArea" value="2 4 11 4"/>
+  <property name="Warp" value="2 10 Farm 21 11"/>
+ </properties>
+ <tileset firstgid="1" name="Coop" tilewidth="16" tileheight="16" tilecount="84" columns="4">
+  <image source="tileset/coopTiles.png" width="64" height="336"/>
+  <tile id="12">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="33">
+   <properties>
+    <property name="Passable" type="int" value="0"/>
+    <property name="Trough" value="T"/>
+   </properties>
+  </tile>
+  <tile id="53">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+  <tile id="56">
+   <properties>
+    <property name="Type" value="Wood"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="85" source="objects/Objects.tsx"/>
+ <layer id="1" name="Back" width="16" height="10">
+  <data encoding="csv">
+17,13,13,13,13,13,13,13,13,13,13,13,0,0,0,17,
+17,13,13,13,13,13,13,13,13,13,13,13,13,13,13,17,
+21,13,13,13,13,13,13,13,13,13,13,13,13,13,13,21,
+54,66,54,54,54,54,34,34,34,34,34,34,34,34,54,54,
+13,13,55,14,16,57,47,54,54,54,47,54,54,54,47,55,
+13,55,13,22,24,13,13,55,13,13,37,13,55,13,13,55,
+13,55,37,55,13,56,13,13,13,55,13,13,13,56,13,55,
+13,55,13,13,13,55,14,16,55,14,15,16,55,14,15,55,
+13,55,13,55,13,13,22,24,56,18,19,24,13,22,19,55,
+13,13,54,13,13,13,13,13,13,22,13,13,13,13,13,0
+</data>
+ </layer>
+ <layer id="2" name="Buildings" width="16" height="10">
+  <data encoding="csv">
+1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+5,62,17,17,17,17,25,61,62,17,25,17,17,62,25,7,
+5,21,48,21,21,29,30,30,30,30,30,30,30,30,31,7,
+5,73,0,0,0,33,0,0,0,0,0,0,0,0,35,7,
+5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+5,0,0,0,0,0,0,0,0,0,0,0,0,0,58,7,
+5,63,0,0,0,0,0,0,0,0,0,0,0,0,63,7,
+5,60,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+5,64,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+49,5,0,7,49,49,49,49,49,49,49,49,49,49,49,49
+</data>
+ </layer>
+ <layer id="3" name="Front" width="16" height="10">
+  <data encoding="csv">
+1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+5,65,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+5,69,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+5,59,0,0,0,0,0,0,0,0,0,0,0,0,59,7,
+5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,
+9,4,0,8,10,10,10,10,10,10,10,10,10,10,10,11,
+49,9,10,11,49,49,49,49,49,49,49,49,49,49,49,49
+</data>
+ </layer>
+ <objectgroup id="7" name="objects">
+  <object id="2" name="MapBoundary" x="47.7913" y="154.602">
+   <polygon points="0,0 -16.4103,0.575798 -16.1224,-16.1224 -31.9568,-16.4103 -31.6689,-44.0486 -16.9861,-43.7607 -17.274,-62.4741 -31.381,-62.4741 -31.9568,-92.7036 -17.274,-92.7036 -17.274,-107.962 31.381,-107.386 31.0931,-91.8399 191.741,-90.6883 191.453,-75.7175 175.619,-74.5659 175.906,-44.6244 192.892,-44.0486 192.892,-17.5619 2.01529,-15.8345"/>
+  </object>
+  <object id="3" name="Spawner" x="31.6689" y="141.646" width="16.1224" height="14.9708">
+   <properties>
+    <property name="sensor" type="bool" value="true"/>
+    <property name="spawner" value="Farm"/>
+   </properties>
+  </object>
+  <object id="4" name="Player" gid="87" x="24.018" y="143.827" width="32" height="32">
+   <properties>
+    <property name="cameraFollow" type="bool" value="true"/>
+    <property name="controller" type="bool" value="true"/>
+    <property name="player" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

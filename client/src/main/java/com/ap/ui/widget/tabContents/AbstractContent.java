@@ -98,6 +98,21 @@ public abstract class AbstractContent extends Group {
         height = n * tileHeight;
         width = m * tileWidth;
         setSize(width, height);
+        assembleBackground(this, n, m, tileWidth, tileHeight);
+        X = (Constraints.WORLD_WIDTH_RESOLUTION - width) / 2f;
+        Y = (Constraints.WORLD_HEIGHT_RESOLUTION - height) / 2f;
+        contentWidth = width - (2 * tileWidth);
+        contentHeight = height - (2 * tileHeight);
+        contentX = (Constraints.WORLD_WIDTH_RESOLUTION - contentWidth) / 2f;
+        contentY = (Constraints.WORLD_HEIGHT_RESOLUTION - contentHeight) / 2f;
+        setPosition(X, Y);
+
+    }
+
+    public void assembleBackground(Group group, int n, int m, float tileWidth, float tileHeight) {
+        float height = n * tileHeight;
+        float width = m * tileWidth;
+        setSize(width, height);
         for (int i = 0; i < n; i++) {
             float y = 0;
             for (int j = 0; j < m; j++) {
@@ -126,18 +141,9 @@ public abstract class AbstractContent extends Group {
                 Image tile = new Image(new TextureRegionDrawable(region));
                 tile.setSize(tileWidth, tileHeight);
                 tile.setPosition(j * tileWidth, (n - i - 1) * tileHeight);
-                addActor(tile);
+                group.addActor(tile);
             }
-
         }
-        X = (Constraints.WORLD_WIDTH_RESOLUTION - width) / 2f;
-        Y = (Constraints.WORLD_HEIGHT_RESOLUTION - height) / 2f;
-        contentWidth = width - (2 * tileWidth);
-        contentHeight = height - (2 * tileHeight);
-        contentX = (Constraints.WORLD_WIDTH_RESOLUTION - contentWidth) / 2f;
-        contentY = (Constraints.WORLD_HEIGHT_RESOLUTION - contentHeight) / 2f;
-        setPosition(X, Y);
-
     }
 
     public int getTileWidth() {

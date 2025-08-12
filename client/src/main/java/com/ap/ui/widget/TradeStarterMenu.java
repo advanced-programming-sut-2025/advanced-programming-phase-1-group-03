@@ -1,24 +1,22 @@
 package com.ap.ui.widget;
 
 import com.ap.Constraints;
-import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
-import com.ap.audio.AudioService;
 import com.ap.packet.PlayerInfo;
 import com.ap.screen.GameScreen;
 import com.ap.ui.actor.SimpleDialog;
 import com.ap.ui.widget.tabContents.AbstractContent;
-import com.ap.ui.widget.tabContents.Tabs;
 import com.ap.utils.Helper;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class TradeStarterMenu extends AbstractContent {
 
@@ -49,6 +47,11 @@ public class TradeStarterMenu extends AbstractContent {
 
     private TextButton sendRequestButton;
     private TextButton historyButton;
+    private Group lineGroup;
+
+    //username of them, these are active
+    private ArrayList<String> offersReceived;
+    private ArrayList<String> offersSent;
 
     @Override
     public void makeStructure() {
@@ -56,33 +59,29 @@ public class TradeStarterMenu extends AbstractContent {
         title = new Label("Trade", skin);
         title.setFontScale(2);
 
-//        title.setColor(Color.BLACK);
 
         title.setPosition((width - title.getPrefWidth()) / 2, (height - title.getPrefHeight()));
         addActor(title);
 
-//        sendRequestButton = new TextButton("Start Trade", skin);
-//        sendRequestButton.setPosition(padLeft, padDown);
-//
-//        historyButton = new TextButton("Trade History", skin);
-//        historyButton.setPosition(padLeft + sendRequestButton.getPrefWidth() + 10, padDown);
-//
-//        addActor(historyButton);
-//        addActor(sendRequestButton);
-//
-//        sendRequestButton.addListener(new ClickListener() {
-//            public void clicked(InputEvent event, float x, float y) {
-//                if (selectedPlayer == -1) {
-//                    var dialog = new SimpleDialog("", "select a player", skin);
-//                    dialog.show(stage);
-//                }
-//            }
-//        });
 
     }
 
-    public void loadRequests() {
+    public void loadTrades() {
+        RequestFrom from = new RequestFrom("user1", Helper.random(0, 7), 4, 8);
+        RequestTo to = new RequestTo("user2", Helper.random(0, 7), 4, 8);
+        to.setPosition(getTileWidth(), getTileHeight());
+        from.setPosition(getTileWidth() + 8 * getTileWidth(), getTileHeight());
 
+        Image up1 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_up"), 16, 16);
+        Image down1 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_down"), 16, 16);
+
+        Image up2 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_up"), 16, 16);
+        Image down2 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_down"), 16, 16);
+
+
+
+        addActor(to);
+        addActor(from);
     }
 
     @Override
@@ -157,6 +156,7 @@ public class TradeStarterMenu extends AbstractContent {
         addActor(choosePlayerLabel);
         addActor(playersTable);
 
+//        gameScreen.getGameClient()
 
 
         float downHeight = height - title.getPrefHeight() - 30 - playersTable.getPrefHeight();
@@ -179,7 +179,7 @@ public class TradeStarterMenu extends AbstractContent {
             }
         });
 
-        Group lineGroup = new Group();
+        lineGroup = new Group();
 
         for (int i = 1; i < width / getTileWidth() - 1; i++) {
             Image line = getNewImage(H_thin_line, getTileWidth(), getTileHeight());
@@ -191,13 +191,144 @@ public class TradeStarterMenu extends AbstractContent {
         lineGroup.setPosition(0, downHeight - lineGroup.getHeight());
         addActor(lineGroup);
 
+        loadTrades();
+
+    }
+
+    public void removeActors() {
+        removeActor(choosePlayerLabel);
+        removeActor(playersTable);
+        removeActor(historyButton);
+        removeActor(sendRequestButton);
+        removeActor(lineGroup);
     }
 
     public void toggle() {
         setVisible(!isVisible());
         if (!isVisible()) {
-            removeActor(choosePlayerLabel);
-            removeActor(playersTable);
+            removeActors();
         }
+    }
+
+    protected class RequestFrom extends Group{
+        String senderName;
+        int avatatIndex;
+
+        int n, m; //n,m >= 3
+
+        float tileWidth = 16;
+        float tileHeight = 16;
+
+        float avatarWidth = 48;
+        float avatarHeight = 48;
+
+        public RequestFrom(String senderName, int avatarIndex, int n, int m) {
+            this.senderName = senderName;
+            this.n = n * 2;
+            this.m = m * 2;
+            this.avatatIndex = avatarIndex;
+
+            assemble();
+        }
+
+        private void assemble() {
+            from = new Label("From: " + senderName, skin);
+            from.setFontScale(0.9f);
+            avatar = getNewImage(assetService.get(AtlasAsset.Avatars).findRegion("avatar" + avatatIndex), avatarWidth,avatarHeight);
+            acceptButton = new TextButton("Accept", skin);
+            rejectButton = new TextButton("Reject", skin);
+            acceptButton.getLabel().setColor(Color.GREEN);
+            rejectButton.getLabel().setColor(Color.RED);
+
+            from.pack();
+            acceptButton.pack();
+            rejectButton.pack();
+
+            assembleBackground(this, n, m, tileWidth, tileHeight);
+
+            from.setPosition(tileWidth, tileHeight * (n - 1) - from.getPrefHeight());
+            if (avatar != null) {
+                avatar.setSize(avatarWidth, avatarHeight);
+                avatar.pack();
+                avatar.setPosition(tileWidth , tileHeight * (n - 1) - avatarHeight - from.getPrefHeight());
+                addActor(avatar);
+            }
+
+            acceptButton.setPosition(tileWidth * (m - 1) - acceptButton.getPrefWidth(), tileHeight * (n - 1) - acceptButton.getPrefHeight());
+            rejectButton.setPosition(tileWidth * (m - 1) - rejectButton.getPrefWidth(), tileHeight * (n - 1) - rejectButton.getPrefHeight() - acceptButton.getPrefHeight() - 20);
+
+            addActor(from);
+            addActor(acceptButton);
+            addActor(rejectButton);
+
+        }
+
+        Label from;
+        Image avatar;
+
+        TextButton acceptButton;
+        TextButton rejectButton;
+    }
+
+    protected class RequestTo extends Group{
+        String receiverName;
+        int avatatIndex;
+
+        int n, m; //n,m >= 3
+        float tileWidth = 16;
+        float tileHeight = 16;
+
+        float avatarWidth = 48;
+        float avatarHeight = 48;
+
+        public RequestTo(String receiverName, int avatarIndex, int n, int m) {
+            this.receiverName = receiverName;
+            this.n = n * 2;
+            this.m = m * 2;
+            this.avatatIndex = avatarIndex;
+
+            assemble();
+        }
+
+        private void assemble() {
+            to = new Label("To: " + receiverName, skin);
+            to.setFontScale(0.9f);
+            avatar = getNewImage(assetService.get(AtlasAsset.Avatars).findRegion("avatar" + avatatIndex), avatarWidth, avatarHeight);
+            waiting = new Label("Waiting...", skin);
+            waiting.setColor(Color.BLUE);
+            waiting.setFontScale(0.9f);
+            waiting.addAction(Actions.forever(Actions.sequence(
+                    Actions.fadeOut(1.5f),
+                    Actions.fadeIn(1.5f))));
+            cancelButton = new TextButton("Reject", skin);
+            cancelButton.getLabel().setColor(Color.RED);
+            cancelButton.pack();
+            waiting.pack();
+            to.pack();
+
+            assembleBackground(this, n, m, tileWidth, tileHeight);
+
+            to.setPosition(tileWidth, tileHeight * (n - 1) - to.getPrefHeight());
+            if (avatar != null) {
+                avatar.setSize(avatarWidth, avatarHeight);
+                avatar.pack();
+                avatar.setPosition(tileWidth , tileHeight * (n - 1) - avatarHeight - to.getPrefHeight());
+                addActor(avatar);
+            }
+
+            waiting.setPosition(tileWidth * (m - 1) - waiting.getPrefWidth(), tileHeight * (n - 1) - waiting.getPrefHeight() - cancelButton.getPrefWidth());
+            cancelButton.setPosition(tileWidth * (m - 1) - cancelButton.getPrefWidth(), tileHeight * (n - 1) - cancelButton.getPrefHeight());
+
+            addActor(to);
+            addActor(waiting);
+            addActor(cancelButton);
+
+        }
+
+        Label to;
+        Image avatar;
+        Label waiting;
+
+        TextButton cancelButton;
     }
 }

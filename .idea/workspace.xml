@@ -5,11 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="cheat box bug fixed">
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Animals/animal_products.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Animals/animal_products.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Animals/animals.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Animals/animals.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Emotes.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/Emotes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/pointers.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/pointers.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/Barn.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/Barn2.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/Barn3.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/Coop.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/Coop2.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/Coop3.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/map/MarniesRanch.tmx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Forest.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Forest.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/AnimationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/AnimationSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/Farm1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Farm1.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/TradeStarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/TradeStarterMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/tabContents/AbstractContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/tabContents/AbstractContent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/AtlasAsset.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,55 +96,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Lwjgl3Launcher.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Run.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RunGDX.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Application.client2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.clinet.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StarehdewValley [server:run].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StarehdewValley2.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;external.system.has.shared.sources&quot;: &quot;true&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;network&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;D:/StarehdewValley/client/src/main/java/com/ap&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/StarehdewValley/client/src/main/java/com/ap/audio&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Client.executor": "Run",
+    "Application.Lwjgl3Launcher.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Run.executor": "Run",
+    "Application.RunGDX.executor": "Run",
+    "Application.Server.executor": "Run",
+    "Application.client2.executor": "Run",
+    "Application.clinet.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
+    "Gradle.StardewValley [run].executor": "Run",
+    "Gradle.StarehdewValley [server:run].executor": "Run",
+    "Gradle.StarehdewValley2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "external.system.has.shared.sources": "true",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "network",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "D:/StarehdewValley/client/src/main/java/com/ap",
+    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/stardew-valley-network/assets/graphics",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.editor",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Acer\IdeaProjects\stardew-valley-network\assets\graphics" />
+      <recent name="C:\Users\Acer\IdeaProjects\stardew-valley-network\assets\graphics\Animals" />
       <recent name="D:\StarehdewValley\client\src\main\java\com\ap\audio" />
       <recent name="D:\StarehdewValley\core\src\main\java\com\ap\packet" />
       <recent name="D:\StarehdewValley\server\src\main\java\com\ap\audio" />
-      <recent name="D:\StarehdewValley\server\src\main\java\com\ap\items" />
-      <recent name="D:\StarehdewValley\server\src\main\java\com\ap\model" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.ap" />
@@ -143,7 +160,7 @@
   <component name="RunManager" selected="Application.clinet">
     <configuration name="clinet" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ap.lwjgl3.Lwjgl3Launcher" />
-      <module name="StarehdewValley.lwjgl3.main" />
+      <module name="stardew-valley-network.lwjgl3.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
