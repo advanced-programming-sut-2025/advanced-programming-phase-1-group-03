@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="cheat box bug fixed">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Emote.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/EmoteType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/state/EmoteAnimationState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/EmoteSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Animation2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Animation2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/Forest.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Forest.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/AnimationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/AnimationSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +143,7 @@
   <component name="RunManager" selected="Application.clinet">
     <configuration name="clinet" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ap.lwjgl3.Lwjgl3Launcher" />
-      <module name="stardew-valley-network.lwjgl3.main" />
+      <module name="StarehdewValley.lwjgl3.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
