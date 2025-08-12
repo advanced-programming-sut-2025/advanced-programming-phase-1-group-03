@@ -29,6 +29,9 @@ public enum AtlasAsset implements Asset<TextureAtlas> {
     SkillIcons("Tabs/skill_icons.atlas"),
     MapObjects("MapObjects.atlas"),
     Pointers("pointers.atlas"),
+    Animals("Animals/animals.atlas"),
+    Emotes("Emotes.atlas"),
+    AnimalProducts("Animals/animal_products.atlas"),
     ;
 
     private final AssetDescriptor<TextureAtlas> descriptor;
