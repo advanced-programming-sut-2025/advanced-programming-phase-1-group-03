@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="120" tilewidth="16" tileheight="16" infinite="0" nextlayerid="21" nextobjectid="48">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="120" height="120" tilewidth="16" tileheight="16" infinite="0" nextlayerid="21" nextobjectid="49">
  <properties>
   <property name="AllowGrassSurviveInWinter" value="T"/>
   <property name="BrookSounds" value="54 99 5 64 101 4"/>
@@ -3465,12 +3465,6 @@
   </data>
  </layer>
  <objectgroup id="20" name="objects">
-  <object id="42" name="Player" gid="4473" x="1793.09" y="421.212" width="32" height="32">
-   <properties>
-    <property name="cameraFollow" type="bool" value="true"/>
-    <property name="speed" type="float" value="3"/>
-   </properties>
-  </object>
   <object id="43" name="bound1" x="1052" y="1116.5">
    <polygon points="0,0 0.5,-29.5 -14.5,-31.5 -17,-102 69,-140.5 139.5,-142 158,-157.5 192.5,-162 228.5,-139.5 277.5,-139 334.5,-175.5 339.5,-201.5 339.5,-285 322.5,-269.5 305,-268.5 298.5,-287.5 276.5,-284 266,-305.5 274.5,-316 183,-316 164,-301.833 -50.6667,-299.167 -693.333,-3.16667 -717.333,54.1667 -716,150.167 -690.667,195.5 -653.333,231.5 -513.333,294.167 -465.333,292.833 -462.667,244.833 -484,215.5 -474.667,191.5 -448,194.167 -433.333,207.5 -412,206.167 -412,147.5 -448,108.833 -449.333,66.1667 -374.667,20.8333 -208,-19.1667 -133.333,-47.1667 -85.3333,-33.8333 -56,-7.16667 -57.3333,0.833333"/>
   </object>

@@ -93,7 +93,9 @@ public class NetworkGameManager {
 
     public void setAnimation(String atlasKey, AtlasAsset atlasAsset, int entityId, float speed, Animation.PlayMode playMode) {
         Entity entity = entities.get(entityId);
-        assert entity != null;
+        if(entity == null) {
+            return;
+        }
         if(Animation2D.mapper.has(entity)) {
             Animation2D animation2D = Animation2D.mapper.get(entity);
             animation2D.set(atlasAsset, atlasKey, playMode);
