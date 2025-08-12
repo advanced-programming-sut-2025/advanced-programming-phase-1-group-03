@@ -27,11 +27,11 @@ public class GameListener extends Listener {
         ServerPlayer senderPlayer = ServerData.instance.activePlayers.get(connection);
 
         if(object instanceof MovePlayerRequest movePlayerRequest) {
-            senderPlayer.playerManager.move(movePlayerRequest);
+            senderPlayer.playerManager.move(movePlayerRequest, senderPlayer);
         } else if(object instanceof ApplyItemRequest applyItemRequest) {
-            senderPlayer.playerManager.applyItem(applyItemRequest.index, applyItemRequest.x, applyItemRequest.y);
+            senderPlayer.playerManager.applyItem(applyItemRequest.index, applyItemRequest.x, applyItemRequest.y, senderPlayer);
         } else if(object instanceof BuildGreenhouseRequest) {
-            senderPlayer.playerManager.buildGreenhouse();
+            senderPlayer.playerManager.buildGreenhouse(senderPlayer);
         } else if(object instanceof ReactionRequest) {
             senderPlayer.playerManager.applyReaction();
         } else if(object instanceof ChatRequest chatRequest) {

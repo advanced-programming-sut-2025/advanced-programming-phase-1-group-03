@@ -25,6 +25,9 @@ public class SeasonalGraphicSystem extends IteratingSystem {
     @Override
     protected void processEntity(Entity entity, float deltaTime) {
         Graphic graphic = Graphic.mapper.get(entity);
+        if(!SeasonalGraphic.mapper.has(entity)) {
+            return;
+        }
         SeasonalGraphic seasonalGraphic = SeasonalGraphic.mapper.get(entity);
         textureName = seasonalGraphic.getAtlasKey() + "/" + timeSystem.getSeason().name().toLowerCase();
         textureName2 = seasonalGraphic.getAtlasKey().replace("{season}", timeSystem.getSeason().name().toLowerCase());

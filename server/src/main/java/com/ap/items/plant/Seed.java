@@ -35,7 +35,7 @@ public class Seed extends Item {
         }
         Season currentSeason = playerManager.getTimeSystem().getSeason();
         if(!belongingCropType.getSeasonList().contains(currentSeason)
-                && playerManager.getMapManager().getCurrentMapAsset() != MapAsset.Greenhouse) {
+                && playerManager.getCurrentMapAsset() != MapAsset.Greenhouse) {
             playerManager.getPlayer().connection.sendTCP(new ShowMessageNotifier("This seed is not belonging to the current season!"));
             return;
         }

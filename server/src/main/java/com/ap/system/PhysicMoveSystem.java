@@ -3,13 +3,17 @@ package com.ap.system;
 import com.ap.component.Move;
 import com.ap.component.Physic;
 import com.ap.component.Player;
+import com.ap.model.ServerPlayer;
 import com.ap.requests.MovePlayerRequest;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+
+import java.util.Arrays;
 
 public class PhysicMoveSystem extends IteratingSystem {
 
@@ -46,18 +50,19 @@ public class PhysicMoveSystem extends IteratingSystem {
         body.setLinearVelocity(speedVec.x * maxSpeed, speedVec.y * maxSpeed);
     }
 
-    private Vector2 getPlayerDirection() {
-        var player = engine.getEntitiesFor(Family.all(Player.class).get()).first();
+    private Vector2 getPlayerDirection(int id) {
+        var player = Helper.getPlayer(engine, id);
+        assert player != null;
         return Move.mapper.get(player).getDirection();
     }
 
-    public void stopPlayer() {
+    public void stopPlayer(ServerPlayer player) {
         keyDownCounter = 0;
-        var playerVector2 = getPlayerDirection();
+        var playerVector2 = getPlayerDirection(player.id);
         playerVector2.set(Vector2.Zero);
     }
 
-    public void movePlayer(MovePlayerRequest request) {
+    public void movePlayer(MovePlayerRequest request, ServerPlayer senderPlayer) {
         if(request.isKeyDown) {
             keyDownCounter ++;
         } else {
@@ -66,7 +71,7 @@ public class PhysicMoveSystem extends IteratingSystem {
             }
             keyDownCounter--;
         }
-        var direction = getPlayerDirection();
+        var direction = getPlayerDirection(senderPlayer.id);
         direction.x += request.dx;
         direction.y += request.dy;
     }

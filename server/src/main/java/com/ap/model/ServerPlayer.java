@@ -9,7 +9,7 @@ public class ServerPlayer {
     public String username;
     public Connection connection;
     public Room currentRoom;
-
+    public int id = 0;
     public int gold = 1000;
 
     public PlayerManager playerManager;
