@@ -6,6 +6,7 @@ import com.ap.packet.LeaderBoardInfo;
 import com.ap.responses.LeaderBoardResponse;
 import com.ap.screen.GameScreen;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -83,15 +84,23 @@ public class LeaderBoard extends Actor {
     public void toggle() {
         if (!isShowing) {
             instance = new LeaderBoard(assetService, stage, game);
-            LeaderBoardResponse leaderBoardResponse = game.getGameClient().getSender().sendLeaderBoardRequest();
-            instance.loadPlayers(leaderBoardResponse);
-            instance.setupUI();
-            stage.addActor(instance);
+            new Thread(() -> {
+                LeaderBoardResponse leaderBoardResponse =
+                        game.getGameClient().getSender().sendLeaderBoardRequest();
+
+                Gdx.app.postRunnable(() -> {
+                    instance.loadPlayers(leaderBoardResponse);
+                    instance.setupUI();
+                    stage.addActor(instance);
+                });
+            }).start();
+
         } else {
             stage.getActors().removeValue(instance, true);
         }
         isShowing = !isShowing;
     }
+
 
     public static class Player {
         public String username;

@@ -6,6 +6,7 @@ import com.ap.model.AbilityType;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.ChatNotifier;
 import com.ap.notifiers.PopupNotifier;
+import com.ap.notifiers.VoteNotifier;
 import com.ap.packet.LeaderBoardInfo;
 import com.ap.packet.PlayerInfo;
 import com.ap.packet.VoiceNetData;
@@ -79,6 +80,15 @@ public class GameListener extends Listener {
                         serverPlayer.gold, 1, average));
             }
             senderPlayer.connection.sendTCP(new LeaderBoardResponse(leaderBoardInfos));
+        } else if (object instanceof VoteRequest voteRequest) {
+            System.out.println(senderPlayer.username + " " + voteRequest.id + " " + voteRequest.userName + " " + voteRequest.voteNum);
+            if(voteRequest.voteNum == 1) {
+                var notifier = new VoteNotifier(voteRequest.userName, senderPlayer.username, voteRequest.id, voteRequest);
+                senderPlayer.currentRoom.broadcast(notifier, senderPlayer);
+            }
+            else if(voteRequest.voteNum > senderPlayer.currentRoom.players.size()) {
+                    //TODO implement kicking player
+            }
         } else if(object instanceof RoommatesInfoRequest) {
             System.out.println("got request of roommatesInfo");
             List<ServerPlayer> players = senderPlayer.currentRoom.players;

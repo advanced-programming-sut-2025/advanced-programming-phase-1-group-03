@@ -9,6 +9,7 @@ public enum CheatCodes {
     Energy("\\s*set\\s+energy\\s+(?<energy>\\d+)\\s*"),
     AddGold("\\s*set\\s+gold\\s+(?<gold>\\d+)\\s*"),
     SendMessage("\\s*send\\s*message\\s*to\\s*(?<user>\\S+)\\s+(?<message>.*)\\s*"),
+    Vote("\\s*vote\\s+for\\s+(?<user>.+)\\s*")
     ;
     private String pattern;
 

@@ -11,6 +11,8 @@ import java.util.regex.Matcher;
 public class CheatCodeController {
     private GameScreen gameScreen;
 
+    private int id = 0;
+
     private final Sender sender;
     public CheatCodeController(GameScreen gameScreen) {
         this.gameScreen = gameScreen;
@@ -30,8 +32,15 @@ public class CheatCodeController {
 //           return thor(matcher.group("x"), matcher.group("y"));
        } else if((matcher = CheatCodes.SendMessage.getMatcher(command)) != null) {
            return sendMessage(matcher.group("user"), matcher.group("message"));
+       } else if((matcher = CheatCodes.Vote.getMatcher(command)) != null) {
+           return vote(matcher.group("user"));
        }
        return new Result(false, "Invalid command");
+    }
+
+    private Result vote(String userName) {
+        sender.sendVote( userName, id++, 1);
+        return new Result(true, "your kick request has been sent.");
     }
 
     private Result sendMessage(String user, String message) {
