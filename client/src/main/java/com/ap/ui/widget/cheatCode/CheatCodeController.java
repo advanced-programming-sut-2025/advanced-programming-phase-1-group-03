@@ -39,7 +39,7 @@ public class CheatCodeController {
     }
 
     private Result vote(String userName) {
-        sender.sendVote(GameData.getInstance().getLoggedUserUsername(), userName, id++, 1);
+        sender.sendVote( userName, id++, 1);
         return new Result(true, "your kick request has been sent.");
     }
 

@@ -188,8 +188,8 @@ public class Sender {
         return sendMessageAndWaitForResponse(request, ChatResponse.class);
     }
 
-    public void sendVote(String userName, String senderUserName, int id, int voteNum) {
-        var request = new VoteRequest(userName, senderUserName, id, voteNum);
+    public void sendVote(String userName, int id, int voteNum) {
+        var request = new VoteRequest(userName, id, voteNum);
         client.sendTCP(request);
     }
 }

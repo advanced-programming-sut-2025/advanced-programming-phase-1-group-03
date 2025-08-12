@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="cheat box bug fixed">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/VoteKickPopup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/VoteNotifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/VoteRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="vote implemented">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/GameUIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/GameUIManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/LeaderBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/LeaderBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/VoteRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/VoteRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -150,8 +145,10 @@
   </component>
   <component name="RunManager" selected="Application.client2">
     <configuration name="clinet" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="corretto-23" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.ap.lwjgl3.Lwjgl3Launcher" />
-      <module name="StarehdewValley.lwjgl3.main" />
+      <module name="StarNet.lwjgl3.main" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -256,13 +253,6 @@
       <workItem from="1754902638222" duration="4145000" />
       <workItem from="1754910933846" duration="17172000" />
       <workItem from="1754938931454" duration="1062000" />
-    </task>
-    <task id="LOCAL‎−۰۰۰۵۵" summary="Add Tools atlas">
-      <option name="closed" value="true" />
-      <created>1753179113977</created>
-      <option name="number" value="LOCAL‎−۰۰۰۵۵" />
-      <option name="presentableId" value="LOCAL‎−۰۰۰۵۵" />
-      <updated>1753179113977</updated>
     </task>
     <task id="LOCAL-00056" summary="Tools icon atlas added&#10;Tools class added">
       <option name="closed" value="true" />
@@ -625,7 +615,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755015475557</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="vote implemented">
+      <option name="closed" value="true" />
+      <created>1755022381535</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1755022381535</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -656,7 +654,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Cooking Menu Ui developed2." />
     <MESSAGE value="trees atlas completed" />
     <MESSAGE value="Town and Mine added" />
     <MESSAGE value="Mine Completed" />
@@ -681,7 +678,8 @@
     <MESSAGE value="developing leaderBoard." />
     <MESSAGE value="developing leaderBoard2." />
     <MESSAGE value="cheat box bug fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="cheat box bug fixed" />
+    <MESSAGE value="vote implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="vote implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

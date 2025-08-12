@@ -103,11 +103,11 @@ public class GameUIManager {
     }
 
     public void showVotePopUp(String userName, String senderUserName, int id, VoteRequest voteRequest) {
-        VoteKickPopup.show(stage, skin, userName, senderUserName, id, new VoteKickPopup.VoteListener() {
+        VoteKickPopup.show(stage, skin, senderUserName, userName, id, new VoteKickPopup.VoteListener() {
             @Override
             public void onAgree(int targetId, String targetName, String requesterName) {
                 voteRequest.voteNum++;
-                sender.sendVote(userName, senderUserName, id, voteRequest.voteNum);
+                sender.sendVote(userName, id, voteRequest.voteNum);
             }
 
             @Override

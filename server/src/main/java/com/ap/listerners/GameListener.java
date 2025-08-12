@@ -81,9 +81,9 @@ public class GameListener extends Listener {
             }
             senderPlayer.connection.sendTCP(new LeaderBoardResponse(leaderBoardInfos));
         } else if (object instanceof VoteRequest voteRequest) {
-            System.out.println(voteRequest.senderUserName + " " + voteRequest.id + " " + voteRequest.senderUserName + " " + voteRequest.voteNum);
+            System.out.println(senderPlayer.username + " " + voteRequest.id + " " + voteRequest.userName + " " + voteRequest.voteNum);
             if(voteRequest.voteNum == 1) {
-                var notifier = new VoteNotifier(voteRequest.userName, voteRequest.senderUserName, voteRequest.id, voteRequest);
+                var notifier = new VoteNotifier(voteRequest.userName, senderPlayer.username, voteRequest.id, voteRequest);
                 senderPlayer.currentRoom.broadcast(notifier, senderPlayer);
             }
             else if(voteRequest.voteNum > senderPlayer.currentRoom.players.size()) {
