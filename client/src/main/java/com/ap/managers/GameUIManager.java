@@ -5,12 +5,11 @@ import com.ap.audio.AudioService;
 import com.ap.model.Menus;
 import com.ap.model.store.CarpenterShop;
 import com.ap.model.store.StardropSaloonProducts;
+import com.ap.network.Sender;
+import com.ap.requests.VoteRequest;
 import com.ap.screen.GameScreen;
 import com.ap.system.ControllerSystem;
-import com.ap.ui.widget.DecisionDialog;
-import com.ap.ui.widget.MessageDialog;
-import com.ap.ui.widget.MessagePopup;
-import com.ap.ui.widget.StoreMenu;
+import com.ap.ui.widget.*;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
@@ -28,11 +27,14 @@ public class GameUIManager {
     private GameScreen gameScreen;
     private Map<Menus, StoreMenu> menus = new HashMap<>();
 
+    private Sender sender;
+
     public void setup(Stage stage, Skin skin, AudioService audioService, GameScreen game) {
         this.stage = stage;
         this.skin = skin;
         this.audioService = audioService;
         this.gameScreen = game;
+        sender = gameScreen.getGameClient().getSender();
     }
 
     public DecisionDialog showDecisionDialog(String question, Runnable whenOk, Runnable whenCancel) {
@@ -100,4 +102,18 @@ public class GameUIManager {
         MessagePopup.show(stage, skin, sender, message);
     }
 
+    public void showVotePopUp(String userName, String senderUserName, int id, VoteRequest voteRequest) {
+        VoteKickPopup.show(stage, skin, userName, senderUserName, id, new VoteKickPopup.VoteListener() {
+            @Override
+            public void onAgree(int targetId, String targetName, String requesterName) {
+                voteRequest.voteNum++;
+                sender.sendVote(userName, senderUserName, id, voteRequest.voteNum);
+            }
+
+            @Override
+            public void onDisagree(int targetId, String targetName, String requesterName) {
+
+            }
+        });
+    }
 }

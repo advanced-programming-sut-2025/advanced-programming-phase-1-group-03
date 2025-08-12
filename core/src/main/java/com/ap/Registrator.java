@@ -143,12 +143,14 @@ public class Registrator {
         kryo.register(LeaderBoardResponse.class);
         kryo.register(LeaderBoardRequest.class);
         kryo.register(java.util.ArrayList.class);
+        kryo.register(VoteRequest.class);
 
         kryo.register(RoommatesInfoRequest.class);
         kryo.register(RoommatesInfoResponse.class);
         kryo.register(PlayerInfo.class);
 
         kryo.register(PopupNotifier.class);
+        kryo.register(VoteNotifier.class);
 
         kryo.register(short[].class);
         kryo.register(VoiceNetData.class);

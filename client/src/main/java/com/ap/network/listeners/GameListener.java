@@ -50,6 +50,8 @@ public class GameListener extends Listener {
             gameScreen.getCheatCodeBox().receivedChat(chatNotifier.isPrivate, chatNotifier.message, chatNotifier.senderName);
         } else if(object instanceof PopupNotifier popupNotifier) {
             GameUIManager.instance.showPopup(popupNotifier.message, popupNotifier.sender);
+        } else if(object instanceof VoteNotifier voteNotifier) {
+            GameUIManager.instance.showVotePopUp(voteNotifier.userName, voteNotifier.senderUserName, voteNotifier.id, voteNotifier.voteRequest);
         }
     }
 

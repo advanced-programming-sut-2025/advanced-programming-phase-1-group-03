@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="cheat box bug fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/VoteKickPopup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/VoteNotifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/VoteRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Forest.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Forest.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/AnimationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/AnimationSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/GameUIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/GameUIManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/LeaderBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/LeaderBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodes.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +148,7 @@
       <recent name="com.ap.server.managers" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.clinet">
+  <component name="RunManager" selected="Application.client2">
     <configuration name="clinet" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.ap.lwjgl3.Lwjgl3Launcher" />
       <module name="StarehdewValley.lwjgl3.main" />
