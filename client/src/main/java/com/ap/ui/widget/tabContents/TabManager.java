@@ -59,8 +59,8 @@ public class TabManager {
         contentArray = new Array<>();
         iconArray = new Array<>();
 
-        int bgWidth = 637;
-        int bgHeight = 440;
+        int bgWidth = Constraints.tabWidth;
+        int bgHeight = Constraints.tabHeight;
         contentArray.add(new InventoryTab(gameScreen, bgWidth, bgHeight, Tabs.Inventory));
         contentArray.add(new SkillTab(gameScreen, bgWidth, bgHeight, Tabs.Skill));
         contentArray.add(new SocialTab(gameScreen, bgWidth, bgHeight, Tabs.Social));

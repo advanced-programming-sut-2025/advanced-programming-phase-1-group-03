@@ -159,6 +159,11 @@ public class Sender {
         return sendMessageAndWaitForResponse(request, LeaderBoardResponse.class);
     }
 
+    public RoommatesInfoResponse sendRoommatesInfoRequest() {
+        var request = new RoommatesInfoRequest();
+        return sendMessageAndWaitForResponse(request, RoommatesInfoResponse.class);
+    }
+
     public void sendMove(float dx, float dy, boolean isKeyDown) {
         var request = new MovePlayerRequest(dx, dy, isKeyDown);
         client.sendTCP(request);

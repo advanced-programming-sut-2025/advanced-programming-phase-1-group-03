@@ -14,7 +14,8 @@ public enum Command {
     OpenCheatCode(Input.Keys.F3),
     Place(Input.Keys.SPACE),
     Talk(Input.Keys.P),
-    OpenLeaderBoard(Input.Keys.L)
+    OpenLeaderBoard(Input.Keys.L),
+    OpenTradeStarter(Input.Keys.T),
     ;
 
     private final int[] correspondingKeys;

@@ -10,6 +10,7 @@ import com.ap.component.Player;
 import com.ap.component.Transform;
 import com.ap.model.*;
 import com.ap.notifiers.*;
+import com.ap.packet.PlayerInfo;
 import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
 import com.ap.responses.*;
@@ -142,6 +143,10 @@ public class Registrator {
         kryo.register(LeaderBoardResponse.class);
         kryo.register(LeaderBoardRequest.class);
         kryo.register(java.util.ArrayList.class);
+
+        kryo.register(RoommatesInfoRequest.class);
+        kryo.register(RoommatesInfoResponse.class);
+        kryo.register(PlayerInfo.class);
 
         kryo.register(PopupNotifier.class);
 

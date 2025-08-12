@@ -83,7 +83,7 @@ public class AuthenticationListener extends Listener {
             }
 
             // Store player
-            var player = new ServerPlayer(username, connection);
+            var player = new ServerPlayer(username, connection, UserLoader.getUserAvatarIndex(username));
             ServerData.instance.activePlayers.put(connection, player);
 
             connection.sendTCP(response);

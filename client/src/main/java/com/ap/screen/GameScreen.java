@@ -56,6 +56,7 @@ public class GameScreen extends AbstractScreen {
     private CookingMenu cookingMenu;
     private LightningStorm lightningStorm;
     private TabManager tabManager;
+    private TradeStarterMenu tradeStarterMenu;
     private Journal journal;
     private CheatCodeBox cheatCodeBox;
     private LeaderBoard leaderBoard;
@@ -127,6 +128,7 @@ public class GameScreen extends AbstractScreen {
         lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
         cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
         tabManager = new TabManager(this);
+        tradeStarterMenu = new TradeStarterMenu(this);
         clockManager = new ClockManager(clock);
         leaderBoard = new LeaderBoard(assetService, stage, this);
 
@@ -346,6 +348,10 @@ public class GameScreen extends AbstractScreen {
 
     public VoiceChatClient getVoiceChat() {
         return voiceChat;
+    }
+
+    public TradeStarterMenu getTradeStarterMenu() {
+        return tradeStarterMenu;
     }
 
     //    class TimeListener implements ITimeListener {

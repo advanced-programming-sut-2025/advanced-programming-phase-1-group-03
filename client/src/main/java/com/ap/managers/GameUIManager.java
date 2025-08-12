@@ -99,4 +99,5 @@ public class GameUIManager {
     public void showPopup(String message, String sender) {
         MessagePopup.show(stage, skin, sender, message);
     }
+
 }

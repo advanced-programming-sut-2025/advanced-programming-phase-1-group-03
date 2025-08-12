@@ -80,8 +80,12 @@ public class ControllerSystem extends IteratingSystem {
                 } case Click -> {
                     clicked();
                 } case OpenCrafting -> {
-                    if (!tabManager.isShowing()) tabManager.toggle();
-                    tabManager.setCurrentContent(Tabs.Crafting);
+                    if (!tabManager.isShowing()) {
+                        tabManager.toggle();
+                        tabManager.setCurrentContent(Tabs.Crafting);
+                    } else {
+                        tabManager.toggle();
+                    }
                 } case OpenCooking -> {
                         cookingMenu.toggle();
                 } case OpenCheatCode -> {
@@ -92,7 +96,10 @@ public class ControllerSystem extends IteratingSystem {
                     gameScreen.sendVoiceMessage = true;
                 } case OpenLeaderBoard -> {
                     leaderBoard.toggle();
+                } case OpenTradeStarter -> {
+                    gameScreen.getTradeStarterMenu().toggle();
                 }
+
             }
         }
 

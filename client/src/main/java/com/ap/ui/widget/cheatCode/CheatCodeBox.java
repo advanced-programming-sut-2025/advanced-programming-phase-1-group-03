@@ -159,6 +159,6 @@ public class CheatCodeBox extends Group {
         } else {
             history.add("white/"+senderName + " said: " + message);
         }
-        shouldUpdate = true;
+        instance.shouldUpdate = true;
     }
 }

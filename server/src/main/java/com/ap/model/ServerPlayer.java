@@ -11,10 +11,12 @@ public class ServerPlayer {
     public Room currentRoom;
 
     public int gold = 1000;
+    public int avatarIndex;
 
     public PlayerManager playerManager;
-    public ServerPlayer(String username, Connection connection) {
+    public ServerPlayer(String username, Connection connection, int avatarIndex) {
         this.username = username;
         this.connection = connection;
+        this.avatarIndex = avatarIndex;
     }
 }

@@ -7,10 +7,12 @@ import com.ap.model.ServerPlayer;
 import com.ap.notifiers.ChatNotifier;
 import com.ap.notifiers.PopupNotifier;
 import com.ap.packet.LeaderBoardInfo;
+import com.ap.packet.PlayerInfo;
 import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
 import com.ap.responses.ChatResponse;
 import com.ap.responses.LeaderBoardResponse;
+import com.ap.responses.RoommatesInfoResponse;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
@@ -77,6 +79,15 @@ public class GameListener extends Listener {
                         serverPlayer.gold, 1, average));
             }
             senderPlayer.connection.sendTCP(new LeaderBoardResponse(leaderBoardInfos));
+        } else if(object instanceof RoommatesInfoRequest) {
+            System.out.println("got request of roommatesInfo");
+            List<ServerPlayer> players = senderPlayer.currentRoom.players;
+            ArrayList<PlayerInfo> playerInfos = new ArrayList<>();
+            for (ServerPlayer player : players) {
+//                if (player.username.equals(senderPlayer.username)) continue;
+                playerInfos.add(new PlayerInfo(player.username, player.avatarIndex));
+            }
+            senderPlayer.connection.sendTCP(new RoommatesInfoResponse(playerInfos));
         }
     }
 }

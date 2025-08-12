@@ -140,7 +140,13 @@ public abstract class AbstractContent extends Group {
 
     }
 
+    public int getTileWidth() {
+        return tileWidth;
+    }
 
+    public int getTileHeight() {
+        return tileHeight;
+    }
 
     @Override
     public void setVisible(boolean visible) {
