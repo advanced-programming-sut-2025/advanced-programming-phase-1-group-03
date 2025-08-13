@@ -4,9 +4,9 @@ import com.ap.Constraints;
 import com.ap.asset.MapAsset;
 import com.ap.asset.MusicAsset;
 import com.ap.component.Player;
+import com.ap.managers.GameManager;
 import com.ap.managers.MapManager;
 import com.ap.managers.MineManager;
-import com.ap.managers.GameManager;
 import com.ap.model.Season;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.CreateMapNotifier;
@@ -16,10 +16,8 @@ import com.ap.system.universal.NetworkEntitySystem;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Entity;
 
-public class Mine extends MapAdaptor {
-    private MineManager mineManager;
-
-    public Mine(GameManager gameManager, MapManager mapManager, int playerId) {
+public class House extends MapAdaptor{
+    public House(GameManager gameManager, MapManager mapManager, int playerId) {
         super(gameManager, mapManager, playerId);
     }
 
@@ -37,7 +35,7 @@ public class Mine extends MapAdaptor {
     @Override
     public void addPlayer(ServerPlayer player, MapAsset map) {
         // Send to player to create this map
-        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, false, true));
+        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, false, false));
 
         engine.getSystem(NetworkEntitySystem.class).shouldSend();
 
@@ -54,10 +52,8 @@ public class Mine extends MapAdaptor {
         // Setup consumers
         setupMap();
 
-       // giantCropManager = new GiantCropManager(this.map, world, engine);
-      //  timeSystem.addTimeListener(new TimeListener());
-
-        mineManager = new MineManager(engine, this.map, world);
+        // giantCropManager = new GiantCropManager(this.map, world, engine);
+        //  timeSystem.addTimeListener(new TimeListener());
 
         gameManager.getTimeSystem().addTimeListener(new TimeListener());
     }
@@ -65,7 +61,7 @@ public class Mine extends MapAdaptor {
     @Override
     public void load(Entity player) {
         super.load(player);
-        players.first().playerManager.getAudioService().playMusic(MusicAsset.Mine);
+        players.first().playerManager.getAudioService().playMusic(MusicAsset.House);
     }
 
     @Override
@@ -84,11 +80,9 @@ public class Mine extends MapAdaptor {
 
         @Override
         public void onSeasonChanged(Season season) {
-
         }
         @Override
         public void onDayChanged(int day) {
-            mineManager.spawnMinerals();
         }
     }
 }

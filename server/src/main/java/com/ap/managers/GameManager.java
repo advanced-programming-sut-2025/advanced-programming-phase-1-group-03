@@ -1,14 +1,9 @@
-package com.ap.model;
+package com.ap.managers;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
-import com.ap.audio.AudioService;
-import com.ap.managers.MapManager;
-import com.ap.managers.PlayerManager;
-import com.ap.managers.StoreManager;
+import com.ap.model.*;
 import com.ap.notifiers.ChangeSeasonNotifier;
-import com.ap.requests.BuyItemRequest;
-import com.ap.responses.BuyItemResponse;
 import com.ap.system.universal.ITimeListener;
 import com.ap.system.universal.NotifySystem;
 import com.ap.system.universal.TimeSystem;
@@ -108,6 +103,7 @@ public class GameManager {
         @Override
         public void onDayChanged(int newDay) {
             weatherSystem.setWeatherRandomly();
+            mapManager.goToHome();
         }
 
         @Override

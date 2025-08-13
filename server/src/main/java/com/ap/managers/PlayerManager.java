@@ -1,22 +1,15 @@
 package com.ap.managers;
 
-import com.ap.Constraints;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
-import com.ap.asset.SoundAsset;
 import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
-import com.ap.items.ItemFactory;
 import com.ap.items.tools.Tool;
 import com.ap.maps.Farm;
-import com.ap.model.GameManager;
 import com.ap.model.ServerPlayer;
-import com.ap.notifiers.ShowMessageNotifier;
 import com.ap.requests.MovePlayerRequest;
 import com.ap.system.universal.TimeSystem;
-import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.gdx.math.Vector2;
 
 import java.util.ArrayList;
 
@@ -30,7 +23,7 @@ public class PlayerManager {
     private final MessageSender messageSender;
     private final AbilityManager abilityManager;
     private final AudioService audioService;
-
+    private final EnergyManager energyManager;
     private final ArrayList<ServerPlayer> activeFromTradeRequests = new ArrayList<>();
     private final ArrayList<ServerPlayer> activeToTradeRequests = new ArrayList<>();
 
@@ -40,7 +33,7 @@ public class PlayerManager {
         this.messageSender = new MessageSender(player);
         inventory = new Inventory(player);
         abilityManager = new AbilityManager();
-
+        energyManager = new EnergyManager(gameManager.getWeatherSystem(), abilityManager, player);
         audioService = new AudioService(player);
         Tool.addBasicTools(inventory);
     }
@@ -133,5 +126,9 @@ public class PlayerManager {
 
     public ArrayList<ServerPlayer> getActiveToTradeRequests() {
         return activeToTradeRequests;
+    }
+
+    public EnergyManager getEnergyManager() {
+        return energyManager;
     }
 }

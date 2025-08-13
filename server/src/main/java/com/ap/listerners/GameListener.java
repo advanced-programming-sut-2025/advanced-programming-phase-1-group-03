@@ -5,13 +5,12 @@ import com.ap.managers.AbilityManager;
 import com.ap.maps.Farm;
 import com.ap.maps.Store;
 import com.ap.model.AbilityType;
-import com.ap.model.GameManager;
+import com.ap.managers.GameManager;
 import com.ap.model.ServerPlayer;
 import com.ap.model.TradeRoom;
 import com.ap.notifiers.*;
 import com.ap.packet.LeaderBoardInfo;
 import com.ap.packet.PlayerInfo;
-import com.ap.packet.TradeRoomStarter;
 import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
 import com.ap.responses.BuyItemResponse;
@@ -24,7 +23,6 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GameListener extends Listener {

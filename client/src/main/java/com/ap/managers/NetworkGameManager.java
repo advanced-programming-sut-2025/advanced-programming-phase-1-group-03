@@ -85,6 +85,10 @@ public class NetworkGameManager {
                 } else {
                     Carrier.mapper.get(entity).set(carrier);
                 }
+            } else if(component instanceof Shadow shadow) {
+                if(!Shadow.mapper.has(entity)) {
+                    entity.add(shadow);
+                }
             }
         }
     }

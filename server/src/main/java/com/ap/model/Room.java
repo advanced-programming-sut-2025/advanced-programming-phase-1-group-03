@@ -1,9 +1,9 @@
 package com.ap.model;
 
+import com.ap.managers.GameManager;
 import com.esotericsoftware.kryonet.Connection;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
 public class Room {

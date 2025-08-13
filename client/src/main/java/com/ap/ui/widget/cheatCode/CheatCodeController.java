@@ -80,7 +80,7 @@ public class CheatCodeController {
         } catch (Exception e) {
             return new Result(false, "value must be integer!");
         }
-        gameScreen.getEnergyManager().setPercentage(energy);
+      //  gameScreen.getEnergyManager().setPercentage(energy);
         return new Result(true, "energy amount successfully changed to " + energy + " .");
     }
 

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public enum MixedSeedsTypes {
-    SpringMixedSeeds(Season.Spring, new ArrayList<>(List.of(CropsType.Cauliflower, CropsType.Parsnip, CropsType.Potato, CropsType.BlueJazz, CropsType.Tulip))),
+    SpringMixedSeeds(Season.Spring, new ArrayList<>(List.of(CropsType.Cauliflower, CropsType.Parsnip, CropsType.Potato, CropsType.Blue_Jazz, CropsType.Tulip))),
     SummerMixedSeeds(Season.Summer, new ArrayList<>(List.of(CropsType.Corn,	CropsType.Hot_Pepper,	CropsType.Radish,	CropsType.Wheat,	CropsType.Poppy,	CropsType.Sunflower, CropsType.Summer_Spangle))),
     FallMixedSeeds(Season.Fall, new ArrayList<>(List.of(CropsType.Artichoke, CropsType.Corn,  CropsType.Pumpkin, CropsType.Sunflower, CropsType.Fairy_Rose)))
     ;

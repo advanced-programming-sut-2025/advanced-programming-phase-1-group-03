@@ -1,14 +1,18 @@
 package com.ap.managers;
 
 import com.ap.Constraints;
+import com.ap.items.tools.Tool;
+import com.ap.model.ServerPlayer;
 import com.ap.model.Weather;
-import com.ap.system.WeatherSystem;
+import com.ap.notifiers.EnergyNotifier;
+import com.ap.system.universal.WeatherSystem;
 
 public class EnergyManager {
     private WeatherSystem weatherSystem;
     private AbilityManager abilityManager;
     private int amount;
     private final int maxAmount = Constraints.MAX_ENERGY_AMOUNT;
+    private final ServerPlayer player;
 
     public float getPercentage() {
         return ((float)amount/(float)maxAmount);
@@ -21,10 +25,11 @@ public class EnergyManager {
         return maxAmount - amount;
     }
 
-    public EnergyManager(WeatherSystem weatherSystem, AbilityManager abilityManager) {
+    public EnergyManager(WeatherSystem weatherSystem, AbilityManager abilityManager, ServerPlayer player) {
         this.amount = maxAmount;
         this.abilityManager = abilityManager;
         this.weatherSystem = weatherSystem;
+        this.player = player;
     }
 
     public void advance(int diff) {
@@ -34,6 +39,7 @@ public class EnergyManager {
             amount = Math.max(0, amount + diff);
         if(amount <= 0)
             faint();
+        player.connection.sendTCP(new EnergyNotifier(getPercentage()));
     }
 
     private void faint() {
@@ -57,15 +63,15 @@ public class EnergyManager {
         this.amount = maxAmount;
     }
 
-//    public void reduceByUsingTool(Tool tool) {
-//        int base = tool.getEnergyConsumption();
-//        if (abilityManager.getAbility(tool.getRelatedAbility()).isMax())
-//            base -= 1;
-//        if (weatherSystem.getCurrentWeather().equals(Weather.Rain)) {
-//            base = (int) (base * 1.5f);
-//        } else if(weatherSystem.getCurrentWeather().equals(Weather.Snow)) {
-//            base *= 2;
-//        }
-//        advance(Math.min(0, -base));
-//    }
+    public void reduceByUsingTool(Tool tool) {
+        int base = tool.getEnergyConsumption();
+        if (abilityManager.getAbility(tool.getRelatedAbility()).isMax())
+            base -= 1;
+        if (weatherSystem.getCurrentWeather().equals(Weather.Rain)) {
+            base = (int) (base * 1.5f);
+        } else if(weatherSystem.getCurrentWeather().equals(Weather.Snow)) {
+            base *= 2;
+        }
+        advance(Math.min(0, -base));
+    }
 }

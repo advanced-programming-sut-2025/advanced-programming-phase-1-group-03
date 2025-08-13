@@ -28,6 +28,9 @@ public class TimeSystem extends EntitySystem {
     public void update(float deltaTime) {
         Time previousTime = getTime();
         timer += deltaTime * Constraints.GAME_SPEED;
+        if(previousTime.hour() == endHour) {
+            timer += (startHour - endHour + 24) * 60 * 60;
+        }
         notifyConsumer(previousTime);
     }
 
@@ -40,14 +43,14 @@ public class TimeSystem extends EntitySystem {
             if(currentTime.month() != previousTime.month()) {
                 listener.onMonthChanged(currentTime.month());
             }
-            if(currentTime.day() != previousTime.day()) {
-                listener.onDayChanged(currentTime.day());
-            }
             if(currentTime.hour() != previousTime.hour()) {
                 listener.onHourChanged(currentTime.hour());
             }
             if(currentTime.minute() != previousTime.minute()) {
                 listener.onMinuteChanged(currentTime.minute());
+            }
+            if(currentTime.day() != previousTime.day()) {
+                listener.onDayChanged(currentTime.day());
             }
         }
     }

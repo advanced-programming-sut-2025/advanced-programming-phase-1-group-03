@@ -40,15 +40,15 @@ public abstract class Tool extends Item {
         inventory.addItem(new Scythe(AtlasAsset.Tools, "scythe/normal"), 1);
         inventory.addItem(new Shear(AtlasAsset.Tools, "shear/normal"), 1);
         inventory.addItem(new WateringCan(AtlasAsset.Tools, "watering_can/normal"), 1);
-        inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Strawberry), 9);
+        inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Cauliflower), 9);
         inventory.addItem(ItemFactory.instance.CreateMixSeedCrop(MixedSeedsTypes.SpringMixedSeeds), 2);
-        inventory.addItem(ItemFactory.instance.CreateFertilizer(), 2);
+        inventory.addItem(ItemFactory.instance.CreateFertilizer(), 64);
 
     }
 
     @Override
     public void applyItem(WorldObject body, Engine engine, PlayerManager playerManager, World world) {
-        //game.getEnergyManager().reduceByUsingTool(this);
+        playerManager.getEnergyManager().reduceByUsingTool(this);
     }
 
     public AbilityType getRelatedAbility() {

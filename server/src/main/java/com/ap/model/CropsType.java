@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum CropsType {
-    BlueJazz("BlueJazz",
+    Blue_Jazz("BlueJazz",
             new ArrayList<>(Arrays.asList(1, 2, 2, 2)),
             7,
             true,

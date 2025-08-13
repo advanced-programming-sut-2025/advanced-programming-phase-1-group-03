@@ -64,6 +64,8 @@ public class GameListener extends Listener {
             gameScreen.getTradeMenu().makeInstance(notifier.starter, notifier.roomId);
         } else if(object instanceof TradeCommandNotifier notifier) {
             if(gameScreen.getTradeMenu().getInstance() != null) gameScreen.getTradeMenu().getInstance().processCommand(notifier);
+        } else if(object instanceof EnergyNotifier energyNotifier) {
+            gameScreen.updateEnergy(energyNotifier.amount);
         }
     }
 

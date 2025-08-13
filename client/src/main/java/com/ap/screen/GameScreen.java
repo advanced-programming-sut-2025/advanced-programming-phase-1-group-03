@@ -16,7 +16,6 @@ import com.ap.network.listeners.GameListener;
 import com.ap.notifiers.ChangeSeasonNotifier;
 import com.ap.notifiers.CreateMapNotifier;
 import com.ap.system.*;
-import com.ap.managers.EnergyManager;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
 import com.ap.ui.widget.*;
@@ -77,8 +76,6 @@ public class GameScreen extends AbstractScreen {
     private MapAsset currentMap;
     private TiledMap currentTiledMap;
 
-    private EnergyManager energyManager;
-
     private Map<MapAsset, Engine> engineCache = new HashMap<>();
 
     private GameClient client;
@@ -138,8 +135,6 @@ public class GameScreen extends AbstractScreen {
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock);
 
-        energyManager = new EnergyManager(weatherSystem, abilityManager);
-
 
         client.getListener(GameListener.class).setGameScreen(this);
 
@@ -158,7 +153,7 @@ public class GameScreen extends AbstractScreen {
         timeSystem.addListener(clockManager::receive);
 
         universalEngine.addSystem(weatherSystem);
-        universalEngine.addSystem(new EnergySystem(energyBar, energyManager));
+        universalEngine.addSystem(new EnergySystem(energyBar));
 
         // Play background music
         //audioService.playMusic(MusicAsset.Spring);
@@ -287,10 +282,6 @@ public class GameScreen extends AbstractScreen {
         return leaderBoard;
     }
 
-    public EnergyManager getEnergyManager() {
-        return energyManager;
-    }
-
     public Skin getSkin() {
         return skin;
     }
@@ -369,6 +360,10 @@ public class GameScreen extends AbstractScreen {
 
     public StoreManager getStoreManager() {
         return storeManager;
+    }
+
+    public void updateEnergy(float amount) {
+        energyBar.setEnergyPercent(amount);
     }
 
 

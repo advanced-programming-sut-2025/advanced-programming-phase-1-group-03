@@ -65,6 +65,11 @@ public class NetworkEntitySystem extends IteratingSystem implements EntityListen
             Helper.sendToAll(players, new ItemNotifier(engineId, network.getId(), carrier));
             carrier.setChanged(false);
         }
+        if(Shadow.mapper.has(entity) && Shadow.mapper.get(entity).isChanged()) {
+            Shadow shadow = Shadow.mapper.get(entity);
+            Helper.sendToAll(players, new ItemNotifier(engineId, network.getId(), shadow));
+            shadow.setChanged(false);
+        }
     }
 
     @Override

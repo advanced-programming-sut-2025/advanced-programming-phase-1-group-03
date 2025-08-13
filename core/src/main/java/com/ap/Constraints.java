@@ -15,7 +15,7 @@ public class Constraints {
     public static final float PLAYER_ANIMATION_FRAME_DURATION =  1/ 8f;
 
     // It means 1 second in the real world is equal to how many seconds in the game
-    public static final float GAME_SPEED = 6000;
+    public static final float GAME_SPEED = 1000;
     public static final float GAME_SPEED_MIN = 0.2f;
     public static final float GAME_SPEED_MAX = 7 * 24 * 60 * 60;
     // The game start at this hour
@@ -51,7 +51,7 @@ public class Constraints {
     };
 
     // in 10 probabilities
-    public static final int PROB_OF_GRASS_GIVE_FIBBER = 1;
+    public static final int PROB_OF_GRASS_GIVE_FIBBER = 10;
     public static final int PROP_OF_BECOME_GIANT = 1;
 
     public static final int STONE_Z = 1;
