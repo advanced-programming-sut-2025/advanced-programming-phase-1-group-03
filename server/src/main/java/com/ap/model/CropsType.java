@@ -407,5 +407,12 @@ public enum CropsType {
     public boolean isCanBecomeGiant() {
         return canBecomeGiant;
     }
-    
+
+    public static CropsType getFoodByName(String name) {
+        for(CropsType cropsType : CropsType.values()) {
+            if(cropsType.getName().equals(name))
+                return cropsType;
+        }
+        return null;
+    }
 }

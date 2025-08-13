@@ -38,7 +38,10 @@ public class GameListener extends Listener {
         } else if(object instanceof ShowMessageNotifier showMessageNotifier) {
             GameUIManager.instance.showMessageDialog(showMessageNotifier.message);
         } else if(object instanceof InventoryNotifier inventoryNotifier) {
-            gameScreen.getInventory().load(inventoryNotifier);
+            if(inventoryNotifier.isRefrigerator)
+                gameScreen.getRefrigerator().load(inventoryNotifier);
+            else
+                gameScreen.getInventory().load(inventoryNotifier);
         } else if(object instanceof BuildGreenhouseMsgNotifier buildGreenhouseMsgNotifier) {
             GameUIManager.instance.showGreenhouseMessage(
                     buildGreenhouseMsgNotifier.goldNeeded,

@@ -9,11 +9,8 @@ import com.ap.network.GameClient;
 import com.ap.packet.PlayerInfo;
 import com.ap.packet.TradeRoomStarter;
 import com.ap.screen.GameScreen;
-import com.ap.ui.widget.EmojiPanel;
-import com.ap.ui.widget.LeaderBoard;
+import com.ap.ui.widget.*;
 import com.ap.ui.widget.cheatCode.CheatCodeBox;
-import com.ap.ui.widget.CookingMenu;
-import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.tabContents.TabManager;
 import com.ap.ui.widget.tabContents.Tabs;
 import com.ap.utils.Helper;
@@ -31,6 +28,7 @@ public class ControllerSystem extends IteratingSystem {
     private CheatCodeBox cheatCodeBox;
     private LeaderBoard leaderBoard;
     private EmojiPanel emojiPanel;
+    private RefrigeratorMenu refrigeratorMenu;
     private TileSelectionSystem tileSelectionSystem;
     private int totalMovement = 0;
 
@@ -43,6 +41,7 @@ public class ControllerSystem extends IteratingSystem {
                             CheatCodeBox cheatCodeBox,
                             LeaderBoard leaderBoard,
                             EmojiPanel emojiPanel,
+                            RefrigeratorMenu refrigeratorMenu,
                             Engine engine,
                             GameClient gameClient,
                             GameScreen gameScreen) {
@@ -56,6 +55,7 @@ public class ControllerSystem extends IteratingSystem {
         this.gameScreen = gameScreen;
         this.leaderBoard = leaderBoard;
         this.emojiPanel = emojiPanel;
+        this.refrigeratorMenu = refrigeratorMenu;
     }
 
 
@@ -109,6 +109,8 @@ public class ControllerSystem extends IteratingSystem {
 //                    gameScreen.getTradeMenu().makeInstance(starter);
                 } case OpenEmoteMenu -> {
                     emojiPanel.toggle();
+                } case OpenRefrigerator -> {
+                    refrigeratorMenu.toggle();
                 }
             }
         }

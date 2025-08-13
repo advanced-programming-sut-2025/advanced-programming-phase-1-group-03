@@ -5,21 +5,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Stores Fixed">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/plant/Fertilizer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/plant/MixSeed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/RefrigeratorBackground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/RefrigeratorMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/CookingRecipeRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/IngredientRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/InventoryMoveRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/IsFoodRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/ReduceIngredientRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/addCookingItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/addCookingRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/AnswerResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/Refrigerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/Plants/crops.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Plants/crops.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/Plants/crops.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Plants/crops.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemNames.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/GdxGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/GdxGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/items/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/items/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/items/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/GMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/GMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/CookingMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/CookingMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/TextureAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/TextureAsset.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/input/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/FoodRecipes.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/FoodRecipes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Foods.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Foods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/InventoryNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/InventoryNotifier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/MapAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/MapAdaptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Mine.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Mine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/GrowSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/GrowSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/MixedSeedsTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/MixedSeedsTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/Cookings.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/Cookings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/CropsType.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/CropsType.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,48 +108,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Lwjgl3Launcher.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Run.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RunGDX.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
-    &quot;Application.client2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.clinet.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StarehdewValley [server:run].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.StarehdewValley2.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;external.system.has.shared.sources&quot;: &quot;true&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;network&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;D:/StarehdewValley/client/src/main/java/com/ap&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/StarehdewValley/client/src/main/java/com/ap/audio&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Problems&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Application.Client.executor": "Run",
+    "Application.Lwjgl3Launcher.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Run.executor": "Run",
+    "Application.RunGDX.executor": "Run",
+    "Application.Server.executor": "Run",
+    "Application.client2.executor": "Run",
+    "Application.clinet.executor": "Run",
+    "Gradle.Download Sources.executor": "Run",
+    "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
+    "Gradle.StardewValley [run].executor": "Run",
+    "Gradle.StarehdewValley [server:run].executor": "Run",
+    "Gradle.StarehdewValley2.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "external.system.has.shared.sources": "true",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "network",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "D:/StarehdewValley/client/src/main/java/com/ap",
+    "last_opened_file_path": "D:/StarehdewValley/client/src/main/java/com/ap/audio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.editor",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\StarehdewValley\client\src\main\java\com\ap\audio" />
@@ -153,7 +172,7 @@
       <recent name="com.ap.server.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.clinet">
+  <component name="RunManager" selected="Application.client2">
     <configuration name="clinet" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-23" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />

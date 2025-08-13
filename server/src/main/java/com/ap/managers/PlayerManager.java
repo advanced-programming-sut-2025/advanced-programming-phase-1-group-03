@@ -7,6 +7,7 @@ import com.ap.asset.SoundAsset;
 import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.ItemFactory;
+import com.ap.items.Refrigerator;
 import com.ap.items.tools.Tool;
 import com.ap.maps.Farm;
 import com.ap.model.GameManager;
@@ -27,6 +28,7 @@ public class PlayerManager {
     private Engine farmEngine;
     private boolean isGreenhouseBuilt = false;
     private Inventory inventory;
+    private Refrigerator refrigerator;
     private final MessageSender messageSender;
     private final AbilityManager abilityManager;
     private final AudioService audioService;
@@ -39,12 +41,16 @@ public class PlayerManager {
         this.player = player;
         this.messageSender = new MessageSender(player);
         inventory = new Inventory(player);
+        refrigerator = new Refrigerator(player);
         abilityManager = new AbilityManager();
 
         audioService = new AudioService(player);
         Tool.addBasicTools(inventory);
     }
 
+    public Refrigerator getRefrigerator() {
+        return refrigerator;
+    }
 
     public MapAsset getCurrentMapAsset() {
         return gameManager.getMapManager().currentMapAssets.get(player);
