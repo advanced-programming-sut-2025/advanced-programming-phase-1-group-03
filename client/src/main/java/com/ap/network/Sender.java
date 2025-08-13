@@ -164,6 +164,11 @@ public class Sender {
         return sendMessageAndWaitForResponse(request, RoommatesInfoResponse.class);
     }
 
+    public GetActiveTradeResponse sendGetActiveTradeRequest() {
+        var request = new GetActiveTradeRequest();
+        return sendMessageAndWaitForResponse(request, GetActiveTradeResponse.class);
+    }
+
     public void sendMove(float dx, float dy, boolean isKeyDown) {
         var request = new MovePlayerRequest(dx, dy, isKeyDown);
         client.sendTCP(request);
@@ -195,6 +200,11 @@ public class Sender {
 
     public void sendVote(String userName, int id, int voteNum) {
         var request = new VoteRequest(userName, id, voteNum);
+        client.sendTCP(request);
+    }
+
+    public void sendTradeStartRequest(String targetUsername) {
+        var request = new TradeStartRequest(targetUsername);
         client.sendTCP(request);
     }
 }

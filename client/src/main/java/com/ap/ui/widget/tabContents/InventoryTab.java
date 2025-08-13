@@ -1,5 +1,6 @@
 package com.ap.ui.widget.tabContents;
 
+import com.ap.Constraints;
 import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
 import com.ap.items.Inventory;
@@ -74,7 +75,7 @@ public class InventoryTab extends AbstractContent{
         cellHeight = 48 ;
 
         m = ItemContainer.maxSize;
-        n = MathUtils.ceil((float) Inventory.maxStorage / m);
+        n = MathUtils.ceil((float) Constraints.MAX_STORAGE_SIZE / m);
 
         tooltipHelper = TooltipHelper.getTooltip();
 
@@ -113,7 +114,7 @@ public class InventoryTab extends AbstractContent{
         addActor(itemContainer);
         addActor(backpack);
 
-        for (int x = 0; x < Inventory.maxStorage; x++) {
+        for (int x = 0; x < Constraints.MAX_STORAGE_SIZE; x++) {
             int i = x / m;
             int j = x % m;
             ItemCell cell = cells[i][j];

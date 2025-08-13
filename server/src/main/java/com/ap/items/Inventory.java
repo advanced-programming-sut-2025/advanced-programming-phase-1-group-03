@@ -66,7 +66,8 @@ public class Inventory {
     /**
      * Sending current status of inventory to the client
      */
-    private void sendInventory() {
+
+    public ArrayList<NetworkItemStack> getNetworkItems() {
         ArrayList<NetworkItemStack> networkItems = new ArrayList<>();
         for(ItemStack itemStack : items) {
             networkItems.add(new NetworkItemStack(
@@ -75,6 +76,11 @@ public class Inventory {
                     itemStack.getItem().atlasAsset,
                     itemStack.getItem().atlasKey));
         }
+        return networkItems;
+    }
+
+    private void sendInventory() {
+        ArrayList<NetworkItemStack> networkItems = getNetworkItems();
         var notifier = new InventoryNotifier(networkItems.toArray(new NetworkItemStack[0]), storage);
         player.connection.sendTCP(notifier);
     }

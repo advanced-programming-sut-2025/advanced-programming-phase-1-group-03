@@ -12,6 +12,7 @@ import com.ap.packet.PlayerInfo;
 import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
 import com.ap.responses.ChatResponse;
+import com.ap.responses.GetActiveTradeResponse;
 import com.ap.responses.LeaderBoardResponse;
 import com.ap.responses.RoommatesInfoResponse;
 import com.esotericsoftware.kryonet.Connection;
@@ -96,11 +97,38 @@ public class GameListener extends Listener {
             System.out.println("got request of roommatesInfo");
             List<ServerPlayer> players = senderPlayer.currentRoom.players;
             ArrayList<PlayerInfo> playerInfos = new ArrayList<>();
+            PlayerInfo yourInfo = new PlayerInfo(senderPlayer.username, senderPlayer.avatarIndex);
             for (ServerPlayer player : players) {
-//                if (player.username.equals(senderPlayer.username)) continue;
                 playerInfos.add(new PlayerInfo(player.username, player.avatarIndex));
             }
-            senderPlayer.connection.sendTCP(new RoommatesInfoResponse(playerInfos));
+            senderPlayer.connection.sendTCP(new RoommatesInfoResponse(playerInfos, yourInfo));
+        } else if (object instanceof TradeStartRequest tradeStartRequest) {
+            var targetPlayer = senderPlayer.currentRoom.players.stream()
+                    .filter((ServerPlayer p) -> p.username.equals(tradeStartRequest.targetUsername)).findFirst().orElse(null);
+            if (targetPlayer == null) return;
+            var existedReq = senderPlayer.playerManager.getActiveToTradeRequests().stream().filter(
+                    (ServerPlayer p) -> p.username.equals(tradeStartRequest.targetUsername)).findFirst().orElse(null);
+            if (existedReq == null) {
+                senderPlayer.playerManager.getActiveToTradeRequests().add(targetPlayer);
+            }
+            var existedReq2 = targetPlayer.playerManager.getActiveFromTradeRequests().stream().filter(
+                    (ServerPlayer p) -> p.username.equals(senderPlayer.username)).findFirst().orElse(null);
+            if (existedReq2 == null) {
+                targetPlayer.playerManager.getActiveFromTradeRequests().add(senderPlayer);
+            }
+            targetPlayer.connection.sendTCP(new PopupNotifier(senderPlayer.username, "new trade request received"));
+            System.out.println("pop up senttt");
+        } else if (object instanceof GetActiveTradeRequest getActiveTradeRequest) {
+            ArrayList<PlayerInfo> from = new ArrayList<>();
+            ArrayList<PlayerInfo> to = new ArrayList<>();
+            for (ServerPlayer activeFromTradeRequest : senderPlayer.playerManager.getActiveFromTradeRequests()) {
+                from.add(new PlayerInfo(activeFromTradeRequest.username, activeFromTradeRequest.avatarIndex));
+            }
+            for (ServerPlayer activeToTradeRequest : senderPlayer.playerManager.getActiveToTradeRequests()) {
+                to.add(new PlayerInfo(activeToTradeRequest.username, activeToTradeRequest.avatarIndex));
+            }
+            var response = new GetActiveTradeResponse(from, to);
+            senderPlayer.connection.sendTCP(response);
         }
     }
 }

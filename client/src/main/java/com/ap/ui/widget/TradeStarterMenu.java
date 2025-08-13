@@ -4,6 +4,7 @@ import com.ap.Constraints;
 import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
 import com.ap.packet.PlayerInfo;
+import com.ap.responses.GetActiveTradeResponse;
 import com.ap.screen.GameScreen;
 import com.ap.ui.actor.SimpleDialog;
 import com.ap.ui.widget.tabContents.AbstractContent;
@@ -50,12 +51,13 @@ public class TradeStarterMenu extends AbstractContent {
     private Group lineGroup;
 
     private RequestFrom from;
+    private int fromIndex;
     private RequestTo to;
+    private int toIndex;
+    private ArrayList<RequestFrom> fromRequests;
+    private ArrayList<RequestTo> toRequests;
     private Image up1, up2, down1, down2;
 
-    //username of them, these are active
-    private ArrayList<String> offersReceived;
-    private ArrayList<String> offersSent;
 
     @Override
     public void makeStructure() {
@@ -71,122 +73,149 @@ public class TradeStarterMenu extends AbstractContent {
     }
 
     public void loadTrades() {
+        removeRequestsActors();
+        System.out.println("loading trades...");
         int n = 4, m = 8;
-        //TODO request for real data
-        from = new RequestFrom("user1", Helper.random(0, 7), n, m);
-        to = new RequestTo("user2", Helper.random(0, 7), n, m);
 
+        GetActiveTradeResponse activeTrades = gameScreen.getGameClient().getSender().sendGetActiveTradeRequest();
+        fromRequests = new ArrayList<>();
+        toRequests = new ArrayList<>();
+        for (PlayerInfo playerInfo : activeTrades.from) {
+            fromRequests.add(new RequestFrom(playerInfo.username, playerInfo.avatarIndex, n, m));
+        }
+        for (PlayerInfo playerInfo : activeTrades.to) {
+            toRequests.add(new RequestTo(playerInfo.username, playerInfo.avatarIndex, n, m));
+        }
+        fromIndex = 0;
+        toIndex = 0;
         float pWidth = 40;
+        if (!fromRequests.isEmpty()) {
+            from = fromRequests.get(fromIndex);
+            up1 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_up"), pWidth, pWidth);
+            down1 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_down"), pWidth, pWidth);
+            up1.setSize(pWidth, pWidth);
+            down1.setSize(pWidth, pWidth);
+            up1.pack();
+            down1.pack();
+            up1.addListener(new ClickListener() {
+                public void clicked(InputEvent event, float x, float y) {
+                    fromIndex = (fromIndex -1 + fromRequests.size()) % fromRequests.size();
+                    from = fromRequests.get(fromIndex);
+                }
+            });
+            down1.addListener(new ClickListener() {
+                public void clicked(InputEvent event, float x, float y) {
+                    fromIndex = (fromIndex + 1 + fromRequests.size()) % fromRequests.size();
+                    from = fromRequests.get(fromIndex);
+                }
+            });
+            up1.addListener(new InputListener() {
+                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                    up1.addAction(Actions.scaleTo(1f, 1.1f, 0.1f));
+                    audioService.playSound(SoundAsset.HoverButton);
+                }
+                public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                    up1.addAction(Actions.scaleTo(1f, 1f, 0.1f));
+                    TooltipHelper.getTooltip().setVisible(false);
+                }
+            });
+            down1.addListener(new InputListener() {
+                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                    down1.addAction(Actions.scaleTo(1f, 1.1f, 0.1f));
+                    audioService.playSound(SoundAsset.HoverButton);
+                }
+                public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                    down1.addAction(Actions.scaleTo(1f, 1f, 0.1f));
+                    TooltipHelper.getTooltip().setVisible(false);
+                }
+            });
+            up1.setPosition(getTileWidth() + m * getTileWidth(), getTileHeight() * (n - 1));
+            down1.setPosition(getTileWidth() + m * getTileWidth(), getTileHeight() * (n - 1) - up1.getPrefHeight());
+            from.setPosition(getTileWidth() + m * getTileWidth() + pWidth, getTileHeight());
+            addActor(from);
+            addActor(up1);
+            addActor(down1);
+        }
+        if (!toRequests.isEmpty()) {
+            to =  toRequests.get(toIndex);
 
-        up1 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_up"), pWidth, pWidth);
-        down1 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_down"), pWidth, pWidth);
 
-        up2 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_up"), pWidth, pWidth);
-        down2 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_down"), pWidth, pWidth);
+            up2 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_up"), pWidth, pWidth);
+            down2 = getNewImage(assetService.get(AtlasAsset.Pointers).findRegion("pointer_down"), pWidth, pWidth);
 
-        up1.setSize(pWidth, pWidth);
-        down1.setSize(pWidth, pWidth);
-        up2.setSize(pWidth, pWidth);
-        down2.setSize(pWidth, pWidth);
-        up1.pack();
-        up2.pack();
-        down1.pack();
-        down2.pack();
+            up2.setSize(pWidth, pWidth);
+            down2.setSize(pWidth, pWidth);
+            up2.pack();
+            down2.pack();
 
 
-        up1.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
-                //TODO scroll
-            }
-        });
 
-        up2.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
+            up2.addListener(new ClickListener() {
+                public void clicked(InputEvent event, float x, float y) {
+                    toIndex = (toIndex - 1 + toRequests.size()) % toRequests.size();
+                    to =  toRequests.get(toIndex);
+                }
+            });
 
-            }
-        });
 
-        down1.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
+            down2.addListener(new ClickListener() {
+                public void clicked(InputEvent event, float x, float y) {
+                    toIndex = (toIndex + 1 + toRequests.size()) % toRequests.size();
+                    to =  toRequests.get(toIndex);
+                }
+            });
 
-            }
-        });
 
-        down2.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
+            up2.addListener(new InputListener() {
+                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                    up2.addAction(Actions.scaleTo(1f, 1.1f, 0.1f));
+                    audioService.playSound(SoundAsset.HoverButton);
+                }
+                public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                    up2.addAction(Actions.scaleTo(1f, 1f, 0.1f));
+                    TooltipHelper.getTooltip().setVisible(false);
+                }
+            });
 
-            }
-        });
 
-        up1.addListener(new InputListener() {
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                up1.addAction(Actions.scaleTo(1f, 1.1f, 0.1f));
-                audioService.playSound(SoundAsset.HoverButton);
-            }
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                up1.addAction(Actions.scaleTo(1f, 1f, 0.1f));
-                TooltipHelper.getTooltip().setVisible(false);
-            }
-        });
+            down2.addListener(new InputListener() {
+                public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
+                    down2.addAction(Actions.scaleTo(1f, 1.1f, 0.1f));
+                    audioService.playSound(SoundAsset.HoverButton);
+                }
+                public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
+                    down2.addAction(Actions.scaleTo(1f, 1f, 0.1f));
+                    TooltipHelper.getTooltip().setVisible(false);
+                }
+            });
 
-        up2.addListener(new InputListener() {
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                up2.addAction(Actions.scaleTo(1f, 1.1f, 0.1f));
-                audioService.playSound(SoundAsset.HoverButton);
-            }
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                up2.addAction(Actions.scaleTo(1f, 1f, 0.1f));
-                TooltipHelper.getTooltip().setVisible(false);
-            }
-        });
 
-        down1.addListener(new InputListener() {
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                down1.addAction(Actions.scaleTo(1f, 1.1f, 0.1f));
-                audioService.playSound(SoundAsset.HoverButton);
-            }
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                down1.addAction(Actions.scaleTo(1f, 1f, 0.1f));
-                TooltipHelper.getTooltip().setVisible(false);
-            }
-        });
+            up2.setPosition(getTileWidth() + m * getTileWidth() + pWidth + m * getTileWidth(), getTileHeight() * (n - 1));
+            down2.setPosition(getTileWidth() + m * getTileWidth() + pWidth + m * getTileWidth(), getTileHeight() * (n - 1) - pWidth);
 
-        down2.addListener(new InputListener() {
-            public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                down2.addAction(Actions.scaleTo(1f, 1.1f, 0.1f));
-                audioService.playSound(SoundAsset.HoverButton);
-            }
-            public void exit(InputEvent event, float x, float y, int pointer, Actor toActor) {
-                down2.addAction(Actions.scaleTo(1f, 1f, 0.1f));
-                TooltipHelper.getTooltip().setVisible(false);
-            }
-        });
+            to.setPosition(getTileWidth(), getTileHeight());
 
-        up1.setPosition(getTileWidth() + m * getTileWidth(), getTileHeight() * (n - 1));
-        down1.setPosition(getTileWidth() + m * getTileWidth(), getTileHeight() * (n - 1) - up1.getPrefHeight());
+            addActor(up2);
+            addActor(down2);
+            addActor(to);
 
-        up2.setPosition(getTileWidth() + m * getTileWidth() + up1.getPrefWidth() + m * getTileWidth(), getTileHeight() * (n - 1));
-        down2.setPosition(getTileWidth() + m * getTileWidth() + up1.getPrefWidth() + m * getTileWidth(), getTileHeight() * (n - 1) - up2.getPrefHeight());
 
-        to.setPosition(getTileWidth(), getTileHeight());
-        from.setPosition(getTileWidth() + m * getTileWidth() + up1.getPrefWidth(), getTileHeight());
+        }
 
-        addActor(up1);
-        addActor(up2);
-        addActor(down1);
-        addActor(down2);
-        addActor(to);
-        addActor(from);
     }
 
     @Override
     public void loadData() {
+        removeActors();
         selectedPlayer = -1;
-//        players = gameScreen.getGameClient().getSender().sendRoommatesInfoRequest().players;
-        players = new ArrayList<>();
-        for (int i = 0; i < Constraints.MAX_PLAYERS_NUMBER; i++) {
-            players.add(new PlayerInfo("user" + i, Helper.random(0, 7)));
-        }
+        var roommates = gameScreen.getGameClient().getSender().sendRoommatesInfoRequest();
+        players = roommates.players;
+//        for (PlayerInfo player : players) {
+//            if (player.username.equals(roommates.yourInfo.username)) {
+//                players.remove(player);
+//                break;
+//            }
+//        }
 
         n = players.size();
 
@@ -251,10 +280,9 @@ public class TradeStarterMenu extends AbstractContent {
         addActor(choosePlayerLabel);
         addActor(playersTable);
 
-//        gameScreen.getGameClient()
 
 
-        float downHeight = height - title.getPrefHeight() - 30 - playersTable.getPrefHeight();
+        float downHeight = height - title.getPrefHeight() - 30 - 160;
 
         sendRequestButton = new TextButton("Start Trade", skin);
         historyButton = new TextButton("Trade History", skin);
@@ -267,9 +295,13 @@ public class TradeStarterMenu extends AbstractContent {
 
         sendRequestButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                if (selectedPlayer == -1) {
+                if (selectedPlayer < 0 || selectedPlayer >= players.size()) {
                     var dialog = new SimpleDialog("", "select a player", skin);
                     dialog.show(stage);
+                } else {
+                    audioService.playSound(SoundAsset.Gift);
+                    gameScreen.getGameClient().getSender().sendTradeStartRequest(players.get(selectedPlayer).username);
+                    loadTrades();
                 }
             }
         });
@@ -296,13 +328,15 @@ public class TradeStarterMenu extends AbstractContent {
         removeActor(historyButton);
         removeActor(sendRequestButton);
         removeActor(lineGroup);
+        removeRequestsActors();
+    }
+    public void removeRequestsActors() {
         removeActor(from);
         removeActor(to);
         removeActor(up1);
         removeActor(up2);
         removeActor(down1);
         removeActor(down2);
-
     }
 
     public void toggle() {

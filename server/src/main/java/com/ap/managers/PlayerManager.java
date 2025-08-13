@@ -18,6 +18,8 @@ import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 public class PlayerManager {
     private final GameManager gameManager;
     private final ServerPlayer player;
@@ -27,6 +29,9 @@ public class PlayerManager {
     private final AudioService audioService;
     private final MessageSender messageSender;
     private final AbilityManager abilityManager;
+
+    private final ArrayList<ServerPlayer> activeFromTradeRequests = new ArrayList<>();
+    private final ArrayList<ServerPlayer> activeToTradeRequests = new ArrayList<>();
 
     public PlayerManager(GameManager gameManager, ServerPlayer player) {
         this.gameManager = gameManager;
@@ -107,5 +112,13 @@ public class PlayerManager {
 
     public void setFarmMap(MapAsset farmMap) {
         this.farmMap = farmMap;
+    }
+
+    public ArrayList<ServerPlayer> getActiveFromTradeRequests() {
+        return activeFromTradeRequests;
+    }
+
+    public ArrayList<ServerPlayer> getActiveToTradeRequests() {
+        return activeToTradeRequests;
     }
 }

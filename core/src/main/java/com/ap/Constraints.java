@@ -69,4 +69,7 @@ public class Constraints {
     public static final int tabHeight = 440;
 
     public static final int MAX_PLAYERS_NUMBER = 4;
+
+    public static final int MAX_TRADE_BUFFER_SIZE = 4;
+    public static final int MAX_STORAGE_SIZE = 36;
 }

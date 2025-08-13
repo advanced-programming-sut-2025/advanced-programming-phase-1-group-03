@@ -6,6 +6,8 @@ import com.ap.component.Network;
 import com.ap.component.Player;
 import com.ap.input.Command;
 import com.ap.network.GameClient;
+import com.ap.packet.PlayerInfo;
+import com.ap.packet.TradeRoomStarter;
 import com.ap.screen.GameScreen;
 import com.ap.ui.widget.EmojiPanel;
 import com.ap.ui.widget.LeaderBoard;
@@ -14,10 +16,13 @@ import com.ap.ui.widget.CookingMenu;
 import com.ap.ui.widget.CraftingMenu;
 import com.ap.ui.widget.tabContents.TabManager;
 import com.ap.ui.widget.tabContents.Tabs;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+
+import java.util.ArrayList;
 
 public class ControllerSystem extends IteratingSystem {
     private TabManager tabManager;
@@ -102,6 +107,8 @@ public class ControllerSystem extends IteratingSystem {
                     leaderBoard.toggle();
                 } case OpenTradeStarter -> {
                     gameScreen.getTradeStarterMenu().toggle();
+//                    TradeRoomStarter starter = new TradeRoomStarter(new PlayerInfo("user0", Helper.random(0, 7)), new ArrayList<>(), new PlayerInfo("user1", Helper.random(0, 7)), new ArrayList<>());
+//                    gameScreen.getTradeMenu().makeInstance(starter);
                 } case OpenEmoteMenu -> {
                     emojiPanel.toggle();
                 }

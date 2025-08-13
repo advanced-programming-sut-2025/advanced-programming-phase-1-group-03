@@ -11,6 +11,7 @@ import com.ap.component.Transform;
 import com.ap.model.*;
 import com.ap.notifiers.*;
 import com.ap.packet.PlayerInfo;
+import com.ap.packet.TradeRoomStarter;
 import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
 import com.ap.responses.*;
@@ -151,6 +152,11 @@ public class Registrator {
 
         kryo.register(PopupNotifier.class);
         kryo.register(VoteNotifier.class);
+
+        kryo.register(GetActiveTradeRequest.class);
+        kryo.register(GetActiveTradeResponse.class);
+        kryo.register(TradeStartRequest.class);
+        kryo.register(TradeRoomStarter.class);
 
         kryo.register(short[].class);
         kryo.register(VoiceNetData.class);

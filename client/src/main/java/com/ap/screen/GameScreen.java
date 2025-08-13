@@ -57,6 +57,7 @@ public class GameScreen extends AbstractScreen {
     private LightningStorm lightningStorm;
     private TabManager tabManager;
     private TradeStarterMenu tradeStarterMenu;
+    private TradeMenu tradeMenu;
     private Journal journal;
     private CheatCodeBox cheatCodeBox;
     private LeaderBoard leaderBoard;
@@ -131,6 +132,7 @@ public class GameScreen extends AbstractScreen {
         cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
         tabManager = new TabManager(this);
         tradeStarterMenu = new TradeStarterMenu(this);
+        tradeMenu = new TradeMenu(this);
         clockManager = new ClockManager(clock);
         leaderBoard = new LeaderBoard(assetService, stage, this);
         emojiPanel = EmojiPanel.getInstance(skin, stage, assetService, this);
@@ -359,6 +361,10 @@ public class GameScreen extends AbstractScreen {
 
     public TradeStarterMenu getTradeStarterMenu() {
         return tradeStarterMenu;
+    }
+
+    public TradeMenu getTradeMenu() {
+        return tradeMenu;
     }
 
     //    class TimeListener implements ITimeListener {

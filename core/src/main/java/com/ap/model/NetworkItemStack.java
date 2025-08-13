@@ -8,6 +8,7 @@ public class NetworkItemStack {
     public AtlasAsset atlasAsset;
     public String atlasKey;
 
+
     public NetworkItemStack() {
     }
 
