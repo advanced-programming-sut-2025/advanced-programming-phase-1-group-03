@@ -1,18 +1,15 @@
 package com.ap.managers;
 
-import com.ap.Constraints;
 import com.ap.audio.AudioService;
 import com.ap.model.Menus;
+import com.ap.model.StoreProduct;
 import com.ap.model.store.CarpenterShop;
 import com.ap.model.store.StardropSaloonProducts;
 import com.ap.network.Sender;
 import com.ap.requests.VoteRequest;
 import com.ap.screen.GameScreen;
-import com.ap.system.ControllerSystem;
 import com.ap.ui.widget.*;
-import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import java.util.HashMap;
@@ -48,7 +45,7 @@ public class GameUIManager {
         stage.addActor(dialog);
     }
 
-    public void displayMenu(Menus menu, BiConsumer<StoreMenu.StoreProduct, Menus> onBuy) {
+    public void displayMenu(Menus menu, BiConsumer<StoreProduct, Menus> onBuy) {
         switch (menu) {
             case StardropSaloonMenu:
                 menus.put(menu, (new StoreMenu(
@@ -57,6 +54,7 @@ public class GameUIManager {
                         "Hungry? Thirsty? I've got just the thing.", menu,
                         StardropSaloonProducts.buildStoreItems(gameScreen.getAssetService()), onBuy)
                 ));
+                break;
             case CarpenterShopMenu:
                 menus.put(menu, (new StoreMenu(
                         gameScreen.getAssetService(), skin, stage, gameScreen.getInventory(),
@@ -64,6 +62,7 @@ public class GameUIManager {
                         "Carpenter's Shop!", menu,
                         CarpenterShop.buildStoreItems(gameScreen.getAssetService()), onBuy)
                 ));
+                break;
         }
         stage.addActor(menus.get(menu));
     }

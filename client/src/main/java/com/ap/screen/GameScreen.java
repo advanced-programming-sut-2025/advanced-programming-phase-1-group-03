@@ -8,10 +8,9 @@ import com.ap.asset.MapAsset;
 import com.ap.audio.AudioService;
 import com.ap.audio.VoiceChatClient;
 import com.ap.input.KeyboardController;
-import com.ap.items.EntityFactory;
 import com.ap.items.Inventory;
-import com.ap.items.ItemFactory;
 import com.ap.managers.*;
+import com.ap.model.GameData;
 import com.ap.network.GameClient;
 import com.ap.network.listeners.GameListener;
 import com.ap.notifiers.ChangeSeasonNotifier;
@@ -62,7 +61,6 @@ public class GameScreen extends AbstractScreen {
     private LeaderBoard leaderBoard;
 
     private ClockManager clockManager;
-    private MapManager mapManager;
     private CheatCodeController cheatCodeController;
 
     private Inventory inventory;
@@ -91,6 +89,8 @@ public class GameScreen extends AbstractScreen {
 
     public boolean sendVoiceMessage = false;
 
+    private StoreManager storeManager;
+
     public GameScreen(GdxGame game) {
         super(game);
         universalEngine = new Engine();
@@ -108,8 +108,6 @@ public class GameScreen extends AbstractScreen {
         audioService = game.getAudioService();
 
         GameUIManager.instance.setup(stage, skin, audioService, this);
-        ItemFactory.instance.setAssetService(assetService);
-        EntityFactory.instance.setup(assetService, audioService);
 
         // Setup inventory
         TooltipHelper.setTooltip(skin);
@@ -137,8 +135,6 @@ public class GameScreen extends AbstractScreen {
 
         energyManager = new EnergyManager(weatherSystem, abilityManager);
 
-        mapManager = new MapManager(game, this);
-     //   mapManager.loadAllMaps();
 
         client.getListener(GameListener.class).setGameScreen(this);
 
@@ -146,6 +142,8 @@ public class GameScreen extends AbstractScreen {
         voiceChat.addReceiver(client.getClient());
 
         networkGameManager = new NetworkGameManager(this, game);
+
+        storeManager = new StoreManager(audioService, client);
     }
 
 
@@ -240,9 +238,6 @@ public class GameScreen extends AbstractScreen {
         return camera;
     }
 
-    public MapManager getMapManger() {
-        return mapManager;
-    }
 
     public TabManager getTabManager() {
         return tabManager;
@@ -303,8 +298,8 @@ public class GameScreen extends AbstractScreen {
         return timeSystem;
     }
 
-    public void setAnimation(String atlasKey, AtlasAsset atlasAsset, int entityId, float speed, Animation.PlayMode playMode) {
-        networkGameManager.setAnimation(atlasKey, atlasAsset, entityId, speed, playMode);
+    public void setAnimation(String atlasKey, AtlasAsset atlasAsset, int entityId, int engineId , float speed, Animation.PlayMode playMode) {
+        networkGameManager.setAnimation(atlasKey, atlasAsset, entityId, engineId, speed, playMode);
     }
 
     public void changeMap(int engineId) {
@@ -353,6 +348,16 @@ public class GameScreen extends AbstractScreen {
     public TradeStarterMenu getTradeStarterMenu() {
         return tradeStarterMenu;
     }
+
+    public void updateGold(int gold) {
+        clock.setGold(gold);
+        GameData.getInstance().setPlayerGold(gold);
+    }
+
+    public StoreManager getStoreManager() {
+        return storeManager;
+    }
+
 
     //    class TimeListener implements ITimeListener {
 //

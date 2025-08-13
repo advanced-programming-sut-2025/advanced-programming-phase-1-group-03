@@ -2,6 +2,7 @@ package com.ap.system;
 
 import com.ap.Constraints;
 import com.ap.asset.AssetService;
+import com.ap.asset.AtlasAsset;
 import com.ap.component.Graphic;
 import com.ap.component.Transform;
 import com.badlogic.ashley.core.Entity;
@@ -97,7 +98,9 @@ public class RenderSystem extends SortedIteratingSystem {
         if(graphic.getAtlas() == null) {
             return;
         }
+
         var texture = graphic.getRegion();
+
         if(texture == null && graphic.getRegionIndex() != null) {
             texture = assetService.get(graphic.getAtlas()).findRegions(graphic.getAtlasKey()).get(graphic.getRegionIndex());
         }

@@ -4,6 +4,7 @@ import com.ap.Constraints;
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.asset.SoundAsset;
+import com.ap.asset.TextureAsset;
 import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
@@ -11,6 +12,8 @@ import com.ap.items.ItemStack;
 import com.ap.managers.GameUIManager;
 import com.ap.model.GameData;
 import com.ap.model.Menus;
+import com.ap.model.StoreProduct;
+import com.ap.utils.Helper;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -31,7 +34,7 @@ import java.util.ArrayList;
 import java.util.function.BiConsumer;
 
 public class StoreMenu extends Actor {
-    private TextureRegion background;
+    private Texture background;
     private final TextureAtlas atlas;
     private TextureRegion character;
     private String characterString;
@@ -71,11 +74,12 @@ public class StoreMenu extends Actor {
         this.atlas = assetService.get(AtlasAsset.Character);
         this.characterString = characterString;
         this.buyConsumer = buyConsumer;
-        background = new TextureRegion(new Texture(Gdx.files.internal("graphics/StoreBackground.png")));
         this.message = message;
         setUpUI(characterString);
         list = products;
-        createWhiteTexture();
+        Gdx.app.postRunnable(() -> {
+            whiteTexture = Helper.createWhiteTexture();
+        });
 
         stage.addListener(event = new InputListener() {
             @Override
@@ -115,19 +119,12 @@ public class StoreMenu extends Actor {
     }
 
     private void setUpUI(String characterString) {
-        setX((Constraints.WORLD_WIDTH_RESOLUTION - background.getRegionWidth()) / 2f);
-        setY((Constraints.WORLD_HEIGHT_RESOLUTION - background.getRegionHeight()) / 2f);
-        background = new TextureRegion(new Texture(Gdx.files.internal("graphics/StoreBackground.png")));
+        background = assetService.get(TextureAsset.StoreBackground);
+        setX((Constraints.WORLD_WIDTH_RESOLUTION - background.getWidth()) / 2f);
+        setY((Constraints.WORLD_HEIGHT_RESOLUTION - background.getHeight()) / 2f);
         character = atlas.findRegion(characterString);
     }
 
-    private void createWhiteTexture() {
-        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
-        whiteTexture = new TextureRegion(new Texture(pixmap));
-        pixmap.dispose();
-    }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -278,24 +275,6 @@ public class StoreMenu extends Actor {
         font.draw(batch, storeProduct.name, getX() + posX + 30, getY() + posY - row * eachY);
         String sellString = Integer.toString(storeProduct.sellPrice);
         font.draw(batch, sellString, getX() + posX + 450 + (4 - sellString.length()) * 13, getY() + posY - row * eachY);
-    }
-
-    public static class StoreProduct {
-       public TextureRegion texture;
-       public String name;
-       public String enumName;
-       public String description;
-       public int sellPrice;
-       public int row;
-
-        public StoreProduct(TextureRegion texture, String name, String enumName, String description, int sellPrice, int row) {
-            this.texture = texture;
-            this.name = name;
-            this.enumName = enumName;
-            this.sellPrice = sellPrice;
-            this.row = row;
-            this.description = description;
-        }
     }
 
     @Override

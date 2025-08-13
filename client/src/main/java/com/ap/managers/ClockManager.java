@@ -36,9 +36,7 @@ public class ClockManager  {
 
     public void receive(Time time) {
         clock.setDate(buildDate(time.month(), time.day()));
-        if(time.minute() % 10 == 0) {
-            clock.setTime(buildTime(time.hour(), time.minute()));
-        }
+        clock.setTime(buildTime(time.hour(), time.minute()));
         float progress = totalSecondsFrom(time.totalSeconds(), startHour) / ((endHour - startHour) * 60 * 60f);
         clock.setArrowAngle((int) (180 - (progress) * 180));
         clock.setSeason(time.season());

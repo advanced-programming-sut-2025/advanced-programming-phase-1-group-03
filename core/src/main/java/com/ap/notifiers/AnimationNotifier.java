@@ -9,13 +9,16 @@ public class AnimationNotifier {
     public int entityId;
     public float speed;
     public Animation.PlayMode playMode;
+    public int engineId;
+
     public AnimationNotifier() {
     }
 
-    public AnimationNotifier(String atlasKey, AtlasAsset atlasAsset, int entityId, float speed, Animation.PlayMode playMode) {
+    public AnimationNotifier(String atlasKey, AtlasAsset atlasAsset, int entityId, int engineId, float speed, Animation.PlayMode playMode) {
         this.atlasKey = atlasKey;
         this.atlasAsset = atlasAsset;
         this.entityId = entityId;
+        this.engineId = engineId;
         this.speed = speed;
         this.playMode = playMode;
     }

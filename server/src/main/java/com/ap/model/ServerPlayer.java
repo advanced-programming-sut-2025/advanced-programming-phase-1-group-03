@@ -2,6 +2,7 @@ package com.ap.model;
 
 import com.ap.asset.MapAsset;
 import com.ap.managers.PlayerManager;
+import com.ap.notifiers.SendGoldNotifier;
 import com.badlogic.ashley.core.Engine;
 import com.esotericsoftware.kryonet.Connection;
 
@@ -18,5 +19,10 @@ public class ServerPlayer {
         this.username = username;
         this.connection = connection;
         this.avatarIndex = avatarIndex;
+    }
+
+    public void advanceGold(int g) {
+        this.gold += g;
+        connection.sendTCP(new SendGoldNotifier(gold));
     }
 }

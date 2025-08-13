@@ -9,6 +9,7 @@ import com.ap.component.Network;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.AnimationNotifier;
 import com.ap.utils.Helper;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
@@ -16,10 +17,17 @@ import com.badlogic.gdx.utils.Array;
 
 public class AnimationSystem extends IteratingSystem {
     private Array<ServerPlayer> players;
+    private int engineId;
 
     public AnimationSystem(Array<ServerPlayer> players) {
         super(Family.all(Animation2D.class, Facing.class, Graphic.class, Network.class).get());
         this.players = players;
+    }
+
+    @Override
+    public void addedToEngine(Engine engine) {
+        super.addedToEngine(engine);
+        engineId = Helper.getEngineId(engine);
     }
 
     @Override
@@ -43,7 +51,7 @@ public class AnimationSystem extends IteratingSystem {
         String combinedKey = (!atlasKey.isEmpty() ? atlasKey+ "/" : "") +type.getAtlasKey() + "_" + facing.getAtlasKey();
         animation2D.setAnimation(facing);
         Helper.sendToAllTCP(players, new AnimationNotifier(
-                combinedKey, atlasAsset, id, animation2D.getSpeed(), animation2D.getPlayMode()
+                combinedKey, atlasAsset, id, engineId,animation2D.getSpeed(), animation2D.getPlayMode()
         ));
     }
 

@@ -4,10 +4,7 @@ import com.ap.asset.AtlasAsset;
 import com.ap.asset.MapAsset;
 import com.ap.asset.MusicAsset;
 import com.ap.asset.SoundAsset;
-import com.ap.component.Facing;
-import com.ap.component.Graphic;
-import com.ap.component.Player;
-import com.ap.component.Transform;
+import com.ap.component.*;
 import com.ap.model.*;
 import com.ap.notifiers.*;
 import com.ap.packet.PlayerInfo;
@@ -154,5 +151,16 @@ public class Registrator {
 
         kryo.register(short[].class);
         kryo.register(VoiceNetData.class);
+
+        kryo.register(QuitRoomRequest.class);
+        kryo.register(SendGoldNotifier.class);
+
+        kryo.register(StoreMenuOpenOrExitNotifier.class);
+        kryo.register(Menus.class);
+        kryo.register(BuyItemRequest.class);
+        kryo.register(BuyItemResponse.class);
+
+        kryo.register(PlaceCarrierRequest.class);
+        kryo.register(Carrier.class);
     }
 }

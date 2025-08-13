@@ -12,11 +12,16 @@ public class BackButtonLayer extends Table {
     private Skin skin;
     private GdxGame game;
     private Class<? extends Screen> parentScreen;
+    private Runnable whenBack;
 
     public BackButtonLayer(GdxGame game, Skin skin, Class<? extends Screen> parentScreen) {
+        this(game, skin, parentScreen, null);
+    }
+    public BackButtonLayer(GdxGame game, Skin skin, Class<? extends Screen> parentScreen, Runnable whenBack) {
         this.skin = skin;
         this.parentScreen = parentScreen;
         this.game = game;
+        this.whenBack = whenBack;
         setupUI();
     }
 
@@ -38,6 +43,9 @@ public class BackButtonLayer extends Table {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 game.setScreen(parentScreen);
+                if(whenBack != null) {
+                    whenBack.run();
+                }
             }
         });
     }

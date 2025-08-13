@@ -4,6 +4,7 @@ import com.ap.asset.MusicAsset;
 import com.ap.audio.AudioService;
 import com.ap.component.*;
 import com.ap.items.Item;
+import com.ap.managers.PlayerManager;
 import com.ap.model.Season;
 import com.ap.model.ServerPlayer;
 import com.badlogic.ashley.core.Engine;
@@ -51,6 +52,20 @@ public class Helper {
         return (float) Math.sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
     }
 
+    public static boolean canPlace(Vector2 position, Vector2 size, World world) {
+        final boolean[] found = {false};
+        world.QueryAABB(new QueryCallback() {
+            @Override
+            public boolean reportFixture(Fixture fixture) {
+                if(!fixture.isSensor())
+                    found[0] = true;
+                return true;
+            }
+        }, position.x, position.y , position.x + size.x, position.y + size.y);
+        return !found[0];
+    }
+
+
     public static int random(int min, int max) {
         return new Random().nextInt(max - min + 1) + min;
     }
@@ -70,21 +85,25 @@ public class Helper {
     }
 
 
-    public static void playMusicOfSeason(AudioService audioService, Season season) {
-        switch (season) {
-            case Spring -> {
-                  audioService.playMusic(MusicAsset.Spring);
-            }
-            case Summer -> {
-                 audioService.playMusic(MusicAsset.Summer);
-            }
-            case Fall -> {
-                audioService.playMusic(MusicAsset.Fall);
-            }
-            case Winter -> {
-                audioService.playMusic(MusicAsset.Winter);
+    public static void playMusicOfSeason(Array<ServerPlayer> players, Season season) {
+        for(ServerPlayer player : players) {
+            var audioService = player.playerManager.getAudioService();
+            switch (season) {
+                case Spring -> {
+                    audioService.playMusic(MusicAsset.Spring);
+                }
+                case Summer -> {
+                    audioService.playMusic(MusicAsset.Summer);
+                }
+                case Fall -> {
+                    audioService.playMusic(MusicAsset.Fall);
+                }
+                case Winter -> {
+                    audioService.playMusic(MusicAsset.Winter);
+                }
             }
         }
+
     }
 
     public static void removeEntity(Entity entity, Engine engine, World world) {
@@ -166,5 +185,14 @@ public class Helper {
             }
         }
         return null;
+    }
+
+    public static ServerPlayer findPlayer(Array<ServerPlayer> players, int id) {
+        for(ServerPlayer serverPlayer : players) {
+            if(serverPlayer.id == id) {
+                return serverPlayer;
+            }
+        }
+        throw new NullPointerException("Player not found");
     }
 }

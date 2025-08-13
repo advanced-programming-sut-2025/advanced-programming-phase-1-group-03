@@ -2,6 +2,7 @@ package com.ap.managers;
 
 import com.ap.Constraints;
 import com.ap.items.EntityFactory;
+import com.ap.model.MineralNodes;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -63,11 +64,11 @@ public class MineManager {
         if(!ok) {
             return false;
         }
-//        Entity entity = EntityFactory.instance.CreateMineralNodeEntity(
-//                new Vector2(x, y),
-//                MineralNodes.getRandom(),
-//                world);
-//        engine.addEntity(entity);
+        Entity entity = EntityFactory.instance.CreateMineralNodeEntity(
+                new Vector2(x, y),
+                MineralNodes.getRandom(),
+                world);
+        Helper.addEntity(entity, engine);
         return true;
     }
 

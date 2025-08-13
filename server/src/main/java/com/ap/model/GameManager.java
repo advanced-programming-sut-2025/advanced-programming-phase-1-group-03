@@ -2,9 +2,13 @@ package com.ap.model;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
+import com.ap.audio.AudioService;
 import com.ap.managers.MapManager;
 import com.ap.managers.PlayerManager;
+import com.ap.managers.StoreManager;
 import com.ap.notifiers.ChangeSeasonNotifier;
+import com.ap.requests.BuyItemRequest;
+import com.ap.responses.BuyItemResponse;
 import com.ap.system.universal.ITimeListener;
 import com.ap.system.universal.NotifySystem;
 import com.ap.system.universal.TimeSystem;
@@ -54,6 +58,8 @@ public class GameManager {
     public void playerJoined(ServerPlayer player, MapAsset map) {
         player.playerManager = new PlayerManager(this, player);
         player.playerManager.setFarmMap(map);
+        // We notify the client the amount of gold we have at the start
+        player.advanceGold(0);
         mapManager.playerArrived(player, map, player.playerManager);
     }
 
@@ -83,7 +89,6 @@ public class GameManager {
     public MapManager getMapManager() {
         return mapManager;
     }
-
 
     private class TimeListener implements ITimeListener {
         @Override

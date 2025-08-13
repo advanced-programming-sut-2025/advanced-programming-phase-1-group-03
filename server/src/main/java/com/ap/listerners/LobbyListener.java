@@ -48,6 +48,7 @@ public class LobbyListener extends Listener {
             room.players.add(senderPlayer);
             room.owner = senderPlayer;
             room.visible = request.isVisible;
+            room.lastTimePlayerArrived = System.currentTimeMillis();
             senderPlayer.currentRoom = room;
 
             ServerData.instance.activeRooms.add(room);
@@ -67,11 +68,13 @@ public class LobbyListener extends Listener {
         } else if(object instanceof JoinRoomRequest request) {
             Room room = ServerData.instance.activeRooms.stream().filter((Room r) -> r.id == request.roomId).findFirst().orElse(null);
             if(room == null) {
-                var response = new JoinRoomResponse(false, "Hacker poofyooz");
+                var response = new JoinRoomResponse(false, "Room removed");
                 connection.sendTCP(response);
                 return;
             }
             if(room.players.size() < 4 && room.password.equals(request.password)) {
+                room.lastTimePlayerArrived = System.currentTimeMillis();
+
                 room.players.add(senderPlayer);
                 senderPlayer.id = room.players.size();
 
@@ -98,6 +101,19 @@ public class LobbyListener extends Listener {
             var game = senderPlayer.currentRoom.game;
             senderPlayer.connection.sendTCP(new SetMapResponse());
             game.playerJoined(senderPlayer, request.map);
+        } else if(object instanceof QuitRoomRequest) {
+            if(senderPlayer.currentRoom == null) {
+                return;
+            }
+            senderPlayer.currentRoom.players.remove(senderPlayer);
+            if(senderPlayer.currentRoom.players.isEmpty()) {
+                ServerData.instance.activeRooms.remove(senderPlayer.currentRoom);
+            }
+            for(int i = 0; i < senderPlayer.currentRoom.players.size(); i++) {
+                senderPlayer.currentRoom.players.get(i).id = i;
+            }
+            senderPlayer.currentRoom = null;
+
         }
     }
 

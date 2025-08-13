@@ -1,8 +1,11 @@
 package com.ap.managers;
 
 import com.ap.asset.MapAsset;
+import com.ap.asset.MusicAsset;
 import com.ap.maps.Farm;
 import com.ap.maps.IMap;
+import com.ap.maps.Mine;
+import com.ap.maps.Store;
 import com.ap.model.GameManager;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.ChangeMapNotifier;
@@ -30,36 +33,39 @@ public class MapManager {
     public void playerArrived(ServerPlayer serverPlayer, MapAsset playerMap, PlayerManager playerManager) {
         players.add(serverPlayer);
         for(MapAsset mapAsset : MapAsset.values()) {
+
             ServerPlayer player = mapAsset.isMapPublic ? null : serverPlayer;
 
             IMap map;
             if(!mapCache.containsKey(new MapKey(mapAsset, player))) {
-                map = createMap(mapAsset, playerManager, serverPlayer.id);
+                map = createMap(mapAsset, serverPlayer.id);
                 map.setup(mapAsset);
             } else {
                 map = mapCache.get(new MapKey(mapAsset, player));
             }
             map.addPlayer(serverPlayer, mapAsset);
             mapCache.put(new MapKey(mapAsset, player), map);
+
+            if(mapAsset == playerManager.getFarmMap()) {
+                playerManager.setFarmEngine(map.getEngine());
+            }
         }
         farmMaps.put(serverPlayer, playerMap);
 
         setMap(serverPlayer, playerMap);
+
     }
 
-    private IMap createMap(MapAsset map, PlayerManager playerManager, int playerId) {
+    private IMap createMap(MapAsset map, int playerId) {
         switch (map) {
             case Farm1, Farm2, Forest, Town -> {
-                return new Farm(gameManager, playerManager, this, playerId);
+                return new Farm(gameManager, this, playerId);
             } case House,Greenhouse -> {
-                return new Farm(gameManager, playerManager, this, playerId);
-                //return new House(game, gameScreen);
+                return new Farm(gameManager, this, playerId);
             } case Mine -> {
-                return new Farm(gameManager, playerManager, this, playerId);
-                //return new Mine(game, gameScreen);
+                return new Mine(gameManager,this, playerId);
             } case StardropSaloon, CarpenterShop -> {
-                return new Farm(gameManager, playerManager, this, playerId);
-                // return new Store(game, gameScreen);
+                return new Store(gameManager, this, playerId);
             }
         }
         throw new IllegalArgumentException("Map " + map.name() + " is not supported");

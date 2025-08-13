@@ -39,21 +39,6 @@ public class Item {
     }
 
     /**
-     * Items can override this method
-     * When item picked up from ground this method will be called
-     */
-    public void onItemPickedUp() {
-    }
-
-    /**
-     * This method create new entity for item, we use it when we want to show the item on the map
-     * @return New entity
-     */
-    public Entity createEntity() {
-        return new Entity();
-    }
-
-    /**
      * This method returns that can we stack these two items?
      * By default, it checks only names equivalency
      * @param other Other item
@@ -61,13 +46,6 @@ public class Item {
      */
     public boolean canStackWith(Item other) {
         return other.getName().equals(this.getName());
-    }
-
-    /**
-     * This method called when player is close to the item
-     */
-    public void interact(Body body, Engine engine, GameScreen game) {
-
     }
 
     public static class WorldObject {

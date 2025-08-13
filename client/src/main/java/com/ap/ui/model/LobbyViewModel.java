@@ -58,4 +58,8 @@ public class LobbyViewModel extends ViewModel {
     public void loadJoinScreen() {
         game.setScreen(JoiningScreen.class);
     }
+
+    public void whenBack() {
+        client.getSender().quitRoom();
+    }
 }

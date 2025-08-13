@@ -2,6 +2,8 @@ package com.ap.listerners;
 
 import com.ap.ServerData;
 import com.ap.managers.AbilityManager;
+import com.ap.maps.Farm;
+import com.ap.maps.Store;
 import com.ap.model.AbilityType;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.ChatNotifier;
@@ -11,6 +13,7 @@ import com.ap.packet.LeaderBoardInfo;
 import com.ap.packet.PlayerInfo;
 import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
+import com.ap.responses.BuyItemResponse;
 import com.ap.responses.ChatResponse;
 import com.ap.responses.LeaderBoardResponse;
 import com.ap.responses.RoommatesInfoResponse;
@@ -65,7 +68,6 @@ public class GameListener extends Listener {
         } else if(object instanceof VoiceNetData voicePacket) {
             senderPlayer.currentRoom.broadcastUDP(voicePacket, senderPlayer);
         } else if(object instanceof LeaderBoardRequest) {
-            System.out.println("salam man gereftam");
             List<ServerPlayer> players = senderPlayer.currentRoom.players;
             ArrayList<LeaderBoardInfo> leaderBoardInfos = new ArrayList<>();
             for(ServerPlayer serverPlayer : players) {
@@ -81,7 +83,6 @@ public class GameListener extends Listener {
             }
             senderPlayer.connection.sendTCP(new LeaderBoardResponse(leaderBoardInfos));
         } else if (object instanceof VoteRequest voteRequest) {
-            System.out.println(senderPlayer.username + " " + voteRequest.id + " " + voteRequest.userName + " " + voteRequest.voteNum);
             if(voteRequest.voteNum == 1) {
                 var notifier = new VoteNotifier(voteRequest.userName, senderPlayer.username, voteRequest.id, voteRequest);
                 senderPlayer.currentRoom.broadcast(notifier, senderPlayer);
@@ -90,7 +91,6 @@ public class GameListener extends Listener {
                     //TODO implement kicking player
             }
         } else if(object instanceof RoommatesInfoRequest) {
-            System.out.println("got request of roommatesInfo");
             List<ServerPlayer> players = senderPlayer.currentRoom.players;
             ArrayList<PlayerInfo> playerInfos = new ArrayList<>();
             for (ServerPlayer player : players) {
@@ -98,6 +98,19 @@ public class GameListener extends Listener {
                 playerInfos.add(new PlayerInfo(player.username, player.avatarIndex));
             }
             senderPlayer.connection.sendTCP(new RoommatesInfoResponse(playerInfos));
+        } else if(object instanceof BuyItemRequest buyRequest) {
+            var map = senderPlayer.currentRoom.game.getMapManager().currentMaps.get(senderPlayer);
+            if(map instanceof Store store) {
+                var result = store.buyItem(senderPlayer.id, buyRequest);
+                senderPlayer.connection.sendTCP(result);
+            } else {
+                senderPlayer.connection.sendTCP(new BuyItemResponse(false, "You are not in the store"));
+            }
+        } else if(object instanceof PlaceCarrierRequest) {
+            var map = senderPlayer.currentRoom.game.getMapManager().currentMaps.get(senderPlayer);
+            if(map instanceof Farm farm) {
+                farm.placeCarrier();
+            }
         }
     }
 }
