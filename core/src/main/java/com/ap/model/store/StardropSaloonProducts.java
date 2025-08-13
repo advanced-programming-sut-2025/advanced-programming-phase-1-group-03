@@ -4,7 +4,7 @@ import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.model.FoodRecipes;
 import com.ap.model.Foods;
-import com.ap.ui.widget.StoreMenu;
+import com.ap.model.StoreProduct;
 
 import java.util.ArrayList;
 
@@ -63,8 +63,8 @@ public enum StardropSaloonProducts {
         return food;
     }
 
-    public static ArrayList<StoreMenu.StoreProduct> buildStoreItems(AssetService assetService) {
-        ArrayList<StoreMenu.StoreProduct> list = new ArrayList<>();
+    public static ArrayList<StoreProduct> buildStoreItems(AssetService assetService) {
+        ArrayList<StoreProduct> list = new ArrayList<>();
         int row = 0;
         for(StardropSaloonProducts product : StardropSaloonProducts.values()) {
             String key = product.name();
@@ -72,7 +72,7 @@ public enum StardropSaloonProducts {
                 key = key.replace("Recipe", "");
             }
             var texture = assetService.get(AtlasAsset.Foods).findRegion(key);
-            list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.name(), product.description, product.getPrice(), row++));
+            list.add(new StoreProduct(texture, product.getName(), product.name(), product.description, product.getPrice(), row++));
         }
         return list;
     }

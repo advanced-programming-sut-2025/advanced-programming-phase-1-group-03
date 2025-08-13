@@ -32,7 +32,6 @@ public class ControllerSystem extends IteratingSystem {
     private LeaderBoard leaderBoard;
     private EmojiPanel emojiPanel;
     private TileSelectionSystem tileSelectionSystem;
-    private CarrierSystem carrierSystem;
     private int totalMovement = 0;
 
     private GameClient gameClient;
@@ -50,7 +49,6 @@ public class ControllerSystem extends IteratingSystem {
         super(Family.all(Controller.class).get());
         this.gameClient = gameClient;
         this.tileSelectionSystem = engine.getSystem(TileSelectionSystem.class);
-        this.carrierSystem = engine.getSystem(CarrierSystem.class);
         this.craftingMenu = craftingMenu;
         this.cookingMenu = cookingMenu;
         this.tabManager = tabManager;
@@ -100,7 +98,7 @@ public class ControllerSystem extends IteratingSystem {
                 } case OpenCheatCode -> {
                     cheatCodeBox.toggle();
                 } case Place -> {
-                    carrierSystem.place();
+                    gameClient.getSender().placeCarrier();
                 } case Talk -> {
                     gameScreen.sendVoiceMessage = true;
                 } case OpenLeaderBoard -> {

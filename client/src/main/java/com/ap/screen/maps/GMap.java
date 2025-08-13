@@ -6,6 +6,7 @@ import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.input.GameControllerState;
 import com.ap.input.KeyboardController;
+import com.ap.managers.StoreManager;
 import com.ap.managers.WeatherEffects;
 import com.ap.model.Season;
 import com.ap.screen.GameScreen;
@@ -49,6 +50,7 @@ public class GMap {
 
         this.rayHandler = gameScreen.getRayHandler();
 
+
     }
 
     private void addSystems() {
@@ -73,6 +75,7 @@ public class GMap {
             engine.addSystem(new TileSelectionSystem(gameScreen.getBatch(), gameScreen.getItemContainer(), gameScreen));
         }
 
+        engine.addSystem(new CarrierSystem(game.getBatch()));
         engine.addSystem(new ControllerSystem(
                 gameScreen.getTabManager(),
                 gameScreen.getCraftingMenu(),
@@ -140,4 +143,5 @@ public class GMap {
     public void changeSeasonTileset(Season newSeason) {
         Helper.changeSeasonTileset(newSeason, map, assetService);
     }
+
 }

@@ -12,6 +12,7 @@ import com.ap.managers.PlayerManager;
 import com.ap.model.GameManager;
 import com.ap.model.Season;
 import com.ap.model.ServerPlayer;
+import com.ap.notifiers.CreateMapNotifier;
 import com.ap.notifiers.ShowMessageNotifier;
 import com.ap.system.*;
 import com.ap.system.universal.ITimeListener;
@@ -26,8 +27,8 @@ public class Farm extends MapAdaptor {
 //    private GiantCropManager giantCropManager;
 //    private CrowAttackSystem crowAttackSystem;
 
-    public Farm(GameManager gameManager, PlayerManager playerManager, MapManager mapManager, int playerId) {
-        super(gameManager, playerManager, mapManager, playerId);
+    public Farm(GameManager gameManager, MapManager mapManager, int playerId) {
+        super(gameManager, mapManager, playerId);
 
     }
 
@@ -40,14 +41,29 @@ public class Farm extends MapAdaptor {
         growSystem = new GrowSystem(weatherSystem);
         engine.addSystem(growSystem);
 
+        engine.addSystem(new CarrierSystem(
+                engine,
+                world,
+                players,
+                playerId));
+        engine.addSystem(new EmoteSystem());
         engine.addSystem(new PhysicMoveSystem());
-        engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, playerManager));
+        engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, players));
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(players));
         engine.addSystem(new AdjustAlphaSystem(engine));
     }
 
+    @Override
+    public void addPlayer(ServerPlayer player, MapAsset map) {
+        // Send to player to create this map
+        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, true, true));
+
+        engine.getSystem(NetworkEntitySystem.class).shouldSend();
+
+        players.add(player);
+    }
     @Override
     public void setup(MapAsset map) {
         super.setup(map);
@@ -82,6 +98,8 @@ public class Farm extends MapAdaptor {
     }
 
     public void buildGreenhouse(ServerPlayer player) {
+        var inventory = player.playerManager.getInventory();
+
         if(!inventory.have(ItemFactory.instance.CreateWood(), Constraints.GREEN_HOUSE_WOOD_NEEDED)) {
             player.connection.sendTCP(new ShowMessageNotifier("We don't have enough wood to build greenhouse!"));
             return;
@@ -92,21 +110,25 @@ public class Farm extends MapAdaptor {
         }
         // reduce coin and wood
         inventory.removeItem(ItemFactory.instance.CreateWood(), Constraints.GREEN_HOUSE_WOOD_NEEDED);
-        player.gold -= Constraints.GREEN_HOUSE_GOLD_NEEDED;
+        player.advanceGold(-Constraints.GREEN_HOUSE_GOLD_NEEDED);
 
-        audioService.playSound(SoundAsset.Gift, 0.5f);
+        player.playerManager.getAudioService().playSound(SoundAsset.Gift, 0.5f);
 
         Entity greenhouse = engine.getEntitiesFor(Family.all(GreenhouseCmp.class).get()).first();
         Graphic.mapper.get(greenhouse).setAtlas(AtlasAsset.MapObjects);
         Graphic.mapper.get(greenhouse).setAtlasKey("greenhouse_built");
-        playerManager.setBuildGreenhouse(true);
+        player.playerManager.setBuildGreenhouse(true);
+    }
+
+    public void placeCarrier() {
+        engine.getSystem(CarrierSystem.class).place();
     }
 
     class TimeListener implements ITimeListener {
 
         @Override
         public void onSeasonChanged(Season season) {
-            Helper.playMusicOfSeason(audioService, season);
+            Helper.playMusicOfSeason(players, season);
         }
         @Override
         public void onDayChanged(int day) {

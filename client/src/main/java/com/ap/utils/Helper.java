@@ -11,6 +11,8 @@ import com.ap.items.Item;
 import com.ap.model.Season;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapLayer;
@@ -28,6 +30,16 @@ import java.util.Random;
 
 public class Helper {
 
+
+    public static TextureRegion createWhiteTexture() {
+        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.WHITE);
+        pixmap.fill();
+        var texture = new TextureRegion(new Texture(pixmap));
+        pixmap.dispose();
+        return texture;
+    }
+
     public static void removeEntity(Entity entity, Engine engine, World world) {
         if(Container.mapper.has(entity)) {
             for(Entity child : Container.mapper.get(entity).getChildren()) {
@@ -43,75 +55,6 @@ public class Helper {
     public static int random(int min, int max) {
         return new Random().nextInt(max - min + 1) + min;
     }
-    public static void addEntity(Entity entity, Engine engine) {
-        engine.addEntity(entity);
-        if(Container.mapper.has(entity)) {
-            for(Entity child : Container.mapper.get(entity).getChildren()) {
-                addEntity(child, engine);
-            }
-        }
-    }
-
-    public static boolean canPlace(Vector2 position, Vector2 size, World world) {
-        final boolean[] found = {false};
-        world.QueryAABB(new QueryCallback() {
-            @Override
-            public boolean reportFixture(Fixture fixture) {
-                if(!fixture.isSensor())
-                    found[0] = true;
-                return true;
-            }
-        }, position.x, position.y , position.x + size.x, position.y + size.y);
-        return !found[0];
-    }
-    public static Item.WorldObject getTopBodyAtPoint(Vector2 tilePos, World world, TiledMap map) {
-
-        tilePos.add(new Vector2(0.5f, 0.5f));
-        final Body[] topBody = {null};
-        final int[] highestZIndex = {-1};
-        final float[] highestYIndex = {-1};
-        int x = (int) tilePos.x, y = (int) tilePos.y;
-
-        world.QueryAABB(new QueryCallback() {
-            @Override
-            public boolean reportFixture(Fixture fixture) {
-                if(fixture.getBody().getUserData() instanceof Entity entity) {
-                    if (Transform.mapper.has(entity)) {
-                        Transform transform = Transform.mapper.get(entity);
-                        if (transform.getZ() > highestZIndex[0]) {
-                            highestZIndex[0] = transform.getZ();
-                            highestYIndex[0] = -1;
-                            topBody[0] = fixture.getBody();
-                        } else if(transform.getZ() == highestZIndex[0] &&
-                            transform.getSortOffsetY()  > highestYIndex[0]) {
-                            highestYIndex[0] = transform.getSortOffsetY();
-                            topBody[0] = fixture.getBody();
-                        }
-                    }
-                }
-                return true;
-            }
-        }, tilePos.x - 0.01f, tilePos.y - 0.01f, tilePos.x + 0.01f, tilePos.y + 0.01f);
-
-        if(highestZIndex[0] == -1) {
-            TiledMapTile last = null;
-
-            for(MapLayer layer : map.getLayers()) {
-                if(!(layer instanceof TiledMapTileLayer tileLayer)) {
-                    continue;
-                }
-                var cell = (tileLayer).getCell((int) tilePos.x, (int) tilePos.y);
-                if(cell == null) {
-                    continue;
-                }
-                last = cell.getTile();
-            }
-            return new Item.WorldObject(last, tilePos);
-        }
-        return new Item.WorldObject(topBody[0].getUserData(), topBody[0].getPosition());
-    }
-
-
 
 
     public static float calculateDistance(Vector2 a, Vector2 b) {

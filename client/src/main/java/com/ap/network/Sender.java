@@ -2,6 +2,7 @@ package com.ap.network;
 
 import com.ap.Configuration;
 import com.ap.asset.MapAsset;
+import com.ap.model.Menus;
 import com.ap.requests.*;
 import com.ap.responses.*;
 import com.ap.model.Gender;
@@ -252,5 +253,20 @@ public class Sender {
     public TradeHistoryResponse sendTradeHistoryRequest() {
         var req = new TradeHistoryRequest();
         return sendMessageAndWaitForResponse(req, TradeHistoryResponse.class);
+    }
+
+    public void quitRoom() {
+        var request = new QuitRoomRequest();
+        client.sendTCP(request);
+    }
+
+    public BuyItemResponse BuyItem(Menus menu, String enumName) {
+        var request = new BuyItemRequest(enumName, menu);
+        return sendMessageAndWaitForResponse(request, BuyItemResponse.class);
+    }
+
+    public void placeCarrier() {
+        var request = new PlaceCarrierRequest();
+        client.sendTCP(request);
     }
 }

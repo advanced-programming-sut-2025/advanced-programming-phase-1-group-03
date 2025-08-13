@@ -3,10 +3,7 @@ package com.ap.maps;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
-import com.ap.audio.AudioService;
-import com.ap.items.Inventory;
 import com.ap.managers.MapManager;
-import com.ap.managers.PlayerManager;
 import com.ap.model.GameManager;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.CreateMapNotifier;
@@ -47,25 +44,19 @@ public abstract class MapAdaptor implements IMap {
 
     protected Array<ServerPlayer> players = new Array<>();
 
-    protected PlayerManager playerManager;
-
     protected MapManager mapManager;
 
-    protected AudioService audioService;
+    protected int playerId;
 
-    protected Inventory inventory;
-
-    public MapAdaptor(GameManager gameManager, PlayerManager playerManager,MapManager mapManager, int playerId) {
-        this.audioService = playerManager.getAudioService();
+    public MapAdaptor(GameManager gameManager, MapManager mapManager, int playerId) {
+        this.playerId = playerId;
         this.gameManager = gameManager;
         this.mapManager = mapManager;
-        this.playerManager = playerManager;
-        this.inventory = playerManager.getInventory();
 
         engine = new Engine();
         Helper.createIdForEngine(engine);
 
-        assetService = playerManager.getAssetService();
+        assetService = gameManager.getAssetService();
 
         Box2D.init();
 
@@ -127,22 +118,30 @@ public abstract class MapAdaptor implements IMap {
 
 
     @Override
-    public void applyItem(int index, int x, int y) {
-        playerManager.getInventory().getItems().get(index).getItem().applyItem(
-                Helper.getTopBodyAtPoint(new Vector2(x, y), world, map),
-                engine,
-                playerManager,
-                world
-        );
+    public void applyItem(int index, int x, int y, int id) {
+        var player = getPlayer(id);
+        if(player != null) {
+            player.playerManager.getInventory().getItems().get(index).getItem().applyItem(
+                    Helper.getTopBodyAtPoint(new Vector2(x, y), world, map),
+                    engine,
+                    player.playerManager,
+                    world
+            );
+        }
     }
 
+    private ServerPlayer getPlayer(int id) {
+        for(ServerPlayer player : players) {
+            if(player.id == id) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+
     @Override
-    public void addPlayer(ServerPlayer player, MapAsset map) {
-        players.add(player);
-
-        // Send to player to create this map
-        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, true, true));
-
-        engine.getSystem(NetworkEntitySystem.class).shouldSend();
+    public Engine getEngine() {
+        return engine;
     }
 }

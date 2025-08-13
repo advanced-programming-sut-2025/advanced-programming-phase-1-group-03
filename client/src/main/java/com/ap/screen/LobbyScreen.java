@@ -30,7 +30,7 @@ public class LobbyScreen extends AbstractScreen {
         var viewModel = new LobbyViewModel(game);
         client.getListener(LobbyListener.class).setLobbyViewModel(viewModel);
         this.stage.addActor(new LobbyView(stage, skin, viewModel, audioService, assetService));
-        this.stage.addActor(new BackButtonLayer(game, skin, MainMenuScreen.class));
+        this.stage.addActor(new BackButtonLayer(game, skin, MainMenuScreen.class, viewModel::whenBack));
         game.setInputProcessors(stage, controller);
     }
 

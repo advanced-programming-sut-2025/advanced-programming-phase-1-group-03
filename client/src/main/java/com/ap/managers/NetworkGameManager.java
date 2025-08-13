@@ -36,17 +36,9 @@ public class NetworkGameManager {
 
 
     public void updateEntity(int engineId, int itemId, Component[] components) {
-        var map = maps.get(engineId);
-        assert map != null;
 
         Entity entity;
-        if(entities.containsKey(itemId)) {
-            entity = entities.get(itemId);
-        } else {
-            entity = map.createEntity();
-            entity.add(new Network(itemId));
-            entities.put(itemId, entity);
-        }
+        entity = getEntity(itemId, engineId);
 
         for(Component component : components) {
             if(component instanceof Graphic graphic) {
@@ -87,15 +79,33 @@ public class NetworkGameManager {
                 } else {
                     Facing.mapper.get(entity).set(facing);
                 }
+            } else if(component instanceof Carrier carrier) {
+                if(!Carrier.mapper.has(entity)) {
+                    entity.add(carrier);
+                } else {
+                    Carrier.mapper.get(entity).set(carrier);
+                }
             }
         }
     }
 
-    public void setAnimation(String atlasKey, AtlasAsset atlasAsset, int entityId, float speed, Animation.PlayMode playMode) {
-        Entity entity = entities.get(entityId);
-        if(entity == null) {
-            return;
+    private Entity getEntity(int itemId, int engineId) {
+        var map = maps.get(engineId);
+        assert map != null;
+
+        Entity entity;
+        if(entities.containsKey(itemId)) {
+            entity = entities.get(itemId);
+        } else {
+            entity = map.createEntity();
+            entity.add(new Network(itemId));
+            entities.put(itemId, entity);
         }
+        return entity;
+    }
+
+    public void setAnimation(String atlasKey, AtlasAsset atlasAsset, int entityId, int engineId, float speed, Animation.PlayMode playMode) {
+        Entity entity = getEntity(entityId, engineId);
         if(Animation2D.mapper.has(entity)) {
             Animation2D animation2D = Animation2D.mapper.get(entity);
             animation2D.set(atlasAsset, atlasKey, playMode);

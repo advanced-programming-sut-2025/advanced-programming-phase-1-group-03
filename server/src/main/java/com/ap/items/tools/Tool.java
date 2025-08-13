@@ -8,6 +8,7 @@ import com.ap.items.ItemFactory;
 import com.ap.managers.PlayerManager;
 import com.ap.model.AbilityType;
 import com.ap.model.CropsType;
+import com.ap.model.MixedSeedsTypes;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -39,7 +40,10 @@ public abstract class Tool extends Item {
         inventory.addItem(new Scythe(AtlasAsset.Tools, "scythe/normal"), 1);
         inventory.addItem(new Shear(AtlasAsset.Tools, "shear/normal"), 1);
         inventory.addItem(new WateringCan(AtlasAsset.Tools, "watering_can/normal"), 1);
-        inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Cauliflower), 9);
+        inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Strawberry), 9);
+        inventory.addItem(ItemFactory.instance.CreateMixSeedCrop(MixedSeedsTypes.SpringMixedSeeds), 2);
+        inventory.addItem(ItemFactory.instance.CreateFertilizer(), 2);
+
     }
 
     @Override

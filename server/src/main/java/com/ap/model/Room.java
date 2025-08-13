@@ -17,9 +17,11 @@ public class Room {
     public ServerPlayer owner;
     public boolean visible;
 
-    public List<ServerPlayer> players = new ArrayList<>();
+    public ArrayList<ServerPlayer> players = new ArrayList<>();
 
     public GameManager game = null;
+
+    public long lastTimePlayerArrived;
 
     public void broadcast(Consumer<Connection> consumer) {
         for(ServerPlayer player : players) {

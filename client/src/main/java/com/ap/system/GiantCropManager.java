@@ -1,15 +1,8 @@
 package com.ap.system;
 
 import com.ap.Constraints;
-import com.ap.component.Growable;
-import com.ap.component.ItemHolder;
-import com.ap.items.EntityFactory;
-import com.ap.items.Item;
-import com.ap.model.CropsType;
-import com.ap.utils.Helper;
 import com.badlogic.ashley.core.*;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.Random;

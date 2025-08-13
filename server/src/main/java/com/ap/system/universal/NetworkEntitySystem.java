@@ -60,6 +60,11 @@ public class NetworkEntitySystem extends IteratingSystem implements EntityListen
             Helper.sendToAll(players, new ItemNotifier(engineId, network.getId(), facing));
             facing.setChanged(false);
         }
+        if(Carrier.mapper.has(entity) && Carrier.mapper.get(entity).isChanged()) {
+            Carrier carrier = Carrier.mapper.get(entity);
+            Helper.sendToAll(players, new ItemNotifier(engineId, network.getId(), carrier));
+            carrier.setChanged(false);
+        }
     }
 
     @Override
@@ -85,6 +90,9 @@ public class NetworkEntitySystem extends IteratingSystem implements EntityListen
             }
             if(Player.mapper.has(entity)) {
                 Player.mapper.get(entity).isNotified = false;
+            }
+            if(Carrier.mapper.has(entity)) {
+                Carrier.mapper.get(entity).setChanged(true);
             }
         }
     }

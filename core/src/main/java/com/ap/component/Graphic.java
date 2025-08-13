@@ -67,6 +67,7 @@ public class Graphic implements Component {
         this.atlas = graphic.getAtlas();
         this.atlasKey = graphic.getAtlasKey();
         this.color = graphic.getColor();
+        this.regionIndex = graphic.getRegionIndex();
     }
 
     public boolean isChanged() {

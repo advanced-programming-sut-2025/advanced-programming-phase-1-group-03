@@ -24,7 +24,7 @@ public class GameListener extends Listener {
             gameScreen.updateEntity(itemNotifier.engineId, itemNotifier.itemId, itemNotifier.components);
         } else if(object instanceof AnimationNotifier animationNotifier) {
             gameScreen.setAnimation(animationNotifier.atlasKey, animationNotifier.atlasAsset,
-                    animationNotifier.entityId, animationNotifier.speed, animationNotifier.playMode);
+                    animationNotifier.entityId, animationNotifier.engineId, animationNotifier.speed, animationNotifier.playMode);
         }else if(object instanceof CreateMapNotifier createMapNotifier) {
             gameScreen.createMap(createMapNotifier);
         } else if(object instanceof ChangeMapNotifier changeMapNotifier) {
@@ -52,6 +52,14 @@ public class GameListener extends Listener {
             GameUIManager.instance.showPopup(popupNotifier.message, popupNotifier.sender);
         } else if(object instanceof VoteNotifier voteNotifier) {
             GameUIManager.instance.showVotePopUp(voteNotifier.userName, voteNotifier.senderUserName, voteNotifier.id, voteNotifier.voteRequest);
+        } else if(object instanceof SendGoldNotifier sendGoldNotifier) {
+            gameScreen.updateGold(sendGoldNotifier.gold);
+        } else if(object instanceof StoreMenuOpenOrExitNotifier request) {
+            if(request.open) {
+                GameUIManager.instance.displayMenu(request.menu, gameScreen.getStoreManager()::onBuy);
+            } else {
+                GameUIManager.instance.exitMenu(request.menu);
+            }
         } else if(object instanceof TradeRoomStarterNotifier notifier) {
             gameScreen.getTradeMenu().makeInstance(notifier.starter, notifier.roomId);
         } else if(object instanceof TradeCommandNotifier notifier) {

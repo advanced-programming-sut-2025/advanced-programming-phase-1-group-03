@@ -94,6 +94,8 @@ public class AudioService {
             assetManager.get(soundAsset).play(soundVolume);
         });
     }
+
+
     public void playSound(SoundAsset soundAsset, float volume) {
         Gdx.app.postRunnable(() -> {
            assetManager.get(soundAsset).play(volume);

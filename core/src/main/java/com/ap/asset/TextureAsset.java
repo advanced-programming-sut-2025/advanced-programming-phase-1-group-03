@@ -8,7 +8,9 @@ public enum TextureAsset implements Asset<Texture> {
     GreenHouse("GreenHouse.png"),
     Grid("grid.png"),
     Wood("wood.png"),
-    Grid2("grid2.png")
+    Grid2("grid2.png"),
+    StoreBackground("StoreBackground.png");
+
     ;
 
     private final AssetDescriptor<Texture> descriptor;

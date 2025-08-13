@@ -3,6 +3,7 @@ package com.ap.maps;
 import com.ap.asset.MapAsset;
 import com.ap.model.ServerPlayer;
 import com.ap.requests.MovePlayerRequest;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 
 public interface IMap {
@@ -16,7 +17,9 @@ public interface IMap {
 
     void movePlayer(MovePlayerRequest movePlayerRequest, ServerPlayer senderPlayer);
 
-    void applyItem(int index, int x, int y);
+    void applyItem(int index, int x, int y, int id);
 
     void addPlayer(ServerPlayer player, MapAsset map);
+
+    Engine getEngine();
 }

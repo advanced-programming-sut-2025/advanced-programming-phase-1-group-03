@@ -6,7 +6,10 @@ import com.ap.component.Transform;
 import com.ap.items.Item;
 import com.ap.managers.MapManager;
 import com.ap.managers.PlayerManager;
+import com.ap.model.Menus;
 import com.ap.model.ServerPlayer;
+import com.ap.notifiers.StoreMenuOpenOrExitNotifier;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.EntityListener;
@@ -15,9 +18,11 @@ import com.badlogic.ashley.systems.IteratingSystem;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.utils.Array;
 
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class PhysicSystem extends IteratingSystem implements EntityListener, ContactListener {
     private World world;
@@ -25,15 +30,15 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
     private float accumulator = 0;
     private Engine engine;
     private MapManager mapManager;
-    private final PlayerManager playerManager;
+    private final Array<ServerPlayer> players;
 
     public PhysicSystem(World world, float interval,
                         MapManager mapManager,
                         Engine engine,
-                        PlayerManager playerManager) {
+                        Array<ServerPlayer> players) {
         super(Family.all(Physic.class, Transform.class).get());
-        this.playerManager = playerManager;
         this.world = world;
+        this.players = players;
         this.engine = engine;
         this.mapManager = mapManager;
         this.interval = interval;
@@ -108,6 +113,11 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
 
     @Override
     public void entityRemoved(Entity entity) {
+        Physic physic = Physic.mapper.get(entity);
+        if (physic != null) {
+            Body body = physic.getBody();
+            body.getWorld().destroyBody(body);
+        }
     }
 
     @Override
@@ -116,10 +126,10 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         Object userDataA = fixtureA.getBody().getUserData();
         Fixture fixtureB = contact.getFixtureB();
         Object userDataB = fixtureB.getBody().getUserData();
-//
-//        menuOpener(userDataA, userDataB);
-//        menuOpener(userDataB, userDataA);
-//
+
+        menuOpener(userDataA, userDataB);
+        menuOpener(userDataB, userDataA);
+
         var map = isSpawner(userDataA, userDataB);
         if(map != null) {
             changeMap(map.getValue(), map.getKey());
@@ -129,13 +139,13 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
             changeMap(map.getValue(), map.getKey());
         }
 
-        Item item = isPlayerItemInteract(userDataA, userDataB);
+        var item = isPlayerItemInteract(userDataA, userDataB);
         if(item != null) {
-            item.interact(fixtureA.getBody(), engine, playerManager);
+            item.getKey().interact(fixtureA.getBody(), engine, item.getValue());
         }
         item = isPlayerItemInteract(userDataB, userDataA);
         if (item != null) {
-            item.interact(fixtureB.getBody(), engine, playerManager);
+            item.getKey().interact(fixtureB.getBody(), engine, item.getValue());
         }
 
     }
@@ -146,55 +156,67 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
         Fixture fixtureB = contact.getFixtureB();
         Object userDataB = fixtureB.getBody().getUserData();
 
-       // exitMenu(userDataA, userDataB);
-       // exitMenu(userDataB, userDataA);
+        exitMenu(userDataA, userDataB);
+        exitMenu(userDataB, userDataA);
     }
 
     private void changeMap(int id, MapAsset map) {
         // prevent moving to broken greenhouse
-        if(map == MapAsset.Greenhouse && !playerManager.isGreenhouseBuilt()) {
+        if(map == MapAsset.Greenhouse && !Helper.findPlayer(players, id).playerManager.isGreenhouseBuilt()) {
             return;
         }
         mapManager.setMap(id, map);
     }
 
-    private Item isPlayerItemInteract(Object userDataA, Object userDataB) {
+    private Map.Entry<Item, PlayerManager> isPlayerItemInteract(Object userDataA, Object userDataB) {
         if((!(userDataA instanceof Entity entityA)) || (!(userDataB instanceof Entity entityB))) {
             return null;
         }
         if(ItemHolder.mapper.has(entityA) && Player.mapper.has(entityB)) {
-            return ItemHolder.mapper.get(entityA).getItem();
+            return new AbstractMap.SimpleEntry<>(
+                    ItemHolder.mapper.get(entityA).getItem(),
+                    Helper.findPlayer(players, Player.mapper.get(entityB).id).playerManager
+            );
         }
         return null;
     }
 
-//    private void menuOpener(Object userDataA, Object userDataB) {
-//        if(userDataA instanceof Entity entity &&
-//                Player.mapper.has(entity) &&
-//                userDataB instanceof String str) {
-//            Menus menu = null;
-//            try {
-//                menu = Menus.valueOf(str);
-//            }catch(Exception ignored) {}
-//            if(menu != null) {
-//                GameUIManager.instance.displayMenu(menu, storeManager::onBuy);
-//            }
-//        }
-//    }
-//    private void exitMenu(Object userDataA, Object userDataB) {
-//        if(userDataA instanceof Entity entity &&
-//                Player.mapper.has(entity) &&
-//                userDataB instanceof String str) {
-//            Menus menu = null;
-//            try {
-//                menu = Menus.valueOf(str);
-//            }catch(Exception ignored) {}
-//            if(menu != null) {
-//                GameUIManager.instance.exitMenu(menu);
-//            }
-//        }
-//    }
+    private void menuOpener(Object userDataA, Object userDataB) {
+        if(userDataA instanceof Entity entity &&
+                Player.mapper.has(entity) &&
+                userDataB instanceof String str) {
+            Menus menu = null;
+            try {
+                menu = Menus.valueOf(str);
+            }catch(Exception ignored) {}
+            if(menu != null) {
+                var player = Helper.findPlayer(players, Player.mapper.get(entity).id);
+                player.connection.sendTCP(new StoreMenuOpenOrExitNotifier(menu, true));
+            }
+        }
+    }
+    private void exitMenu(Object userDataA, Object userDataB) {
+        if(userDataA instanceof Entity entity &&
+                Player.mapper.has(entity) &&
+                userDataB instanceof String str) {
+            Menus menu = null;
+            try {
+                menu = Menus.valueOf(str);
+            }catch(Exception ignored) {}
+            if(menu != null) {
+                var player = Helper.findPlayer(players, Player.mapper.get(entity).id);
+                player.connection.sendTCP(new StoreMenuOpenOrExitNotifier(menu, false));
+            }
+        }
+    }
     private Map.Entry<MapAsset, Integer> isSpawner(Object userDataA, Object userDataB) {
+        if(!(userDataB instanceof Entity entityB)) {
+            return null;
+        }
+        if(!Player.mapper.has(entityB)) {
+            return null;
+        }
+        var playerManager = Helper.findPlayer(players, Player.mapper.get(entityB).id).playerManager;
         if(userDataA instanceof String str) {
             MapAsset map;
 
@@ -207,12 +229,6 @@ public class PhysicSystem extends IteratingSystem implements EntityListener, Con
             }
 
             if(map == null) {
-                return null;
-            }
-            if(!(userDataB instanceof Entity entityB)) {
-                return null;
-            }
-            if(!Player.mapper.has(entityB)) {
                 return null;
             }
             return Map.entry(map, Player.mapper.get(entityB).id);

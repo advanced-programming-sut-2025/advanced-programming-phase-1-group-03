@@ -24,11 +24,12 @@ public class PlayerManager {
     private final GameManager gameManager;
     private final ServerPlayer player;
     private MapAsset farmMap;
+    private Engine farmEngine;
     private boolean isGreenhouseBuilt = false;
     private Inventory inventory;
-    private final AudioService audioService;
     private final MessageSender messageSender;
     private final AbilityManager abilityManager;
+    private final AudioService audioService;
 
     private final ArrayList<ServerPlayer> activeFromTradeRequests = new ArrayList<>();
     private final ArrayList<ServerPlayer> activeToTradeRequests = new ArrayList<>();
@@ -37,10 +38,10 @@ public class PlayerManager {
         this.gameManager = gameManager;
         this.player = player;
         this.messageSender = new MessageSender(player);
-        audioService = new AudioService(player);
         inventory = new Inventory(player);
         abilityManager = new AbilityManager();
 
+        audioService = new AudioService(player);
         Tool.addBasicTools(inventory);
     }
 
@@ -64,10 +65,6 @@ public class PlayerManager {
         return gameManager.getAssetService();
     }
 
-    public AudioService getAudioService() {
-        return audioService;
-    }
-
     public Inventory getInventory() {
         return inventory;
     }
@@ -81,7 +78,7 @@ public class PlayerManager {
     }
 
     public void applyItem(int index, int x, int y, ServerPlayer senderPlayer) {
-        gameManager.getMapManager().currentMaps.get(senderPlayer).applyItem(index, x, y);
+        gameManager.getMapManager().currentMaps.get(senderPlayer).applyItem(index, x, y, senderPlayer.id);
     }
 
     public void applyReaction(int emojiNum) {
@@ -112,6 +109,18 @@ public class PlayerManager {
 
     public void setFarmMap(MapAsset farmMap) {
         this.farmMap = farmMap;
+    }
+
+    public AudioService getAudioService() {
+        return audioService;
+    }
+
+    public void setFarmEngine(Engine farmEngine) {
+        this.farmEngine = farmEngine;
+    }
+
+    public Engine getFarmEngine() {
+        return farmEngine;
     }
 
     public GameManager getGameManager() {

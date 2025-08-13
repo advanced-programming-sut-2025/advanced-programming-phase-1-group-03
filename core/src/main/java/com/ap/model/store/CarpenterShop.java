@@ -2,7 +2,7 @@ package com.ap.model.store;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
-import com.ap.ui.widget.StoreMenu;
+import com.ap.model.StoreProduct;
 
 import java.util.ArrayList;
 
@@ -40,13 +40,13 @@ public enum CarpenterShop {
         return price;
     }
 
-    public static ArrayList<StoreMenu.StoreProduct> buildStoreItems(AssetService assetService) {
-        ArrayList<StoreMenu.StoreProduct> list = new ArrayList<>();
+    public static ArrayList<StoreProduct> buildStoreItems(AssetService assetService) {
+        ArrayList<StoreProduct> list = new ArrayList<>();
         int row = 0;
         for(CarpenterShop product : CarpenterShop.values()) {
             String key = product.name();
             var texture = assetService.get(AtlasAsset.Carpenter).findRegion(key);
-            list.add(new StoreMenu.StoreProduct(texture, product.getName(), product.name(), product.getDescription(), product.getPrice(), row++));
+            list.add(new StoreProduct(texture, product.getName(), product.name(), product.getDescription(), product.getPrice(), row++));
         }
         return list;
     }
