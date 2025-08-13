@@ -158,6 +158,16 @@ public class Registrator {
         kryo.register(TradeStartRequest.class);
         kryo.register(TradeRoomStarter.class);
 
+        kryo.register(TradeRoomStarterNotifier.class);
+        kryo.register(TradeCommandRequest.class);
+        kryo.register(TradeCommandNotifier.class);
+        kryo.register(TradeStarterCancel.class);
+        kryo.register(TradeStarterReject.class);
+
+        kryo.register(TradeHistory.class);
+        kryo.register(TradeHistoryRequest.class);
+        kryo.register(TradeHistoryResponse.class);
+
         kryo.register(short[].class);
         kryo.register(VoiceNetData.class);
     }

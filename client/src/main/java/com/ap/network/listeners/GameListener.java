@@ -52,6 +52,10 @@ public class GameListener extends Listener {
             GameUIManager.instance.showPopup(popupNotifier.message, popupNotifier.sender);
         } else if(object instanceof VoteNotifier voteNotifier) {
             GameUIManager.instance.showVotePopUp(voteNotifier.userName, voteNotifier.senderUserName, voteNotifier.id, voteNotifier.voteRequest);
+        } else if(object instanceof TradeRoomStarterNotifier notifier) {
+            gameScreen.getTradeMenu().makeInstance(notifier.starter, notifier.roomId);
+        } else if(object instanceof TradeCommandNotifier notifier) {
+            if(gameScreen.getTradeMenu().getInstance() != null) gameScreen.getTradeMenu().getInstance().processCommand(notifier);
         }
     }
 

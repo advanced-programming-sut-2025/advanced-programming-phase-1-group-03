@@ -4,29 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="vote implemented">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/TradeMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/packet/TradeRoomStarter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/GetActiveTradeRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/TradeStartRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/GetActiveTradeResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/TradeRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="starting trade added">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/TradeHistory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/TradeCommandNotifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/TradeRoomStarterNotifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/TradeCommandRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/TradeHistoryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/TradeStarterCancel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/TradeStarterReject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/SuccessResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/TradeHistoryResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/items/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/items/Inventory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/TradeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/TradeMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/TradeStarterMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/TradeStarterMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/tabContents/InventoryTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/tabContents/InventoryTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/tabContents/AbstractContent.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/tabContents/AbstractContent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/NetworkItemStack.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/NetworkItemStack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/RoommatesInfoResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/RoommatesInfoResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/packet/TradeRoomStarter.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/packet/TradeRoomStarter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/TradeStartRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/TradeStartRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/TradeRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/TradeRoom.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,12 +82,12 @@
     &quot;assignee&quot;: &quot;amirshs84&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03.git",
-    "accountId": "5cf5475d-255d-4e13-a9f6-6a3ae5b39cf4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03.git&quot;,
+    &quot;accountId&quot;: &quot;5cf5475d-255d-4e13-a9f6-6a3ae5b39cf4&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -267,15 +267,7 @@
       <workItem from="1754902638222" duration="4145000" />
       <workItem from="1754910933846" duration="17172000" />
       <workItem from="1754938931454" duration="1062000" />
-      <workItem from="1755068221789" duration="15488000" />
-    </task>
-    <task id="LOCAL-00056" summary="Tools icon atlas added&#10;Tools class added">
-      <option name="closed" value="true" />
-      <created>1753343611221</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1753343611221</updated>
+      <workItem from="1755068221789" duration="35234000" />
     </task>
     <task id="LOCAL-00057" summary="Tools icon atlas added&#10;Tools class added">
       <option name="closed" value="true" />
@@ -638,7 +630,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755022381535</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="starting trade added">
+      <option name="closed" value="true" />
+      <created>1755084113875</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1755084113876</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -669,7 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="trees atlas completed" />
     <MESSAGE value="Town and Mine added" />
     <MESSAGE value="Mine Completed" />
     <MESSAGE value="crow attack added" />
@@ -694,7 +693,8 @@
     <MESSAGE value="developing leaderBoard2." />
     <MESSAGE value="cheat box bug fixed" />
     <MESSAGE value="vote implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="vote implemented" />
+    <MESSAGE value="starting trade added" />
+    <option name="LAST_COMMIT_MESSAGE" value="starting trade added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

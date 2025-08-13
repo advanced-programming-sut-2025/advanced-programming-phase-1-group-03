@@ -114,6 +114,10 @@ public class PlayerManager {
         this.farmMap = farmMap;
     }
 
+    public GameManager getGameManager() {
+        return gameManager;
+    }
+
     public ArrayList<ServerPlayer> getActiveFromTradeRequests() {
         return activeFromTradeRequests;
     }

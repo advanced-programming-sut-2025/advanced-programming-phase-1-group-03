@@ -207,4 +207,50 @@ public class Sender {
         var request = new TradeStartRequest(targetUsername);
         client.sendTCP(request);
     }
+
+    public void sendTradeMoveRequest(int tradeRoomId, int playerIndex, boolean isAddToBuff, boolean isRemoveToBuff, int itemIndex) {
+        var request = new TradeCommandRequest(tradeRoomId, playerIndex, isAddToBuff, isRemoveToBuff, itemIndex);
+        client.sendTCP(request);
+    }
+
+    public void sendTradeSubmitRequest(int tradeRoomId) {
+        var request = new TradeCommandRequest();
+        request.tradeRoomId = tradeRoomId;
+        request.submitOffer = true;
+        client.sendTCP(request);
+    }
+
+    public void sendTradeQuitRequest(int tradeRoomId) {
+        var request = new TradeCommandRequest();
+        request.tradeRoomId = tradeRoomId;
+        request.quit = true;
+        client.sendTCP(request);
+    }
+
+    public void sendTradeAcceptRequest(int tradeRoomId) {
+        var request = new TradeCommandRequest();
+        request.tradeRoomId = tradeRoomId;
+        request.acceptOffer = true;
+        client.sendTCP(request);
+    }
+
+    public void sendTradeRejectRequest(int tradeRoomId) {
+        var request = new TradeCommandRequest();
+        request.tradeRoomId = tradeRoomId;
+        request.rejectOffer = true;
+        client.sendTCP(request);
+    }
+
+    public void sendTradeStarterRejectRequest(String targetUsername) {
+        client.sendTCP(new TradeStarterReject(targetUsername));
+    }
+
+    public void sendTradeStarterCancelRequest(String targetUsername) {
+        client.sendTCP(new TradeStarterCancel(targetUsername));
+    }
+
+    public TradeHistoryResponse sendTradeHistoryRequest() {
+        var req = new TradeHistoryRequest();
+        return sendMessageAndWaitForResponse(req, TradeHistoryResponse.class);
+    }
 }

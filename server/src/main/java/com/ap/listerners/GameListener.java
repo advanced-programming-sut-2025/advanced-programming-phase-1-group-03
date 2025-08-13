@@ -3,22 +3,21 @@ package com.ap.listerners;
 import com.ap.ServerData;
 import com.ap.managers.AbilityManager;
 import com.ap.model.AbilityType;
+import com.ap.model.GameManager;
 import com.ap.model.ServerPlayer;
-import com.ap.notifiers.ChatNotifier;
-import com.ap.notifiers.PopupNotifier;
-import com.ap.notifiers.VoteNotifier;
+import com.ap.model.TradeRoom;
+import com.ap.notifiers.*;
 import com.ap.packet.LeaderBoardInfo;
 import com.ap.packet.PlayerInfo;
+import com.ap.packet.TradeRoomStarter;
 import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
-import com.ap.responses.ChatResponse;
-import com.ap.responses.GetActiveTradeResponse;
-import com.ap.responses.LeaderBoardResponse;
-import com.ap.responses.RoommatesInfoResponse;
+import com.ap.responses.*;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameListener extends Listener {
@@ -106,6 +105,13 @@ public class GameListener extends Listener {
             var targetPlayer = senderPlayer.currentRoom.players.stream()
                     .filter((ServerPlayer p) -> p.username.equals(tradeStartRequest.targetUsername)).findFirst().orElse(null);
             if (targetPlayer == null) return;
+            //check if req from target exist
+            var fromReq = senderPlayer.playerManager.getActiveFromTradeRequests().stream().filter(
+                    (ServerPlayer p) -> p.username.equals(tradeStartRequest.targetUsername)).findFirst().orElse(null);
+            if (fromReq != null) {
+                startTradeRoom(targetPlayer, senderPlayer);
+                return;
+            }
             var existedReq = senderPlayer.playerManager.getActiveToTradeRequests().stream().filter(
                     (ServerPlayer p) -> p.username.equals(tradeStartRequest.targetUsername)).findFirst().orElse(null);
             if (existedReq == null) {
@@ -117,7 +123,6 @@ public class GameListener extends Listener {
                 targetPlayer.playerManager.getActiveFromTradeRequests().add(senderPlayer);
             }
             targetPlayer.connection.sendTCP(new PopupNotifier(senderPlayer.username, "new trade request received"));
-            System.out.println("pop up senttt");
         } else if (object instanceof GetActiveTradeRequest getActiveTradeRequest) {
             ArrayList<PlayerInfo> from = new ArrayList<>();
             ArrayList<PlayerInfo> to = new ArrayList<>();
@@ -129,6 +134,52 @@ public class GameListener extends Listener {
             }
             var response = new GetActiveTradeResponse(from, to);
             senderPlayer.connection.sendTCP(response);
+        } else if(object instanceof TradeCommandRequest command) {
+            if (command.tradeRoomId < 0 ||
+                    command.tradeRoomId >= senderPlayer.playerManager.getGameManager().getTradeRooms().size()) return;
+            var room = senderPlayer.playerManager.getGameManager().getTradeRooms().get(command.tradeRoomId);
+            if (!room.isPlayerExist(senderPlayer)) return;
+            if (room.processReq(senderPlayer, command)) {
+                senderPlayer.currentRoom.game.getTradeRooms().remove(room);
+            }
+        } else if(object instanceof TradeStarterReject reject) {
+            var target = senderPlayer.currentRoom.players.stream().filter(
+                    (ServerPlayer p) -> p.username.equals(reject.targetUsername)).findFirst().orElse(null);
+            if (target == null) return;
+            senderPlayer.playerManager.getActiveFromTradeRequests().remove(target);
+            target.playerManager.getActiveToTradeRequests().remove(senderPlayer);
+        } else if(object instanceof TradeStarterCancel cancel) {
+            var target = senderPlayer.currentRoom.players.stream().filter(
+                    (ServerPlayer p) -> p.username.equals(cancel.targetUsername)).findFirst().orElse(null);
+            if (target == null) return;
+            senderPlayer.playerManager.getActiveToTradeRequests().remove(target);
+            target.playerManager.getActiveFromTradeRequests().remove(senderPlayer);
+        } else if(object instanceof TradeHistoryRequest historyRequest) {
+            senderPlayer.connection.sendTCP(new TradeHistoryResponse(senderPlayer.playerManager.getGameManager().getTradeHistory()));
         }
+    }
+    private void startTradeRoom(ServerPlayer player1, ServerPlayer player2) {
+        GameManager gameManager = player1.playerManager.getGameManager();
+        var existedRoom = gameManager.getTradeRooms().stream().filter(
+                (TradeRoom t) -> t.isPlayerExist(player1) || t.isPlayerExist(player2)).findFirst().orElse(null);
+        if (existedRoom != null) {
+            player2.connection.sendTCP(new PopupNotifier(player1.username, "I'm trading right now!"));
+            return;
+        }
+        player1.playerManager.getActiveToTradeRequests().remove(player2);
+        player2.playerManager.getActiveFromTradeRequests().remove(player1);
+        var room = new TradeRoom(player1.playerManager, player2.playerManager,gameManager.getTradeRooms().size());
+        gameManager.getTradeRooms().add(room);
+        var notifier = new TradeRoomStarterNotifier(room.getRoomId(), room.getStarter());
+        notifier.starter.yourIndex = 0;
+        player1.connection.sendTCP(notifier);
+        notifier.starter.yourIndex = 1;
+        player2.connection.sendTCP(notifier);
+        var notifierEdit = new TradeCommandNotifier();
+        notifierEdit.editing = true;
+        var notifierWaiting = new TradeCommandNotifier();
+        notifierWaiting.waiting = true;
+        player1.connection.sendTCP(notifierEdit);
+        player2.connection.sendTCP(notifierWaiting);
     }
 }

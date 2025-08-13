@@ -112,7 +112,7 @@ public abstract class AbstractContent extends Group {
     public void assembleBackground(Group group, int n, int m, float tileWidth, float tileHeight) {
         float height = n * tileHeight;
         float width = m * tileWidth;
-        setSize(width, height);
+        group.setSize(width, height);
         for (int i = 0; i < n; i++) {
             float y = 0;
             for (int j = 0; j < m; j++) {

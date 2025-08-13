@@ -8,10 +8,14 @@ public class TradeStartRequest {
     //in case of accept server will send a TradeRoomStarter with TradeRoomStarterNotifier
     public String targetUsername;
 
+    boolean isClose = false;
+
     public TradeStartRequest() {
     }
 
     public TradeStartRequest(String targetUsername) {
         this.targetUsername = targetUsername;
     }
+
+
 }

@@ -12,6 +12,8 @@ import com.ap.system.universal.WeatherSystem;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
+import java.util.ArrayList;
+
 public class GameManager {
     private final Room room;
     private final Engine universalEngine;
@@ -26,6 +28,10 @@ public class GameManager {
     private TiledMap currentTiledMap;
 
     private final MapManager mapManager;
+
+    private final ArrayList<TradeRoom> tradeRooms = new ArrayList<>();
+
+    private final ArrayList<TradeHistory> tradeHistory = new ArrayList<>();
 
     public GameManager(Room room, AssetService assetService) {
         this.room = room;
@@ -84,6 +90,13 @@ public class GameManager {
         return mapManager;
     }
 
+    public ArrayList<TradeRoom> getTradeRooms() {
+        return tradeRooms;
+    }
+
+    public ArrayList<TradeHistory> getTradeHistory() {
+        return tradeHistory;
+    }
 
     private class TimeListener implements ITimeListener {
         @Override
