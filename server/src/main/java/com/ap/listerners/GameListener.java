@@ -10,7 +10,6 @@ import com.ap.model.AbilityType;
 import com.ap.managers.GameManager;
 import com.ap.model.Foods;
 import com.ap.model.NetworkItemStack;
-import com.ap.model.GameManager;
 import com.ap.model.ServerPlayer;
 import com.ap.model.TradeRoom;
 import com.ap.notifiers.*;
@@ -81,7 +80,7 @@ public class GameListener extends Listener {
         } else if(object instanceof addCookingRequest addCookingRequest) {
             if(Foods.getFoodByName(addCookingRequest.name) != null)
                 senderPlayer.playerManager.getInventory().add(ItemFactory.instance.CreateFood(
-                        Foods.getFoodByName(addCookingRequest.name), 10), 1);
+                        Foods.valueOf(addCookingRequest.name), 10), 1);
         } else if(object instanceof ReduceIngredientRequest reduceIngredientRequest) {
             senderPlayer.playerManager.getInventory().removeItem(reduceIngredientRequest.name, reduceIngredientRequest.number);
         } else if(object instanceof IsFoodRequest isFoodRequest) {

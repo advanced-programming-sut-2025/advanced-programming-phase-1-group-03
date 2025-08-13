@@ -4,47 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="add mix seed and fertilizer">
-      <change afterPath="$PROJECT_DIR$/assets/audio/House.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/rmi/AskImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/EnergyNotifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/rmi/Ask.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/House.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="giant and food and some stuffs">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/graphics/Plants/crops.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Plants/crops.atlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/component/Shadow.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Shadow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/EnergyManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/EnergyManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/NetworkGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/NetworkGameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/GameClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/GameClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/EnergySystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/EnergySystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/GiantCropManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/GiantCropManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/cheatCode/CheatCodeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/MusicAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/MusicAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Shadow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/EntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/food/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/food/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/store/StardropSaloonProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/store/StardropSaloonProducts.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/LobbyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/LobbyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/MapAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/MapAdaptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Mine.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Mine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Store.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/CropsType.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/CropsType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/MixedSeedsTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/MixedSeedsTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/universal/NetworkEntitySystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/universal/NetworkEntitySystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/universal/TimeSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/universal/TimeSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,48 +78,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Client.executor": "Run",
-    "Application.Lwjgl3Launcher.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Run.executor": "Run",
-    "Application.RunGDX.executor": "Run",
-    "Application.Server.executor": "Run",
-    "Application.client2.executor": "Run",
-    "Application.clinet.executor": "Run",
-    "Gradle.Download Sources.executor": "Run",
-    "Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor": "Run",
-    "Gradle.StardewValley [run].executor": "Run",
-    "Gradle.StarehdewValley [server:run].executor": "Run",
-    "Gradle.StarehdewValley2.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "external.system.has.shared.sources": "true",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "network",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_directory_selection": "D:/StarehdewValley/client/src/main/java/com/ap",
-    "last_opened_file_path": "D:/StarehdewValley/assets/audio",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "configurable.group.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Client.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Lwjgl3Launcher.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Run.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RunGDX.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Server.executor&quot;: &quot;Run&quot;,
+    &quot;Application.client2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.clinet.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LoginMenuControllerTest.givenRegisterWhenInvalidUsernameThenReturnError.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.StardewValley [run].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.StarehdewValley [server:run].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.StarehdewValley2.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;external.system.has.shared.sources&quot;: &quot;true&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;network&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;D:/StarehdewValley/client/src/main/java/com/ap&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/StarehdewValley/assets/audio&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\StarehdewValley\assets\audio" />
@@ -291,15 +255,7 @@
       <workItem from="1755072878178" duration="3199000" />
       <workItem from="1755079910166" duration="9648000" />
       <workItem from="1755087966412" duration="3779000" />
-      <workItem from="1755106047230" duration="10631000" />
-    </task>
-    <task id="LOCAL-00058" summary="Trees atlas added&#10;Oak tree added">
-      <option name="closed" value="true" />
-      <created>1753386885761</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1753386885761</updated>
+      <workItem from="1755106047230" duration="11515000" />
     </task>
     <task id="LOCAL-00059" summary="grass asset added">
       <option name="closed" value="true" />
@@ -660,7 +616,14 @@
       <option name="presentableId" value="LOCAL‎−۰۰۱۰۶" />
       <updated>1755091089168</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL‎−۰۰۱۰۷" summary="giant and food and some stuffs">
+      <option name="closed" value="true" />
+      <created>1755117006675</created>
+      <option name="number" value="LOCAL‎−۰۰۱۰۷" />
+      <option name="presentableId" value="LOCAL‎−۰۰۱۰۷" />
+      <updated>1755117006675</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,7 +654,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Mine Completed" />
     <MESSAGE value="crow attack added" />
     <MESSAGE value="cheat code box added" />
     <MESSAGE value="cheat code box fixed" />
@@ -716,7 +678,8 @@
     <MESSAGE value="vote implemented" />
     <MESSAGE value="Stores Fixed" />
     <MESSAGE value="add mix seed and fertilizer" />
-    <option name="LAST_COMMIT_MESSAGE" value="add mix seed and fertilizer" />
+    <MESSAGE value="giant and food and some stuffs" />
+    <option name="LAST_COMMIT_MESSAGE" value="giant and food and some stuffs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
