@@ -8,6 +8,7 @@ import com.ap.managers.StoreManager;
 import com.ap.model.GameManager;
 import com.ap.model.Season;
 import com.ap.model.ServerPlayer;
+import com.ap.notifiers.CreateMapNotifier;
 import com.ap.requests.BuyItemRequest;
 import com.ap.responses.BuyItemResponse;
 import com.ap.system.*;
@@ -49,6 +50,15 @@ public class Store extends MapAdaptor {
         setupMap();
 
         gameManager.getTimeSystem().addTimeListener(new TimeListener());
+    }
+    @Override
+    public void addPlayer(ServerPlayer player, MapAsset map) {
+        // Send to player to create this map
+        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, false, false));
+
+        engine.getSystem(NetworkEntitySystem.class).shouldSend();
+
+        players.add(player);
     }
 
     @Override

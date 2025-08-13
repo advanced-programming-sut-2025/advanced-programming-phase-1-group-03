@@ -4,96 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Fixing">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/StoreProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/SendGoldNotifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/StoreMenuOpenOrExitNotifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/BuyItemRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/PlaceCarrierRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/QuitRoomRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/responses/BuyItemResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/StoreManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Mine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Store.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/Cookings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/CarrierSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Server.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/client2.xml" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="Stores Fixed">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/plant/Fertilizer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/plant/MixSeed.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/map/Farm1.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Farm1.tmx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/audio/AudioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/audio/AudioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/component/Carrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Carrier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/component/Lake.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/component/items/Barn.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/component/items/Well.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/items/EntityFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/items/ItemFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/ClockManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/ClockManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/GameUIManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/GameUIManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/MapManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/MineManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/MineManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/NetworkGameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/NetworkGameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/managers/StoreManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/model/BarnsType.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/BarnsType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/model/Menus.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Menus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/model/store/CarpenterShop.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/store/CarpenterShop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/model/store/StardropSaloonProducts.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/store/StardropSaloonProducts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/LobbyScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/LobbyScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/Farm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/GMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/GMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/House.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/IMap.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/MapAdaptor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/Mine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/Store.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/CarrierSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/CarrierSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/ControllerSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/ControllerSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/CrowAttackSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/CrowAttackSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/FishingSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/FsmUpdateSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/GiantCropManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/GiantCropManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/PhysicDebugRenderSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/PlayerAudioSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/PlayerCoinSystem.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/system/RenderSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/RenderSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/tiled/TiledAshleyConfigurator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/tiled/TiledMapGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/tiled/TiledPhysic.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/tiled/TiledService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/common/BackButtonLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/common/BackButtonLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/model/LobbyViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/model/LobbyViewModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/StoreMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/StoreMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/utils/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/utils/Helper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Constraints.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/TextureAsset.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/asset/TextureAsset.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Graphic.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Graphic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/AnimationNotifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/AnimationNotifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Carrier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/items/Barn.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/items/Barn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/EntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/Plants/crops.atlas" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Plants/crops.atlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/graphics/Plants/crops.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/graphics/Plants/crops.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemNames.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/ItemNames.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/tools/Tool.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/tools/Tool.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/LobbyListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/LobbyListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/PlayerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/IMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/IMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/MapAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/MapAdaptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/FoodRecipes.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/FoodRecipes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/Foods.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/Foods.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/ServerPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/ServerPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/AnimationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/AnimationSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/EmoteSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/EmoteSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/PhysicSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/PhysicSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/universal/NetworkEntitySystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/universal/NetworkEntitySystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/utils/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/utils/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Mine.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Mine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/GrowSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/GrowSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/phi/ap/model/enums/MixedSeedsTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/MixedSeedsTypes.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,6 +139,9 @@
       <recent name="D:\StarehdewValley\server\src\main\java\com\ap\items" />
       <recent name="D:\StarehdewValley\server\src\main\java\com\ap\model" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\StarehdewValley\server\src\main\java\com\ap\model" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.ap" />
     </key>
@@ -224,7 +153,7 @@
       <recent name="com.ap.server.utils" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.clinet">
     <configuration name="clinet" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-23" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -335,15 +264,8 @@
       <workItem from="1754910933846" duration="17172000" />
       <workItem from="1754938931454" duration="1062000" />
       <workItem from="1755072878178" duration="3199000" />
-      <workItem from="1755079910166" duration="9259000" />
-    </task>
-    <task id="LOCAL-00056" summary="Tools icon atlas added&#10;Tools class added">
-      <option name="closed" value="true" />
-      <created>1753343611221</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1753343611221</updated>
+      <workItem from="1755079910166" duration="9648000" />
+      <workItem from="1755087966412" duration="3088000" />
     </task>
     <task id="LOCAL-00057" summary="Tools icon atlas added&#10;Tools class added">
       <option name="closed" value="true" />
@@ -706,7 +628,14 @@
       <option name="project" value="LOCAL" />
       <updated>1755022381535</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL‎−۰۰۱۰۵" summary="Stores Fixed">
+      <option name="closed" value="true" />
+      <created>1755091217178</created>
+      <option name="number" value="LOCAL‎−۰۰۱۰۵" />
+      <option name="presentableId" value="LOCAL‎−۰۰۱۰۵" />
+      <updated>1755091217179</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -737,7 +666,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="trees atlas completed" />
     <MESSAGE value="Town and Mine added" />
     <MESSAGE value="Mine Completed" />
     <MESSAGE value="crow attack added" />
@@ -762,7 +690,8 @@
     <MESSAGE value="developing leaderBoard2." />
     <MESSAGE value="cheat box bug fixed" />
     <MESSAGE value="vote implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="vote implemented" />
+    <MESSAGE value="Stores Fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Stores Fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

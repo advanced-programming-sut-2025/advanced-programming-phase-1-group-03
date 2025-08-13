@@ -4,12 +4,11 @@ import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.items.food.Food;
 import com.ap.items.mine.Mineral;
-import com.ap.items.plant.Crop;
-import com.ap.items.plant.Seed;
-import com.ap.items.plant.Tree;
+import com.ap.items.plant.*;
 import com.ap.model.CropsType;
 import com.ap.model.Foods;
 import com.ap.model.Minerals;
+import com.ap.model.MixedSeedsTypes;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class ItemFactory {
@@ -39,9 +38,19 @@ public class ItemFactory {
     public Item CreateSeed(CropsType belongingCropType) {
         return new Seed(AtlasAsset.Crops, belongingCropType.getName() + "_Seeds", belongingCropType);
     }
+
+    public Item CreateMixSeedCrop(MixedSeedsTypes mixSeed) {
+        var crop = mixSeed.getRandom();
+        return new MixSeed(AtlasAsset.Crops,"Mixed_Flower_Seeds", crop, mixSeed);
+    }
+
+    public Item CreateFertilizer() {
+        return new Fertilizer(ItemNames.Fertilizer.name(), AtlasAsset.Crops, "Basic_Fertilizer");
+    }
     public Item CreateCrop(CropsType type) {
         return new Crop(AtlasAsset.Crops, type.getName(), type);
     }
+
     public Item CreateProductOfCrop(CropsType type) {
         if(type.getEnergyProduce() == null) {
             return new Item(type.name(), 64, AtlasAsset.Crops,type.getName(), type.getBaseSellPrice());

@@ -12,6 +12,7 @@ import com.ap.managers.PlayerManager;
 import com.ap.model.GameManager;
 import com.ap.model.Season;
 import com.ap.model.ServerPlayer;
+import com.ap.notifiers.CreateMapNotifier;
 import com.ap.notifiers.ShowMessageNotifier;
 import com.ap.system.*;
 import com.ap.system.universal.ITimeListener;
@@ -54,6 +55,15 @@ public class Farm extends MapAdaptor {
         engine.addSystem(new AdjustAlphaSystem(engine));
     }
 
+    @Override
+    public void addPlayer(ServerPlayer player, MapAsset map) {
+        // Send to player to create this map
+        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, true, true));
+
+        engine.getSystem(NetworkEntitySystem.class).shouldSend();
+
+        players.add(player);
+    }
     @Override
     public void setup(MapAsset map) {
         super.setup(map);

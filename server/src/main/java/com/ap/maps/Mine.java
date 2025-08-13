@@ -15,6 +15,7 @@ import com.ap.managers.PlayerManager;
 import com.ap.model.GameManager;
 import com.ap.model.Season;
 import com.ap.model.ServerPlayer;
+import com.ap.notifiers.CreateMapNotifier;
 import com.ap.notifiers.ShowMessageNotifier;
 import com.ap.system.*;
 import com.ap.system.universal.ITimeListener;
@@ -39,6 +40,16 @@ public class Mine extends MapAdaptor {
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(players));
+    }
+
+    @Override
+    public void addPlayer(ServerPlayer player, MapAsset map) {
+        // Send to player to create this map
+        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, false, true));
+
+        engine.getSystem(NetworkEntitySystem.class).shouldSend();
+
+        players.add(player);
     }
 
     @Override

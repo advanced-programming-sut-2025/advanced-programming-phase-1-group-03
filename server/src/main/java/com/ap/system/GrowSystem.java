@@ -39,7 +39,7 @@ public class GrowSystem extends IteratingSystem implements EntityListener {
         // If crop is regrowing it doesn't follow stages
         if(item instanceof Crop crop && crop.isRegrowing()) {
             if(!growable.canProduce() && elapsedDay >= crop.getType().getRegrowthTime()) {
-                elapsedDay = 0;
+                growable.setElapsedDay(0);
                 growable.setCurrentStage(growable.getCurrentStage() + 1);
             }
         } else {

@@ -101,7 +101,7 @@ public class GameListener extends Listener {
             for (ServerPlayer player : players) {
                 playerInfos.add(new PlayerInfo(player.username, player.avatarIndex));
             }
-            senderPlayer.connection.sendTCP(new RoommatesInfoResponse(playerInfos));
+            senderPlayer.connection.sendTCP(new RoommatesInfoResponse(playerInfos, yourInfo));
         } else if(object instanceof BuyItemRequest buyRequest) {
             var map = senderPlayer.currentRoom.game.getMapManager().currentMaps.get(senderPlayer);
             if(map instanceof Store store) {
@@ -115,7 +115,6 @@ public class GameListener extends Listener {
             if(map instanceof Farm farm) {
                 farm.placeCarrier();
             }
-            senderPlayer.connection.sendTCP(new RoommatesInfoResponse(playerInfos, yourInfo));
         } else if (object instanceof TradeStartRequest tradeStartRequest) {
             var targetPlayer = senderPlayer.currentRoom.players.stream()
                     .filter((ServerPlayer p) -> p.username.equals(tradeStartRequest.targetUsername)).findFirst().orElse(null);

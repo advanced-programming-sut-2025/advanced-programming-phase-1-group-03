@@ -138,15 +138,7 @@ public abstract class MapAdaptor implements IMap {
         }
         return null;
     }
-    @Override
-    public void addPlayer(ServerPlayer player, MapAsset map) {
-        // Send to player to create this map
-        player.connection.sendTCP(new CreateMapNotifier(Helper.getEngineId(engine), map, true, true));
 
-        engine.getSystem(NetworkEntitySystem.class).shouldSend();
-
-        players.add(player);
-    }
 
     @Override
     public Engine getEngine() {
