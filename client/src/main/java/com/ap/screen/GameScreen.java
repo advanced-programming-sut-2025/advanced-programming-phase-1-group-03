@@ -56,9 +56,12 @@ public class GameScreen extends AbstractScreen {
     private LightningStorm lightningStorm;
     private TabManager tabManager;
     private TradeStarterMenu tradeStarterMenu;
+    private TradeMenu tradeMenu;
     private Journal journal;
     private CheatCodeBox cheatCodeBox;
     private LeaderBoard leaderBoard;
+
+    private EmojiPanel emojiPanel;
 
     private ClockManager clockManager;
     private CheatCodeController cheatCodeController;
@@ -127,8 +130,10 @@ public class GameScreen extends AbstractScreen {
         cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
         tabManager = new TabManager(this);
         tradeStarterMenu = new TradeStarterMenu(this);
+        tradeMenu = new TradeMenu(this);
         clockManager = new ClockManager(clock);
         leaderBoard = new LeaderBoard(assetService, stage, this);
+        emojiPanel = EmojiPanel.getInstance(skin, stage, assetService, this);
 
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock);
@@ -341,12 +346,20 @@ public class GameScreen extends AbstractScreen {
         networkGameManager.seasonChanged(changeSeasonNotifier.season);
     }
 
+    public EmojiPanel getEmojiPanel() {
+        return emojiPanel;
+    }
+
     public VoiceChatClient getVoiceChat() {
         return voiceChat;
     }
 
     public TradeStarterMenu getTradeStarterMenu() {
         return tradeStarterMenu;
+    }
+
+    public TradeMenu getTradeMenu() {
+        return tradeMenu;
     }
 
     public void updateGold(int gold) {

@@ -8,7 +8,6 @@ import com.ap.notifiers.InventoryNotifier;
 import java.util.ArrayList;
 
 public class Inventory {
-    public final static int maxStorage = 36;
     public final static int maxTrashCanLevel = 4;
     
     

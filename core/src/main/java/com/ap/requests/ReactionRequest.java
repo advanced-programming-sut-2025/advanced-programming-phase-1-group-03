@@ -2,7 +2,7 @@ package com.ap.requests;
 
 public class ReactionRequest {
     public String message;
-    public int emojiNum;
+    public Integer emojiNum;
 
     public ReactionRequest() {
     }
@@ -11,7 +11,7 @@ public class ReactionRequest {
         this.message = message;
     }
 
-    public ReactionRequest(int emojiNum) {
+    public ReactionRequest(Integer emojiNum) {
         this.emojiNum = emojiNum;
     }
 }

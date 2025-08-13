@@ -18,6 +18,8 @@ import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 public class PlayerManager {
     private final GameManager gameManager;
     private final ServerPlayer player;
@@ -28,6 +30,9 @@ public class PlayerManager {
     private final MessageSender messageSender;
     private final AbilityManager abilityManager;
     private final AudioService audioService;
+
+    private final ArrayList<ServerPlayer> activeFromTradeRequests = new ArrayList<>();
+    private final ArrayList<ServerPlayer> activeToTradeRequests = new ArrayList<>();
 
     public PlayerManager(GameManager gameManager, ServerPlayer player) {
         this.gameManager = gameManager;
@@ -76,8 +81,12 @@ public class PlayerManager {
         gameManager.getMapManager().currentMaps.get(senderPlayer).applyItem(index, x, y, senderPlayer.id);
     }
 
-    public void applyReaction() {
+    public void applyReaction(int emojiNum) {
+        //TODO implement reaction here
+    }
 
+    public void applyReaction(String message) {
+        //TODO implement reaction message here
     }
 
     public void buildGreenhouse(ServerPlayer serverPlayer) {
@@ -112,5 +121,13 @@ public class PlayerManager {
 
     public Engine getFarmEngine() {
         return farmEngine;
+    }
+
+    public ArrayList<ServerPlayer> getActiveFromTradeRequests() {
+        return activeFromTradeRequests;
+    }
+
+    public ArrayList<ServerPlayer> getActiveToTradeRequests() {
+        return activeToTradeRequests;
     }
 }
