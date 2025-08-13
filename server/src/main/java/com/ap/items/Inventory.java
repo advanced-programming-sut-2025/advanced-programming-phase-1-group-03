@@ -1,8 +1,6 @@
 package com.ap.items;
 
-import com.ap.model.FoodRecipes;
-import com.ap.model.NetworkItemStack;
-import com.ap.model.ServerPlayer;
+import com.ap.model.*;
 import com.ap.notifiers.InventoryNotifier;
 
 import java.util.ArrayList;
@@ -27,7 +25,14 @@ public class Inventory {
     }
 
     public int addItem(ItemStack itemStack) {
-        return addItem(itemStack.getItem(), itemStack.getAmount());
+        return addItem(itemStack.getItem(), itemStack.getAmount(), false);
+    }
+    public int addItem(Item item, int amount, boolean isRefrigerator) {
+        int added = add(item, amount);
+        if(added > 0) {
+            sendInventory(isRefrigerator);
+        }
+        return added;
     }
     public int addItem(Item item, int amount) {
         int added = add(item, amount);
@@ -79,19 +84,58 @@ public class Inventory {
         return networkItems;
     }
 
-    private void sendInventory() {
+    public void sendInventory(boolean isRefrigerator) {
         ArrayList<NetworkItemStack> networkItems = getNetworkItems();
-        var notifier = new InventoryNotifier(networkItems.toArray(new NetworkItemStack[0]), storage);
+        var notifier = new InventoryNotifier(networkItems.toArray(new NetworkItemStack[0]), storage, isRefrigerator);
         player.connection.sendTCP(notifier);
     }
+
+    public void sendInventory() {
+        ArrayList<NetworkItemStack> networkItems = getNetworkItems();
+        var notifier = new InventoryNotifier(networkItems.toArray(new NetworkItemStack[0]), storage, false);
+        player.connection.sendTCP(notifier);
+    }
+
 
     /**
      * remove amount items from inventory, note that if we don't have enough items, it doesn't remove amount
      */
+    public int removeItem(Item item, int amount, boolean isRefrigerator) {
+        int removed = 0;
+        for (ItemStack stack : items) {
+            if (!stack.getItem().canStackWith(item)) {
+                continue;
+            }
+            int toRemove = Math.min(stack.getAmount(), amount);
+            amount -= toRemove;
+            stack.increaseAmount(-toRemove);
+            removed += toRemove;
+        }
+        items.removeIf(stack -> stack.getAmount() == 0);
+        sendInventory(isRefrigerator);
+        return removed;
+    }
+
     public int removeItem(Item item, int amount) {
         int removed = 0;
         for (ItemStack stack : items) {
             if (!stack.getItem().canStackWith(item)) {
+                continue;
+            }
+            int toRemove = Math.min(stack.getAmount(), amount);
+            amount -= toRemove;
+            stack.increaseAmount(-toRemove);
+            removed += toRemove;
+        }
+        items.removeIf(stack -> stack.getAmount() == 0);
+        sendInventory();
+        return removed;
+    }
+
+    public int removeItem(String itemName, int amount) {
+        int removed = 0;
+        for (ItemStack stack : items) {
+            if (!stack.getItem().getName().equals(itemName)) {
                 continue;
             }
             int toRemove = Math.min(stack.getAmount(), amount);
@@ -111,6 +155,30 @@ public class Inventory {
             }
         }
         return amount <= 0;
+    }
+
+    public boolean have(String itemName, int amount) {
+        for(ItemStack stack : items) {
+            if(stack.getItem().getName().equals(itemName)) {
+                amount -= stack.getAmount();
+            }
+        }
+        return amount <= 0;
+    }
+
+    public boolean haveCookingRecipe(String recipeName) {
+        for(FoodRecipes foodRecipe : foodRecipes) {
+            if(foodRecipe.getFood().getName().equals(recipeName))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isEatable(String name) {
+        if(Foods.getFoodByName(name) != null || Cookings.getFoodByName(name) != null ||
+                CropsType.getFoodByName(name) != null)
+            return true;
+        return false;
     }
     public ArrayList<ItemStack> getItems() {
         return items;
@@ -137,7 +205,7 @@ public class Inventory {
 
     public void removeItemViaTrashCan(ItemStack itemStack) {
         //TODO gaining money logic
-        removeItem(itemStack.getItem(), itemStack.getAmount());
+        removeItem(itemStack.getItem(), itemStack.getAmount(), false);
     }
 
     public ArrayList<FoodRecipes> getFoodRecipes() {

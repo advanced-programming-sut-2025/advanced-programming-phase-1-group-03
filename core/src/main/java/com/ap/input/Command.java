@@ -16,7 +16,8 @@ public enum Command {
     Talk(Input.Keys.P),
     OpenLeaderBoard(Input.Keys.L),
     OpenTradeStarter(Input.Keys.T),
-    OpenEmoteMenu(Input.Keys.M)
+    OpenEmoteMenu(Input.Keys.M),
+    OpenRefrigerator(Input.Keys.Y)
     ;
 
     private final int[] correspondingKeys;

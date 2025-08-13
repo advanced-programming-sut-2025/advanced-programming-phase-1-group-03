@@ -7,6 +7,8 @@ import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
 import com.ap.items.ItemStack;
+import com.ap.screen.GameScreen;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
@@ -24,6 +26,7 @@ public class CookingMenu extends Actor {
     private final Skin skin;
     private final Inventory inventory;
     private final AudioService audioService;
+    private final GameScreen game;
 
     private CookingMenu instance;
     private final Array<CookingItem> cookings = new Array<>();
@@ -34,12 +37,14 @@ public class CookingMenu extends Actor {
 
     private EventListener clickListener;
 
-    public CookingMenu(AssetService assetService, Skin skin, Stage stage, Inventory inventory, AudioService audioService) {
+    public CookingMenu(AssetService assetService, Skin skin, Stage stage,
+                       Inventory inventory, AudioService audioService, GameScreen game) {
         this.assetService = assetService;
         this.skin = skin;
         this.stage = stage;
         this.inventory = inventory;
         this.audioService = audioService;
+        this.game = game;
         background = assetService.get(AtlasAsset.Crafting).findRegion("CraftingBackground");
     }
 
@@ -58,11 +63,10 @@ public class CookingMenu extends Actor {
                 for (CookingMenu.CookingItem item : cookings) {
                     if (item.isMouseOver(worldX, worldY)) {
                         Gdx.app.log("Crafting", "Clicked on: " + item.name);
-
-                        if (!checkAvailable()) {
+                        if (!checkAvailable(item)) {
                             showErrorDialog("This craft item is not available!");
                         } else {
-                            addItem();
+                            addItem(item);
                         }
                         break;
                     }
@@ -71,139 +75,136 @@ public class CookingMenu extends Actor {
             }
         });
     }
+
     private void showErrorDialog(String message) {
         Dialog dialog = new Dialog("Error", skin) {
             @Override
             protected void result(Object object) {
             }
         };
-
         dialog.text(message);
         dialog.button("Ok", true);
         dialog.show(stage);
     }
-
 
     private void loadCookingItems() {
         TextureAtlas cookingAtlas = assetService.get(AtlasAsset.Cooking);
 
         cookings.add(new CookingItem("Baked Fish",
                 cookingAtlas.findRegion("Baked_Fish"),
-                new String[]{"Sunfish x1", "Bream x1", "Wheat Flour x1"},
+                new ItemName[]{new ItemName("Sunfish", 1), new ItemName("Bream", 1), new ItemName("Wheat Flour", 1)},
                 "Baked fish on a bed of herbs."));
 
         cookings.add(new CookingItem("Bread",
                 cookingAtlas.findRegion("Bread"),
-                new String[]{"Wheat Flour x1"},
+                new ItemName[]{new ItemName("Wheat Flour", 1)},
                 "Bread! Breadmaking can be a very complex form of art, but I'll make it simple for you."));
 
         cookings.add(new CookingItem("Cookie",
                 cookingAtlas.findRegion("Cookie"),
-                new String[]{"Wheat Flour x1", "Sugar x1", "Egg x1"},
+                new ItemName[]{new ItemName("Wheat Flour", 1), new ItemName("Sugar", 1), new ItemName("Egg", 1)},
                 "Cookie! Sweet treat that boosts morale."));
 
         cookings.add(new CookingItem("Dish O' The Sea",
                 cookingAtlas.findRegion("Dish_O%27_The_Sea"),
-                new String[]{"Sardine x2", "Hashbrowns x1"},
+                new ItemName[]{new ItemName("Sardine", 2), new ItemName("Hashbrowns", 1)},
                 "Dish O' The Sea boosts fishing skill."));
 
         cookings.add(new CookingItem("Farmer's Lunch",
                 cookingAtlas.findRegion("Farmer%27s_Lunch"),
-                new String[]{"Omelet x1", "Parsnip x1"},
+                new ItemName[]{new ItemName("Omelet", 1), new ItemName("Parsnip", 1)},
                 "Farmer's Lunch boosts farming."));
 
         cookings.add(new CookingItem("Fried Egg",
                 cookingAtlas.findRegion("Fried_Egg"),
-                new String[]{"Egg x1"},
+                new ItemName[]{new ItemName("Egg", 1)},
                 "Fried Egg is known by the player upon starting a new save file."));
 
         cookings.add(new CookingItem("Fruit Salad",
                 cookingAtlas.findRegion("Fruit_Salad"),
-                new String[]{"Melon x1", "Blueberry x1", "Apricot x1"},
+                new ItemName[]{new ItemName("Melon", 1), new ItemName("Blueberry", 1), new ItemName("Apricot", 1)},
                 "Fruit Salad! Here's a healthy and delicious treat to brighten up your day."));
 
         cookings.add(new CookingItem("Hashbrowns",
                 cookingAtlas.findRegion("Hashbrowns"),
-                new String[]{"Potato x1", "Oil x1"},
-                "Hashbrowns! This one's simple, but that's a good thing!" ));
+                new ItemName[]{new ItemName("Potato", 1), new ItemName("Oil", 1)},
+                "Hashbrowns! This one's simple, but that's a good thing!"));
 
         cookings.add(new CookingItem("Maki Roll",
                 cookingAtlas.findRegion("Maki_Roll"),
-                new String[]{"Fish x1", "Seaweed x1", "Rice x1"},
+                new ItemName[]{new ItemName("Fish", 1), new ItemName("Seaweed", 1), new ItemName("Rice", 1)},
                 "Maki Roll! The delicate flavor of the ocean, sealed within a pillowy cloud of rice."));
 
         cookings.add(new CookingItem("Miner's Treat",
                 cookingAtlas.findRegion("Miner%27s_Treat"),
-                new String[]{"Cave Carrot x2", "Sugar x1", "Milk x1"},
+                new ItemName[]{new ItemName("Cave Carrot", 2), new ItemName("Sugar", 1), new ItemName("Milk", 1)},
                 "Miners Treat boosts mining."));
 
         cookings.add(new CookingItem("Omelet",
                 cookingAtlas.findRegion("Omelet"),
-                new String[]{"Egg x1", "Milk x1"},
-                "Omelet! This is such a simple dish, but so often done incorrectly!" ));
+                new ItemName[]{new ItemName("Egg", 1), new ItemName("Milk", 1)},
+                "Omelet! This is such a simple dish, but so often done incorrectly!"));
 
         cookings.add(new CookingItem("Pancakes",
                 cookingAtlas.findRegion("Pancakes"),
-                new String[]{"Egg x1", "Wheat Flour x1"},
+                new ItemName[]{new ItemName("Egg", 1), new ItemName("Wheat Flour", 1)},
                 "Pancakes! Sometimes I get carried away... but there's something comforting about a simple pancake."));
 
         cookings.add(new CookingItem("Pizza",
                 cookingAtlas.findRegion("Pizza"),
-                new String[]{"Wheat Flour x1", "Tomato x1", "Cheese x1"},
+                new ItemName[]{new ItemName("Wheat Flour", 1), new ItemName("Tomato", 1), new ItemName("Cheese", 1)},
                 "Pizza! There's a reason pizza is a timeless culinary classic."));
 
         cookings.add(new CookingItem("Pumpkin Pie",
                 cookingAtlas.findRegion("Pumpkin_Pie"),
-                new String[]{"Pumpkin x1", "Milk x1", "Sugar x1", "Wheat Flour x1"},
+                new ItemName[]{new ItemName("Pumpkin", 1), new ItemName("Milk", 1), new ItemName("Sugar", 1), new ItemName("Wheat Flour", 1)},
                 "Pumpkin Pie! In my house, it's a tradition to eat pumpkin pie during the Feast of the Winter Star."));
 
         cookings.add(new CookingItem("Red Plate",
                 cookingAtlas.findRegion("Red_Plate"),
-                new String[]{"Radish x1", "Red Cabbage x1"},
-                "Red Plate! Vegetable‑rich dish for stamina boost."));
+                new ItemName[]{new ItemName("Radish", 1), new ItemName("Red Cabbage", 1)},
+                "Red Plate! Vegetable-rich dish for stamina boost."));
 
         cookings.add(new CookingItem("Salad",
                 cookingAtlas.findRegion("Salad"),
-                new String[]{"Lettuce x1", "Cucumber x1"},
+                new ItemName[]{new ItemName("Lettuce", 1), new ItemName("Cucumber", 1)},
                 "Salad! No bland salad here—fresh lemony greens for energy."));
+
         cookings.add(new CookingItem("Salmon Dinner",
                 cookingAtlas.findRegion("Salmon_Dinner"),
-                new String[]{"Salmon x1", "Amaranth x1"},
+                new ItemName[]{new ItemName("Salmon", 1), new ItemName("Amaranth", 1)},
                 "Salmon Dinner boosts fishing."));
 
         cookings.add(new CookingItem("Seafoam Pudding",
                 cookingAtlas.findRegion("Seafoam_Pudding"),
-                new String[]{"Flounder x1", "Midnight Carp x1", "Squid Ink x1"},
+                new ItemName[]{new ItemName("Flounder", 1), new ItemName("Midnight Carp", 1), new ItemName("Squid Ink", 1)},
                 "Seafoam Pudding maximizes fishing skill."));
 
         cookings.add(new CookingItem("Spaghetti",
                 cookingAtlas.findRegion("Spaghetti"),
-                new String[]{"Wheat Flour x1", "Tomato x1"},
+                new ItemName[]{new ItemName("Wheat Flour", 1), new ItemName("Tomato", 1)},
                 "Spaghetti restores energy and health."));
 
         cookings.add(new CookingItem("Survival Burger",
                 cookingAtlas.findRegion("Survival_Burger"),
-                new String[]{"Bread x1", "Cave Carrot x1", "Eggplant x1"},
+                new ItemName[]{new ItemName("Bread", 1), new ItemName("Cave Carrot", 1), new ItemName("Eggplant", 1)},
                 "Survival Burger boosts foraging."));
 
         cookings.add(new CookingItem("Tortilla",
                 cookingAtlas.findRegion("Tortilla"),
-                new String[]{"Corn x1"},
-                "Tortillas! How many of you are gnawing on a convenience‑burrito?" ));
+                new ItemName[]{new ItemName("Corn", 1)},
+                "Tortillas! How many of you are gnawing on a convenience-burrito?"));
 
         cookings.add(new CookingItem("Triple Shot Espresso",
                 cookingAtlas.findRegion("Triple_Shot_Espresso"),
-                new String[]{"Coffee x3"},
+                new ItemName[]{new ItemName("Coffee", 3)},
                 "Triple Shot Espresso generates massive speed for a full day."));
 
         cookings.add(new CookingItem("Vegetable Medley",
                 cookingAtlas.findRegion("Vegetable_Medley"),
-                new String[]{"Tomato x1", "Beet x1"},
+                new ItemName[]{new ItemName("Tomato", 1), new ItemName("Beet", 1)},
                 "Vegetable Medley restores health."));
     }
-
-
-
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -269,7 +270,7 @@ public class CookingMenu extends Actor {
             if (item.isMouseOver(mouseX, mouseY)) {
                 drawScale = 1.3f;
             }
-            if(checkAvailable()) {
+            if(checkAvailable(item)) {
                 batch.draw(item.icon, drawX, drawY, item.width * drawScale, item.height * drawScale);
             } else {
                 batch.setColor(1f, 1f, 1f, 0.4f);
@@ -280,12 +281,10 @@ public class CookingMenu extends Actor {
         }
     }
 
-
     private void drawTooltip(Batch batch) {
         Vector2 mousePos = stage.screenToStageCoordinates(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
         float mouseX = mousePos.x;
         float mouseY = mousePos.y;
-
 
         for (CookingMenu.CookingItem item : cookings) {
             if (item.isMouseOver(mouseX, mouseY)) {
@@ -293,10 +292,14 @@ public class CookingMenu extends Actor {
                 float tooltipY = mouseY - 20;
 
                 String title = item.name;
-                String ing = String.join("\n", item.ingredients);
+                StringBuilder ingBuilder = new StringBuilder();
+                for (ItemName in : item.ingredients) {
+                    ingBuilder.append(in.name).append(" x").append(in.number).append("\n");
+                }
+                String ing = ingBuilder.toString();
                 String desc = item.description;
 
-                String fullText = title + "\n\nIngredients:\n" + ing + "\n\n" + desc;
+                String fullText = title + "\n\nIngredients:\n" + ing + "\n" + desc;
 
                 BitmapFont font = new BitmapFont();
                 GlyphLayout layout = new GlyphLayout(font, fullText);
@@ -317,19 +320,28 @@ public class CookingMenu extends Actor {
         }
     }
 
-    private boolean checkAvailable() {
-        //TODO : implement availability of the craft machine
-        return false;
+    private boolean checkAvailable(CookingItem item) {
+        if(!game.getGameClient().getSender().sendCookingRecipe(item.name).answer) {
+                return false;
+        }
+        for(ItemName itemName : item.ingredients) {
+            if(!game.getGameClient().getSender().sendIngredient(itemName.name, itemName.number).answer) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    private void addItem() {
-        //EnergyManager.getInstance().advance(-3);
-        // TODO : add the item to inventory
+    private void addItem(CookingItem item) {
+        for(ItemName itemName : item.ingredients) {
+            game.getGameClient().getSender().sendReduceIngredient(itemName.name, itemName.number);
+        }
+        game.getGameClient().getSender().sendAddCooking(item.name);
     }
 
     public void toggle() {
         if (!isShowing) {
-            instance = new CookingMenu(assetService, skin, stage, inventory, audioService);
+            instance = new CookingMenu(assetService, skin, stage, inventory, audioService, game);
             instance.setupUI();
             stage.addActor(instance);
         } else {
@@ -339,15 +351,25 @@ public class CookingMenu extends Actor {
         isShowing = !isShowing;
     }
 
+    public static class ItemName {
+        public final String name;
+        public final int number;
+
+        public ItemName(String name, int number) {
+            this.name = name;
+            this.number = number;
+        }
+    }
+
     private static class CookingItem {
         public final String name;
         public final TextureRegion icon;
-        public final String[] ingredients;
+        public final ItemName[] ingredients;
         public final String description;
 
         public float x, y, width, height;
 
-        public CookingItem(String name, TextureRegion icon, String[] ingredients, String description) {
+        public CookingItem(String name, TextureRegion icon, ItemName[] ingredients, String description) {
             this.name = name;
             this.icon = icon;
             this.ingredients = ingredients;

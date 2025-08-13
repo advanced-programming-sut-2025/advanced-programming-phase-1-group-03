@@ -154,6 +154,16 @@ public class Registrator {
 
         kryo.register(PopupNotifier.class);
         kryo.register(VoteNotifier.class);
+        kryo.register(InventoryMoveRequest.class);
+        kryo.register(AnswerResponse.class);
+
+        kryo.register(addCookingItem.class);
+        kryo.register(addCookingRequest.class);
+        kryo.register(CookingRecipeRequest.class);
+        kryo.register(IngredientRequest.class);
+        kryo.register(InventoryMoveRequest.class);
+        kryo.register(IsFoodRequest.class);
+        kryo.register(ReduceIngredientRequest.class);
 
         kryo.register(GetActiveTradeRequest.class);
         kryo.register(GetActiveTradeResponse.class);

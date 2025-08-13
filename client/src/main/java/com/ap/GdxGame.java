@@ -4,6 +4,7 @@ import com.ap.asset.AssetService;
 import com.ap.audio.AudioService;
 import com.ap.managers.TransitionManager;
 import com.ap.network.GameClient;
+import com.ap.screen.GameScreen;
 import com.ap.screen.LoadingScreen;
 import com.ap.utils.PreferencesManager;
 import com.badlogic.gdx.*;

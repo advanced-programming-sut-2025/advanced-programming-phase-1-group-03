@@ -1,5 +1,6 @@
 package com.ap.items;
 
+import com.ap.asset.AtlasAsset;
 import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -14,13 +15,17 @@ public class Item {
 
     // This texture region indicates icon of item, If item has graphic, Graphic component must be added
     protected final TextureRegion icon;
+    protected final String atlasKey;
+    protected final AtlasAsset atlasAsset;
 
     private int index;
 
-    public Item(String name, TextureRegion icon, int index) {
+    public Item(String name, TextureRegion icon, String atlasKey, AtlasAsset atlasAsset, int index) {
         this.icon = icon;
         this.name = name;
         this.index = index;
+        this.atlasKey = atlasKey;
+        this.atlasAsset = atlasAsset;
     }
     public String getName() {
         return name;
@@ -28,6 +33,15 @@ public class Item {
 
     public TextureRegion getIcon() {
         return icon;
+    }
+
+
+    public String getAtlasKey() {
+        return atlasKey;
+    }
+
+    public AtlasAsset atlasAsset() {
+        return atlasAsset;
     }
 
     /**
