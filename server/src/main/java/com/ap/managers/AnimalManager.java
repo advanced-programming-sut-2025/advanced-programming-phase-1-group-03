@@ -1,17 +1,17 @@
 package com.ap.managers;
 
+import com.ap.asset.AtlasAsset;
 import com.ap.asset.MapAsset;
 import com.ap.component.Animation2D;
 import com.ap.component.Transform;
 import com.ap.component.items.FarmAnimal;
 import com.ap.items.EntityFactory;
+import com.ap.items.Item;
+import com.ap.items.ItemStack;
 import com.ap.items.animal.Animal;
 import com.ap.items.animal.AnimalHouse;
 import com.ap.maps.MapAdaptor;
-import com.ap.model.BarnsType;
-import com.ap.model.EmoteType;
-import com.ap.model.FarmAnimalTypes;
-import com.ap.model.ServerPlayer;
+import com.ap.model.*;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
@@ -61,8 +61,10 @@ public class AnimalManager {
         AnimalHouse house = getHouseByMapAsset(gameManager.getMapManager().currentMapAssets.get(owner));
         if (house == null) return;
         Animal animal = new Animal(type, house, position, this);
-        Helper.addEntity(EntityFactory.instance.CreateFarmAnimalEntity(position, house.getMap().getWorld(), animal),
-                    house.getMap().getEngine());
+        var entity = EntityFactory.instance.CreateFarmAnimalEntity(position, house.getMap().getWorld(), animal);
+        animal.setEntity(entity);
+        Helper.addEntity(entity, house.getMap().getEngine());
+        animals.add(animal);
     }
 
     public GameManager getGameManager() {
@@ -130,7 +132,30 @@ public class AnimalManager {
     }
 
     public void onDayChanged() {
+        for (Animal animal : animals) {
 
+            if (!animal.isFeedToday()) animal.setFriendship(animal.getFriendship() - 20);
+            if (!animal.isInHouse()) animal.setFriendship(animal.getFriendship() - 20);
+            if (!animal.isPetToday()) animal.setFriendship(animal.getFriendship() - 10);
+            animal.setFriendship(Math.max(animal.getFriendship(), 0));
+            animal.setAge(animal.getAge() + 1);
+            Helper.removeEntity(animal.getEntity(), animal.isInHouse() ? animal.getHouse().getMap().getEngine() : farm.getEngine(),
+                    animal.isInHouse() ? animal.getHouse().getMap().getWorld() : farm.getWorld());
+            var entity = EntityFactory.instance.CreateFarmAnimalEntity(animal.getInHousePosition(), animal.getHouse().getMap().getWorld(), animal);
+            animal.setEntity(entity);
+            Helper.addEntity(entity, animal.getHouse().getMap().getEngine());
+            if (!animal.getType().getProducts().isEmpty()) {
+                AnimalProducts product = animal.getType().getProducts().get(Helper.random(0, animal.getType().getProducts().size() - 1));
+                var p = EntityFactory.instance.CreateCollectableItemEntity(animal.getInHousePosition(), new ItemStack(
+                        new Item(product.getUiName(), 10, AtlasAsset.AnimalProducts, product.getAtlasKey(),
+                                product.getPrice()), 1));
+                Helper.addEntity(p, animal.getHouse().getMap().getEngine());
+            }
+
+            animal.setFeedToday(false);
+            animal.setPetToday(false);
+            animal.setInHouse(true);
+        }
     }
 
 

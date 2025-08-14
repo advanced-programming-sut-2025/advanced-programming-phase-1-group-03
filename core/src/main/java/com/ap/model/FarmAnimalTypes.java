@@ -224,6 +224,10 @@ public enum FarmAnimalTypes {
         return atlasKey;
     }
 
+    public ArrayList<AnimalProducts> getProducts() {
+        return products;
+    }
+
     public String getUiName() {
         return uiName;
     }

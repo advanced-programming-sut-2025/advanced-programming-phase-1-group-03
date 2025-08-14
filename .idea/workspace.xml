@@ -4,36 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="emote added, Animal houses, buying placing animals added">
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/system/ClickSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/AnimalStatMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/notifiers/ShowAnimalStatNotifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/AnimalSetNameRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/requests/WorldClickRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Clickable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Collectable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/ClickSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/CollectingSystem.java" afterDir="false" />
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="item collecting added, interacting with animal added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/input/KeyboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/input/KeyboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/Sender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/network/listeners/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/GameScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/GMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/screen/maps/GMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/ItemContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/Registrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/component/Transform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Animation2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Animation2D.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/AnimalStatMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/AnimalStatMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/FarmAnimalTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/FarmAnimalTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Collectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Collectable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/items/FarmAnimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/items/FarmAnimal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/EntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/animal/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/animal/Animal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/AnimalManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/AnimalManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/MapManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/MapManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/House.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/House.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/MapAdaptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/maps/MapAdaptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/CarrierSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/CarrierSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/CollectingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/CollectingSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/FacingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/FacingSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/FarmAnimalSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/FarmAnimalSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/tiled/TiledMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/tiled/TiledMapGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/utils/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/utils/Helper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,14 +276,6 @@
       <workItem from="1755079910166" duration="9648000" />
       <workItem from="1755087966412" duration="3779000" />
       <workItem from="1755106047230" duration="11515000" />
-    </task>
-    <task id="LOCAL-00061" summary="typo fixed">
-      <option name="closed" value="true" />
-      <created>1753391483257</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1753391483257</updated>
     </task>
     <task id="LOCAL-00062" summary="typo really fixed this time">
       <option name="closed" value="true" />
@@ -658,7 +635,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755152801732</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="item collecting added, interacting with animal added">
+      <option name="closed" value="true" />
+      <created>1755162468274</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1755162468274</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,7 +674,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="cheat code box fixed" />
     <MESSAGE value="store menu bug fixed." />
     <MESSAGE value="effect added." />
     <MESSAGE value="tool tip added" />
@@ -714,7 +698,8 @@
     <MESSAGE value="giant and food and some stuffs" />
     <MESSAGE value="bug fixed" />
     <MESSAGE value="emote added, Animal houses, buying placing animals added" />
-    <option name="LAST_COMMIT_MESSAGE" value="emote added, Animal houses, buying placing animals added" />
+    <MESSAGE value="item collecting added, interacting with animal added" />
+    <option name="LAST_COMMIT_MESSAGE" value="item collecting added, interacting with animal added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

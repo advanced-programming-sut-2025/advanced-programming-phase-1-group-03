@@ -24,7 +24,7 @@ public class Animal {
     //if stay night or hit by axe out one will decrease
     private int health;
 
-    private boolean isInHouse;
+    private boolean isInHouse = true;
 
     private Vector2 currenPosition;
     private Vector2 inHousePosition;
@@ -88,7 +88,7 @@ public class Animal {
     }
 
     public Vector2 getHousePosition() {
-        return house.getTransform().getPosition();
+        return house.getTransform().getMiddlePosition();
     }
 
     public Vector2 getCurrenPosition() {

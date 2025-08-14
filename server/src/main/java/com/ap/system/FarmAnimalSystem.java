@@ -1,10 +1,7 @@
 package com.ap.system;
 
 
-import com.ap.component.Carrier;
-import com.ap.component.Clickable;
-import com.ap.component.Move;
-import com.ap.component.Transform;
+import com.ap.component.*;
 import com.ap.component.items.FarmAnimal;
 import com.ap.items.EntityFactory;
 import com.ap.items.Item;
@@ -48,9 +45,55 @@ public class FarmAnimalSystem extends IteratingSystem {
             clickable.setClicked(false);
         }
 
-        if (animal.getDuration() != -1 && animal.getAnimationStateTime() > animal.getDuration()) {
+        animal.setWalkingTimeState(animal.getWalkingTimeState() + deltaTime);
+        Transform transform = Transform.mapper.get(entity);
+        Physic physic = Physic.mapper.get(entity);
+
+
+        if (animal.getDirection().isZero()) {
+            if (animal.getWalkingTimeState() >= FarmAnimal.idleDuration) {
+                float y, x;
+
+                Vector2 source  = new Vector2(animal.getAnimal().isInHouse() ? animal.getAnimal().getInHousePosition() : animal.getAnimal().getHousePosition());
+
+                if (Helper.calculateDistance(source, physic.getBody().getPosition()) > FarmAnimal.maxWalkRange) {
+                    animal.getDirection().set(source.sub(physic.getBody().getPosition()));
+                    float t = Helper.floatRandom(-0.4f, 0.4f);
+                    if (Helper.random(0, 1) == 0) {
+                        animal.getDirection().x = t;
+                    } else animal.getDirection().y = t;
+                } else {
+                    y = Helper.floatRandom(-1, 1);
+                    x = Helper.floatRandom(-1, 1);
+                    if (x == 0 && y == 0) {
+                        y = 0;
+                        x = -1;
+                    }
+                    animal.getDirection().set(x, y);
+                }
+                animal.setWalkingTimeState(0);
+            }
+        } else {
+            if (animal.getWalkingTimeState() >= FarmAnimal.walkDuration) {
+                animal.getDirection().setZero();
+                animal.setWalkingTimeState(0);
+            }
+        }
+
+
+        if ((animal.getDuration() != -1 || animal.getSituation() == FarmAnimal.Situation.Idle ||
+                animal.getSituation() == FarmAnimal.Situation.Walk)
+                && animal.getAnimationStateTime() > animal.getDuration()) {
             if (animal.getDirection().isZero()) animal.setSituation(FarmAnimal.Situation.Idle);
             else animal.setSituation(FarmAnimal.Situation.Walk);
+        }
+
+
+
+        if (animal.getSituation() == FarmAnimal.Situation.Walk) {
+            move.getDirection().set(animal.getDirection());
+        } else {
+            if (!move.getDirection().isZero()) move.getDirection().setZero();
         }
 
         if (animal.getSituation() == FarmAnimal.Situation.Walk) move.getDirection().set(animal.getDirection());

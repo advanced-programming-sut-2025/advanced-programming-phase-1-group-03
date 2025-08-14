@@ -370,9 +370,9 @@ public class EntityFactory {
     public Entity CreateCollectableItemEntity(Vector2 position, ItemStack item) {
         Entity entity = new Entity();
         Vector2 size = new Vector2(1, 1);
-        entity.add(new Transform(position,
+        entity.add(new Transform(new Vector2(position),
                 Constraints.Collectable_Z,
-                new Vector2(1, 1),
+                new Vector2(1.5f, 1.5f),
                 size,
                 0, 0));
         entity.add(new Graphic(item.getItem().atlasAsset, item.getItem().atlasKey));

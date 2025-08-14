@@ -10,6 +10,10 @@ import com.badlogic.gdx.math.Vector2;
 public class FarmAnimal implements Component {
     public static final ComponentMapper<FarmAnimal> mapper = ComponentMapper.getFor(FarmAnimal.class);
 
+    public static final float walkDuration = 3f;
+    public static final float idleDuration = 1f;
+    public static final float maxWalkRange = 5f;
+
     private Situation situation;
     private float animationStateTime;
     private FarmAnimalTypes type;
@@ -21,6 +25,9 @@ public class FarmAnimal implements Component {
 
     private boolean isClicked = false;
     private int buttonClicked;
+
+    private float walkingTimeState = 0;
+
 
     public FarmAnimal(FarmAnimalTypes type, Animal animal) {
         this.type = type;
@@ -114,5 +121,13 @@ public class FarmAnimal implements Component {
 
     public void setType(FarmAnimalTypes type) {
         this.type = type;
+    }
+
+    public void setWalkingTimeState(float walkingTimeState) {
+        this.walkingTimeState = walkingTimeState;
+    }
+
+    public float getWalkingTimeState() {
+        return walkingTimeState;
     }
 }

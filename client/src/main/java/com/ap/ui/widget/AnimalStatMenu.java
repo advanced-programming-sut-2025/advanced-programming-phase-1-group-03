@@ -57,7 +57,7 @@ public class AnimalStatMenu extends Group {
 
         Label type = new Label(FarmAnimalTypes.values()[animal.getTypeOrdinal()].getUiName(), skin);
         Label friendship = new Label("Friendship: " + animal.getFriendship(), skin);
-        Label age = new Label("Age: " + animal.getAge() + "months", skin);
+        Label age = new Label("Age: " + animal.getAge() + "days", skin);
         Label Health = new Label("Health: " + animal.getHealth() + "/" + Constraints.ANIMAL_MAX_HEALTH, skin);
 
         body.add(type).left().row();

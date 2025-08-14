@@ -24,13 +24,13 @@ public class FacingSystem extends IteratingSystem {
                 return;
 
             Facing facing = Facing.mapper.get(entity);
-            if (direction.y > 0) {
+            if (direction.y > 0 && Math.abs(move.getDirection().y) >= Math.abs(move.getDirection().x)) {
                 facing.setDirection(Facing.FacingDirection.Up);
-            } else if (direction.y < 0) {
+            } else if (direction.y < 0 && Math.abs(move.getDirection().y) >= Math.abs(move.getDirection().x)) {
                 facing.setDirection(Facing.FacingDirection.Down);
-            } else if (direction.x > 0) {
+            } else if (direction.x > 0 && Math.abs(move.getDirection().y) <= Math.abs(move.getDirection().x)) {
                 facing.setDirection(Facing.FacingDirection.Right);
-            } else if (direction.x < 0) {
+            } else if (direction.x < 0 && Math.abs(move.getDirection().y) <= Math.abs(move.getDirection().x)) {
                 facing.setDirection(Facing.FacingDirection.Left);
             }
         } else {

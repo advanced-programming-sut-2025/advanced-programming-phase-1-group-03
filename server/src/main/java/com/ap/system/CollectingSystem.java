@@ -37,10 +37,12 @@ public class CollectingSystem extends IteratingSystem {
             Entity playerEntity = player.playerManager.getPlayerEntity();
             if (playerEntity == null) continue;
             if (!collectable.isActive()) {
+                System.out.println(collectable + " activated");
                 if (Helper.calculateDistance(transform.getMiddlePosition(), Transform.mapper.get(playerEntity).getMiddlePosition())
                         < Collectable.collectingRange) {
                     collectable.setActive(true);
-                    collectable.setPlayerId(player.id);
+                    collectable.setPlayerEntity(playerEntity);
+                    collectable.setPlayer(player);
                     break;
                 }
             }
@@ -48,18 +50,11 @@ public class CollectingSystem extends IteratingSystem {
 
         if (collectable.isActive()) {
             //speed will rise on direction of distance Vector
-            ServerPlayer player = getPlayer(collectable.getPlayerId());
-            if (player == null) {
-                collectable.setActive(false);
-                return;
-            }
-            Entity playerEntity = player.playerManager.getPlayerEntity();
-            if (playerEntity == null) {
-                collectable.setActive(false);
-                return;
-            }
+            ServerPlayer player = collectable.getPlayer();
+            Entity playerEntity = collectable.getPlayerEntity();
 
-            Vector2 distance = Transform.mapper.get(playerEntity).getMiddlePosition().sub(transform.getMiddlePosition());
+            Vector2 distance = new Vector2(Transform.mapper.get(playerEntity).getMiddlePosition());
+            distance.sub(transform.getMiddlePosition());
             float d2 = distance.x * distance.x + distance.y * distance.y;
             distance.set(distance.x / d2, distance.y / d2);
             collectable.getSpeed().add( collectable.getAcceleration() * deltaTime, collectable.getAcceleration() * deltaTime);

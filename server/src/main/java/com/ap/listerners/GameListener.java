@@ -223,6 +223,9 @@ public class GameListener extends Listener {
             System.out.println("clicked: " + click.worldX + "," + click.worldY + " & " + click.button);
             var map = (MapAdaptor) senderPlayer.playerManager.getGameManager().getMapManager().currentMaps.get(senderPlayer);
             if (map != null) map.getClickSystem().processClick(click.worldX, click.worldY, click.button, click.itemName, click.itemAmount);
+        } else if(object instanceof AnimalSetNameRequest setName) {
+            String name = setName.name;
+            if (name.isEmpty()) return;
         }
     }
     private void startTradeRoom(ServerPlayer player1, ServerPlayer player2) {

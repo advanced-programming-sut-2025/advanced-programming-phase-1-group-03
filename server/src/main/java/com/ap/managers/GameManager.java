@@ -112,7 +112,14 @@ public class GameManager {
         @Override
         public void onDayChanged(int newDay) {
             weatherSystem.setWeatherRandomly();
+            System.out.println("day changed");
             mapManager.goToHome();
+            for (ServerPlayer player : room.players) {
+                var animalManager = animalManagers.get(player);
+                if (animalManager != null) {
+                    animalManager.onDayChanged();
+                }
+            }
         }
 
         @Override

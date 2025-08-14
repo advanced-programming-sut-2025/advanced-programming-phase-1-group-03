@@ -1,8 +1,10 @@
 package com.ap.component;
 
 import com.ap.items.ItemStack;
+import com.ap.model.ServerPlayer;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.ashley.core.ComponentMapper;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.math.Vector2;
 
 public class Collectable implements Component {
@@ -13,7 +15,8 @@ public class Collectable implements Component {
 
     private ItemStack item;
     private boolean isActive = false;
-    private int playerId;
+    private Entity playerEntity = null;
+    private ServerPlayer player = null;
     private Vector2 speed = new Vector2(0, 0);
     private final float acceleration = 0.3f;
     public Collectable(ItemStack item) {
@@ -44,11 +47,20 @@ public class Collectable implements Component {
         return acceleration;
     }
 
-    public void setPlayerId(int playerId) {
-        this.playerId = playerId;
+    public Entity getPlayerEntity() {
+        return playerEntity;
     }
 
-    public int getPlayerId() {
-        return playerId;
+    public void setPlayerEntity(Entity playerEntity) {
+        this.playerEntity = playerEntity;
+    }
+
+    public ServerPlayer getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(ServerPlayer player) {
+        this.player = player;
     }
 }
+
