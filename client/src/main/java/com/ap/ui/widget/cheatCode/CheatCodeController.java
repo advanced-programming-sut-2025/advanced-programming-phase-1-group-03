@@ -23,10 +23,15 @@ public class CheatCodeController {
         Matcher matcher;
         System.out.println(command);
        if ((matcher = CheatCodes.TimeSpeed.getMatcher(command)) != null) {
-//           return changeTimeSpeed(matcher.group("speed"), matcher.group("unit"));
+           sender.sendSpeedCheat(Integer.parseInt(matcher.group("speed")));
+           return new Result(true, "time speed set to " + matcher.group("speed"));
        } else if ((matcher = CheatCodes.Energy.getMatcher(command)) != null) {
-//           return setEnergy(matcher.group("energy"));
-       } else if ((matcher = CheatCodes.AddGold.getMatcher(command)) != null) {
+           sender.sendEnergyCheat(Integer.parseInt(matcher.group("energy")));
+           return new Result(true, "Energy set to " + matcher.group("energy"));
+       } else if ((matcher = CheatCodes.Thunder.getMatcher(command)) != null) {
+           sender.sendThunder();
+           return new Result(true, "thunder storm apolied.");
+       }  else if ((matcher = CheatCodes.AddGold.getMatcher(command)) != null) {
 //           return setGold(matcher.group("gold"));
        } else if ((matcher = CheatCodes.Thor.getMatcher(command)) != null) {
 //           return thor(matcher.group("x"), matcher.group("y"));

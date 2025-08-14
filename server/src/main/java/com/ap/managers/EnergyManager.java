@@ -52,6 +52,7 @@ public class EnergyManager {
 
     public void setAmount(int amount) {
         this.amount = amount;
+        player.connection.sendTCP(new EnergyNotifier(getPercentage()));
     }
 
 

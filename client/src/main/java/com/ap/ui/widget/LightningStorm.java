@@ -2,6 +2,7 @@ package com.ap.ui.widget;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.SoundAsset;
+import com.ap.asset.TextureAsset;
 import com.ap.audio.AudioService;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -54,9 +55,9 @@ public class LightningStorm extends Actor {
         this.posX = x;
         this.posY = y;
 
-        clouds = new TextureRegion(new Texture(Gdx.files.internal("graphics/LightningCloud.png")));
-        light = new TextureRegion(new Texture(Gdx.files.internal("graphics/LightningStorm3.png")));
-        whiteFlash = new Texture(Gdx.files.internal("graphics/whiteflash.png")); // فایل white.png باید سفید یک‌دست باشه
+        clouds = new TextureRegion(assetService.get(TextureAsset.cloud));
+        light = new TextureRegion(assetService.get(TextureAsset.Lightning));
+        whiteFlash = assetService.get(TextureAsset.WhiteFlash);
     }
 
     @Override

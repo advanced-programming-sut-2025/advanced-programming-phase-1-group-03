@@ -10,7 +10,12 @@ public enum TextureAsset implements Asset<Texture> {
     Wood("wood.png"),
     Grid2("grid2.png"),
     StoreBackground("StoreBackground.png"),
-    Refrigerator("RefrigeratorBackground.png")
+    Refrigerator("RefrigeratorBackground.png"),
+    cloud("LightningCloud.png"),
+    Lightning("LightningStorm3.png"),
+    WhiteFlash("whiteflash.png"),
+    FishingMiniGame("FishingMiniGame.png"),
+    GreenBar("greenBar.png")
     ;
 
     private final AssetDescriptor<Texture> descriptor;

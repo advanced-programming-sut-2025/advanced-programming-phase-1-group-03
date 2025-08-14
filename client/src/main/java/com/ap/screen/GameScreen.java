@@ -62,6 +62,7 @@ public class GameScreen extends AbstractScreen {
     private LeaderBoard leaderBoard;
     private RefrigeratorMenu refrigeratorMenu;
     private AnimalStatMenu animalStatMenu;
+    private ProcessingMachineWindow processingMachineWindow;
 
     private EmojiPanel emojiPanel;
 
@@ -140,7 +141,7 @@ public class GameScreen extends AbstractScreen {
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock);
         animalStatMenu = new AnimalStatMenu(null, getStage(), getSkin(), assetService, audioService, this);
-
+        processingMachineWindow = new ProcessingMachineWindow(skin, stage, assetService);
         client.getListener(GameListener.class).setGameScreen(this);
 
         voiceChat = new VoiceChatClient();
@@ -171,7 +172,7 @@ public class GameScreen extends AbstractScreen {
         stage.addActor(energyBar);
         stage.addActor(journal);
         stage.addActor(TooltipHelper.getTooltip());
-
+        //stage.addActor(processingMachineWindow);
 //        lightningStorm.toggle(0, 0);
 
         // Play background music

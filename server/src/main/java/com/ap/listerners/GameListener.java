@@ -25,6 +25,7 @@ import com.ap.responses.ChatResponse;
 import com.ap.responses.GetActiveTradeResponse;
 import com.ap.responses.LeaderBoardResponse;
 import com.ap.responses.RoommatesInfoResponse;
+import com.ap.system.universal.TimeSystem;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
@@ -48,7 +49,15 @@ public class GameListener extends Listener {
             senderPlayer.playerManager.buildGreenhouse(senderPlayer);
         } else if(object instanceof BuyProductRequest buyProductRequest) {
 
-        } else if(object instanceof ReactionRequest reactionRequest) {
+        } else if(object instanceof  CheatRequest cheatRequest) {
+            System.out.println(cheatRequest.command);
+            if(cheatRequest.command.equals("energy"))
+                senderPlayer.playerManager.getEnergyManager().setAmount(cheatRequest.number);
+            else if(cheatRequest.command.equals("thunder"))
+                senderPlayer.connection.sendTCP(new ThunderResponse());
+            else if(cheatRequest.command.equals("gameSpeed"))
+                TimeSystem.setGameSpeed(cheatRequest.number);
+        }  else if(object instanceof ReactionRequest reactionRequest) {
             if(reactionRequest.emojiNum == null)
                 senderPlayer.playerManager.applyReaction(reactionRequest.message);
             else

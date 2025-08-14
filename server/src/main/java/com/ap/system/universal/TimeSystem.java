@@ -27,7 +27,7 @@ public class TimeSystem extends EntitySystem {
     @Override
     public void update(float deltaTime) {
         Time previousTime = getTime();
-        timer += deltaTime * Constraints.GAME_SPEED;
+        timer += deltaTime * gameSpeed;
         if(previousTime.hour() == endHour) {
             timer += (startHour - endHour + 24) * 60 * 60;
         }

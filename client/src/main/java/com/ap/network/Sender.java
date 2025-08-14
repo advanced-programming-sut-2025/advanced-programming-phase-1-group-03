@@ -148,6 +148,21 @@ public class Sender {
         return sendMessageAndWaitForResponse(request, AmIHostResponse.class);
     }
 
+    public void sendThunder() {
+        var request = new CheatRequest("thunder", 0);
+        client.sendTCP(request);
+    }
+
+    public void sendEnergyCheat(int number) {
+        var request = new CheatRequest("energy", number);
+        client.sendTCP(request);
+    }
+
+    public void sendSpeedCheat(int number) {
+        var request = new CheatRequest("gameSpeed", number);
+        client.sendTCP(request);
+    }
+
     public void startGame() {
         var request = new StartGameRequest();
         client.sendTCP(request);

@@ -4,7 +4,9 @@ import com.ap.managers.GameUIManager;
 import com.ap.model.FarmAnimalTypes;
 import com.ap.notifiers.*;
 import com.ap.packet.VoiceNetData;
+import com.ap.responses.ThunderResponse;
 import com.ap.screen.GameScreen;
+import com.ap.ui.widget.LightningStorm;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
@@ -54,7 +56,10 @@ public class GameListener extends Listener {
             gameScreen.getCheatCodeBox().receivedChat(chatNotifier.isPrivate, chatNotifier.message, chatNotifier.senderName);
         } else if(object instanceof PopupNotifier popupNotifier) {
             GameUIManager.instance.showPopup(popupNotifier.message, popupNotifier.sender);
-        } else if(object instanceof VoteNotifier voteNotifier) {
+        } else if(object instanceof ThunderResponse) {
+            System.out.println("slaaaaam");
+            gameScreen.getLightningStorm().toggle(0, 0);
+        }  else if(object instanceof VoteNotifier voteNotifier) {
             GameUIManager.instance.showVotePopUp(voteNotifier.userName, voteNotifier.senderUserName, voteNotifier.id, voteNotifier.voteRequest);
         } else if(object instanceof SendGoldNotifier sendGoldNotifier) {
             gameScreen.updateGold(sendGoldNotifier.gold);

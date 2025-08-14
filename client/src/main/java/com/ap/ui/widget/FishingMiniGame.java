@@ -2,6 +2,7 @@ package com.ap.ui.widget;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
+import com.ap.asset.TextureAsset;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
@@ -82,8 +83,8 @@ public class FishingMiniGame extends Actor {
 
         this.textureAtlas = assetService.get(AtlasAsset.Fish);
         this.bodyFish = textureAtlas.findRegion("Fishing-8");
-        this.background = new TextureRegion(new Texture(Gdx.files.internal("graphics/FishingMiniGame.png")));
-        this.greenBar = new TextureRegion(new Texture(Gdx.files.internal("graphics/greenBar.png")));
+        this.background = new TextureRegion(assetService.get(TextureAsset.FishingMiniGame));
+        this.greenBar = new TextureRegion(assetService.get(TextureAsset.GreenBar));
 
         this.shapeRenderer = new ShapeRenderer();
 

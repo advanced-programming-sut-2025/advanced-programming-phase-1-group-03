@@ -62,9 +62,9 @@ public class CookingMenu extends Actor {
                 float worldY = stageCoords.y;
                 for (CookingMenu.CookingItem item : cookings) {
                     if (item.isMouseOver(worldX, worldY)) {
-                        Gdx.app.log("Crafting", "Clicked on: " + item.name);
+                        Gdx.app.log("Cooking", "Clicked on: " + item.name);
                         if (!checkAvailable(item)) {
-                            showErrorDialog("This craft item is not available!");
+                            showErrorDialog("This Cooking item is not available!");
                         } else {
                             addItem(item);
                         }

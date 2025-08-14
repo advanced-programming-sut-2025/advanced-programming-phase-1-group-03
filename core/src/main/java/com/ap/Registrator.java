@@ -157,6 +157,10 @@ public class Registrator {
         kryo.register(InventoryMoveRequest.class);
         kryo.register(AnswerResponse.class);
 
+        kryo.register(ThunderResponse.class);
+        kryo.register(CheatRequest.class);
+
+
         kryo.register(addCookingItem.class);
         kryo.register(addCookingRequest.class);
         kryo.register(CookingRecipeRequest.class);
