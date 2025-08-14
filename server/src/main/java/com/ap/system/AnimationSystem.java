@@ -48,7 +48,7 @@ public class AnimationSystem extends IteratingSystem {
         AtlasAsset atlasAsset = animation2D.getAtlasAsset();
         String atlasKey = animation2D.getAtlasKey();
         Animation2D.AnimationType type = animation2D.getAnimationType();
-        String combinedKey = (!atlasKey.isEmpty() ? atlasKey+ "/" : "") +type.getAtlasKey() + "_" + facing.getAtlasKey();
+        String combinedKey = (!atlasKey.isEmpty() ? atlasKey+ "/" : "") +type.getAtlasKey() + (type.isHasFacing() ? "_" + facing.getAtlasKey() : "");
         animation2D.setAnimation(facing);
         Helper.sendToAllTCP(players, new AnimationNotifier(
                 combinedKey, atlasAsset, id, engineId,animation2D.getSpeed(), animation2D.getPlayMode()

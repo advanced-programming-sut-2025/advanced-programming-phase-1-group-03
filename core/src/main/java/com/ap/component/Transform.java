@@ -48,6 +48,7 @@ public class Transform implements Component, Comparable<Transform> {
     }
 
     public Vector2 getPosition() {
+        setChanged(true);
         return position;
     }
 

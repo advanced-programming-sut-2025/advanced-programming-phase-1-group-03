@@ -25,7 +25,7 @@ public class Farm extends MapAdaptor {
 //
     private GrowSystem growSystem;
 //    private GiantCropManager giantCropManager;
-//    private CrowAttackSystem crowAttackSystem;
+    private CrowAttackSystem crowAttackSystem;
 
     public Farm(GameManager gameManager, MapManager mapManager, int playerId) {
         super(gameManager, mapManager, playerId);
@@ -53,6 +53,8 @@ public class Farm extends MapAdaptor {
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(players));
         engine.addSystem(new AdjustAlphaSystem(engine));
+        crowAttackSystem = new CrowAttackSystem(engine, world);
+        engine.addSystem(crowAttackSystem);
     }
 
     @Override
@@ -132,12 +134,13 @@ public class Farm extends MapAdaptor {
         }
         @Override
         public void onDayChanged(int day) {
+            System.out.println("day: " + day);
             growSystem.dayPassed();
 //            giantCropManager.checkGiant();
 //            if(map.getProperties().get("generateItems", false, Boolean.class)) {
 //                tiledMapGenerator.generateForagingTree(map);
 //            }
-//            crowAttackSystem.onDayChanged();
+            crowAttackSystem.onDayChanged();
         }
     }
 }

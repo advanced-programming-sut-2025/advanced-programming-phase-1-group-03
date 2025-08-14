@@ -2047,19 +2047,19 @@
     <property name="spawner" value="CarpenterShop"/>
    </properties>
   </object>
-  <object id="114" x="1101.5" y="234.5" width="34" height="19">
+  <object id="114" x="1100.17" y="209.167" width="34" height="19">
    <properties>
     <property name="sensor" type="bool" value="true"/>
     <property name="spawner" value="Barn"/>
    </properties>
   </object>
-  <object id="115" x="1022.04" y="353.458" width="13.25" height="27.75">
+  <object id="115" x="1102.71" y="238.791" width="13.25" height="27.75">
    <properties>
     <property name="sensor" type="bool" value="true"/>
     <property name="spawner" value="StardropSaloon"/>
    </properties>
   </object>
-  <object id="116" x="943.667" y="303.333" width="27.3333" height="25.3333">
+  <object id="116" x="925.667" y="239.333" width="27.3333" height="25.3333">
    <properties>
     <property name="sensor" type="bool" value="true"/>
     <property name="spawner" value="CarpenterShop"/>
