@@ -3,6 +3,7 @@ package com.ap.network;
 import com.ap.Configuration;
 import com.ap.asset.MapAsset;
 import com.ap.model.Menus;
+import com.ap.model.NetworkItemStack;
 import com.ap.requests.*;
 import com.ap.responses.*;
 import com.ap.model.Gender;
@@ -11,6 +12,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
+import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -185,6 +187,33 @@ public class Sender {
         client.sendTCP(request);
     }
 
+    public AnswerResponse sendIngredient(String name, int number) {
+        var request = new IngredientRequest(name, number);
+        return sendMessageAndWaitForResponse(request, AnswerResponse.class);
+    }
+
+    public AnswerResponse sendCookingRecipe(String name) {
+        var request = new CookingRecipeRequest(name);
+        return sendMessageAndWaitForResponse(request, AnswerResponse.class);
+    }
+
+    public void sendReduceIngredient(String name, int number) {
+        var request = new ReduceIngredientRequest(name, number);
+        client.sendTCP(request);
+    }
+
+    public AnswerResponse sendIsFood(String name) {
+        var request = new IsFoodRequest(name);
+        AnswerResponse answerResponse = sendMessageAndWaitForResponse(request, AnswerResponse.class);
+        System.out.println(answerResponse);
+        return answerResponse;
+    }
+
+    public void sendAddCooking(String name) {
+        var request = new addCookingRequest(name);
+        client.sendTCP(request);
+    }
+
     public void applyReaction(String message) {
         var request = new ReactionRequest(message);
         client.sendTCP(request);
@@ -201,6 +230,12 @@ public class Sender {
 
     public void sendVote(String userName, int id, int voteNum) {
         var request = new VoteRequest(userName, id, voteNum);
+        client.sendTCP(request);
+    }
+
+    public void sendItem(NetworkItemStack[] networkItemStacks, int storage, boolean toRefrigerator) {
+        System.out.println("aloooo");
+        var request = new InventoryMoveRequest(networkItemStacks, storage, toRefrigerator);
         client.sendTCP(request);
     }
 

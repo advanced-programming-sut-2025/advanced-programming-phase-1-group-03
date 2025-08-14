@@ -13,6 +13,7 @@ public enum MusicAsset implements Asset<Music> {
     Fall("Fall.mp3"),
     Type("type.mp3"),
     Mine("Mine.mp3"),
+    House("House.mp3")
     ;
 
     private final AssetDescriptor<Music> descriptor;

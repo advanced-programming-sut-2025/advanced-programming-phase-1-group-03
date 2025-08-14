@@ -4,12 +4,10 @@ package com.ap.maps;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.managers.MapManager;
-import com.ap.model.GameManager;
+import com.ap.managers.GameManager;
 import com.ap.model.ServerPlayer;
-import com.ap.notifiers.CreateMapNotifier;
 import com.ap.requests.MovePlayerRequest;
 import com.ap.system.PhysicMoveSystem;
-import com.ap.system.universal.NetworkEntitySystem;
 import com.ap.system.universal.TimeSystem;
 import com.ap.system.universal.WeatherSystem;
 import com.ap.tiled.TiledAshleyConfigurator;
@@ -103,8 +101,7 @@ public abstract class MapAdaptor implements IMap {
     @Override
     public Entity leave(ServerPlayer player) {
         engine.getSystem(PhysicMoveSystem.class).stopPlayer(player);
-        var playerEntity = Helper.getPlayer(engine, player.id);
-        return playerEntity;
+        return Helper.getPlayer(engine, player.id);
     }
 
     @Override

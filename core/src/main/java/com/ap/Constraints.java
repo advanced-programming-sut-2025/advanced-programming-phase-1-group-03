@@ -51,7 +51,7 @@ public class Constraints {
     };
 
     // in 10 probabilities
-    public static final int PROB_OF_GRASS_GIVE_FIBBER = 1;
+    public static final int PROB_OF_GRASS_GIVE_FIBBER = 10;
     public static final int PROP_OF_BECOME_GIANT = 1;
 
     public static final int STONE_Z = 1;

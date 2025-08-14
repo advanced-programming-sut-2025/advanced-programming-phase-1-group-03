@@ -8,10 +8,12 @@ import com.ap.Configuration;
 import com.ap.Registrator;
 import com.ap.requests.IntroductionRequest;
 import com.ap.requests.RoommatesInfoLobbyRequest;
+import com.ap.rmi.AskImpl;
 import com.badlogic.gdx.Screen;
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Listener;
+import com.esotericsoftware.kryonet.rmi.ObjectSpace;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -19,15 +21,20 @@ import java.util.Map;
 
 public class GameClient {
     private final Client client;
+    private final ObjectSpace objectSpace;
     private final Map<Class<? extends Listener>, Listener> listenersCache = new HashMap<>();
 
     public GameClient() {
 
         client = new Client(65536, 65536);
 
+
         // Registration
         Kryo kryo = client.getKryo();
         Registrator.register(kryo);
+
+        objectSpace = new ObjectSpace(client);
+        registerRmi(objectSpace);
 
         // Add listeners
         listenersCache.put(LobbyListener.class, new LobbyListener());
@@ -37,6 +44,11 @@ public class GameClient {
         for(Listener listener : listenersCache.values()) {
             client.addListener(listener);
         }
+    }
+
+    private void registerRmi(ObjectSpace objectSpace) {
+        AskImpl ask = new AskImpl();
+        objectSpace.register(1, ask);
     }
 
     public <T extends Listener> T getListener(Class<T> listenerClass) {

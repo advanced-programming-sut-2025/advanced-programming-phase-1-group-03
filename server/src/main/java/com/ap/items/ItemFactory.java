@@ -36,7 +36,7 @@ public class ItemFactory {
     }
 
     public Item CreateSeed(CropsType belongingCropType) {
-        return new Seed(AtlasAsset.Crops, belongingCropType.getName() + "_Seeds", belongingCropType);
+        return new Seed(AtlasAsset.Crops, belongingCropType.name() + "_Seeds", belongingCropType);
     }
 
     public Item CreateMixSeedCrop(MixedSeedsTypes mixSeed) {
@@ -48,7 +48,7 @@ public class ItemFactory {
         return new Fertilizer(ItemNames.Fertilizer.name(), AtlasAsset.Crops, "Basic_Fertilizer");
     }
     public Item CreateCrop(CropsType type) {
-        return new Crop(AtlasAsset.Crops, type.getName(), type);
+        return new Crop(AtlasAsset.Crops, type.name(), type);
     }
 
     public Item CreateProductOfCrop(CropsType type) {

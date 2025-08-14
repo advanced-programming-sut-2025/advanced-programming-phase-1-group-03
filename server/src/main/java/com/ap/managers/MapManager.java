@@ -1,12 +1,7 @@
 package com.ap.managers;
 
 import com.ap.asset.MapAsset;
-import com.ap.asset.MusicAsset;
-import com.ap.maps.Farm;
-import com.ap.maps.IMap;
-import com.ap.maps.Mine;
-import com.ap.maps.Store;
-import com.ap.model.GameManager;
+import com.ap.maps.*;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.ChangeMapNotifier;
 import com.badlogic.ashley.core.Entity;
@@ -31,7 +26,6 @@ public class MapManager {
     }
 
     public void playerArrived(ServerPlayer serverPlayer, MapAsset playerMap, PlayerManager playerManager) {
-        players.add(serverPlayer);
         for(MapAsset mapAsset : MapAsset.values()) {
 
             ServerPlayer player = mapAsset.isMapPublic ? null : serverPlayer;
@@ -51,7 +45,7 @@ public class MapManager {
             }
         }
         farmMaps.put(serverPlayer, playerMap);
-
+        players.add(serverPlayer);
         setMap(serverPlayer, playerMap);
 
     }
@@ -61,7 +55,7 @@ public class MapManager {
             case Farm1, Farm2, Forest, Town -> {
                 return new Farm(gameManager, this, playerId);
             } case House,Greenhouse -> {
-                return new Farm(gameManager, this, playerId);
+                return new House(gameManager, this, playerId);
             } case Mine -> {
                 return new Mine(gameManager,this, playerId);
             } case StardropSaloon, CarpenterShop -> {
@@ -101,6 +95,12 @@ public class MapManager {
 
         newMap.load(playerEntity);
         player.connection.sendTCP(new ChangeMapNotifier(newMap.getEngineId()));
+    }
+
+    public void goToHome() {
+        for(ServerPlayer player : players) {
+            setMap(player, MapAsset.House);
+        }
     }
 
     private record MapKey(MapAsset mapAsset, ServerPlayer belongingPlayer) {

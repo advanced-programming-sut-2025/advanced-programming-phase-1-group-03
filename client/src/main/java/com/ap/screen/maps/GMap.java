@@ -83,6 +83,7 @@ public class GMap {
                 gameScreen.getCheatCodeBox(),
                 gameScreen.getLeaderBoard(),
                 gameScreen.getEmojiPanel(),
+                gameScreen.getRefrigeratorMenu(),
                 engine,
                 gameScreen.getGameClient(),
                 gameScreen)

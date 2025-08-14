@@ -5,7 +5,7 @@ import com.ap.asset.AssetService;
 import com.ap.model.RoommateLobbyInfo;
 import com.ap.requests.*;
 import com.ap.responses.*;
-import com.ap.model.GameManager;
+import com.ap.managers.GameManager;
 import com.ap.ServerData;
 import com.ap.database.UserLoader;
 import com.ap.model.Room;

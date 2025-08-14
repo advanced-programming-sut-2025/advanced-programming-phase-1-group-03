@@ -16,7 +16,6 @@ import com.ap.network.listeners.GameListener;
 import com.ap.notifiers.ChangeSeasonNotifier;
 import com.ap.notifiers.CreateMapNotifier;
 import com.ap.system.*;
-import com.ap.managers.EnergyManager;
 import com.ap.ui.model.GameViewModel;
 import com.ap.ui.view.GameView;
 import com.ap.ui.widget.*;
@@ -60,6 +59,7 @@ public class GameScreen extends AbstractScreen {
     private Journal journal;
     private CheatCodeBox cheatCodeBox;
     private LeaderBoard leaderBoard;
+    private RefrigeratorMenu refrigeratorMenu;
 
     private EmojiPanel emojiPanel;
 
@@ -67,6 +67,7 @@ public class GameScreen extends AbstractScreen {
     private CheatCodeController cheatCodeController;
 
     private Inventory inventory;
+    private Inventory refrigerator;
     private AbilityManager abilityManager;
 
     private Engine universalEngine;
@@ -76,8 +77,6 @@ public class GameScreen extends AbstractScreen {
 
     private MapAsset currentMap;
     private TiledMap currentTiledMap;
-
-    private EnergyManager energyManager;
 
     private Map<MapAsset, Engine> engineCache = new HashMap<>();
 
@@ -116,6 +115,7 @@ public class GameScreen extends AbstractScreen {
         TooltipHelper.setTooltip(skin);
         TooltipHelper tooltipHelper = TooltipHelper.getTooltip();
         inventory = new Inventory(assetService);
+        refrigerator = new Inventory(assetService);
         abilityManager = new AbilityManager();
 
         clock = new Clock(assetService, skin);
@@ -127,18 +127,16 @@ public class GameScreen extends AbstractScreen {
         cheatCodeController = new CheatCodeController(this);
         cheatCodeBox = new CheatCodeBox(stage, skin, cheatCodeController);
         lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
-        cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService);
+        cookingMenu =  new CookingMenu(assetService, skin, stage, inventory, audioService, this);
         tabManager = new TabManager(this);
         tradeStarterMenu = new TradeStarterMenu(this);
         tradeMenu = new TradeMenu(this);
         clockManager = new ClockManager(clock);
         leaderBoard = new LeaderBoard(assetService, stage, this);
         emojiPanel = EmojiPanel.getInstance(skin, stage, assetService, this);
-
+        refrigeratorMenu = new RefrigeratorMenu(assetService, skin, stage, inventory, refrigerator, audioService, this);
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock);
-
-        energyManager = new EnergyManager(weatherSystem, abilityManager);
 
 
         client.getListener(GameListener.class).setGameScreen(this);
@@ -158,7 +156,7 @@ public class GameScreen extends AbstractScreen {
         timeSystem.addListener(clockManager::receive);
 
         universalEngine.addSystem(weatherSystem);
-        universalEngine.addSystem(new EnergySystem(energyBar, energyManager));
+        universalEngine.addSystem(new EnergySystem(energyBar));
 
         // Play background music
         //audioService.playMusic(MusicAsset.Spring);
@@ -207,6 +205,10 @@ public class GameScreen extends AbstractScreen {
         return inventory;
     }
 
+    public Inventory getRefrigerator() {
+        return refrigerator;
+    }
+
     public AbilityManager getAbilityManager() {
         return abilityManager;
     }
@@ -217,6 +219,10 @@ public class GameScreen extends AbstractScreen {
 
     public ItemContainer getItemContainer() {
         return itemContainer;
+    }
+
+    public RefrigeratorMenu getRefrigeratorMenu() {
+        return refrigeratorMenu;
     }
 
     public CraftingMenu getCraftingMenu() {
@@ -285,10 +291,6 @@ public class GameScreen extends AbstractScreen {
 
     public LeaderBoard getLeaderBoard() {
         return leaderBoard;
-    }
-
-    public EnergyManager getEnergyManager() {
-        return energyManager;
     }
 
     public Skin getSkin() {
@@ -369,6 +371,10 @@ public class GameScreen extends AbstractScreen {
 
     public StoreManager getStoreManager() {
         return storeManager;
+    }
+
+    public void updateEnergy(float amount) {
+        energyBar.setEnergyPercent(amount);
     }
 
 

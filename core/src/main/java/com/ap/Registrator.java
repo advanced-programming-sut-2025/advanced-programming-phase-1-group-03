@@ -12,14 +12,19 @@ import com.ap.packet.TradeRoomStarter;
 import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
 import com.ap.responses.*;
+import com.ap.rmi.Ask;
 import com.badlogic.ashley.core.Component;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
 import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryonet.rmi.ObjectSpace;
 
 public class Registrator {
     public static void register(Kryo kryo) {
+
+        ObjectSpace.registerClasses(kryo);
+
         kryo.register(IntroductionRequest.class);
         kryo.register(IntroductionResponse.class);
         
@@ -149,6 +154,16 @@ public class Registrator {
 
         kryo.register(PopupNotifier.class);
         kryo.register(VoteNotifier.class);
+        kryo.register(InventoryMoveRequest.class);
+        kryo.register(AnswerResponse.class);
+
+        kryo.register(addCookingItem.class);
+        kryo.register(addCookingRequest.class);
+        kryo.register(CookingRecipeRequest.class);
+        kryo.register(IngredientRequest.class);
+        kryo.register(InventoryMoveRequest.class);
+        kryo.register(IsFoodRequest.class);
+        kryo.register(ReduceIngredientRequest.class);
 
         kryo.register(GetActiveTradeRequest.class);
         kryo.register(GetActiveTradeResponse.class);
@@ -178,5 +193,11 @@ public class Registrator {
 
         kryo.register(PlaceCarrierRequest.class);
         kryo.register(Carrier.class);
+
+        kryo.register(Ask.class);
+        kryo.register(EnergyNotifier.class);
+
+        kryo.register(Shadow.class);
     }
+
 }

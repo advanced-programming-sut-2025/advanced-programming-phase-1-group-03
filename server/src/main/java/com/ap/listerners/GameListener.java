@@ -1,19 +1,23 @@
 package com.ap.listerners;
 
 import com.ap.ServerData;
+import com.ap.items.Item;
+import com.ap.items.ItemFactory;
 import com.ap.managers.AbilityManager;
 import com.ap.maps.Farm;
 import com.ap.maps.Store;
 import com.ap.model.AbilityType;
-import com.ap.model.GameManager;
+import com.ap.managers.GameManager;
+import com.ap.model.Foods;
+import com.ap.model.NetworkItemStack;
 import com.ap.model.ServerPlayer;
 import com.ap.model.TradeRoom;
 import com.ap.notifiers.*;
 import com.ap.packet.LeaderBoardInfo;
 import com.ap.packet.PlayerInfo;
-import com.ap.packet.TradeRoomStarter;
 import com.ap.packet.VoiceNetData;
 import com.ap.requests.*;
+import com.ap.responses.*;
 import com.ap.responses.BuyItemResponse;
 import com.ap.responses.ChatResponse;
 import com.ap.responses.GetActiveTradeResponse;
@@ -24,7 +28,6 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GameListener extends Listener {
@@ -74,6 +77,25 @@ public class GameListener extends Listener {
             }
         } else if(object instanceof VoiceNetData voicePacket) {
             senderPlayer.currentRoom.broadcastUDP(voicePacket, senderPlayer);
+        } else if(object instanceof addCookingRequest addCookingRequest) {
+            if(Foods.getFoodByName(addCookingRequest.name) != null)
+                senderPlayer.playerManager.getInventory().add(ItemFactory.instance.CreateFood(
+                        Foods.valueOf(addCookingRequest.name), 10), 1);
+        } else if(object instanceof ReduceIngredientRequest reduceIngredientRequest) {
+            senderPlayer.playerManager.getInventory().removeItem(reduceIngredientRequest.name, reduceIngredientRequest.number);
+        } else if(object instanceof IsFoodRequest isFoodRequest) {
+            AnswerResponse answerResponse = new AnswerResponse(senderPlayer.playerManager.getInventory().isEatable(isFoodRequest.name));
+            senderPlayer.connection.sendTCP(answerResponse);
+        } else if(object instanceof  IngredientRequest ingredientRequest) {
+            if(senderPlayer.playerManager.getInventory().have(ingredientRequest.recipeName, ingredientRequest.number))
+                senderPlayer.connection.sendTCP(new AnswerResponse(true));
+            else
+                senderPlayer.connection.sendTCP(new AnswerResponse(false));
+        } else if(object instanceof  CookingRecipeRequest cookingRecipeRequest) {
+            if(senderPlayer.playerManager.getInventory().haveCookingRecipe(cookingRecipeRequest.recipeName))
+                senderPlayer.connection.sendTCP(new AnswerResponse(true));
+            else
+                senderPlayer.connection.sendTCP(new AnswerResponse(false));
         } else if(object instanceof LeaderBoardRequest) {
             List<ServerPlayer> players = senderPlayer.currentRoom.players;
             ArrayList<LeaderBoardInfo> leaderBoardInfos = new ArrayList<>();
@@ -89,6 +111,25 @@ public class GameListener extends Listener {
                         serverPlayer.gold, 1, average));
             }
             senderPlayer.connection.sendTCP(new LeaderBoardResponse(leaderBoardInfos));
+        } else if(object instanceof InventoryMoveRequest inventoryMoveRequest) {
+            if(!inventoryMoveRequest.toRefrigerator) {
+                for(NetworkItemStack networkItemStack : inventoryMoveRequest.items) {
+                    senderPlayer.playerManager.getInventory().add(new Item(networkItemStack.name, 12,
+                            networkItemStack.atlasAsset, networkItemStack.atlasKey), networkItemStack.amount);
+                    senderPlayer.playerManager.getRefrigerator().removeItem(new Item(networkItemStack.name, 12,
+                            networkItemStack.atlasAsset, networkItemStack.atlasKey), networkItemStack.amount);
+                }
+            }
+            else {
+                for(NetworkItemStack networkItemStack : inventoryMoveRequest.items) {
+                    senderPlayer.playerManager.getInventory().removeItem(new Item(networkItemStack.name, 12,
+                            networkItemStack.atlasAsset, networkItemStack.atlasKey), networkItemStack.amount);
+                    senderPlayer.playerManager.getRefrigerator().addItem(new Item(networkItemStack.name, 12,
+                            networkItemStack.atlasAsset, networkItemStack.atlasKey), networkItemStack.amount);
+                }
+            }
+            senderPlayer.playerManager.getInventory().sendInventory();
+            senderPlayer.playerManager.getRefrigerator().getInventory().sendInventory(true);
         } else if (object instanceof VoteRequest voteRequest) {
             if(voteRequest.voteNum == 1) {
                 var notifier = new VoteNotifier(voteRequest.userName, senderPlayer.username, voteRequest.id, voteRequest);

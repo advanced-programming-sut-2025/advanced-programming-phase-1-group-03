@@ -8,8 +8,7 @@ import com.ap.component.Graphic;
 import com.ap.component.GreenhouseCmp;
 import com.ap.items.ItemFactory;
 import com.ap.managers.MapManager;
-import com.ap.managers.PlayerManager;
-import com.ap.model.GameManager;
+import com.ap.managers.GameManager;
 import com.ap.model.Season;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.CreateMapNotifier;
@@ -24,8 +23,8 @@ import com.badlogic.ashley.core.Family;
 public class Farm extends MapAdaptor {
 //
     private GrowSystem growSystem;
-//    private GiantCropManager giantCropManager;
     private CrowAttackSystem crowAttackSystem;
+   private GiantCropManager giantCropManager;
 
     public Farm(GameManager gameManager, MapManager mapManager, int playerId) {
         super(gameManager, mapManager, playerId);
@@ -76,7 +75,7 @@ public class Farm extends MapAdaptor {
         // Setup consumers
         setupMap();
 
-       // giantCropManager = new GiantCropManager(this.map, world, engine);
+        giantCropManager = new GiantCropManager(this.map, world, engine);
       //  timeSystem.addTimeListener(new TimeListener());
 
         gameManager.getTimeSystem().addTimeListener(new TimeListener());
@@ -85,6 +84,7 @@ public class Farm extends MapAdaptor {
     @Override
     public void load(Entity player) {
         super.load(player);
+        Helper.playMusicOfSeason(players, timeSystem.getSeason());
     }
 
     @Override
@@ -134,12 +134,11 @@ public class Farm extends MapAdaptor {
         }
         @Override
         public void onDayChanged(int day) {
-            System.out.println("day: " + day);
             growSystem.dayPassed();
-//            giantCropManager.checkGiant();
-//            if(map.getProperties().get("generateItems", false, Boolean.class)) {
-//                tiledMapGenerator.generateForagingTree(map);
-//            }
+            giantCropManager.checkGiant();
+            if(map.getProperties().get("generateItems", false, Boolean.class)) {
+                tiledMapGenerator.generateForagingTree(map);
+            }
             crowAttackSystem.onDayChanged();
         }
     }

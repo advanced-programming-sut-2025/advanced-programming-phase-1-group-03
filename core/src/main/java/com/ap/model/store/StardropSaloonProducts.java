@@ -22,9 +22,9 @@ public enum StardropSaloonProducts {
     BreadRecipe("Bread Recipe", "A recipe to make Bread", 100, FoodRecipes.Bread),
     TortillaRecipe("Tortilla Recipe", "A recipe to make Tortilla", 100, FoodRecipes.Tortilla),
     PizzaRecipe("Pizza Recipe", "A recipe to make Pizza", 150, FoodRecipes.Pizza),
-    Maki_RollRecipe("Maki Roll Recipe", "A recipe to make Maki Roll", 300, FoodRecipes.Makiroll),
+    Maki_RollRecipe("Maki Roll Recipe", "A recipe to make Maki Roll", 300, FoodRecipes.MakiRoll),
     Triple_Shot_EspressoRecipe("Triple Shot Espresso Recipe", "A recipe to make Triple Shot Espresso",
-            5000, FoodRecipes.TripleShotEspersso),
+            5000, FoodRecipes.TripleShotEspresso),
     CookieRecipe("Cookie Recipe", "A recipe to make Cookie", 300, FoodRecipes.Cookie);
     ;
 

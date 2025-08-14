@@ -27,7 +27,7 @@ public class Inventory {
         int index = 0;
         for(NetworkItemStack networkItemStack : inventoryNotifier.items) {
             var icon = assetService.get(networkItemStack.atlasAsset).findRegion(networkItemStack.atlasKey);
-            Item item = new Item(networkItemStack.name, icon, index++);
+            Item item = new Item(networkItemStack.name, icon, networkItemStack.atlasKey, networkItemStack.atlasAsset, index++);
             items.add(new ItemStack(item, networkItemStack.amount));
         }
     }

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum CropsType {
-    BlueJazz("BlueJazz",
+    Blue_Jazz("BlueJazz",
             new ArrayList<>(Arrays.asList(1, 2, 2, 2)),
             7,
             true,
@@ -407,5 +407,12 @@ public enum CropsType {
     public boolean isCanBecomeGiant() {
         return canBecomeGiant;
     }
-    
+
+    public static CropsType getFoodByName(String name) {
+        for(CropsType cropsType : CropsType.values()) {
+            if(cropsType.getName().equals(name))
+                return cropsType;
+        }
+        return null;
+    }
 }

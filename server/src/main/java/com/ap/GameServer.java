@@ -14,7 +14,10 @@ import com.ap.listerners.LobbyListener;
 import com.ap.model.Room;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.esotericsoftware.kryonet.rmi.ObjectSpace;
 
 import javax.swing.text.html.parser.Entity;
 import java.util.Iterator;
@@ -25,9 +28,11 @@ public class GameServer {
     private final AssetService assetService;
 
     private Server server;
+    private ObjectSpace objectSpace;
 
     public GameServer() {
         server = new Server(65536, 65536);
+        objectSpace = new ObjectSpace();
         assetService = new AssetService(new InternalFileHandleResolver());
         EntityFactory.instance.setup(assetService);
         ItemFactory.instance.setAssetService(assetService);
@@ -51,7 +56,13 @@ public class GameServer {
         server.addListener(new LobbyListener(assetService));
         server.addListener(new AuthenticationListener());
         server.addListener(new GameListener());
-
+        server.addListener(new Listener() {
+            @Override
+            public void connected(Connection connection) {
+                super.connected(connection);
+                objectSpace.addConnection(connection);
+            }
+        });
         var scheduler = Executors.newSingleThreadScheduledExecutor();
         scheduler.scheduleAtFixedRate(this::checkLobbyTimeout, 1, 1, TimeUnit.MINUTES);
 
