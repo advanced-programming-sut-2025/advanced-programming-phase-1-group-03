@@ -110,4 +110,9 @@ public class Transform implements Component, Comparable<Transform> {
         position.x = x;
         position.y = y;
     }
+
+    public Vector2 getMiddlePosition() {
+        return new Vector2(position.x + size.x / 2, position.y + size.y / 2);
+    }
+
 }

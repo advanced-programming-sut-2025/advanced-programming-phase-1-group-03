@@ -4,6 +4,7 @@ import com.ap.asset.MapAsset;
 import com.ap.maps.*;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.ChangeMapNotifier;
+import com.ap.system.ClickSystem;
 import com.badlogic.ashley.core.Entity;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ public class MapManager {
 
     private final ArrayList<ServerPlayer> players = new ArrayList<>();
     private final GameManager gameManager;
+
+
 
     public MapManager(GameManager gameManager) {
         this.gameManager = gameManager;

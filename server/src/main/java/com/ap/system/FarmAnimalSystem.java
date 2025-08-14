@@ -2,9 +2,18 @@ package com.ap.system;
 
 
 import com.ap.component.Carrier;
+import com.ap.component.Clickable;
 import com.ap.component.Move;
+import com.ap.component.Transform;
 import com.ap.component.items.FarmAnimal;
+import com.ap.items.EntityFactory;
+import com.ap.items.Item;
 import com.ap.items.animal.Animal;
+import com.ap.managers.AnimalManager;
+import com.ap.model.EmoteType;
+import com.ap.model.FarmAnimalTypes;
+import com.ap.notifiers.ShowAnimalStatNotifier;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
@@ -30,11 +39,13 @@ public class FarmAnimalSystem extends IteratingSystem {
         Move move = Move.mapper.get(entity);
         FarmAnimal animal = FarmAnimal.mapper.get(entity);
 
+        Clickable clickable = Clickable.mapper.get(entity);
+
         animal.setAnimationStateTime(animal.getAnimationStateTime() + deltaTime);
 
-        if (animal.isClicked()) {
-//            onClick(entity);
-            animal.setClicked(false);
+        if (clickable != null && clickable.isClicked()) {
+            onClick(entity);
+            clickable.setClicked(false);
         }
 
         if (animal.getDuration() != -1 && animal.getAnimationStateTime() > animal.getDuration()) {
@@ -50,65 +61,66 @@ public class FarmAnimalSystem extends IteratingSystem {
     public void onClick(Entity entity) {
         FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
         Animal animal = farmAnimal.getAnimal();
-        if (farmAnimal.getButtonClicked() == Input.Buttons.RIGHT) {
-//            AnimalManager.instance.getAnimalStatMenu().show(animal);
+        AnimalManager manager = animal.getAnimalManager();
+        Clickable click = Clickable.mapper.get(entity);
+        if (click.getButtonClicked() == Input.Buttons.RIGHT) {
+            manager.getOwner().connection.sendTCP(new ShowAnimalStatNotifier(animal.getName(), animal.getType().ordinal(),
+                    animal.getFriendship(), animal.getAge(), animal.isPetToday(), animal.isFeedToday(), animal.getHealth(),
+                    animal.isInHouse()));
             return;
         }
 
-//        switch (GameData.getInstance().getItemContainer().getSelectedItem() != null ?
-//                GameData.getInstance().getItemContainer().getSelectedItem().getItem().getName() :
-//                "") {
-//            case "Hay" :
-//                feedWithHay(entity);
-//                break;
-//            case "Shear" :
-//                useShear(entity);
-//                break;
-//            case "MilkPail" :
-//                useMilkPail(entity);
-//                break;
-//            case "Axe" :
-//                useAxe(entity);
-//                break;
-//            default:
-//                if (AnimalManager.instance.pet(animal)) {
-//                    getEngine().addEntity(EntityFactory.instance.CreateEmoteEntity(Transform.mapper.get(entity), EmoteType.Heart, Situation.Pet.timeLimit));
-//                    farmAnimal.setSituation(Situation.Pet);
-//                }
-//        }
+        switch (click.getItemName()) {
+            case "Hay" :
+                feedWithHay(entity, manager, click);
+                break;
+            case "Shear" :
+                useShear(entity, manager, click);
+                break;
+            case "MilkPail" :
+                useMilkPail(entity, manager, click);
+                break;
+            case "Axe" :
+                useAxe(entity , manager, click);
+                break;
+            default:
+                if (manager.pet(animal)) {
+                    Helper.addEntity(EntityFactory.instance.CreateEmoteEntity(Transform.mapper.get(entity), EmoteType.Heart, FarmAnimal.Situation.Pet.timeLimit), getEngine());
+                    farmAnimal.setSituation(FarmAnimal.Situation.Pet);
+                }
+        }
 
 
     }
 
-//    public void feedWithHay(Entity entity) {
-//        ItemStack stack = GameData.getInstance().getItemContainer().getSelectedItem();
-//        if (stack.getAmount() < 5) return;
-//        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
-//        Animal animal = farmAnimal.getAnimal();
-//        if (AnimalManager.instance.feed(animal)) {
-//            GameData.getInstance().getInventory().removeItem(stack.getItem(), 5);
-//            farmAnimal.setSituation(Situation.Eat);
-//            animal.setFeedToday(true);
-//        }
-//    }
-//    public void useShear(Entity entity) {
-//        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
-//        Animal animal = farmAnimal.getAnimal();
-//        if (animal.getType() == FarmAnimalTypes.Sheep) {
-//            AnimalManager.instance.shearSheep(entity, engine, world);
-//        }
-//    }
-//    public void useMilkPail(Entity entity) {
-//        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
-//        Animal animal = farmAnimal.getAnimal();
-//        switch (animal.getType()) {
-//            case Goat, WhiteCow, BrownCow : AnimalManager.instance.milkAnimal(animal); break;
-//        }
-//    }
-//    public void useAxe(Entity entity) {
-//        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
-//        Animal animal = farmAnimal.getAnimal();
-//        AnimalManager.instance.hit(entity, engine, world);
-//    }
+    public void feedWithHay(Entity entity, AnimalManager manager, Clickable click) {
+
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        if (manager.feed(animal)) {
+            animal.getAnimalManager().getOwner().playerManager.getInventory().removeItem(click.getItemName(), 5);
+            farmAnimal.setSituation(FarmAnimal.Situation.Eat);
+            animal.setFeedToday(true);
+        }
+    }
+    public void useShear(Entity entity, AnimalManager manager, Clickable click) {
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        if (animal.getType() == FarmAnimalTypes.Sheep) {
+            manager.shearSheep(entity, engine, world);
+        }
+    }
+    public void useMilkPail(Entity entity, AnimalManager manager, Clickable click) {
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        switch (animal.getType()) {
+            case Goat, WhiteCow, BrownCow : manager.milkAnimal(animal); break;
+        }
+    }
+    public void useAxe(Entity entity, AnimalManager manager, Clickable click) {
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        manager.hit(entity, engine, world);
+    }
 
 }

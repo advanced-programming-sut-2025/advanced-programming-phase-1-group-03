@@ -7,6 +7,7 @@ import com.ap.asset.SoundAsset;
 import com.ap.audio.AudioService;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
+import com.ap.items.ItemStack;
 import com.ap.screen.GameScreen;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.graphics.Color;
@@ -130,6 +131,14 @@ public class ItemContainer extends Actor {
     public boolean isSelectedEmpty() {
         if (selectedIndex > inventory.getSize()) return true;
         return (inventory.getItems().get(selectedIndex) == null);
+    }
+
+    public int getSelectedIndex() {
+        return selectedIndex;
+    }
+
+    public ItemStack getSelectedItem() {
+        return inventory.getItems().get(selectedIndex);
     }
 
     public boolean isScrollable() {

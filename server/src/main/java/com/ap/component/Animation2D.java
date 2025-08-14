@@ -70,6 +70,7 @@ public class Animation2D implements Component {
 
     public void setPlayMode(Animation.PlayMode playMode) {
         this.playMode = playMode;
+        shouldUpdate = true;
     }
 
     public void setShouldUpdate(boolean shouldUpdate) {
@@ -78,15 +79,19 @@ public class Animation2D implements Component {
 
     public void setSpeed(float speed) {
         this.speed = speed;
+        shouldUpdate = true;
     }
 
     public void setAtlasKey(String atlasKey) {
         this.atlasKey = atlasKey;
+        shouldUpdate = true;
     }
 
     public void setAtlasAsset(AtlasAsset atlasAsset) {
         this.atlasAsset = atlasAsset;
+        shouldUpdate = true;
     }
+
 
     public enum AnimationType {
         Idle(true),

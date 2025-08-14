@@ -7,6 +7,7 @@ import com.ap.managers.MapManager;
 import com.ap.managers.GameManager;
 import com.ap.model.ServerPlayer;
 import com.ap.requests.MovePlayerRequest;
+import com.ap.system.ClickSystem;
 import com.ap.system.PhysicMoveSystem;
 import com.ap.system.universal.TimeSystem;
 import com.ap.system.universal.WeatherSystem;
@@ -33,6 +34,7 @@ public abstract class MapAdaptor implements IMap {
     protected AssetService assetService;
 
     protected TimeSystem timeSystem;
+    private ClickSystem clickSystem;
 
     protected TiledMap map;
     protected MapAsset mapAsset;
@@ -72,6 +74,8 @@ public abstract class MapAdaptor implements IMap {
         // Setup inventory
         timeSystem = gameManager.getTimeSystem();
         weatherSystem = gameManager.getWeatherSystem();
+        clickSystem = new ClickSystem();
+        engine.addSystem(clickSystem);
     }
 
     protected void setupMap() {
@@ -150,5 +154,9 @@ public abstract class MapAdaptor implements IMap {
 
     public World getWorld() {
         return world;
+    }
+
+    public ClickSystem getClickSystem() {
+        return clickSystem;
     }
 }

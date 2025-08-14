@@ -90,7 +90,10 @@ public class PlayerManager {
     }
 
     public Entity getPlayerEntity() {
-        var engine = gameManager.getMapManager().currentMaps.get(player).getEngine();
+        var map = gameManager.getMapManager().currentMaps.get(player);
+        if (map == null) return null;
+        var engine = map.getEngine();
+        if (engine == null) return null;
         var list = engine.getEntitiesFor(Family.all(Player.class).get());
         Entity playerEntity = null;
         for (Entity entity : list) {

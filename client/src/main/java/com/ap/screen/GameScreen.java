@@ -9,6 +9,7 @@ import com.ap.audio.AudioService;
 import com.ap.audio.VoiceChatClient;
 import com.ap.input.KeyboardController;
 import com.ap.items.Inventory;
+import com.ap.items.ItemStack;
 import com.ap.managers.*;
 import com.ap.model.GameData;
 import com.ap.network.GameClient;
@@ -60,6 +61,7 @@ public class GameScreen extends AbstractScreen {
     private CheatCodeBox cheatCodeBox;
     private LeaderBoard leaderBoard;
     private RefrigeratorMenu refrigeratorMenu;
+    private AnimalStatMenu animalStatMenu;
 
     private EmojiPanel emojiPanel;
 
@@ -137,7 +139,7 @@ public class GameScreen extends AbstractScreen {
         refrigeratorMenu = new RefrigeratorMenu(assetService, skin, stage, inventory, refrigerator, audioService, this);
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock);
-
+        animalStatMenu = new AnimalStatMenu(null, getStage(), getSkin(), assetService, audioService, this);
 
         client.getListener(GameListener.class).setGameScreen(this);
 
@@ -220,6 +222,7 @@ public class GameScreen extends AbstractScreen {
     public ItemContainer getItemContainer() {
         return itemContainer;
     }
+
 
     public RefrigeratorMenu getRefrigeratorMenu() {
         return refrigeratorMenu;
@@ -377,6 +380,9 @@ public class GameScreen extends AbstractScreen {
         energyBar.setEnergyPercent(amount);
     }
 
+    public AnimalStatMenu getAnimalStatMenu() {
+        return animalStatMenu;
+    }
 
     //    class TimeListener implements ITimeListener {
 //

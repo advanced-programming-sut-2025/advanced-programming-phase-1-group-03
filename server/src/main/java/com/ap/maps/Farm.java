@@ -45,6 +45,7 @@ public class Farm extends MapAdaptor {
                 world,
                 players,
                 playerId));
+        engine.addSystem(new CollectingSystem(engine, world, players));
         engine.addSystem(new EmoteSystem());
         engine.addSystem(new PhysicMoveSystem());
         engine.addSystem(new PhysicSystem(world, Constraints.PHYSIC_STEP_INTERVAL, mapManager, engine, players));

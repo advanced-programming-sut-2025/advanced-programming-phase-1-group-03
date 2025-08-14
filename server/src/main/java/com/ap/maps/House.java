@@ -32,6 +32,8 @@ public class House extends MapAdaptor{
         engine.addSystem(new AnimationSystem(players));
         engine.addSystem(new FarmAnimalSystem(engine, world));
         engine.addSystem(new CarrierSystem(engine, world, players, playerId));
+        engine.addSystem(new CollectingSystem(engine, world, players));
+        engine.addSystem(new EmoteSystem());
 
     }
 

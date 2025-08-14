@@ -1,11 +1,15 @@
 package com.ap.managers;
 
 import com.ap.asset.MapAsset;
+import com.ap.component.Animation2D;
+import com.ap.component.Transform;
+import com.ap.component.items.FarmAnimal;
 import com.ap.items.EntityFactory;
 import com.ap.items.animal.Animal;
 import com.ap.items.animal.AnimalHouse;
 import com.ap.maps.MapAdaptor;
 import com.ap.model.BarnsType;
+import com.ap.model.EmoteType;
 import com.ap.model.FarmAnimalTypes;
 import com.ap.model.ServerPlayer;
 import com.ap.utils.Helper;
@@ -77,102 +81,57 @@ public class AnimalManager {
         return animals;
     }
 
-    //
-//    public boolean createFarmAnimal(FarmAnimalTypes type, Vector2 position, World world, Engine engine, MapAdaptor map) {
-//        BarnsType houseType = findBarnType(map);
-//        if (houseType == null) return false;
-//        AnimalHouse house = findHouse(houseType);
-//        if (house == null) return false;
-//
-//        Animal animal = new Animal(type, house, position);
-//        if (house.isFull()) return false;
-//        house.addAnimal(animal);
-//        Entity entity = EntityFactory.instance.CreateFarmAnimalEntity(position, world, animal);
-//        Helper.addEntity(entity, engine);
-//
-//        return true;
-//
-//    }
-//
-//    public AnimalHouse findHouse(BarnsType type) {
-//        for (AnimalHouse house : houses) {
-//            if (house.getType().equals(type)) return house;
-//        }
-//        return null;
-//    }
-//
-//    public BarnsType findBarnType(MapAdaptor map) {
-//        switch (map.getMapAsset()) {
-//            case Barn, BigBarn, DeluxeBarn, Coop, BigCoop, DeluxeCoop -> {
-//                return BarnsType.valueOf(map.getMapAsset().name());
-//            }
-//            default -> {
-//                return null;
-//            }
-//        }
-//    }
-//
-//    public void addHouse(AnimalHouse house) {
-//        houses.add(house);
-//    }
-//
-//    public ArrayList<Animal> getAnimals() {
-//        return animals;
-//    }
-//
-//    public ArrayList<AnimalHouse> getHouses() {
-//        return houses;
-//    }
-//
-//    public AnimalStatMenu getAnimalStatMenu() {
-//        return animalStatMenu;
-//    }
-//
-//    public boolean shearSheep(Entity entity, Engine engine, World world) {
-//        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
-//        farmAnimal.setType(FarmAnimalTypes.ShearedSheep);
-//        farmAnimal.getAnimal().setType(FarmAnimalTypes.ShearedSheep);
-//        Animation2D.mapper.get(entity).setAtlastKey(FarmAnimalTypes.ShearedSheep.getAtlasKey());
-//        Animation2D.mapper.get(entity).setShouldUpdate(true);
-//        Animal animal = farmAnimal.getAnimal();
-//        animal.setFriendship(animal.getFriendship() + 5);
-//        return true;
-//    }
-//
-//    public boolean pet(Animal animal) {
-//        if (!animal.isPetToday()) animal.setFriendship(animal.getFriendship() + 15);
-//        animal.setPetToday(true);
-//        return true;
-//    }
-//
-//    public boolean feed(Animal animal) {
-//        if (!animal.isFeedToday()) animal.setFriendship(animal.getFriendship() + 8);
-//        animal.setFeedToday(true);
-//        return true;
-//    }
-//
-//    public boolean hit(Entity entity, Engine engine, World world) {
-//        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
-//        Animal animal = farmAnimal.getAnimal();
-//        animal.setHealth(animal.getHealth() - 1);
-//        if (animal.getHealth() <= 0) {
-//            Helper.removeEntity(entity, engine, world);
-//            removeAnimal(animal);
-//        }
-//        engine.addEntity(EntityFactory.instance.CreateEmoteEntity(Transform.mapper.get(entity), EmoteType.Noise, 2));
-//        return true;
-//    }
-//
-//    public boolean milkAnimal(Animal animal) {
-//        return true;
-//    }
-//
-//    public void removeAnimal(Animal animal) {
-//        animal.getHouse().removeAnimal(animal);
-//        animals.remove(animal);
-//    }
-//
-//    public void onDayChanged() {
-//
-//    }
+    public ServerPlayer getOwner() {
+        return owner;
+    }
+
+    public boolean shearSheep(Entity entity, Engine engine, World world) {
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        farmAnimal.setType(FarmAnimalTypes.ShearedSheep);
+        farmAnimal.getAnimal().setType(FarmAnimalTypes.ShearedSheep);
+        Animation2D.mapper.get(entity).setAtlasKey(FarmAnimalTypes.ShearedSheep.getAtlasKey());
+        Animation2D.mapper.get(entity).setShouldUpdate(true);
+        Animal animal = farmAnimal.getAnimal();
+        animal.setFriendship(animal.getFriendship() + 5);
+        return true;
+    }
+
+    public boolean pet(Animal animal) {
+        if (!animal.isPetToday()) animal.setFriendship(animal.getFriendship() + 15);
+        animal.setPetToday(true);
+        return true;
+    }
+
+    public boolean feed(Animal animal) {
+        if (!animal.isFeedToday()) animal.setFriendship(animal.getFriendship() + 8);
+        animal.setFeedToday(true);
+        return true;
+    }
+
+    public boolean hit(Entity entity, Engine engine, World world) {
+        FarmAnimal farmAnimal = FarmAnimal.mapper.get(entity);
+        Animal animal = farmAnimal.getAnimal();
+        animal.setHealth(animal.getHealth() - 1);
+        if (animal.getHealth() <= 0) {
+            Helper.removeEntity(entity, engine, world);
+            removeAnimal(animal);
+        }
+        Helper.addEntity(EntityFactory.instance.CreateEmoteEntity(Transform.mapper.get(entity), EmoteType.Noise, 2), engine);
+        return true;
+    }
+
+    public boolean milkAnimal(Animal animal) {
+        return true;
+    }
+
+    public void removeAnimal(Animal animal) {
+        animal.getHouse().removeAnimal(animal);
+        animals.remove(animal);
+    }
+
+    public void onDayChanged() {
+
+    }
+
+
 }

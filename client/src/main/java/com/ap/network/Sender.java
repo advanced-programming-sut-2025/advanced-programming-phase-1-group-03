@@ -2,6 +2,7 @@ package com.ap.network;
 
 import com.ap.Configuration;
 import com.ap.asset.MapAsset;
+import com.ap.items.ItemStack;
 import com.ap.model.Menus;
 import com.ap.model.NetworkItemStack;
 import com.ap.requests.*;
@@ -307,5 +308,13 @@ public class Sender {
 
     public void sendRemoveItemInventoryRequest(String itemName, int amount) {
         client.sendTCP(new RemoveItemInventoryRequest(itemName, amount));
+    }
+    public void sendWorldClickRequest(float x, float y, int button, ItemStack item) {
+        var request = new WorldClickRequest(x, y, button, item.getItem().getName(), item.getAmount());
+        client.sendTCP(request);
+    }
+    public void sendAnimalSetNameRequest(String name) {
+        var request = new AnimalSetNameRequest(name);
+        client.sendTCP(request);
     }
 }

@@ -34,6 +34,8 @@ public class GMap {
     private final WeatherEffects weatherEffects;
     private RayHandler rayHandler;
 
+    private ClickSystem clickSystem;
+
     private boolean showWeather = false;
     private boolean tileSelection = false;
 
@@ -88,6 +90,8 @@ public class GMap {
                 gameScreen.getGameClient(),
                 gameScreen)
         );
+
+        clickSystem = new ClickSystem(gameScreen.getCamera(), gameScreen);
     }
 
     public Entity createEntity() {
@@ -125,7 +129,8 @@ public class GMap {
     }
 
     public void load() {
-        game.setInputProcessors(gameScreen.getStage(), keyboardController);
+        if (clickSystem == null) game.setInputProcessors(gameScreen.getStage(), keyboardController);
+        else game.setInputProcessors(gameScreen.getStage(), keyboardController, clickSystem);
         engine.getSystem(CameraSystem.class).setMap(assetService.get(mapAsset));
 
         if(showWeather) {

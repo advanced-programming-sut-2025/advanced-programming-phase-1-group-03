@@ -199,6 +199,11 @@ public class Registrator {
 
         kryo.register(RemoveItemInventoryRequest.class);
 
+        kryo.register(WorldClickRequest.class);
+
+        kryo.register(ShowAnimalStatNotifier.class);
+        kryo.register(AnimalSetNameRequest.class);
+
         kryo.register(Shadow.class);
     }
 

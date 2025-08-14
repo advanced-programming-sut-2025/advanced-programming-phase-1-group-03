@@ -86,7 +86,7 @@ public class KeyboardController extends InputAdapter {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         commandState[Command.Click.ordinal()] = true;
         activeController.keyDown(Command.Click);
-        return true;
+        return false;
     }
 
     @Override

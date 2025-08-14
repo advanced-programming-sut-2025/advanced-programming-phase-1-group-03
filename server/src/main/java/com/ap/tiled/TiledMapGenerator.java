@@ -6,6 +6,8 @@ import com.ap.asset.AssetService;
 import com.ap.component.Container;
 import com.ap.component.Transform;
 import com.ap.items.EntityFactory;
+import com.ap.items.ItemFactory;
+import com.ap.items.ItemStack;
 import com.ap.model.ForagingTrees;
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
@@ -43,8 +45,15 @@ public class TiledMapGenerator {
 //        generateStones(map);
 //        generateGrasses(map);
 //        generateWoods(map);
+
+//        generateTestStuff(map);
+
     }
 //
+    private void generateTestStuff(TiledMap map) {
+        var entity = EntityFactory.instance.CreateCollectableItemEntity(new Vector2(30, 40), new ItemStack(ItemFactory.instance.CreateStone(), 10));
+        Helper.addEntity(entity, engine);
+    }
     private void generateWoods(TiledMap map) {
         Array<Vector2> positions = new Array<>();
 

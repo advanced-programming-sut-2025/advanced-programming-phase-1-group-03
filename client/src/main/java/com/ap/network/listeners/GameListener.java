@@ -1,6 +1,7 @@
 package com.ap.network.listeners;
 
 import com.ap.managers.GameUIManager;
+import com.ap.model.FarmAnimalTypes;
 import com.ap.notifiers.*;
 import com.ap.packet.VoiceNetData;
 import com.ap.screen.GameScreen;
@@ -69,6 +70,9 @@ public class GameListener extends Listener {
             if(gameScreen.getTradeMenu().getInstance() != null) gameScreen.getTradeMenu().getInstance().processCommand(notifier);
         } else if(object instanceof EnergyNotifier energyNotifier) {
             gameScreen.updateEnergy(energyNotifier.amount);
+        } else if(object instanceof ShowAnimalStatNotifier stat) {
+            if(stat.typeOrdinal < 0 || stat.typeOrdinal >= FarmAnimalTypes.values().length) return;
+            gameScreen.getAnimalStatMenu().show(stat);
         }
     }
 

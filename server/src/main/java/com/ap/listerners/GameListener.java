@@ -6,6 +6,7 @@ import com.ap.items.ItemFactory;
 import com.ap.managers.AbilityManager;
 import com.ap.maps.Farm;
 import com.ap.maps.House;
+import com.ap.maps.MapAdaptor;
 import com.ap.maps.Store;
 import com.ap.model.AbilityType;
 import com.ap.managers.GameManager;
@@ -218,6 +219,10 @@ public class GameListener extends Listener {
             senderPlayer.connection.sendTCP(new TradeHistoryResponse(senderPlayer.playerManager.getGameManager().getTradeHistory()));
         } else if(object instanceof  RemoveItemInventoryRequest item) {
             senderPlayer.playerManager.getInventory().removeItemViaTrashCan(item.itemName, item.amount);
+        } else if(object instanceof  WorldClickRequest click) {
+            System.out.println("clicked: " + click.worldX + "," + click.worldY + " & " + click.button);
+            var map = (MapAdaptor) senderPlayer.playerManager.getGameManager().getMapManager().currentMaps.get(senderPlayer);
+            if (map != null) map.getClickSystem().processClick(click.worldX, click.worldY, click.button, click.itemName, click.itemAmount);
         }
     }
     private void startTradeRoom(ServerPlayer player1, ServerPlayer player2) {

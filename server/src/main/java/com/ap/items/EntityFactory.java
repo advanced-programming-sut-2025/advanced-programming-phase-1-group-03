@@ -347,7 +347,7 @@ public class EntityFactory {
         entity.add(new Fsm(entity, FarmAnimal.Situation.Idle.animationState));
         entity.add(new Animation2D(AtlasAsset.Animals, type.getAtlasKey(), Animation2D.AnimationType.Idle, Animation.PlayMode.LOOP, 0.5f));
         entity.add(new FarmAnimal(type, animal));
-//        entity.add(new Clickable());
+        entity.add(new Clickable());
 
         return entity;
     }
@@ -363,6 +363,20 @@ public class EntityFactory {
         entity.add(new Fsm(entity, EmoteAnimationState.Opening));
         entity.add(new Animation2D(AtlasAsset.Emotes, "", Animation2D.AnimationType.Emote_Opening, Animation.PlayMode.NORMAL, 1f));
         entity.add(new Emote(target, emoteType, duration));
+
+        return entity;
+    }
+
+    public Entity CreateCollectableItemEntity(Vector2 position, ItemStack item) {
+        Entity entity = new Entity();
+        Vector2 size = new Vector2(1, 1);
+        entity.add(new Transform(position,
+                Constraints.Collectable_Z,
+                new Vector2(1, 1),
+                size,
+                0, 0));
+        entity.add(new Graphic(item.getItem().atlasAsset, item.getItem().atlasKey));
+        entity.add(new Collectable(item));
 
         return entity;
     }
