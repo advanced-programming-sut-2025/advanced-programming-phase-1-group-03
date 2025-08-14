@@ -160,6 +160,7 @@ public class Registrator {
         kryo.register(ThunderResponse.class);
         kryo.register(CheatRequest.class);
         kryo.register(BuildCraftRequest.class);
+        kryo.register(OpenCraftingResponse.class);
 
         kryo.register(addCookingItem.class);
         kryo.register(addCookingRequest.class);
