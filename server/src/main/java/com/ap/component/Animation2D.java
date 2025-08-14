@@ -107,6 +107,7 @@ public class Animation2D implements Component {
         Emote_Heart(false, "emote_" + EmoteType.Heart.index),
         Emote_Noise(false,  "emote_" + EmoteType.Noise.index),
         Emote_Sleep(false, "emote_" + EmoteType.Sleep.index),
+        Emote_Chat(false, "emote_" + EmoteType.Chat.index),
         ;
         private final String atlasKey;
         private boolean hasFacing;

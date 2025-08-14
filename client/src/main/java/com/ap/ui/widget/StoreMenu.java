@@ -79,12 +79,13 @@ public class StoreMenu extends Actor {
         this.atlas = assetService.get(AtlasAsset.Character);
         this.characterString = characterString;
         this.buyConsumer = buyConsumer;
-        background = new TextureRegion(new Texture(Gdx.files.internal("graphics/StoreBackground.png")));
         this.message = message;
         setUpUI(characterString);
         list = products;
         filteredList = new ArrayList<>(list);
-        createWhiteTexture();
+        Gdx.app.postRunnable(() -> {
+                    whiteTexture = Helper.createWhiteTexture();
+        });
 
         TextButton filterButton = new TextButton("Show Available", skin);
         filterButton.setPosition(getX() + 820, getY() + 40);
@@ -162,19 +163,12 @@ public class StoreMenu extends Actor {
 
 
     private void setUpUI(String characterString) {
+        background = new TextureRegion(assetService.get(TextureAsset.StoreBackground));
         setX((Constraints.WORLD_WIDTH_RESOLUTION - background.getRegionWidth()) / 2f);
         setY((Constraints.WORLD_HEIGHT_RESOLUTION - background.getRegionHeight()) / 2f);
-        background = new TextureRegion(new Texture(Gdx.files.internal("graphics/StoreBackground.png")));
         character = atlas.findRegion(characterString);
     }
 
-    private void createWhiteTexture() {
-        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
-        pixmap.setColor(Color.WHITE);
-        pixmap.fill();
-        whiteTexture = new TextureRegion(new Texture(pixmap));
-        pixmap.dispose();
-    }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {

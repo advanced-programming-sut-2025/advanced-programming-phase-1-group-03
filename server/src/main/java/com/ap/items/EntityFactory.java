@@ -361,7 +361,7 @@ public class EntityFactory {
         entity.add(new Graphic(AtlasAsset.Emotes, "emote_0"));
         entity.add(new Facing(Facing.FacingDirection.Down));
         entity.add(new Fsm(entity, EmoteAnimationState.Opening));
-        entity.add(new Animation2D(AtlasAsset.Emotes, "", Animation2D.AnimationType.Emote_Opening, Animation.PlayMode.NORMAL, 1f));
+        entity.add(new Animation2D(AtlasAsset.Emotes, "", Animation2D.AnimationType.Emote_Opening, Animation.PlayMode.NORMAL, 0.5f));
         entity.add(new Emote(target, emoteType, duration));
 
         return entity;

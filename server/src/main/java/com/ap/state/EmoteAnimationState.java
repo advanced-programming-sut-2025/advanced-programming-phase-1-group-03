@@ -12,7 +12,8 @@ public enum EmoteAnimationState implements State<Entity> {
     Closing,
     Heart,
     Sleep,
-    Noise
+    Noise,
+    Chat
     ;
 
     @Override

@@ -4,21 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="item collecting added, interacting with animal added">
+    <list default="true" id="11d34dc4-da1b-4e8b-8cf1-410e11f2be8d" name="Changes" comment="animal movement, and products added">
+      <change afterPath="$PROJECT_DIR$/assets/graphics/npc.atlas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/graphics/npc.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/AnimalStatMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/AnimalStatMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/ap/model/FarmAnimalTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/ap/model/FarmAnimalTypes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Collectable.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Collectable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/items/FarmAnimal.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/items/FarmAnimal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/map/Carpenter.tmx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/map/Carpenter.tmx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/EmojiPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/EmojiPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/StoreMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ap/ui/widget/StoreMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Animation2D.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/component/Animation2D.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/EntityFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/items/animal/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/items/animal/Animal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/listerners/GameListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/AnimalManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/AnimalManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/managers/GameManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/CollectingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/CollectingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/FacingSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/FacingSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/system/FarmAnimalSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/system/FarmAnimalSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/utils/Helper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/utils/Helper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/model/EmoteType.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/model/EmoteType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ap/state/EmoteAnimationState.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ap/state/EmoteAnimationState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,22 +70,22 @@
     &quot;assignee&quot;: &quot;amirshs84&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03.git",
-    "accountId": "5cf5475d-255d-4e13-a9f6-6a3ae5b39cf4"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/advanced-programming-sut-2025/advanced-programming-phase-1-group-03.git&quot;,
+    &quot;accountId&quot;: &quot;5cf5475d-255d-4e13-a9f6-6a3ae5b39cf4&quot;
   },
-  "recentNewPullRequestHead": {
-    "server": {
-      "useHttp": false,
-      "host": "github.com",
-      "port": null,
-      "suffix": null
+  &quot;recentNewPullRequestHead&quot;: {
+    &quot;server&quot;: {
+      &quot;useHttp&quot;: false,
+      &quot;host&quot;: &quot;github.com&quot;,
+      &quot;port&quot;: null,
+      &quot;suffix&quot;: null
     },
-    "owner": "advanced-programming-sut-2025",
-    "repository": "advanced-programming-phase-1-group-03"
+    &quot;owner&quot;: &quot;advanced-programming-sut-2025&quot;,
+    &quot;repository&quot;: &quot;advanced-programming-phase-1-group-03&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -123,7 +119,7 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "D:/StarehdewValley/client/src/main/java/com/ap",
-    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/stardew-valley-network/core/src/main/java/com/ap/model",
+    "last_opened_file_path": "C:/Users/Acer/IdeaProjects/stardew-valley-network/assets/graphics",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
@@ -142,11 +138,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Acer\IdeaProjects\stardew-valley-network\assets\graphics" />
       <recent name="C:\Users\Acer\IdeaProjects\stardew-valley-network\core\src\main\java\com\ap\model" />
       <recent name="C:\Users\Acer\IdeaProjects\stardew-valley-network\assets\map\tileset" />
       <recent name="D:\StarehdewValley\assets\audio" />
       <recent name="D:\StarehdewValley\client\src\main\java\com\ap\audio" />
-      <recent name="D:\StarehdewValley\core\src\main\java\com\ap\packet" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\StarehdewValley\server\src\main\java\com\ap\model" />
@@ -181,8 +177,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
-        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -276,14 +272,7 @@
       <workItem from="1755079910166" duration="9648000" />
       <workItem from="1755087966412" duration="3779000" />
       <workItem from="1755106047230" duration="11515000" />
-    </task>
-    <task id="LOCAL-00062" summary="typo really fixed this time">
-      <option name="closed" value="true" />
-      <created>1753391667313</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1753391667313</updated>
+      <workItem from="1755177969076" duration="1177000" />
     </task>
     <task id="LOCAL-00063" summary="atlas rotation disabled;&#10;half tree fixed;">
       <option name="closed" value="true" />
@@ -643,7 +632,15 @@
       <option name="project" value="LOCAL" />
       <updated>1755162468274</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="animal movement, and products added">
+      <option name="closed" value="true" />
+      <created>1755171686283</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1755171686283</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -674,7 +671,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="store menu bug fixed." />
     <MESSAGE value="effect added." />
     <MESSAGE value="tool tip added" />
     <MESSAGE value="StardropSaloonProducts finshed" />
@@ -699,7 +695,8 @@
     <MESSAGE value="bug fixed" />
     <MESSAGE value="emote added, Animal houses, buying placing animals added" />
     <MESSAGE value="item collecting added, interacting with animal added" />
-    <option name="LAST_COMMIT_MESSAGE" value="item collecting added, interacting with animal added" />
+    <MESSAGE value="animal movement, and products added" />
+    <option name="LAST_COMMIT_MESSAGE" value="animal movement, and products added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

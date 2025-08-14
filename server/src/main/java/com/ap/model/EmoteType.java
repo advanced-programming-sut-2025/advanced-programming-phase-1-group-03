@@ -5,7 +5,9 @@ public enum EmoteType {
     Closing(16),
     Heart(5),
     Noise(3),
-    Sleep(6)
+    Sleep(6),
+    Chat(10),
+
     ;
     public final int index;
 

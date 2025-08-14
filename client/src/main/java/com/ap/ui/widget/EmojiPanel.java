@@ -25,7 +25,7 @@ public class EmojiPanel extends Window {
     private static EmojiPanel instance;
 
     private static final float PADDING = 10f;
-    private static final Integer[] EMOJI_NAMES = { 5, 3, 6 };
+    private static final Integer[] EMOJI_NAMES = { 5, 3, 6 , 10};
 
     private EmojiPanel(Skin skin, Stage stage, AssetService assetService, GameScreen game) {
         super("", skin);
