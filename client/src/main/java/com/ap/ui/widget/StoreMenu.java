@@ -28,13 +28,15 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.StringBuilder;
 
 import java.util.ArrayList;
 import java.util.function.BiConsumer;
 
 public class StoreMenu extends Actor {
-    private Texture background;
+    private TextureRegion background;
     private final TextureAtlas atlas;
     private TextureRegion character;
     private String characterString;
@@ -49,7 +51,8 @@ public class StoreMenu extends Actor {
 
     private StoreMenu instance;
 
-    private ArrayList<StoreProduct> list;
+    private ArrayList<com.ap.model.StoreProduct> list;
+    private ArrayList<com.ap.model.StoreProduct> filteredList;
 
     private int row = 0;
     private float scale = 2f;
@@ -59,12 +62,14 @@ public class StoreMenu extends Actor {
 
     private InputListener event;
     private Menus menu;
-    private BiConsumer<StoreProduct, Menus> buyConsumer;
+    private BiConsumer<com.ap.model.StoreProduct, Menus> buyConsumer;
+
+    private boolean filterAvailableOnly = false;
 
     public StoreMenu(AssetService assetService, Skin skin, Stage stage, Inventory inventory, AudioService audioService,
                      String characterString, String message,
-                     Menus menu, ArrayList<StoreProduct> products,
-                     BiConsumer<StoreProduct, Menus> buyConsumer) {
+                     Menus menu, ArrayList<com.ap.model.StoreProduct> products,
+                     BiConsumer<com.ap.model.StoreProduct, Menus> buyConsumer) {
         this.menu = menu;
         this.assetService = assetService;
         this.skin = skin;
@@ -74,18 +79,35 @@ public class StoreMenu extends Actor {
         this.atlas = assetService.get(AtlasAsset.Character);
         this.characterString = characterString;
         this.buyConsumer = buyConsumer;
+        background = new TextureRegion(new Texture(Gdx.files.internal("graphics/StoreBackground.png")));
         this.message = message;
         setUpUI(characterString);
         list = products;
-        Gdx.app.postRunnable(() -> {
-            whiteTexture = Helper.createWhiteTexture();
+        filteredList = new ArrayList<>(list);
+        createWhiteTexture();
+
+        TextButton filterButton = new TextButton("Show Available", skin);
+        filterButton.setPosition(getX() + 820, getY() + 40);
+        filterButton.setSize(150, 40);
+
+        filterButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                filterAvailableOnly = !filterAvailableOnly;
+                filterButton.setText(filterAvailableOnly ? "Show All" : "Show Available");
+                updateFilteredList();
+            }
         });
+
+        stage.addActor(filterButton);
 
         stage.addListener(event = new InputListener() {
             @Override
             public boolean scrolled(InputEvent event, float x, float y, float amountX, float amountY) {
-                if (amountY > 0)
-                    row = Math.min(list.size() - 4, row + 1);
+                if (amountY > 0) {
+                    row = Math.min(filteredList.size() - 4, row + 1);
+                    row = Math.max(row, 0);
+                }
                 else
                     row = Math.max(0, row - 1);
                 return true;
@@ -103,9 +125,9 @@ public class StoreMenu extends Actor {
 
                 if (x >= rectX && x <= rectX + rectWidth) {
                     int rowNum = (int) ((rectY - y) / 53.5f);
-                    if (rowNum >= 0 && rowNum <= 3 && row + rowNum < list.size()) {
+                    if (rowNum >= 0 && rowNum <= 3 && row + rowNum < filteredList.size()) {
                         audioService.playSound(SoundAsset.HoverButton);
-                        applyItem(list.get(row + rowNum));
+                        applyItem(filteredList.get(row + rowNum));
                         return true;
                     }
                 }
@@ -114,17 +136,45 @@ public class StoreMenu extends Actor {
         });
     }
 
-    private void applyItem(StoreProduct storeProduct) {
-        buyConsumer.accept(storeProduct, menu);
+    private void updateFilteredList() {
+        if (filterAvailableOnly) {
+            filteredList.clear();
+            for (com.ap.model.StoreProduct product : list) {
+                if (product.isAvailable) {
+                    filteredList.add(product);
+                }
+            }
+        } else {
+            filteredList = new ArrayList<>(list);
+        }
+        row = 0;
     }
 
+    private void applyItem(com.ap.model.StoreProduct storeProduct) {
+        GameUIManager.instance.exitMenu(menu);
+        remove();
+        StoreBuyDialog dialog = new StoreBuyDialog(skin, stage, storeProduct, audioService,
+                (product, count) -> {
+                    buyConsumer.accept(product, menu);
+                });
+    }
+
+
+
     private void setUpUI(String characterString) {
-        background = assetService.get(TextureAsset.StoreBackground);
-        setX((Constraints.WORLD_WIDTH_RESOLUTION - background.getWidth()) / 2f);
-        setY((Constraints.WORLD_HEIGHT_RESOLUTION - background.getHeight()) / 2f);
+        setX((Constraints.WORLD_WIDTH_RESOLUTION - background.getRegionWidth()) / 2f);
+        setY((Constraints.WORLD_HEIGHT_RESOLUTION - background.getRegionHeight()) / 2f);
+        background = new TextureRegion(new Texture(Gdx.files.internal("graphics/StoreBackground.png")));
         character = atlas.findRegion(characterString);
     }
 
+    private void createWhiteTexture() {
+        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmap.setColor(Color.WHITE);
+        pixmap.fill();
+        whiteTexture = new TextureRegion(new Texture(pixmap));
+        pixmap.dispose();
+    }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -149,7 +199,7 @@ public class StoreMenu extends Actor {
         if (mouseX >= rectX && mouseX <= rectX + rectWidth &&
                 mouseY >= rectY - rectHeight && mouseY <= rectY) {
             int rowNum = (int) ((rectY - mouseY) / 53.5f);
-            if (rowNum >= 0 && rowNum <= 3 && row + rowNum < list.size()) {
+            if (rowNum >= 0 && rowNum <= 3 && row + rowNum < filteredList.size()) {
                 if(rowNum != hoverRow) {
                     audioService.playSound(SoundAsset.HoverButton, 0.7f);
                 }
@@ -223,23 +273,37 @@ public class StoreMenu extends Actor {
             float rectWidth = 546f;
             float rectHeight = eachY - 7;
             batch.setColor(new Color(0.36f, 0.23f, 0.1f, 0.4f));
-            if (whiteTexture == null) whiteTexture = Helper.createWhiteTexture();
             batch.draw(whiteTexture, getX() + posX - 10, getY() + posY - hoverRow * eachY - 43 + 10, rectWidth, rectHeight);
             batch.setColor(Color.WHITE);
         }
 
-        for (int i = row; i < Math.min(list.size(), row + 4); i++) {
-            drawThisProduct(batch, list.get(i), i - row);
+        for (int i = row; i < Math.min(filteredList.size(), row + 4); i++) {
+            com.ap.model.StoreProduct product = filteredList.get(i);
+            if(product == null)
+                return;
+
+            if (!product.isAvailable) {
+                float posX = 230;
+                float posY = 360;
+                float eachY = 57;
+                float rectWidth = 546f;
+                float rectHeight = eachY - 7;
+
+                batch.setColor(new Color(0.4f, 0.4f, 0.4f, 0.65f));
+                batch.draw(whiteTexture, getX() + posX - 10, getY() + posY - (i - row) * eachY - 43 + 10, rectWidth, rectHeight);
+                batch.setColor(Color.WHITE);
+            }
+
+            drawThisProduct(batch, product, i - row);
         }
     }
 
     private void drawHoverTooltip(Batch batch) {
         if(hoverRow < 0 || hoverRow > 3)
             return;
-        StoreProduct product = list.get(hoverRow + row);
+        com.ap.model.StoreProduct product = filteredList.get(hoverRow + row);
         BitmapFont font = new BitmapFont();
         font.setColor(Color.WHITE);
-
 
         Vector2 mousePos = stage.screenToStageCoordinates(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
         float tooltipX = mousePos.x + 16;
@@ -248,16 +312,12 @@ public class StoreMenu extends Actor {
         float tooltipWidth = 300f;
         float tooltipHeight = 120f;
 
-
         batch.setColor(new Color(0f, 0f, 0f, 0.65f));
-        if (whiteTexture == null) whiteTexture = Helper.createWhiteTexture();
         batch.draw(whiteTexture, tooltipX, tooltipY, tooltipWidth, tooltipHeight);
         batch.setColor(Color.WHITE);
 
-
         float iconSize = 24f;
         batch.draw(product.texture, tooltipX + 10, tooltipY + tooltipHeight - iconSize - 10, iconSize, iconSize);
-
 
         font.draw(batch, product.name, tooltipX + iconSize + 18, tooltipY + tooltipHeight - 14);
 
@@ -265,9 +325,7 @@ public class StoreMenu extends Actor {
         font.draw(batch, product.description, tooltipX + 10, descY - 15, tooltipWidth - 20, 1, true);
     }
 
-
-
-    private void drawThisProduct(Batch batch, StoreProduct storeProduct, int row) {
+    private void drawThisProduct(Batch batch, com.ap.model.StoreProduct storeProduct, int row) {
         BitmapFont font = skin.getFont("Mill24");
         font.setColor(Color.BROWN);
         float posX = 230;

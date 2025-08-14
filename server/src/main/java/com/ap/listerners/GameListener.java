@@ -46,6 +46,8 @@ public class GameListener extends Listener {
             senderPlayer.playerManager.applyItem(applyItemRequest.index, applyItemRequest.x, applyItemRequest.y, senderPlayer);
         } else if(object instanceof BuildGreenhouseRequest) {
             senderPlayer.playerManager.buildGreenhouse(senderPlayer);
+        } else if(object instanceof BuyProductRequest buyProductRequest) {
+
         } else if(object instanceof ReactionRequest reactionRequest) {
             if(reactionRequest.emojiNum == null)
                 senderPlayer.playerManager.applyReaction(reactionRequest.message);

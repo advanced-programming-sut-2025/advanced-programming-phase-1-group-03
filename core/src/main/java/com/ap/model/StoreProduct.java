@@ -10,13 +10,26 @@ public class StoreProduct {
     public String description;
     public int sellPrice;
     public int row;
+    public boolean isAvailable;
 
-    public StoreProduct(TextureRegion texture, String name, String enumName, String description, int sellPrice, int row) {
+    public StoreProduct(TextureRegion texture, String name, String enumName,
+                        String description, int sellPrice, int row) {
         this.texture = texture;
         this.name = name;
         this.enumName = enumName;
         this.sellPrice = sellPrice;
         this.row = row;
         this.description = description;
+    }
+
+    public StoreProduct(TextureRegion texture, String name, String enumName,
+                        String description, int sellPrice, int row, boolean isAvailable) {
+        this.texture = texture;
+        this.name = name;
+        this.enumName = enumName;
+        this.sellPrice = sellPrice;
+        this.row = row;
+        this.description = description;
+        this.isAvailable = isAvailable;
     }
 }
