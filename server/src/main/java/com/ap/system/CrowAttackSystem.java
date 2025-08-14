@@ -3,7 +3,7 @@ package com.ap.system;
 import com.ap.component.*;
 import com.ap.items.EntityFactory;
 import com.ap.items.plant.Crop;
-import com.ap.model.GameManager;
+
 import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
