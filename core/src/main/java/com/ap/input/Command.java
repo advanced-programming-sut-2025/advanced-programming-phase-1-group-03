@@ -17,7 +17,8 @@ public enum Command {
     OpenLeaderBoard(Input.Keys.L),
     OpenTradeStarter(Input.Keys.T),
     OpenEmoteMenu(Input.Keys.M),
-    OpenRefrigerator(Input.Keys.Y)
+    OpenRefrigerator(Input.Keys.Y),
+    OpenFishing(Input.Keys.F)
     ;
 
     private final int[] correspondingKeys;

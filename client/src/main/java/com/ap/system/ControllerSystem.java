@@ -111,6 +111,8 @@ public class ControllerSystem extends IteratingSystem {
                     emojiPanel.toggle();
                 } case OpenRefrigerator -> {
                     refrigeratorMenu.toggle();
+                } case OpenFishing -> {
+                    gameScreen.toggleFish();
                 }
             }
         }

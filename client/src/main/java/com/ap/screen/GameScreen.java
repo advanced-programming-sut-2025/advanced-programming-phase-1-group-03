@@ -324,6 +324,10 @@ public class GameScreen extends AbstractScreen {
                 createMapNotifier.tileSelectionSystem);
     }
 
+    public void toggleFish() {
+        stage.addActor(new FishingMiniGame(assetService, skin, 200, 200, stage));
+    }
+
     public Batch getBatch() {
         return batch;
     }

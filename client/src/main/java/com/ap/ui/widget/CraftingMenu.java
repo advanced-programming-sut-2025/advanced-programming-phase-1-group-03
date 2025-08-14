@@ -93,7 +93,7 @@ public class CraftingMenu extends Actor {
 
 
     private void loadCraftableItems() {
-        craftables.add(new CraftableItem("BeeHouse",
+        craftables.add(new CraftableItem("Bee_House",
                 assetService.get(AtlasAsset.Crafting).findRegion("Bee_House"),
                 new String[]{"Wood x40", "Coal x8", "Iron Bar x1", "Maple Syrup x1"},
                 "Produces honey. Place outside and wait a few days."));
@@ -103,17 +103,17 @@ public class CraftingMenu extends Actor {
                 new String[]{"Iron Ore x4", "Coal x1"},
                 "Creates a small explosion."));
 
-        craftables.add(new CraftableItem("CharcoalKiln",
+        craftables.add(new CraftableItem("Charcoal_Kiln",
                 assetService.get(AtlasAsset.Crafting).findRegion("Charcoal_Kiln"),
                 new String[]{"Wood x20", "Stone x30"},
                 "Turns wood into coal."));
 
-        craftables.add(new CraftableItem("CheesePress",
+        craftables.add(new CraftableItem("Cheese_Press",
                 assetService.get(AtlasAsset.Crafting).findRegion("Cheese_Press"),
                 new String[]{"Wood x45", "Stone x45", "Hardwood x10", "Copper Bar x1"},
                 "Turns milk into cheese."));
 
-        craftables.add(new CraftableItem("CherryBomb",
+        craftables.add(new CraftableItem("Cherry_Bomb",
                 assetService.get(AtlasAsset.Crafting).findRegion("Cherry_Bomb"),
                 new String[]{"Copper Ore x4"},
                 "Small explosion, good for mining."));
@@ -123,12 +123,12 @@ public class CraftingMenu extends Actor {
                 new String[]{"Wood x30", "Coal x5"},
                 "Dries food ingredients."));
 
-        craftables.add(new CraftableItem("DeluxeScarecrow",
+        craftables.add(new CraftableItem("Deluxe_Scarecrow",
                 assetService.get(AtlasAsset.Crafting).findRegion("Deluxe_Scarecrow"),
                 new String[]{"Wood x100", "Fiber x50", "Rarecrow x1"},
                 "Covers more area than standard scarecrow."));
 
-        craftables.add(new CraftableItem("FishSmoker",
+        craftables.add(new CraftableItem("Fish_Smoker",
                 assetService.get(AtlasAsset.Crafting).findRegion("Fish_Smoker"),
                 new String[]{"Wood x60", "Iron Bar x2"},
                 "Turns fish into smoked delicacy."));
@@ -138,12 +138,12 @@ public class CraftingMenu extends Actor {
                 new String[]{"Copper Ore x20", "Stone x25"},
                 "Smelts ore into bars. Fuel with coal."));
 
-        craftables.add(new CraftableItem("GrassStarter",
+        craftables.add(new CraftableItem("Grass_Starter",
                 assetService.get(AtlasAsset.Crafting).findRegion("Grass_Starter"),
                 new String[]{"Fiber x10"},
                 "Grows grass for animals."));
 
-        craftables.add(new CraftableItem("IridiumSprinkler",
+        craftables.add(new CraftableItem("Iridium_Sprinkler",
                 assetService.get(AtlasAsset.Crafting).findRegion("Iridium_Sprinkler"),
                 new String[]{"Gold Bar x1", "Iridium Bar x1", "Battery Pack x1"},
                 "Waters 24 adjacent tiles daily."));
@@ -158,32 +158,32 @@ public class CraftingMenu extends Actor {
                 new String[]{"Wood x60", "Fiber x30", "Pine Tar x1"},
                 "Turns wool into cloth."));
 
-        craftables.add(new CraftableItem("MayonnaiseMachine",
+        craftables.add(new CraftableItem("Mayonnaise_Machine",
                 assetService.get(AtlasAsset.Crafting).findRegion("Mayonnaise_Machine"),
                 new String[]{"Wood x15", "Stone x15", "Earth Crystal x1", "Copper Bar x1"},
                 "Turns eggs into mayonnaise."));
 
-        craftables.add(new CraftableItem("MegaBomb",
+        craftables.add(new CraftableItem("Mega_Bomb",
                 assetService.get(AtlasAsset.Crafting).findRegion("Mega_Bomb"),
                 new String[]{"Gold Ore x4", "Solar Essence x1", "Void Essence x1"},
                 "Massive explosion. Use with caution!"));
 
-        craftables.add(new CraftableItem("MysticTreeSeed",
+        craftables.add(new CraftableItem("Mystic_Tree_Seed",
                 assetService.get(AtlasAsset.Crafting).findRegion("Mystic_Tree_Seed"),
                 new String[]{"Sap x10", "Magic Sapling x1"},
                 "Grows into a mystic tree."));
 
-        craftables.add(new CraftableItem("OilMaker",
+        craftables.add(new CraftableItem("Oil_Maker",
                 assetService.get(AtlasAsset.Crafting).findRegion("Oil_Maker"),
                 new String[]{"Slime x50", "Hardwood x20", "Gold Bar x1"},
                 "Turns vegetables into oil."));
 
-        craftables.add(new CraftableItem("PreservesJar",
+        craftables.add(new CraftableItem("Preserves_Jar",
                 assetService.get(AtlasAsset.Crafting).findRegion("Preserves_Jar"),
                 new String[]{"Wood x50", "Stone x40", "Coal x8"},
                 "Turns vegetables into pickles and fruit into jam."));
 
-        craftables.add(new CraftableItem("QualitySprinkler",
+        craftables.add(new CraftableItem("Quality_Sprinkler",
                 assetService.get(AtlasAsset.Crafting).findRegion("Quality_Sprinkler"),
                 new String[]{"Iron Bar x1", "Gold Bar x1", "Refined Quartz x1"},
                 "Waters 8 adjacent tiles daily."));
