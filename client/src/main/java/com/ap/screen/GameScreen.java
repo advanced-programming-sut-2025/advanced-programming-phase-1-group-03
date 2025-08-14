@@ -141,7 +141,7 @@ public class GameScreen extends AbstractScreen {
         timeSystem = new TimeSystem();
         weatherSystem = new WeatherSystem(clock);
         animalStatMenu = new AnimalStatMenu(null, getStage(), getSkin(), assetService, audioService, this);
-        processingMachineWindow = new ProcessingMachineWindow(skin, stage, assetService);
+        processingMachineWindow = new ProcessingMachineWindow(skin, stage, assetService, this);
         client.getListener(GameListener.class).setGameScreen(this);
 
         voiceChat = new VoiceChatClient();

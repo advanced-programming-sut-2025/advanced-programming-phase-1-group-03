@@ -16,7 +16,6 @@ import com.ap.model.StoreProduct;
 import com.ap.utils.Helper;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -66,6 +65,9 @@ public class StoreMenu extends Actor {
 
     private boolean filterAvailableOnly = false;
 
+    // اضافه شده: ذخیره دکمه فیلتر برای حذف بعدی
+    private TextButton filterButton;
+
     public StoreMenu(AssetService assetService, Skin skin, Stage stage, Inventory inventory, AudioService audioService,
                      String characterString, String message,
                      Menus menu, ArrayList<com.ap.model.StoreProduct> products,
@@ -83,11 +85,13 @@ public class StoreMenu extends Actor {
         setUpUI(characterString);
         list = products;
         filteredList = new ArrayList<>(list);
-        Gdx.app.postRunnable(() -> {
-                    whiteTexture = Helper.createWhiteTexture();
-        });
+//        Gdx.app.postRunnable(() -> {
+//                    whiteTexture = Helper.createWhiteTexture();
+//        });
+        whiteTexture = new TextureRegion(assetService.get(TextureAsset.WhiteFlash));
 
-        TextButton filterButton = new TextButton("Show Available", skin);
+        // تغییر داده شد تا در فیلد ذخیره بشه
+        filterButton = new TextButton("Show Available", skin);
         filterButton.setPosition(getX() + 820, getY() + 40);
         filterButton.setSize(150, 40);
 
@@ -160,15 +164,12 @@ public class StoreMenu extends Actor {
                 });
     }
 
-
-
     private void setUpUI(String characterString) {
         background = new TextureRegion(assetService.get(TextureAsset.StoreBackground));
         setX((Constraints.WORLD_WIDTH_RESOLUTION - background.getRegionWidth()) / 2f);
         setY((Constraints.WORLD_HEIGHT_RESOLUTION - background.getRegionHeight()) / 2f);
         character = atlas.findRegion(characterString);
     }
-
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
@@ -334,6 +335,12 @@ public class StoreMenu extends Actor {
     @Override
     public boolean remove() {
         stage.removeListener(event);
+
+        // تغییر اضافه‌شده: حذف دکمه فیلتر از استیج
+        if (filterButton != null) {
+            filterButton.remove();
+        }
+
         return super.remove();
     }
 }

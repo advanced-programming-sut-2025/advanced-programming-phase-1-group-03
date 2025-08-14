@@ -2,6 +2,7 @@ package com.ap.ui.widget;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
+import com.ap.screen.GameScreen;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -21,16 +22,18 @@ public class ProcessingMachineWindow extends Window {
     private TextButton cancelButton;
     private TextButton collectButton;
     private Label statusLabel;
+    private GameScreen gameScreen;
 
     private ProcessingRecipe currentRecipe;
     private float progressTime;
     private boolean isProcessing = false;
 
-    public ProcessingMachineWindow(Skin skin, Stage stage, AssetService assetService) {
+    public ProcessingMachineWindow(Skin skin, Stage stage, AssetService assetService, GameScreen gameScreen) {
         super("Processing Machine", skin);
         this.skin = skin;
         this.stage = stage;
         this.assetService = assetService;
+        this.gameScreen = gameScreen;
 
         defaults().pad(10).fillX();
         setMovable(true);
@@ -112,6 +115,7 @@ public class ProcessingMachineWindow extends Window {
             public void clicked(InputEvent event, float x, float y) {
                 statusLabel.setText("Collected: " + currentRecipe.productName);
                 collectButton.setDisabled(true);
+
             }
         });
 
@@ -143,8 +147,8 @@ public class ProcessingMachineWindow extends Window {
         setPosition(x, y);
     }
 
-    public static void show(Stage stage, Skin skin, AssetService assetService) {
-        ProcessingMachineWindow window = new ProcessingMachineWindow(skin, stage, assetService);
+    public static void show(Stage stage, Skin skin, AssetService assetService, GameScreen gameScreen) {
+        ProcessingMachineWindow window = new ProcessingMachineWindow(skin, stage, assetService, gameScreen);
         window.getColor().a = 0f;
         window.addAction(Actions.fadeIn(0.3f));
         stage.addActor(window);
