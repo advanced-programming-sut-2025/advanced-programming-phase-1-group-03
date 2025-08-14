@@ -304,4 +304,8 @@ public class Sender {
         var request = new PlaceCarrierRequest();
         client.sendTCP(request);
     }
+
+    public void sendRemoveItemInventoryRequest(String itemName, int amount) {
+        client.sendTCP(new RemoveItemInventoryRequest(itemName, amount));
+    }
 }

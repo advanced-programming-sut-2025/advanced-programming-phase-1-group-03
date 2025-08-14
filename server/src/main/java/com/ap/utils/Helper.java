@@ -74,13 +74,16 @@ public class Helper {
         return engineCache.get(engine);
     }
 
-    public static void createIdForEngine(Engine engine) {
+    public static int createIdForEngine(Engine engine) {
         if(!engineCache.containsKey(engine)) {
             int id;
             do {
                 id = new Random().nextInt(10000000);
             }while(entities.contains(id));
             engineCache.put(engine, id);
+            return id;
+        } else {
+            return engineCache.get(engine);
         }
     }
 

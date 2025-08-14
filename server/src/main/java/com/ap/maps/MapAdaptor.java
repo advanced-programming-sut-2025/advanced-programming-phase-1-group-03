@@ -24,6 +24,7 @@ import com.badlogic.gdx.utils.Array;
 
 public abstract class MapAdaptor implements IMap {
     protected Engine engine;
+    protected int engineID;
     protected TiledService tiledService;
     protected TiledAshleyConfigurator tileConfigurator;
     protected TiledMapGenerator tiledMapGenerator;
@@ -52,7 +53,7 @@ public abstract class MapAdaptor implements IMap {
         this.mapManager = mapManager;
 
         engine = new Engine();
-        Helper.createIdForEngine(engine);
+        engineID = Helper.createIdForEngine(engine);
 
         assetService = gameManager.getAssetService();
 
@@ -97,6 +98,7 @@ public abstract class MapAdaptor implements IMap {
 
     @Override
     public void load(Entity player) {
+        System.out.println("current map: " + engine + "," + mapAsset);
     }
     @Override
     public Entity leave(ServerPlayer player) {
@@ -107,6 +109,10 @@ public abstract class MapAdaptor implements IMap {
     @Override
     public int getEngineId() {
         return Helper.getEngineId(engine);
+    }
+
+    public MapAsset getMapAsset() {
+        return mapAsset;
     }
 
     public void movePlayer(MovePlayerRequest request, ServerPlayer senderPlayer) {
@@ -140,5 +146,9 @@ public abstract class MapAdaptor implements IMap {
     @Override
     public Engine getEngine() {
         return engine;
+    }
+
+    public World getWorld() {
+        return world;
     }
 }

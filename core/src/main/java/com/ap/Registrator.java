@@ -197,6 +197,8 @@ public class Registrator {
         kryo.register(Ask.class);
         kryo.register(EnergyNotifier.class);
 
+        kryo.register(RemoveItemInventoryRequest.class);
+
         kryo.register(Shadow.class);
     }
 

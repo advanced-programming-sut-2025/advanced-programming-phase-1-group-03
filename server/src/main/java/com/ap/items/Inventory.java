@@ -203,9 +203,10 @@ public class Inventory {
         this.trashCanLevel = trashCanLevel;
     }
 
-    public void removeItemViaTrashCan(ItemStack itemStack) {
+    public void removeItemViaTrashCan(String itemName, int amount) {
         //TODO gaining money logic
-        removeItem(itemStack.getItem(), itemStack.getAmount(), false);
+        Item item = new Item(itemName);
+        removeItem(item, amount);
     }
 
     public ArrayList<FoodRecipes> getFoodRecipes() {

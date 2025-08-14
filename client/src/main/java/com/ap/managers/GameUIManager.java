@@ -4,6 +4,7 @@ import com.ap.audio.AudioService;
 import com.ap.model.Menus;
 import com.ap.model.StoreProduct;
 import com.ap.model.store.CarpenterShop;
+import com.ap.model.store.MarniesRanchProducts;
 import com.ap.model.store.StardropSaloonProducts;
 import com.ap.network.Sender;
 import com.ap.requests.VoteRequest;
@@ -61,6 +62,14 @@ public class GameUIManager {
                         gameScreen.getAudioService(),"Robin",
                         "Carpenter's Shop!", menu,
                         CarpenterShop.buildStoreItems(gameScreen.getAssetService()), onBuy)
+                ));
+                break;
+            case MarniesRanchMenu:
+                menus.put(menu, (new StoreMenu(
+                        gameScreen.getAssetService(), skin, stage, gameScreen.getInventory(),
+                        gameScreen.getAudioService(),"Marnie",
+                        "Welcome! What can I do for you?", menu,
+                        MarniesRanchProducts.buildStoreItems(gameScreen.getAssetService()), onBuy)
                 ));
                 break;
         }

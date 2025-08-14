@@ -54,6 +54,7 @@ public class Farm extends MapAdaptor {
         engine.addSystem(new AdjustAlphaSystem(engine));
         crowAttackSystem = new CrowAttackSystem(engine, world);
         engine.addSystem(crowAttackSystem);
+        engine.addSystem(new FarmAnimalSystem(engine, world));
     }
 
     @Override
@@ -122,8 +123,8 @@ public class Farm extends MapAdaptor {
         player.playerManager.setBuildGreenhouse(true);
     }
 
-    public void placeCarrier() {
-        engine.getSystem(CarrierSystem.class).place();
+    public void placeCarrier(ServerPlayer player) {
+        engine.getSystem(CarrierSystem.class).place(player);
     }
 
     class TimeListener implements ITimeListener {

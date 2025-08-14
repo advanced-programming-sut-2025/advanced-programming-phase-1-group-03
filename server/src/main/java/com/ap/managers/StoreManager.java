@@ -1,17 +1,22 @@
 package com.ap.managers;
 
 import com.ap.Server;
+import com.ap.component.TwinEntity;
 import com.ap.items.EntityFactory;
 import com.ap.items.Inventory;
 import com.ap.items.Item;
 import com.ap.items.ItemFactory;
+import com.ap.items.animal.AnimalHouse;
 import com.ap.model.BarnsType;
 import com.ap.model.Menus;
 import com.ap.model.ServerPlayer;
+import com.ap.model.StoreProduct;
 import com.ap.model.store.CarpenterShop;
+import com.ap.model.store.MarniesRanchProducts;
 import com.ap.model.store.StardropSaloonProducts;
 import com.ap.responses.BuyItemResponse;
 import com.ap.utils.Helper;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 
 public class StoreManager {
@@ -23,7 +28,7 @@ public class StoreManager {
         var result = switch (menu) {
             case StardropSaloonMenu -> buyStardropSaloon(player, name);
             case CarpenterShopMenu -> buyCarpenterShop(player, name);
-        //    case MarniesRanchMenu -> buyMarniesRanch(storeProduct);
+            case MarniesRanchMenu -> buyMarniesRanch(player, name);
         };
         return result;
     }
@@ -85,36 +90,49 @@ public class StoreManager {
     }
 
 
-//    private boolean buyMarniesRanch(StoreMenu.StoreProduct storeProduct) {
-//        var product = MarniesRanchProducts.valueOf(storeProduct.enumName);
-//        if(GameData.getInstance().getPlayerGold() < storeProduct.sellPrice) {
-//            GameUIManager.instance.showMessageDialog("You don't have enough money!");
-//            return false;
-//        }
-//        //Animal
-//        if (product.getAnimalType() != null) {
-//            TwinEntity twin = new TwinEntity();
-//            for (AnimalHouse house : AnimalManager.instance.getHouses()) {
-//                if (house.isFull()) continue;
-//                if (house.getType().isBarn() == product.getAnimalType().isLiveCoop()) continue;
-//                Entity entity = EntityFactory.instance.CreateCarrierFarmAnimalEntity(product.getAnimalType());
-//                Engine engine = gameScreen.getBarnEngine(house.getType());
-//                twin.add(entity, engine);
-//            }
-//
-//            for (int i = 0; i < twin.getEngines().size(); i++) {
-//                Engine engine = twin.getEngines().get(i);
-//                Entity entity = twin.getEntities().get(i);
-//                engine.addEntity(entity);
-//                entity.add(twin);
-//            }
-//
-//        }
-//
-//        //Hay
-//        if (product.getName().equals("Hay")) {
-//            inventory.addItem(ItemFactory.instance.CreateHay(), 10);
-//        }
-//        return true;
-//    }
+    private BuyItemResponse buyMarniesRanch(ServerPlayer player, String name) {
+        var product = MarniesRanchProducts.valueOf(name);
+        if (player.gold < product.getPrice()) {
+            return new BuyItemResponse(false, "You don't have enough money");
+        }
+        //Animal
+        if (product.getAnimalType() != null) {
+            TwinEntity twin = new TwinEntity();
+            for (AnimalHouse house : player.playerManager.getGameManager().getAnimalManagers().get(player).getHouses()) {
+                if (house.isFull()) continue;
+                if (house.getType().isBarn() == product.getAnimalType().isLiveCoop()) continue;
+                Entity entity = EntityFactory.instance.CreateCarrierFarmAnimalEntity(product.getAnimalType());
+                twin.add(entity, house.getMap());
+            }
+
+            if (twin.getEntities().isEmpty()) {
+                return new BuyItemResponse(false, "There is no proper house with free space for this animal");
+            }
+
+            for (int i = 0; i < twin.getEntities().size(); i++) {
+                Entity entity = twin.getEntities().get(i);
+                entity.add(twin);
+            }
+
+            for (int i = 0; i < twin.getEntities().size(); i++) {
+                Entity entity = twin.getEntities().get(i);
+                Helper.addEntity(entity, twin.getMaps().get(i).getEngine());
+                System.out.println("entity: " + entity + "added to engine: " + twin.getMaps().get(i).getEngine() + "," + twin.getMaps().get(i).getMapAsset());
+            }
+            player.advanceGold(-product.getPrice());
+            return new BuyItemResponse(true, "");
+
+        }
+
+        //Hay
+        if (product.getName().equals("Hay")) {
+            player.playerManager.getInventory().addItem(ItemFactory.instance.CreateHay(), 16);
+            player.advanceGold(-product.getPrice());
+            return new BuyItemResponse(true, "");
+        }
+
+        return new BuyItemResponse(false, "item does not exist");
+
+    }
+
 }

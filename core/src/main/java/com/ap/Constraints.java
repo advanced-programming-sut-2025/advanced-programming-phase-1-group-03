@@ -15,7 +15,7 @@ public class Constraints {
     public static final float PLAYER_ANIMATION_FRAME_DURATION =  1/ 8f;
 
     // It means 1 second in the real world is equal to how many seconds in the game
-    public static final float GAME_SPEED = 7200;
+    public static final float GAME_SPEED = 600;
     public static final float GAME_SPEED_MIN = 0.2f;
     public static final float GAME_SPEED_MAX = 7 * 24 * 60 * 60;
     // The game start at this hour
@@ -29,7 +29,7 @@ public class Constraints {
     public static final int MAXIMUM_WOOD_TREE_GIVE = 8;
     public static final int STUMP_GIVEN_WOOD = 3;
     public static final int NUMBER_OF_AXE_NEED_TO_CUT_DOWN_TREE = 4;
-    public static final int PLAYER_INITIAL_GOLD = 50000;
+    public static final int PLAYER_INITIAL_GOLD = 1000000;
     public static final int GREEN_HOUSE_WOOD_NEEDED = 10;
     public static final int GREEN_HOUSE_GOLD_NEEDED = 500;
     public static final int CROPS_Z = 1;
@@ -62,6 +62,9 @@ public class Constraints {
     public static final int WOOD_Z = 1;
     public static final int SHADOW_Z = 1;
     public static final int CROW_Z = 4;
+    public static final int Animal_Z = 2;
+    public static final int Emote_Z = 2;
+    public static final int Collectable_Z = 4;
 
     // PLAYER_Z = 2, it was set from tile
 
@@ -72,4 +75,8 @@ public class Constraints {
 
     public static final int MAX_TRADE_BUFFER_SIZE = 4;
     public static final int MAX_STORAGE_SIZE = 36;
+
+    public static final int ANIMAL_MAX_FRIENDSHIP = 1000;
+    public static final int ANIMAL_MAX_HEALTH = 5;
+
 }

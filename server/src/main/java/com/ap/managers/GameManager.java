@@ -12,6 +12,8 @@ import com.badlogic.ashley.core.Engine;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameManager {
     private final Room room;
@@ -31,6 +33,8 @@ public class GameManager {
     private final ArrayList<TradeRoom> tradeRooms = new ArrayList<>();
 
     private final ArrayList<TradeHistory> tradeHistory = new ArrayList<>();
+
+    private Map<ServerPlayer, AnimalManager> animalManagers = new HashMap<>();
 
     public GameManager(Room room, AssetService assetService) {
         this.room = room;
@@ -62,6 +66,7 @@ public class GameManager {
         // We notify the client the amount of gold we have at the start
         player.advanceGold(0);
         mapManager.playerArrived(player, map, player.playerManager);
+        animalManagers.put(player, new AnimalManager(player, this));
     }
 
     public void update(float delta) {
@@ -69,6 +74,10 @@ public class GameManager {
 
         // Update active engine of players
         mapManager.update(delta);
+    }
+
+    public Map<ServerPlayer, AnimalManager> getAnimalManagers() {
+        return animalManagers;
     }
 
     public TimeSystem getTimeSystem() {

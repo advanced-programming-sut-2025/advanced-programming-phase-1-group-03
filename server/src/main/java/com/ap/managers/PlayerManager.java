@@ -3,17 +3,25 @@ package com.ap.managers;
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
 import com.ap.audio.AudioService;
+import com.ap.component.Player;
+import com.ap.component.Transform;
+import com.ap.items.EntityFactory;
 import com.ap.items.Inventory;
 import com.ap.items.ItemFactory;
 import com.ap.items.Refrigerator;
 import com.ap.items.tools.Tool;
 import com.ap.maps.Farm;
+import com.ap.model.EmoteType;
 import com.ap.model.ServerPlayer;
 import com.ap.requests.MovePlayerRequest;
 import com.ap.system.universal.TimeSystem;
+import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
+import com.badlogic.ashley.core.Family;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class PlayerManager {
     private final GameManager gameManager;
@@ -81,8 +89,34 @@ public class PlayerManager {
         gameManager.getMapManager().currentMaps.get(senderPlayer).applyItem(index, x, y, senderPlayer.id);
     }
 
+    public Entity getPlayerEntity() {
+        var engine = gameManager.getMapManager().currentMaps.get(player).getEngine();
+        var list = engine.getEntitiesFor(Family.all(Player.class).get());
+        Entity playerEntity = null;
+        for (Entity entity : list) {
+            var pc = Player.mapper.get(entity);
+            if (pc != null) {
+                if (pc.id == player.id) {
+                    playerEntity = entity;
+                    break;
+                }
+            }
+        }
+        return playerEntity;
+    }
+
     public void applyReaction(int emojiNum) {
         //TODO implement reaction here
+        EmoteType type = Arrays.stream(EmoteType.values()).filter(
+                (EmoteType emoteType) -> emojiNum == emoteType.index).findFirst().orElse(null);
+        if (type == null) {
+            System.out.println("emoji not found");
+            return;
+        }
+        var engine = gameManager.getMapManager().currentMaps.get(player).getEngine();
+        Entity playerEntity = getPlayerEntity();
+        if (playerEntity == null) return;
+        Helper.addEntity(EntityFactory.instance.CreateEmoteEntity(Transform.mapper.get(playerEntity), type, 3), engine);
     }
 
     public void applyReaction(String message) {

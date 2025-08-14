@@ -30,6 +30,9 @@ public class House extends MapAdaptor{
         engine.addSystem(new FacingSystem());
         engine.addSystem(new FsmUpdateSystem());
         engine.addSystem(new AnimationSystem(players));
+        engine.addSystem(new FarmAnimalSystem(engine, world));
+        engine.addSystem(new CarrierSystem(engine, world, players, playerId));
+
     }
 
     @Override
@@ -62,6 +65,10 @@ public class House extends MapAdaptor{
     public void load(Entity player) {
         super.load(player);
         players.first().playerManager.getAudioService().playMusic(MusicAsset.House);
+    }
+
+    public void placeCarrier(ServerPlayer player) {
+        engine.getSystem(CarrierSystem.class).place(player);
     }
 
     @Override

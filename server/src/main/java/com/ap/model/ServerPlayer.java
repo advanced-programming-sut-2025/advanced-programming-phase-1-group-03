@@ -1,5 +1,6 @@
 package com.ap.model;
 
+import com.ap.Constraints;
 import com.ap.asset.MapAsset;
 import com.ap.managers.PlayerManager;
 import com.ap.notifiers.SendGoldNotifier;
@@ -11,7 +12,7 @@ public class ServerPlayer {
     public Connection connection;
     public Room currentRoom;
     public int id = 0;
-    public int gold = 1000;
+    public int gold = Constraints.PLAYER_INITIAL_GOLD;
     public int avatarIndex;
 
     public PlayerManager playerManager;

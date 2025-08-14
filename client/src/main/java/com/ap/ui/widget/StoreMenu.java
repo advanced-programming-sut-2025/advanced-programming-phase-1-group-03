@@ -223,6 +223,7 @@ public class StoreMenu extends Actor {
             float rectWidth = 546f;
             float rectHeight = eachY - 7;
             batch.setColor(new Color(0.36f, 0.23f, 0.1f, 0.4f));
+            if (whiteTexture == null) whiteTexture = Helper.createWhiteTexture();
             batch.draw(whiteTexture, getX() + posX - 10, getY() + posY - hoverRow * eachY - 43 + 10, rectWidth, rectHeight);
             batch.setColor(Color.WHITE);
         }
@@ -249,6 +250,7 @@ public class StoreMenu extends Actor {
 
 
         batch.setColor(new Color(0f, 0f, 0f, 0.65f));
+        if (whiteTexture == null) whiteTexture = Helper.createWhiteTexture();
         batch.draw(whiteTexture, tooltipX, tooltipY, tooltipWidth, tooltipHeight);
         batch.setColor(Color.WHITE);
 

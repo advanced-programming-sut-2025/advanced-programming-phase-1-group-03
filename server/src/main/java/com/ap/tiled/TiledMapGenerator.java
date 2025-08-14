@@ -39,10 +39,10 @@ public class TiledMapGenerator {
     }
 
     public void generate(TiledMap map) {
-        generateTrees(map);
-        generateStones(map);
-        generateGrasses(map);
-        generateWoods(map);
+//        generateTrees(map);
+//        generateStones(map);
+//        generateGrasses(map);
+//        generateWoods(map);
     }
 //
     private void generateWoods(TiledMap map) {

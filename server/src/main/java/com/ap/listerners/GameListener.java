@@ -5,6 +5,7 @@ import com.ap.items.Item;
 import com.ap.items.ItemFactory;
 import com.ap.managers.AbilityManager;
 import com.ap.maps.Farm;
+import com.ap.maps.House;
 import com.ap.maps.Store;
 import com.ap.model.AbilityType;
 import com.ap.managers.GameManager;
@@ -23,7 +24,6 @@ import com.ap.responses.ChatResponse;
 import com.ap.responses.GetActiveTradeResponse;
 import com.ap.responses.LeaderBoardResponse;
 import com.ap.responses.RoommatesInfoResponse;
-import com.ap.responses.*;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
@@ -157,7 +157,9 @@ public class GameListener extends Listener {
         } else if(object instanceof PlaceCarrierRequest) {
             var map = senderPlayer.currentRoom.game.getMapManager().currentMaps.get(senderPlayer);
             if(map instanceof Farm farm) {
-                farm.placeCarrier();
+                farm.placeCarrier(senderPlayer);
+            } else if(map instanceof House house) {
+                house.placeCarrier(senderPlayer);
             }
         } else if (object instanceof TradeStartRequest tradeStartRequest) {
             var targetPlayer = senderPlayer.currentRoom.players.stream()
@@ -214,6 +216,8 @@ public class GameListener extends Listener {
             target.playerManager.getActiveFromTradeRequests().remove(senderPlayer);
         } else if(object instanceof TradeHistoryRequest historyRequest) {
             senderPlayer.connection.sendTCP(new TradeHistoryResponse(senderPlayer.playerManager.getGameManager().getTradeHistory()));
+        } else if(object instanceof  RemoveItemInventoryRequest item) {
+            senderPlayer.playerManager.getInventory().removeItemViaTrashCan(item.itemName, item.amount);
         }
     }
     private void startTradeRoom(ServerPlayer player1, ServerPlayer player2) {

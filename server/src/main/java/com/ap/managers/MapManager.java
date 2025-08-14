@@ -54,11 +54,11 @@ public class MapManager {
         switch (map) {
             case Farm1, Farm2, Forest, Town -> {
                 return new Farm(gameManager, this, playerId);
-            } case House,Greenhouse -> {
+            } case House,Greenhouse, Barn, BigBarn, DeluxeBarn, Coop, BigCoop, DeluxeCoop -> {
                 return new House(gameManager, this, playerId);
             } case Mine -> {
                 return new Mine(gameManager,this, playerId);
-            } case StardropSaloon, CarpenterShop -> {
+            } case StardropSaloon, CarpenterShop, MarniesRanch -> {
                 return new Store(gameManager, this, playerId);
             }
         }
@@ -103,6 +103,6 @@ public class MapManager {
         }
     }
 
-    private record MapKey(MapAsset mapAsset, ServerPlayer belongingPlayer) {
+    public record MapKey(MapAsset mapAsset, ServerPlayer belongingPlayer) {
     }
 }

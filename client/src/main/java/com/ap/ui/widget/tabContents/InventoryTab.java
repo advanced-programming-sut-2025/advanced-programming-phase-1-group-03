@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.Array;
 public class InventoryTab extends AbstractContent{
 
     private Inventory inventory;
+    private GameScreen gameScreen;
 
     private Table itemContainer;
     private Table backpack;
@@ -53,6 +54,7 @@ public class InventoryTab extends AbstractContent{
 
     public InventoryTab(GameScreen gameScreen, int width, int height, Tabs icon) {
         super(gameScreen.getStage(), gameScreen.getAssetService(), gameScreen.getSkin(), gameScreen.getAudioService(), width, height, icon);
+        this.gameScreen = gameScreen;
         this.inventory = gameScreen.getInventory();
 
         border_free = atlas.findRegion("cell/border", 0);
@@ -220,7 +222,11 @@ public class InventoryTab extends AbstractContent{
                         return;
                     }
                     if (inventory.getSize() == 1) return;
-                    inventory.removeItemViaTrashCan(cells[selectedCell / m][selectedCell % m].getItem());
+
+                    gameScreen.getGameClient().getSender().sendRemoveItemInventoryRequest(
+                            cells[selectedCell / m][selectedCell % m].getItem().getItem().getName(),
+                            cells[selectedCell / m][selectedCell % m].getItem().getAmount());
+                    //TODO fix lag
                     loadInventory();
                 }
             });

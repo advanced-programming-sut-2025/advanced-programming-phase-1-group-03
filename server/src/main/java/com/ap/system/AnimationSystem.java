@@ -34,7 +34,6 @@ public class AnimationSystem extends IteratingSystem {
     protected void processEntity(Entity entity, float deltaTime) {
         Animation2D animation2D = Animation2D.mapper.get(entity);
         Facing.FacingDirection facing = Facing.mapper.get(entity).getDirection();
-
         int id = Network.mapper.get(entity).getId();
         if(animation2D.shouldUpdate() || animation2D.getFacingDirection() != facing) {
             updateAnimation(animation2D, facing, id);

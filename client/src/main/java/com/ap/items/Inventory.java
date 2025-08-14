@@ -48,7 +48,4 @@ public class Inventory {
         return storage;
     }
 
-    public void removeItemViaTrashCan(ItemStack item) {
-
-    }
 }

@@ -31,6 +31,10 @@ public class ItemFactory {
         return new Item(ItemNames.Wood.name(), 64, AtlasAsset.Environment, "wood/regular");
     }
 
+    public Item CreateHay() {
+        return new Item(ItemNames.Hay.name(), 64, AtlasAsset.AnimalProducts, "Hay");
+    }
+
     public Item CreateTree() {
         return new Tree(ItemNames.Tree.name());
     }

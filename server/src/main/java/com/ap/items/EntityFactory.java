@@ -5,19 +5,23 @@ import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.component.*;
 import com.ap.component.items.Barn;
+import com.ap.component.items.FarmAnimal;
 import com.ap.component.items.Well;
+import com.ap.items.animal.Animal;
 import com.ap.items.plant.Crop;
-import com.ap.model.BarnsType;
-import com.ap.model.CropsType;
-import com.ap.model.MineralNodes;
+import com.ap.model.*;
 import com.ap.state.CrowAnimationState;
+import com.ap.state.EmoteAnimationState;
 import com.ap.tiled.TiledPhysic;
+import com.ap.utils.Helper;
+import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.Random;
@@ -188,7 +192,7 @@ public class EntityFactory {
 
         entity.add(new Graphic(AtlasAsset.Crops, type.name() + "_Giant"));
 
-        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, 3, 3, entity, world, false);
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, 3, 3, entity, world, false, BodyDef.BodyType.StaticBody);
         entity.add(new Physic(body, position));
 
         var crop = (Crop) ItemFactory.instance.CreateCrop(type);
@@ -239,6 +243,15 @@ public class EntityFactory {
         return entity;
     }
 
+    public Entity CreateCarrierFarmAnimalEntity(FarmAnimalTypes type) {
+        Entity entity = CreateCarrierEntity(AtlasAsset.Animals,
+                type.getAtlasKey() + "/idle_down",
+                type.getWidthInPx() * Constraints.UNIT_SCALE,
+                type.getHeightInPx() * Constraints.UNIT_SCALE);
+        entity.add(new FarmAnimal(type, null));
+        return entity;
+    }
+
     public Entity CreateCarrierBarnEntity(BarnsType type) {
         var texture = assetService.get(AtlasAsset.Barns).findRegion(type.name());
         Entity entity = CreateCarrierEntity(
@@ -260,7 +273,7 @@ public class EntityFactory {
         entity.add(new Well());
         return entity;
     }
-    public Entity CreateBarnEntity(BarnsType type, Vector2 position, World world) {
+    public Entity CreateBarnEntity(BarnsType type, Vector2 position, World world, Engine engine) {
         Entity entity = new Entity();
         var texture = assetService.get(AtlasAsset.Barns).findRegion(type.name());
         Vector2 size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
@@ -270,11 +283,19 @@ public class EntityFactory {
                 size,
                 0, 5));
         entity.add(new Graphic(AtlasAsset.Barns, type.name()));
-        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false);
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false, BodyDef.BodyType.StaticBody);
         entity.add(new Physic(body, position));
         entity.add(new Barn(type));
+
+        Entity spawner = new Entity();
+        var bodySpawner = TiledPhysic.createRectagleBody(position.x , position.y - 1, size.x, 1, type.name(), world,true, BodyDef.BodyType.StaticBody);
+        spawner.add(new Physic(bodySpawner, position));
+        Helper.addEntity(spawner, engine);
+
         return entity;
     }
+
+
     public Entity CreateWellEntity(Vector2 position, World world) {
         Entity entity = new Entity();
         var bottomTexture = assetService.get(AtlasAsset.Barns).findRegion("Well_Bottom");
@@ -285,7 +306,7 @@ public class EntityFactory {
                 size,
                 0, 4));
         entity.add(new Graphic(AtlasAsset.Barns, "Well_Bottom"));
-        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false);
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false, BodyDef.BodyType.StaticBody);
         entity.add(new Physic(body, position));
 
         var topTexture = assetService.get(AtlasAsset.Barns).findRegion("Well_Top");
@@ -300,6 +321,49 @@ public class EntityFactory {
 
         entity.add(new Container(topEntity));
         entity.add(new Well());
+        return entity;
+    }
+
+    public Entity CreateFarmAnimalEntity(Vector2 position, World world, Animal animal) {
+        Entity entity = new Entity();
+
+        FarmAnimalTypes type = animal.getType();
+
+        float realW = type.getWidthInPx() * Constraints.UNIT_SCALE;
+        float realH = type.getHeightInPx() * Constraints.UNIT_SCALE;
+
+        float bodyW = realW * 1f;
+        float bodyH = realH * 0.6f;
+
+        var body = TiledPhysic.createRectagleBody(position.x, position.y, bodyW, bodyH, entity, world, false, BodyDef.BodyType.DynamicBody);
+
+        entity.add(new Transform(position, Constraints.Animal_Z, new Vector2(1f, 1f),
+                new Vector2(realW, realH),
+                0, 0));
+        entity.add(new Physic(body, position));
+        entity.add(new Move(1));
+        entity.add(new Facing(Facing.FacingDirection.Down));
+        entity.add(new Graphic(AtlasAsset.Animals, type.getAtlasKey() + "/idle_down"));
+        entity.add(new Fsm(entity, FarmAnimal.Situation.Idle.animationState));
+        entity.add(new Animation2D(AtlasAsset.Animals, type.getAtlasKey(), Animation2D.AnimationType.Idle, Animation.PlayMode.LOOP, 0.5f));
+        entity.add(new FarmAnimal(type, animal));
+//        entity.add(new Clickable());
+
+        return entity;
+    }
+
+    public Entity CreateEmoteEntity(Transform target, EmoteType emoteType, float duration) {
+        Entity entity = new Entity();
+
+        entity.add(new Transform(new Vector2(target.getPosition().x, target.getPosition().y), Constraints.Emote_Z, new Vector2(1f, 1f),
+                new Vector2(1f, 1),
+                0, 0));
+        entity.add(new Graphic(AtlasAsset.Emotes, "emote_0"));
+        entity.add(new Facing(Facing.FacingDirection.Down));
+        entity.add(new Fsm(entity, EmoteAnimationState.Opening));
+        entity.add(new Animation2D(AtlasAsset.Emotes, "", Animation2D.AnimationType.Emote_Opening, Animation.PlayMode.NORMAL, 1f));
+        entity.add(new Emote(target, emoteType, duration));
+
         return entity;
     }
 }
