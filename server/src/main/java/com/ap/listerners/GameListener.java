@@ -8,12 +8,8 @@ import com.ap.maps.Farm;
 import com.ap.maps.House;
 import com.ap.maps.MapAdaptor;
 import com.ap.maps.Store;
-import com.ap.model.AbilityType;
+import com.ap.model.*;
 import com.ap.managers.GameManager;
-import com.ap.model.Foods;
-import com.ap.model.NetworkItemStack;
-import com.ap.model.ServerPlayer;
-import com.ap.model.TradeRoom;
 import com.ap.notifiers.*;
 import com.ap.packet.LeaderBoardInfo;
 import com.ap.packet.PlayerInfo;
@@ -57,7 +53,10 @@ public class GameListener extends Listener {
                 senderPlayer.connection.sendTCP(new ThunderResponse());
             else if(cheatRequest.command.equals("gameSpeed"))
                 TimeSystem.setGameSpeed(cheatRequest.number);
-        }  else if(object instanceof ReactionRequest reactionRequest) {
+        } else if(object instanceof BuildCraftRequest buildCraftRequest) {
+            Crafting crafting = Crafting.getCraftingByName(buildCraftRequest.name);
+            // TODO implement building craft here
+        } else if(object instanceof ReactionRequest reactionRequest) {
             if(reactionRequest.emojiNum == null)
                 senderPlayer.playerManager.applyReaction(reactionRequest.message);
             else

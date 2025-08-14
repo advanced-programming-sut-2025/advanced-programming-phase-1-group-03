@@ -153,6 +153,11 @@ public class Sender {
         client.sendTCP(request);
     }
 
+    public void sendBuildCraft(String name) {
+        var request = new BuildCraftRequest(name);
+        client.sendTCP(request);
+    }
+
     public void sendEnergyCheat(int number) {
         var request = new CheatRequest("energy", number);
         client.sendTCP(request);

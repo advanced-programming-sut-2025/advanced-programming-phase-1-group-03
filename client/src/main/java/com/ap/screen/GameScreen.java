@@ -126,7 +126,7 @@ public class GameScreen extends AbstractScreen {
         energyBar = new EnergyBar(assetService, skin);
 
         journal = new Journal(assetService, skin, stage);
-        craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService);
+        craftingMenu = new CraftingMenu(assetService, skin, stage, inventory, audioService, this);
         cheatCodeController = new CheatCodeController(this);
         cheatCodeBox = new CheatCodeBox(stage, skin, cheatCodeController);
         lightningStorm = new LightningStorm(assetService, skin, stage, audioService, 400, 400);
