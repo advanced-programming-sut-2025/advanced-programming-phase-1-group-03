@@ -111,6 +111,10 @@ public class ControllerSystem extends IteratingSystem {
                     emojiPanel.toggle();
                 } case OpenRefrigerator -> {
                     refrigeratorMenu.toggle();
+                } case Hug -> {
+                    hug();
+                } case Gift -> {
+                    gift();
                 } case OpenFishing -> {
                     gameScreen.toggleFish();
                 }
@@ -150,9 +154,21 @@ public class ControllerSystem extends IteratingSystem {
 
     }
 
+    private void gift() {
+        if(tileSelectionSystem != null) {
+            tileSelectionSystem.gift();
+        }
+    }
+
     private void clicked() {
         if(tileSelectionSystem != null) {
             tileSelectionSystem.click();
+        }
+    }
+
+    private void hug() {
+        if(tileSelectionSystem != null) {
+            tileSelectionSystem.hug();
         }
     }
 

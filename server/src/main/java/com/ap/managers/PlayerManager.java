@@ -22,6 +22,7 @@ import com.badlogic.ashley.core.Family;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class PlayerManager {
     private final GameManager gameManager;
@@ -37,6 +38,7 @@ public class PlayerManager {
     private final EnergyManager energyManager;
     private final ArrayList<ServerPlayer> activeFromTradeRequests = new ArrayList<>();
     private final ArrayList<ServerPlayer> activeToTradeRequests = new ArrayList<>();
+    private final ConcurrentHashMap<ServerPlayer, Float> friendShips = new ConcurrentHashMap<>();
 
     public PlayerManager(GameManager gameManager, ServerPlayer player) {
         this.gameManager = gameManager;
@@ -90,22 +92,8 @@ public class PlayerManager {
     }
 
     public Entity getPlayerEntity() {
-        var map = gameManager.getMapManager().currentMaps.get(player);
-        if (map == null) return null;
-        var engine = map.getEngine();
-        if (engine == null) return null;
-        var list = engine.getEntitiesFor(Family.all(Player.class).get());
-        Entity playerEntity = null;
-        for (Entity entity : list) {
-            var pc = Player.mapper.get(entity);
-            if (pc != null) {
-                if (pc.id == player.id) {
-                    playerEntity = entity;
-                    break;
-                }
-            }
-        }
-        return playerEntity;
+        var engine = gameManager.getMapManager().currentMaps.get(player).getEngine();
+        return Helper.getPlayer(engine, player.id);
     }
 
     public void applyReaction(int emojiNum) {
@@ -117,13 +105,13 @@ public class PlayerManager {
             return;
         }
         var engine = gameManager.getMapManager().currentMaps.get(player).getEngine();
-        Entity playerEntity = getPlayerEntity();
+        Entity playerEntity = Helper.getPlayer(engine, player.id);
         if (playerEntity == null) return;
         Helper.addEntity(EntityFactory.instance.CreateEmoteEntity(Transform.mapper.get(playerEntity), type, 3), engine);
     }
 
     public void applyReaction(String message) {
-        //TODO implement reaction message here
+
     }
 
     public void buildGreenhouse(ServerPlayer serverPlayer) {
@@ -174,5 +162,19 @@ public class PlayerManager {
 
     public EnergyManager getEnergyManager() {
         return energyManager;
+    }
+
+    public ConcurrentHashMap<ServerPlayer, Float> getFriendShips() {
+        return friendShips;
+    }
+
+    public void hug(int tileX, int tileY, ServerPlayer senderPlayer) {
+        gameManager.getMapManager().currentMaps.get(senderPlayer).hug(tileX, tileY, senderPlayer.id);
+
+    }
+
+    public void gift(int itemIndex, ServerPlayer senderPlayer) {
+        gameManager.getMapManager().currentMaps.get(senderPlayer).gift(itemIndex, senderPlayer.id);
+
     }
 }

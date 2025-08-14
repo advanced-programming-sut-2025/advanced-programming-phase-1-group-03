@@ -55,7 +55,10 @@ public class GameListener extends Listener {
                 TimeSystem.setGameSpeed(cheatRequest.number);
         } else if(object instanceof BuildCraftRequest buildCraftRequest) {
             Crafting crafting = Crafting.getCraftingByName(buildCraftRequest.name);
-            // TODO implement building craft here
+            var map = senderPlayer.currentRoom.game.getMapManager().currentMaps.get(senderPlayer);
+            if(map instanceof Farm farm) {
+                farm.createCrafting(crafting);
+            }
         } else if(object instanceof ReactionRequest reactionRequest) {
             if(reactionRequest.emojiNum == null)
                 senderPlayer.playerManager.applyReaction(reactionRequest.message);
@@ -236,6 +239,10 @@ public class GameListener extends Listener {
         } else if(object instanceof AnimalSetNameRequest setName) {
             String name = setName.name;
             if (name.isEmpty()) return;
+        } else if(object instanceof HugRequest hugRequest) {
+            senderPlayer.playerManager.hug(hugRequest.tileX, hugRequest.tileY, senderPlayer);
+        } else if(object instanceof GiftRequest gift) {
+            senderPlayer.playerManager.gift(gift.itemIndex, senderPlayer);
         }
     }
     private void startTradeRoom(ServerPlayer player1, ServerPlayer player2) {

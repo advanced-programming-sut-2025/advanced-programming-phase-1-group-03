@@ -5,6 +5,7 @@ import com.ap.asset.AssetService;
 import com.ap.asset.AtlasAsset;
 import com.ap.component.*;
 import com.ap.component.items.Barn;
+import com.ap.component.items.CraftingCmp;
 import com.ap.component.items.FarmAnimal;
 import com.ap.component.items.Well;
 import com.ap.items.animal.Animal;
@@ -367,6 +368,19 @@ public class EntityFactory {
         return entity;
     }
 
+    public Entity CreateTextEmoteEntity(Transform target, String text, float duration) {
+        Entity entity = new Entity();
+
+        entity.add(new Transform(new Vector2(target.getPosition().x, target.getPosition().y), Constraints.Emote_Z, new Vector2(1f, 1f),
+                new Vector2(1f, 1),
+                0, 0));
+        entity.add(new Graphic());
+        entity.add(new Facing(Facing.FacingDirection.Down));
+        entity.add(new Emote(target, text, duration));
+
+        return entity;
+    }
+
     public Entity CreateCollectableItemEntity(Vector2 position, ItemStack item) {
         Entity entity = new Entity();
         Vector2 size = new Vector2(1, 1);
@@ -380,4 +394,28 @@ public class EntityFactory {
 
         return entity;
     }
+
+    public Entity CreateCraftingCarrier(Crafting crafting) {
+        var texture = assetService.get(AtlasAsset.Crafting).findRegion(crafting.name());
+        Entity entity = CreateCarrierEntity(AtlasAsset.Crafting, crafting.name(), texture.getRegionWidth() * Constraints.UNIT_SCALE,
+                texture.getRegionHeight() * Constraints.UNIT_SCALE);
+        entity.add(new CraftingCmp(crafting));
+        return entity;
+    }
+
+    public Entity CreateCrafting(Vector2 position, Crafting craft, World world) {
+        Entity entity = new Entity();
+        var texture = assetService.get(AtlasAsset.Crafting).findRegion(craft.name());
+        Vector2 size = new Vector2(texture.getRegionWidth(), texture.getRegionHeight()).scl(Constraints.UNIT_SCALE);
+        entity.add(new Transform(position,
+                Constraints.BARN_Z,
+                new Vector2(1, 1),
+                size,
+                0, 5));
+        entity.add(new Graphic(AtlasAsset.Crafting, craft.name()));
+        var body = TiledPhysic.createRectagleBody((int) position.x, (int) position.y, size.x, size.y, entity, world, false, BodyDef.BodyType.StaticBody);
+        entity.add(new Physic(body, position));
+        return entity;
+    }
+
 }

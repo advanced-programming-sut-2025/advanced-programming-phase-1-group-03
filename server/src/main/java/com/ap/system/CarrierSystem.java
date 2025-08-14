@@ -7,6 +7,7 @@ import com.ap.component.Transform;
 
 import com.ap.component.TwinEntity;
 import com.ap.component.items.Barn;
+import com.ap.component.items.CraftingCmp;
 import com.ap.component.items.FarmAnimal;
 import com.ap.component.items.Well;
 import com.ap.items.EntityFactory;
@@ -77,6 +78,8 @@ public class CarrierSystem extends IteratingSystem {
         } else if(FarmAnimal.mapper.has(entity)) {
             var animal = FarmAnimal.mapper.get(entity);
             player.playerManager.getGameManager().getAnimalManagers().get(player).placeAnimal(animal.getType(), position);
+        } else if(CraftingCmp.mapper.has(entity)) {
+            Helper.addEntity(EntityFactory.instance.CreateCrafting(position, CraftingCmp.mapper.get(entity).craft, world), engine);
         }
         if (!TwinEntity.mapper.has(entity)) Helper.removeEntity(entity, engine, world);
         else {

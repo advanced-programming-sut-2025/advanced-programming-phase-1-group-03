@@ -174,19 +174,19 @@ public class Helper {
     }
 
     public static void sendToAll(Array<ServerPlayer> players, Object message) {
-        for(ServerPlayer serverPlayer : players) {
-            serverPlayer.connection.sendUDP(message);
+        for(int i = 0; i < players.size; i++ ){
+            players.get(i).connection.sendUDP(message);
         }
     }
     public static void sendToAllTCP(Array<ServerPlayer> players, Object message) {
-        for(ServerPlayer serverPlayer : players) {
-            serverPlayer.connection.sendTCP(message);
+        for(int i = 0; i < players.size; i++ ){
+            players.get(i).connection.sendTCP(message);
         }
     }
 
     public static Entity getPlayer(Engine engine, int id) {
         for(Entity entity : engine.getEntitiesFor(Family.all(Player.class).get())) {
-            if(Player.mapper.get(entity).id == id) {
+            if(Player.mapper.has(entity) && Player.mapper.get(entity).id == id) {
                 return entity;
             }
         }

@@ -19,6 +19,9 @@ public enum CrowAnimationState implements State<Entity> {
 
     @Override
     public void update(Entity entity) {
+        if(!Crow.mapper.has(entity)) {
+            return;
+        }
         Crow crow = Crow.mapper.get(entity);
         if (!crow.getSituation().name().equals(name())) {
             Fsm.mapper.get(entity).getAnimationFsm().changeState(CrowAnimationState.valueOf(crow.getSituation().name()));

@@ -3,7 +3,7 @@
     <option name="ALTERNATIVE_JRE_PATH" value="corretto-23" />
     <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <option name="MAIN_CLASS_NAME" value="com.ap.ServerRunner" />
-    <module name="StarNet.server.main" />
+    <module name="StarehdewValley.server.main" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

@@ -55,6 +55,12 @@ public class TileSelectionSystem extends IteratingSystem {
             case Right -> tileX ++;
         }
         selectTile(tileX, tileY);
+
+        batch.begin();
+        batch.draw(itemContainer.getSelectedItem().getItem().getIcon(),
+                transform.getPosition().x +0.6f, transform.getPosition().y +0.6f,
+                1, 1);
+        batch.end();
     }
 
     private void selectTile(int tileX, int tileY) {
@@ -64,4 +70,11 @@ public class TileSelectionSystem extends IteratingSystem {
     }
 
 
+    public void hug() {
+        game.getGameClient().getSender().hug(tileX, tileY);
+    }
+
+    public void gift() {
+        game.getGameClient().getSender().gift(itemContainer.getSelectedIndex());
+    }
 }

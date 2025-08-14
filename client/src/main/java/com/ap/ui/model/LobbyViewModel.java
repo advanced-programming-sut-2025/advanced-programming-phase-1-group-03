@@ -62,4 +62,7 @@ public class LobbyViewModel extends ViewModel {
     public void whenBack() {
         client.getSender().quitRoom();
     }
+
+    public void joinById(int i) {
+    }
 }

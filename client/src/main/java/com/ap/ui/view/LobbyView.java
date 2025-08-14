@@ -130,12 +130,14 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         Table bottomBar = new Table();
         TextButton hostButton = new TextButton("Host", skin);
         TextButton refreshButton = new TextButton("Refresh", skin);
+        TextButton joinById = new TextButton("Join By Id", skin);
 
         OnClick(hostButton, this::host);
         OnClick(refreshButton, viewModel::refresh);
-
+        OnClick(joinById, this::openEnterId);
         bottomBar.add(hostButton).width(150).padRight(20);
-        bottomBar.add(refreshButton).width(150);
+        bottomBar.add(refreshButton).width(150).padRight(20);
+        bottomBar.add(joinById);
         window.add(bottomBar).pad(10);
         window.row();
 
@@ -145,6 +147,15 @@ public class LobbyView extends AbstractView<LobbyViewModel> {
         window.row();
 
         add(window); // ← Just add without fill
+    }
+
+    private void openEnterId() {
+        SimpleDialog dialog = new SimpleDialog("", "Enter room id:", skin);
+        TextField field = new TextField("", skin);
+        dialog.addToContent(field);
+        dialog.setupEvent(() -> {
+            viewModel.joinById(Integer.parseInt(field.getText()));
+        });
     }
 
     private void joinRoom(int roomId, String password) {

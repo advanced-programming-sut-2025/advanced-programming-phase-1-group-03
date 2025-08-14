@@ -3,8 +3,10 @@ package com.ap.maps;
 
 import com.ap.asset.AssetService;
 import com.ap.asset.MapAsset;
+import com.ap.component.Player;
 import com.ap.managers.MapManager;
 import com.ap.managers.GameManager;
+import com.ap.model.EmoteType;
 import com.ap.model.ServerPlayer;
 import com.ap.requests.MovePlayerRequest;
 import com.ap.system.ClickSystem;
@@ -18,6 +20,7 @@ import com.ap.utils.Helper;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
@@ -146,6 +149,38 @@ public abstract class MapAdaptor implements IMap {
         return null;
     }
 
+
+    @Override
+    public void hug(int tileX, int tileY, int id) {
+        var worldObject = Helper.getTopBodyAtPoint(new Vector2(tileX, tileY), world, map);
+        if(worldObject.getUserData() instanceof Entity you) {
+            if(!Player.mapper.has(you))
+                return;
+
+            var mePlayer = Helper.findPlayer(players, id);
+            var youPlayer = Helper.findPlayer(players, Player.mapper.get(you).id);
+
+
+            float friendShip = mePlayer.playerManager
+                    .getFriendShips().getOrDefault(youPlayer.playerManager.getPlayer(), 0f);
+            friendShip = MathUtils.clamp(friendShip + 0.5f, 0, 3f);
+
+            mePlayer.playerManager.getFriendShips().put(youPlayer.playerManager.getPlayer(), friendShip);
+            youPlayer.playerManager.getFriendShips().put(mePlayer.playerManager.getPlayer(), friendShip);
+            mePlayer.playerManager.applyReaction(EmoteType.Heart.index);
+            youPlayer.playerManager.applyReaction(EmoteType.Heart.index);
+        }
+    }
+
+    @Override
+    public void gift(int itemIndex, int id) {
+
+    }
+
+    @Override
+    public Array<ServerPlayer> getPlayers() {
+        return players;
+    }
 
     @Override
     public Engine getEngine() {

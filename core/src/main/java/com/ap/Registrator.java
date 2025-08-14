@@ -210,6 +210,16 @@ public class Registrator {
         kryo.register(AnimalSetNameRequest.class);
 
         kryo.register(Shadow.class);
+
+        kryo.register(FriendInfo.class);
+        kryo.register(FriendInfo[].class);
+
+        kryo.register(GetFriendsRequest.class);
+        kryo.register(GetFriendsResponse.class);
+
+        kryo.register(HugRequest.class);
+
+        kryo.register(GiftRequest.class);
     }
 
 }

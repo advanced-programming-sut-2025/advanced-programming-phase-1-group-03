@@ -102,7 +102,7 @@ public enum CropsType {
             true,
              null,
             30,
-            45,
+            null,
             new ArrayList<>(List.of( Season.Spring)),
             false),
     Unmilled_Rice("UnmilledRice",

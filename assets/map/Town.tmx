@@ -3523,7 +3523,7 @@
     <property name="speed" type="float" value="3"/>
    </properties>
   </object>
-  <object id="193" name="Player" gid="6777" x="855" y="1729" width="32" height="32">
+  <object id="193" name="Player" gid="6777" x="1276.33" y="163.667" width="32" height="32">
    <properties>
     <property name="cameraFollow" type="bool" value="true"/>
     <property name="playerId" type="int" value="2"/>

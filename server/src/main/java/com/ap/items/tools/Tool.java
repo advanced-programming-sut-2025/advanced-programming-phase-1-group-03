@@ -42,7 +42,9 @@ public abstract class Tool extends Item {
         inventory.addItem(new WateringCan(AtlasAsset.Tools, "watering_can/normal"), 1);
         inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Cauliflower), 9);
         inventory.addItem(ItemFactory.instance.CreateMixSeedCrop(MixedSeedsTypes.SpringMixedSeeds), 2);
-        inventory.addItem(ItemFactory.instance.CreateFertilizer(), 64);
+        inventory.addItem(ItemFactory.instance.CreateSeed(CropsType.Tulip), 2);
+
+        inventory.addItem(ItemFactory.instance.CreateFertilizer(), 10);
 
     }
 

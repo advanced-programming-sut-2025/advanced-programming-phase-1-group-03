@@ -101,9 +101,9 @@ public class MapManager {
     }
 
     public void goToHome() {
-        for(ServerPlayer player : players) {
-            setMap(player, MapAsset.House);
-        }
+//        for(ServerPlayer player : players) {
+//            setMap(player, MapAsset.House);
+//        }
     }
 
     public record MapKey(MapAsset mapAsset, ServerPlayer belongingPlayer) {

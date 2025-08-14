@@ -44,6 +44,6 @@ public class EmoteSystem extends IteratingSystem {
         Transform transform = Transform.mapper.get(entity);
         float x = emote.getFather().getPosition().x + emote.getFather().getSize().x / 2f - transform.getSize().x / 2f;
         float y = emote.getFather().getPosition().y + emote.getFather().getSize().y;
-        transform.getPosition().set(x, y);
+        transform.setPosition(x, y);
     }
 }

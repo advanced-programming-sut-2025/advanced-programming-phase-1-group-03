@@ -8,7 +8,6 @@ import com.ap.managers.EnergyManager;
 import com.ap.managers.PlayerManager;
 import com.ap.rmi.Ask;
 import com.badlogic.ashley.core.Engine;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.World;
 import com.esotericsoftware.kryonet.rmi.ObjectSpace;
 import com.esotericsoftware.kryonet.rmi.RemoteObject;

@@ -140,7 +140,6 @@ public class ItemContainer extends Actor {
     public ItemStack getSelectedItem() {
         return inventory.getItems().get(selectedIndex);
     }
-
     public boolean isScrollable() {
         return scrollable;
     }

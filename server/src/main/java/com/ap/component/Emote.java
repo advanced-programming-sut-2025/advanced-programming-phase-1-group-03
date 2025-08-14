@@ -15,6 +15,7 @@ public class Emote implements Component {
     private EmoteType emote;
     private float timeState;
     private float duration;
+    private String textEmote;
 
     //-1 duration for unlimited, for removing it set duration 0 again;
     public Emote(Transform father, EmoteType emote, float duration) {
@@ -25,6 +26,12 @@ public class Emote implements Component {
             this.emote = EmoteType.Noise;
         }
         timeState = 0;
+        this.duration = duration;
+    }
+
+    public Emote(Transform father, String text, float duration) {
+        this.father = father;
+        this.textEmote = text;
         this.duration = duration;
     }
 

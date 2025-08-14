@@ -314,7 +314,7 @@ public class CraftingMenu extends Actor {
 
     private boolean checkAvailable() {
         //TODO : implement availability of the craft machine
-        return false;
+        return true;
     }
 
     private void addItem(String name) {

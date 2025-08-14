@@ -6,9 +6,11 @@ import com.ap.asset.MapAsset;
 import com.ap.asset.SoundAsset;
 import com.ap.component.Graphic;
 import com.ap.component.GreenhouseCmp;
+import com.ap.items.EntityFactory;
 import com.ap.items.ItemFactory;
 import com.ap.managers.MapManager;
 import com.ap.managers.GameManager;
+import com.ap.model.Crafting;
 import com.ap.model.Season;
 import com.ap.model.ServerPlayer;
 import com.ap.notifiers.CreateMapNotifier;
@@ -126,6 +128,11 @@ public class Farm extends MapAdaptor {
 
     public void placeCarrier(ServerPlayer player) {
         engine.getSystem(CarrierSystem.class).place(player);
+    }
+
+    public void createCrafting(Crafting crafting) {
+        Entity entity = EntityFactory.instance.CreateCraftingCarrier(crafting);
+        Helper.addEntity(entity, engine);
     }
 
     class TimeListener implements ITimeListener {

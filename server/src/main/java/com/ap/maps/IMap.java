@@ -5,6 +5,7 @@ import com.ap.model.ServerPlayer;
 import com.ap.requests.MovePlayerRequest;
 import com.badlogic.ashley.core.Engine;
 import com.badlogic.ashley.core.Entity;
+import com.badlogic.gdx.utils.Array;
 
 public interface IMap {
     void update(float delta);
@@ -22,4 +23,10 @@ public interface IMap {
     void addPlayer(ServerPlayer player, MapAsset map);
 
     Engine getEngine();
+
+    Array<ServerPlayer> getPlayers();
+
+    void hug(int tileX, int tileY, int id);
+
+    void gift(int itemIndex, int id);
 }

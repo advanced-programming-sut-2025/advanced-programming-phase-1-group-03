@@ -1,0 +1,10 @@
+package com.ap.requests;
+
+public class GetFriendsRequest {
+
+
+    public GetFriendsRequest() {
+    }
+
+
+}

@@ -5,10 +5,7 @@ import com.ap.asset.AtlasAsset;
 import com.ap.items.food.Food;
 import com.ap.items.mine.Mineral;
 import com.ap.items.plant.*;
-import com.ap.model.CropsType;
-import com.ap.model.Foods;
-import com.ap.model.Minerals;
-import com.ap.model.MixedSeedsTypes;
+import com.ap.model.*;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class ItemFactory {
@@ -57,6 +54,9 @@ public class ItemFactory {
 
     public Item CreateProductOfCrop(CropsType type) {
         if(type.getEnergyProduce() == null) {
+            if(type == CropsType.Tulip) {
+                return new Flower(type.name(),AtlasAsset.Crops,type.getName(), type.getBaseSellPrice());
+            }
             return new Item(type.name(), 64, AtlasAsset.Crops,type.getName(), type.getBaseSellPrice());
         } else {
             return new Food(type.name(), 64, AtlasAsset.Crops, type.getName(), type.getBaseSellPrice(), type.getEnergyProduce());
@@ -66,6 +66,9 @@ public class ItemFactory {
         return new Mineral(AtlasAsset.Mineral, type.name(), type);
     }
 
+    public Item CreateCrafting(Crafting crafting) {
+        return new CraftingItem(crafting.name(), AtlasAsset.Crafting, crafting.name(), crafting);
+    }
     public Item CreateFood(Foods type, int price) {
         return new Food(type.getName(), 64, AtlasAsset.Foods, type.name(),price, type.getEnergy());
     }

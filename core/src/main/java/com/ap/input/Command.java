@@ -18,6 +18,8 @@ public enum Command {
     OpenTradeStarter(Input.Keys.T),
     OpenEmoteMenu(Input.Keys.M),
     OpenRefrigerator(Input.Keys.Y),
+    Hug(Input.Keys.H),
+    Gift(Input.Keys.G),
     OpenFishing(Input.Keys.F)
     ;
 

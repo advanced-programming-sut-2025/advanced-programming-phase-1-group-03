@@ -38,6 +38,9 @@ public class FarmAnimalSystem extends IteratingSystem {
 
         Clickable clickable = Clickable.mapper.get(entity);
 
+        if(animal == null) {
+            return;
+        }
         animal.setAnimationStateTime(animal.getAnimationStateTime() + deltaTime);
 
         if (clickable != null && clickable.isClicked()) {

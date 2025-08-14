@@ -337,4 +337,19 @@ public class Sender {
         var request = new AnimalSetNameRequest(name);
         client.sendTCP(request);
     }
+
+    public GetFriendsResponse getFriends() {
+        var request = new GetFriendsRequest();
+        return sendMessageAndWaitForResponse(request, GetFriendsResponse.class);
+    }
+
+    public void hug(int tileX, int tileY) {
+        var request = new HugRequest(tileX, tileY);
+        client.sendTCP(request);
+    }
+
+    public void gift(int selectedIndex) {
+        var request = new GiftRequest(selectedIndex);
+        client.sendTCP(request);
+    }
 }

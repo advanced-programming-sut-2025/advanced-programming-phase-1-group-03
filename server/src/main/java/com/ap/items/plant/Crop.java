@@ -1,10 +1,18 @@
 package com.ap.items.plant;
 
 import com.ap.asset.AtlasAsset;
+import com.ap.component.Player;
 import com.ap.items.Item;
 import com.ap.items.ItemFactory;
+import com.ap.managers.PlayerManager;
 import com.ap.model.CropsType;
+import com.ap.model.EmoteType;
+import com.ap.utils.Helper;
+import com.badlogic.ashley.core.Engine;
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.physics.box2d.World;
 
 import java.util.List;
 
@@ -24,6 +32,11 @@ public class Crop extends Plant {
     @Override
     public List<Item> produceItems() {
         return List.of(ItemFactory.instance.CreateProductOfCrop(type));
+    }
+
+    @Override
+    public void applyItem(WorldObject body, Engine engine, PlayerManager playerManager, World world) {
+
     }
 
     public CropsType getType() {

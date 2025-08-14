@@ -46,7 +46,7 @@ public class ScreenBrightnessSystem extends EntitySystem {
 
         rayHandler.setAmbientLight(darkness, darkness, darkness, 1f);
 
-        for(Entity shadow : engine.getEntitiesFor(Family.all(Shadow.class).get())) {
+        for(Entity shadow : engine.getEntitiesFor(Family.all(Shadow.class, Graphic.class).get())) {
             Graphic graphic = Graphic.mapper.get(shadow);
             graphic.getColor().a = 1 - darknessProgress;
         }
